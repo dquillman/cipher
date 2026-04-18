@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" height="440" role="img" aria-label="Cognitive mismatch diagram">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0f1830"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7aa2ff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="hotGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f87171"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="440" fill="url(#bgGrad)"/>
+  <text x="400" y="40" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="22" font-weight="700" text-anchor="middle">The cognitive mismatch that's costing you the exam</text>
+<rect x="80" y="90" width="300" height="300" rx="12" fill="#17213a" stroke="#9fb0cc" stroke-opacity="0.3" stroke-width="1"/>
+<text x="230" y="120" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">WHAT YOU STUDIED</text>
+<rect x="104" y="150" width="252" height="26" rx="6" fill="#34d399" fill-opacity="1"/>
+<text x="230" y="168" fill="#0b1220" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Remember</text>
+<rect x="104" y="188" width="252" height="26" rx="6" fill="#34d399" fill-opacity="1"/>
+<text x="230" y="206" fill="#0b1220" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Understand</text>
+<rect x="104" y="226" width="252" height="26" rx="6" fill="#9fb0cc" fill-opacity="0.25"/>
+<text x="230" y="244" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Apply</text>
+<rect x="104" y="264" width="252" height="26" rx="6" fill="#9fb0cc" fill-opacity="0.25"/>
+<text x="230" y="282" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Analyze</text>
+<rect x="104" y="302" width="252" height="26" rx="6" fill="#9fb0cc" fill-opacity="0.25"/>
+<text x="230" y="320" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Evaluate</text>
+<rect x="104" y="340" width="252" height="26" rx="6" fill="#9fb0cc" fill-opacity="0.25"/>
+<text x="230" y="358" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Create</text>
+<rect x="420" y="90" width="300" height="300" rx="12" fill="#17213a" stroke="#7aa2ff" stroke-opacity="0.5" stroke-width="1.5"/>
+<text x="570" y="120" fill="#7aa2ff" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">WHAT THE EXAM TESTED</text>
+<rect x="444" y="150" width="252" height="26" rx="6" fill="#9fb0cc" fill-opacity="0.25"/>
+<text x="570" y="168" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Remember</text>
+<rect x="444" y="188" width="252" height="26" rx="6" fill="#9fb0cc" fill-opacity="0.25"/>
+<text x="570" y="206" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Understand</text>
+<rect x="444" y="226" width="252" height="26" rx="6" fill="#7aa2ff" fill-opacity="1"/>
+<text x="570" y="244" fill="#0b1220" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Apply</text>
+<rect x="444" y="264" width="252" height="26" rx="6" fill="#7aa2ff" fill-opacity="1"/>
+<text x="570" y="282" fill="#0b1220" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Analyze</text>
+<rect x="444" y="302" width="252" height="26" rx="6" fill="#7aa2ff" fill-opacity="1"/>
+<text x="570" y="320" fill="#0b1220" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Evaluate</text>
+<rect x="444" y="340" width="252" height="26" rx="6" fill="#9fb0cc" fill-opacity="0.25"/>
+<text x="570" y="358" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Create</text>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f87171"/></marker></defs>
+<line x1="390" y1="240" x2="410" y2="240" stroke="#f87171" stroke-width="2.5" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+<text x="400" y="226" fill="#f87171" font-family="Inter, sans-serif" font-size="12" font-weight="700" text-anchor="middle">GAP</text>
+</svg>

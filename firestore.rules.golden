@@ -1,0 +1,148 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===== HELPER FUNCTIONS =====
+    
+    // Check if user is signed in
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if user has admin privileges
+    // Logic: Checks custom token claim OR Firestore role field
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.get('admin', false) == true || 
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+      );
+    }
+    
+    // Check if user is accessing their own data
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // ===== 1. EXAM CONTENT (Student Readable) =====
+    // Rules: READ -> Any authenticated user, WRITE -> Admin only
+    
+    match /exams/{examId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    match /exam_sets/{setId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    match /questions/{questionId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Matches /exam_questions/{examId}/items/{itemId}
+    match /exam_questions/{examId}/items/{itemId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Legacy support if needed, or strictly following prompt
+    match /exam_questions/{docId} {
+       allow read: if isAuthenticated();
+       allow write: if isAdmin();
+    }
+
+    // ===== 2. USER-OWNED DATA =====
+    // Rules: User can read/write own, Admin can read all
+    
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) || isAdmin();
+      
+      // Subcollections (e.g. /users/{uid}/exam_attempts)
+      match /{document=**} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+    }
+    
+    match /user_sessions/{sessionId} {
+      // Allow if user owns the session (checked via userId field in doc) OR is creating it
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || resource == null) || isAdmin();
+      allow update, delete: if isAuthenticated() && resource.data.userId == request.auth.uid || isAdmin();
+    }
+    
+    // Handling "/exam_attempts/{uid}/{attemptId}" structure from prompt
+    // Assuming nested structure under root `exam_attempts` collection with `uid` as document key? 
+    // Or simplified resource matching. We'll handle both common patterns safely.
+    match /exam_attempts/{userId}/{attemptId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+    // Also cover flat collection with userId field if that's the actual implementation
+    match /exam_attempts/{attemptId} {
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow read, write: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
+    }
+
+    // Keep existing quizAttempts to prevent regression
+    match /quizAttempts/{attemptId} {
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow read, write: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
+    }
+    
+    // Keep userMastery
+    match /userMastery/{docId} {
+      allow read, write: if isAuthenticated() && docId.matches('^' + request.auth.uid + '_.*') || isAdmin();
+    }
+
+    // Study Plans - Users can manage their own
+    match /study_plans/{planId} {
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
+    }
+
+    // ===== 3. ADMIN-ONLY DATA =====
+    // Rules: Admin only (read/write)
+    
+    match /admin_audit/{docId} {
+      allow read, write: if isAdmin();
+    }
+    
+    match /admin_metrics/{docId} {
+      allow read, write: if isAdmin();
+    }
+    
+    match /config/{docId} {
+      allow read, write: if isAdmin();
+    }
+    
+    match /marketing_assets/{docId} {
+      allow read, write: if isAdmin();
+    }
+    
+    // Legacy/Existing Admin Collections
+    match /issues/{issueId} {
+      allow create: if isAuthenticated(); // Users can report bugs
+      allow read, update, delete: if isAdmin();
+    }
+    
+    match /testers/{testerId} { allow read, write: if isAdmin(); }
+    match /examHealth/{docId} { allow read, write: if isAdmin(); }
+    match /system_metrics/{docId} { allow read, write: if isAdmin(); }
+    match /exam_update_sources/{docId} { allow read, write: if isAdmin(); }
+    
+    // Admin specific user-subcollections
+    match /admin_workflows/{userId}/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    match /admin_marketing_assets/{userId}/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    // ===== DEFAULT DENY =====
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

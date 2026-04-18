@@ -1,0 +1,40 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.testOpenAIConnection = void 0;
+const functions = require("firebase-functions");
+const openai_1 = require("openai");
+const getOpenAI = () => {
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey || apiKey === 'dummy-key-for-deploy') {
+        throw new Error("OPENAI_API_KEY is missing or invalid in environment secrets.");
+    }
+    return new openai_1.default({ apiKey });
+};
+exports.testOpenAIConnection = functions.https.onCall(async (data, context) => {
+    // Optional: Restrict to admin or authenticated users
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'User must be logged in to test connection.');
+    }
+    try {
+        const client = getOpenAI();
+        const start = Date.now();
+        const response = await client.chat.completions.create({
+            model: "gpt-4o",
+            messages: [{ role: "user", content: "Ping" }],
+            max_tokens: 1
+        });
+        const duration = Date.now() - start;
+        return {
+            success: true,
+            latency: duration,
+            message: "Connection successful!",
+            model: response.model,
+            usage: response.usage
+        };
+    }
+    catch (error) {
+        console.error("OpenAI Connection Test Failed:", error);
+        throw new functions.https.HttpsError('internal', `Test Failed: ${error.message}`);
+    }
+});
+//# sourceMappingURL=diagnostics.js.map

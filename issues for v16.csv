@@ -1,0 +1,15 @@
+title,summary,severity,status,classification,app
+Validate Usage Score Pipeline,Validate usage events from EC aggregate into usageScore,S1,new,unclassified,admin-core
+Backfill Usage Scores,Compute baseline usageScore for existing users,S1,new,unclassified,admin-core
+Paid User Filter,Filter users by verified paid billing status,S1,new,blocking,admin-core
+Billing History Log,Display billing status change timeline,S2,new,unclassified,admin-core
+Stripe Webhook Monitor,Surface Stripe webhook health and failures,S1,new,blocking,admin-core
+PFV Issue Filter,Filter issues by Planned For Version,S1,new,unclassified,admin-core
+PFV Bulk Update,Bulk assign Planned For Version,S2,new,unclassified,admin-core
+Release Version Automation,Auto-mark releases as Released after deploy,S2,new,unclassified,admin-core
+Tester Conversion Tracking,Track tester to paid conversion,S1,new,unclassified,admin-core
+Usage vs Billing View,Compare usage score vs billing status,S2,new,unclassified,admin-core
+Environment Badge Enforcement,Enforce environment badge visibility,S3,new,unclassified,admin-core
+EC Usage Audit,Audit ExamCoach usage event coverage,S1,new,unclassified,exam-coach
+EC Paid Gate Audit,Ensure paid features gated by billing,S2,new,blocking,exam-coach
+EC Deploy Guardrail,Prevent wrong hosting deploys,S1,new,blocking,exam-coach

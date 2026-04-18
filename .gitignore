@@ -1,0 +1,35 @@
+node_modules/
+.env
+dist/
+.DS_Store
+.firebase/
+
+functions/.env
+*.log
+# --- Local tooling & debug artifacts ---
+*.bak
+*.bak.*
+*.ps1
+.claude/
+admin/_force_admin_backup/
+admin/_gate_backup/
+web/src/components/*.bak*
+temp_*
+# Windows reserved device names
+nul
+
+# Service account keys and runtime secrets — NEVER commit these
+functions/serviceAccountKey.json
+functions/exam-coach-ai-platform-firebase-adminsdk-fbsvc-ae6b0d59c6.json
+functions/.runtimeconfig.json
+
+functions/*.json
+functions/.runtimeconfig.json
+*.env
+.env*
+firebase-admin*.json
+
+# Bloom's classification pipeline outputs — contain proprietary question content
+functions/blooms-*.csv
+functions/.blooms-progress.json
+

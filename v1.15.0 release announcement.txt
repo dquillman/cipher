@@ -1,0 +1,25 @@
+Subject (optional):
+🙏 Thank you — ExamCoach v1.15.0 is live (trial extended)
+
+Message:
+Hi — and first, thank you for testing ExamCoach.
+
+Your feedback during testing directly shaped v1.15.0, which went live last night. Several usability fixes and flow improvements came straight from tester input — so yes, it mattered.
+
+What’s new in this release:
+• A clearer Start Here experience so users know exactly what to do next
+• Improved diagnostics and explanations focused on exam-style reasoning
+• A cleaner, less distracting dashboard
+• Password reset is now available directly in the app
+
+We’ve also extended your access with another full 14-day trial — full features, no limits.
+
+Please keep the feedback coming. You can use “Report a Problem” in the app header at any time. Every issue submitted is documented, reviewed, and triaged for a fix. We actively monitor and act on these reports.
+
+One more thing — ExamCoach is designed to support multiple professional exams, not just one.
+If you could recommend the next exam EC should support, which would it be?
+
+👉 [Your EC link here]
+
+Thanks again for helping shape ExamCoach.
+— Dave

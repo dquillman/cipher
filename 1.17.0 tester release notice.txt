@@ -1,0 +1,30 @@
+ ExamCoach Pro AI v1.17.0 is Live!
+
+  Hello Everyone — we've been busy. Here's everything that's new and improved:
+
+  Top Features:
+
+  - Mobile support is here. ExamCoach now works fully on your phone — bottom navigation, responsive layouts, and touch-friendly interactions across the entire app.
+  - 10 professional certification exams are now available — PMP, CSM, SHRM-CP, Six Sigma Green Belt, CPP, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, CompTIA Network+, and CompTIA A+ Core 2. You can switch between any and all of them from the exam selector in the
+  top nav. We will be adding more exams in the near future.
+
+  What's been fixed and improved:
+
+  - Coach Breakdown explanations are now available for all exams with exam-specific framing (e.g., "PMI Decision Lens" for PMP, "Scrum Guide Lens" for CSM, "DMAIC Lens" for Six Sigma)
+  - Quick and Deep explanation modes let you toggle between concise verdicts and detailed structured breakdowns on any question
+  - The correct answer is now highlighted green in the Coach Breakdown choice analysis so you can spot it instantly
+  - Drag-and-drop matching questions added for realistic exam practice formats, with tap-to-swap support on mobile
+  - Study activity heatmap on the Stats page shows your 365-day practice history at a glance
+  - Wrong-answer feedback is now gentler — subtle transitions instead of harsh red flashes
+  - "Explain this like I'm new" deep dive button now works correctly for all exams
+  - Full user billing support
+  - Reference citations now match the correct source material for each exam
+  - Study plan adapts based on your quiz performance with smarter domain targeting
+
+  A thank you all:
+
+  You all have been incredible. Your feedback directly shaped these improvements. As a thank you, every tester is receiving a free 6-month pass to ExamCoach Pro, starting today. Enjoy full access to all 10 exams, AI coaching, and every feature — on us.
+
+  One ask: please keep hitting the Report a Problem button whenever something feels off. Your issue reports are the single most valuable input we get. Every report gets read.
+
+  Thank you for helping us build something great. https://examcoachpro.ai/

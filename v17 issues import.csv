@@ -1,0 +1,15 @@
+title,summary,severity,status,classification,app
+Usage Score Confidence Thresholds,Define confidence bands and minimum data thresholds for usageScore reliability,S1,new,blocking,admin-core
+Usage Score Decay Tuning,Tune decay rates so inactive users degrade predictably over time,S2,new,unclassified,admin-core
+Billing vs Usage Alert Rules,Create alerts for high-usage users without verified paid billing,S1,new,blocking,admin-core
+Paid User Revenue Dashboard,Add revenue-focused dashboard based on verified paid users only,S1,new,blocking,admin-core
+Stripe Webhook Replay Tool,Allow admins to safely replay failed Stripe webhook events,S2,new,unclassified,admin-core
+Billing Status Lock Indicator,Visually indicate Stripe-locked billingStatus values in Admin Core UI,S2,new,unclassified,admin-core
+PFV Enforcement on Close,Prevent issues from being closed without a Planned For Version,S1,new,blocking,admin-core
+Release Readiness Checklist,Add automated checklist tied to PFV before marking a release as Ready,S2,new,unclassified,admin-core
+Tester Funnel Visualization,Visualize tester journey from signup through conversion or churn,S1,new,unclassified,admin-core
+Inactive Paid User Detection,Detect and flag paid users with declining or zero usage,S1,new,unclassified,admin-core
+Admin Audit Timeline View,Unified timeline view for admin actions across users issues and billing,S2,new,unclassified,admin-core
+ExamCoach Usage Heatmap,Visual heatmap of usage intensity across study plan timeline,S2,new,unclassified,exam-coach
+ExamCoach Friction Event Logging,Emit explicit friction events when users abandon flows,S1,new,blocking,exam-coach
+ExamCoach Conversion Intent Signals,Detect intent signals preceding paid conversion,S1,new,unclassified,exam-coach

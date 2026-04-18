@@ -1,0 +1,262 @@
+[
+    {
+        "stem": "A project manager is leading a team that is distributed across multiple time zones. Several team members have complained that they feel disconnected and are unsure of their specific tasks. What should the project manager do first?",
+        "options": [
+            "Schedule a daily stand-up meeting at a time that works for everyone.",
+            "Create a detailed project schedule and email it to all team members.",
+            "Review the communications management plan and team charter.",
+            "Ignore the complaints as this is common in virtual teams."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The first step is to review the guiding documents like the communications management plan and team charter to understand the agreed-upon norms and communication channels before making changes.",
+        "domain": "People",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "During a sprint review, a key stakeholder rejects a deliverable because it does not meet a specific compliance requirement that was not included in the user story. What should the project manager do?",
+        "options": [
+            "Argue that the requirement was not in the user story.",
+            "Add the requirement to the product backlog as a new user story.",
+            "Ask the team to fix it immediately during the meeting.",
+            "Escalate the issue to the project sponsor."
+        ],
+        "correctAnswer": 1,
+        "explanation": "In Agile, if a requirement is missing or new, it should be added to the product backlog to be prioritized for a future sprint.",
+        "domain": "Process",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "A new regulation has been passed that impacts the project's product. The project is in the execution phase. What should the project manager do first?",
+        "options": [
+            "Immediately implement changes to comply with the regulation.",
+            "Submit a change request to update the project scope and cost.",
+            "Analyze the impact of the regulation on the project.",
+            "Inform the project sponsor and wait for instructions."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The first step is always to analyze the impact of the new constraint (regulation) before taking action or submitting a change request.",
+        "domain": "Business Environment",
+        "difficulty": "Hard"
+    },
+    {
+        "stem": "A team member is consistently late with their deliverables, causing delays for others. The project manager has already spoken to them informally, but the behavior has not changed. What is the next best step?",
+        "options": [
+            "Remove the team member from the project.",
+            "Report the team member to their functional manager.",
+            "Address the issue in the next retrospective.",
+            "Have a formal private meeting to discuss the issue and potential solutions."
+        ],
+        "correctAnswer": 3,
+        "explanation": "After informal coaching fails, the next step is a formal private discussion to understand the root cause and set clear expectations.",
+        "domain": "People",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "Which of the following is a primary benefit of using a Kanban board?",
+        "options": [
+            "It provides a detailed Gantt chart of the schedule.",
+            "It visualizes work in progress and helps identify bottlenecks.",
+            "It ensures that all requirements are fully documented upfront.",
+            "It eliminates the need for daily meetings."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Kanban boards are designed to visualize work, limit work in progress (WIP), and maximize flow, making bottlenecks visible.",
+        "domain": "Process",
+        "difficulty": "Easy"
+    },
+    {
+        "stem": "A project manager identifies a risk that has a 10% probability of occurring and would cost $50,000 if it happens. What is the Expected Monetary Value (EMV) of this risk?",
+        "options": [
+            "$5,000",
+            "$50,000",
+            "$500",
+            "$10,000"
+        ],
+        "correctAnswer": 0,
+        "explanation": "EMV = Probability * Impact. 0.10 * $50,000 = $5,000.",
+        "domain": "Process",
+        "difficulty": "Easy"
+    },
+    {
+        "stem": "The project team is debating between two technical solutions. The debate is becoming heated and affecting morale. The project manager decides to use a decision matrix to resolve the issue objectively. What conflict resolution technique is this?",
+        "options": [
+            "Smoothing",
+            "Forcing",
+            "Collaborating/Problem Solving",
+            "Compromising"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Using a decision matrix to objectively evaluate options and find the best solution is an example of Collaborating or Problem Solving.",
+        "domain": "People",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "A project is running behind schedule. The project manager decides to add more resources to the critical path activities to shorten the duration. This technique is known as:",
+        "options": [
+            "Fast Tracking",
+            "Crashing",
+            "Resource Leveling",
+            "Scope Creep"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Crashing involves adding resources (cost) to shorten the schedule. Fast tracking involves running activities in parallel.",
+        "domain": "Process",
+        "difficulty": "Easy"
+    },
+    {
+        "stem": "A stakeholder requests a change that will add significant value to the product but will delay the project by two weeks. The project manager should:",
+        "options": [
+            "Reject the change because the schedule is fixed.",
+            "Implement the change immediately to please the stakeholder.",
+            "Analyze the impact and submit a change request to the Change Control Board (CCB).",
+            "Ask the team to work overtime to accommodate the change."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Any significant change must be analyzed for impact on scope, schedule, and cost, and then go through the formal change control process.",
+        "domain": "Process",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "Which document formally authorizes the existence of a project and provides the project manager with the authority to apply organizational resources?",
+        "options": [
+            "Project Management Plan",
+            "Project Charter",
+            "Business Case",
+            "Scope Statement"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The Project Charter is the document that formally authorizes the project and the project manager.",
+        "domain": "Business Environment",
+        "difficulty": "Easy"
+    },
+    {
+        "stem": "A project manager is working in a weak matrix organization. Who typically has the most authority over the project resources?",
+        "options": [
+            "The Project Manager",
+            "The Project Sponsor",
+            "The Functional Manager",
+            "The Team Lead"
+        ],
+        "correctAnswer": 2,
+        "explanation": "In a weak matrix, the functional manager has more authority over resources than the project manager.",
+        "domain": "Business Environment",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "During the execution of a project, a major supplier goes bankrupt. This was identified as a risk in the risk register with a planned response. What should the project manager do?",
+        "options": [
+            "Implement the planned risk response.",
+            "Perform a new risk analysis.",
+            "Contact the project sponsor for advice.",
+            "Halt the project immediately."
+        ],
+        "correctAnswer": 0,
+        "explanation": "If a known risk occurs and a response plan exists, the project manager should implement the agreed-upon response.",
+        "domain": "Process",
+        "difficulty": "Easy"
+    },
+    {
+        "stem": "The team is estimating the effort required for user stories. They are using a technique where they hold up cards with numbers from the Fibonacci sequence. What is this technique called?",
+        "options": [
+            "Bottom-up Estimating",
+            "Planning Poker",
+            "Three-point Estimating",
+            "Affinity Grouping"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Planning Poker is an agile estimating technique that uses Fibonacci cards to reach consensus on effort.",
+        "domain": "People",
+        "difficulty": "Easy"
+    },
+    {
+        "stem": "A project manager wants to ensure that the project delivers value to the business incrementally. Which project management approach is best suited for this?",
+        "options": [
+            "Waterfall",
+            "Predictive",
+            "Agile/Adaptive",
+            "Traditional"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Agile or Adaptive approaches focus on delivering value incrementally and iteratively.",
+        "domain": "Business Environment",
+        "difficulty": "Easy"
+    },
+    {
+        "stem": "The project team has just completed a major milestone. The project manager organizes a celebration to recognize their hard work. Which of Maslow's needs is the project manager primarily addressing?",
+        "options": [
+            "Physiological",
+            "Safety",
+            "Esteem",
+            "Self-Actualization"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Recognition and celebration address the need for Esteem (respect, status, recognition).",
+        "domain": "People",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "A project manager is reviewing the project's cost performance. The CPI is 0.8 and the SPI is 1.1. What does this indicate?",
+        "options": [
+            "Over budget and behind schedule",
+            "Under budget and ahead of schedule",
+            "Over budget and ahead of schedule",
+            "Under budget and behind schedule"
+        ],
+        "correctAnswer": 2,
+        "explanation": "CPI < 1 means over budget. SPI > 1 means ahead of schedule.",
+        "domain": "Process",
+        "difficulty": "Hard"
+    },
+    {
+        "stem": "Which of the following is NOT a tool or technique used in the 'Manage Quality' process?",
+        "options": [
+            "Audits",
+            "Design for X",
+            "Problem Solving",
+            "Inspection"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Inspection is primarily used in 'Control Quality' to verify deliverables. 'Manage Quality' is about process assurance.",
+        "domain": "Process",
+        "difficulty": "Hard"
+    },
+    {
+        "stem": "A team member comes to the project manager with a personal problem that is affecting their work. What should the project manager do?",
+        "options": [
+            "Tell them to leave personal issues at home.",
+            "Listen actively and offer support or resources (like HR) if appropriate.",
+            "Reassign their tasks to someone else immediately.",
+            "Ignore it and hope it resolves itself."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Emotional intelligence requires active listening and empathy. The PM should support the team member while ensuring project goals are met.",
+        "domain": "People",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "The project is in the closing phase. What is the very last thing the project manager should do?",
+        "options": [
+            "Release the team.",
+            "Archive project documents.",
+            "Update the lessons learned register.",
+            "Close the project budget."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Releasing the team is typically the final administrative step after all other closing activities (archiving, lessons learned, etc.) are complete.",
+        "domain": "Process",
+        "difficulty": "Medium"
+    },
+    {
+        "stem": "A project manager notices that the team is not following the defined safety protocols. This is a violation of:",
+        "options": [
+            "Scope Baseline",
+            "Schedule Baseline",
+            "Organizational Process Assets",
+            "Enterprise Environmental Factors"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Safety protocols are typically part of Organizational Process Assets (OPAs) - policies and procedures.",
+        "domain": "Business Environment",
+        "difficulty": "Medium"
+    }
+]

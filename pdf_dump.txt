@@ -1,0 +1,225 @@
+🎓  Anti-Gravity AI Certification Coach: Comprehensive
+Development Plan
+I. Project Goals and Monetization Strategy
+App Focus: Adaptive learning platform for high-stakes professional
+certification exams (e.g., PMP, CompTIA, CFA Level 1).
+Core Value Proposition: Guarantee the most efficient study path by using
+AI to identify and relentlessly test the user's weakest topics via a Spaced
+Repetition Algorithm.
+Monetization Model: Freemium with Tiered Subscription and Annual
+Discount (best for fixed-duration study).
+Tier Price
+(Estimated
+Range)
+Key Value & FeaturesMonetization
+Goal
+Free
+(Core)
+Discovery &
+Engagement. Access
+to the Topic Library,
+the initial 10-Question
+Diagnostic Quiz, and
+the Basic AI Study
+Calendar (fixed
+schedule).
+Build large
+user base;
+gather initial
+data on user
+weaknesses.
+Premium
+(Monthly)
+The Adaptive
+Tutor. Access to the
+full Question Bank, AI
+Adaptive Question
+Selector (Cloud
+Function), Confidence
+Tracking, and detailed
+Progress Analytics.
+High
+recurring
+revenue;
+targets users
+needing
+flexibility.
+$0/month
+$15−
+$25/month
+12/3/25, 1:50 PM Google Gemini
+https://gemini.google.com/app/c7968d789a2208b8 1/5
+Tier Price
+(Estimated
+Range)
+Key Value & FeaturesMonetization
+Goal
+Lifetime
+Access
+ (One-time)
+Ultimate
+Value. Unlimited
+access to the entire
+chosen certification
+course content and
+future updates.
+Maximize
+immediate
+revenue;
+targets high-
+commitment
+users.
+Hybrid
+Revenue
+In-App
+Ads (Free
+Tier)
+Display relevant, non-
+disruptive ads at the
+end of practice
+quizzes. Ad-Free
+Option included in all
+paid tiers.
+Monetize the
+large free
+user base
+without
+disrupting
+learning.
+II. Legal and Risk Mitigation Strategy (Low-Risk Profile)
+The primary goal is to mitigate claims of negligence, intellectual property (IP)
+infringement, and failure to guarantee results.
+Mandatory Educational Disclaimer:
+No Guarantee: Must explicitly state that use of the app does not
+guarantee exam success or licensure.
+Not Professional Advice: State clearly that the app is for educational
+purposes only and is not a substitute for professional, legal, medical, or
+financial advice.
+Intellectual Property (IP) Compliance:
+Question Originality: All practice questions must be original
+educational material and not copies of actual exam questions (which is
+often copyrighted).
+Trademark Use: Use exam trademarks (e.g., "PMP®," "CompTIA®")
+as adjectives in small font only. Include a mandatory footnote/disclaimer
+$99−
+$199
+12/3/25, 1:50 PM Google Gemini
+https://gemini.google.com/app/c7968d789a2208b8 2/5
+stating that your app is not affiliated with, endorsed, or sponsored
+by the exam owner/regulator.
+Data Protection: Implement standard security protocols (encryption, strong
+authentication) to protect user study history and PII. (Note: Unlike the fitness
+app, this data is generally not subject to HIPAA or FERPA unless selling to
+schools, keeping the risk low).
+Insurance: Obtain Technology Errors & Omissions (E&O) Insurance to
+cover legal expenses and settlements from claims of negligence or mistakes
+in the service (e.g., a buggy answer key).
+III. Technical Architecture (Same as Fitness App)
+Single Firebase Project: Shared services for efficiency.
+Site 1 (Primary): Certification Coach App (User-Facing) on Firebase
+Hosting.
+Site 2 (Secondary): Admin/CMS App for Question Bank Management on
+Firebase Hosting.
+Backend: Cloud Functions (Node.js/Python) for the Adaptive Question
+Selector.
+Database: Cloud Firestore stores Mastery Scores and the Question
+Bank.
+IV. Minimum Viable Product (MVP) Feature Set
+A. User-Facing App
+Feature Description Technical
+Tie
+Diagnostic
+Quiz
+Initial 10-20 question quiz to
+establish a baseline Mastery
+Score for all topics.
+Firestore
+(Read/Write)
+AI Study
+Calendar
+Displays the daily personalized
+study plan, adapting review dates
+based on Spaced Repetition logic.
+Cloud
+Function
+Output
+Adaptive
+Practice
+Triggers
+the getAdaptiveQuestions Cloud
+Core
+Subscription
+12/3/25, 1:50 PM Google Gemini
+https://gemini.google.com/app/c7968d789a2208b8 3/5
+ 
+Feature Description Technical
+Tie
+Session Function to pull a customized mix of
+hard/easy/re-review questions.
+Value
+Confidence
+Tracker
+Simple user input after each
+question ("How confident were
+you?") used to penalize the Interval
+Factor in the AI logic.
+Firestore
+(Write)
+Progress
+Dashboard
+Visual charts showing performance
+trends and topic-by-topic mastery
+levels (the conversion driver).
+Firestore
+(Read)
+B. Admin/CMS App (Content Management)
+Feature Description Importance
+Question
+Bank Editor
+Secure
+interface to
+add, edit,
+and
+categorize
+practice
+questions
+by Topic,
+Difficulty,
+and Correct
+Answer.
+IP/Content
+Quality
+Answer
+Explanation
+Manager
+Tool to
+ensure every
+question has
+a detailed
+explanation
+User
+Retention
+12/3/25, 1:50 PM Google Gemini
+https://gemini.google.com/app/c7968d789a2208b8 4/5
+ 
+Feature Description Importance
+for both
+correct and
+incorrect
+answers
+(Educational
+Value).
+V. Core AI Logic: Adaptive Question Selector (getAdaptiveQuestions)
+Goal: Maximize learning efficiency by scheduling the hardest topics for
+review just before the user forgets them.
+Core Algorithm: Spaced Repetition (custom SM-2 model).
+Input Data: User's Mastery Score (M), Confidence Score, and Recency of
+Review (Interval Factor - IF).
+Process: The function uses the IF to prioritize topics flagged as High
+Urgency (M is low or user got it wrong recently) and then selects  of
+the quiz questions from those high-urgency pools.
+With this detailed plan, you are ready to build a high-value, defensible educational
+app.
+≈70%
+12/3/25, 1:50 PM Google Gemini
+https://gemini.google.com/app/c7968d789a2208b8 5/5

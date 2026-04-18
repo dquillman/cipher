@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" height="440" role="img" aria-label="Exam composition by Bloom's level">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0f1830"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7aa2ff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="hotGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f87171"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="440" fill="url(#bgGrad)"/>
+  <text x="400" y="38" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="22" font-weight="700" text-anchor="middle">What your exam is actually made of</text>
+<rect x="80" y="140" width="128.0" height="70" fill="#9fb0cc" fill-opacity="0.85"/>
+<text x="144.0" y="173.0" fill="#0b1220" font-family="Inter, sans-serif" font-size="16" font-weight="700" text-anchor="middle">20%</text>
+<text x="144.0" y="193.0" fill="#0b1220" font-family="Inter, sans-serif" font-size="10" font-weight="700" text-anchor="middle">REMEMBER</text>
+<rect x="208.0" y="140" width="384.0" height="70" fill="#7aa2ff" fill-opacity="0.85"/>
+<text x="400.0" y="173.0" fill="#0b1220" font-family="Inter, sans-serif" font-size="16" font-weight="700" text-anchor="middle">60%</text>
+<text x="400.0" y="193.0" fill="#0b1220" font-family="Inter, sans-serif" font-size="10" font-weight="700" text-anchor="middle">APPLY</text>
+<rect x="592.0" y="140" width="128.0" height="70" fill="#fbbf24" fill-opacity="0.85"/>
+<text x="656.0" y="173.0" fill="#0b1220" font-family="Inter, sans-serif" font-size="16" font-weight="700" text-anchor="middle">20%</text>
+<text x="656.0" y="193.0" fill="#0b1220" font-family="Inter, sans-serif" font-size="10" font-weight="700" text-anchor="middle">EVALUATE</text>
+<rect x="80" y="240" width="203.33333333333334" height="110" rx="10" fill="#17213a" stroke="#9fb0cc" stroke-opacity="0.4"/>
+<text x="96" y="266" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" font-weight="700">REMEMBER / UNDERSTAND</text>
+<text x="96" y="292" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="24" font-weight="800">20%</text>
+<text x="96" y="320" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="11">Flashcards cover this</text>
+<rect x="298.33333333333337" y="240" width="203.33333333333334" height="110" rx="10" fill="#17213a" stroke="#7aa2ff" stroke-opacity="0.4"/>
+<text x="314.33333333333337" y="266" fill="#7aa2ff" font-family="Inter, sans-serif" font-size="12" font-weight="700">APPLY / ANALYZE</text>
+<text x="314.33333333333337" y="292" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="24" font-weight="800">60%</text>
+<text x="314.33333333333337" y="320" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="11">Where scenarios dominate</text>
+<rect x="516.6666666666667" y="240" width="203.33333333333334" height="110" rx="10" fill="#17213a" stroke="#fbbf24" stroke-opacity="0.4"/>
+<text x="532.6666666666667" y="266" fill="#fbbf24" font-family="Inter, sans-serif" font-size="12" font-weight="700">EVALUATE</text>
+<text x="532.6666666666667" y="292" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="24" font-weight="800">20%</text>
+<text x="532.6666666666667" y="320" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="11">'BEST answer' pressure</text>
+<text x="400" y="426" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" text-anchor="middle" font-style="italic">Flashcards train 20% of the exam. Then candidates wonder why they plateau at 70%.</text>
+</svg>

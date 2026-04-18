@@ -1,0 +1,7 @@
+title,severity,status,category,summary,app,createdBy
+Question validity & PMP 2021 alignment not explicit,S1,New,Content Credibility,Users cannot easily verify questions are scenario-based and PMP 2021 aligned.,ExamCoach,Dave
+Onboarding diagnostic not visible,S1,New,Onboarding UX,Existing users miss onboarding diagnostic and hit decision paralysis.,ExamCoach,Dave
+Smart Practice value unclear,S2,New,Feature Clarity,Users do not understand what makes Smart Practice adaptive or smart.,ExamCoach,Dave
+Mock exam accessible too early,S2,New,Assessment UX,Users with zero mastery can start a mock exam and get discouraged.,ExamCoach,Dave
+XP not tied to readiness,S3,New,Progress Metrics,XP levels do not communicate exam readiness or pass probability.,ExamCoach,Dave
+Domain progress lacks context,S3,New,Progress Visualization,Domain progress numbers lack total scope and mastery thresholds.,ExamCoach,Dave

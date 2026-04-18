@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-label="Bloom's Taxonomy pyramid">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0f1830"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7aa2ff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="hotGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f87171"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bgGrad)"/>
+  <text x="400" y="42" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="22" font-weight="700" text-anchor="middle">Bloom's Taxonomy — the framework behind your exam</text>
+<polygon points="350.0,90.0 450.0,90.0 495.0,154.33333333333331 305.0,154.33333333333331" fill="#f87171" fill-opacity="0.18" stroke="#f87171" stroke-width="1.5"/>
+<text x="400" y="120.16666666666666" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700" text-anchor="middle">6. Create</text>
+<text x="400" y="138.16666666666666" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Produce original work</text>
+<polygon points="305.0,158.33333333333331 495.0,158.33333333333331 540.0,222.66666666666663 260.0,222.66666666666663" fill="#fbbf24" fill-opacity="0.18" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="400" y="188.49999999999997" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700" text-anchor="middle">5. Evaluate</text>
+<text x="400" y="206.49999999999997" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Judge, choose BEST, justify</text>
+<polygon points="260.0,226.66666666666666 540.0,226.66666666666666 585.0,291.0 215.0,291.0" fill="#a78bfa" fill-opacity="0.18" stroke="#a78bfa" stroke-width="1.5"/>
+<text x="400" y="256.8333333333333" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700" text-anchor="middle">4. Analyze</text>
+<text x="400" y="274.8333333333333" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Find priority, separate noise</text>
+<polygon points="215.0,295.0 585.0,295.0 630.0,359.3333333333333 170.0,359.3333333333333" fill="#7aa2ff" fill-opacity="0.18" stroke="#7aa2ff" stroke-width="1.5"/>
+<text x="400" y="325.16666666666663" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700" text-anchor="middle">3. Apply</text>
+<text x="400" y="343.16666666666663" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Use in a new situation</text>
+<polygon points="170.0,363.3333333333333 630.0,363.3333333333333 675.0,427.66666666666663 125.0,427.66666666666663" fill="#34d399" fill-opacity="0.18" stroke="#34d399" stroke-width="1.5"/>
+<text x="400" y="393.5" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700" text-anchor="middle">2. Understand</text>
+<text x="400" y="411.5" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Explain in your own words</text>
+<polygon points="125.0,431.66666666666663 675.0,431.66666666666663 720.0,495.99999999999994 80.0,495.99999999999994" fill="#9fb0cc" fill-opacity="0.18" stroke="#9fb0cc" stroke-width="1.5"/>
+<text x="400" y="461.83333333333326" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700" text-anchor="middle">1. Remember</text>
+<text x="400" y="479.83333333333326" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Recall facts and terms</text>
+<text x="50" y="110" fill="#f87171" font-family="Inter, sans-serif" font-size="12" font-weight="700">WHERE THE EXAM LIVES</text>
+<text x="50" y="492" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12" font-weight="700">WHERE FLASHCARDS LIVE</text>
+<line x1="44" y1="116" x2="44" y2="482" stroke="#9fb0cc" stroke-opacity="0.3" stroke-width="1"/>
+</svg>

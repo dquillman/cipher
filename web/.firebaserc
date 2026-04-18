@@ -1,0 +1,13 @@
+{
+  "projects": {},
+  "targets": {
+    "exam-coach-ai-platform": {
+      "hosting": {
+        "staging": [
+          "exam-coach-ai-platform-staging"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
