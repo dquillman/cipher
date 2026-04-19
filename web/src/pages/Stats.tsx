@@ -157,7 +157,7 @@ export default function Stats() {
 
                 <div className="relative">
                     <div className={isProGated ? 'blur-md pointer-events-none opacity-50 select-none h-full' : 'h-full'}>
-                        <BloomHeatmap examId={selectedExamId} />
+                        <BloomHeatmap examId={selectedExamId} examDomains={examDomains} />
                     </div>
                     {isProGated && (
                         <div className="absolute inset-0 flex flex-col items-center justify-center z-10">

@@ -90,6 +90,9 @@ export default function Quiz() {
     const [showMasteryInfo, setShowMasteryInfo] = useState(false);
     const [questionProgressMap, setQuestionProgressMap] = useState<Map<string, any>>(new Map());
 
+    // Active filter pill state (surfaces domain + Bloom-level filter + fallback banner)
+    const [activeFilters, setActiveFilters] = useState<{ domain?: string; bloomLevel?: string; bloomFallback?: boolean }>({});
+
     // EC-119: Matching question state
     const [matchingState, setMatchingState] = useState<{
         shuffledDefinitions: string[];
@@ -400,7 +403,7 @@ export default function Quiz() {
                     return;
                 }
 
-                // 1. Fetch questions (optionally filtered by domain)
+                // 1. Fetch questions (optionally filtered by domain and/or Bloom level)
                 const questionsRef = collection(db, 'questions');
                 let constraints: any[] = [where('examId', '==', activeExamId)];
 
@@ -410,18 +413,43 @@ export default function Quiz() {
                     constraints.push(where('domain', '==', filterDomain));
                 }
 
+                const filterBloomLevel = location.state?.filterBloomLevel as string | undefined;
+                let bloomConstraint: any = null;
+                if (filterBloomLevel) {
+                    console.log("Filtering quiz by Bloom level:", filterBloomLevel);
+                    bloomConstraint = where('bloomLevel', '==', filterBloomLevel);
+                    constraints.push(bloomConstraint);
+                }
+
                 let q = query(questionsRef, ...constraints);
 
-                // If no specific exam questions found, maybe fallback? 
-                // For now, let's stick to the selected exam.
-
-                const questionsSnap = await getDocs(q);
-                // ... rest of logic
-
-                const allQuestions = questionsSnap.docs.map(doc => ({
+                let questionsSnap = await getDocs(q);
+                let allQuestions = questionsSnap.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
                 })) as Question[];
+
+                // Empty-result fallback: if bloom filter returned nothing, drop it and keep domain filter.
+                // This avoids stranding users on an empty quiz when a domain/Bloom cell has no questions.
+                let bloomFallbackApplied = false;
+                if (allQuestions.length === 0 && filterBloomLevel) {
+                    console.warn(`No questions for domain=${filterDomain ?? 'any'} + bloom=${filterBloomLevel}. Falling back to domain-only filter.`);
+                    const fallbackConstraints = constraints.filter(c => c !== bloomConstraint);
+                    q = query(questionsRef, ...fallbackConstraints);
+                    questionsSnap = await getDocs(q);
+                    allQuestions = questionsSnap.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    })) as Question[];
+                    bloomFallbackApplied = true;
+                }
+
+                // Surface active filters to the UI (pill + fallback banner)
+                setActiveFilters({
+                    domain: filterDomain,
+                    bloomLevel: bloomFallbackApplied ? undefined : filterBloomLevel,
+                    bloomFallback: bloomFallbackApplied,
+                });
 
                 if (allQuestions.length === 0) {
                     setQuestions([]);
@@ -632,8 +660,20 @@ export default function Quiz() {
                     const type = mode === 'diagnostic' ? 'diagnostic' : 'daily'; // map simple types
                     const qIds = selected.map(q => q.id);
 
+                    // Preserve active filters in run meta so history/history-detail can label runs correctly
+                    const runMeta: { filterDomain?: string; filterBloomLevel?: string } = {};
+                    if (filterDomain) runMeta.filterDomain = filterDomain;
+                    if (filterBloomLevel && !bloomFallbackApplied) runMeta.filterBloomLevel = filterBloomLevel;
+
                     try {
-                        const newRunId = await QuizRunService.createRun(user.uid, activeExamId, type, mode, qIds);
+                        const newRunId = await QuizRunService.createRun(
+                            user.uid,
+                            activeExamId,
+                            type,
+                            mode,
+                            qIds,
+                            Object.keys(runMeta).length > 0 ? runMeta : undefined
+                        );
                         setActiveRunId(newRunId);
                         setQuizType(type);
                     } catch (e) {
@@ -1803,6 +1843,35 @@ export default function Quiz() {
                 <div className="w-full max-w-3xl mb-4">
                     <QuestionProvenanceBadge />
                 </div>
+
+                {/* Active filter pill — surfaces domain / Bloom focused drill and fallback banner */}
+                {(activeFilters.domain || activeFilters.bloomLevel || activeFilters.bloomFallback) && (
+                    <div className="w-full max-w-3xl mb-4">
+                        <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-3 flex flex-wrap items-center gap-2">
+                            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-indigo-300">
+                                Focused Drill
+                            </span>
+                            {activeFilters.domain && (
+                                <span className="inline-flex items-center rounded-full bg-slate-800/70 border border-slate-700 px-2.5 py-0.5 text-xs text-slate-200">
+                                    Domain: <span className="font-semibold text-white ml-1">{activeFilters.domain}</span>
+                                </span>
+                            )}
+                            {activeFilters.bloomLevel && (
+                                <span className="inline-flex items-center rounded-full bg-slate-800/70 border border-slate-700 px-2.5 py-0.5 text-xs text-slate-200">
+                                    Bloom: <span className="font-semibold text-white ml-1">{activeFilters.bloomLevel}</span>
+                                </span>
+                            )}
+                            <span className="text-xs text-slate-400 ml-auto">
+                                Answers still count toward mastery &amp; readiness.
+                            </span>
+                        </div>
+                        {activeFilters.bloomFallback && (
+                            <div className="mt-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-xs text-amber-200">
+                                No questions matched that Bloom level in this domain yet — running the full domain instead. The Bloom filter will activate once content is tagged.
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <div className="w-full max-w-3xl">
                     <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl shadow-black/20 border border-slate-700 overflow-hidden max-w-full">

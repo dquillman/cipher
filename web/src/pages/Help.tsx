@@ -10,10 +10,12 @@ import {
     CalendarDays,
     RefreshCw,
     BarChart3,
-    Sparkles
+    Sparkles,
+    Brain
 } from 'lucide-react';
 import DashboardLink from '../components/DashboardLink';
 import ReportIssueModal from '../components/ReportIssueModal';
+import BloomsPrimer from '../components/BloomsPrimer';
 
 export default function Help() {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);
@@ -237,6 +239,33 @@ export default function Help() {
                 </div>
 
                 {/* About Performance Trends */}
+                {/* Bloom's Taxonomy — the CIPHER differentiator */}
+                <div className="bg-gradient-to-br from-indigo-900/20 to-slate-800/30 rounded-2xl p-6 border border-indigo-500/20 mb-6">
+                    <div className="flex items-center gap-2 mb-4">
+                        <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400">
+                            <Brain className="w-5 h-5" />
+                        </div>
+                        <h3 className="text-lg font-bold text-white">
+                            Bloom's Taxonomy &mdash; the core CIPHER feature
+                        </h3>
+                    </div>
+                    <BloomsPrimer variant="panel" showExamples={true} />
+                    <div className="mt-5 pt-5 border-t border-slate-700/50 flex flex-wrap gap-4 text-sm">
+                        <Link
+                            to="/app/stats"
+                            className="inline-flex items-center gap-2 text-indigo-300 font-semibold hover:text-indigo-200 transition-colors"
+                        >
+                            See your Bloom's Heatmap <span>&rarr;</span>
+                        </Link>
+                        <Link
+                            to="/blog/study-by-blooms-level"
+                            className="inline-flex items-center gap-2 text-slate-400 font-semibold hover:text-white transition-colors"
+                        >
+                            Read the full framework <span>&rarr;</span>
+                        </Link>
+                    </div>
+                </div>
+
                 <div className="bg-slate-800/30 rounded-2xl p-6 border border-slate-700/50 mb-12">
                     <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                         <BarChart3 className="w-5 h-5 text-slate-400" />

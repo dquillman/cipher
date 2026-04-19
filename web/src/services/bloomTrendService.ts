@@ -9,8 +9,20 @@ export interface BloomStatLine {
     score: number; // 0-100
 }
 
+/** One cell of the 2D (level × domain) grid. */
+export interface BloomGridCell {
+    correct: number;
+    total: number;
+    score: number; // 0-100; meaningful only when total > 0
+}
+
+/** Row-major grid: level → domain → cell */
+export type BloomGrid = Record<BloomLevel, Record<string, BloomGridCell>>;
+
 export interface BloomTrendResult {
     stats: BloomStatLine[];
+    grid: BloomGrid;
+    domains: string[];       // ordered list of domains present in user's data
     untagged: number;        // answers whose question had no bloomLevel
     totalAnswered: number;   // total answers considered
     uniqueQuestions: number; // distinct questions answered
@@ -47,20 +59,23 @@ export async function fetchBloomTrend(
         runs = snap.docs.map(d => d.data()).filter((r: any) => r.examId === examId);
     }
 
-    // 2. Walk all answers — keep per-answer correctness.
-    // Use a Map<questionId, { correct, total }> to dedupe per-question attempts.
+    // 2. Walk all answers — keep per-answer correctness AND per-answer domain.
+    // Use a Map<questionId, { correct, total, domain }> to dedupe per-question attempts.
     // Design choice: count every attempt (not just latest). Rationale: if user
     // gets Apply questions wrong repeatedly, the heatmap should reflect that volume.
-    const perQuestion = new Map<string, { correct: number; total: number }>();
+    // Domain comes from the answer record itself (written at save time by Quiz.tsx).
+    // If different attempts of the same question report different domains, last wins.
+    const perQuestion = new Map<string, { correct: number; total: number; domain: string | null }>();
     for (const run of runs) {
         const answers: any[] = run.answers || [];
         for (const a of answers) {
             if (!a || a.selectedOption === undefined) continue;
             const qid: string = a.questionId;
             if (!qid) continue;
-            const prev = perQuestion.get(qid) || { correct: 0, total: 0 };
+            const prev = perQuestion.get(qid) || { correct: 0, total: 0, domain: null };
             prev.total += 1;
             if (a.isCorrect) prev.correct += 1;
+            if (a.domain && typeof a.domain === 'string') prev.domain = a.domain;
             perQuestion.set(qid, prev);
         }
     }
@@ -69,6 +84,8 @@ export async function fetchBloomTrend(
     if (questionIds.length === 0) {
         return {
             stats: BLOOM_LEVELS.map(level => ({ level, correct: 0, total: 0, score: 0 })),
+            grid: emptyGrid(),
+            domains: [],
             untagged: 0,
             totalAnswered: 0,
             uniqueQuestions: 0,
@@ -88,7 +105,7 @@ export async function fetchBloomTrend(
         });
     }
 
-    // 4. Aggregate per level
+    // 4. Aggregate per level AND per (level × domain)
     const agg: Record<BloomLevel, { correct: number; total: number }> = {
         Remember: { correct: 0, total: 0 },
         Understand: { correct: 0, total: 0 },
@@ -97,6 +114,8 @@ export async function fetchBloomTrend(
         Evaluate: { correct: 0, total: 0 },
         Create: { correct: 0, total: 0 },
     };
+    const grid = emptyGrid();
+    const domainSet = new Set<string>();
     let untagged = 0;
     let totalAnswered = 0;
 
@@ -106,6 +125,16 @@ export async function fetchBloomTrend(
         if (level && BLOOM_LEVELS.includes(level)) {
             agg[level].correct += rec.correct;
             agg[level].total += rec.total;
+
+            if (rec.domain) {
+                domainSet.add(rec.domain);
+                const row = grid[level];
+                const cell = row[rec.domain] || { correct: 0, total: 0, score: 0 };
+                cell.correct += rec.correct;
+                cell.total += rec.total;
+                cell.score = cell.total > 0 ? Math.round((cell.correct / cell.total) * 100) : 0;
+                row[rec.domain] = cell;
+            }
         } else {
             untagged += rec.total;
         }
@@ -123,8 +152,16 @@ export async function fetchBloomTrend(
 
     return {
         stats,
+        grid,
+        domains: Array.from(domainSet).sort(),
         untagged,
         totalAnswered,
         uniqueQuestions: questionIds.length,
     };
+}
+
+function emptyGrid(): BloomGrid {
+    const g = {} as BloomGrid;
+    for (const level of BLOOM_LEVELS) g[level] = {};
+    return g;
 }

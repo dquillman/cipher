@@ -3,6 +3,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../App";
 import { trackLandingPageView, trackCtaClick, trackPricingView, captureUtmParams } from "../lib/ga4";
 import InteractiveDemo from "../components/InteractiveDemo";
+import BloomsPrimer from "../components/BloomsPrimer";
 
 /* ─── Shared icons & paths ────────────────────────────────────────────────── */
 const Check = () => (
@@ -72,6 +73,18 @@ export default function Landing() {
   // GA4: Track landing page view + capture UTM params from ad clicks
   useEffect(() => { captureUtmParams(); trackLandingPageView(); }, []);
 
+  // Scroll to hash target when arriving from another page (e.g. /#testimonial from PublicNav)
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = location.hash.slice(1);
+    // Defer until after paint — reveal-on-scroll sections are hidden until observed.
+    const t = setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+    return () => clearTimeout(t);
+  }, [location.hash]);
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 80);
@@ -139,6 +152,15 @@ export default function Landing() {
             <Link to="/story" className={navLink}>Our Story</Link>
             <Link to="/blog" className={navLink}>Blog</Link>
             <button
+              onClick={() => scrollTo("testimonial")}
+              className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-300 hover:bg-brand-500/20 hover:border-brand-400/50 hover:text-brand-200 transition-all"
+            >
+              <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.17 6A5.17 5.17 0 002 11.17V18h6.83v-6.83H5.5A1.67 1.67 0 017.17 9.5V6zm10 0a5.17 5.17 0 00-5.17 5.17V18h6.83v-6.83H15.5A1.67 1.67 0 0117.17 9.5V6z" />
+              </svg>
+              Testimonials
+            </button>
+            <button
               onClick={() => navigate("/login")}
               className="text-sm font-medium text-slate-300 hover:text-white transition-colors hidden md:block"
             >
@@ -181,6 +203,15 @@ export default function Landing() {
             <Link to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Pricing</Link>
             <Link to="/story" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Our Story</Link>
             <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Blog</Link>
+            <button
+              onClick={() => handleMobileNav(() => scrollTo("testimonial"))}
+              className="w-full flex items-center gap-2 px-4 py-3 rounded-xl text-base font-bold border border-brand-500/30 bg-brand-500/10 text-brand-300 hover:bg-brand-500/20 transition-colors"
+            >
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.17 6A5.17 5.17 0 002 11.17V18h6.83v-6.83H5.5A1.67 1.67 0 017.17 9.5V6zm10 0a5.17 5.17 0 00-5.17 5.17V18h6.83v-6.83H15.5A1.67 1.67 0 0117.17 9.5V6z" />
+              </svg>
+              Testimonials
+            </button>
             <div className="pt-4 border-t border-slate-800 flex flex-col gap-3">
               <button onClick={() => handleMobileNav(() => navigate("/login"))} className="w-full rounded-xl border border-slate-700 px-4 py-3 text-base font-bold text-white hover:bg-slate-800 transition-colors">Sign In</button>
               <button onClick={() => handleMobileNav(handleCta)} className="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-bold text-white hover:bg-brand-500 transition-colors">Start Free Trial</button>
@@ -345,6 +376,94 @@ export default function Landing() {
               >
                 Try it free <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* ━━━ SECTION 3.5 — BLOOM'S TAXONOMY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <RevealSection id="blooms" className="py-24 bg-slate-950 border-t border-slate-900">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold uppercase tracking-wider mb-4">
+              The CIPHER Difference
+            </div>
+            <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
+              You're Not Failing Because You Don't Know It.
+            </h2>
+            <p className="text-lg text-slate-400 leading-relaxed">
+              You're failing because you studied to <em className="text-slate-300">remember</em> — and
+              the exam tested whether you could <em className="text-slate-300">apply</em>, <em className="text-slate-300">analyze</em>,
+              and <em className="text-slate-300">evaluate</em>. Those are different cognitive skills.
+              CIPHER is the only exam-prep platform that tags every question with the level
+              of thinking it demands, so you can finally see <strong className="text-white">where your real gap is</strong>.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            {/* Left: the primer itself */}
+            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8">
+              <BloomsPrimer variant="panel" showExamples={true} />
+            </div>
+
+            {/* Right: why it matters */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-white font-display">
+                Every other app ignores this. We built around it.
+              </h3>
+              <ul className="space-y-4 text-slate-300">
+                <li className="flex items-start gap-3">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-400 mt-0.5">
+                    <Check />
+                  </div>
+                  <div>
+                    <strong className="text-white">Lifetime Bloom's Heatmap.</strong>{" "}
+                    See your accuracy at every cognitive level in one glance. Strong on Remember, weak on Apply? You'll know exactly.
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-400 mt-0.5">
+                    <Check />
+                  </div>
+                  <div>
+                    <strong className="text-white">Per-question Bloom tag.</strong>{" "}
+                    Every question in every quiz shows its cognitive level. No more guessing whether you got it wrong because you didn't know the fact or couldn't apply it.
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-400 mt-0.5">
+                    <Check />
+                  </div>
+                  <div>
+                    <strong className="text-white">Biggest Gap callout.</strong>{" "}
+                    The heatmap surfaces your weakest level automatically. That's your highest-ROI study target.
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-400 mt-0.5">
+                    <Check />
+                  </div>
+                  <div>
+                    <strong className="text-white">Zero flashcard-bias.</strong>{" "}
+                    Other tools optimize for recall because it's easy to measure. CIPHER optimizes for the levels the exam actually tests.
+                  </div>
+                </li>
+              </ul>
+
+              <div className="pt-2 flex flex-wrap gap-4">
+                <button
+                  onClick={handleCta}
+                  className="text-brand-400 font-bold hover:text-brand-300 flex items-center gap-2 group"
+                >
+                  Try it free <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+                <Link
+                  to="/blog/study-by-blooms-level"
+                  className="text-slate-400 font-bold hover:text-white flex items-center gap-2 group"
+                >
+                  Read the full framework <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -577,6 +696,46 @@ export default function Landing() {
               </div>
             ))}
           </div>
+        </div>
+      </RevealSection>
+
+      {/* ━━━ SECTION 10.5 — TESTIMONIAL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <RevealSection id="testimonial" className="py-24 bg-slate-900/50 border-t border-slate-900">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-bold uppercase tracking-wider">
+              From Beta Testing
+            </div>
+          </div>
+
+          <figure className="relative rounded-2xl border border-slate-800 bg-slate-950 p-8 sm:p-12">
+            <svg
+              className="absolute -top-5 left-8 h-10 w-10 text-brand-500/60"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M7.17 6A5.17 5.17 0 002 11.17V18h6.83v-6.83H5.5A1.67 1.67 0 017.17 9.5V6zm10 0a5.17 5.17 0 00-5.17 5.17V18h6.83v-6.83H15.5A1.67 1.67 0 0117.17 9.5V6z" />
+            </svg>
+
+            <blockquote className="text-lg sm:text-xl text-slate-200 leading-relaxed font-medium">
+              "What you have built is differentiated by the{" "}
+              <span className="text-brand-400">coaching lens approach</span>, the{" "}
+              <span className="text-brand-400">exam-specific reasoning frameworks</span>, and the{" "}
+              <span className="text-brand-400">feedback loop you ran with real testers</span>."
+            </blockquote>
+
+            <figcaption className="mt-6 pt-6 border-t border-slate-800 flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/30 to-blue-500/20 border border-brand-500/30 text-brand-300 font-bold">
+                MK
+              </div>
+              <div>
+                <div className="text-white font-bold">Markus Kopko, PgMP</div>
+                <div className="text-slate-400 text-sm">PMI AI Standards Core Team Member</div>
+                <div className="text-slate-500 text-xs mt-0.5">During CipherExam beta testing</div>
+              </div>
+            </figcaption>
+          </figure>
         </div>
       </RevealSection>
 

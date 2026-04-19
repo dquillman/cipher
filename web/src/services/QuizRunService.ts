@@ -34,9 +34,10 @@ export interface QuizRun {
 
     // Metadata for UI
     meta?: {
-        filterDomain?: string; // For "weakest" or domain filtered modes
-        patternId?: string;    // For "trap" mode
-        patternName?: string;  // For "trap" mode
+        filterDomain?: string;      // For "weakest" or domain filtered modes
+        filterBloomLevel?: string;  // For Bloom-focused drill (e.g. "Apply" inside a domain)
+        patternId?: string;         // For "trap" mode
+        patternName?: string;       // For "trap" mode
     };
 }
 

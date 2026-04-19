@@ -63,6 +63,15 @@ export default function PublicNav({ children }: PublicNavProps) {
           <Link to="/story" className={linkClass}>Our Story</Link>
           <Link to="/pricing" className={linkClass}>Pricing</Link>
           <Link to="/blog" className={linkClass}>Blog</Link>
+          <Link
+            to="/#testimonial"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-300 hover:bg-brand-500/20 hover:border-brand-400/50 hover:text-brand-200 transition-all"
+          >
+            <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.17 6A5.17 5.17 0 002 11.17V18h6.83v-6.83H5.5A1.67 1.67 0 017.17 9.5V6zm10 0a5.17 5.17 0 00-5.17 5.17V18h6.83v-6.83H15.5A1.67 1.67 0 0117.17 9.5V6z" />
+            </svg>
+            Testimonials
+          </Link>
 
           <button
             onClick={() => navigate('/login')}
@@ -107,6 +116,16 @@ export default function PublicNav({ children }: PublicNavProps) {
           <Link to="/story" onClick={closeMobile} className={mobileLinkClass}>Our Story</Link>
           <Link to="/pricing" onClick={closeMobile} className={mobileLinkClass}>Pricing</Link>
           <Link to="/blog" onClick={closeMobile} className={mobileLinkClass}>Blog</Link>
+          <Link
+            to="/#testimonial"
+            onClick={closeMobile}
+            className="w-full flex items-center gap-2 px-4 py-3 rounded-xl text-base font-bold border border-brand-500/30 bg-brand-500/10 text-brand-300 hover:bg-brand-500/20 transition-colors"
+          >
+            <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.17 6A5.17 5.17 0 002 11.17V18h6.83v-6.83H5.5A1.67 1.67 0 017.17 9.5V6zm10 0a5.17 5.17 0 00-5.17 5.17V18h6.83v-6.83H15.5A1.67 1.67 0 0117.17 9.5V6z" />
+            </svg>
+            Testimonials
+          </Link>
           <div className="pt-4 border-t border-slate-800 flex flex-col gap-3">
             <button onClick={() => { closeMobile(); navigate('/login'); }} className="w-full rounded-xl border border-slate-700 px-4 py-3 text-base font-bold text-white hover:bg-slate-800 transition-colors">Sign In</button>
             <button onClick={() => { closeMobile(); handleCta(); }} className="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-bold text-white hover:bg-brand-500 transition-colors">Start Free Trial</button>
