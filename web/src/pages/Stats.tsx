@@ -151,11 +151,16 @@ export default function Stats() {
                 </div>
             </div>
 
-            {/* Usage Heatmap (EC-109) + Bloom's Heatmap — side by side on lg, stacked below */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <UsageHeatmap examId={selectedExamId} />
+            {/* Usage Heatmap (EC-109) + Bloom's Heatmap — side by side on xl, stacked below.
+                Stays stacked until xl (1280px) because both cards have dense, fixed-min-width
+                grids that look cramped/overlapping at narrower lg widths once the sidebar is
+                accounted for. */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 xl:gap-8">
+                <div className="min-w-0">
+                    <UsageHeatmap examId={selectedExamId} />
+                </div>
 
-                <div className="relative">
+                <div className="relative min-w-0">
                     <div className={isProGated ? 'blur-md pointer-events-none opacity-50 select-none h-full' : 'h-full'}>
                         <BloomHeatmap examId={selectedExamId} examDomains={examDomains} />
                     </div>
