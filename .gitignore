@@ -33,3 +33,18 @@ firebase-admin*.json
 functions/blooms-*.csv
 functions/.blooms-progress.json
 
+
+# added by github-push batch
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env.local
+.env.*.local
+secrets.*
+*.key
+*.pem
+credentials*
+build/
+.next/
+Thumbs.db
