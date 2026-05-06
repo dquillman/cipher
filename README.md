@@ -2,7 +2,7 @@
 
 AI-powered certification exam prep platform. Multi-cert SaaS with original AI-generated questions, Bloom's-Taxonomy-classified content, and metacognitive coaching that explains *why* an answer is correct and *how to think* about similar questions.
 
-**Live (staging):** https://exam-coach-ai-platform-staging.web.app
+**Live (staging):** https://www.cipherexam.com
 
 ---
 
