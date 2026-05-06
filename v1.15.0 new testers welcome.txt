@@ -1,5 +1,5 @@
 Subject:
-Invitation to test ExamCoach (full access)
+Invitation to test Cipherexam (full access)
 
 Message:
 Hi — thanks for connecting.
@@ -19,7 +19,7 @@ What you’ll get:
 Every issue reported is documented and triaged — this is active development, not a survey.
 
 If you’re open to testing, you can start here:
-👉 https://examcoachpro.ai
+👉 https://www.cipherexam.com
 
 If you decide it’s not for you, no pressure — but if you are studying or restarting, we think you’ll find EC refreshingly different.
 
