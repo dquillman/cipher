@@ -44,6 +44,7 @@ const ReadinessReportPage = lazy(() => import("./pages/ReadinessReport"));
 const DiagnosticsPage = lazy(() => import("./pages/DiagnosticsPage"));
 const Faq = lazy(() => import("./pages/Faq"));
 const StartHere = lazy(() => import("./pages/StartHere"));
+import TestimonialPromptHost from "./components/TestimonialPromptHost";
 
 // --- Auth Context ---
 interface AuthContextType {
@@ -451,6 +452,7 @@ function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
             <GlobalSmartQuizReviewModal />
+            <TestimonialPromptHost />
             </Suspense>
             </SmartQuizReviewProvider>
           </SubscriptionProvider>

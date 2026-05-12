@@ -36,7 +36,10 @@ export default function TestimonialPrompt({ examId, examName, onClose }: Testimo
 
   const markPrompted = () => {
     const uid = auth.currentUser?.uid;
-    if (uid) localStorage.setItem(`ec_testimonial_prompted_${uid}`, new Date().toISOString());
+    if (!uid) return;
+    localStorage.setItem(`ec_testimonial_prompted_${uid}`, new Date().toISOString());
+    // Clear the pending signal so TestimonialPromptHost won't re-mount us.
+    localStorage.removeItem(`ec_testimonial_pending_${uid}`);
   };
 
   const dismiss = () => {
