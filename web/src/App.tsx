@@ -24,6 +24,10 @@ const FirstThirtyDays = lazy(() => import("./pages/articles/FirstThirtyDays"));
 const StudyByBloomsLevel = lazy(() => import("./pages/articles/StudyByBloomsLevel"));
 const RecallOnlyPrepFails = lazy(() => import("./pages/articles/RecallOnlyPrepFails"));
 const CognitiveHeatmap = lazy(() => import("./pages/articles/CognitiveHeatmap"));
+// Tier 1 ad landing pages (added 2026-05-11 via dquillman/cipher-marketing campaign)
+const PmpPracticeLP = lazy(() => import("./pages/landing/PmpPracticeLP"));
+const SecurityPlusPracticeLP = lazy(() => import("./pages/landing/SecurityPlusPracticeLP"));
+const ShrmCpPracticeLP = lazy(() => import("./pages/landing/ShrmCpPracticeLP"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Help = lazy(() => import("./pages/Help"));
@@ -403,6 +407,10 @@ function App() {
               <Route path="/blog/study-by-blooms-level" element={<StudyByBloomsLevel />} />
               <Route path="/blog/recall-only-prep-fails" element={<RecallOnlyPrepFails />} />
               <Route path="/blog/cognitive-heatmap" element={<CognitiveHeatmap />} />
+              {/* Tier 1 ad landing pages — see dquillman/cipher-marketing for campaign context */}
+              <Route path="/lp/pmp-practice" element={<PmpPracticeLP />} />
+              <Route path="/lp/security-plus-practice" element={<SecurityPlusPracticeLP />} />
+              <Route path="/lp/shrm-cp-practice" element={<ShrmCpPracticeLP />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/signin" element={<Navigate to="/login" replace />} />
