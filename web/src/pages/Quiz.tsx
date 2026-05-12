@@ -25,7 +25,6 @@ import PBQQuestion, { initPBQState, isPBQCorrect, type PBQConfig, type PBQState 
 import { DOMAIN_CITATIONS, EXAM_REFERENCES } from '../utils/domainCitations';
 import { FrictionEventService } from '../services/FrictionEventService';
 import { trackExplanationViewed, trackActivatedUser } from '../lib/ga4';
-import TestimonialPrompt from '../components/TestimonialPrompt';
 import { DEFAULT_EXAM_ID, EXAM_LENS } from '../config/exams';
 import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../types/Bloom';
 
@@ -60,7 +59,6 @@ export default function Quiz() {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
-    const [showTestimonialPrompt, setShowTestimonialPrompt] = useState(false);
     const [loading, setLoading] = useState(true);
     const loadStartRef = useRef(Date.now());
     const [showExplanation, setShowExplanation] = useState(false);
@@ -1155,11 +1153,15 @@ export default function Quiz() {
         if (currentQuestionIndex === 9) {
             const uid = auth.currentUser?.uid || '';
             trackActivatedUser(selectedExamId || '', uid);
-            // Surface testimonial prompt at the same milestone — but only once
-            // per user. Skip if they've already been prompted (dismissed or sent).
-            const promptKey = uid ? `ec_testimonial_prompted_${uid}` : null;
-            if (uid && promptKey && !localStorage.getItem(promptKey)) {
-                setShowTestimonialPrompt(true);
+            // Surface the testimonial prompt via App-level host (so it
+            // survives end-of-quiz navigation to /results). Skip if user
+            // already responded once.
+            if (uid && !localStorage.getItem(`ec_testimonial_prompted_${uid}`)) {
+                localStorage.setItem(
+                    `ec_testimonial_pending_${uid}`,
+                    JSON.stringify({ examId: selectedExamId || '', examName: examName || 'this exam' })
+                );
+                window.dispatchEvent(new Event('ec-testimonial-pending'));
             }
         }
 
@@ -2091,14 +2093,6 @@ export default function Quiz() {
                 onClose={() => window.location.href = '/app'}
                 reason="daily_limit"
             />
-
-            {showTestimonialPrompt && (
-                <TestimonialPrompt
-                    examId={selectedExamId || ''}
-                    examName={examName || 'this exam'}
-                    onClose={() => setShowTestimonialPrompt(false)}
-                />
-            )}
         </div>
     );
 }
