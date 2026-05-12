@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -6,12 +6,40 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { trackSignupComplete, trackTrialStart } from '../lib/ga4';
 
+/**
+ * Maps the `?exam=` query-param slug (used by /lp/* ad landing pages) to
+ * the Firestore exam document ID. Pre-seeds `localStorage.selectedExamId`
+ * so the ExamProvider picks up the correct cert on first mount — keeps
+ * message-match intact from ad → LP → signup → in-app diagnostic.
+ *
+ * Source of IDs: web/src/config/exams.ts (EXAMS map keys).
+ * If a slug isn't in this map, we leave localStorage alone and the
+ * ExamProvider falls back to DEFAULT_EXAM_ID — same behaviour as today.
+ */
+const LP_EXAM_SLUG_TO_ID: Record<string, string> = {
+    'pmp':            '7qmPagj9A6RpkC0CwGkY',
+    'security-plus':  '79cuGMNydTwDMhyiDjry',
+    'shrm-cp':        'bpfawZDj3qalhoU4mdd3',
+};
+
 export default function Login() {
     const [searchParams] = useSearchParams();
     const mode = searchParams.get('mode');
+    const examSlug = searchParams.get('exam');
 
-    // Default to signup if mode=signup in URL, otherwise login
-    const [isLogin, setIsLogin] = useState(mode !== 'signup');
+    // Pre-select cert when arriving from a /lp/* ad landing page.
+    // Writes the matching Firestore exam ID into localStorage so the
+    // ExamProvider picks it up on the user's first dashboard mount.
+    useEffect(() => {
+        if (!examSlug) return;
+        const examId = LP_EXAM_SLUG_TO_ID[examSlug];
+        if (!examId) return;
+        localStorage.setItem('selectedExamId', examId);
+    }, [examSlug]);
+
+    // Default to signup if mode=signup in URL, otherwise login.
+    // Arrival with ?exam= is also signup-intent (LP traffic is acquisition).
+    const [isLogin, setIsLogin] = useState(mode !== 'signup' && !examSlug);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
