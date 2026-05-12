@@ -13,7 +13,24 @@ declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
     fbq?: (...args: unknown[]) => void;
+    lintrk?: (action: string, params?: Record<string, unknown>) => void;
   }
+}
+
+/**
+ * LinkedIn Campaign Manager conversion IDs. Set these from the LinkedIn
+ * Conversions UI once paid LinkedIn campaigns are live. Leave null to skip
+ * — lintrk page-view tracking still works via the Insight Tag in index.html.
+ */
+const LINKEDIN_CONVERSION_IDS = {
+  signup_complete: null as number | null,
+  activated_user:  null as number | null,
+} as const;
+
+function trackLinkedInConversion(event: keyof typeof LINKEDIN_CONVERSION_IDS) {
+  const id = LINKEDIN_CONVERSION_IDS[event];
+  if (id == null || !window.lintrk) return;
+  window.lintrk('track', { conversion_id: id });
 }
 
 /* ── helpers ─────────────────────────────────────────────────────────────── */
@@ -97,6 +114,8 @@ export function trackSignupComplete(method: 'google' | 'email', userId: string) 
   // Meta Pixel conversion tracking
   if (window.fbq) window.fbq('track', 'CompleteRegistration', { method });
   broadcastMeta('CompleteRegistration', { method });
+  // LinkedIn Campaign Manager conversion (no-op until ID set in LINKEDIN_CONVERSION_IDS)
+  trackLinkedInConversion('signup_complete');
 }
 
 export function trackExamSelected(examId: string, examName: string) {
@@ -115,6 +134,8 @@ export function trackActivatedUser(examId: string, userId: string) {
 
   const utm = getStoredUtm();
   sendEvent('activated_user', { exam_id: examId, user_id: userId, ...utm });
+  // LinkedIn Campaign Manager conversion (no-op until ID set in LINKEDIN_CONVERSION_IDS)
+  trackLinkedInConversion('activated_user');
 }
 
 export function trackExplanationViewed(questionId: string, examId: string) {
