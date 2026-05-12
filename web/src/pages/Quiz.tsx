@@ -25,6 +25,7 @@ import PBQQuestion, { initPBQState, isPBQCorrect, type PBQConfig, type PBQState 
 import { DOMAIN_CITATIONS, EXAM_REFERENCES } from '../utils/domainCitations';
 import { FrictionEventService } from '../services/FrictionEventService';
 import { trackExplanationViewed, trackActivatedUser } from '../lib/ga4';
+import TestimonialPrompt from '../components/TestimonialPrompt';
 import { DEFAULT_EXAM_ID, EXAM_LENS } from '../config/exams';
 import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../types/Bloom';
 
@@ -59,6 +60,7 @@ export default function Quiz() {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
+    const [showTestimonialPrompt, setShowTestimonialPrompt] = useState(false);
     const [loading, setLoading] = useState(true);
     const loadStartRef = useRef(Date.now());
     const [showExplanation, setShowExplanation] = useState(false);
@@ -1151,7 +1153,14 @@ export default function Quiz() {
         // GA4: Track activated_user on 10th question answered (0-indexed: index 9)
         // Deduplication handled inside trackActivatedUser via localStorage
         if (currentQuestionIndex === 9) {
-            trackActivatedUser(selectedExamId || '', auth.currentUser?.uid || '');
+            const uid = auth.currentUser?.uid || '';
+            trackActivatedUser(selectedExamId || '', uid);
+            // Surface testimonial prompt at the same milestone — but only once
+            // per user. Skip if they've already been prompted (dismissed or sent).
+            const promptKey = uid ? `ec_testimonial_prompted_${uid}` : null;
+            if (uid && promptKey && !localStorage.getItem(promptKey)) {
+                setShowTestimonialPrompt(true);
+            }
         }
 
         if (currentQuestionIndex < questions.length - 1) {
@@ -2082,6 +2091,14 @@ export default function Quiz() {
                 onClose={() => window.location.href = '/app'}
                 reason="daily_limit"
             />
+
+            {showTestimonialPrompt && (
+                <TestimonialPrompt
+                    examId={selectedExamId || ''}
+                    examName={examName || 'this exam'}
+                    onClose={() => setShowTestimonialPrompt(false)}
+                />
+            )}
         </div>
     );
 }

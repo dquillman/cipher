@@ -235,6 +235,21 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // ===== TESTIMONIALS =====
+    // One submission per user, captured at the activated_user (Q10) milestone.
+    // Doc ID is the user's UID so duplicates are impossible.
+
+    match /testimonials/{userId} {
+      // Each user can write their own testimonial exactly once. The doc-doesn't-
+      // exist check at create-time prevents a logged-in user from overwriting
+      // a previous submission via curl or devtools.
+      allow create: if isOwner(userId)
+                    && !exists(/databases/$(database)/documents/testimonials/$(userId))
+                    && request.resource.data.userId == request.auth.uid;
+      allow read: if isOwner(userId) || isAdmin();
+      allow update, delete: if isAdmin();
+    }
+
     // ===== SYSTEM / APP CONFIG (Public Read, pre-auth) =====
 
     match /system_config/{docId} {
