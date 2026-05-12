@@ -5,7 +5,7 @@ import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 
 /**
- * /lp/shrm-cp-practice — Tier 1 ad landing page for SHRM-CP candidates.
+ * /lp/shrm-cp — Tier 1 ad landing page for SHRM-CP candidates.
  * Copy source: cipher-marketing/04-multi-exam-landing-pages.md (LP #3).
  */
 const PAGE_ID = "lp-shrm-cp-practice";

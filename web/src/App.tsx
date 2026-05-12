@@ -408,9 +408,9 @@ function App() {
               <Route path="/blog/recall-only-prep-fails" element={<RecallOnlyPrepFails />} />
               <Route path="/blog/cognitive-heatmap" element={<CognitiveHeatmap />} />
               {/* Tier 1 ad landing pages — see dquillman/cipher-marketing for campaign context */}
-              <Route path="/lp/pmp-practice" element={<PmpPracticeLP />} />
-              <Route path="/lp/security-plus-practice" element={<SecurityPlusPracticeLP />} />
-              <Route path="/lp/shrm-cp-practice" element={<ShrmCpPracticeLP />} />
+              <Route path="/lp/pmp" element={<PmpPracticeLP />} />
+              <Route path="/lp/security-plus" element={<SecurityPlusPracticeLP />} />
+              <Route path="/lp/shrm-cp" element={<ShrmCpPracticeLP />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/signin" element={<Navigate to="/login" replace />} />

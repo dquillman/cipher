@@ -5,7 +5,7 @@ import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 
 /**
- * /lp/security-plus-practice — Tier 1 ad landing page for CompTIA Security+ candidates.
+ * /lp/security-plus — Tier 1 ad landing page for CompTIA Security+ candidates.
  * Copy source: cipher-marketing/04-multi-exam-landing-pages.md (LP #2).
  */
 const PAGE_ID = "lp-security-plus-practice";

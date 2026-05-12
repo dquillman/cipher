@@ -5,7 +5,7 @@ import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 
 /**
- * /lp/pmp-practice — Tier 1 ad landing page for PMP candidates.
+ * /lp/pmp — Tier 1 ad landing page for PMP candidates.
  * Copy source: cipher-marketing/04-multi-exam-landing-pages.md (LP #1).
  * Voice: product voice ("we"). No founder narrative — that lives at /story.
  */
