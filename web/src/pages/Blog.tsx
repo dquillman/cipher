@@ -30,6 +30,15 @@ const articles: {
   category: Category;
 }[] = [
   {
+    slug: 'how-certification-exams-think',
+    title: "How Certification Exams Actually Think (And Why Your Prep Tools Don't Match)",
+    excerpt: "Most prep tools drill facts. The exams test reasoning frames — Exam Lens, Security Triad, SHRM Competency. Here's the gap, and how to close it.",
+    author: 'Dave',
+    readTime: '5 min read',
+    date: 'May 2026',
+    category: 'Study Strategy',
+  },
+  {
     slug: 'cognitive-heatmap',
     title: "Cognitive Heatmap: How to See Exactly Where You're Weak",
     excerpt: "Overall scores tell you nothing. A heatmap maps your accuracy across Bloom's levels and exam domains, revealing your real weakness in 20 minutes.",
