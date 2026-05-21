@@ -1,4 +1,5 @@
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { captureUtmParams, trackLandingPageView, trackCtaClick } from "../../lib/ga4";
 
