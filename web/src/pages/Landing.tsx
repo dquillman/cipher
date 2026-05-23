@@ -268,6 +268,24 @@ export default function Landing() {
             </button>
           </div>
 
+          {/* Trust badge — pull-quote credibility before the demo */}
+          <div className="mx-auto max-w-2xl mb-12">
+            <a
+              href="#testimonial"
+              className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 hover:border-slate-700 hover:bg-slate-900/70 transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-brand-400 text-xl leading-none">"</span>
+                <span className="text-sm text-slate-300 italic">…the exam-specific reasoning frameworks…</span>
+                <span className="text-brand-400 text-xl leading-none">"</span>
+              </div>
+              <span className="hidden sm:block text-slate-700">|</span>
+              <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors">
+                <span className="font-semibold text-slate-300">Markus Kopko</span>, PMI AI Standards Core Team
+              </span>
+            </a>
+          </div>
+
           {/* Interactive Product Demo */}
           <div className="relative mx-auto max-w-3xl rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1">
             <InteractiveDemo />
