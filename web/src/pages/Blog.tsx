@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import PublicNav from '../components/layout/PublicNav';
 import PublicFooter from '../components/layout/PublicFooter';
 import { BookOpen, Bot, Target } from 'lucide-react';
+import SeoHead from '../components/SeoHead';
+import { SEO } from '../config/seo';
 
 const categoryConfig = {
   'Study Strategy': {
@@ -106,12 +108,23 @@ const articles: {
 export default function Blog() {
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead {...SEO.blogIndex} />
       <PublicNav />
 
       <main className="pt-28 pb-20">
         <div className="mx-auto max-w-4xl px-6">
           <h1 className="text-4xl font-extrabold text-white font-display tracking-tight mb-3">Blog</h1>
-          <p className="text-slate-400 mb-12">Insights on certification exam prep, reasoning, and study strategy.</p>
+          <p className="text-slate-400 mb-6">Insights on certification exam prep, reasoning, and study strategy.</p>
+
+          <div className="mb-12 rounded-xl border border-brand-500/25 bg-brand-500/5 p-4 flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-400 mb-1">Reference</div>
+              <div className="text-white font-semibold">Exam Lens — the reasoning framework each cert is testing</div>
+            </div>
+            <Link to="/exam-lens" className="text-brand-400 hover:text-brand-300 font-semibold whitespace-nowrap">
+              Read the glossary →
+            </Link>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {articles.map((a) => {

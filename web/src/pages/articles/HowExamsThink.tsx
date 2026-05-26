@@ -5,6 +5,8 @@ import { trackCtaClick, captureUtmParams } from '../../lib/ga4';
 import PublicNav from '../../components/layout/PublicNav';
 import PublicFooter from '../../components/layout/PublicFooter';
 import ArticleNav from '../../components/blog/ArticleNav';
+import SeoHead from '../../components/SeoHead';
+import { BLOG_POSTS, articleSchema, blogPostBreadcrumb } from '../../config/seo';
 
 export default function HowExamsThink() {
   const navigate = useNavigate();
@@ -20,6 +22,11 @@ export default function HowExamsThink() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead
+        {...BLOG_POSTS.howExamsThink}
+        ogType="article"
+        jsonLd={[articleSchema({ ...BLOG_POSTS.howExamsThink, headline: BLOG_POSTS.howExamsThink.title }), blogPostBreadcrumb('howExamsThink')]}
+      />
       <PublicNav />
 
       <article className="pt-28 pb-20">
@@ -46,6 +53,10 @@ export default function HowExamsThink() {
           </header>
 
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
+
+            <figure className="my-8">
+              <img src="/blog-images/exam-lenses-grid.svg" alt="Six certifications paired with the reasoning framework each one tests: PMP with PMI Decision Lens, Security+ with CIA Triad Lens, SHRM-CP with Competency Lens, ITIL 4 with Service Value Lens, CSM with Scrum Guide Lens, Six Sigma with DMAIC Lens" className="w-full rounded-xl border border-slate-700" />
+            </figure>
 
             <p>
               I've spent the last two years building a tool that prepares people for certification exams. The thing nobody warned me about: most prep tools are solving the wrong problem.

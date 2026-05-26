@@ -5,6 +5,9 @@ import { trackCtaClick, captureUtmParams } from '../../lib/ga4';
 import PublicNav from '../../components/layout/PublicNav';
 import PublicFooter from '../../components/layout/PublicFooter';
 import ArticleNav from '../../components/blog/ArticleNav';
+import RelatedReading from '../../components/blog/RelatedReading';
+import SeoHead from '../../components/SeoHead';
+import { BLOG_POSTS, articleSchema, blogPostBreadcrumb } from '../../config/seo';
 
 export default function FiveStudyMistakes() {
   const navigate = useNavigate();
@@ -20,6 +23,11 @@ export default function FiveStudyMistakes() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead
+        {...BLOG_POSTS.fiveStudyMistakes}
+        ogType="article"
+        jsonLd={[articleSchema({ ...BLOG_POSTS.fiveStudyMistakes, headline: BLOG_POSTS.fiveStudyMistakes.title }), blogPostBreadcrumb('fiveStudyMistakes')]}
+      />
       <PublicNav />
 
       {/* Article */}
@@ -47,6 +55,10 @@ export default function FiveStudyMistakes() {
           </header>
 
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
+
+            <figure className="my-8">
+              <img src="/blog-images/five-mistakes.svg" alt="Five numbered study mistakes that cost certification candidates the exam: re-reading what you already know, memorizing without classifying by Bloom's level, ignoring explanations on questions you got right, skipping the simulator until you're ready, and studying domains evenly instead of weighted to weaknesses" className="w-full rounded-xl border border-slate-700" />
+            </figure>
 
             <p>
               Every year, thousands of professionals sit for certification exams confident they're ready —
@@ -224,6 +236,11 @@ export default function FiveStudyMistakes() {
           />
 
           {/* CTA */}
+          <RelatedReading
+            posts={['whyConfusing', 'firstThirtyDays', 'recallOnlyPrepFails']}
+            lp={{ href: '/lp/pmp', label: 'Try CipherExam on PMP' }}
+          />
+
           <div className="mt-16 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center">
             <h3 className="text-2xl font-bold text-white font-display mb-3">
               Study the reasoning, not just the answers.

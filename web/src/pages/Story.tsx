@@ -4,6 +4,8 @@ import { useAuth } from '../App';
 import { trackCtaClick } from '../lib/ga4';
 import PublicNav from '../components/layout/PublicNav';
 import PublicFooter from '../components/layout/PublicFooter';
+import SeoHead from '../components/SeoHead';
+import { SEO } from '../config/seo';
 
 export default function Story() {
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ export default function Story() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead {...SEO.story} />
       <PublicNav />
 
       {/* Story Content */}

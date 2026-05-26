@@ -5,6 +5,9 @@ import { trackCtaClick, captureUtmParams } from '../../lib/ga4';
 import PublicNav from '../../components/layout/PublicNav';
 import PublicFooter from '../../components/layout/PublicFooter';
 import ArticleNav from '../../components/blog/ArticleNav';
+import RelatedReading from '../../components/blog/RelatedReading';
+import SeoHead from '../../components/SeoHead';
+import { BLOG_POSTS, articleSchema, blogPostBreadcrumb } from '../../config/seo';
 
 export default function CognitiveHeatmap() {
   const navigate = useNavigate();
@@ -20,6 +23,11 @@ export default function CognitiveHeatmap() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead
+        {...BLOG_POSTS.cognitiveHeatmap}
+        ogType="article"
+        jsonLd={[articleSchema({ ...BLOG_POSTS.cognitiveHeatmap, headline: BLOG_POSTS.cognitiveHeatmap.title }), blogPostBreadcrumb('cognitiveHeatmap')]}
+      />
       <PublicNav />
 
       <article className="pt-28 pb-20">
@@ -253,6 +261,11 @@ export default function CognitiveHeatmap() {
             prevTitle="Why Recall-Only Prep Fails High-Stakes Exams"
             nextSlug="5-study-mistakes-that-cost-your-certification-exam"
             nextTitle="5 Study Mistakes That Cost People Their Certification Exam"
+          />
+
+          <RelatedReading
+            posts={['studyByBloomsLevel', 'recallOnlyPrepFails', 'firstThirtyDays']}
+            lp={{ href: '/lp/pmp', label: 'Try CipherExam on PMP' }}
           />
 
           <div className="mt-16 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center">

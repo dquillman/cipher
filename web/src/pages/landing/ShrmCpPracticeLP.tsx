@@ -3,6 +3,8 @@ import { trackCtaClick } from "../../lib/ga4";
 import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "./LandingShell";
 import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
+import SeoHead from "../../components/SeoHead";
+import { SEO } from "../../config/seo";
 
 /**
  * /lp/shrm-cp — Tier 1 ad landing page for SHRM-CP candidates.
@@ -12,12 +14,9 @@ const PAGE_ID = "lp-shrm-cp-practice";
 const SIGNUP_HREF = `/login?exam=shrm-cp&utm_lp=${PAGE_ID}`;
 
 export default function ShrmCpPracticeLP() {
-  if (typeof document !== "undefined") {
-    document.title = "SHRM-CP Practice with Competency Lens Explanations — CipherExam";
-  }
-
   return (
     <LandingShell exam="shrm-cp" examShortName="SHRM-CP" pageId={PAGE_ID}>
+      <SeoHead {...SEO.lpShrmCp} />
       <Hero
         eyebrow="SHRM-CP · CipherExam"
         h1="SHRM-CP situational questions, decoded."

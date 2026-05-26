@@ -3,6 +3,8 @@ import { trackCtaClick } from "../../lib/ga4";
 import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "./LandingShell";
 import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
+import SeoHead from "../../components/SeoHead";
+import { SEO } from "../../config/seo";
 
 /**
  * /lp/pmp — Tier 1 ad landing page for PMP candidates.
@@ -13,13 +15,9 @@ const PAGE_ID = "lp-pmp-practice";
 const SIGNUP_HREF = `/login?exam=pmp&utm_lp=${PAGE_ID}`;
 
 export default function PmpPracticeLP() {
-  // Page-level <title>/<meta> normally handled by an SEO helper. Inline for v1.
-  if (typeof document !== "undefined") {
-    document.title = "PMP Practice with Exam Lens Explanations — CipherExam";
-  }
-
   return (
     <LandingShell exam="pmp" examShortName="PMP" pageId={PAGE_ID}>
+      <SeoHead {...SEO.lpPmp} />
       <Hero
         eyebrow="PMP · CipherExam"
         h1="Practice PMP the way PMI thinks."

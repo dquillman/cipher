@@ -25,6 +25,8 @@ const StudyByBloomsLevel = lazy(() => import("./pages/articles/StudyByBloomsLeve
 const RecallOnlyPrepFails = lazy(() => import("./pages/articles/RecallOnlyPrepFails"));
 const CognitiveHeatmap = lazy(() => import("./pages/articles/CognitiveHeatmap"));
 const HowExamsThink = lazy(() => import("./pages/articles/HowExamsThink"));
+const ExamLensGlossary = lazy(() => import("./pages/ExamLensGlossary"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 // Tier 1 ad landing pages (added 2026-05-11 via dquillman/cipher-marketing campaign)
 const PmpPracticeLP = lazy(() => import("./pages/landing/PmpPracticeLP"));
 const SecurityPlusPracticeLP = lazy(() => import("./pages/landing/SecurityPlusPracticeLP"));
@@ -410,6 +412,7 @@ function App() {
               <Route path="/blog/recall-only-prep-fails" element={<RecallOnlyPrepFails />} />
               <Route path="/blog/cognitive-heatmap" element={<CognitiveHeatmap />} />
               <Route path="/blog/how-certification-exams-think" element={<HowExamsThink />} />
+              <Route path="/exam-lens" element={<ExamLensGlossary />} />
               {/* Tier 1 ad landing pages — see dquillman/cipher-marketing for campaign context */}
               <Route path="/lp/pmp" element={<PmpPracticeLP />} />
               <Route path="/lp/security-plus" element={<SecurityPlusPracticeLP />} />
@@ -450,8 +453,11 @@ function App() {
                 </Route>
               </Route>
 
-              {/* Fallback */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              {/* Fallback — render NotFound (noindex) instead of redirecting to /.
+                  Previous redirect-to-/ caused Google to treat every unknown URL as
+                  a duplicate of the homepage. NotFound emits robots=noindex,nofollow
+                  so unknown URLs stop accumulating in the index. */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
             <GlobalSmartQuizReviewModal />
             <TestimonialPromptHost />

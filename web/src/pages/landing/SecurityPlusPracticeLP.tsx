@@ -3,6 +3,8 @@ import { trackCtaClick } from "../../lib/ga4";
 import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "./LandingShell";
 import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
+import SeoHead from "../../components/SeoHead";
+import { SEO } from "../../config/seo";
 
 /**
  * /lp/security-plus — Tier 1 ad landing page for CompTIA Security+ candidates.
@@ -12,12 +14,9 @@ const PAGE_ID = "lp-security-plus-practice";
 const SIGNUP_HREF = `/login?exam=security-plus&utm_lp=${PAGE_ID}`;
 
 export default function SecurityPlusPracticeLP() {
-  if (typeof document !== "undefined") {
-    document.title = "CompTIA Security+ PBQ Simulator with CIA Triad Explanations — CipherExam";
-  }
-
   return (
     <LandingShell exam="security-plus" examShortName="Security+" pageId={PAGE_ID}>
+      <SeoHead {...SEO.lpSecurityPlus} />
       <Hero
         eyebrow="Security+ (SY0-701) · CipherExam"
         h1="Stop bombing Security+ PBQs."

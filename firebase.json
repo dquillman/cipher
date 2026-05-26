@@ -28,8 +28,12 @@
             ],
             "rewrites": [
                 {
+                    "source": "/app/**",
+                    "destination": "/_catchall.html"
+                },
+                {
                     "source": "**",
-                    "destination": "/index.html"
+                    "destination": "/_catchall.html"
                 }
             ],
             "headers": [
@@ -38,7 +42,7 @@
                     "headers": [
                         {
                             "key": "Cache-Control",
-                            "value": "no-cache, no-store, must-revalidate"
+                            "value": "public, max-age=0, must-revalidate"
                         },
                         {
                             "key": "Cross-Origin-Opener-Policy",
@@ -67,8 +71,12 @@
             ],
             "rewrites": [
                 {
+                    "source": "/app/**",
+                    "destination": "/_catchall.html"
+                },
+                {
                     "source": "**",
-                    "destination": "/index.html"
+                    "destination": "/_catchall.html"
                 }
             ],
             "headers": [
@@ -77,7 +85,7 @@
                     "headers": [
                         {
                             "key": "Cache-Control",
-                            "value": "no-cache, no-store, must-revalidate"
+                            "value": "public, max-age=0, must-revalidate"
                         },
                         {
                             "key": "Cross-Origin-Opener-Policy",
@@ -106,8 +114,12 @@
             ],
             "rewrites": [
                 {
+                    "source": "/app/**",
+                    "destination": "/_catchall.html"
+                },
+                {
                     "source": "**",
-                    "destination": "/index.html"
+                    "destination": "/_catchall.html"
                 }
             ],
             "headers": [
@@ -116,7 +128,7 @@
                     "headers": [
                         {
                             "key": "Cache-Control",
-                            "value": "no-cache, no-store, must-revalidate"
+                            "value": "public, max-age=0, must-revalidate"
                         },
                         {
                             "key": "Cross-Origin-Opener-Policy",

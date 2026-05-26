@@ -4,9 +4,55 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Preconnect to font origin to cut render-blocking latency -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet">
-    <title>CipherExam — Certification prep, decoded.</title>
-    <!-- Google Analytics 4 (gtag.js) -->
+
+    <!-- Default fallback title — React 19 correctly overrides this per route via SeoHead.
+         Per-page <meta>, <link rel="canonical">, OG, and twitter tags are emitted by
+         <SeoHead> ONLY. Do not duplicate them statically here: React 19 appends rather
+         than deduplicates <meta> tags, so static defaults would stay alongside the
+         per-page values and browsers read the first (static) one. Result: every page
+         appears to have the homepage's description.
+
+         First-pass crawlers (text-only Googlebot) see no meta beyond the title +
+         Organization JSON-LD below. JS-executing second-pass crawlers see the correct
+         per-route meta. To fix first-pass too, ship prerendering — see web/SEO-IMPLEMENTATION.md. -->
+    <title>CipherExam — Learn How Certification Exams Think</title>
+    <meta name="theme-color" content="#020617" />
+    <!-- Per-page <meta name="robots"> is emitted by SeoHead (so noindex on /404 works).
+         Do NOT add a static robots meta here — React 19 doesn't dedup <meta> tags, so
+         the static would win over the per-page value. Pages without SeoHead default to
+         Google's index,follow behavior, which is the intended fallback. -->
+
+    <!-- Organization + WebSite JSON-LD (sitewide trust signal) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://cipherexam.com/#org",
+          "name": "CipherExam",
+          "url": "https://cipherexam.com/",
+          "logo": "https://cipherexam.com/favicon.png",
+          "description": "AI-powered certification exam prep. Understand how exams think.",
+          "founder": { "@type": "Person", "name": "Dave Quillman" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://cipherexam.com/#website",
+          "url": "https://cipherexam.com/",
+          "name": "CipherExam",
+          "publisher": { "@id": "https://cipherexam.com/#org" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Analytics 4 (already async) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HY0QBN84Y6"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -15,47 +61,57 @@
       gtag('config', 'G-HY0QBN84Y6');
       gtag('config', 'AW-926344271');
     </script>
-    <!-- Meta Pixel -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '819240414529867');
-      fbq('track', 'PageView');
-    </script>
-    <!-- LinkedIn Insight Tag -->
-    <script type="text/javascript">
-      _linkedin_partner_id = "8955004";
-      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-      window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-    </script>
-    <script type="text/javascript">
-      (function(l) {
-        if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-        window.lintrk.q=[]}
-        var s = document.getElementsByTagName("script")[0];
-        var b = document.createElement("script");
-        b.type = "text/javascript";b.async = true;
-        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-        s.parentNode.insertBefore(b, s);})(window.lintrk);
-    </script>
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "wn43n5eysh");
-    </script>
   </head>
   <body style="background: #020617 !important;">
     <noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8955004&fmt=gif" /></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Tracking pixels deferred until after the app shell renders.
+         Defers ~30-80ms of main-thread blocking off the LCP path. -->
+    <script>
+      (function () {
+        function loadPixels() {
+          // Meta Pixel
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          window.fbq('init', '819240414529867');
+          window.fbq('track', 'PageView');
+
+          // LinkedIn Insight Tag
+          window._linkedin_partner_id = "8955004";
+          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+          window._linkedin_data_partner_ids.push("8955004");
+          (function(l) {
+            if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+            window.lintrk.q=[]}
+            var s = document.getElementsByTagName("script")[0];
+            var b = document.createElement("script");
+            b.type = "text/javascript"; b.async = true;
+            b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+            s.parentNode.insertBefore(b, s);
+          })(window.lintrk);
+
+          // Microsoft Clarity
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "wn43n5eysh");
+        }
+        // Fire after first paint, no later than 3s
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadPixels, { timeout: 3000 });
+        } else {
+          setTimeout(loadPixels, 1500);
+        }
+      })();
+    </script>
   </body>
 </html>

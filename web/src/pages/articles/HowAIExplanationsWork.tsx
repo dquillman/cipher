@@ -5,6 +5,9 @@ import { trackCtaClick, captureUtmParams } from '../../lib/ga4';
 import PublicNav from '../../components/layout/PublicNav';
 import PublicFooter from '../../components/layout/PublicFooter';
 import ArticleNav from '../../components/blog/ArticleNav';
+import RelatedReading from '../../components/blog/RelatedReading';
+import SeoHead from '../../components/SeoHead';
+import { BLOG_POSTS, articleSchema, blogPostBreadcrumb } from '../../config/seo';
 
 export default function HowAIExplanationsWork() {
   const navigate = useNavigate();
@@ -20,6 +23,11 @@ export default function HowAIExplanationsWork() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead
+        {...BLOG_POSTS.howAiExplanations}
+        ogType="article"
+        jsonLd={[articleSchema({ ...BLOG_POSTS.howAiExplanations, headline: BLOG_POSTS.howAiExplanations.title }), blogPostBreadcrumb('howAiExplanations')]}
+      />
       <PublicNav />
 
       {/* Article */}
@@ -47,6 +55,10 @@ export default function HowAIExplanationsWork() {
           </header>
 
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
+
+            <figure className="my-8">
+              <img src="/blog-images/reasoning-chain.svg" alt="Comparison of a flashcard-style answer that just says 'assess impact' versus a four-step reasoning chain — frame the PMI Decision Lens, name the rule, expose the trap answer, and transfer the pattern to similar questions" className="w-full rounded-xl border border-slate-700" />
+            </figure>
 
             <p>
               Think about the last time you got a practice exam question wrong. What happened next?
@@ -243,6 +255,10 @@ export default function HowAIExplanationsWork() {
           />
 
           {/* CTA */}
+          <RelatedReading
+            posts={['howExamsThink', 'studyByBloomsLevel', 'cognitiveHeatmap']}
+          />
+
           <div className="mt-16 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center">
             <h3 className="text-2xl font-bold text-white font-display mb-3">
               Experience AI-powered exam explanations.

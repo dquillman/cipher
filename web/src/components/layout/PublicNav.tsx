@@ -63,6 +63,9 @@ export default function PublicNav({ children }: PublicNavProps) {
           <Link to="/story" className={linkClass}>Our Story</Link>
           <Link to="/pricing" className={linkClass}>Pricing</Link>
           <Link to="/blog" className={linkClass}>Blog</Link>
+          {/* Exam Lens on large desktop only — adding to the standard linkClass causes
+              wrapping at md sizes. Mobile menu always shows it. */}
+          <Link to="/exam-lens" className="text-sm font-medium text-slate-400 hover:text-white transition-colors hidden lg:block">Exam Lens</Link>
           <Link
             to="/#testimonial"
             className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-300 hover:bg-brand-500/20 hover:border-brand-400/50 hover:text-brand-200 transition-all"
@@ -116,6 +119,7 @@ export default function PublicNav({ children }: PublicNavProps) {
           <Link to="/story" onClick={closeMobile} className={mobileLinkClass}>Our Story</Link>
           <Link to="/pricing" onClick={closeMobile} className={mobileLinkClass}>Pricing</Link>
           <Link to="/blog" onClick={closeMobile} className={mobileLinkClass}>Blog</Link>
+          <Link to="/exam-lens" onClick={closeMobile} className={mobileLinkClass}>Exam Lens</Link>
           <Link
             to="/#testimonial"
             onClick={closeMobile}

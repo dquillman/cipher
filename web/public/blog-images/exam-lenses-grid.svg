@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-label="Six certification exams paired with the reasoning framework each one tests">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0f1830"/>
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7aa2ff"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bgGrad)"/>
+  <text x="400" y="44" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="22" font-weight="700" text-anchor="middle">Every exam tests a different reasoning frame.</text>
+  <text x="400" y="70" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">The Exam Lens for each cert names what the test is actually grading.</text>
+
+  <!-- Row 1 -->
+  <g transform="translate(60,110)">
+    <rect width="220" height="120" rx="14" fill="#1a2438" stroke="#7aa2ff" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#7aa2ff" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2">PMP</text>
+    <text x="20" y="58" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700">PMI Decision Lens</text>
+    <text x="20" y="82" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">What would PMI</text>
+    <text x="20" y="100" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">want you to do?</text>
+  </g>
+  <g transform="translate(290,110)">
+    <rect width="220" height="120" rx="14" fill="#1a2438" stroke="#a78bfa" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#a78bfa" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2">SECURITY+</text>
+    <text x="20" y="58" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700">CIA Triad Lens</text>
+    <text x="20" y="82" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">Which principle</text>
+    <text x="20" y="100" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">is being protected?</text>
+  </g>
+  <g transform="translate(520,110)">
+    <rect width="220" height="120" rx="14" fill="#1a2438" stroke="#34d399" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#34d399" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2">SHRM-CP</text>
+    <text x="20" y="58" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700">Competency Lens</text>
+    <text x="20" y="82" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">Which SHRM</text>
+    <text x="20" y="100" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">behavioral competency?</text>
+  </g>
+
+  <!-- Row 2 -->
+  <g transform="translate(60,250)">
+    <rect width="220" height="120" rx="14" fill="#1a2438" stroke="#fbbf24" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#fbbf24" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2">ITIL 4</text>
+    <text x="20" y="58" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700">Service Value Lens</text>
+    <text x="20" y="82" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">How does this serve</text>
+    <text x="20" y="100" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">the value chain?</text>
+  </g>
+  <g transform="translate(290,250)">
+    <rect width="220" height="120" rx="14" fill="#1a2438" stroke="#f87171" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#f87171" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2">CSM</text>
+    <text x="20" y="58" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700">Scrum Guide Lens</text>
+    <text x="20" y="82" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">What does the</text>
+    <text x="20" y="100" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">Scrum Guide say?</text>
+  </g>
+  <g transform="translate(520,250)">
+    <rect width="220" height="120" rx="14" fill="#1a2438" stroke="#7aa2ff" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="20" y="32" fill="#7aa2ff" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2">SIX SIGMA</text>
+    <text x="20" y="58" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="17" font-weight="700">DMAIC Lens</text>
+    <text x="20" y="82" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">Where in Define-</text>
+    <text x="20" y="100" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="12">Measure-Analyze-...?</text>
+  </g>
+
+  <!-- Bottom: the unifying claim -->
+  <g transform="translate(60,410)">
+    <rect width="680" height="110" rx="16" fill="#0f1a2b" stroke="url(#brandGrad)" stroke-opacity="0.5" stroke-width="2"/>
+    <text x="340" y="42" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="18" font-weight="700" text-anchor="middle">Same answer, four ways to be wrong about it.</text>
+    <text x="340" y="70" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">The right answer isn't "the rule" — it's "the right rule for this exam's frame."</text>
+    <text x="340" y="92" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">That's the gap most prep tools never close.</text>
+  </g>
+</svg>

@@ -1,0 +1,268 @@
+[1mdiff --git a/firebase.json b/firebase.json[m
+[1mindex d7bf661..91b77a3 100644[m
+[1m--- a/firebase.json[m
+[1m+++ b/firebase.json[m
+[36m@@ -27,9 +27,13 @@[m
+                 "**/node_modules/**"[m
+             ],[m
+             "rewrites": [[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    "source": "/app/**",[m
+[32m+[m[32m                    "destination": "/_catchall.html"[m
+[32m+[m[32m                },[m
+                 {[m
+                     "source": "**",[m
+[31m-                    "destination": "/index.html"[m
+[32m+[m[32m                    "destination": "/_catchall.html"[m
+                 }[m
+             ],[m
+             "headers": [[m
+[36m@@ -38,7 +42,7 @@[m
+                     "headers": [[m
+                         {[m
+                             "key": "Cache-Control",[m
+[31m-                            "value": "no-cache, no-store, must-revalidate"[m
+[32m+[m[32m                            "value": "public, max-age=0, must-revalidate"[m
+                         },[m
+                         {[m
+                             "key": "Cross-Origin-Opener-Policy",[m
+[36m@@ -66,9 +70,13 @@[m
+                 "**/node_modules/**"[m
+             ],[m
+             "rewrites": [[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    "source": "/app/**",[m
+[32m+[m[32m                    "destination": "/_catchall.html"[m
+[32m+[m[32m                },[m
+                 {[m
+                     "source": "**",[m
+[31m-                    "destination": "/index.html"[m
+[32m+[m[32m                    "destination": "/_catchall.html"[m
+                 }[m
+             ],[m
+             "headers": [[m
+[36m@@ -77,7 +85,7 @@[m
+                     "headers": [[m
+                         {[m
+                             "key": "Cache-Control",[m
+[31m-                            "value": "no-cache, no-store, must-revalidate"[m
+[32m+[m[32m                            "value": "public, max-age=0, must-revalidate"[m
+                         },[m
+                         {[m
+                             "key": "Cross-Origin-Opener-Policy",[m
+[36m@@ -105,9 +113,13 @@[m
+                 "**/node_modules/**"[m
+             ],[m
+             "rewrites": [[m
+[32m+[m[32m                {[m
+[32m+[m[32m                    "source": "/app/**",[m
+[32m+[m[32m                    "destination": "/_catchall.html"[m
+[32m+[m[32m                },[m
+                 {[m
+                     "source": "**",[m
+[31m-                    "destination": "/index.html"[m
+[32m+[m[32m                    "destination": "/_catchall.html"[m
+                 }[m
+             ],[m
+             "headers": [[m
+[36m@@ -116,7 +128,7 @@[m
+                     "headers": [[m
+                         {[m
+                             "key": "Cache-Control",[m
+[31m-                            "value": "no-cache, no-store, must-revalidate"[m
+[32m+[m[32m                            "value": "public, max-age=0, must-revalidate"[m
+                         },[m
+                         {[m
+                             "key": "Cross-Origin-Opener-Policy",[m
+[1mdiff --git a/web/index.html b/web/index.html[m
+[1mindex f6dbb36..abd24d3 100644[m
+[1m--- a/web/index.html[m
+[1m+++ b/web/index.html[m
+[36m@@ -4,9 +4,55 @@[m
+     <meta charset="UTF-8" />[m
+     <link rel="icon" type="image/png" href="/favicon.png" />[m
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />[m
+[32m+[m
+[32m+[m[32m    <!-- Preconnect to font origin to cut render-blocking latency -->[m
+[32m+[m[32m    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />[m
+[32m+[m[32m    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />[m
+     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet">[m
+[31m-    <title>CipherExam — Certification prep, decoded.</title>[m
+[31m-    <!-- Google Analytics 4 (gtag.js) -->[m
+[32m+[m
+[32m+[m[32m    <!-- Default fallback title — React 19 correctly overrides this per route via SeoHead.[m
+[32m+[m[32m         Per-page <meta>, <link rel="canonical">, OG, and twitter tags are emitted by[m
+[32m+[m[32m         <SeoHead> ONLY. Do not duplicate them statically here: React 19 appends rather[m
+[32m+[m[32m         than deduplicates <meta> tags, so static defaults would stay alongside the[m
+[32m+[m[32m         per-page values and browsers read the first (static) one. Result: every page[m
+[32m+[m[32m         appears to have the homepage's description.[m
+[32m+[m
+[32m+[m[32m         First-pass crawlers (text-only Googlebot) see no meta beyond the title +[m
+[32m+[m[32m         Organization JSON-LD below. JS-executing second-pass crawlers see the correct[m
+[32m+[m[32m         per-route meta. To fix first-pass too, ship prerendering — see web/SEO-IMPLEMENTATION.md. -->[m
+[32m+[m[32m    <title>CipherExam — Learn How Certification Exams Think</title>[m
+[32m+[m[32m    <meta name="theme-color" content="#020617" />[m
+[32m+[m[32m    <!-- Per-page <meta name="robots"> is emitted by SeoHead (so noindex on /404 works).[m
+[32m+[m[32m         Do NOT add a static robots meta here — React 19 doesn't dedup <meta> tags, so[m
+[32m+[m[32m         the static would win over the per-page value. Pages without SeoHead default to[m
+[32m+[m[32m         Google's index,follow behavior, which is the intended fallback. -->[m
+[32m+[m
+[32m+[m[32m    <!-- Organization + WebSite JSON-LD (sitewide trust signal) -->[m
+[32m+[m[32m    <script type="application/ld+json">[m
+[32m+[m[32m    {[m
+[32m+[m[32m      "@context": "https://schema.org",[m
+[32m+[m[32m      "@graph": [[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "@type": "Organization",[m
+[32m+[m[32m          "@id": "https://cipherexam.com/#org",[m
+[32m+[m[32m          "name": "CipherExam",[m
+[32m+[m[32m          "url": "https://cipherexam.com/",[m
+[32m+[m[32m          "logo": "https://cipherexam.com/favicon.png",[m
+[32m+[m[32m          "description": "AI-powered certification exam prep. Understand how exams think.",[m
+[32m+[m[32m          "founder": { "@type": "Person", "name": "Dave Quillman" }[m
+[32m+[m[32m        },[m
+[32m+[m[32m        {[m
+[32m+[m[32m          "@type": "WebSite",[m
+[32m+[m[32m          "@id": "https://cipherexam.com/#website",[m
+[32m+[m[32m          "url": "https://cipherexam.com/",[m
+[32m+[m[32m          "name": "CipherExam",[m
+[32m+[m[32m          "publisher": { "@id": "https://cipherexam.com/#org" }[m
+[32m+[m[32m        }[m
+[32m+[m[32m      ][m
+[32m+[m[32m    }[m
+[32m+[m[32m    </script>[m
+[32m+[m
+[32m+[m[32m    <!-- Google Analytics 4 (already async) -->[m
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HY0QBN84Y6"></script>[m
+     <script>[m
+       window.dataLayer = window.dataLayer || [];[m
+[36m@@ -15,47 +61,57 @@[m
+       gtag('config', 'G-HY0QBN84Y6');[m
+       gtag('config', 'AW-926344271');[m
+     </script>[m
+[31m-    <!-- Meta Pixel -->[m
+[31m-    <script>[m
+[31m-      !function(f,b,e,v,n,t,s)[m
+[31m-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?[m
+[31m-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};[m
+[31m-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';[m
+[31m-      n.queue=[];t=b.createElement(e);t.async=!0;[m
+[31m-      t.src=v;s=b.getElementsByTagName(e)[0];[m
+[31m-      s.parentNode.insertBefore(t,s)}(window, document,'script',[m
+[31m-      'https://connect.facebook.net/en_US/fbevents.js');[m
+[31m-      fbq('init', '819240414529867');[m
+[31m-      fbq('track', 'PageView');[m
+[31m-    </script>[m
+[31m-    <!-- LinkedIn Insight Tag -->[m
+[31m-    <script type="text/javascript">[m
+[31m-      _linkedin_partner_id = "8955004";[m
+[31m-      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];[m
+[31m-      window._linkedin_data_partner_ids.push(_linkedin_partner_id);[m
+[31m-    </script>[m
+[31m-    <script type="text/javascript">[m
+[31m-      (function(l) {[m
+[31m-        if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};[m
+[31m-        window.lintrk.q=[]}[m
+[31m-        var s = document.getElementsByTagName("script")[0];[m
+[31m-        var b = document.createElement("script");[m
+[31m-        b.type = "text/javascript";b.async = true;[m
+[31m-        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";[m
+[31m-        s.parentNode.insertBefore(b, s);})(window.lintrk);[m
+[31m-    </script>[m
+[31m-    <!-- Microsoft Clarity -->[m
+[31m-    <script type="text/javascript">[m
+[31m-      (function(c,l,a,r,i,t,y){[m
+[31m-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};[m
+[31m-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;[m
+[31m-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);[m
+[31m-      })(window, document, "clarity", "script", "wn43n5eysh");[m
+[31m-    </script>[m
+   </head>[m
+   <body style="background: #020617 !important;">[m
+     <noscript><img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8955004&fmt=gif" /></noscript>[m
+     <div id="root"></div>[m
+     <script type="module" src="/src/main.tsx"></script>[m
+[32m+[m
+[32m+[m[32m    <!-- Tracking pixels deferred until after the app shell renders.[m
+[32m+[m[32m         Defers ~30-80ms of main-thread blocking off the LCP path. -->[m
+[32m+[m[32m    <script>[m
+[32m+[m[32m      (function () {[m
+[32m+[m[32m        function loadPixels() {[m
+[32m+[m[32m          // Meta Pixel[m
+[32m+[m[32m          !function(f,b,e,v,n,t,s)[m
+[32m+[m[32m          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?[m
+[32m+[m[32m          n.callMethod.apply(n,arguments):n.queue.push(arguments)};[m
+[32m+[m[32m          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';[m
+[32m+[m[32m          n.queue=[];t=b.createElement(e);t.async=!0;[m
+[32m+[m[32m          t.src=v;s=b.getElementsByTagName(e)[0];[m
+[32m+[m[32m          s.parentNode.insertBefore(t,s)}(window, document,'script',[m
+[32m+[m[32m          'https://connect.facebook.net/en_US/fbevents.js');[m
+[32m+[m[32m          window.fbq('init', '819240414529867');[m
+[32m+[m[32m          window.fbq('track', 'PageView');[m
+[32m+[m
+[32m+[m[32m          // LinkedIn Insight Tag[m
+[32m+[m[32m          window._linkedin_partner_id = "8955004";[m
+[32m+[m[32m          window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];[m
+[32m+[m[32m          window._linkedin_data_partner_ids.push("8955004");[m
+[32m+[m[32m          (function(l) {[m
+[32m+[m[32m            if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};[m
+[32m+[m[32m            window.lintrk.q=[]}[m
+[32m+[m[32m            var s = document.getElementsByTagName("script")[0];[m
+[32m+[m[32m            var b = document.createElement("script");[m
+[32m+[m[32m            b.type = "text/javascript"; b.async = true;[m
+[32m+[m[32m            b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";[m
+[32m+[m[32m            s.parentNode.insertBefore(b, s);[m
+[32m+[m[32m          })(window.lintrk);[m
+[32m+[m
+[32m+[m[32m          // Microsoft Clarity[m
+[32m+[m[32m          (function(c,l,a,r,i,t,y){[m
+[32m+[m[32m            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};[m
+[32m+[m[32m            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;[m
+[32m+[m[32m            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);[m
+[32m+[m[32m          })(window, document, "clarity", "script", "wn43n5eysh");[m
+[32m+[m[32m        }[m
+[32m+[m[32m        // Fire after first paint, no later than 3s[m
+[32m+[m[32m        if ('requestIdleCallback' in window) {[m
+[32m+[m[32m          requestIdleCallback(loadPixels, { timeout: 3000 });[m
+[32m+[m[32m        } else {[m
+[32m+[m[32m          setTimeout(loadPixels, 1500);[m
+[32m+[m[32m        }[m
+[32m+[m[32m      })();[m
+[32m+[m[32m    </script>[m
+   </body>[m
+ </html>[m
+[1mdiff --git a/web/src/App.tsx b/web/src/App.tsx[m
+[1mindex 002d8b2..eb3f84f 100644[m
+[1m--- a/web/src/App.tsx[m
+[1m+++ b/web/src/App.tsx[m
+[36m@@ -25,6 +25,8 @@[m [mconst StudyByBloomsLevel = lazy(() => import("./pages/articles/StudyByBloomsLeve[m
+ const RecallOnlyPrepFails = lazy(() => import("./pages/articles/RecallOnlyPrepFails"));[m
+ const CognitiveHeatmap = lazy(() => import("./pages/articles/CognitiveHeatmap"));[m
+ const HowExamsThink = lazy(() => import("./pages/articles/HowExamsThink"));[m
+[32m+[m[32mconst ExamLensGlossary = lazy(() => import("./pages/ExamLensGlossary"));[m
+[32m+[m[32mconst NotFound = lazy(() => import("./pages/NotFound"));[m
+ // Tier 1 ad landing pages (added 2026-05-11 via dquillman/cipher-marketing campaign)[m
+ const PmpPracticeLP = lazy(() => import("./pages/landing/PmpPracticeLP"));[m
+ const SecurityPlusPracticeLP = lazy(() => import("./pages/landing/SecurityPlusPracticeLP"));[m
+[36m@@ -410,6 +412,7 @@[m [mfunction App() {[m
+               <Route path="/blog/recall-only-prep-fails" element={<RecallOnlyPrepFails />} />[m
+               <Route path="/blog/cognitive-heatmap" element={<CognitiveHeatmap />} />[m
+               <Route path="/blog/how-certification-exams-think" element={<HowExamsThink />} />[m
+[32m+[m[32m              <Route path="/exam-lens" element={<ExamLensGlossary />} />[m
+               {/* Tier 1 ad landing pages — see dquillman/cipher-marketing for campaign context */}[m
+               <Route path="/lp/pmp" element={<PmpPracticeLP />} />[m
+               <Route path="/lp/security-plus" element={<SecurityPlusPracticeLP />} />[m
+[36m@@ -450,8 +453,11 @@[m [mfunction App() {[m
+                 </Route>[m
+               </Route>[m
+ [m
+[31m-              {/* Fallback */}[m
+[31m-              <Route path="*" element={<Navigate to="/" replace />} />[m
+[32m+[m[32m              {/* Fallback — render NotFound (noindex) instead of redirecting to /.[m
+[32m+[m[32m                  Previous redirect-to-/ caused Google to treat every unknown URL as[m
+[32m+[m[32m                  a duplicate of the homepage. NotFound emits robots=noindex,nofollow[m
+[32m+[m[32m                  so unknown URLs stop accumulating in the index. */}[m
+[32m+[m[32m              <Route path="*" element={<NotFound />} />[m
+             </Routes>[m
+             <GlobalSmartQuizReviewModal />[m
+             <TestimonialPromptHost />[m

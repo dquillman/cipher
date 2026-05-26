@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom';
 import PublicNav from '../components/layout/PublicNav';
+import SeoHead from '../components/SeoHead';
+import { SEO } from '../config/seo';
 
 export default function About() {
     return (
         <div className="min-h-screen flex flex-col bg-slate-900 text-slate-200">
+            <SeoHead {...SEO.about} />
             <PublicNav />
 
             <main className="flex-1 mx-auto max-w-4xl px-4 pt-28 pb-12 sm:px-6 lg:px-8">
                 <div className="space-y-12">
                     <div className="text-center space-y-4">
-                        <h2 className="text-4xl font-bold text-white font-display">Master Your Exam with AI</h2>
+                        <h1 className="text-4xl font-bold text-white font-display">Master Your Exam with AI</h1>
                         <p className="text-xl text-slate-400 max-w-2xl mx-auto">
                             CipherExam is your personalized tutor, designed to help you pass your exams efficiently and effectively.
                         </p>

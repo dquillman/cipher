@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /login
+Disallow: /verify-events
+Disallow: /success
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://cipherexam.com/sitemap.xml

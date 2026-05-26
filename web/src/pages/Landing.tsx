@@ -4,6 +4,8 @@ import { useAuth } from "../App";
 import { trackLandingPageView, trackCtaClick, trackPricingView, captureUtmParams } from "../lib/ga4";
 import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
+import SeoHead from "../components/SeoHead";
+import { SEO } from "../config/seo";
 
 /* ─── Shared icons & paths ────────────────────────────────────────────────── */
 const Check = () => (
@@ -135,6 +137,7 @@ export default function Landing() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead {...SEO.landing} />
 
       {/* ─── NAVIGATION (sticky CTA appears on scroll) ────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
@@ -151,6 +154,7 @@ export default function Landing() {
             <Link to="/pricing" className={navLink}>Pricing</Link>
             <Link to="/story" className={navLink}>Our Story</Link>
             <Link to="/blog" className={navLink}>Blog</Link>
+            <Link to="/exam-lens" className="text-sm font-medium text-slate-400 hover:text-white transition-colors hidden lg:block">Exam Lens</Link>
             <button
               onClick={() => scrollTo("testimonial")}
               className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-300 hover:bg-brand-500/20 hover:border-brand-400/50 hover:text-brand-200 transition-all"
@@ -203,6 +207,7 @@ export default function Landing() {
             <Link to="/pricing" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Pricing</Link>
             <Link to="/story" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Our Story</Link>
             <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Blog</Link>
+            <Link to="/exam-lens" onClick={() => setMobileMenuOpen(false)} className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors">Exam Lens</Link>
             <button
               onClick={() => handleMobileNav(() => scrollTo("testimonial"))}
               className="w-full flex items-center gap-2 px-4 py-3 rounded-xl text-base font-bold border border-brand-500/30 bg-brand-500/10 text-brand-300 hover:bg-brand-500/20 transition-colors"
@@ -496,7 +501,7 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { n: "1", title: "Choose Your Certification Exam", body: "Select from PMP, Security+, CSM, SHRM-CP, ITIL, Six Sigma, and more." },
-              { n: "2", title: "Practice with AI Explanations", body: "Answer questions and get detailed reasoning breakdowns for every answer." },
+              { n: "2", title: "Practice with AI Explanations", body: "Every answer is explained through the Exam Lens for that cert — the reasoning frame the test grades against." },
               { n: "3", title: "Track Improvement with Analytics", body: "See your readiness score, weak domains, and progress over time." },
             ].map((s, i) => (
               <div key={i} className="text-center">
@@ -508,6 +513,13 @@ export default function Landing() {
               </div>
             ))}
           </div>
+
+          <p className="mt-12 text-sm text-slate-400">
+            Every cert has its own reasoning frame.{' '}
+            <Link to="/exam-lens" className="text-brand-400 hover:text-brand-300 underline underline-offset-2 font-semibold">
+              See the Exam Lens for each exam →
+            </Link>
+          </p>
         </div>
       </RevealSection>
 

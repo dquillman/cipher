@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-label="Five common study mistakes that cause certification exam failures">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#0f1830"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="560" fill="url(#bgGrad)"/>
+  <text x="400" y="44" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="22" font-weight="700" text-anchor="middle">Five ways study time quietly disappears.</text>
+  <text x="400" y="70" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">Each looks like progress. None of them moves the score.</text>
+
+  <!-- Five horizontal rows -->
+  <g transform="translate(60,100)">
+    <rect width="680" height="72" rx="12" fill="#1a2438" stroke="#f87171" stroke-opacity="0.35" stroke-width="1.5"/>
+    <circle cx="44" cy="36" r="22" fill="#f87171" fill-opacity="0.18" stroke="#f87171" stroke-width="1.5"/>
+    <text x="44" y="42" fill="#f87171" font-family="Inter, sans-serif" font-size="20" font-weight="800" text-anchor="middle">1</text>
+    <text x="84" y="32" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="16" font-weight="700">Re-reading what you already know</text>
+    <text x="84" y="56" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="13">Feels like studying. Doesn't surface what you can't do.</text>
+  </g>
+
+  <g transform="translate(60,184)">
+    <rect width="680" height="72" rx="12" fill="#1a2438" stroke="#fbbf24" stroke-opacity="0.35" stroke-width="1.5"/>
+    <circle cx="44" cy="36" r="22" fill="#fbbf24" fill-opacity="0.18" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="44" y="42" fill="#fbbf24" font-family="Inter, sans-serif" font-size="20" font-weight="800" text-anchor="middle">2</text>
+    <text x="84" y="32" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="16" font-weight="700">Memorizing without classifying</text>
+    <text x="84" y="56" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="13">Flashcards work for "remember." The exam grades "apply" and "evaluate."</text>
+  </g>
+
+  <g transform="translate(60,268)">
+    <rect width="680" height="72" rx="12" fill="#1a2438" stroke="#a78bfa" stroke-opacity="0.35" stroke-width="1.5"/>
+    <circle cx="44" cy="36" r="22" fill="#a78bfa" fill-opacity="0.18" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="44" y="42" fill="#a78bfa" font-family="Inter, sans-serif" font-size="20" font-weight="800" text-anchor="middle">3</text>
+    <text x="84" y="32" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="16" font-weight="700">Ignoring the explanations on questions you got right</text>
+    <text x="84" y="56" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="13">You may have picked the right answer for the wrong reason. That breaks at scale.</text>
+  </g>
+
+  <g transform="translate(60,352)">
+    <rect width="680" height="72" rx="12" fill="#1a2438" stroke="#7aa2ff" stroke-opacity="0.35" stroke-width="1.5"/>
+    <circle cx="44" cy="36" r="22" fill="#7aa2ff" fill-opacity="0.18" stroke="#7aa2ff" stroke-width="1.5"/>
+    <text x="44" y="42" fill="#7aa2ff" font-family="Inter, sans-serif" font-size="20" font-weight="800" text-anchor="middle">4</text>
+    <text x="84" y="32" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="16" font-weight="700">Skipping the simulator until "you're ready"</text>
+    <text x="84" y="56" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="13">Pacing is a separate skill. You don't develop it by reading.</text>
+  </g>
+
+  <g transform="translate(60,436)">
+    <rect width="680" height="72" rx="12" fill="#1a2438" stroke="#34d399" stroke-opacity="0.35" stroke-width="1.5"/>
+    <circle cx="44" cy="36" r="22" fill="#34d399" fill-opacity="0.18" stroke="#34d399" stroke-width="1.5"/>
+    <text x="44" y="42" fill="#34d399" font-family="Inter, sans-serif" font-size="20" font-weight="800" text-anchor="middle">5</text>
+    <text x="84" y="32" fill="#e5ecf7" font-family="Inter, sans-serif" font-size="16" font-weight="700">Studying domains evenly instead of where you're weakest</text>
+    <text x="84" y="56" fill="#9fb0cc" font-family="Inter, sans-serif" font-size="13">A heatmap finds the gap in 20 minutes. Most candidates study for weeks without one.</text>
+  </g>
+</svg>

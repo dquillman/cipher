@@ -5,6 +5,9 @@ import { trackCtaClick, captureUtmParams } from '../../lib/ga4';
 import PublicNav from '../../components/layout/PublicNav';
 import PublicFooter from '../../components/layout/PublicFooter';
 import ArticleNav from '../../components/blog/ArticleNav';
+import RelatedReading from '../../components/blog/RelatedReading';
+import SeoHead from '../../components/SeoHead';
+import { BLOG_POSTS, articleSchema, blogPostBreadcrumb } from '../../config/seo';
 
 export default function WhyCertExamsConfusing() {
   const navigate = useNavigate();
@@ -20,6 +23,11 @@ export default function WhyCertExamsConfusing() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead
+        {...BLOG_POSTS.whyConfusing}
+        ogType="article"
+        jsonLd={[articleSchema({ ...BLOG_POSTS.whyConfusing, headline: BLOG_POSTS.whyConfusing.title }), blogPostBreadcrumb('whyConfusing')]}
+      />
       <PublicNav />
 
       {/* Article */}
@@ -50,6 +58,10 @@ export default function WhyCertExamsConfusing() {
 
           {/* Body */}
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
+
+            <figure className="my-8">
+              <img src="/blog-images/four-plausible-answers.svg" alt="Sample PMP-style scenario showing four answer choices A through D where three are defensible and the BEST answer is C — the one that follows PMI Decision Lens by assessing impact before communicating" className="w-full rounded-xl border border-slate-700" />
+            </figure>
 
             <p>
               You studied for weeks. You can define every term in the glossary. You completed hundreds of
@@ -345,6 +357,10 @@ export default function WhyCertExamsConfusing() {
           />
 
           {/* CTA Section */}
+          <RelatedReading
+            posts={['howExamsThink', 'fiveStudyMistakes', 'studyByBloomsLevel']}
+          />
+
           <div className="mt-16 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center">
             <h3 className="text-2xl font-bold text-white font-display mb-3">
               CipherExam teaches how certification exams think.

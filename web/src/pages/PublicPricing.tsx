@@ -5,6 +5,8 @@ import { trackPricingView, trackCtaClick } from '../lib/ga4';
 import { useEffect } from 'react';
 import PublicNav from '../components/layout/PublicNav';
 import PublicFooter from '../components/layout/PublicFooter';
+import SeoHead from '../components/SeoHead';
+import { SEO } from '../config/seo';
 
 export default function PublicPricing() {
     const navigate = useNavigate();
@@ -19,6 +21,7 @@ export default function PublicPricing() {
 
     return (
         <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+            <SeoHead {...SEO.pricing} />
             <PublicNav />
 
             {/* Pricing Content */}
@@ -133,6 +136,40 @@ export default function PublicPricing() {
                     Secure payments powered by <span className="text-slate-400 font-bold">Stripe</span>.
                     No credit card required for trial.
                 </p>
+
+                {/* Frequently Asked Questions — content mirrors the FAQPage schema in seo.ts.
+                    Keep these two in sync: Google penalizes schema/visible-content mismatches. */}
+                <section className="mt-20 w-full max-w-3xl" aria-labelledby="pricing-faq">
+                    <h2 id="pricing-faq" className="text-2xl sm:text-3xl font-bold text-white font-display text-center mb-8">
+                        Frequently asked questions
+                    </h2>
+                    <dl className="space-y-6">
+                        <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
+                            <dt className="text-lg font-semibold text-white mb-2">Is there a free trial?</dt>
+                            <dd className="text-slate-300 leading-relaxed">
+                                Yes. CipherExam Pro includes a 7-day free trial. No credit card required to start. You'll only be charged if you choose to continue after the trial.
+                            </dd>
+                        </div>
+                        <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
+                            <dt className="text-lg font-semibold text-white mb-2">Can I cancel anytime?</dt>
+                            <dd className="text-slate-300 leading-relaxed">
+                                Yes. You can cancel your subscription at any time from your account settings. Cancellation takes effect at the end of your current billing period — no questions asked.
+                            </dd>
+                        </div>
+                        <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
+                            <dt className="text-lg font-semibold text-white mb-2">Which certifications are included?</dt>
+                            <dd className="text-slate-300 leading-relaxed">
+                                PMP, Certified ScrumMaster (CSM), SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional (CPP), CIA Part 1, ITIL 4 Foundation, CompTIA Security+, CompTIA Network+, CompTIA A+ Core 2, and PgMP. CISSP and AWS SAA are coming soon. Every cert is included in Pro at no extra cost.
+                            </dd>
+                        </div>
+                        <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
+                            <dt className="text-lg font-semibold text-white mb-2">How is CipherExam different from other prep tools?</dt>
+                            <dd className="text-slate-300 leading-relaxed">
+                                Every question is classified by Bloom's Taxonomy and explained through an exam-specific reasoning framework called <a href="/exam-lens" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">Exam Lens</a>. You learn <em>how the exam thinks</em>, not just the answer. Memorizing question banks plateaus around 70% — reasoning-based prep scales past it.
+                            </dd>
+                        </div>
+                    </dl>
+                </section>
             </div>
 
             <PublicFooter />

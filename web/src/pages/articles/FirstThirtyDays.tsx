@@ -5,6 +5,9 @@ import { trackCtaClick, captureUtmParams } from '../../lib/ga4';
 import PublicNav from '../../components/layout/PublicNav';
 import PublicFooter from '../../components/layout/PublicFooter';
 import ArticleNav from '../../components/blog/ArticleNav';
+import RelatedReading from '../../components/blog/RelatedReading';
+import SeoHead from '../../components/SeoHead';
+import { BLOG_POSTS, articleSchema, blogPostBreadcrumb } from '../../config/seo';
 
 export default function FirstThirtyDays() {
   const navigate = useNavigate();
@@ -20,6 +23,11 @@ export default function FirstThirtyDays() {
 
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+      <SeoHead
+        {...BLOG_POSTS.firstThirtyDays}
+        ogType="article"
+        jsonLd={[articleSchema({ ...BLOG_POSTS.firstThirtyDays, headline: BLOG_POSTS.firstThirtyDays.title }), blogPostBreadcrumb('firstThirtyDays')]}
+      />
       <PublicNav />
 
       {/* Article */}
@@ -47,6 +55,10 @@ export default function FirstThirtyDays() {
           </header>
 
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
+
+            <figure className="my-8">
+              <img src="/blog-images/thirty-day-plan.svg" alt="Four-week certification study plan timeline: Week 1 diagnose with a 20-minute cognitive baseline and heatmap, Week 2 build coverage weighted to weak domains, Week 3 simulate a full mock at exam length, Week 4 close gaps with drill on trap patterns and a second mock" className="w-full rounded-xl border border-slate-700" />
+            </figure>
 
             <p>
               Most study plans you find online assume you have unlimited free time. "Study 4 hours per day
@@ -305,6 +317,11 @@ export default function FirstThirtyDays() {
           />
 
           {/* CTA */}
+          <RelatedReading
+            posts={['studyByBloomsLevel', 'fiveStudyMistakes', 'recallOnlyPrepFails']}
+            lp={{ href: '/lp/pmp', label: 'Try CipherExam on PMP' }}
+          />
+
           <div className="mt-16 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center">
             <h3 className="text-2xl font-bold text-white font-display mb-3">
               Start your 30-day plan with CipherExam.
