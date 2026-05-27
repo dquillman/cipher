@@ -286,7 +286,7 @@ export default function Landing() {
               </div>
               <span className="hidden sm:block text-slate-700">|</span>
               <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors">
-                <span className="font-semibold text-slate-300">Markus Kopko</span>, PMI AI Standards Core Team
+                <span className="font-semibold text-slate-300">PMI AI Standards Core Team Member</span>
               </span>
             </a>
           </div>
@@ -755,14 +755,16 @@ export default function Landing() {
               <span className="text-brand-400">feedback loop you ran with real testers</span>."
             </blockquote>
 
+            {/* Attribution intentionally anonymized — credential only, no name.
+                Per project_canonical_testimonial.md (memory) — protects source
+                identity and gives GDPR-safe rescindability (Art. 7(3)). */}
             <figcaption className="mt-6 pt-6 border-t border-slate-800 flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/30 to-blue-500/20 border border-brand-500/30 text-brand-300 font-bold">
-                MK
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-500/30 to-blue-500/20 border border-brand-500/30 text-brand-300 text-3xl leading-none font-serif" aria-hidden="true">
+                &ldquo;
               </div>
               <div>
-                <div className="text-white font-bold">Markus Kopko, PgMP</div>
-                <div className="text-slate-400 text-sm">PMI AI Standards Core Team Member</div>
-                <div className="text-slate-500 text-xs mt-0.5">During CipherExam beta testing</div>
+                <div className="text-white font-bold">PMI AI Standards Core Team Member</div>
+                <div className="text-slate-400 text-sm mt-0.5">During CipherExam beta testing</div>
               </div>
             </figcaption>
           </figure>
