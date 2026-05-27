@@ -152,9 +152,12 @@ export function Hero({
         <p className="text-sm text-slate-400">Start your free 7-day trial. No credit card required.</p>
       </div>
 
-      {/* Markus Kopko trust badge — non-PMI LPs only (Sec+, SHRM-CP).
-          Suppressed on PMI product LPs (PMP) to avoid conflict-of-interest
-          optics: he's on the PMI AI Standards Core Team. */}
+      {/* Trust badge — non-PMI LPs only (Sec+, SHRM-CP). Attribution is
+          ANONYMIZED (no individual name) by policy 2026-05-26: protects the
+          source's identity, gives us GDPR-safe deniability if he ever
+          rescinds (Markus is German, GDPR Art. 7(3) applies). Credential
+          alone — "PMI AI Standards Core Team Member" — does the borrowed-
+          authority work without naming him. NEVER add his name back here. */}
       {showMarkusBadge && (
         <div className="mt-10 flex justify-center">
           <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 max-w-2xl">
@@ -166,11 +169,8 @@ export function Hero({
               <span className="text-brand-400 text-xl leading-none">&rdquo;</span>
             </div>
             <span className="hidden sm:block text-slate-700">|</span>
-            <span className="text-xs text-slate-400 whitespace-nowrap">
-              <span className="font-semibold text-slate-200">Markus Kopko, PgMP</span>
-              <br className="sm:hidden" />
-              <span className="hidden sm:inline"> · </span>
-              PMI AI Standards Core Team
+            <span className="text-xs font-semibold text-slate-300 whitespace-nowrap">
+              PMI AI Standards Core Team Member
             </span>
           </div>
         </div>
