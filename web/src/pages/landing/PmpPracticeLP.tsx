@@ -25,6 +25,7 @@ export default function PmpPracticeLP() {
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         videoSrc="/videos/lp/launch-teaser-pmp.mp4"
+        showMarkusBadge={false}
       />
 
       <SectionBlock>

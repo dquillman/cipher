@@ -95,6 +95,7 @@ export function Hero({
   onCtaClick,
   videoSrc,
   videoPoster,
+  showMarkusBadge = true,
 }: {
   eyebrow?: string;
   h1: string;
@@ -105,6 +106,14 @@ export function Hero({
   videoSrc?: string;
   /** Optional poster image shown before the video loads (and during prerender) */
   videoPoster?: string;
+  /**
+   * Whether to show the Markus Kopko (PMI AI Standards) trust pill below
+   * the CTA. MUST be false on any PMI product LP (PMP, PgMP, etc.) — using
+   * a PMI Standards Core Team member to endorse a PMI cert is a credibility
+   * + conflict-of-interest problem. Keep true for Sec+ (CompTIA), SHRM-CP
+   * (SHRM), and other non-PMI surfaces.
+   */
+  showMarkusBadge?: boolean;
 }) {
   return (
     <section className="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
@@ -143,25 +152,29 @@ export function Hero({
         <p className="text-sm text-slate-400">Start your free 7-day trial. No credit card required.</p>
       </div>
 
-      {/* Markus Kopko trust badge — borrowed PMI authority across all LPs */}
-      <div className="mt-10 flex justify-center">
-        <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 max-w-2xl">
-          <div className="flex items-start gap-2">
-            <span className="text-brand-400 text-xl leading-none">&ldquo;</span>
-            <span className="text-sm text-slate-300 italic text-left">
-              What you have built is differentiated by the coaching lens approach, the exam-specific reasoning frameworks, and the feedback loop you ran with real testers.
+      {/* Markus Kopko trust badge — non-PMI LPs only (Sec+, SHRM-CP).
+          Suppressed on PMI product LPs (PMP) to avoid conflict-of-interest
+          optics: he's on the PMI AI Standards Core Team. */}
+      {showMarkusBadge && (
+        <div className="mt-10 flex justify-center">
+          <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 max-w-2xl">
+            <div className="flex items-start gap-2">
+              <span className="text-brand-400 text-xl leading-none">&ldquo;</span>
+              <span className="text-sm text-slate-300 italic text-left">
+                What you have built is differentiated by the coaching lens approach, the exam-specific reasoning frameworks, and the feedback loop you ran with real testers.
+              </span>
+              <span className="text-brand-400 text-xl leading-none">&rdquo;</span>
+            </div>
+            <span className="hidden sm:block text-slate-700">|</span>
+            <span className="text-xs text-slate-400 whitespace-nowrap">
+              <span className="font-semibold text-slate-200">Markus Kopko, PgMP</span>
+              <br className="sm:hidden" />
+              <span className="hidden sm:inline"> · </span>
+              PMI AI Standards Core Team
             </span>
-            <span className="text-brand-400 text-xl leading-none">&rdquo;</span>
           </div>
-          <span className="hidden sm:block text-slate-700">|</span>
-          <span className="text-xs text-slate-400 whitespace-nowrap">
-            <span className="font-semibold text-slate-200">Markus Kopko, PgMP</span>
-            <br className="sm:hidden" />
-            <span className="hidden sm:inline"> · </span>
-            PMI AI Standards Core Team
-          </span>
         </div>
-      </div>
+      )}
     </section>
   );
 }
