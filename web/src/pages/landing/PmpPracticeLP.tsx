@@ -24,6 +24,7 @@ export default function PmpPracticeLP() {
         sub="Every CipherExam answer is explained through the Exam Lens — what would PMI want you to do? — plus the Bloom's-level reasoning behind the question. Memorizing the PMBOK isn't enough. Reading the question the way the test writers do is."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
+        videoSrc="/videos/lp/launch-teaser-pmp.mp4"
       />
 
       <SectionBlock>

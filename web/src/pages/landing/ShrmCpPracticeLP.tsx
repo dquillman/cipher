@@ -23,6 +23,7 @@ export default function ShrmCpPracticeLP() {
         sub='Three of four answer choices will be defensible HR moves. The "right" one aligns with a specific SHRM behavioral competency. CipherExam names the competency on every explanation, so you train the reflex the exam actually grades.'
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
+        videoSrc="/videos/lp/launch-teaser-shrm.mp4"
       />
 
       <SectionBlock>

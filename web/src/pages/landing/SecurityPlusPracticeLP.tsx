@@ -23,6 +23,7 @@ export default function SecurityPlusPracticeLP() {
         sub="CipherExam runs CompTIA Security+ (SY0-701) Performance-Based Questions natively — drag-and-drop, network topology, and CLI items — and explains every answer through the CIA triad. Pass the simulator that matches the real exam."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
+        videoSrc="/videos/lp/launch-teaser-secplus.mp4"
       />
 
       <SectionBlock>

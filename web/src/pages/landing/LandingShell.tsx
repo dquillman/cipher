@@ -93,12 +93,18 @@ export function Hero({
   sub,
   ctaHref,
   onCtaClick,
+  videoSrc,
+  videoPoster,
 }: {
   eyebrow?: string;
   h1: string;
   sub: string;
   ctaHref: string;
   onCtaClick: () => void;
+  /** Optional autoplay-muted-loop hero video. Served from /videos/lp/{exam}.mp4 */
+  videoSrc?: string;
+  /** Optional poster image shown before the video loads (and during prerender) */
+  videoPoster?: string;
 }) {
   return (
     <section className="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
@@ -109,6 +115,23 @@ export function Hero({
         {h1}
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-gray-700 sm:text-xl">{sub}</p>
+
+      {videoSrc && (
+        <div className="mt-10 mx-auto max-w-2xl overflow-hidden rounded-2xl border border-gray-200 shadow-lg bg-gray-900">
+          <video
+            src={videoSrc}
+            poster={videoPoster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+            className="w-full h-auto block"
+          />
+        </div>
+      )}
+
       <div className="mt-8 flex flex-col items-center gap-2">
         <Link
           to={ctaHref}
@@ -118,6 +141,26 @@ export function Hero({
           Start Free Trial
         </Link>
         <p className="text-sm text-gray-500">Start your free 7-day trial. No credit card required.</p>
+      </div>
+
+      {/* Markus Kopko trust badge — borrowed PMI authority across all LPs */}
+      <div className="mt-10 flex justify-center">
+        <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-gray-300 bg-gray-50 px-5 py-3 max-w-2xl">
+          <div className="flex items-start gap-2">
+            <span className="text-brand-600 text-xl leading-none">&ldquo;</span>
+            <span className="text-sm text-gray-700 italic text-left">
+              What you have built is differentiated by the coaching lens approach, the exam-specific reasoning frameworks, and the feedback loop you ran with real testers.
+            </span>
+            <span className="text-brand-600 text-xl leading-none">&rdquo;</span>
+          </div>
+          <span className="hidden sm:block text-gray-300">|</span>
+          <span className="text-xs text-gray-500 whitespace-nowrap">
+            <span className="font-semibold text-gray-700">Markus Kopko, PgMP</span>
+            <br className="sm:hidden" />
+            <span className="hidden sm:inline"> · </span>
+            PMI AI Standards Core Team
+          </span>
+        </div>
       </div>
     </section>
   );

@@ -141,9 +141,14 @@ async function main() {
     const url = `http://127.0.0.1:${PORT}${route}`;
     const page = await context.newPage();
     try {
-      // Don't use waitUntil: 'networkidle' — tracking pixels (Meta, LinkedIn, Clarity)
-      // keep firing background requests so network never goes idle. Use 'load' instead.
-      await page.goto(url, { waitUntil: 'load', timeout: 30000 });
+      // waitUntil notes:
+      //   - 'networkidle' never fires — tracking pixels (Meta/LinkedIn/Clarity) keep
+      //     firing background requests so network never goes idle.
+      //   - 'load' waits for ALL resources including async fonts + the full pixel
+      //     cascade — can exceed 30s on the homepage cold start.
+      //   - 'domcontentloaded' fires as soon as HTML is parsed; downstream wait below
+      //     handles React hydration. This is the reliable choice.
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
       // Wait for the React.lazy() chunk to finish loading + replace the Suspense
       // fallback spinner (.animate-spin) with the actual route content. This is the
@@ -154,10 +159,34 @@ async function main() {
           if (!root || root.children.length === 0) return false;
           return !root.querySelector('.animate-spin');
         },
-        { timeout: 20000 },
+        { timeout: 30000 },
       );
       // Extra settle: React 19 head hoisting + final layout paint
       await page.waitForTimeout(750);
+
+      // Dedupe meta/link tags. React 19 hoists meta tags from components, but when
+      // route transitions happen (e.g., BrowserRouter briefly evaluates Landing
+      // before resolving to /lp/pmp), the unmounted component's hoisted tags can
+      // remain. Crawlers read the FIRST occurrence per name/property, so the stale
+      // Landing tags would win over the route-specific ones. Strip duplicates here,
+      // keeping the LAST occurrence (= the correct per-route SeoHead emission).
+      await page.evaluate(() => {
+        // Dedupe meta[name=...] and meta[property=...] — keep last occurrence
+        const metaKeep = new Map();
+        document.querySelectorAll('meta[name], meta[property]').forEach((m) => {
+          const key = m.getAttribute('property') || m.getAttribute('name');
+          if (key) metaKeep.set(key, m);
+        });
+        document.querySelectorAll('meta[name], meta[property]').forEach((m) => {
+          const key = m.getAttribute('property') || m.getAttribute('name');
+          if (key && metaKeep.get(key) !== m) m.remove();
+        });
+        // Dedupe link[rel=canonical] specifically — only one should ever exist
+        const canons = document.querySelectorAll('link[rel="canonical"]');
+        if (canons.length > 1) {
+          for (let i = 0; i < canons.length - 1; i++) canons[i].remove();
+        }
+      });
 
       const html = await page.content();
       const outPath =

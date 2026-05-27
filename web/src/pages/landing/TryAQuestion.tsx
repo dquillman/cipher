@@ -38,8 +38,14 @@ export default function TryAQuestion({
   return (
     <section className="mx-auto my-12 max-w-3xl px-4">
       <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-        <div className="mb-1 text-xs font-semibold uppercase tracking-widest text-brand-600">
-          Try a {examName} question
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-semibold uppercase tracking-widest text-brand-600">
+            Try a {examName} question
+          </span>
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 ring-1 ring-emerald-200">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            Live preview — no signup
+          </span>
         </div>
         <p className="mb-4 text-xs italic text-gray-500">
           (Illustrative — not from any real exam.) Domain: {domainLabel}
@@ -95,13 +101,36 @@ export default function TryAQuestion({
         )}
 
         {revealed && (
-          <div className="mt-6 rounded-lg border-l-4 border-brand-500 bg-brand-50 p-5">
-            <p className="text-xs font-bold uppercase tracking-wider text-brand-700">Exam Lens</p>
-            <p className="mt-2 text-base leading-relaxed text-gray-800">{reasoning}</p>
-            <p className="mt-3 text-xs text-gray-600">
-              Bloom's level: <span className="font-semibold">{bloomsLevel}</span>
-            </p>
-          </div>
+          <>
+            <div className="mt-6 rounded-lg border-l-4 border-brand-500 bg-brand-50 p-5">
+              <p className="text-xs font-bold uppercase tracking-wider text-brand-700">Exam Lens</p>
+              <p className="mt-2 text-base leading-relaxed text-gray-800">{reasoning}</p>
+              <p className="mt-3 text-xs text-gray-600">
+                Bloom's level: <span className="font-semibold">{bloomsLevel}</span>
+              </p>
+            </div>
+
+            {/* "What happens next inside CipherExam" — shows the adaptive product experience */}
+            <div className="mt-4 rounded-lg border border-dashed border-gray-300 bg-gray-50 p-5">
+              <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                What happens next inside CipherExam
+              </p>
+              <ul className="mt-2 space-y-1.5 text-sm text-gray-700">
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-brand-600">→</span>
+                  <span>Adaptive routing: your next question targets your weakest domain — not the next chapter in a book.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-brand-600">→</span>
+                  <span>This {examName} question gets saved to your weak-points list for spaced-repetition review before exam day.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-0.5 text-brand-600">→</span>
+                  <span>Every wrong answer in the bank is explained the same way — why it was crafted to bait you, not just that it's wrong.</span>
+                </li>
+              </ul>
+            </div>
+          </>
         )}
       </div>
     </section>
