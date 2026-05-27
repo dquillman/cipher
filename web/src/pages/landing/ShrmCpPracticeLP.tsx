@@ -95,23 +95,23 @@ export default function ShrmCpPracticeLP() {
       <SectionBlock title="Frequently asked">
         <dl className="space-y-6">
           <div>
-            <dt className="font-semibold text-gray-900">Is this aligned to the current SHRM-CP exam?</dt>
+            <dt className="font-semibold text-slate-100">Is this aligned to the current SHRM-CP exam?</dt>
             <dd className="mt-1">Yes — built against SHRM's Body of Applied Skills and Knowledge (BASK) and the nine behavioral competencies.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Do you cover situational-judgment questions specifically?</dt>
+            <dt className="font-semibold text-slate-100">Do you cover situational-judgment questions specifically?</dt>
             <dd className="mt-1">Yes — they're the dominant format and every one is tagged with the competency being tested.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">How many questions is the Full Mock?</dt>
+            <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
             <dd className="mt-1">134 questions in 220 minutes — the same as the actual exam.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Do you also have SHRM-SCP?</dt>
+            <dt className="font-semibold text-slate-100">Do you also have SHRM-SCP?</dt>
             <dd className="mt-1">Not yet. SHRM-CP is fully live; SHRM-SCP is on the roadmap based on user demand.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Cancel anytime?</dt>
+            <dt className="font-semibold text-slate-100">Cancel anytime?</dt>
             <dd className="mt-1">Yes. 7-day trial never charges a card.</dd>
           </div>
         </dl>

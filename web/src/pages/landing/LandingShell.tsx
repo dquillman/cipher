@@ -38,17 +38,17 @@ export default function LandingShell({ exam, examShortName, pageId, children }: 
   const handleCta = (loc: string) => trackCtaClick(`${pageId}-${loc}`);
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 antialiased">
+    <div className="min-h-screen bg-slate-950 text-slate-100 antialiased">
       {/* Sticky header — minimal: logo + single CTA */}
-      <header className="sticky top-0 z-40 w-full border-b border-gray-200/70 bg-white/80 backdrop-blur">
+      <header className="sticky top-0 z-40 w-full border-b border-slate-800/70 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center gap-2" aria-label="CipherExam home">
-            <span className="text-lg font-bold tracking-tight text-brand-700">CipherExam</span>
+            <span className="text-lg font-bold tracking-tight text-brand-400">CipherExam</span>
           </Link>
           <Link
             to={signupHref}
             onClick={() => handleCta("header")}
-            className="inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+            className="inline-flex items-center rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
           >
             Start Free Trial
           </Link>
@@ -58,25 +58,25 @@ export default function LandingShell({ exam, examShortName, pageId, children }: 
       <main>{children}</main>
 
       {/* Minimal footer — no main-site nav, just trust signals + final CTA */}
-      <footer className="border-t border-gray-200 bg-gray-50 mt-16">
+      <footer className="border-t border-slate-800 bg-slate-900 mt-16">
         <div className="mx-auto max-w-6xl px-4 py-12">
           <div className="flex flex-col items-center text-center gap-4">
-            <p className="text-lg font-semibold text-gray-900">Ready to train how {examShortName} actually thinks?</p>
+            <p className="text-lg font-semibold text-slate-100">Ready to train how {examShortName} actually thinks?</p>
             <Link
               to={signupHref}
               onClick={() => handleCta("footer")}
-              className="inline-flex items-center rounded-md bg-brand-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-700"
+              className="inline-flex items-center rounded-md bg-brand-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-brand-500"
             >
               Start Free Trial
             </Link>
-            <p className="text-sm text-gray-500">7-day free trial · No credit card · Cancel anytime</p>
+            <p className="text-sm text-slate-400">7-day free trial · No credit card · Cancel anytime</p>
           </div>
-          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-6 text-xs text-gray-500 sm:flex-row">
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
             <p>© {new Date().getFullYear()} CipherExam</p>
             <div className="flex gap-6">
-              <Link to="/terms" className="hover:text-gray-700">Terms</Link>
-              <Link to="/privacy" className="hover:text-gray-700">Privacy</Link>
-              <Link to="/" className="hover:text-gray-700">Home</Link>
+              <Link to="/terms" className="hover:text-slate-300">Terms</Link>
+              <Link to="/privacy" className="hover:text-slate-300">Privacy</Link>
+              <Link to="/" className="hover:text-slate-300">Home</Link>
             </div>
           </div>
         </div>
@@ -109,15 +109,15 @@ export function Hero({
   return (
     <section className="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
       {eyebrow && (
-        <p className="text-sm font-semibold uppercase tracking-widest text-brand-600">{eyebrow}</p>
+        <p className="text-sm font-semibold uppercase tracking-widest text-brand-400">{eyebrow}</p>
       )}
-      <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+      <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-50 sm:text-5xl md:text-6xl">
         {h1}
       </h1>
-      <p className="mt-6 text-lg leading-relaxed text-gray-700 sm:text-xl">{sub}</p>
+      <p className="mt-6 text-lg leading-relaxed text-slate-300 sm:text-xl">{sub}</p>
 
       {videoSrc && (
-        <div className="mt-10 mx-auto max-w-2xl overflow-hidden rounded-2xl border border-gray-200 shadow-lg bg-gray-900">
+        <div className="mt-10 mx-auto max-w-2xl overflow-hidden rounded-2xl border border-slate-800 shadow-2xl shadow-brand-900/20 bg-slate-900">
           <video
             src={videoSrc}
             poster={videoPoster}
@@ -136,26 +136,26 @@ export function Hero({
         <Link
           to={ctaHref}
           onClick={onCtaClick}
-          className="inline-flex items-center rounded-md bg-brand-600 px-8 py-4 text-base font-semibold text-white shadow transition hover:bg-brand-700"
+          className="inline-flex items-center rounded-md bg-brand-600 px-8 py-4 text-base font-semibold text-white shadow transition hover:bg-brand-500"
         >
           Start Free Trial
         </Link>
-        <p className="text-sm text-gray-500">Start your free 7-day trial. No credit card required.</p>
+        <p className="text-sm text-slate-400">Start your free 7-day trial. No credit card required.</p>
       </div>
 
       {/* Markus Kopko trust badge — borrowed PMI authority across all LPs */}
       <div className="mt-10 flex justify-center">
-        <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-gray-300 bg-gray-50 px-5 py-3 max-w-2xl">
+        <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 max-w-2xl">
           <div className="flex items-start gap-2">
-            <span className="text-brand-600 text-xl leading-none">&ldquo;</span>
-            <span className="text-sm text-gray-700 italic text-left">
+            <span className="text-brand-400 text-xl leading-none">&ldquo;</span>
+            <span className="text-sm text-slate-300 italic text-left">
               What you have built is differentiated by the coaching lens approach, the exam-specific reasoning frameworks, and the feedback loop you ran with real testers.
             </span>
-            <span className="text-brand-600 text-xl leading-none">&rdquo;</span>
+            <span className="text-brand-400 text-xl leading-none">&rdquo;</span>
           </div>
-          <span className="hidden sm:block text-gray-300">|</span>
-          <span className="text-xs text-gray-500 whitespace-nowrap">
-            <span className="font-semibold text-gray-700">Markus Kopko, PgMP</span>
+          <span className="hidden sm:block text-slate-700">|</span>
+          <span className="text-xs text-slate-400 whitespace-nowrap">
+            <span className="font-semibold text-slate-200">Markus Kopko, PgMP</span>
             <br className="sm:hidden" />
             <span className="hidden sm:inline"> · </span>
             PMI AI Standards Core Team
@@ -169,18 +169,18 @@ export function Hero({
 export function SectionBlock({ title, children, className = "" }: { title?: string; children: ReactNode; className?: string }) {
   return (
     <section className={`mx-auto max-w-3xl px-4 py-10 ${className}`}>
-      {title && <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">{title}</h2>}
-      <div className="prose prose-lg text-gray-700">{children}</div>
+      {title && <h2 className="mb-4 text-2xl font-bold text-slate-50 sm:text-3xl">{title}</h2>}
+      <div className="prose prose-lg prose-invert text-slate-300 prose-headings:text-slate-100 prose-strong:text-slate-100 prose-code:text-brand-300 prose-a:text-brand-400 hover:prose-a:text-brand-300 prose-li:marker:text-slate-500">{children}</div>
     </section>
   );
 }
 
 export function ExamLensCallout({ prompt, followUp }: { prompt: string; followUp: string }) {
   return (
-    <aside className="mx-auto my-12 max-w-3xl rounded-2xl border border-brand-200 bg-brand-50 px-6 py-8 text-center">
-      <p className="text-xs font-bold uppercase tracking-widest text-brand-700">The Exam Lens</p>
-      <p className="mt-3 text-2xl font-bold text-gray-900 sm:text-3xl">{prompt}</p>
-      <p className="mt-3 text-base text-gray-700">{followUp}</p>
+    <aside className="mx-auto my-12 max-w-3xl rounded-2xl border border-brand-500/30 bg-brand-500/10 px-6 py-8 text-center">
+      <p className="text-xs font-bold uppercase tracking-widest text-brand-300">The Exam Lens</p>
+      <p className="mt-3 text-2xl font-bold text-slate-50 sm:text-3xl">{prompt}</p>
+      <p className="mt-3 text-base text-slate-300">{followUp}</p>
     </aside>
   );
 }

@@ -93,23 +93,23 @@ export default function SecurityPlusPracticeLP() {
       <SectionBlock title="Frequently asked">
         <dl className="space-y-6">
           <div>
-            <dt className="font-semibold text-gray-900">Is this current for SY0-701?</dt>
+            <dt className="font-semibold text-slate-100">Is this current for SY0-701?</dt>
             <dd className="mt-1">Yes — the question library is built against CompTIA's published SY0-701 exam objectives.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Do PBQs actually work in the simulator?</dt>
+            <dt className="font-semibold text-slate-100">Do PBQs actually work in the simulator?</dt>
             <dd className="mt-1">Yes. Drag-and-drop, matching, and topology items are native. Not text-only approximations.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">How many questions is the Full Mock?</dt>
+            <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
             <dd className="mt-1">90 questions in 90 minutes — the same as CompTIA's exam.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Will this help me pass Network+ or other CompTIA certs next?</dt>
+            <dt className="font-semibold text-slate-100">Will this help me pass Network+ or other CompTIA certs next?</dt>
             <dd className="mt-1">Network+ is fully live — same Bloom's classification and PBQ support, with the Exam Lens. CISSP is on the roadmap.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Cancel anytime?</dt>
+            <dt className="font-semibold text-slate-100">Cancel anytime?</dt>
             <dd className="mt-1">Yes. 7-day trial never charges a card.</dd>
           </div>
         </dl>

@@ -93,23 +93,23 @@ export default function PmpPracticeLP() {
       <SectionBlock title="Frequently asked">
         <dl className="space-y-6">
           <div>
-            <dt className="font-semibold text-gray-900">Is this aligned to the current PMP exam (post-2021 update)?</dt>
+            <dt className="font-semibold text-slate-100">Is this aligned to the current PMP exam (post-2021 update)?</dt>
             <dd className="mt-1">Yes — the question library is built against PMI's current published exam objectives (People / Process / Business Environment).</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Do you cover EMV / earned-value math?</dt>
+            <dt className="font-semibold text-slate-100">Do you cover EMV / earned-value math?</dt>
             <dd className="mt-1">Yes, natively. EMV questions are interactive, not just text — the Full Mock supports the calculations.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">How many questions is the Full Mock?</dt>
+            <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
             <dd className="mt-1">180 questions in 230 minutes — the same length as the actual PMP exam.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Can I cancel anytime?</dt>
+            <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>
             <dd className="mt-1">Yes. The 7-day trial never charges a card. Pro is month-to-month or yearly; cancel from your dashboard.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-gray-900">Do you have CAPM coverage?</dt>
+            <dt className="font-semibold text-slate-100">Do you have CAPM coverage?</dt>
             <dd className="mt-1">Not yet. PMP is fully live. We're adding adjacent PMI certifications based on user demand.</dd>
           </div>
         </dl>
