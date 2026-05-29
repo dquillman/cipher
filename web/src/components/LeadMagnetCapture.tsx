@@ -48,7 +48,7 @@ export default function LeadMagnetCapture({ cluster, headline, sub, pageId }: Pr
         term: params.get("utm_term"),
         lp: params.get("utm_lp") || pageId,
       };
-      const captureLead = httpsCallable<{ email: string; cluster: string; utm: object; referrer: string }, { ok: boolean; downloadUrl: string }>(
+      const captureLead = httpsCallable<{ email: string; cluster: string; utm: object; referrer: string }, { ok: boolean; downloadUrl: string | null; pending?: boolean }>(
         functions,
         "captureLead"
       );
@@ -71,27 +71,31 @@ export default function LeadMagnetCapture({ cluster, headline, sub, pageId }: Pr
   return (
     <section className="mx-auto max-w-3xl px-4 py-12">
       <div className="rounded-2xl border border-brand-500/30 bg-brand-500/5 px-6 py-8 sm:px-10 sm:py-10">
-        {status === "success" && downloadUrl ? (
+        {status === "success" ? (
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-widest text-brand-300">Check your email</p>
             <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
-              You're in. Download below.
+              {downloadUrl ? "You're in. Download below." : "You're in. Check your inbox."}
             </h3>
             <p className="mt-3 text-base text-slate-300">
-              We've saved your email so you can get more reasoning content. The PDF is ready now.
+              {downloadUrl
+                ? "We've saved your email so you can get more reasoning content. The PDF is ready now."
+                : "We've saved your email — your guide is on its way to your inbox shortly."}
             </p>
             <div className="mt-6 flex flex-col items-center gap-3">
-              <a
-                href={downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackCtaClick(`${pageId}-lead-magnet-download`)}
-                className="inline-flex items-center rounded-md bg-brand-600 px-8 py-4 text-base font-semibold text-white shadow transition hover:bg-brand-500"
-              >
-                Download the PDF →
-              </a>
+              {downloadUrl && (
+                <a
+                  href={downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackCtaClick(`${pageId}-lead-magnet-download`)}
+                  className="inline-flex items-center rounded-md bg-brand-600 px-8 py-4 text-base font-semibold text-white shadow transition hover:bg-brand-500"
+                >
+                  Download the PDF →
+                </a>
+              )}
               <p className="text-sm text-slate-400">
-                Or skip the PDF —{" "}
+                {downloadUrl ? "Or skip the PDF — " : "Want to start now? "}
                 <a
                   href={`/login?exam=${cluster}&utm_lp=${pageId}&utm_content=lead_magnet_skip`}
                   className="text-brand-400 underline hover:text-brand-300"
