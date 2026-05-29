@@ -4,6 +4,7 @@ import { db } from '../firebase';
 import { doc, onSnapshot, collection, query, where, getDocs, Timestamp, updateDoc } from 'firebase/firestore';
 import { getUserEntitlement, type UserEntitlement } from '../utils/entitlement';
 import { getAnsweredCount } from '../utils/questionMetrics';
+import { getFreeTierDailyLimit } from '../utils/freeTier';
 
 interface SubscriptionContextType {
     isPro: boolean;
@@ -34,7 +35,16 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
     const [loading, setLoading] = useState(true);
     const [questionsAnsweredToday, setQuestionsAnsweredToday] = useState(0);
 
-    const DAILY_LIMIT = 5;
+    // Free-tier daily cap — 20/day during the 7-day taste window
+    // (post-signup or post-trial-end, whichever is later), then 5/day.
+    // See utils/freeTier.ts for policy. Pro/trial/tester users bypass.
+    const accountCreatedAt = user?.metadata?.creationTime
+        ? new Date(user.metadata.creationTime)
+        : null;
+    const DAILY_LIMIT = getFreeTierDailyLimit({
+        accountCreatedAt,
+        trialEndsAt: entitlement.trialEndsAt,
+    });
 
     // 1. Listen for User Profile & Entitlement
     useEffect(() => {

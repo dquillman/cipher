@@ -5,6 +5,7 @@ import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
 import { SEO } from "../../config/seo";
+import TestimonialsSection from "../../components/TestimonialsSection";
 
 /**
  * /lp/security-plus — Tier 1 ad landing page for CompTIA Security+ candidates.
@@ -87,6 +88,8 @@ export default function SecurityPlusPracticeLP() {
           </Link>
         </p>
       </SectionBlock>
+
+      <TestimonialsSection variant="full" />
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 

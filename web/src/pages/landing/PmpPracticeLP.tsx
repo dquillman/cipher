@@ -5,6 +5,8 @@ import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
 import { SEO } from "../../config/seo";
+import TestimonialsSection from "../../components/TestimonialsSection";
+import LeadMagnetCapture from "../../components/LeadMagnetCapture";
 
 /**
  * /lp/pmp — Tier 1 ad landing page for PMP candidates.
@@ -25,7 +27,7 @@ export default function PmpPracticeLP() {
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         videoSrc="/videos/lp/launch-teaser-pmp.mp4"
-        showMarkusBadge={false}
+        testimonialBadge="pmi-safe"
       />
 
       <SectionBlock>
@@ -88,6 +90,15 @@ export default function PmpPracticeLP() {
           </Link>
         </p>
       </SectionBlock>
+
+      <TestimonialsSection variant="pmi-safe" />
+
+      <LeadMagnetCapture
+        cluster="pmp"
+        pageId={PAGE_ID}
+        headline="Free: The PMP Exam Lens Cheat Sheet"
+        sub="5 worked scenarios. The reasoning pattern PMI grades on. Email it to yourself — no trial required."
+      />
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 

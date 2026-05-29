@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateQuizStart = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const freeTier_1 = require("./freeTier");
 const db = admin.firestore();
-const DAILY_LIMIT = 5;
 exports.validateQuizStart = functions.https.onCall(async (_data, context) => {
-    var _a;
+    var _a, _b, _c, _d, _e, _f, _g;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
     }
@@ -20,6 +20,12 @@ exports.validateQuizStart = functions.https.onCall(async (_data, context) => {
     if (isPro || isTrialActive || isTester) {
         return { allowed: true };
     }
+    // Free-tier cap — 20/day during the 7-day taste window
+    // (post-signup or post-trial-end, whichever is later), then 5/day.
+    // See ./freeTier.ts for policy. MUST match web/src/utils/freeTier.ts.
+    const accountCreatedAt = (_d = (_c = (_b = userData === null || userData === void 0 ? void 0 : userData.createdAt) === null || _b === void 0 ? void 0 : _b.toDate) === null || _c === void 0 ? void 0 : _c.call(_b)) !== null && _d !== void 0 ? _d : null;
+    const trialEndsAt = (_g = (_f = (_e = userData === null || userData === void 0 ? void 0 : userData.trialEndsAt) === null || _e === void 0 ? void 0 : _e.toDate) === null || _f === void 0 ? void 0 : _f.call(_e)) !== null && _g !== void 0 ? _g : null;
+    const dailyLimit = (0, freeTier_1.getFreeTierDailyLimit)({ accountCreatedAt, trialEndsAt });
     // Count today's answered questions
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -34,9 +40,9 @@ exports.validateQuizStart = functions.https.onCall(async (_data, context) => {
             totalAnswered += answers.filter((a) => (a === null || a === void 0 ? void 0 : a.selectedOption) !== undefined).length;
         }
     });
-    if (totalAnswered >= DAILY_LIMIT) {
-        return { allowed: false, reason: 'daily_limit', used: totalAnswered, limit: DAILY_LIMIT };
+    if (totalAnswered >= dailyLimit) {
+        return { allowed: false, reason: 'daily_limit', used: totalAnswered, limit: dailyLimit };
     }
-    return { allowed: true, remaining: DAILY_LIMIT - totalAnswered };
+    return { allowed: true, remaining: dailyLimit - totalAnswered };
 });
 //# sourceMappingURL=validateQuizStart.js.map

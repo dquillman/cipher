@@ -1509,3 +1509,4 @@ export * from './diagnostics';
 export * from './generateSmartQuizReview';
 export { validateQuizStart } from './validateQuizStart';
 export { startTrial } from './startTrialCallable';
+export { captureLead } from './captureLead';

@@ -2,6 +2,16 @@ import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { captureUtmParams, trackLandingPageView, trackCtaClick } from "../../lib/ga4";
+import {
+  PMI_SAFE_TESTIMONIALS,
+  type PmiSafeTestimonial,
+} from "../../data/testimonials.pmi-safe";
+import {
+  FULL_TESTIMONIALS,
+  type FullTestimonial,
+} from "../../data/testimonials.full";
+
+export type TestimonialBadgeVariant = "pmi-safe" | "full" | "none";
 
 /**
  * Shared layout shell for Tier 1 ad landing pages (/lp/*).
@@ -95,7 +105,7 @@ export function Hero({
   onCtaClick,
   videoSrc,
   videoPoster,
-  showMarkusBadge = true,
+  testimonialBadge = "full",
 }: {
   eyebrow?: string;
   h1: string;
@@ -107,13 +117,19 @@ export function Hero({
   /** Optional poster image shown before the video loads (and during prerender) */
   videoPoster?: string;
   /**
-   * Whether to show the Markus Kopko (PMI AI Standards) trust pill below
-   * the CTA. MUST be false on any PMI product LP (PMP, PgMP, etc.) — using
-   * a PMI Standards Core Team member to endorse a PMI cert is a credibility
-   * + conflict-of-interest problem. Keep true for Sec+ (CompTIA), SHRM-CP
-   * (SHRM), and other non-PMI surfaces.
+   * Hero trust-badge variant. Selects the data source for the testimonial
+   * pill rendered below the CTA.
+   *
+   * - "pmi-safe" — pulls from `data/testimonials.pmi-safe.ts` (institutional
+   *   credential only, no contributor name strings anywhere). USE on PMI
+   *   product LPs (PMP, PgMP, any future PMI-credential LP).
+   * - "full" — pulls from `data/testimonials.full.ts` (full attribution).
+   *   USE on Sec+, SHRM-CP, and other non-PMI surfaces.
+   * - "none" — no hero badge.
+   *
+   * Rule source of truth: `cipher-exam-context` skill, 2026-05-28.
    */
-  showMarkusBadge?: boolean;
+  testimonialBadge?: TestimonialBadgeVariant;
 }) {
   return (
     <section className="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
@@ -152,30 +168,39 @@ export function Hero({
         <p className="text-sm text-slate-400">Start your free 7-day trial. No credit card required.</p>
       </div>
 
-      {/* Trust badge — non-PMI LPs only (Sec+, SHRM-CP). Attribution is
-          ANONYMIZED (no individual name) by policy 2026-05-26: protects the
-          source's identity, gives us GDPR-safe deniability if he ever
-          rescinds (Markus is German, GDPR Art. 7(3) applies). Credential
-          alone — "PMI AI Standards Core Team Member" — does the borrowed-
-          authority work without naming him. NEVER add his name back here. */}
-      {showMarkusBadge && (
-        <div className="mt-10 flex justify-center">
-          <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 max-w-2xl">
-            <div className="flex items-start gap-2">
-              <span className="text-brand-400 text-xl leading-none">&ldquo;</span>
-              <span className="text-sm text-slate-300 italic text-left">
-                What you have built is differentiated by the coaching lens approach, the exam-specific reasoning frameworks, and the feedback loop you ran with real testers.
-              </span>
-              <span className="text-brand-400 text-xl leading-none">&rdquo;</span>
-            </div>
-            <span className="hidden sm:block text-slate-700">|</span>
-            <span className="text-xs font-semibold text-slate-300 whitespace-nowrap">
-              PMI AI Standards Core Team Member
-            </span>
-          </div>
-        </div>
-      )}
+      {/* Hero trust badge. PMI-product LPs use "pmi-safe" variant —
+          institutional credential only, no contributor name. Non-PMI surfaces
+          use "full". Rule encoded in cipher-exam-context skill 2026-05-28. */}
+      <HeroTestimonialBadge variant={testimonialBadge} />
     </section>
+  );
+}
+
+function HeroTestimonialBadge({ variant }: { variant: TestimonialBadgeVariant }) {
+  if (variant === "none") return null;
+  const t =
+    variant === "pmi-safe"
+      ? (PMI_SAFE_TESTIMONIALS[0] as PmiSafeTestimonial | undefined)
+      : (FULL_TESTIMONIALS[0] as FullTestimonial | undefined);
+  if (!t) return null;
+  const attribution =
+    variant === "pmi-safe"
+      ? (t as PmiSafeTestimonial).institutionalCredential
+      : `${(t as FullTestimonial).fullName} · ${(t as FullTestimonial).institutionalCredential}`;
+  return (
+    <div className="mt-10 flex justify-center">
+      <div className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 max-w-2xl">
+        <div className="flex items-start gap-2">
+          <span className="text-brand-400 text-xl leading-none">&ldquo;</span>
+          <span className="text-sm text-slate-300 italic text-left">{t.quote}</span>
+          <span className="text-brand-400 text-xl leading-none">&rdquo;</span>
+        </div>
+        <span className="hidden sm:block text-slate-700">|</span>
+        <span className="text-xs font-semibold text-slate-300 whitespace-nowrap">
+          {attribution}
+        </span>
+      </div>
+    </div>
   );
 }
 

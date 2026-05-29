@@ -1,8 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { getFreeTierDailyLimit } from './freeTier';
 
 const db = admin.firestore();
-const DAILY_LIMIT = 5;
 
 export const validateQuizStart = functions.https.onCall(async (_data, context) => {
     if (!context.auth) {
@@ -22,6 +22,13 @@ export const validateQuizStart = functions.https.onCall(async (_data, context) =
         return { allowed: true };
     }
 
+    // Free-tier cap — 20/day during the 7-day taste window
+    // (post-signup or post-trial-end, whichever is later), then 5/day.
+    // See ./freeTier.ts for policy. MUST match web/src/utils/freeTier.ts.
+    const accountCreatedAt = userData?.createdAt?.toDate?.() ?? null;
+    const trialEndsAt = userData?.trialEndsAt?.toDate?.() ?? null;
+    const dailyLimit = getFreeTierDailyLimit({ accountCreatedAt, trialEndsAt });
+
     // Count today's answered questions
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -39,9 +46,9 @@ export const validateQuizStart = functions.https.onCall(async (_data, context) =
         }
     });
 
-    if (totalAnswered >= DAILY_LIMIT) {
-        return { allowed: false, reason: 'daily_limit', used: totalAnswered, limit: DAILY_LIMIT };
+    if (totalAnswered >= dailyLimit) {
+        return { allowed: false, reason: 'daily_limit', used: totalAnswered, limit: dailyLimit };
     }
 
-    return { allowed: true, remaining: DAILY_LIMIT - totalAnswered };
+    return { allowed: true, remaining: dailyLimit - totalAnswered };
 });

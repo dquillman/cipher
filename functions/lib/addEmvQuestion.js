@@ -35,6 +35,7 @@ const EMV_QUESTIONS = [
             "response strategies, select the option with the highest expected value if " +
             "the organization is risk-neutral.",
         difficulty: "Medium",
+        bloomLevel: "Apply",
     },
     {
         id: "emv-sample-002",
@@ -59,6 +60,7 @@ const EMV_QUESTIONS = [
             "Opportunity A has the higher expected monetary value at $32,000. Even though " +
             "Opportunity B is more likely, its lower impact results in a smaller EMV.",
         difficulty: "Easy",
+        bloomLevel: "Apply",
     },
     {
         id: "emv-sample-003",
@@ -85,6 +87,7 @@ const EMV_QUESTIONS = [
             "the larger expected loss. When prioritizing threats, address the risk with " +
             "the most negative EMV first.",
         difficulty: "Medium",
+        bloomLevel: "Apply",
     },
     {
         id: "emv-sample-004",
@@ -113,6 +116,7 @@ const EMV_QUESTIONS = [
             "When multiple options exist, calculate EMV for each and select the highest value, " +
             "assuming a risk-neutral decision framework.",
         difficulty: "Hard",
+        bloomLevel: "Apply",
     },
     {
         id: "emv-sample-005",
@@ -139,6 +143,7 @@ const EMV_QUESTIONS = [
             "In procurement decisions, EMV helps compare contract options by weighting " +
             "probable cost outcomes.",
         difficulty: "Medium",
+        bloomLevel: "Apply",
     },
     {
         id: "emv-sample-006",
@@ -166,6 +171,7 @@ const EMV_QUESTIONS = [
             "always mean a better expected outcome\u2014EMV accounts for both likelihood and " +
             "magnitude of the payoff.",
         difficulty: "Easy",
+        bloomLevel: "Apply",
     },
     {
         id: "emv-sample-007",
@@ -193,6 +199,7 @@ const EMV_QUESTIONS = [
             "vs -$60,000). In decision-tree analysis, compare total expected costs including " +
             "the cost of the response itself.",
         difficulty: "Hard",
+        bloomLevel: "Apply",
     },
 ];
 async function main() {
