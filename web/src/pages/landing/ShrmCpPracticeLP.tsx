@@ -6,6 +6,7 @@ import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
 import { SEO } from "../../config/seo";
 import TestimonialsSection from "../../components/TestimonialsSection";
+import LeadMagnetCapture from "../../components/LeadMagnetCapture";
 
 /**
  * /lp/shrm-cp — Tier 1 ad landing page for SHRM-CP candidates.
@@ -92,6 +93,13 @@ export default function ShrmCpPracticeLP() {
       </SectionBlock>
 
       <TestimonialsSection variant="full" />
+
+      <LeadMagnetCapture
+        cluster="shrm-cp"
+        pageId={PAGE_ID}
+        headline="Free: The SHRM-CP Behavioral Competency Map"
+        sub="Name the competency. Pick the answer. 6 worked scenarios with the reasoning SHRM grades on. Email it to yourself, no trial required."
+      />
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 

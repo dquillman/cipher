@@ -6,6 +6,7 @@ import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
 import { SEO } from "../../config/seo";
 import TestimonialsSection from "../../components/TestimonialsSection";
+import LeadMagnetCapture from "../../components/LeadMagnetCapture";
 
 /**
  * /lp/security-plus — Tier 1 ad landing page for CompTIA Security+ candidates.
@@ -90,6 +91,13 @@ export default function SecurityPlusPracticeLP() {
       </SectionBlock>
 
       <TestimonialsSection variant="full" />
+
+      <LeadMagnetCapture
+        cluster="security-plus"
+        pageId={PAGE_ID}
+        headline="Free: 10 Security+ PBQ Walkthroughs"
+        sub="The CIA Triad applied to performance-based questions. Drag-drop, topology, CLI — with the reasoning CompTIA grades on. Email it to yourself, no trial required."
+      />
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 

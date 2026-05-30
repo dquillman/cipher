@@ -29,7 +29,7 @@ const VALID_CLUSTERS: readonly Cluster[] = ['pmp', 'security-plus', 'shrm-cp'];
 // Clusters whose lead-magnet PDF actually exists in web/public/lead-magnets/.
 // Other valid clusters still capture the lead but return no download link, so we
 // never hand back a URL that 404s. Add a cluster here once its PDF is published.
-const READY_CLUSTERS: readonly Cluster[] = ['pmp'];
+const READY_CLUSTERS: readonly Cluster[] = ['pmp', 'security-plus', 'shrm-cp'];
 
 function isValidEmail(s: unknown): s is string {
     if (typeof s !== 'string') return false;
