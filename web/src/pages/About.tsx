@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import PublicNav from '../components/layout/PublicNav';
 import SeoHead from '../components/SeoHead';
 import { SEO } from '../config/seo';
+import { Mic, Brain, Crosshair, BarChart3, Flame, Timer } from 'lucide-react';
 
 export default function About() {
     return (
@@ -20,8 +21,8 @@ export default function About() {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
-                            <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-2xl mb-4 border border-purple-500/20">
-                                🎙️
+                            <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-4 border border-purple-500/20">
+                                <Mic className="h-6 w-6" strokeWidth={1.75} />
                             </div>
                             <h3 className="text-lg font-bold text-white mb-2 font-display">Verbal Mode</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
@@ -29,8 +30,8 @@ export default function About() {
                             </p>
                         </div>
                         <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
-                            <div className="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center text-2xl mb-4 border border-pink-500/20">
-                                🧠
+                            <div className="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center text-pink-400 mb-4 border border-pink-500/20">
+                                <Brain className="h-6 w-6" strokeWidth={1.75} />
                             </div>
                             <h3 className="text-lg font-bold text-white mb-2 font-display">Smart Readiness</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
@@ -38,8 +39,8 @@ export default function About() {
                             </p>
                         </div>
                         <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
-                            <div className="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-2xl mb-4 border border-brand-500/20">
-                                🎯
+                            <div className="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 mb-4 border border-brand-500/20">
+                                <Crosshair className="h-6 w-6" strokeWidth={1.75} />
                             </div>
                             <h3 className="text-lg font-bold text-white mb-2 font-display">Adaptive Learning</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
@@ -47,8 +48,8 @@ export default function About() {
                             </p>
                         </div>
                         <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
-                            <div className="w-12 h-12 bg-accent-500/10 rounded-xl flex items-center justify-center text-2xl mb-4 border border-accent-500/20">
-                                📊
+                            <div className="w-12 h-12 bg-accent-500/10 rounded-xl flex items-center justify-center text-accent-400 mb-4 border border-accent-500/20">
+                                <BarChart3 className="h-6 w-6" strokeWidth={1.75} />
                             </div>
                             <h3 className="text-lg font-bold text-white mb-2 font-display">Visual Progress</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
@@ -56,8 +57,8 @@ export default function About() {
                             </p>
                         </div>
                         <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
-                            <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-2xl mb-4 border border-emerald-500/20">
-                                🔥
+                            <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-4 border border-emerald-500/20">
+                                <Flame className="h-6 w-6" strokeWidth={1.75} />
                             </div>
                             <h3 className="text-lg font-bold text-white mb-2 font-display">Consistency is Key</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
@@ -65,8 +66,8 @@ export default function About() {
                             </p>
                         </div>
                         <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
-                            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-2xl mb-4 border border-indigo-500/20">
-                                🎓
+                            <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-4 border border-indigo-500/20">
+                                <Timer className="h-6 w-6" strokeWidth={1.75} />
                             </div>
                             <h3 className="text-lg font-bold text-white mb-2 font-display">Exam Simulator</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">

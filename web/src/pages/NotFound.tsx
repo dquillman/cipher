@@ -74,7 +74,7 @@ export default function NotFound() {
 
           <Link
             to="/login?mode=signup"
-            className="inline-block rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 hover:scale-105 transition-all"
+            className="inline-block rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
           >
             Start a Free 7-Day Trial
           </Link>

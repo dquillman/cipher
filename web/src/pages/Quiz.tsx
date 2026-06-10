@@ -14,7 +14,7 @@ import { SmartQuizService } from '../services/smartQuiz';
 import { useMarketingCopy } from '../hooks/useMarketingCopy';
 import { QuizRunService, deriveDomainResultsFromAnswers } from '../services/QuizRunService';
 import { UsageEventService } from '../services/UsageEventService';
-import { ChevronDown, ChevronUp, Brain } from 'lucide-react';
+import { ChevronDown, ChevronUp, Brain, Crosshair, Wrench, TrendingUp, Scale, Zap, ShieldCheck } from 'lucide-react';
 import { useSmartQuizReview } from '../contexts/SmartQuizReviewContext';
 import QuestionProvenanceBadge from '../components/QuestionProvenanceBadge';
 import { quizReportStore } from '../utils/quizReportStore';
@@ -1401,8 +1401,8 @@ export default function Quiz() {
             return (
                 <div className="min-h-screen flex items-center justify-center bg-slate-950">
                     <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700">
-                        <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20">
-                            {accuracy >= 70 ? '🎯' : '🔧'}
+                        <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20 text-brand-400">
+                            {accuracy >= 70 ? <Crosshair className="h-7 w-7" strokeWidth={1.75} /> : <Wrench className="h-7 w-7" strokeWidth={1.75} />}
                         </div>
 
                         <h2 className="text-2xl font-bold text-white mb-1 font-display">Trap Practice Complete</h2>
@@ -1493,8 +1493,8 @@ export default function Quiz() {
                             return null;
                         })()}
 
-                        <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20">
-                            {accuracy > 70 ? '📈' : accuracy > 40 ? '⚖️' : '🔧'}
+                        <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20 text-brand-400">
+                            {accuracy > 70 ? <TrendingUp className="h-7 w-7" strokeWidth={1.75} /> : accuracy > 40 ? <Scale className="h-7 w-7" strokeWidth={1.75} /> : <Wrench className="h-7 w-7" strokeWidth={1.75} />}
                         </div>
 
                         <h2 className="text-2xl font-bold text-white mb-2 font-display">{trapName}</h2>
@@ -1628,7 +1628,7 @@ export default function Quiz() {
                                 <div className="mb-8 bg-indigo-900/30 border border-indigo-500/30 rounded-xl p-6 relative overflow-hidden group">
                                     <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
                                     <div className="flex items-start gap-3 text-left">
-                                        <div className="bg-indigo-500/20 p-2 rounded-lg text-xl">🛡️</div>
+                                        <div className="bg-indigo-500/20 p-2 rounded-lg text-indigo-300"><ShieldCheck className="h-5 w-5" strokeWidth={1.75} /></div>
                                         <div>
                                             <h4 className="text-indigo-200 font-bold text-sm uppercase tracking-wide mb-1">
                                                 Suggested Thinking Trap
@@ -1780,7 +1780,7 @@ export default function Quiz() {
                 <div className="w-full max-w-3xl mb-6">
                     {location.state?.mode === 'smart' ? (
                         <div className="bg-brand-900/30 border border-brand-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <span className="text-lg sm:text-2xl">🧠</span>
+                            <Brain className="h-5 w-5 sm:h-6 sm:w-6 text-brand-300 shrink-0 mt-0.5" strokeWidth={1.75} />
                             <div>
                                 <h3 className="text-brand-300 font-bold mb-1">Daily Practice Mode</h3>
                                 <p className="text-sm text-slate-300">
@@ -1790,7 +1790,7 @@ export default function Quiz() {
                         </div>
                     ) : location.state?.mode === 'weakest' ? (
                         <div className="bg-purple-900/30 border border-purple-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <span className="text-lg sm:text-2xl">⚡</span>
+                            <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-purple-300 shrink-0 mt-0.5" strokeWidth={1.75} />
                             <div>
                                 <h3 className="text-purple-300 font-bold mb-1">Smart Practice: {location.state.filterDomain}</h3>
                                 <p className="text-sm text-slate-300">
@@ -1800,7 +1800,7 @@ export default function Quiz() {
                         </div>
                     ) : location.state?.filterDomain ? (
                         <div className="bg-purple-900/30 border border-purple-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <span className="text-lg sm:text-2xl">⚡</span>
+                            <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-purple-300 shrink-0 mt-0.5" strokeWidth={1.75} />
                             <div>
                                 <h3 className="text-purple-300 font-bold mb-1">{location.state.filterDomain} Practice Mode</h3>
                                 <p className="text-sm text-slate-300">
@@ -1810,7 +1810,7 @@ export default function Quiz() {
                         </div>
                     ) : location.state?.mode === 'trap-drill' ? (
                         <div className="bg-indigo-900/30 border border-indigo-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <span className="text-lg sm:text-2xl">🎯</span>
+                            <Crosshair className="h-5 w-5 sm:h-6 sm:w-6 text-indigo-300 shrink-0 mt-0.5" strokeWidth={1.75} />
                             <div>
                                 <h3 className="text-indigo-300 font-bold mb-1">Trap Drill: {location.state.patternName}</h3>
                                 <p className="text-sm text-slate-300">
@@ -1820,7 +1820,7 @@ export default function Quiz() {
                         </div>
                     ) : location.state?.mode === 'trap' ? (
                         <div className="bg-indigo-900/30 border border-indigo-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <span className="text-lg sm:text-2xl">🛡️</span>
+                            <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-indigo-300 shrink-0 mt-0.5" strokeWidth={1.75} />
                             <div>
                                 <h3 className="text-indigo-300 font-bold mb-1">Trap Repair: {location.state.patternName}</h3>
                                 <p className="text-sm text-slate-300">

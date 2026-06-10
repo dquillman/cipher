@@ -84,7 +84,7 @@ export default function PublicNav({ children }: PublicNavProps) {
           </button>
           <button
             onClick={handleCta}
-            className={`rounded-full px-5 py-2 text-sm font-bold transition-all hover:scale-105 hidden md:block ${
+            className={`rounded-full px-5 py-2 text-sm font-bold transition-colors hidden md:block ${
               scrolled
                 ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500'
                 : 'bg-white text-slate-950 hover:bg-slate-200'

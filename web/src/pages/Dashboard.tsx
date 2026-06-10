@@ -15,6 +15,7 @@ import ThinkingTrapsCard from '../components/ThinkingTrapsCard';
 import TrendIndicatorCard from '../components/analytics/TrendIndicatorCard';
 import { getAnsweredCount, deriveMetrics, type RunMetrics } from '../utils/questionMetrics';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import { Flame } from 'lucide-react';
 
 const ACTIVITY_MODE_LABELS: Record<string, string> = {
     diagnostic: "Diagnostic Quiz",
@@ -288,7 +289,8 @@ export default function Dashboard() {
                         onClick={() => setShowStreakModal(true)}
                         className="flex items-center gap-2 px-3 py-1 bg-slate-700/50 text-brand-300 rounded-full text-sm font-medium border border-slate-600 hover:bg-slate-700 hover:border-brand-500/50 transition-all cursor-pointer"
                     >
-                        <span>🔥 {userStreak} Day Streak</span>
+                        <Flame className="h-4 w-4 text-amber-400" strokeWidth={1.75} />
+                        <span>{userStreak} Day Streak</span>
                     </button>
                 </div>
 
@@ -332,7 +334,7 @@ export default function Dashboard() {
                     {trial.status === 'expired' && (
                         <div className="bg-slate-800 rounded-2xl p-4 sm:p-8 text-center border border-slate-700 shadow-2xl relative overflow-hidden mb-8">
                             <div className="relative z-10">
-                                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display">🔒 Your 14-day Pro trial has ended</h3>
+                                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display">Your 14-day Pro trial has ended</h3>
                                 <p className="text-slate-400 mb-6 max-w-lg mx-auto">
                                     We hope you enjoyed your practice sessions! To continue studying and access your detailed analytics, please upgrade your plan.
                                 </p>
@@ -381,7 +383,7 @@ export default function Dashboard() {
                                         </ul>
                                         <button
                                             onClick={() => navigate('/app/quiz', { state: { mode: 'diagnostic' } })}
-                                            className="inline-flex items-center justify-center rounded-xl bg-white text-brand-700 px-8 py-4 text-lg font-bold shadow-xl hover:bg-indigo-50 hover:scale-105 transition-all gap-2 group/btn"
+                                            className="inline-flex items-center justify-center rounded-xl bg-white text-brand-700 px-8 py-4 text-lg font-bold shadow-xl hover:bg-indigo-50 transition-colors gap-2 group/btn"
                                         >
                                             Start Diagnostic
                                             <svg className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -446,7 +448,7 @@ export default function Dashboard() {
                                     </button>
                                     <button
                                         onClick={() => navigate('/app/quiz', { state: { runId: resumableRuns[0].id, resume: true } })}
-                                        className="px-4 sm:px-6 py-2.5 sm:py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-xl text-base shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
+                                        className="px-4 sm:px-6 py-2.5 sm:py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold rounded-xl text-base shadow-lg shadow-amber-500/20 transition-colors"
                                     >
                                         Resume
                                     </button>
@@ -552,7 +554,7 @@ export default function Dashboard() {
                             }
                             <p className="text-sm text-brand-100/80 relative z-10">
                                 {dailyProgress >= dailyGoal
-                                    ? "Goal reached! You're crushing it! 🚀"
+                                    ? "Daily goal reached — well done."
                                     : "Keep it up! Consistency is key to passing your exam."}
                             </p>
                         </div>
@@ -636,8 +638,8 @@ export default function Dashboard() {
                                 </svg>
                             </button>
                             <div className="text-center">
-                                <div className="w-20 h-20 bg-brand-500/10 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 border border-brand-500/20">
-                                    🔥
+                                <div className="w-20 h-20 bg-brand-500/10 rounded-full flex items-center justify-center text-amber-400 mx-auto mb-6 border border-brand-500/20">
+                                    <Flame className="h-10 w-10" strokeWidth={1.5} />
                                 </div>
                                 <h3 className="text-2xl font-bold text-white font-display mb-2">{userStreak} Day Streak!</h3>
                                 <p className="text-slate-400 mb-6">

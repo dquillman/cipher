@@ -138,7 +138,7 @@ export default function Story() {
           <div className="mt-16 text-center">
             <button
               onClick={handleCta}
-              className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 hover:scale-105 transition-all"
+              className="rounded-full bg-brand-600 px-10 py-4 text-lg font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
             >
               Start Your Free Trial
             </button>

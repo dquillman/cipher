@@ -106,7 +106,7 @@ export default function Pricing() {
             />
 
             <div className="max-w-4xl w-full text-center space-y-6">
-                <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-5xl font-bold text-white font-display">
                     {copy.pro_value_primary}
                 </h1>
 

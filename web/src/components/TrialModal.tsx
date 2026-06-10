@@ -3,6 +3,7 @@ import { useAuth } from '../App';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useTrial } from '../hooks/useTrial';
 import { trackTrialStart } from '../lib/ga4';
+import { Rocket } from 'lucide-react';
 
 export default function TrialModal() {
     const { user } = useAuth();
@@ -60,7 +61,7 @@ export default function TrialModal() {
 
                 <div className="text-center">
                     <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20 shadow-lg shadow-brand-500/10">
-                        <span className="text-3xl">🚀</span>
+                        <Rocket className="h-8 w-8 text-brand-400" strokeWidth={1.5} />
                     </div>
 
                     <h2 className="text-2xl font-bold text-white mb-2 font-display">Start your 14-day Pro trial</h2>

@@ -6,6 +6,11 @@ import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
 import SeoHead from "../components/SeoHead";
 import { SEO } from "../config/seo";
+import {
+  Scale, MessageSquareOff, Repeat,
+  Lightbulb, BarChart3, ClipboardList, Crosshair,
+  Search, Wrench, TrendingUp,
+} from "lucide-react";
 
 /* ─── Shared icons & paths ────────────────────────────────────────────────── */
 const Check = () => (
@@ -172,7 +177,7 @@ export default function Landing() {
             </button>
             <button
               onClick={handleCta}
-              className={`rounded-full px-5 py-2 text-sm font-bold transition-all hover:scale-105 hidden md:block ${
+              className={`rounded-full px-5 py-2 text-sm font-bold transition-colors hidden md:block ${
                 scrolled
                   ? "bg-brand-600 text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500"
                   : "bg-white text-slate-950 hover:bg-slate-200"
@@ -245,7 +250,7 @@ export default function Landing() {
           <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight text-white sm:text-7xl mb-6 leading-[1.1] font-display">
             Learn How Certification{" "}
             <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-500">
+            <span className="text-brand-400">
               Exams Think
             </span>
           </h1>
@@ -261,7 +266,7 @@ export default function Landing() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <button
               onClick={handleCta}
-              className="w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 hover:scale-105 transition-all"
+              className="w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
             >
               Start Free Trial
             </button>
@@ -313,14 +318,16 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             {[
-              { icon: "🧠", title: "Questions Test Judgment", body: "Certification exams don't test what you memorized. They test how you think through scenarios." },
-              { icon: "❌", title: "No One Explains Why", body: "Practice exams tell you right or wrong. They rarely explain the reasoning behind the correct answer." },
-              { icon: "🔄", title: "Same Mistakes on Repeat", body: "Without understanding the logic, you keep falling for the same traps question after question." },
-            ].map((c, i) => (
+              { icon: Scale, title: "Questions Test Judgment", body: "Certification exams don't test what you memorized. They test how you think through scenarios." },
+              { icon: MessageSquareOff, title: "No One Explains Why", body: "Practice exams tell you right or wrong. They rarely explain the reasoning behind the correct answer." },
+              { icon: Repeat, title: "Same Mistakes on Repeat", body: "Without understanding the logic, you keep falling for the same traps question after question." },
+            ].map(({ icon: Icon, title, body }, i) => (
               <div key={i} className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors">
-                <div className="text-3xl mb-4">{c.icon}</div>
-                <div className="text-red-400 text-lg font-bold mb-2">{c.title}</div>
-                <p className="text-slate-400 text-sm">{c.body}</p>
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-red-500/20 bg-red-500/10 text-red-400">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+                </div>
+                <div className="text-red-400 text-lg font-bold mb-2">{title}</div>
+                <p className="text-slate-400 text-sm">{body}</p>
               </div>
             ))}
           </div>
@@ -533,15 +540,17 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: "💡", title: "AI Explanation Engine", body: "Every answer includes a detailed breakdown of the reasoning and the exam's decision framework." },
-              { icon: "📊", title: "Performance Analytics", body: "Mastery rings, readiness scores, and domain-level tracking show exactly where you stand." },
-              { icon: "📋", title: "Certification Exam Coverage", body: "PMP, PgMP, Security+, Network+, A+, CSM, SHRM-CP, Six Sigma, ITIL, CIA, and CPP." },
-              { icon: "🎯", title: "Personalized Practice", body: "The AI targets your weak spots and skips what you already know. Every question counts." },
-            ].map((f, i) => (
+              { icon: Lightbulb, title: "AI Explanation Engine", body: "Every answer includes a detailed breakdown of the reasoning and the exam's decision framework." },
+              { icon: BarChart3, title: "Performance Analytics", body: "Mastery rings, readiness scores, and domain-level tracking show exactly where you stand." },
+              { icon: ClipboardList, title: "Certification Exam Coverage", body: "PMP, PgMP, Security+, Network+, A+, CSM, SHRM-CP, Six Sigma, ITIL, CIA, and CPP." },
+              { icon: Crosshair, title: "Personalized Practice", body: "The AI targets your weak spots and skips what you already know. Every question counts." },
+            ].map(({ icon: Icon, title, body }, i) => (
               <div key={i} className="rounded-2xl border border-slate-800 bg-slate-950 p-6 hover:border-brand-500/30 transition-colors">
-                <div className="text-3xl mb-4">{f.icon}</div>
-                <h3 className="text-lg font-bold text-white mb-2">{f.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{f.body}</p>
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-400">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
@@ -558,22 +567,22 @@ export default function Landing() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { name: "PMP", org: "PMI", live: true, color: "from-brand-500/20 to-brand-600/5 border-brand-500/25", icon: "📋" },
-              { name: "Security+", org: "CompTIA", live: true, color: "from-red-500/20 to-red-600/5 border-red-500/25", icon: "🔒" },
-              { name: "CSM", org: "Scrum Alliance", live: true, color: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/25", icon: "🔄" },
-              { name: "SHRM-CP", org: "SHRM", live: true, color: "from-purple-500/20 to-purple-600/5 border-purple-500/25", icon: "👥" },
-              { name: "ITIL 4", org: "PeopleCert", live: true, color: "from-cyan-500/20 to-cyan-600/5 border-cyan-500/25", icon: "⚙️" },
-              { name: "Network+", org: "CompTIA", live: true, color: "from-orange-500/20 to-orange-600/5 border-orange-500/25", icon: "🌐" },
-              { name: "A+ Core 2", org: "CompTIA", live: true, color: "from-pink-500/20 to-pink-600/5 border-pink-500/25", icon: "💻" },
-              { name: "Six Sigma GB", org: "ASQ", live: true, color: "from-amber-500/20 to-amber-600/5 border-amber-500/25", icon: "📊" },
-              { name: "PgMP", org: "PMI", live: true, color: "from-blue-500/20 to-blue-600/5 border-blue-500/25", icon: "🎯" },
-              { name: "CIA Part 1", org: "IIA", live: true, color: "from-teal-500/20 to-teal-600/5 border-teal-500/25", icon: "🔍" },
-              { name: "CISSP", org: "ISC²", live: false, color: "", icon: "🛡️" },
-              { name: "AWS SAA", org: "Amazon", live: false, color: "", icon: "☁️" },
+              { name: "PMP", org: "PMI", live: true, color: "from-brand-500/20 to-brand-600/5 border-brand-500/25" },
+              { name: "Security+", org: "CompTIA", live: true, color: "from-red-500/20 to-red-600/5 border-red-500/25" },
+              { name: "CSM", org: "Scrum Alliance", live: true, color: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/25" },
+              { name: "SHRM-CP", org: "SHRM", live: true, color: "from-purple-500/20 to-purple-600/5 border-purple-500/25" },
+              { name: "ITIL 4", org: "PeopleCert", live: true, color: "from-cyan-500/20 to-cyan-600/5 border-cyan-500/25" },
+              { name: "Network+", org: "CompTIA", live: true, color: "from-orange-500/20 to-orange-600/5 border-orange-500/25" },
+              { name: "A+ Core 2", org: "CompTIA", live: true, color: "from-pink-500/20 to-pink-600/5 border-pink-500/25" },
+              { name: "Six Sigma GB", org: "ASQ", live: true, color: "from-amber-500/20 to-amber-600/5 border-amber-500/25" },
+              { name: "PgMP", org: "PMI", live: true, color: "from-blue-500/20 to-blue-600/5 border-blue-500/25" },
+              { name: "CIA Part 1", org: "IIA", live: true, color: "from-teal-500/20 to-teal-600/5 border-teal-500/25" },
+              { name: "CISSP", org: "ISC²", live: false, color: "" },
+              { name: "AWS SAA", org: "Amazon", live: false, color: "" },
             ].map((e, i) => (
               <div
                 key={i}
-                className={`rounded-xl border p-4 text-center transition-all hover:scale-105 ${
+                className={`rounded-xl border p-4 text-center transition-all hover:-translate-y-0.5 ${
                   e.live
                     ? `bg-gradient-to-b ${e.color} hover:shadow-lg hover:shadow-slate-900/50`
                     : "border-dashed border-brand-500/30 bg-slate-900/30 relative overflow-hidden"
@@ -581,7 +590,6 @@ export default function Landing() {
               >
                 {!e.live && <div className="absolute inset-0 bg-slate-950/40" />}
                 <div className={`relative ${!e.live ? "z-10" : ""}`}>
-                  <div className="text-2xl mb-2">{e.icon}</div>
                   <div className="text-white font-bold text-sm">{e.name}</div>
                   <div className="text-slate-400 text-xs mt-1">{e.org}</div>
                   {!e.live && (
@@ -693,7 +701,7 @@ export default function Landing() {
               { value: "7 days", label: "Free trial, no credit card" },
             ].map((s, i) => (
               <div key={i} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-8">
-                <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-500 font-display">
+                <div className="text-4xl font-extrabold text-brand-400 font-display">
                   {s.value}
                 </div>
                 <div className="text-slate-400 text-sm mt-2">{s.label}</div>
@@ -715,14 +723,16 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: "🔍", title: "Identify Weak Areas Instantly", body: "The AI pinpoints exactly which domains need work after your first session." },
-              { icon: "🔧", title: "Fix Recurring Mistakes", body: "Pattern detection finds the traps you keep falling for and drills them until they're gone." },
-              { icon: "📈", title: "Focus on What Improves Scores", body: "Skip what you already know. Every minute of study time is spent on high-impact topics." },
-            ].map((c, i) => (
+              { icon: Search, title: "Identify Weak Areas Instantly", body: "The AI pinpoints exactly which domains need work after your first session." },
+              { icon: Wrench, title: "Fix Recurring Mistakes", body: "Pattern detection finds the traps you keep falling for and drills them until they're gone." },
+              { icon: TrendingUp, title: "Focus on What Improves Scores", body: "Skip what you already know. Every minute of study time is spent on high-impact topics." },
+            ].map(({ icon: Icon, title, body }, i) => (
               <div key={i} className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors">
-                <div className="text-3xl mb-4">{c.icon}</div>
-                <h3 className="text-lg font-bold text-white mb-2">{c.title}</h3>
-                <p className="text-slate-400 text-sm">{c.body}</p>
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-400">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
+                <p className="text-slate-400 text-sm">{body}</p>
               </div>
             ))}
           </div>
@@ -778,7 +788,7 @@ export default function Landing() {
         <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
           <h2 className="text-4xl font-bold text-white sm:text-5xl mb-6 font-display">
             Stop Guessing.{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-500">
+            <span className="text-brand-400">
               Start Thinking Like the Exam.
             </span>
           </h2>
@@ -787,7 +797,7 @@ export default function Landing() {
           </p>
           <button
             onClick={handleCta}
-            className="rounded-full bg-white px-10 py-4 text-lg font-bold text-slate-900 hover:bg-slate-100 hover:scale-105 transition-all shadow-xl"
+            className="rounded-full bg-white px-10 py-4 text-lg font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-xl"
           >
             Start Your Free Trial
           </button>

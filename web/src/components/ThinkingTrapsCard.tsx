@@ -5,7 +5,7 @@ import { useAuth } from '../App';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useExam } from '../contexts/ExamContext';
 import { Link, useNavigate } from 'react-router-dom';
-import { Lock, Zap, ArrowRight, X } from 'lucide-react';
+import { Lock, Zap, ArrowRight, X, Brain, ShieldCheck } from 'lucide-react';
 import { type PatternData } from './PatternInsightCard';
 
 
@@ -76,7 +76,7 @@ export default function ThinkingTrapsCard() {
                 <div className="mb-4">
                     {/* ... */}
                     <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                        🧠 Your Thinking Traps
+                        <Brain className="h-5 w-5 text-brand-400" strokeWidth={1.75} /> Your Thinking Traps
                     </h3>
                     <p className="text-slate-400 text-sm">
                         These are the exam patterns that keep catching you off guard.
@@ -208,7 +208,7 @@ export default function ThinkingTrapsCard() {
                         <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-800/50">
                             <div>
                                 <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                                    🛡️ Trap Review Mode
+                                    <ShieldCheck className="h-5 w-5 text-indigo-400" strokeWidth={1.75} /> Trap Review Mode
                                 </h2>
                                 <p className="text-slate-400 text-xs mt-1">
                                     Master your weakest patterns.
