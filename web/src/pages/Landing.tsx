@@ -25,6 +25,15 @@ const XMark = () => (
   </svg>
 );
 
+/* ─── Section eyebrow — monospace "decoded" index label ───────────────────── */
+const Eyebrow = ({ n, label, center = false }: { n: string; label: string; center?: boolean }) => (
+  <div className={`flex items-center gap-3 mb-5 ${center ? "justify-center" : ""}`}>
+    <span className="font-mono text-[11px] tracking-[0.3em] text-brand-400">{n}</span>
+    <span className="h-px w-10 bg-brand-500/40" />
+    <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-slate-500">{label}</span>
+  </div>
+);
+
 /* ─── Smooth-scroll helper ─────────────────────────────────────────────────── */
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -230,109 +239,128 @@ export default function Landing() {
         </div>
       </nav>
 
-      {/* ━━━ SECTION 1 — HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      {/* ━━━ SECTION 1 — HERO (asymmetric split: copy left, live demo right) ━ */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Atmospheric depth: dual gradient blobs + noise overlay */}
-        <div className="absolute top-20 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]" />
-        <div className="absolute top-40 left-1/4 -z-10 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-blue-600/10 blur-[100px]" />
+        {/* Atmospheric depth: blueprint grid + gradient blobs + noise overlay */}
+        <div className="absolute inset-0 -z-[6] [background-image:linear-gradient(to_right,rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.05)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
+        <div className="absolute top-20 left-1/3 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]" />
+        <div className="absolute top-40 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[100px]" />
         <div className="absolute inset-0 -z-[5] opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`, backgroundRepeat: 'repeat', backgroundSize: '128px 128px' }} />
 
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-300 mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500" />
-            </span>
-            PMP · CompTIA · Scrum · SHRM · ITIL · AWS · 11+ Certifications
-          </div>
-
-          <h1 className="mx-auto max-w-4xl text-5xl font-extrabold tracking-tight text-white sm:text-7xl mb-6 leading-[1.1] font-display">
-            Learn How Certification{" "}
-            <br className="hidden sm:block" />
-            <span className="text-brand-400">
-              Exams Think
-            </span>
-          </h1>
-
-          <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-3 leading-relaxed">
-            CipherExam analyzes your answers and explains the reasoning behind every question.
-          </p>
-
-          <p className="mx-auto text-sm text-slate-500 mb-10">
-            Start your free 7-day trial. No credit card required.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-            <button
-              onClick={handleCta}
-              className="w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
-            >
-              Start Free Trial
-            </button>
-            <button
-              onClick={() => scrollTo("differentiator")}
-              className="w-full sm:w-auto rounded-full border border-slate-700 bg-slate-800/50 px-8 py-4 text-base font-bold text-white hover:bg-slate-800 transition-all"
-            >
-              See How It Works
-            </button>
-          </div>
-
-          {/* Trust badge — pull-quote credibility before the demo */}
-          <div className="mx-auto max-w-2xl mb-12">
-            <a
-              href="#testimonial"
-              className="group flex flex-col sm:flex-row items-center justify-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 hover:border-slate-700 hover:bg-slate-900/70 transition-colors"
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-brand-400 text-xl leading-none">"</span>
-                <span className="text-sm text-slate-300 italic">…the exam-specific reasoning frameworks…</span>
-                <span className="text-brand-400 text-xl leading-none">"</span>
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-10 items-center">
+            {/* Left: headline + CTAs */}
+            <div className="lg:col-span-6 text-center lg:text-left">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 font-mono text-[11px] tracking-wider text-brand-300 mb-8">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500" />
+                </span>
+                PMP · CompTIA · Scrum · SHRM · ITIL · AWS · 11+ Certifications
               </div>
-              <span className="hidden sm:block text-slate-700">|</span>
-              <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors">
-                <span className="font-semibold text-slate-300">PMI AI Standards Core Team Member</span>
-              </span>
-            </a>
-          </div>
 
-          {/* Interactive Product Demo */}
-          <div className="relative mx-auto max-w-3xl rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1">
-            <InteractiveDemo />
-            <p className="text-xs text-slate-600 mt-3 text-center">
-              {isTouchDevice ? "Tap to pause. Tap steps to skip ahead." : "Hover to pause. Click steps to skip ahead."}
-            </p>
+              <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl xl:text-7xl mb-6 leading-[1.05] font-display">
+                Learn How Certification{" "}
+                <span className="text-brand-400">Exams Think</span>
+              </h1>
+
+              <p className="max-w-xl mx-auto lg:mx-0 text-lg text-slate-400 mb-3 leading-relaxed">
+                CipherExam analyzes your answers and explains the reasoning behind every question.
+              </p>
+
+              <p className="font-mono text-xs tracking-wide text-slate-500 mb-10">
+                Free 7-day trial — no credit card required.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-10">
+                <button
+                  onClick={handleCta}
+                  className="w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
+                >
+                  Start Free Trial
+                </button>
+                <button
+                  onClick={() => scrollTo("differentiator")}
+                  className="w-full sm:w-auto rounded-full border border-slate-700 bg-slate-800/50 px-8 py-4 text-base font-bold text-white hover:bg-slate-800 transition-colors"
+                >
+                  See How It Works
+                </button>
+              </div>
+
+              {/* Trust badge — pull-quote credibility */}
+              <a
+                href="#testimonial"
+                className="group inline-flex flex-col sm:flex-row items-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 hover:border-slate-700 hover:bg-slate-900/70 transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="text-brand-400 text-xl leading-none">"</span>
+                  <span className="text-sm text-slate-300 italic">…the exam-specific reasoning frameworks…</span>
+                  <span className="text-brand-400 text-xl leading-none">"</span>
+                </div>
+                <span className="hidden sm:block text-slate-700">|</span>
+                <span className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors">
+                  <span className="font-semibold text-slate-300">PMI AI Standards Core Team Member</span>
+                </span>
+              </a>
+            </div>
+
+            {/* Right: live product demo */}
+            <div className="lg:col-span-6">
+              <div className="relative rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1">
+                <div className="flex items-center gap-2 px-4 pt-3 pb-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
+                  <span className="ml-2 font-mono text-[10px] tracking-widest text-slate-600 uppercase">cipherexam — live demo</span>
+                </div>
+                <InteractiveDemo />
+                <p className="text-xs text-slate-600 mt-2 pb-2 text-center">
+                  {isTouchDevice ? "Tap to pause. Tap steps to skip ahead." : "Hover to pause. Click steps to skip ahead."}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ━━━ SECTION 2 — THE PROBLEM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection id="problem" className="py-24 bg-slate-950 border-t border-slate-900">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
-            Why Certification Exams Feel So Difficult
-          </h2>
-          <p className="text-slate-400 mb-12 max-w-2xl mx-auto">
-            It's not a knowledge problem. It's a reasoning problem.
-          </p>
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left: section heading */}
+            <div className="lg:col-span-5">
+              <Eyebrow n="01" label="The Problem" />
+              <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display leading-tight">
+                Why Certification Exams Feel So Difficult
+              </h2>
+              <p className="text-slate-400 mb-8">
+                It's not a knowledge problem. It's a reasoning problem.
+              </p>
+              <p className="text-xl font-bold text-white hidden lg:block">CipherExam fixes this.</p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {[
-              { icon: Scale, title: "Questions Test Judgment", body: "Certification exams don't test what you memorized. They test how you think through scenarios." },
-              { icon: MessageSquareOff, title: "No One Explains Why", body: "Practice exams tell you right or wrong. They rarely explain the reasoning behind the correct answer." },
-              { icon: Repeat, title: "Same Mistakes on Repeat", body: "Without understanding the logic, you keep falling for the same traps question after question." },
-            ].map(({ icon: Icon, title, body }, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors">
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-red-500/20 bg-red-500/10 text-red-400">
-                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+            {/* Right: numbered editorial rows */}
+            <div className="lg:col-span-7">
+              {[
+                { icon: Scale, title: "Questions Test Judgment", body: "Certification exams don't test what you memorized. They test how you think through scenarios." },
+                { icon: MessageSquareOff, title: "No One Explains Why", body: "Practice exams tell you right or wrong. They rarely explain the reasoning behind the correct answer." },
+                { icon: Repeat, title: "Same Mistakes on Repeat", body: "Without understanding the logic, you keep falling for the same traps question after question." },
+              ].map(({ icon: Icon, title, body }, i) => (
+                <div key={i} className="group flex items-start gap-5 border-t border-slate-800 py-7 first:border-t-0 first:pt-0">
+                  <span className="font-mono text-sm text-red-400/70 pt-1 w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-500/20 bg-red-500/10 text-red-400">
+                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
+                  <div>
+                    <div className="text-white text-lg font-bold mb-1.5">{title}</div>
+                    <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
+                  </div>
                 </div>
-                <div className="text-red-400 text-lg font-bold mb-2">{title}</div>
-                <p className="text-slate-400 text-sm">{body}</p>
-              </div>
-            ))}
+              ))}
+              <p className="text-xl font-bold text-white mt-8 lg:hidden">CipherExam fixes this.</p>
+            </div>
           </div>
-
-          <p className="text-xl font-bold text-white">CipherExam fixes this.</p>
         </div>
       </RevealSection>
 
@@ -340,6 +368,7 @@ export default function Landing() {
       <RevealSection id="differentiator" className="py-24 bg-slate-900/50">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-center max-w-3xl mx-auto mb-16">
+            <Eyebrow n="02" label="The Fix" center />
             <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
               See Exactly Why Answers Are Correct
             </h2>
@@ -415,9 +444,7 @@ export default function Landing() {
       <RevealSection id="blooms" className="py-24 bg-slate-950 border-t border-slate-900">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold uppercase tracking-wider mb-4">
-              The CIPHER Difference
-            </div>
+            <Eyebrow n="03" label="The Cipher Difference" center />
             <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
               You're Not Failing Because You Don't Know It.
             </h2>
@@ -502,21 +529,20 @@ export default function Landing() {
       {/* ━━━ SECTION 4 — HOW IT WORKS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection id="how-it-works" className="py-24 bg-slate-950 border-t border-slate-900">
         <div className="mx-auto max-w-4xl px-6 text-center">
+          <Eyebrow n="04" label="How It Works" center />
           <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">How CipherExam Works</h2>
           <p className="text-slate-400 mb-16">Three steps to exam-ready confidence.</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-left">
             {[
-              { n: "1", title: "Choose Your Certification Exam", body: "Select from PMP, Security+, CSM, SHRM-CP, ITIL, Six Sigma, and more." },
-              { n: "2", title: "Practice with AI Explanations", body: "Every answer is explained through the Exam Lens for that cert — the reasoning frame the test grades against." },
-              { n: "3", title: "Track Improvement with Analytics", body: "See your readiness score, weak domains, and progress over time." },
+              { n: "01", title: "Choose Your Certification Exam", body: "Select from PMP, Security+, CSM, SHRM-CP, ITIL, Six Sigma, and more." },
+              { n: "02", title: "Practice with AI Explanations", body: "Every answer is explained through the Exam Lens for that cert — the reasoning frame the test grades against." },
+              { n: "03", title: "Track Improvement with Analytics", body: "See your readiness score, weak domains, and progress over time." },
             ].map((s, i) => (
-              <div key={i} className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-500/20 text-brand-400 text-xl font-bold mb-4">
-                  {s.n}
-                </div>
+              <div key={i} className="border-t-2 border-brand-500/40 pt-6">
+                <div className="font-mono text-sm text-brand-400 mb-3">{s.n}</div>
                 <h3 className="text-lg font-bold text-white mb-2">{s.title}</h3>
-                <p className="text-slate-400 text-sm">{s.body}</p>
+                <p className="text-slate-400 text-sm leading-relaxed">{s.body}</p>
               </div>
             ))}
           </div>
@@ -532,27 +558,34 @@ export default function Landing() {
 
       {/* ━━━ SECTION 5 — FEATURES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection id="features" className="py-24 bg-slate-900/50">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">Powerful Study Tools</h2>
-            <p className="text-slate-400">Built for professionals who need to pass on the first attempt.</p>
-          </div>
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Heading on the right for rhythm (mirrors the Problem section) */}
+            <div className="lg:col-span-5 lg:order-2">
+              <Eyebrow n="05" label="Study Tools" />
+              <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display leading-tight">Powerful Study Tools</h2>
+              <p className="text-slate-400">Built for professionals who need to pass on the first attempt.</p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Lightbulb, title: "AI Explanation Engine", body: "Every answer includes a detailed breakdown of the reasoning and the exam's decision framework." },
-              { icon: BarChart3, title: "Performance Analytics", body: "Mastery rings, readiness scores, and domain-level tracking show exactly where you stand." },
-              { icon: ClipboardList, title: "Certification Exam Coverage", body: "PMP, PgMP, Security+, Network+, A+, CSM, SHRM-CP, Six Sigma, ITIL, CIA, and CPP." },
-              { icon: Crosshair, title: "Personalized Practice", body: "The AI targets your weak spots and skips what you already know. Every question counts." },
-            ].map(({ icon: Icon, title, body }, i) => (
-              <div key={i} className="rounded-2xl border border-slate-800 bg-slate-950 p-6 hover:border-brand-500/30 transition-colors">
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-400">
-                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+            <div className="lg:col-span-7 lg:order-1">
+              {[
+                { icon: Lightbulb, title: "AI Explanation Engine", body: "Every answer includes a detailed breakdown of the reasoning and the exam's decision framework." },
+                { icon: BarChart3, title: "Performance Analytics", body: "Mastery rings, readiness scores, and domain-level tracking show exactly where you stand." },
+                { icon: ClipboardList, title: "Certification Exam Coverage", body: "PMP, PgMP, Security+, Network+, A+, CSM, SHRM-CP, Six Sigma, ITIL, CIA, and CPP." },
+                { icon: Crosshair, title: "Personalized Practice", body: "The AI targets your weak spots and skips what you already know. Every question counts." },
+              ].map(({ icon: Icon, title, body }, i) => (
+                <div key={i} className="flex items-start gap-5 border-t border-slate-800 py-7 first:border-t-0 first:pt-0">
+                  <span className="font-mono text-sm text-brand-400/70 pt-1 w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-400">
+                    <Icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-1.5">{title}</h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </RevealSection>
@@ -560,6 +593,7 @@ export default function Landing() {
       {/* ━━━ SECTION 6 — EXAM COVERAGE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection id="exams" className="py-24 bg-slate-950 border-t border-slate-900">
         <div className="mx-auto max-w-5xl px-6 text-center">
+          <Eyebrow n="06" label="Exam Coverage" center />
           <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
             Prepare for Multiple Certifications
           </h2>
@@ -610,6 +644,7 @@ export default function Landing() {
       {/* ━━━ SECTION 7 — COMPARISON / PRICING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection id="pricing" className="py-24 bg-slate-900/50">
         <div ref={pricingRef} className="mx-auto max-w-3xl px-6">
+          <Eyebrow n="07" label="Comparison" center />
           <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 text-center font-display">
             CipherExam vs Traditional Exam Prep
           </h2>
@@ -688,23 +723,24 @@ export default function Landing() {
       <RevealSection className="py-24 bg-slate-900/50">
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center mb-16">
+            <Eyebrow n="08" label="By the Numbers" center />
             <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
               Built for Serious Exam Prep
             </h2>
             <p className="text-slate-400">The numbers behind the platform.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-800 border-y border-slate-800">
             {[
               { value: "11", label: "Certification exams" },
               { value: "AI", label: "Reasoning behind every answer" },
               { value: "7 days", label: "Free trial, no credit card" },
             ].map((s, i) => (
-              <div key={i} className="rounded-2xl border border-slate-800 bg-slate-950/50 p-8">
-                <div className="text-4xl font-extrabold text-brand-400 font-display">
+              <div key={i} className="px-8 py-10 text-center">
+                <div className="text-5xl sm:text-6xl font-extrabold text-white font-display tracking-tight">
                   {s.value}
                 </div>
-                <div className="text-slate-400 text-sm mt-2">{s.label}</div>
+                <div className="font-mono text-[11px] tracking-[0.25em] uppercase text-slate-500 mt-4">{s.label}</div>
               </div>
             ))}
           </div>
@@ -714,25 +750,27 @@ export default function Landing() {
       {/* ━━━ SECTION 10 — STUDY SMARTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection className="py-24 bg-slate-950 border-t border-slate-900">
         <div className="mx-auto max-w-4xl px-6 text-center">
+          <Eyebrow n="09" label="Study Smarter" center />
           <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
             Study Smarter. Not Longer.
           </h2>
-          <p className="text-slate-400 mb-12 max-w-2xl mx-auto">
+          <p className="text-slate-400 mb-14 max-w-2xl mx-auto">
             CipherExam eliminates wasted study time by focusing on what actually moves the needle.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-left">
             {[
               { icon: Search, title: "Identify Weak Areas Instantly", body: "The AI pinpoints exactly which domains need work after your first session." },
               { icon: Wrench, title: "Fix Recurring Mistakes", body: "Pattern detection finds the traps you keep falling for and drills them until they're gone." },
               { icon: TrendingUp, title: "Focus on What Improves Scores", body: "Skip what you already know. Every minute of study time is spent on high-impact topics." },
             ].map(({ icon: Icon, title, body }, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-700 transition-colors">
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-brand-500/20 bg-brand-500/10 text-brand-400">
-                  <Icon className="h-5 w-5" strokeWidth={1.75} />
+              <div key={i} className="border-t-2 border-brand-500/40 pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-mono text-sm text-brand-400">{String(i + 1).padStart(2, "0")}</span>
+                  <Icon className="h-5 w-5 text-brand-400" strokeWidth={1.75} />
                 </div>
                 <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
-                <p className="text-slate-400 text-sm">{body}</p>
+                <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
@@ -743,9 +781,7 @@ export default function Landing() {
       <RevealSection id="testimonial" className="py-24 bg-slate-900/50 border-t border-slate-900">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-bold uppercase tracking-wider">
-              From Beta Testing
-            </div>
+            <Eyebrow n="10" label="From Beta Testing" center />
           </div>
 
           <figure className="relative rounded-2xl border border-slate-800 bg-slate-950 p-8 sm:p-12">
@@ -801,7 +837,7 @@ export default function Landing() {
           >
             Start Your Free Trial
           </button>
-          <p className="mt-6 text-sm text-slate-500">7-day free trial. No credit card required.</p>
+          <p className="mt-6 font-mono text-xs tracking-wide text-slate-500">7-day free trial — no credit card required.</p>
         </div>
       </section>
 
