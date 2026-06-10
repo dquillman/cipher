@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { enforceRateLimit } from './rateLimit';
 
 const db = admin.firestore();
 
@@ -49,6 +50,9 @@ interface CaptureLeadInput {
 }
 
 export const captureLead = functions.https.onCall(async (data: CaptureLeadInput, context) => {
+    // Publicly callable — cap per-IP so a script can't spam leadCaptures writes.
+    await enforceRateLimit('captureLead', context, 15);
+
     const email = data.email;
     const cluster = data.cluster;
     const utm = (data.utm && typeof data.utm === 'object') ? data.utm : {};
@@ -65,25 +69,24 @@ export const captureLead = functions.https.onCall(async (data: CaptureLeadInput,
     const captureId = `${normalizedEmail}__${cluster}`;
     const captureRef = db.collection('leadCaptures').doc(captureId);
 
-    // Upsert: same email + cluster combination overwrites the prior record's
-    // timestamps but never duplicates. This means the same prospect getting
-    // the PDF twice is logged once with the most recent UTMs.
-    await captureRef.set({
-        email: normalizedEmail,
-        cluster,
-        utm,
-        referrer,
-        firstCapturedAt: admin.firestore.FieldValue.serverTimestamp(),
-        lastCapturedAt: admin.firestore.FieldValue.serverTimestamp(),
-        // Aggregated info for later drip-email targeting
-        uid: context.auth?.uid ?? null,
-        ip: context.rawRequest?.ip ?? null,
-        userAgent: context.rawRequest?.headers?.['user-agent'] ?? null,
-    }, { merge: true });
-
-    // Bump the "lastCapturedAt" again on the merge (the first set covers initial create)
-    await captureRef.update({
-        lastCapturedAt: admin.firestore.FieldValue.serverTimestamp(),
+    // Upsert: same email + cluster combination updates the prior record but
+    // never duplicates. The same prospect getting the PDF twice is logged once
+    // with the most recent UTMs — firstCapturedAt is preserved from the
+    // original capture.
+    await db.runTransaction(async (tx) => {
+        const existing = await tx.get(captureRef);
+        tx.set(captureRef, {
+            email: normalizedEmail,
+            cluster,
+            utm,
+            referrer,
+            ...(existing.exists ? {} : { firstCapturedAt: admin.firestore.FieldValue.serverTimestamp() }),
+            lastCapturedAt: admin.firestore.FieldValue.serverTimestamp(),
+            // Aggregated info for later drip-email targeting
+            uid: context.auth?.uid ?? null,
+            ip: context.rawRequest?.ip ?? null,
+            userAgent: context.rawRequest?.headers?.['user-agent'] ?? null,
+        }, { merge: true });
     });
 
     // Lead is captured above regardless. Only return a download link when the

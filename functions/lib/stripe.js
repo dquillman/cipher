@@ -182,6 +182,24 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
         res.status(400).send(`Webhook Error: ${err.message}`);
         return;
     }
+    // Idempotency: Stripe retries deliveries, and the handlers below are not
+    // all safe to re-run (subscription-deleted does a user lookup + write).
+    // Skip events we've already fully processed; the marker is written only
+    // AFTER successful processing, so a failed attempt will be retried.
+    const db = admin.firestore();
+    const eventRef = db.collection('stripe_events').doc(event.id);
+    try {
+        const seen = await eventRef.get();
+        if (seen.exists) {
+            console.log(`Skipping already-processed Stripe event ${event.id} (${event.type})`);
+            res.json({ received: true, duplicate: true });
+            return;
+        }
+    }
+    catch (err) {
+        // Fail-open: better to risk a duplicate than to drop an event.
+        console.warn("Stripe event dedupe check failed, processing anyway:", err);
+    }
     // Handle the event
     try {
         switch (event.type) {
@@ -196,6 +214,13 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
             default:
                 console.log(`Unhandled event type ${event.type}`);
         }
+        // Mark processed. expiresAt supports a Firestore TTL policy on
+        // stripe_events.expiresAt (Stripe retries span days, 30d is plenty).
+        await eventRef.set({
+            type: event.type,
+            processedAt: admin.firestore.FieldValue.serverTimestamp(),
+            expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 30 * 24 * 60 * 60 * 1000),
+        });
         res.json({ received: true });
     }
     catch (error) {

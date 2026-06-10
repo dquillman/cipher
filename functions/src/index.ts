@@ -2,6 +2,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import OpenAI from "openai";
 import { requirePro } from './guards';
+import { enforceRateLimit } from './rateLimit';
 
 console.log("Global Index Execution Started");
 admin.initializeApp();
@@ -1083,8 +1084,13 @@ async function deleteQueryBatch(db: FirebaseFirestore.Firestore, query: Firebase
 // --- Marketing Functions ---
 
 export const logVisitorEvent = functions.https.onCall(async (data, context) => {
-    // Note: Publicly callable, but we should rate limit in production.
-    const { source = 'direct' } = data;
+    // Publicly callable — per-IP daily cap stops scripted counter inflation.
+    await enforceRateLimit('logVisitorEvent', context, 200);
+
+    // Sanitize: `source` becomes part of a Firestore field path below, so an
+    // arbitrary string could inject nested fields or make the write throw.
+    const rawSource = typeof data?.source === 'string' ? data.source : 'direct';
+    const source = /^[a-zA-Z0-9_-]{1,40}$/.test(rawSource) ? rawSource : 'other';
     const today = new Date().toISOString().split('T')[0];
     const statsRef = db.collection('dailyStats').doc(today);
 
@@ -1103,7 +1109,9 @@ export const logVisitorEvent = functions.https.onCall(async (data, context) => {
 });
 
 export const generateMarketingCopy = functions.https.onCall(async (data, context) => {
-    if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // Internal marketing tool — admin only. Any signed-up user being able to
+    // burn GPT-4o tokens here was an open cost hole.
+    await requireAdmin(context);
 
     const { topic, tone, platform } = data;
     if (!topic || !platform) {
@@ -1142,7 +1150,8 @@ export const generateMarketingCopy = functions.https.onCall(async (data, context
 });
 
 export const generateMarketingCopyVariants = functions.https.onCall(async (data, context) => {
-    if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // Internal marketing tool — admin only (see generateMarketingCopy).
+    await requireAdmin(context);
 
     // Optional context from current inputs
     const { currentPrimary, currentSecondary } = data;

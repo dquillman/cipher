@@ -19,6 +19,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const openai_1 = require("openai");
 const guards_1 = require("./guards");
+const rateLimit_1 = require("./rateLimit");
 console.log("Global Index Execution Started");
 admin.initializeApp();
 console.log("Admin Initialized");
@@ -941,8 +942,12 @@ async function deleteQueryBatch(db, query, resolve) {
 }
 // --- Marketing Functions ---
 exports.logVisitorEvent = functions.https.onCall(async (data, context) => {
-    // Note: Publicly callable, but we should rate limit in production.
-    const { source = 'direct' } = data;
+    // Publicly callable — per-IP daily cap stops scripted counter inflation.
+    await (0, rateLimit_1.enforceRateLimit)('logVisitorEvent', context, 200);
+    // Sanitize: `source` becomes part of a Firestore field path below, so an
+    // arbitrary string could inject nested fields or make the write throw.
+    const rawSource = typeof (data === null || data === void 0 ? void 0 : data.source) === 'string' ? data.source : 'direct';
+    const source = /^[a-zA-Z0-9_-]{1,40}$/.test(rawSource) ? rawSource : 'other';
     const today = new Date().toISOString().split('T')[0];
     const statsRef = db.collection('dailyStats').doc(today);
     try {
@@ -959,8 +964,9 @@ exports.logVisitorEvent = functions.https.onCall(async (data, context) => {
     }
 });
 exports.generateMarketingCopy = functions.https.onCall(async (data, context) => {
-    if (!context.auth)
-        throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // Internal marketing tool — admin only. Any signed-up user being able to
+    // burn GPT-4o tokens here was an open cost hole.
+    await requireAdmin(context);
     const { topic, tone, platform } = data;
     if (!topic || !platform) {
         throw new functions.https.HttpsError('invalid-argument', 'Topic and Platform are required.');
@@ -994,8 +1000,8 @@ exports.generateMarketingCopy = functions.https.onCall(async (data, context) => 
     }
 });
 exports.generateMarketingCopyVariants = functions.https.onCall(async (data, context) => {
-    if (!context.auth)
-        throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // Internal marketing tool — admin only (see generateMarketingCopy).
+    await requireAdmin(context);
     // Optional context from current inputs
     const { currentPrimary, currentSecondary } = data;
     try {

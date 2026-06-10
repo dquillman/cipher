@@ -1,10 +1,16 @@
 rules_version = '2';
 
 // ============================================================================
-// UNIFIED FIRESTORE RULES — Single source of truth for exam-coach-ai-platform
-// Used by: Admin Core, Exam Coach (AdaptiGrowth), Migraine Tracker
-// IMPORTANT: Only deploy rules from Admin-Core. All other projects should
-// remove "firestore" from their firebase.json to prevent overwriting.
+// UNIFIED FIRESTORE RULES — exam-coach-ai-platform
+// Used by: Admin Core, CipherExam (Exam Coach), Migraine Tracker
+//
+// ⚠️ THIS FILE IS A REFERENCE COPY AND MAY BE STALE.
+// The AUTHORITATIVE rules live in the Admin-Core repo
+// (G:\Users\daveq\Admin-Core\firestore.rules) and are deployed ONLY from
+// there — Cipher's firebase.json deliberately has no "firestore" section so
+// a Cipher deploy can never overwrite the shared rules. If you need a rules
+// change for a Cipher collection, make it in Admin-Core and deploy from
+// Admin-Core (run its deploy preflight first).
 // ============================================================================
 
 service cloud.firestore {

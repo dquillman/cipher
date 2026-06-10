@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.captureLead = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const rateLimit_1 = require("./rateLimit");
 const db = admin.firestore();
 const PDF_PATHS = {
     'pmp': '/lead-magnets/pmp-exam-lens-cheat-sheet.pdf',
@@ -24,7 +25,8 @@ function isValidCluster(s) {
     return typeof s === 'string' && VALID_CLUSTERS.includes(s);
 }
 exports.captureLead = functions.https.onCall(async (data, context) => {
-    var _a, _b, _c, _d, _e, _f, _g;
+    // Publicly callable — cap per-IP so a script can't spam leadCaptures writes.
+    await (0, rateLimit_1.enforceRateLimit)('captureLead', context, 15);
     const email = data.email;
     const cluster = data.cluster;
     const utm = (data.utm && typeof data.utm === 'object') ? data.utm : {};
@@ -38,24 +40,18 @@ exports.captureLead = functions.https.onCall(async (data, context) => {
     const normalizedEmail = email.trim().toLowerCase();
     const captureId = `${normalizedEmail}__${cluster}`;
     const captureRef = db.collection('leadCaptures').doc(captureId);
-    // Upsert: same email + cluster combination overwrites the prior record's
-    // timestamps but never duplicates. This means the same prospect getting
-    // the PDF twice is logged once with the most recent UTMs.
-    await captureRef.set({
-        email: normalizedEmail,
-        cluster,
-        utm,
-        referrer,
-        firstCapturedAt: admin.firestore.FieldValue.serverTimestamp(),
-        lastCapturedAt: admin.firestore.FieldValue.serverTimestamp(),
-        // Aggregated info for later drip-email targeting
-        uid: (_b = (_a = context.auth) === null || _a === void 0 ? void 0 : _a.uid) !== null && _b !== void 0 ? _b : null,
-        ip: (_d = (_c = context.rawRequest) === null || _c === void 0 ? void 0 : _c.ip) !== null && _d !== void 0 ? _d : null,
-        userAgent: (_g = (_f = (_e = context.rawRequest) === null || _e === void 0 ? void 0 : _e.headers) === null || _f === void 0 ? void 0 : _f['user-agent']) !== null && _g !== void 0 ? _g : null,
-    }, { merge: true });
-    // Bump the "lastCapturedAt" again on the merge (the first set covers initial create)
-    await captureRef.update({
-        lastCapturedAt: admin.firestore.FieldValue.serverTimestamp(),
+    // Upsert: same email + cluster combination updates the prior record but
+    // never duplicates. The same prospect getting the PDF twice is logged once
+    // with the most recent UTMs — firstCapturedAt is preserved from the
+    // original capture.
+    await db.runTransaction(async (tx) => {
+        var _a, _b, _c, _d, _e, _f, _g;
+        const existing = await tx.get(captureRef);
+        tx.set(captureRef, Object.assign(Object.assign({ email: normalizedEmail, cluster,
+            utm,
+            referrer }, (existing.exists ? {} : { firstCapturedAt: admin.firestore.FieldValue.serverTimestamp() })), { lastCapturedAt: admin.firestore.FieldValue.serverTimestamp(), 
+            // Aggregated info for later drip-email targeting
+            uid: (_b = (_a = context.auth) === null || _a === void 0 ? void 0 : _a.uid) !== null && _b !== void 0 ? _b : null, ip: (_d = (_c = context.rawRequest) === null || _c === void 0 ? void 0 : _c.ip) !== null && _d !== void 0 ? _d : null, userAgent: (_g = (_f = (_e = context.rawRequest) === null || _e === void 0 ? void 0 : _e.headers) === null || _f === void 0 ? void 0 : _f['user-agent']) !== null && _g !== void 0 ? _g : null }), { merge: true });
     });
     // Lead is captured above regardless. Only return a download link when the
     // cluster's PDF is actually published — otherwise the link would 404.
