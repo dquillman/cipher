@@ -65,3 +65,82 @@ html, body, #root {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ━━━ Landing-page motion layer ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Restrained, B2B-professional. Transform/opacity only (GPU-composited),
+   except the CTA glow which animates box-shadow on a single element.
+   All of it collapses to near-zero under prefers-reduced-motion above. */
+
+/* Hero entrance — staggered fade-up on first paint */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-enter   { animation: hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-enter-1 { animation-delay: 0.05s; }
+.hero-enter-2 { animation-delay: 0.15s; }
+.hero-enter-3 { animation-delay: 0.25s; }
+.hero-enter-4 { animation-delay: 0.35s; }
+.hero-enter-5 { animation-delay: 0.45s; }
+.hero-enter-6 { animation-delay: 0.6s; }
+
+/* Animated gradient on the hero keyword — slow shimmer across brand hues */
+@keyframes gradient-pan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.text-shimmer {
+  background: linear-gradient(110deg, #818cf8 0%, #3b82f6 30%, #a78bfa 55%, #818cf8 80%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradient-pan 7s ease-in-out infinite;
+}
+
+/* Ambient drift on the hero glow blobs — barely perceptible, adds life */
+@keyframes blob-drift-a {
+  0%, 100% { transform: translate(-50%, 0) scale(1); }
+  50%      { transform: translate(-46%, 14px) scale(1.06); }
+}
+@keyframes blob-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-18px, -12px) scale(1.04); }
+}
+.blob-a { animation: blob-drift-a 14s ease-in-out infinite; }
+.blob-b { animation: blob-drift-b 18s ease-in-out infinite; }
+
+/* Demo card — slow vertical float, like it's hovering over the page */
+@keyframes card-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+.demo-float { animation: card-float 9s ease-in-out infinite; }
+
+/* Primary CTA — gentle shadow breath. One element, low repaint cost. */
+@keyframes cta-breathe {
+  0%, 100% { box-shadow: 0 10px 24px -6px rgba(79, 70, 229, 0.35); }
+  50%      { box-shadow: 0 14px 36px -4px rgba(99, 102, 241, 0.55); }
+}
+.cta-breathe { animation: cta-breathe 3.2s ease-in-out infinite; }
+
+/* Hero ambient image (Higgsfield-generated light stream) — slow drift pan.
+   GPU transform only; masked so it dissolves before the next section. */
+@keyframes ambient-drift {
+  0%   { transform: scale(1.08) translateX(-1.5%); }
+  100% { transform: scale(1.16) translateX(1.5%); }
+}
+.hero-ambient {
+  animation: ambient-drift 50s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter, .hero-enter-1, .hero-enter-2, .hero-enter-3, .hero-enter-4,
+  .hero-enter-5, .hero-enter-6, .text-shimmer, .blob-a, .blob-b,
+  .demo-float, .cta-breathe, .hero-ambient {
+    animation: none !important;
+  }
+}

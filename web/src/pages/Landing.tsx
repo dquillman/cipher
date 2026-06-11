@@ -241,10 +241,18 @@ export default function Landing() {
 
       {/* ━━━ SECTION 1 — HERO (asymmetric split: copy left, live demo right) ━ */}
       <section className="relative pt-32 pb-20 overflow-hidden">
+        {/* Ambient light-stream image (Higgsfield) — drifts slowly behind everything */}
+        <div className="absolute inset-0 -z-[8] overflow-hidden" aria-hidden="true">
+          <img
+            src="/media/hero-ambient.jpg"
+            alt=""
+            className="hero-ambient h-full w-full object-cover opacity-45 [mask-image:linear-gradient(to_bottom,black_35%,transparent_96%)]"
+          />
+        </div>
         {/* Atmospheric depth: blueprint grid + gradient blobs + noise overlay */}
         <div className="absolute inset-0 -z-[6] [background-image:linear-gradient(to_right,rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.05)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
-        <div className="absolute top-20 left-1/3 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]" />
-        <div className="absolute top-40 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[100px]" />
+        <div className="blob-a absolute top-20 left-1/3 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-brand-600/20 blur-[120px]" />
+        <div className="blob-b absolute top-40 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[100px]" />
         <div className="absolute inset-0 -z-[5] opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`, backgroundRepeat: 'repeat', backgroundSize: '128px 128px' }} />
 
         <div className="mx-auto max-w-7xl px-6">
@@ -252,7 +260,7 @@ export default function Landing() {
             {/* Left: headline + CTAs */}
             <div className="lg:col-span-6 text-center lg:text-left">
               {/* Badge */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 font-mono text-[11px] tracking-wider text-brand-300 mb-8">
+              <div className="hero-enter hero-enter-1 inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 font-mono text-[11px] tracking-wider text-brand-300 mb-8">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500" />
@@ -260,23 +268,23 @@ export default function Landing() {
                 PMP · CompTIA · Scrum · SHRM · ITIL · AWS · 11+ Certifications
               </div>
 
-              <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl xl:text-7xl mb-6 leading-[1.05] font-display">
+              <h1 className="hero-enter hero-enter-2 text-5xl font-extrabold tracking-tight text-white sm:text-6xl xl:text-7xl mb-6 leading-[1.05] font-display">
                 Learn How Certification{" "}
-                <span className="text-brand-400">Exams Think</span>
+                <span className="text-shimmer">Exams Think</span>
               </h1>
 
-              <p className="max-w-xl mx-auto lg:mx-0 text-lg text-slate-400 mb-3 leading-relaxed">
+              <p className="hero-enter hero-enter-3 max-w-xl mx-auto lg:mx-0 text-lg text-slate-400 mb-3 leading-relaxed">
                 CipherExam analyzes your answers and explains the reasoning behind every question.
               </p>
 
-              <p className="font-mono text-xs tracking-wide text-slate-500 mb-10">
+              <p className="hero-enter hero-enter-4 font-mono text-xs tracking-wide text-slate-500 mb-10">
                 Free 7-day trial — no credit card required.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-10">
+              <div className="hero-enter hero-enter-5 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-10">
                 <button
                   onClick={handleCta}
-                  className="w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
+                  className="cta-breathe w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white hover:bg-brand-500 transition-colors"
                 >
                   Start Free Trial
                 </button>
@@ -291,7 +299,7 @@ export default function Landing() {
               {/* Trust badge — pull-quote credibility */}
               <a
                 href="#testimonial"
-                className="group inline-flex flex-col sm:flex-row items-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 hover:border-slate-700 hover:bg-slate-900/70 transition-colors"
+                className="hero-enter hero-enter-6 group inline-flex flex-col sm:flex-row items-center gap-3 rounded-full border border-slate-800 bg-slate-900/50 px-5 py-3 hover:border-slate-700 hover:bg-slate-900/70 transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <span className="text-brand-400 text-xl leading-none">"</span>
@@ -306,8 +314,8 @@ export default function Landing() {
             </div>
 
             {/* Right: live product demo */}
-            <div className="lg:col-span-6">
-              <div className="relative rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1">
+            <div className="lg:col-span-6 hero-enter hero-enter-4">
+              <div className="demo-float relative rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1">
                 <div className="flex items-center gap-2 px-4 pt-3 pb-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
                   <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
