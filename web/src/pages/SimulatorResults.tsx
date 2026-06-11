@@ -1,7 +1,5 @@
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { CheckCircle, XCircle, RotateCcw, LayoutDashboard, Clock, Info, Brain } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase';
@@ -15,8 +13,6 @@ interface BloomStat {
     total: number;
     score: number; // 0-100, undefined semantics if total === 0
 }
-
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function SimulatorResults() {
     const location = useLocation();
@@ -104,17 +100,6 @@ export default function SimulatorResults() {
     const percentage = Math.round((score / total) * 100);
     const passed = percentage >= 70;
 
-    const chartData = {
-        labels: ['Correct', 'Incorrect'],
-        datasets: [
-            {
-                data: [score, total - score],
-                backgroundColor: ['#10B981', '#EF4444'],
-                borderWidth: 0,
-            },
-        ],
-    };
-
     const formatTime = (seconds: number) => {
         const m = Math.floor(seconds / 60);
         const s = seconds % 60;
@@ -179,7 +164,16 @@ export default function SimulatorResults() {
                         <div className={`absolute top-0 w-full h-2 ${passed ? 'bg-emerald-500' : 'bg-red-500'}`}></div>
 
                         <div className="w-32 h-32 md:w-40 md:h-40 mb-4 md:mb-6">
-                            <Doughnut data={chartData} options={{ maintainAspectRatio: true, cutout: '70%' }} />
+                            {/* Two-segment results ring (correct = emerald over incorrect = red).
+                                Plain SVG — replaced the chart.js Doughnut, which was this
+                                library's only usage in the app. */}
+                            <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90" role="img" aria-label={`${score} of ${total} correct`}>
+                                <circle cx="50" cy="50" r="42.5" fill="none" stroke="#EF4444" strokeWidth="15" />
+                                <circle
+                                    cx="50" cy="50" r="42.5" fill="none" stroke="#10B981" strokeWidth="15"
+                                    strokeDasharray={`${(score / total) * 2 * Math.PI * 42.5} ${2 * Math.PI * 42.5}`}
+                                />
+                            </svg>
                         </div>
 
                         <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">{percentage}%</div>

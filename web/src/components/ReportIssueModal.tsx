@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { X, MessageSquare, Loader2, CheckCircle2, Upload } from 'lucide-react';
-import { db, storage } from '../firebase';
+import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { useAuth } from '../App';
 import { useLocation } from 'react-router-dom';
@@ -38,7 +38,10 @@ export default function ReportIssueModal({ isOpen, onClose, context }: ReportIss
         try {
             let attachmentUrl = null;
 
-            if (screenshot && storage) {
+            if (screenshot) {
+                // Lazy getStorage() keeps the storage SDK out of the entry bundle —
+                // this modal is the only place in the app that uses it.
+                const storage = getStorage();
                 const filename = `${Date.now()}_${uuidv4()}_${screenshot.name}`;
                 const storageRef = ref(storage, `uploads/${user?.uid || 'anonymous'}/issues/${filename}`);
                 await uploadBytes(storageRef, screenshot);

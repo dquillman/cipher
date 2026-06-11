@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 interface MasteryRingProps {
     percentage: number;
@@ -19,6 +19,15 @@ export default function MasteryRing({
     const circumference = radius * 2 * Math.PI;
     const offset = circumference - (percentage / 100) * circumference;
 
+    // Animate the ring fill on mount with a plain CSS transition — this was
+    // the only framer-motion usage in the app, so replacing it dropped the
+    // whole library from the bundle.
+    const [drawn, setDrawn] = useState(false);
+    useEffect(() => {
+        const raf = requestAnimationFrame(() => setDrawn(true));
+        return () => cancelAnimationFrame(raf);
+    }, []);
+
     return (
         <div className="flex flex-col items-center justify-center gap-2">
             <div className="relative" style={{ width: size, height: size }}>
@@ -34,10 +43,7 @@ export default function MasteryRing({
                         className="text-slate-700"
                     />
                     {/* Progress Ring */}
-                    <motion.circle
-                        initial={{ strokeDashoffset: circumference }}
-                        animate={{ strokeDashoffset: offset }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
+                    <circle
                         cx={size / 2}
                         cy={size / 2}
                         r={radius}
@@ -45,7 +51,9 @@ export default function MasteryRing({
                         strokeWidth={strokeWidth}
                         fill="transparent"
                         strokeDasharray={circumference}
+                        strokeDashoffset={drawn ? offset : circumference}
                         strokeLinecap="round"
+                        style={{ transition: 'stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1)' }}
                     />
                 </svg>
                 {/* Percentage Text */}

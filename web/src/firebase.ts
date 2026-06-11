@@ -2,9 +2,12 @@ import { initializeApp, type FirebaseApp } from "firebase/app";
 import { getFirestore, type Firestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, type Auth } from "firebase/auth";
 import { getFunctions, type Functions } from 'firebase/functions';
-import { getAnalytics, type Analytics } from "firebase/analytics";
-import { getPerformance, type FirebasePerformance } from "firebase/performance";
-import { getStorage, type FirebaseStorage } from "firebase/storage";
+// NOTE: firebase/analytics and firebase/performance were removed on purpose.
+// GA4 is already loaded via gtag in index.html with the same measurement ID,
+// so the Analytics SDK was double-tracking — and together with Performance it
+// pulled ~30KB gz + an Installations network round-trip into EVERY page load.
+// firebase/storage is imported lazily by the one component that uses it
+// (ReportIssueModal) so it stays out of the entry bundle.
 
 const firebaseConfig = {
     apiKey: "AIzaSyBBlyZqdAJw_yNNfUQfVW59eYgkrBJLUCQ",
@@ -16,34 +19,16 @@ const firebaseConfig = {
     measurementId: "G-HY0QBN84Y6"
 };
 
-console.log('Initializing Firebase...');
 let app: FirebaseApp;
 let db: Firestore;
 let auth: Auth;
 let functions: Functions;
-let analytics: Analytics;
-let perf: FirebasePerformance;
-let storage: FirebaseStorage;
 
 try {
     app = initializeApp(firebaseConfig);
-    console.log('Firebase App initialized');
-    console.log('🔥 EC Firebase Project (runtime):', app.options.projectId);
-
     db = getFirestore(app);
-    console.log('Firestore initialized');
     auth = getAuth(app);
-    console.log('Auth initialized');
     functions = getFunctions(app);
-    analytics = getAnalytics(app);
-    console.log('Analytics initialized');
-    try {
-        perf = getPerformance(app);
-        console.log('Performance initialized');
-    } catch (perfError) {
-        console.warn('Performance SDK failed to initialize (non-fatal):', perfError);
-    }
-    storage = getStorage(app);
 
     // if (location.hostname === "localhost") {
     //     connectFirestoreEmulator(db, 'localhost', 8080);
@@ -57,4 +42,4 @@ try {
 
 const googleProvider = new GoogleAuthProvider();
 
-export { db, auth, googleProvider, functions, analytics, perf, storage };
+export { db, auth, googleProvider, functions };
