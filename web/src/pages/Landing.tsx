@@ -240,7 +240,9 @@ export default function Landing() {
       </nav>
 
       {/* ━━━ SECTION 1 — HERO (asymmetric split: copy left, live demo right) ━ */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      {/* `isolate` scopes the negative-z ambient layers to this section —
+          without it they paint UNDER the page wrapper's bg and are invisible */}
+      <section className="relative isolate pt-32 pb-20 overflow-hidden">
         {/* Ambient light-stream image (Higgsfield) — drifts slowly behind everything */}
         <div className="absolute inset-0 -z-[8] overflow-hidden" aria-hidden="true">
           <img
