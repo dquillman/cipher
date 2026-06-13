@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { captureUtmParams, trackLandingPageView, trackCtaClick } from "../../lib/ga4";
+import HeroBackground from "../../components/landing/HeroBackground";
+import { useHeroMotion } from "../../components/landing/useHeroMotion";
 import {
   PMI_SAFE_TESTIMONIALS,
   type PmiSafeTestimonial,
@@ -131,8 +133,23 @@ export function Hero({
    */
   testimonialBadge?: TestimonialBadgeVariant;
 }) {
+  const heroRef = useRef<HTMLElement>(null);
+  // Light GSAP polish (WebGL parallax/fade + magnetic CTA), scoped to the hero.
+  useHeroMotion(heroRef);
+
   return (
-    <section className="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
+    <section ref={heroRef} className="relative isolate overflow-hidden">
+      {/* WebGL "data current" — full-bleed behind the hero, gated + client-only.
+          The slate page bg + static layout carry SSR/prerender/reduced-motion. */}
+      <div
+        data-hero-parallax
+        className="absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,black_30%,transparent_94%)]"
+        aria-hidden="true"
+      >
+        <HeroBackground className="absolute inset-0" />
+      </div>
+
+      <div className="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
       {eyebrow && (
         <p className="text-sm font-semibold uppercase tracking-widest text-brand-400">{eyebrow}</p>
       )}
@@ -161,6 +178,7 @@ export function Hero({
         <Link
           to={ctaHref}
           onClick={onCtaClick}
+          data-magnetic
           className="inline-flex items-center rounded-md bg-brand-600 px-8 py-4 text-base font-semibold text-white shadow transition hover:bg-brand-500"
         >
           Start Free Trial
@@ -172,6 +190,7 @@ export function Hero({
           institutional credential only, no contributor name. Non-PMI surfaces
           use "full". Rule encoded in cipher-exam-context skill 2026-05-28. */}
       <HeroTestimonialBadge variant={testimonialBadge} />
+      </div>
     </section>
   );
 }

@@ -4,6 +4,8 @@ import { useAuth } from "../App";
 import { trackLandingPageView, trackCtaClick, trackPricingView, captureUtmParams } from "../lib/ga4";
 import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
+import HeroBackground from "../components/landing/HeroBackground";
+import { useHeroMotion } from "../components/landing/useHeroMotion";
 import SeoHead from "../components/SeoHead";
 import { SEO } from "../config/seo";
 import {
@@ -85,6 +87,11 @@ export default function Landing() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const pricingRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+
+  // Light GSAP polish scoped to the hero: WebGL parallax/fade on scroll +
+  // magnetic CTAs. Dynamically imports gsap; no-ops under reduced motion.
+  useHeroMotion(heroRef);
 
   // GA4: Track landing page view + capture UTM params from ad clicks
   useEffect(() => { captureUtmParams(); trackLandingPageView(); }, []);
@@ -242,14 +249,22 @@ export default function Landing() {
       {/* ━━━ SECTION 1 — HERO (asymmetric split: copy left, live demo right) ━ */}
       {/* `isolate` scopes the negative-z ambient layers to this section —
           without it they paint UNDER the page wrapper's bg and are invisible */}
-      <section className="relative isolate pt-32 pb-20 overflow-hidden">
-        {/* Ambient light-stream image (Higgsfield) — drifts slowly behind everything */}
+      <section ref={heroRef} className="relative isolate pt-32 pb-20 overflow-hidden">
+        {/* Ambient light-stream image (Higgsfield) — the still base + SSR/reduced-motion fallback */}
         <div className="absolute inset-0 -z-[8] overflow-hidden" aria-hidden="true">
           <img
             src="/media/hero-ambient.jpg"
             alt=""
             className="hero-ambient h-full w-full object-cover opacity-45 [mask-image:linear-gradient(to_bottom,black_35%,transparent_96%)]"
           />
+        </div>
+        {/* WebGL "data current" — fades in over the still image (client-only, gated) */}
+        <div
+          data-hero-parallax
+          className="absolute inset-0 -z-[7] [mask-image:linear-gradient(to_bottom,black_30%,transparent_92%)]"
+          aria-hidden="true"
+        >
+          <HeroBackground className="absolute inset-0" />
         </div>
         {/* Atmospheric depth: blueprint grid + gradient blobs + noise overlay */}
         <div className="absolute inset-0 -z-[6] [background-image:linear-gradient(to_right,rgba(148,163,184,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.05)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" />
@@ -286,6 +301,7 @@ export default function Landing() {
               <div className="hero-enter hero-enter-5 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-10">
                 <button
                   onClick={handleCta}
+                  data-magnetic
                   className="cta-breathe w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white hover:bg-brand-500 transition-colors"
                 >
                   Start Free Trial

@@ -25,6 +25,11 @@ export default defineConfig({
           if (p.includes('firebase/firestore') || p.includes('@firebase/webchannel-wrapper')) return 'fb-firestore'
           if (p.includes('@firebase/') || p.includes('node_modules/firebase/')) return 'fb-core'
           if (/node_modules\/(react|react-dom|scheduler|react-router|react-router-dom)\//.test(p)) return 'react-vendor'
+          // WebGL hero deps. Only reached via React.lazy / dynamic import on the
+          // landing + /lp heroes, so these stay async-loaded — naming them just
+          // gives one stable, cacheable chunk shared across those routes.
+          if (p.includes('node_modules/three/')) return 'three-vendor'
+          if (p.includes('node_modules/gsap/')) return 'gsap-vendor'
         },
       },
     },
