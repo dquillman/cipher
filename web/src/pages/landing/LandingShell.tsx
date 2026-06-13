@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { captureUtmParams, trackLandingPageView, trackCtaClick } from "../../lib/ga4";
 import HeroBackground from "../../components/landing/HeroBackground";
 import { useHeroMotion } from "../../components/landing/useHeroMotion";
+import { DISPLAY_VERSION } from "../../version";
 import {
   PMI_SAFE_TESTIMONIALS,
   type PmiSafeTestimonial,
@@ -54,8 +55,9 @@ export default function LandingShell({ exam, examShortName, pageId, children }: 
       {/* Sticky header — minimal: logo + single CTA */}
       <header className="sticky top-0 z-40 w-full border-b border-slate-800/70 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <Link to="/" className="flex items-center gap-2" aria-label="CipherExam home">
+          <Link to="/" className="flex items-baseline gap-2" aria-label="CipherExam home">
             <span className="text-lg font-bold tracking-tight text-brand-400">CipherExam</span>
+            <span className="font-mono text-[10px] text-slate-500" aria-label={`version ${DISPLAY_VERSION}`}>v{DISPLAY_VERSION}</span>
           </Link>
           <Link
             to={signupHref}

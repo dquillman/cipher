@@ -1,6 +1,7 @@
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
 import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../types/Bloom';
+import { useInView } from '../hooks/useInView';
 
 /**
  * Shared Bloom's Taxonomy primer — renders a color-coded 6-level
@@ -51,6 +52,9 @@ export default function BloomsPrimer({
     const isHero = variant === 'hero';
     const isCompact = variant === 'compact';
 
+    // Staggered scroll-reveal for the 6 level rows (reduced-motion → shown instantly).
+    const { ref: levelsRef, inView } = useInView<HTMLDivElement>(0.2);
+
     return (
         <div className={`${className}`}>
             {/* Headline + description */}
@@ -67,8 +71,9 @@ export default function BloomsPrimer({
                 </p>
             </div>
 
-            {/* 6-level visual — rows sized proportionally from narrow (lowest cognitive demand) to widest */}
-            <div className={isCompact ? 'space-y-1.5' : 'space-y-2'}>
+            {/* 6-level visual — rows sized proportionally from narrow (lowest cognitive demand) to widest.
+                Each row rises + fades in on a stagger when the group scrolls into view. */}
+            <div ref={levelsRef} className={isCompact ? 'space-y-1.5' : 'space-y-2'}>
                 {BLOOM_LEVELS.map((level, idx) => {
                     const c = LEVEL_COLORS[level];
                     const widthPct = 40 + idx * 10; // 40%, 50%, 60%, 70%, 80%, 90%
@@ -76,7 +81,12 @@ export default function BloomsPrimer({
                         <div
                             key={level}
                             className={`flex items-center gap-3 ${c.bg} ${c.border} border rounded-lg ${isCompact ? 'p-2' : 'p-3'}`}
-                            style={{ maxWidth: `${widthPct}%` }}
+                            style={{
+                                maxWidth: `${widthPct}%`,
+                                opacity: inView ? 1 : 0,
+                                transform: inView ? 'none' : 'translateY(14px)',
+                                transition: `opacity 0.5s ease ${idx * 0.08}s, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s`,
+                            }}
                         >
                             <div className={`shrink-0 w-8 h-8 rounded-md ${c.bar} flex items-center justify-center font-bold text-white text-sm`}>
                                 {idx + 1}

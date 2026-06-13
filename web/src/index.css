@@ -150,10 +150,26 @@ html, body, #root {
   animation: hero-word-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* ─── Scroll-reveal: children rise/slide in once their group gains .is-in ───
+   The group's .is-in class is toggled by useInView (one-shot, on scroll into
+   view). Stagger is driven by per-child inline transition-delay. */
+.reveal-up   { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal-left { opacity: 0; transform: translateX(-20px); transition: opacity 0.55s ease-out, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1); }
+.is-in .reveal-up, .is-in .reveal-left { opacity: 1; transform: none; }
+/* Opacity-only variant — for elements that own their own transform (e.g. cards
+   with a hover-lift), so the reveal never fights the hover/interaction transform. */
+.reveal-fade { opacity: 0; transition: opacity 0.55s ease-out; }
+.is-in .reveal-fade { opacity: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   .hero-enter, .hero-enter-1, .hero-enter-2, .hero-enter-3, .hero-enter-4,
   .hero-enter-5, .hero-enter-6, .text-shimmer, .blob-a, .blob-b,
   .demo-float, .cta-breathe, .hero-ambient, .hero-word {
     animation: none !important;
+  }
+  .reveal-up, .reveal-left, .reveal-fade {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

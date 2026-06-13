@@ -388,6 +388,21 @@ class AppErrorBoundary extends React.Component<{ children: ReactNode }, { error:
   }
 }
 
+/**
+ * Resets scroll to the top on every route (pathname) change. SPA navigation
+ * otherwise keeps the previous page's scroll position — so opening an LP from a
+ * card halfway down the home page would land mid-LP. Skips when the URL carries
+ * a hash so in-page anchor links (e.g. /#testimonial) still scroll to target.
+ */
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname, hash]);
+  return null;
+}
+
 function App() {
   useAnalytics(); // Initialize Analytics
 
@@ -404,6 +419,7 @@ function App() {
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
               </div>
             }>
+            <ScrollToTop />
             <Routes>
               {/* Public Routes (Accessible to everyone) */}
               <Route path="/" element={<Landing />} />

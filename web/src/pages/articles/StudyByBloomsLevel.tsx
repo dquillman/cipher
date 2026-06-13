@@ -5,6 +5,7 @@ import { trackCtaClick, captureUtmParams } from '../../lib/ga4';
 import PublicNav from '../../components/layout/PublicNav';
 import PublicFooter from '../../components/layout/PublicFooter';
 import ArticleNav from '../../components/blog/ArticleNav';
+import BloomsPyramid from '../../components/blog/BloomsPyramid';
 import RelatedReading from '../../components/blog/RelatedReading';
 import SeoHead from '../../components/SeoHead';
 import { BLOG_POSTS, articleSchema, blogPostBreadcrumb } from '../../config/seo';
@@ -72,7 +73,7 @@ export default function StudyByBloomsLevel() {
             </p>
 
             <figure className="my-8">
-              <img src="/blog-images/blooms-pyramid.svg" alt="Bloom's Taxonomy pyramid showing six cognitive levels with the top three highlighted as where the exam lives" className="w-full rounded-xl border border-slate-700" />
+              <BloomsPyramid className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <h2 className="text-2xl font-bold text-white font-display pt-6">

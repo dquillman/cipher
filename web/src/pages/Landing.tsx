@@ -6,6 +6,9 @@ import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
 import HeroBackground from "../components/landing/HeroBackground";
 import { useHeroMotion } from "../components/landing/useHeroMotion";
+import { useInView } from "../hooks/useInView";
+import CountUp from "../components/CountUp";
+import ScrollProgress from "../components/ScrollProgress";
 import SeoHead from "../components/SeoHead";
 import { SEO } from "../config/seo";
 import {
@@ -28,13 +31,17 @@ const XMark = () => (
 );
 
 /* ─── Section eyebrow — monospace "decoded" index label ───────────────────── */
-const Eyebrow = ({ n, label, center = false }: { n: string; label: string; center?: boolean }) => (
-  <div className={`flex items-center gap-3 mb-5 ${center ? "justify-center" : ""}`}>
-    <span className="font-mono text-[11px] tracking-[0.3em] text-brand-400">{n}</span>
-    <span className="h-px w-10 bg-brand-500/40" />
-    <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-slate-500">{label}</span>
-  </div>
-);
+const Eyebrow = ({ n, label, center = false }: { n: string; label: string; center?: boolean }) => {
+  // The little rule draws outward (scale-x) as the section enters view.
+  const { ref, inView } = useInView<HTMLDivElement>(0.6);
+  return (
+    <div ref={ref} className={`flex items-center gap-3 mb-5 ${center ? "justify-center" : ""}`}>
+      <span className="font-mono text-[11px] tracking-[0.3em] text-brand-400">{n}</span>
+      <span className={`h-px w-10 bg-brand-500/40 origin-left transition-transform duration-700 ease-out ${inView ? "scale-x-100" : "scale-x-0"}`} />
+      <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-slate-500">{label}</span>
+    </div>
+  );
+};
 
 /* ─── Smooth-scroll helper ─────────────────────────────────────────────────── */
 const scrollTo = (id: string) => {
@@ -92,6 +99,38 @@ export default function Landing() {
   // Light GSAP polish scoped to the hero: WebGL parallax/fade on scroll +
   // magnetic CTAs. Dynamically imports gsap; no-ops under reduced motion.
   useHeroMotion(heroRef);
+
+  // Staggered reveal for the exam-coverage grid (§6).
+  const { ref: examGridRef, inView: examGridIn } = useInView<HTMLDivElement>(0.12);
+
+  // Magnetic pull on the nav + final "Start Free Trial" CTAs — mirrors the hero
+  // CTA effect. Pointer-fine only, reduced-motion-safe; gsap loads lazily.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const disposers: Array<() => void> = [];
+    let cancelled = false;
+    import("gsap").then(({ gsap }) => {
+      if (cancelled) return;
+      document.querySelectorAll<HTMLElement>("[data-magnetic-cta]").forEach((btn) => {
+        const xTo = gsap.quickTo(btn, "x", { duration: 0.5, ease: "power3.out" });
+        const yTo = gsap.quickTo(btn, "y", { duration: 0.5, ease: "power3.out" });
+        const move = (e: PointerEvent) => {
+          const r = btn.getBoundingClientRect();
+          xTo((e.clientX - (r.left + r.width / 2)) * 0.3);
+          yTo((e.clientY - (r.top + r.height / 2)) * 0.4);
+        };
+        const leave = () => { xTo(0); yTo(0); };
+        btn.addEventListener("pointermove", move);
+        btn.addEventListener("pointerleave", leave);
+        disposers.push(() => {
+          btn.removeEventListener("pointermove", move);
+          btn.removeEventListener("pointerleave", leave);
+        });
+      });
+    });
+    return () => { cancelled = true; disposers.forEach((d) => d()); };
+  }, []);
 
   // GA4: Track landing page view + capture UTM params from ad clicks
   useEffect(() => { captureUtmParams(); trackLandingPageView(); }, []);
@@ -159,6 +198,7 @@ export default function Landing() {
   return (
     <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
       <SeoHead {...SEO.landing} />
+      <ScrollProgress />
 
       {/* ─── NAVIGATION (sticky CTA appears on scroll) ────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
@@ -193,6 +233,7 @@ export default function Landing() {
             </button>
             <button
               onClick={handleCta}
+              data-magnetic-cta
               className={`rounded-full px-5 py-2 text-sm font-bold transition-colors hidden md:block ${
                 scrolled
                   ? "bg-brand-600 text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500"
@@ -625,7 +666,7 @@ export default function Landing() {
           </h2>
           <p className="text-slate-400 mb-16">One platform. All the exams that matter.</p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div ref={examGridRef} className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 ${examGridIn ? "is-in" : ""}`}>
             {[
               { name: "PMP", org: "PMI", live: true, lp: "/lp/pmp", color: "from-brand-500/20 to-brand-600/5 border-brand-500/25" },
               { name: "Security+", org: "CompTIA", live: true, lp: "/lp/security-plus", color: "from-red-500/20 to-red-600/5 border-red-500/25" },
@@ -654,7 +695,8 @@ export default function Landing() {
                     to={e.lp}
                     onClick={() => trackCtaClick(`exam-card-${e.lp.slice(4)}`)}
                     aria-label={`Practice ${e.name} (${e.org})`}
-                    className={`group block ${base} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70`}
+                    style={{ transitionDelay: `${i * 0.04}s` }}
+                    className={`reveal-fade group block ${base} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70`}
                   >
                     <div className="text-white font-bold text-sm">{e.name}</div>
                     <div className="text-slate-400 text-xs mt-1">{e.org}</div>
@@ -667,7 +709,7 @@ export default function Landing() {
 
               // Coming-soon exams: not yet clickable — keep the Notify me affordance.
               return (
-                <div key={i} className={base}>
+                <div key={i} style={{ transitionDelay: `${i * 0.04}s` }} className={`reveal-fade ${base}`}>
                   <div className="absolute inset-0 bg-slate-950/40" />
                   <div className="relative z-10">
                     <div className="text-white font-bold text-sm">{e.name}</div>
@@ -781,7 +823,7 @@ export default function Landing() {
             ].map((s, i) => (
               <div key={i} className="px-8 py-10 text-center">
                 <div className="text-5xl sm:text-6xl font-extrabold text-white font-display tracking-tight">
-                  {s.value}
+                  <CountUp value={s.value} />
                 </div>
                 <div className="font-mono text-[11px] tracking-[0.25em] uppercase text-slate-500 mt-4">{s.label}</div>
               </div>
@@ -876,6 +918,7 @@ export default function Landing() {
           </p>
           <button
             onClick={handleCta}
+            data-magnetic-cta
             className="rounded-full bg-white px-10 py-4 text-lg font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-xl"
           >
             Start Your Free Trial
