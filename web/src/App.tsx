@@ -31,6 +31,14 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const PmpPracticeLP = lazy(() => import("./pages/landing/PmpPracticeLP"));
 const SecurityPlusPracticeLP = lazy(() => import("./pages/landing/SecurityPlusPracticeLP"));
 const ShrmCpPracticeLP = lazy(() => import("./pages/landing/ShrmCpPracticeLP"));
+// Additional cert LPs (added 2026-06-13 — one per live exam, linked from the home Exam Coverage grid)
+const CsmPracticeLP = lazy(() => import("./pages/landing/CsmPracticeLP"));
+const Itil4PracticeLP = lazy(() => import("./pages/landing/Itil4PracticeLP"));
+const NetworkPlusPracticeLP = lazy(() => import("./pages/landing/NetworkPlusPracticeLP"));
+const APlusCore2PracticeLP = lazy(() => import("./pages/landing/APlusCore2PracticeLP"));
+const SixSigmaPracticeLP = lazy(() => import("./pages/landing/SixSigmaPracticeLP"));
+const PgmpPracticeLP = lazy(() => import("./pages/landing/PgmpPracticeLP"));
+const CiaPart1PracticeLP = lazy(() => import("./pages/landing/CiaPart1PracticeLP"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Help = lazy(() => import("./pages/Help"));
@@ -417,6 +425,13 @@ function App() {
               <Route path="/lp/pmp" element={<PmpPracticeLP />} />
               <Route path="/lp/security-plus" element={<SecurityPlusPracticeLP />} />
               <Route path="/lp/shrm-cp" element={<ShrmCpPracticeLP />} />
+              <Route path="/lp/csm" element={<CsmPracticeLP />} />
+              <Route path="/lp/itil" element={<Itil4PracticeLP />} />
+              <Route path="/lp/network-plus" element={<NetworkPlusPracticeLP />} />
+              <Route path="/lp/a-plus-core-2" element={<APlusCore2PracticeLP />} />
+              <Route path="/lp/six-sigma" element={<SixSigmaPracticeLP />} />
+              <Route path="/lp/pgmp" element={<PgmpPracticeLP />} />
+              <Route path="/lp/cia" element={<CiaPart1PracticeLP />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/signin" element={<Navigate to="/login" replace />} />

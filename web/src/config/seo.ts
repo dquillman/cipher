@@ -160,6 +160,62 @@ export const SEO = {
     ogImage: 'https://cipherexam.com/og-shrm-cp.png',
   },
 
+  lpItil: {
+    title: 'ITIL 4 Practice — Value-Chain-Lens Questions · CipherExam',
+    description:
+      'Practice ITIL 4 Foundation questions mapped to the service value chain and guiding principles, with AI-explained reasoning through the Exam Lens. Free 7-day trial.',
+    canonical: '/lp/itil',
+    ogImage: 'https://cipherexam.com/og-default.png',
+  },
+
+  lpNetworkPlus: {
+    title: 'CompTIA Network+ Practice — OSI Troubleshooting · CipherExam',
+    description:
+      'Practice Network+ (N10-008) with native PBQ support and layer-by-layer reasoning through the Exam Lens. Bloom’s-classified questions. Free 7-day trial.',
+    canonical: '/lp/network-plus',
+    ogImage: 'https://cipherexam.com/og-default.png',
+  },
+
+  lpSixSigma: {
+    title: 'Six Sigma Green Belt Practice — Exam Lens Explanations · CipherExam',
+    description:
+      "Practice Six Sigma Green Belt the way ASQ grades it. Every answer explained through the Exam Lens — which DMAIC phase — plus Bloom's-level reasoning. Free 7-day trial.",
+    canonical: '/lp/six-sigma',
+    ogImage: 'https://cipherexam.com/og-default.png',
+  },
+
+  lpCia: {
+    title: 'CIA Part 1 Practice — AI-Explained Questions · CipherExam',
+    description:
+      "Practice CIA Part 1 (IIA) questions with AI-explained reasoning. Bloom's-classified, scenario-aware, graded against the IIA International Standards. Free 7-day trial.",
+    canonical: '/lp/cia',
+    ogImage: 'https://cipherexam.com/og-default.png',
+  },
+
+  lpCsm: {
+    title: 'CSM Practice — AI-Explained Scrum Guide Questions · CipherExam',
+    description:
+      "Practice Certified ScrumMaster (CSM) questions explained through the Exam Lens, grounded in the current Scrum Guide. Bloom's-classified, scenario-aware. Free 7-day trial.",
+    canonical: '/lp/csm',
+    ogImage: 'https://cipherexam.com/og-default.png',
+  },
+
+  lpAPlusCore2: {
+    title: 'CompTIA A+ Core 2 Practice — PBQ-Native · CipherExam',
+    description:
+      'Practice A+ Core 2 (220-1102) with full PBQ support and reasoning explanations tied to the CompTIA six-step troubleshooting methodology. Free 7-day trial.',
+    canonical: '/lp/a-plus-core-2',
+    ogImage: 'https://cipherexam.com/og-default.png',
+  },
+
+  lpPgmp: {
+    title: 'PgMP Practice — Program-Level Reasoning · CipherExam',
+    description:
+      "Practice PgMP exam questions with AI-explained reasoning. Bloom's-classified, governance-aware, framed by program benefits realization. Free 7-day trial.",
+    canonical: '/lp/pgmp',
+    ogImage: 'https://cipherexam.com/og-default.png',
+  },
+
   terms: {
     title: 'Terms of Service · CipherExam',
     description: 'CipherExam terms of service.',

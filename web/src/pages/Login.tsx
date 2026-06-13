@@ -20,6 +20,13 @@ const LP_EXAM_SLUG_TO_ID: Record<string, string> = {
     'pmp':            '7qmPagj9A6RpkC0CwGkY',
     'security-plus':  '79cuGMNydTwDMhyiDjry',
     'shrm-cp':        'bpfawZDj3qalhoU4mdd3',
+    'csm':            'IpECw0XAtBkgD1HyvYas',
+    'itil':           '6FKeXlV2dzv4I03tewcU',
+    'network-plus':   'gp6QwBz0FXFIntLSQSYr',
+    'a-plus-core-2':  'cxBsVz8AVaocdEYbgSMA',
+    'six-sigma':      'XGfL6RE2ls7cokP2tqMa',
+    'pgmp':           'bF7IQUrKjbP2KLwiSNqt',
+    'cia':            'dtgTymjijqUr4NEIHbE1',
 };
 
 export default function Login() {

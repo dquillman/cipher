@@ -627,42 +627,59 @@ export default function Landing() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {[
-              { name: "PMP", org: "PMI", live: true, color: "from-brand-500/20 to-brand-600/5 border-brand-500/25" },
-              { name: "Security+", org: "CompTIA", live: true, color: "from-red-500/20 to-red-600/5 border-red-500/25" },
-              { name: "CSM", org: "Scrum Alliance", live: true, color: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/25" },
-              { name: "SHRM-CP", org: "SHRM", live: true, color: "from-purple-500/20 to-purple-600/5 border-purple-500/25" },
-              { name: "ITIL 4", org: "PeopleCert", live: true, color: "from-cyan-500/20 to-cyan-600/5 border-cyan-500/25" },
-              { name: "Network+", org: "CompTIA", live: true, color: "from-orange-500/20 to-orange-600/5 border-orange-500/25" },
-              { name: "A+ Core 2", org: "CompTIA", live: true, color: "from-pink-500/20 to-pink-600/5 border-pink-500/25" },
-              { name: "Six Sigma GB", org: "ASQ", live: true, color: "from-amber-500/20 to-amber-600/5 border-amber-500/25" },
-              { name: "PgMP", org: "PMI", live: true, color: "from-blue-500/20 to-blue-600/5 border-blue-500/25" },
-              { name: "CIA Part 1", org: "IIA", live: true, color: "from-teal-500/20 to-teal-600/5 border-teal-500/25" },
-              { name: "CISSP", org: "ISC²", live: false, color: "" },
-              { name: "AWS SAA", org: "Amazon", live: false, color: "" },
-            ].map((e, i) => (
-              <div
-                key={i}
-                className={`rounded-xl border p-4 text-center transition-all hover:-translate-y-0.5 ${
-                  e.live
-                    ? `bg-gradient-to-b ${e.color} hover:shadow-lg hover:shadow-slate-900/50`
-                    : "border-dashed border-brand-500/30 bg-slate-900/30 relative overflow-hidden"
-                }`}
-              >
-                {!e.live && <div className="absolute inset-0 bg-slate-950/40" />}
-                <div className={`relative ${!e.live ? "z-10" : ""}`}>
-                  <div className="text-white font-bold text-sm">{e.name}</div>
-                  <div className="text-slate-400 text-xs mt-1">{e.org}</div>
-                  {!e.live && (
-                    <>
-                      <span className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 rounded-full px-2 py-0.5">
-                        Coming Soon
-                      </span>
-                      <div className="text-[9px] text-slate-500 mt-1.5 hover:text-brand-400 transition-colors cursor-pointer">Notify me</div>
-                    </>
-                  )}
+              { name: "PMP", org: "PMI", live: true, lp: "/lp/pmp", color: "from-brand-500/20 to-brand-600/5 border-brand-500/25" },
+              { name: "Security+", org: "CompTIA", live: true, lp: "/lp/security-plus", color: "from-red-500/20 to-red-600/5 border-red-500/25" },
+              { name: "CSM", org: "Scrum Alliance", live: true, lp: "/lp/csm", color: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/25" },
+              { name: "SHRM-CP", org: "SHRM", live: true, lp: "/lp/shrm-cp", color: "from-purple-500/20 to-purple-600/5 border-purple-500/25" },
+              { name: "ITIL 4", org: "PeopleCert", live: true, lp: "/lp/itil", color: "from-cyan-500/20 to-cyan-600/5 border-cyan-500/25" },
+              { name: "Network+", org: "CompTIA", live: true, lp: "/lp/network-plus", color: "from-orange-500/20 to-orange-600/5 border-orange-500/25" },
+              { name: "A+ Core 2", org: "CompTIA", live: true, lp: "/lp/a-plus-core-2", color: "from-pink-500/20 to-pink-600/5 border-pink-500/25" },
+              { name: "Six Sigma GB", org: "ASQ", live: true, lp: "/lp/six-sigma", color: "from-amber-500/20 to-amber-600/5 border-amber-500/25" },
+              { name: "PgMP", org: "PMI", live: true, lp: "/lp/pgmp", color: "from-blue-500/20 to-blue-600/5 border-blue-500/25" },
+              { name: "CIA Part 1", org: "IIA", live: true, lp: "/lp/cia", color: "from-teal-500/20 to-teal-600/5 border-teal-500/25" },
+              { name: "CISSP", org: "ISC²", live: false, lp: null, color: "" },
+              { name: "AWS SAA", org: "Amazon", live: false, lp: null, color: "" },
+            ].map((e, i) => {
+              const base = `rounded-xl border p-4 text-center transition-all hover:-translate-y-0.5 ${
+                e.live
+                  ? `bg-gradient-to-b ${e.color} hover:shadow-lg hover:shadow-slate-900/50`
+                  : "border-dashed border-brand-500/30 bg-slate-900/30 relative overflow-hidden"
+              }`;
+
+              // Live exams link to their dedicated landing page.
+              if (e.live && e.lp) {
+                return (
+                  <Link
+                    key={i}
+                    to={e.lp}
+                    onClick={() => trackCtaClick(`exam-card-${e.lp.slice(4)}`)}
+                    aria-label={`Practice ${e.name} (${e.org})`}
+                    className={`group block ${base} focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400/70`}
+                  >
+                    <div className="text-white font-bold text-sm">{e.name}</div>
+                    <div className="text-slate-400 text-xs mt-1">{e.org}</div>
+                    <span className="mt-2 inline-flex items-center justify-center gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-300 opacity-0 transition-opacity group-hover:opacity-100">
+                      Practice <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+                    </span>
+                  </Link>
+                );
+              }
+
+              // Coming-soon exams: not yet clickable — keep the Notify me affordance.
+              return (
+                <div key={i} className={base}>
+                  <div className="absolute inset-0 bg-slate-950/40" />
+                  <div className="relative z-10">
+                    <div className="text-white font-bold text-sm">{e.name}</div>
+                    <div className="text-slate-400 text-xs mt-1">{e.org}</div>
+                    <span className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 rounded-full px-2 py-0.5">
+                      Coming Soon
+                    </span>
+                    <div className="text-[9px] text-slate-500 mt-1.5 hover:text-brand-400 transition-colors cursor-pointer">Notify me</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </RevealSection>

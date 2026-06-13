@@ -59,6 +59,7 @@ const LENSES: LensEntry[] = [
   {
     exam: 'Six Sigma Green Belt',
     examSlug: 'six-sigma',
+    lpHref: '/lp/six-sigma',
     lensName: 'DMAIC Lens',
     prompt: 'Where in Define-Measure-Analyze-Improve-Control does this fall?',
     body:
@@ -83,6 +84,7 @@ const LENSES: LensEntry[] = [
   {
     exam: 'CIA Part 1',
     examSlug: 'cia',
+    lpHref: '/lp/cia',
     lensName: 'IIA Standards Lens',
     prompt: 'What do the IIA International Standards say?',
     body:
@@ -95,6 +97,7 @@ const LENSES: LensEntry[] = [
   {
     exam: 'ITIL 4 Foundation',
     examSlug: 'itil',
+    lpHref: '/lp/itil',
     lensName: 'Service Value Lens',
     prompt: 'How does this serve the ITIL service value chain?',
     body:
@@ -107,6 +110,7 @@ const LENSES: LensEntry[] = [
   {
     exam: 'Certified ScrumMaster (CSM)',
     examSlug: 'csm',
+    lpHref: '/lp/csm',
     lensName: 'Scrum Guide Lens',
     prompt: 'What does the Scrum Guide say the role should do?',
     body:
@@ -119,6 +123,7 @@ const LENSES: LensEntry[] = [
   {
     exam: 'CompTIA Network+',
     examSlug: 'network-plus',
+    lpHref: '/lp/network-plus',
     lensName: 'OSI Troubleshooting Lens',
     prompt: 'What OSI layer is this, and what\'s the systematic fix?',
     body:
@@ -131,6 +136,7 @@ const LENSES: LensEntry[] = [
   {
     exam: 'CompTIA A+ Core 2',
     examSlug: 'a-plus-core-2',
+    lpHref: '/lp/a-plus-core-2',
     lensName: 'Troubleshooting Methodology Lens',
     prompt: 'What step of the CompTIA troubleshooting model is this?',
     body:
@@ -143,6 +149,7 @@ const LENSES: LensEntry[] = [
   {
     exam: 'PgMP',
     examSlug: 'pgmp',
+    lpHref: '/lp/pgmp',
     lensName: 'Program Governance Lens',
     prompt: 'How does this serve the program\'s strategic objectives and benefits realization?',
     body:

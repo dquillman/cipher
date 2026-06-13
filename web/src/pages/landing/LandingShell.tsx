@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { captureUtmParams, trackLandingPageView, trackCtaClick } from "../../lib/ga4";
@@ -26,8 +26,8 @@ export type TestimonialBadgeVariant = "pmi-safe" | "full" | "none";
  * Each cert-specific LP wraps its content in <LandingShell exam="..." />.
  */
 export interface LandingShellProps {
-  /** Cert slug used in the signup pre-select query param (pmp | security-plus | shrm-cp) */
-  exam: "pmp" | "security-plus" | "shrm-cp";
+  /** Cert slug used in the signup pre-select query param (pmp | csm | security-plus | shrm-cp | itil | six-sigma | network-plus | a-plus-core-2 | pgmp | cia) */
+  exam: "pmp" | "csm" | "security-plus" | "shrm-cp" | "itil" | "six-sigma" | "network-plus" | "a-plus-core-2" | "pgmp" | "cia";
   /** Cert short name shown in the header CTA */
   examShortName: string;
   /** Identifier passed to trackLandingPageView / trackCtaClick for cluster attribution */
@@ -151,12 +151,24 @@ export function Hero({
 
       <div className="mx-auto max-w-4xl px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
       {eyebrow && (
-        <p className="text-sm font-semibold uppercase tracking-widest text-brand-400">{eyebrow}</p>
+        <p className="hero-enter text-sm font-semibold uppercase tracking-widest text-brand-400" style={{ animationDelay: "0.04s" }}>{eyebrow}</p>
       )}
+      {/* White hero headline — animates in word-by-word (staggered rise). Each
+          word is an inline-block span (so translateY works) with a real space
+          text node between them, so the <h1> text content keeps its spaces for
+          SEO + screen readers and the line still wraps naturally. Reduced-motion
+          shows the headline static (see .hero-word in index.css). */}
       <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-slate-50 sm:text-5xl md:text-6xl">
-        {h1}
+        {h1.split(" ").map((word, i, arr) => (
+          <Fragment key={i}>
+            <span className="hero-word" style={{ animationDelay: `${0.12 + i * 0.06}s` }}>
+              {word}
+            </span>
+            {i < arr.length - 1 ? " " : null}
+          </Fragment>
+        ))}
       </h1>
-      <p className="mt-6 text-lg leading-relaxed text-slate-300 sm:text-xl">{sub}</p>
+      <p className="hero-enter mt-6 text-lg leading-relaxed text-slate-300 sm:text-xl" style={{ animationDelay: "0.6s" }}>{sub}</p>
 
       {videoSrc && (
         <div className="mt-10 mx-auto max-w-2xl overflow-hidden rounded-2xl border border-slate-800 shadow-2xl shadow-brand-900/20 bg-slate-900">
@@ -174,7 +186,7 @@ export function Hero({
         </div>
       )}
 
-      <div className="mt-8 flex flex-col items-center gap-2">
+      <div className="hero-enter mt-8 flex flex-col items-center gap-2" style={{ animationDelay: "0.72s" }}>
         <Link
           to={ctaHref}
           onClick={onCtaClick}

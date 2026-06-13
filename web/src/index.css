@@ -137,10 +137,23 @@ html, body, #root {
   will-change: transform;
 }
 
+/* LP hero headline — per-word staggered rise. fill-mode `both` keeps each word
+   hidden through its stagger delay (no flash of full text), then it rises in.
+   The base (un-animated) state is visible, so reduced-motion / no-JS shows the
+   full headline. SEO-safe: the words stay real text nodes inside the <h1>. */
+@keyframes hero-word-rise {
+  from { opacity: 0; transform: translateY(0.5em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-word {
+  display: inline-block;
+  animation: hero-word-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-enter, .hero-enter-1, .hero-enter-2, .hero-enter-3, .hero-enter-4,
   .hero-enter-5, .hero-enter-6, .text-shimmer, .blob-a, .blob-b,
-  .demo-float, .cta-breathe, .hero-ambient {
+  .demo-float, .cta-breathe, .hero-ambient, .hero-word {
     animation: none !important;
   }
 }
