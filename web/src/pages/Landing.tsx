@@ -97,17 +97,17 @@ export default function Landing() {
   const heroRef = useRef<HTMLElement>(null);
 
   // Light GSAP polish scoped to the hero: WebGL parallax/fade on scroll +
-  // magnetic CTAs. Dynamically imports gsap; no-ops under reduced motion.
+  // magnetic CTAs. Dynamically imports gsap. (Runs regardless of OS reduce-motion.)
   useHeroMotion(heroRef);
 
   // Staggered reveal for the exam-coverage grid (§6).
   const { ref: examGridRef, inView: examGridIn } = useInView<HTMLDivElement>(0.12);
 
   // Magnetic pull on the nav + final "Start Free Trial" CTAs — mirrors the hero
-  // CTA effect. Pointer-fine only, reduced-motion-safe; gsap loads lazily.
+  // CTA effect. Pointer-fine only (skipped on touch); gsap loads lazily.
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+    // OS reduce-motion intentionally not honoured (owner decision 2026-06-13).
+    if (!window.matchMedia("(pointer: fine)").matches) return; // skip on touch
     const disposers: Array<() => void> = [];
     let cancelled = false;
     import("gsap").then(({ gsap }) => {

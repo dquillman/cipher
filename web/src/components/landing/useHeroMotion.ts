@@ -21,7 +21,7 @@ export function useHeroMotion(scopeRef: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const scope = scopeRef.current;
     if (!scope) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // OS reduce-motion intentionally not honoured (owner decision 2026-06-13).
 
     let cleanup: (() => void) | undefined;
     let cancelled = false;

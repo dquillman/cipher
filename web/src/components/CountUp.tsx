@@ -24,10 +24,7 @@ export default function CountUp({
 
   useEffect(() => {
     if (target === null || !inView) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setN(target);
-      return;
-    }
+    // OS reduce-motion intentionally not honoured (owner decision 2026-06-13).
     let raf = 0;
     const start = performance.now();
     const tick = (now: number) => {

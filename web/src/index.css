@@ -57,14 +57,12 @@ html, body, #root {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* EC-030: Accessibility — reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+/* EC-030 was a global prefers-reduced-motion kill-switch. Intentionally removed
+   2026-06-13 at the owner's request — animations now play for ALL visitors,
+   regardless of the OS "reduce motion" setting. (Accessibility override; if you
+   ever want to restore the reduced-motion behaviour, re-add the @media block
+   here plus the per-class guards below and the matchMedia checks in
+   useInView.ts / useHeroMotion.ts / HeroBackground.tsx / CountUp.tsx / Landing.tsx.) */
 
 /* ━━━ Landing-page motion layer ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    Restrained, B2B-professional. Transform/opacity only (GPU-composited),
@@ -161,15 +159,6 @@ html, body, #root {
 .reveal-fade { opacity: 0; transition: opacity 0.55s ease-out; }
 .is-in .reveal-fade { opacity: 1; }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-enter, .hero-enter-1, .hero-enter-2, .hero-enter-3, .hero-enter-4,
-  .hero-enter-5, .hero-enter-6, .text-shimmer, .blob-a, .blob-b,
-  .demo-float, .cta-breathe, .hero-ambient, .hero-word {
-    animation: none !important;
-  }
-  .reveal-up, .reveal-left, .reveal-fade {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
+/* (Per-class prefers-reduced-motion guards intentionally removed 2026-06-13 —
+   see the EC-030 note above. Hero entrance, shimmer, drift, and scroll-reveal
+   now run regardless of the OS reduce-motion setting.) */

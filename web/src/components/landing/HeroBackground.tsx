@@ -19,7 +19,8 @@ const HeroCanvas = lazy(() => import("./HeroCanvas"));
 
 function canRunWebGL(): boolean {
   if (typeof window === "undefined") return false;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+  // OS reduce-motion intentionally not honoured (owner decision 2026-06-13) —
+  // the WebGL hero runs whenever WebGL is available.
   try {
     const c = document.createElement("canvas");
     return !!(c.getContext("webgl2") || c.getContext("webgl"));
