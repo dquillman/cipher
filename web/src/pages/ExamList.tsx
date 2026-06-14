@@ -37,7 +37,7 @@ function getExamCategory(examName: string) {
 export default function ExamList() {
     const [exams, setExams] = useState<Exam[]>([]);
     const [loading, setLoading] = useState(true);
-    const { selectedExamId } = useExam();
+    const { selectedExamId, switchExam } = useExam();
 
     useEffect(() => {
         const fetchExams = async () => {
@@ -107,7 +107,11 @@ export default function ExamList() {
                             <Link
                                 to={`/app/quiz/${exam.id}`}
                                 onClick={() => {
-                                    localStorage.setItem('selectedExamId', exam.id);
+                                    // Update ExamContext (not just localStorage) so the whole
+                                    // app — header, dashboard, and the quiz's context-derived
+                                    // exam name/domains — switches to the clicked exam, not a
+                                    // stale one. switchExam writes localStorage AND state.
+                                    void switchExam(exam.id);
                                 }}
                                 className="block w-full text-center bg-brand-600 text-white py-3 rounded-xl font-bold hover:bg-brand-500 transition-colors shadow-lg shadow-brand-900/20"
                             >
