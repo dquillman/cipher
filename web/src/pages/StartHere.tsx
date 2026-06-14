@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, VideoOff } from 'lucide-react';
 import { useExam } from '../contexts/ExamContext';
@@ -9,6 +9,16 @@ export default function StartHere() {
 
     const [videoError, setVideoError] = useState(false);
 
+    // Reaching this page counts as acknowledging onboarding. The Dashboard
+    // force-redirects here when (no diagnostic yet && !ack); without setting the
+    // ack on arrival, a pre-diagnostic user gets bounced back every time they
+    // click Dashboard and can never reach it. Set it once so the gate fires at
+    // most once — they can then return to the Dashboard freely (sidebar) whether
+    // or not they take the diagnostic.
+    useEffect(() => {
+        localStorage.setItem('ec_onboarding_ack', 'true');
+    }, []);
+
     // Treat null (loading) same as false (pre-diagnostic view)
     const hasCompletedDiagnostic = contextDiagnostic === true;
 
@@ -17,16 +27,12 @@ export default function StartHere() {
             {/* Header */}
             <header className="bg-slate-800/50 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
                 <div className="mx-auto max-w-3xl px-6 h-20 flex items-center justify-between">
-                    {hasCompletedDiagnostic ? (
-                        <Link to="/app" className="text-slate-400 hover:text-white transition-colors group flex items-center gap-2">
-                            <div className="p-2 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-slate-500 transition-colors">
-                                <ChevronLeft className="w-5 h-5" />
-                            </div>
-                            <span className="font-bold">Back to Dashboard</span>
-                        </Link>
-                    ) : (
-                        <div />
-                    )}
+                    <Link to="/app" className="text-slate-400 hover:text-white transition-colors group flex items-center gap-2">
+                        <div className="p-2 rounded-lg bg-slate-800 border border-slate-700 group-hover:border-slate-500 transition-colors">
+                            <ChevronLeft className="w-5 h-5" />
+                        </div>
+                        <span className="font-bold">Back to Dashboard</span>
+                    </Link>
                     <h1 className="text-xl font-bold font-display text-white">
                         {hasCompletedDiagnostic ? 'New to CipherExam?' : 'Welcome'}
                     </h1>
