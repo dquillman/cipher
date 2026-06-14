@@ -213,7 +213,7 @@ function HeatmapGrid({ grid, columns, levelsTopDown, onCellClick }: HeatmapGridP
                 </div>
 
                 {/* Rows: one per level, top-down = hardest first */}
-                {levelsTopDown.map(level => {
+                {levelsTopDown.map((level, rowIdx) => {
                     const row = grid[level] || {};
                     return (
                         <div
@@ -230,7 +230,7 @@ function HeatmapGrid({ grid, columns, levelsTopDown, onCellClick }: HeatmapGridP
                                     {BLOOM_DESCRIPTIONS[level]}
                                 </span>
                             </div>
-                            {columns.map(dom => {
+                            {columns.map((dom, colIdx) => {
                                 const cell = row[dom];
                                 const total = cell?.total ?? 0;
                                 const score = cell?.score ?? 0;
@@ -241,6 +241,7 @@ function HeatmapGrid({ grid, columns, levelsTopDown, onCellClick }: HeatmapGridP
                                         score={score}
                                         total={total}
                                         correct={correct}
+                                        delay={(rowIdx * columns.length + colIdx) * 0.025}
                                         onClick={
                                             total > 0
                                                 ? () => onCellClick({ level, domain: dom, correct, total, score })
@@ -261,14 +262,16 @@ interface HeatCellProps {
     score: number;
     total: number;
     correct: number;
+    delay?: number;
     onClick?: () => void;
 }
 
-function HeatCell({ score, total, correct, onClick }: HeatCellProps) {
+function HeatCell({ score, total, correct, delay = 0, onClick }: HeatCellProps) {
     if (total === 0) {
         return (
             <div
-                className="rounded-md border border-slate-700/60 bg-slate-800/40 h-14 md:h-16 flex items-center justify-center text-slate-600 text-xs"
+                className="heat-reveal rounded-md border border-slate-700/60 bg-slate-800/40 h-14 md:h-16 flex items-center justify-center text-slate-600 text-xs"
+                style={{ animationDelay: `${delay}s` }}
                 title="No questions answered in this cell yet"
             >
                 —
@@ -282,7 +285,8 @@ function HeatCell({ score, total, correct, onClick }: HeatCellProps) {
         <button
             type="button"
             onClick={onClick}
-            className={`rounded-md border ${bg} ${border} h-14 md:h-16 flex flex-col items-center justify-center transition-all hover:scale-[1.04] hover:brightness-125 focus:outline-none focus:ring-2 focus:ring-indigo-400/60 cursor-pointer`}
+            style={{ animationDelay: `${delay}s` }}
+            className={`heat-reveal rounded-md border ${bg} ${border} h-14 md:h-16 flex flex-col items-center justify-center transition-all hover:scale-[1.04] hover:brightness-125 focus:outline-none focus:ring-2 focus:ring-indigo-400/60 cursor-pointer`}
             title={`${correct}/${total} correct — click to see how to improve`}
         >
             <span className={`font-bold text-sm md:text-base tabular-nums ${text}`}>{score}%</span>

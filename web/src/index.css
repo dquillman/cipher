@@ -175,6 +175,11 @@ html, body, #root {
 }
 .correct-pop { animation: correct-pop 0.5s ease-out 0.1s; }
 
+/* Bloom heatmap cells fade in as a cascade when the grid loads. Opacity-only so
+   it never fights each cell's hover:scale. Stagger via inline animation-delay. */
+@keyframes heat-reveal { from { opacity: 0; } to { opacity: 1; } }
+.heat-reveal { animation: heat-reveal 0.4s ease-out both; }
+
 /* (Per-class prefers-reduced-motion guards intentionally removed 2026-06-13 —
    see the EC-030 note above. Hero entrance, shimmer, drift, and scroll-reveal
    now run regardless of the OS reduce-motion setting.) */

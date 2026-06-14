@@ -6,6 +6,8 @@ import { auth } from '../firebase';
 import { useExam } from '../contexts/ExamContext';
 import { PredictionEngine, type DomainReadiness } from '../services/PredictionEngine';
 import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../types/Bloom';
+import confetti from 'canvas-confetti';
+import CountUp from '../components/CountUp';
 
 interface BloomStat {
     level: BloomLevel;
@@ -95,6 +97,24 @@ export default function SimulatorResults() {
         }).catch(() => {});
     }, [selectedExamId]);
 
+    // Milestone moment: a brief, restrained confetti salute when a mock is passed.
+    // Side cannons for ~0.8s in brand hues — celebratory, not childish. Fires once.
+    useEffect(() => {
+        if (!questions || total === 0) return;
+        if (Math.round((score / total) * 100) < 70) return;
+        const colors = ['#6366f1', '#3b82f6', '#a78bfa', '#10b981'];
+        const end = Date.now() + 800;
+        let raf = 0;
+        const frame = () => {
+            confetti({ particleCount: 3, angle: 60, spread: 55, startVelocity: 45, origin: { x: 0, y: 0.7 }, colors, disableForReducedMotion: false });
+            confetti({ particleCount: 3, angle: 120, spread: 55, startVelocity: 45, origin: { x: 1, y: 0.7 }, colors, disableForReducedMotion: false });
+            if (Date.now() < end) raf = requestAnimationFrame(frame);
+        };
+        frame();
+        return () => cancelAnimationFrame(raf);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     if (!questions) return null;
 
     const percentage = Math.round((score / total) * 100);
@@ -176,7 +196,7 @@ export default function SimulatorResults() {
                             </svg>
                         </div>
 
-                        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">{percentage}%</div>
+                        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2"><CountUp value={`${percentage}%`} /></div>
                         <div className={`text-lg font-bold px-4 py-1 rounded-full ${passed ? 'bg-emerald-500/10 text-emerald-400' : 'bg-red-500/10 text-red-500'
                             }`}>
                             {passed ? 'PASSED' : 'FAILED'}
