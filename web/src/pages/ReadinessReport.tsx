@@ -12,6 +12,7 @@ import PatternInsightCard, { type PatternData } from '../components/PatternInsig
 import { StudyPlanService } from '../services/StudyPlanService';
 import { useExam } from '../contexts/ExamContext';
 import { applyReadinessConfidence } from '../utils/readinessConfidence';
+import CountUp from '../components/CountUp';
 import { PerformanceTrendService, type OverallTrendResult } from '../services/performanceTrendService';
 
 export default function ReadinessReportPage() {
@@ -215,7 +216,7 @@ export default function ReadinessReportPage() {
                                         </svg>
                                         <div className="absolute inset-0 flex flex-col items-center justify-center">
                                             <span className={`text-4xl font-black ${displayedScore !== null ? getScoreColor(displayedScore).split(' ')[0] : 'text-slate-500'}`}>
-                                                {displayedScore !== null ? `${displayedScore}%` : '—'}
+                                                {displayedScore !== null ? <CountUp value={`${displayedScore}%`} /> : '—'}
                                             </span>
                                             <span className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">
                                                 Probability

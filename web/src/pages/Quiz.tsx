@@ -1973,7 +1973,7 @@ export default function Quiz() {
                                             key={i}
                                             onClick={() => handleOptionSelect(i)}
                                             disabled={showExplanation}
-                                            className={`w-full text-left p-4 rounded-xl border-2 transition-colors duration-500 ease-in-out flex items-center gap-4 group motion-reduce:transition-none ${borderClass}`}
+                                            className={`w-full text-left p-4 rounded-xl border-2 transition-colors duration-500 ease-in-out flex items-center gap-4 group motion-reduce:transition-none ${borderClass} ${showExplanation && i === currentQuestion.correctAnswer ? 'correct-pop' : ''}`}
                                         >
                                             <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors duration-500 ease-in-out ${dotClass}`}>
                                                 {showExplanation && resultIcon ? (
@@ -1992,7 +1992,7 @@ export default function Quiz() {
                             )}
 
                             {showExplanation && explanationExpanded && (
-                                <div className="mt-8 pt-6 border-t border-slate-700">
+                                <div className="answer-reveal mt-8 pt-6 border-t border-slate-700">
                                     <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-3 sm:p-6 lg:p-10">
                                         {currentQuestion.type === "emv" && currentQuestion.scenarios && (
                                             <EmvCalculation scenarios={currentQuestion.scenarios} />

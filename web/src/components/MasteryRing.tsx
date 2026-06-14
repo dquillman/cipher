@@ -28,6 +28,28 @@ export default function MasteryRing({
         return () => cancelAnimationFrame(raf);
     }, []);
 
+    // Count the percentage label up in sync with the ring fill (~1.5s, eased)
+    // so the number feels earned rather than snapping into place. Honours
+    // reduced-motion by jumping straight to the value.
+    const [displayPct, setDisplayPct] = useState(percentage);
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+            setDisplayPct(percentage);
+            return;
+        }
+        let raf = 0;
+        const durationMs = 1500;
+        const start = performance.now();
+        const tick = (now: number) => {
+            const t = Math.min((now - start) / durationMs, 1);
+            setDisplayPct((1 - Math.pow(1 - t, 3)) * percentage); // easeOutCubic
+            if (t < 1) raf = requestAnimationFrame(tick);
+        };
+        setDisplayPct(0);
+        raf = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(raf);
+    }, [percentage]);
+
     return (
         <div className="flex flex-col items-center justify-center gap-2">
             <div className="relative" style={{ width: size, height: size }}>
@@ -59,7 +81,7 @@ export default function MasteryRing({
                 {/* Percentage Text */}
                 <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-3xl font-bold font-display text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">
-                        {Math.round(percentage)}%
+                        {Math.round(displayPct)}%
                     </span>
                 </div>
             </div>
