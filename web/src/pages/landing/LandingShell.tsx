@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { captureUtmParams, trackLandingPageView, trackCtaClick } from "../../lib/ga4";
 import HeroBackground from "../../components/landing/HeroBackground";
 import { useHeroMotion } from "../../components/landing/useHeroMotion";
+import PublishedTestimonials from "../../components/PublishedTestimonials";
 import { DISPLAY_VERSION } from "../../version";
 import {
   PMI_SAFE_TESTIMONIALS,
@@ -70,6 +71,11 @@ export default function LandingShell({ exam, examShortName, pageId, children }: 
       </header>
 
       <main>{children}</main>
+
+      {/* User testimonials (auto-published from Admin-Core on approve). Non-PMI
+          surfaces only — PMP/PgMP keep curated pmi-safe quotes per the PMI
+          no-contributor-name rule. Renders nothing until there are any. */}
+      {exam !== "pmp" && exam !== "pgmp" && <PublishedTestimonials />}
 
       {/* Minimal footer — no main-site nav, just trust signals + final CTA */}
       <footer className="border-t border-slate-800 bg-slate-900 mt-16">

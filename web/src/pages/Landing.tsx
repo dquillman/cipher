@@ -9,6 +9,7 @@ import { useHeroMotion } from "../components/landing/useHeroMotion";
 import { useInView } from "../hooks/useInView";
 import CountUp from "../components/CountUp";
 import ScrollProgress from "../components/ScrollProgress";
+import PublishedTestimonials from "../components/PublishedTestimonials";
 import SeoHead from "../components/SeoHead";
 import { SEO } from "../config/seo";
 import {
@@ -901,6 +902,10 @@ export default function Landing() {
           </figure>
         </div>
       </RevealSection>
+
+      {/* User testimonials — auto-published from Admin-Core on approve.
+          Self-hides (renders null) until there are approved + consented ones. */}
+      <PublishedTestimonials />
 
       {/* ━━━ SECTION 11 — FINAL CTA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-24 relative overflow-hidden">
