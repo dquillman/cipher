@@ -39,7 +39,7 @@ export default function Dashboard() {
     // Use UseExam globally
     const { selectedExamId, examName, examDomains, loading: examLoading, hasCompletedDiagnostic: contextDiagnostic, markDiagnosticComplete } = useExam();
 
-    const [domainMasteryCounts, setDomainMasteryCounts] = useState<Record<string, number>>({});
+    const [domainStats, setDomainStats] = useState<Record<string, { practiced: number; mastered: number; attempts: number; correct: number }>>({});
     const [domainTotalCounts, setDomainTotalCounts] = useState<Record<string, number>>({});
 
     const [loading, setLoading] = useState(true);
@@ -98,14 +98,19 @@ export default function Dashboard() {
                     );
 
                     unsubscribeProgress = onSnapshot(progressQuery, (snapshot) => {
-                        const counts: Record<string, number> = {};
+                        const stats: Record<string, { practiced: number; mastered: number; attempts: number; correct: number }> = {};
                         snapshot.docs.forEach(doc => {
                             const data = doc.data();
-                            if (data.status === 'mastered' && data.domain) {
-                                counts[data.domain] = (counts[data.domain] || 0) + 1;
-                            }
+                            const dom = data.domain;
+                            if (!dom) return;
+                            if (!stats[dom]) stats[dom] = { practiced: 0, mastered: 0, attempts: 0, correct: 0 };
+                            const attempts = data.totalAttempts ?? 0;
+                            if (attempts > 0) stats[dom].practiced += 1;
+                            stats[dom].attempts += attempts;
+                            stats[dom].correct += data.correctCount ?? 0;
+                            if (data.status === 'mastered') stats[dom].mastered += 1;
                         });
-                        setDomainMasteryCounts(counts);
+                        setDomainStats(stats);
                     });
                 }
 
@@ -242,12 +247,6 @@ export default function Dashboard() {
         }
     };
 
-    const getPercentage = (domain: string) => {
-        const mastered = domainMasteryCounts[domain] || 0;
-        const total = domainTotalCounts[domain] || 0;
-        if (total === 0) return 0;
-        return Math.min(100, Math.round((mastered / total) * 100));
-    };
 
     if (loading || contextDiagnostic === null) {
         return <DashboardSkeleton />;
@@ -463,11 +462,13 @@ export default function Dashboard() {
                             </p>
                         )}
                         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-8 ${contextDiagnostic === false && recentActivity.length === 0 ? 'opacity-50' : ''} transition-opacity`}>
-                            {examDomains.map((domain, index) => {
-                                const colors = ['#C084FC', '#F472B6', '#34D399']; // Neon Purple, Neon Pink, Neon Green
-                                const color = colors[index % colors.length];
-                                const mastered = domainMasteryCounts[domain] || 0;
+                            {examDomains.map((domain) => {
+                                const st = domainStats[domain] || { practiced: 0, mastered: 0, attempts: 0, correct: 0 };
                                 const total = domainTotalCounts[domain] || 0;
+                                const accuracy = st.attempts > 0 ? Math.round((st.correct / st.attempts) * 100) : 0;
+                                const notStarted = st.practiced === 0;
+                                // Ring colour communicates performance at a glance (red → amber → green).
+                                const ringColor = accuracy >= 75 ? '#34D399' : accuracy >= 50 ? '#FBBF24' : '#F87171';
 
                                 return (
                                     <button
@@ -475,23 +476,40 @@ export default function Dashboard() {
                                         onClick={() => navigate('/app/quiz', { state: { filterDomain: domain } })}
                                         className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700 flex flex-col items-center hover:border-brand-500/50 hover:bg-slate-800/80 transition-all cursor-pointer group text-left w-full relative overflow-hidden"
                                     >
-                                        <div className={`absolute top-0 left-0 w-1 h-full opacity-0 group-hover:opacity-100 transition-opacity`} style={{ backgroundColor: color }} />
+                                        <div className="absolute top-0 left-0 w-1 h-full opacity-0 group-hover:opacity-100 transition-opacity bg-brand-500" />
 
-                                        <MasteryRing percentage={getPercentage(domain)} color={color} label="" />
+                                        {notStarted ? (
+                                            // Not-started: a muted dashed ring + em-dash, so a freshly-switched
+                                            // exam reads as "nothing here yet — go practice", not a wall of 0%.
+                                            <div className="relative flex items-center justify-center" style={{ width: 120, height: 120 }}>
+                                                <svg className="w-full h-full">
+                                                    <circle cx="60" cy="60" r="55" stroke="currentColor" strokeWidth="10" fill="transparent" className="text-slate-700/50" strokeDasharray="3 7" />
+                                                </svg>
+                                                <span className="absolute text-3xl font-bold text-slate-500">—</span>
+                                            </div>
+                                        ) : (
+                                            <MasteryRing percentage={accuracy} color={ringColor} label="" />
+                                        )}
 
                                         <div className="mt-4 text-center">
                                             <h3 className="text-lg font-bold text-white group-hover:text-brand-300 transition-colors">{domain}</h3>
-                                            <div className="mt-1">
-                                                <div className="text-sm md:text-base font-medium text-slate-200">
-                                                    {mastered} of {total} questions mastered
+                                            {notStarted ? (
+                                                <div className="mt-1">
+                                                    <div className="text-sm md:text-base font-medium text-slate-300">Not started</div>
+                                                    <div className="text-xs text-slate-500 mt-1">{total} questions in this domain</div>
                                                 </div>
-                                                <div className="text-xs text-slate-400 mt-1">
-                                                    Mastered: 75% accuracy, 5+ attempts, 2 of last 3 correct
+                                            ) : (
+                                                <div className="mt-1">
+                                                    <div className="text-sm md:text-base font-medium text-slate-200">{accuracy}% accuracy</div>
+                                                    <div className="text-xs text-slate-400 mt-1">
+                                                        {st.practiced} of {total} practiced
+                                                        <span title="Mastered = answered 5+ times at 75%+ accuracy, with 2 of your last 3 correct"> · {st.mastered} mastered</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 duration-300">
+                                            )}
+                                            <div className={`mt-4 transition-all duration-300 ${notStarted ? '' : 'opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0'}`}>
                                                 <span className="text-xs font-bold text-brand-400 uppercase tracking-widest border border-brand-500/30 px-4 py-1.5 rounded-full bg-brand-500/10 shadow-[0_0_10px_rgba(99,102,241,0.3)]">
-                                                    Practice Domain
+                                                    {notStarted ? 'Start practicing →' : 'Practice Domain'}
                                                 </span>
                                             </div>
                                         </div>
