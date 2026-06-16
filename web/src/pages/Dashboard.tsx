@@ -466,9 +466,13 @@ export default function Dashboard() {
                                 const st = domainStats[domain] || { practiced: 0, mastered: 0, attempts: 0, correct: 0 };
                                 const total = domainTotalCounts[domain] || 0;
                                 const accuracy = st.attempts > 0 ? Math.round((st.correct / st.attempts) * 100) : 0;
-                                const notStarted = st.practiced === 0;
-                                // Ring colour communicates performance at a glance (red → amber → green).
-                                const ringColor = accuracy >= 75 ? '#34D399' : accuracy >= 50 ? '#FBBF24' : '#F87171';
+                                const MIN_SAMPLE = 5; // matches StudyPlanService — below this, accuracy isn't a confident read
+                                const notStarted = st.attempts === 0;
+                                const building = !notStarted && st.attempts < MIN_SAMPLE; // barely practiced — too early to trust the %
+                                // Established domains get a performance band (red→amber→green). Barely-practiced
+                                // ones stay neutral so a 100%-on-2-questions doesn't read as "done" — and the card
+                                // agrees with the study plan, which focuses under-measured domains first.
+                                const ringColor = building ? '#64748B' : accuracy >= 75 ? '#34D399' : accuracy >= 50 ? '#FBBF24' : '#F87171';
 
                                 return (
                                     <button
@@ -500,10 +504,14 @@ export default function Dashboard() {
                                                 </div>
                                             ) : (
                                                 <div className="mt-1">
-                                                    <div className="text-sm md:text-base font-medium text-slate-200">{accuracy}% accuracy</div>
+                                                    <div className="text-sm md:text-base font-medium text-slate-200">
+                                                        {accuracy}%{building ? ' so far' : ' accuracy'}
+                                                    </div>
                                                     <div className="text-xs text-slate-400 mt-1">
                                                         {st.practiced} of {total} practiced
-                                                        <span title="Mastered = answered 5+ times at 75%+ accuracy, with 2 of your last 3 correct"> · {st.mastered} mastered</span>
+                                                        {building
+                                                            ? <span className="text-slate-500"> · keep practicing for a confident read</span>
+                                                            : <span title="Mastered = answered 5+ times at 75%+ accuracy, with 2 of your last 3 correct"> · {st.mastered} mastered</span>}
                                                     </div>
                                                 </div>
                                             )}
@@ -517,7 +525,7 @@ export default function Dashboard() {
                                 );
                             })}
                         </div>
-                        <p className="text-xs text-slate-400 mt-2">These percentages reflect your lifetime mastery across all completed sessions for this exam.</p>
+                        <p className="text-xs text-slate-400 mt-2">Each ring shows your accuracy in that domain across all sessions for this exam. Domains with only a few questions answered show as "building" until there's enough to score confidently.</p>
 
                         {/* Rolling Trend Indicator */}
                         <TrendIndicatorCard />
