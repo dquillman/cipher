@@ -85,6 +85,7 @@ export default function Dashboard() {
         let unsubscribeGoal: () => void;
         let unsubscribeProgress: () => void;
         let unsubscribeActiveRuns: () => void;
+        let unsubscribeDailyProgress: () => void;
 
         const unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
             if (user) {
@@ -154,7 +155,7 @@ export default function Dashboard() {
                     where('completedAt', '>=', todayStart)
                 );
 
-                onSnapshot(todayQuery, (snapshot) => {
+                unsubscribeDailyProgress = onSnapshot(todayQuery, (snapshot) => {
                     let count = 0;
                     snapshot.docs.forEach(doc => {
                         const data = doc.data();
@@ -207,6 +208,7 @@ export default function Dashboard() {
             if (unsubscribeGoal) unsubscribeGoal();
             if (unsubscribeProgress) unsubscribeProgress();
             if (unsubscribeActiveRuns) unsubscribeActiveRuns();
+            if (unsubscribeDailyProgress) unsubscribeDailyProgress();
         };
     }, [selectedExamId]); // Re-subscribe when exam changes
 
