@@ -10,6 +10,13 @@ export default defineConfig({
     // deploys to hosting) — chunk composition data for bundle debugging.
     visualizer({ filename: 'stats.json', template: 'raw-data', gzipSize: true }),
   ],
+  // Strip debug logging from production bundles. `pure` marks these calls
+  // side-effect-free so minification drops them (and their argument
+  // expressions) from the build; dev server and console.warn/error are
+  // untouched. Complements the eslint no-console rule.
+  esbuild: {
+    pure: ['console.log', 'console.debug', 'console.info', 'console.trace'],
+  },
   build: {
     rollupOptions: {
       output: {

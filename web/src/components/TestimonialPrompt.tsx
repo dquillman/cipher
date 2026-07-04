@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Star, X, Send, CheckCircle2, Loader2 } from 'lucide-react';
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { db, auth } from '../firebase';
-import { APP_VERSION } from '../version';
+import { auth } from '../firebase';
+import { TestimonialService } from '../services/TestimonialService';
 
 interface TestimonialPromptProps {
   /** Firestore exam ID. */
@@ -58,7 +57,7 @@ export default function TestimonialPrompt({ examId, examName, onClose }: Testimo
       let utm: Record<string, string> = {};
       try { utm = JSON.parse(sessionStorage.getItem('ec_utm') || '{}'); } catch { /* ignore */ }
 
-      await setDoc(doc(db, 'testimonials', user.uid), {
+      await TestimonialService.submitTestimonial({
         userId: user.uid,
         userEmail: user.email ?? null,
         userDisplayName: user.displayName ?? null,
@@ -67,13 +66,10 @@ export default function TestimonialPrompt({ examId, examName, onClose }: Testimo
         rating,
         text: text.trim() || null,
         consentToShare,
-        status: 'pending_review',
         triggeredAt: 'q10',
         utmSource: utm.utm_source ?? null,
         utmCampaign: utm.utm_campaign ?? null,
         utmContent: utm.utm_content ?? null,
-        appVersion: APP_VERSION,
-        createdAt: serverTimestamp(),
       });
 
       markPrompted();

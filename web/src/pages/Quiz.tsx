@@ -1,8 +1,8 @@
-import { Link, useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { httpsCallable } from 'firebase/functions';
 import { functions } from '../firebase';
-import TutorBreakdown, { type TutorResponse, type CoachMode } from '../components/TutorBreakdown';
+import { type TutorResponse, type CoachMode } from '../components/TutorBreakdown';
 import type { PatternData } from '../components/PatternInsightCard';
 import { doc, setDoc, getDoc, collection, query, getDocs, where } from 'firebase/firestore';
 import { db, auth } from '../firebase';
@@ -11,49 +11,22 @@ import { useSubscription } from '../contexts/SubscriptionContext';
 import SubscriptionUpsellModal from '../components/SubscriptionUpsellModal';
 import { useExam } from '../contexts/ExamContext';
 import { SmartQuizService } from '../services/smartQuiz';
-import { useMarketingCopy } from '../hooks/useMarketingCopy';
 import { QuizRunService, deriveDomainResultsFromAnswers } from '../services/QuizRunService';
 import { UsageEventService } from '../services/UsageEventService';
-import { ChevronDown, ChevronUp, Brain, Crosshair, Wrench, TrendingUp, Scale, Zap, ShieldCheck } from 'lucide-react';
 import { useSmartQuizReview } from '../contexts/SmartQuizReviewContext';
 import QuestionProvenanceBadge from '../components/QuestionProvenanceBadge';
 import { quizReportStore } from '../utils/quizReportStore';
-import StructuredExplanation from '../components/explanations/StructuredExplanation';
-import EmvCalculation from '../components/explanations/EmvCalculation';
 import MatchingQuestion, { shuffleMatchPairs } from '../components/MatchingQuestion';
-import PBQQuestion, { initPBQState, isPBQCorrect, type PBQConfig, type PBQState } from '../components/PBQQuestion';
-import { DOMAIN_CITATIONS, EXAM_REFERENCES } from '../utils/domainCitations';
+import PBQQuestion, { initPBQState, isPBQCorrect, type PBQState } from '../components/PBQQuestion';
 import { FrictionEventService } from '../services/FrictionEventService';
 import { trackExplanationViewed, trackActivatedUser } from '../lib/ga4';
 import { DEFAULT_EXAM_ID, EXAM_LENS } from '../config/exams';
-import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../types/Bloom';
-
-interface MatchPairData {
-    term: string;
-    definition: string;
-}
-
-interface Question {
-    id: string;
-    stem: string;
-    options?: string[];
-    correctAnswer?: number;
-    explanation: string;
-    domain: string;
-    examId?: string;
-    imageUrl?: string; // New field for AI image
-    difficulty?: number; // 1-10
-    bloomLevel?: BloomLevel; // Bloom's Taxonomy cognitive level
-    type?: 'mcq' | 'emv' | 'matching' | 'pbq';
-    scenarios?: {
-        label: string;
-        probability: number;
-        impact: number;
-    }[];
-    correctLabel?: string;
-    matchPairs?: MatchPairData[]; // EC-119: drag-and-drop matching pairs
-    pbqConfig?: PBQConfig;        // PBQ: performance-based question config
-}
+import type { Question } from '../types/Question';
+import QuizCompletionSummary from '../components/quiz/QuizCompletionSummary';
+import QuizModeBanner from '../components/quiz/QuizModeBanner';
+import ActiveFilterPill from '../components/quiz/ActiveFilterPill';
+import AnswerOptions from '../components/quiz/AnswerOptions';
+import ExplanationPanel from '../components/quiz/ExplanationPanel';
 
 export default function Quiz() {
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -87,7 +60,6 @@ export default function Quiz() {
     const [sessionTraps, setSessionTraps] = useState<Map<string, { count: number, pattern: PatternData }>>(new Map());
 
     // Mastery Transparency State
-    const [showMasteryInfo, setShowMasteryInfo] = useState(false);
     const [questionProgressMap, setQuestionProgressMap] = useState<Map<string, any>>(new Map());
 
     // Active filter pill state (surfaces domain + Bloom-level filter + fallback banner)
@@ -113,7 +85,6 @@ export default function Quiz() {
     const [showUpsell, setShowUpsell] = useState(false);
     const [validationError, setValidationError] = useState<string | null>(null);
     const [retryCount, setRetryCount] = useState(0);
-    const copy = useMarketingCopy();
 
     // Measurement Metrics
     const [explanationRenderTime, setExplanationRenderTime] = useState<number | null>(null);
@@ -1244,434 +1215,16 @@ export default function Quiz() {
     }
 
     if (quizCompleted) {
-        // DIAGNOSTIC SUMMARY (First Session Reveal)
-        if (location.state?.mode === 'diagnostic') {
-            const traps = Array.from(sessionTraps.values());
-            const topTrap = traps.length > 0 ? traps.sort((a, b) => b.count - a.count)[0] : null;
-
-            // Derive weakest domain for display
-            let weakestDomain: string | null = null;
-            let worstAcc = Infinity;
-            for (const [domain, stats] of Object.entries(domainResults)) {
-                if (stats.total > 0) {
-                    const acc = stats.correct / stats.total;
-                    if (acc < worstAcc) {
-                        worstAcc = acc;
-                        weakestDomain = domain;
-                    }
-                }
-            }
-
-            return (
-                <div className="min-h-screen flex items-center justify-center bg-slate-950">
-                    <div className="bg-slate-900/50 backdrop-blur-md p-4 sm:p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700 animate-in fade-in zoom-in duration-500 max-h-[90vh] overflow-y-auto">
-
-                        <div className="mb-6">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-indigo-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-indigo-500/20">
-                                <span className="text-3xl sm:text-4xl">🔎</span>
-                            </div>
-                            <h2 className="text-2xl sm:text-3xl font-bold text-white font-display mb-2">Analysis Complete. Here’s what I found.</h2>
-                            <p className="text-slate-400">I've mapped your baseline strengths and blind spots.</p>
-                        </div>
-
-                        {/* REVEAL LOGIC */}
-                        {topTrap ? (
-                            <div className="bg-gradient-to-br from-indigo-900/40 to-slate-800 border border-indigo-500/30 rounded-xl p-6 mb-8 text-left relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
-                                <h3 className="text-indigo-300 font-bold uppercase tracking-wider text-xs mb-2">Insight Detected</h3>
-                                <p className="text-white text-lg font-medium leading-relaxed mb-4">
-                                    "You just encountered a common PMI Thinking Trap: <strong className="text-indigo-400">{topTrap.pattern.pattern_name}</strong>."
-                                </p>
-                                <p className="text-slate-400 text-sm italic border-l-2 border-indigo-500/30 pl-3">
-                                    {topTrap.pattern.core_rule}
-                                </p>
-                            </div>
-                        ) : (
-                            <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
-                                <h3 className="text-slate-300 font-bold mb-2">Analysis</h3>
-                                <p className="text-slate-400 text-sm leading-relaxed">
-                                    "As you practice, the system learns exactly how PMI patterns affect your answers. Keep going to unlock deeper insights."
-                                </p>
-                            </div>
-                        )}
-
-                        <div className="text-left mb-6">
-                            <h4 className="text-slate-300 font-semibold text-sm mb-2">What this analysis means</h4>
-                            <p className="text-slate-400 text-sm leading-relaxed mb-2">
-                                This was not a pass/fail test. It was a short diagnostic designed to help us understand how you think and where you'll benefit most from practice.
-                            </p>
-                            <p className="text-slate-400 text-sm leading-relaxed">
-                                Based on your responses, we'll guide you toward your weakest domain so you can focus your time where it matters most.
-                            </p>
-                            {weakestDomain && (
-                                <p className="text-slate-300 text-sm leading-relaxed mt-2">
-                                    Based on your responses so far, your weakest domain appears to be <strong className="text-white">{weakestDomain}</strong>. That's where focused practice is likely to give you the fastest improvement.
-                                </p>
-                            )}
-                            {topTrap && (
-                                <p className="text-slate-400 text-sm leading-relaxed mt-2">
-                                    We also noticed a recurring pattern related to <strong className="text-slate-300">{topTrap.pattern.pattern_name}</strong>. You may see questions designed to challenge this area as you continue — this helps strengthen real-world decision-making.
-                                </p>
-                            )}
-                        </div>
-
-                        {/* Mastery Explanation Disclosure */}
-                        <div className="mb-6 text-left">
-                            <button
-                                onClick={() => setShowMasteryInfo(!showMasteryInfo)}
-                                className="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-300 transition-colors mx-auto"
-                            >
-                                <span>Why you may see repeated questions</span>
-                                {showMasteryInfo ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                            </button>
-                            {showMasteryInfo && (
-                                <div className="mt-3 bg-slate-700/30 border border-slate-600 rounded-xl p-5 text-sm text-slate-400 space-y-4">
-                                    <div>
-                                        <h4 className="font-semibold text-slate-300 mb-1">How mastery works</h4>
-                                        <p>CipherExam confirms understanding by requiring correct answers more than once. This prevents progress through guessing and mirrors how the PMP exam tests consistency across scenarios.</p>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-slate-300 mb-1">About the questions</h4>
-                                        <p>All questions are original and written to PMP standards. They are modeled on real exam patterns and domains — not copied from actual PMP exam questions.</p>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="space-y-3">
-                            {topTrap ? (
-                                <button
-                                    onClick={() => {
-                                        if (isPro) {
-                                            navigate('/app/quiz', {
-                                                state: {
-                                                    mode: 'trap',
-                                                    patternId: topTrap.pattern.pattern_id,
-                                                    patternName: topTrap.pattern.pattern_name,
-                                                    domainTags: topTrap.pattern.domain_tags,
-                                                    masteryScore: 0 // Reset for practice
-                                                }
-                                            });
-                                        } else {
-                                            setShowUpsell(true);
-                                        }
-                                    }}
-                                    className="w-full bg-indigo-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-indigo-500 shadow-lg shadow-indigo-500/30 transition-all"
-                                >
-                                    {isPro ? `[ Practice This Trap ]` : `[ ${copy.pro_value_primary} ]`}
-                                </button>
-                            ) : (
-                                <button
-                                    onClick={() => navigate('/app/planner', {
-                                        state: {
-                                            source: 'diagnostic',
-                                            recommendedDomain: weakestDomain
-                                        }
-                                    })}
-                                    className="w-full bg-brand-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-brand-500 shadow-lg shadow-brand-500/30 transition-all"
-                                >
-                                    Continue to Your Study Plan
-                                </button>
-                            )}
-
-                            {topTrap && (
-                                <button
-                                    onClick={() => navigate('/app/planner', {
-                                        state: {
-                                            source: 'diagnostic',
-                                            recommendedDomain: weakestDomain
-                                        }
-                                    })}
-                                    className="block text-slate-500 hover:text-white text-sm font-medium py-2 w-full"
-                                >
-                                    Continue to Your Study Plan
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        // TRAP DRILL SUMMARY
-        if (location.state?.mode === 'trap-drill') {
-            const accuracy = (score / questions.length) * 100;
-            const trapName = location.state.patternName || "Thinking Trap";
-
-            return (
-                <div className="min-h-screen flex items-center justify-center bg-slate-950">
-                    <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700">
-                        <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20 text-brand-400">
-                            {accuracy >= 70 ? <Crosshair className="h-7 w-7" strokeWidth={1.75} /> : <Wrench className="h-7 w-7" strokeWidth={1.75} />}
-                        </div>
-
-                        <h2 className="text-2xl font-bold text-white mb-1 font-display">Trap Practice Complete</h2>
-                        <p className="text-slate-400 text-sm mb-6">Pattern: {trapName}</p>
-
-                        <div className="bg-slate-800/50 rounded-xl p-6 mb-6 border border-slate-700/50">
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-slate-400 text-sm">Accuracy</span>
-                                <span className={`font-bold text-lg ${accuracy >= 70 ? 'text-emerald-400' : 'text-amber-400'}`}>
-                                    {Math.round(accuracy)}%
-                                </span>
-                            </div>
-                            <div className="w-full bg-slate-700/50 rounded-full h-2 mb-4">
-                                <div
-                                    className={`h-2 rounded-full transition-all ${accuracy >= 70 ? 'bg-emerald-500' : 'bg-amber-500'}`}
-                                    style={{ width: `${accuracy}%` }}
-                                ></div>
-                            </div>
-                            <p className="text-slate-300 text-sm italic">
-                                {accuracy >= 70
-                                    ? "You are improving on this pattern."
-                                    : "This pattern still needs work. Try another drill."}
-                            </p>
-                        </div>
-
-                        <div className="flex flex-col gap-3">
-                            <button
-                                onClick={() => navigate('/app/quiz', {
-                                    state: {
-                                        mode: 'trap-drill',
-                                        patternId: location.state.patternId,
-                                        patternName: trapName,
-                                        domainTags: location.state.domainTags,
-                                        masteryScore: location.state.masteryScore,
-                                        examId: activeExamId
-                                    },
-                                    replace: true
-                                })}
-                                className="w-full bg-brand-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-500 shadow-lg shadow-brand-500/30 transition-all"
-                            >
-                                Practice Again
-                            </button>
-                            <Link to="/app" className="block w-full bg-slate-800 text-slate-300 px-6 py-3 rounded-xl font-bold hover:bg-slate-700 transition-all border border-slate-700">
-                                Back to Dashboard
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            );
-        }
-
-        // TRAP MODE SUMMARY
-        if (location.state?.mode === 'trap') {
-            const accuracy = (score / questions.length) * 100;
-            const trapName = location.state.patternName || "Thinking Trap";
-
-            return (
-                <div className="min-h-screen flex items-center justify-center bg-slate-950">
-                    <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700">
-                        {/* Reinforcement Memory Generation */}
-                        {(() => {
-                            // Generate and store if not already done for this session
-                            // We can use a simple check or just overwrite since it's the end of session
-                            const REINFORCEMENT_KEY = 'exam_coach_reinforcement';
-
-                            // Only generate if accuracy is decent (e.g. > 40%) to avoid reinforcing failure
-                            if (accuracy > 40) {
-                                const messages = [
-                                    "You’re starting to recognize this trap earlier.",
-                                    "You’re catching this pattern faster than before.",
-                                    "This trap is becoming easier to spot."
-                                ];
-                                // Specific deterministic choice based on pattern name length to differ slightly per pattern but be consistent
-                                const idx = (trapName.length + Math.floor(accuracy)) % messages.length;
-                                const message = messages[idx];
-
-                                try {
-                                    localStorage.setItem(REINFORCEMENT_KEY, JSON.stringify({
-                                        message,
-                                        patternId: location.state.patternId,
-                                        patternName: trapName,
-                                        timestamp: Date.now()
-                                    }));
-                                } catch (e) {
-                                    console.error("Failed to save reinforcement", e);
-                                }
-                            }
-                            return null;
-                        })()}
-
-                        <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20 text-brand-400">
-                            {accuracy > 70 ? <TrendingUp className="h-7 w-7" strokeWidth={1.75} /> : accuracy > 40 ? <Scale className="h-7 w-7" strokeWidth={1.75} /> : <Wrench className="h-7 w-7" strokeWidth={1.75} />}
-                        </div>
-
-                        <h2 className="text-2xl font-bold text-white mb-2 font-display">{trapName}</h2>
-                        <p className="text-slate-400 text-sm mb-6 uppercase tracking-wider font-bold">Session Complete</p>
-
-                        <div className="bg-slate-800/50 rounded-xl p-6 mb-8 border border-slate-700/50">
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-slate-400 text-sm">Session Accuracy</span>
-                                <span className={`font-bold text-lg ${accuracy > 70 ? 'text-emerald-400' : 'text-slate-200'}`}>
-                                    {Math.round(accuracy)}%
-                                </span>
-                            </div>
-                            <div className="w-full bg-slate-700/50 rounded-full h-2 mb-4">
-                                <div
-                                    className={`h-2 rounded-full transition-all ${accuracy > 70 ? 'bg-emerald-500' : 'bg-brand-500'}`}
-                                    style={{ width: `${accuracy}%` }}
-                                ></div>
-                            </div>
-                            <p className="text-slate-300 text-sm italic">
-                                "{accuracy > 80
-                                    ? "Excellent work. You successfully avoided the trap signals."
-                                    : accuracy > 50
-                                        ? "You’re starting to recognize this trap earlier. Keep going."
-                                        : "This pattern is tricky. Review the core rule and try again tomorrow."}"
-                            </p>
-                        </div>
-
-                        {/* Mastery Explanation Disclosure */}
-                        <div className="mb-6 text-left">
-                            <button
-                                onClick={() => setShowMasteryInfo(!showMasteryInfo)}
-                                className="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-300 transition-colors mx-auto"
-                            >
-                                <span>Why you may see repeated questions</span>
-                                {showMasteryInfo ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                            </button>
-                            {showMasteryInfo && (
-                                <div className="mt-3 bg-slate-700/30 border border-slate-600 rounded-xl p-5 text-sm text-slate-400 space-y-4">
-                                    <div>
-                                        <h4 className="font-semibold text-slate-300 mb-1">How mastery works</h4>
-                                        <p>CipherExam confirms understanding by requiring correct answers more than once. This prevents progress through guessing and mirrors how the PMP exam tests consistency across scenarios.</p>
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-slate-300 mb-1">About the questions</h4>
-                                        <p>All questions are original and written to PMP standards. They are modeled on real exam patterns and domains — not copied from actual PMP exam questions.</p>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-
-                        <Link to="/app" className="block w-full bg-brand-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-brand-500 shadow-lg shadow-brand-500/30 transition-all transform hover:-translate-y-0.5">
-                            Return to Dashboard
-                        </Link>
-                    </div>
-                </div>
-            );
-        }
-
         return (
-            <div className="min-h-screen flex items-center justify-center">
-                <div className="bg-slate-800/50 backdrop-blur-md p-4 sm:p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700 max-h-[90vh] overflow-y-auto">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-display">Quiz Completed!</h2>
-                    <p className="text-lg sm:text-xl text-slate-300 mb-6">You scored <span className="font-bold text-brand-400">{score} / {questions.length}</span></p>
-
-                    {/* Mastery Explanation Disclosure */}
-                    <div className="mb-6 text-left">
-                        <button
-                            onClick={() => setShowMasteryInfo(!showMasteryInfo)}
-                            className="flex items-center gap-2 text-sm text-slate-400 hover:text-slate-300 transition-colors mx-auto"
-                        >
-                            <span>Why you may see repeated questions</span>
-                            {showMasteryInfo ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                        </button>
-                        {showMasteryInfo && (
-                            <div className="mt-3 bg-slate-700/30 border border-slate-600 rounded-xl p-5 text-sm text-slate-400 space-y-4">
-                                <div>
-                                    <h4 className="font-semibold text-slate-300 mb-1">How mastery works</h4>
-                                    <p>CipherExam confirms understanding by requiring correct answers more than once. This prevents progress through guessing and mirrors how the PMP exam tests consistency across scenarios.</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold text-slate-300 mb-1">About the questions</h4>
-                                    <p>All questions are original and written to PMP standards. They are modeled on real exam patterns and domains — not copied from actual PMP exam questions.</p>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Thinking Trap Suggestion Logic */}
-                    {(() => {
-                        // Logic: Find first pattern with >= 2 misses
-                        if (location.state?.mode === 'trap') return null; // Don't suggest while already in a trap session
-
-                        const traps = Array.from(sessionTraps.values());
-                        // Sort by count desc
-                        traps.sort((a, b) => b.count - a.count);
-                        const topTrap = traps[0];
-
-                        // THRESHOLD: >= 2 misses to trigger suggestion
-                        if (topTrap && topTrap.count >= 2) {
-                            // COOLDOWN CHECK
-                            const STORAGE_KEY = 'exam_coach_suggestion_history';
-                            const COOLDOWN_HOURS = 4;
-
-                            try {
-                                const historyStr = localStorage.getItem(STORAGE_KEY);
-                                if (historyStr) {
-                                    const history = JSON.parse(historyStr);
-                                    const lastId = history.patternId;
-                                    const lastTime = history.timestamp;
-                                    const now = Date.now();
-
-                                    // If same pattern and within cooldown window, SUPPRESS
-                                    if (lastId === topTrap.pattern.pattern_id && (now - lastTime) < (COOLDOWN_HOURS * 60 * 60 * 1000)) {
-                                        console.log("Suppressing suggestion due to cooldown:", topTrap.pattern.pattern_name);
-                                        return null;
-                                    }
-                                }
-
-                                // valid suggestion, save to history (side effect in render is bad practice usually, but for this simple key update it's acceptable vs useEffect complexity)
-                                // Better: We should ideally do this in a useEffect, but to keep the architecture simple for this MVP polish:
-                                localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                                    patternId: topTrap.pattern.pattern_id,
-                                    timestamp: Date.now()
-                                }));
-
-                            } catch (e) {
-                                console.error("Error reading suggestion history", e);
-                            }
-
-                            return (
-                                <div className="mb-8 bg-indigo-900/30 border border-indigo-500/30 rounded-xl p-6 relative overflow-hidden group">
-                                    <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
-                                    <div className="flex items-start gap-3 text-left">
-                                        <div className="bg-indigo-500/20 p-2 rounded-lg text-indigo-300"><ShieldCheck className="h-5 w-5" strokeWidth={1.75} /></div>
-                                        <div>
-                                            <h4 className="text-indigo-200 font-bold text-sm uppercase tracking-wide mb-1">
-                                                Suggested Thinking Trap
-                                            </h4>
-                                            <h3 className="text-white font-bold text-lg mb-2">
-                                                {topTrap.pattern.pattern_name}
-                                            </h3>
-                                            <p className="text-indigo-200/80 text-sm mb-4">
-                                                This pattern may be worth practicing next.
-                                            </p>
-
-                                            <button
-                                                onClick={() => {
-                                                    if (isPro) {
-                                                        navigate('/app/quiz', {
-                                                            state: {
-                                                                mode: 'trap',
-                                                                patternId: topTrap.pattern.pattern_id,
-                                                                patternName: topTrap.pattern.pattern_name,
-                                                                domainTags: topTrap.pattern.domain_tags
-                                                            }
-                                                        });
-                                                    } else {
-                                                        setShowUpsell(true);
-                                                    }
-                                                }}
-                                                className="w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 text-sm"
-                                            >
-                                                {isPro ? "[ Practice This Trap ]" : "[ Unlock Trap Mastery ]"}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        }
-                        return null;
-                    })()}
-
-                    <Link to="/app" className="inline-block bg-brand-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-brand-500 shadow-lg shadow-brand-500/30 transition-all transform hover:-translate-y-0.5">
-                        Return to Dashboard
-                    </Link>
-                </div>
-            </div>
+            <QuizCompletionSummary
+                score={score}
+                totalQuestions={questions.length}
+                sessionTraps={sessionTraps}
+                domainResults={domainResults}
+                isPro={isPro}
+                activeExamId={activeExamId}
+                onUpsell={() => setShowUpsell(true)}
+            />
         );
     }
 
@@ -1777,112 +1330,14 @@ export default function Quiz() {
             {/* Main Content */}
             <main className="flex-1 flex flex-col items-center justify-center p-4">
                 {/* Mode Info Header */}
-                <div className="w-full max-w-3xl mb-6">
-                    {location.state?.mode === 'smart' ? (
-                        <div className="bg-brand-900/30 border border-brand-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <Brain className="h-5 w-5 sm:h-6 sm:w-6 text-brand-300 shrink-0 mt-0.5" strokeWidth={1.75} />
-                            <div>
-                                <h3 className="text-brand-300 font-bold mb-1">Daily Practice Mode</h3>
-                                <p className="text-sm text-slate-300">
-                                    Our AI selects questions to optimize your learning: introducing new topics while reviewing past material to ensure implementation.
-                                </p>
-                            </div>
-                        </div>
-                    ) : location.state?.mode === 'weakest' ? (
-                        <div className="bg-purple-900/30 border border-purple-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-purple-300 shrink-0 mt-0.5" strokeWidth={1.75} />
-                            <div>
-                                <h3 className="text-purple-300 font-bold mb-1">Smart Practice: {location.state.filterDomain}</h3>
-                                <p className="text-sm text-slate-300">
-                                    We identified <strong>{location.state.filterDomain}</strong> as your weakest area. This session is focused on turning that weakness into a strength.
-                                </p>
-                            </div>
-                        </div>
-                    ) : location.state?.filterDomain ? (
-                        <div className="bg-purple-900/30 border border-purple-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <Zap className="h-5 w-5 sm:h-6 sm:w-6 text-purple-300 shrink-0 mt-0.5" strokeWidth={1.75} />
-                            <div>
-                                <h3 className="text-purple-300 font-bold mb-1">{location.state.filterDomain} Practice Mode</h3>
-                                <p className="text-sm text-slate-300">
-                                    This session targets the <strong>{location.state.filterDomain}</strong> domain to help you turn weaknesses into strengths.
-                                </p>
-                            </div>
-                        </div>
-                    ) : location.state?.mode === 'trap-drill' ? (
-                        <div className="bg-indigo-900/30 border border-indigo-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <Crosshair className="h-5 w-5 sm:h-6 sm:w-6 text-indigo-300 shrink-0 mt-0.5" strokeWidth={1.75} />
-                            <div>
-                                <h3 className="text-indigo-300 font-bold mb-1">Trap Drill: {location.state.patternName}</h3>
-                                <p className="text-sm text-slate-300">
-                                    5-question micro-drill targeting this thinking trap.
-                                </p>
-                            </div>
-                        </div>
-                    ) : location.state?.mode === 'trap' ? (
-                        <div className="bg-indigo-900/30 border border-indigo-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-indigo-300 shrink-0 mt-0.5" strokeWidth={1.75} />
-                            <div>
-                                <h3 className="text-indigo-300 font-bold mb-1">Trap Repair: {location.state.patternName}</h3>
-                                <p className="text-sm text-slate-300">
-                                    Focused practice to master this specific exam pattern.
-                                </p>
-                            </div>
-                        </div>
-                    ) : quizType === 'diagnostic' ? (
-                        <div className="bg-gradient-to-r from-brand-900/30 to-brand-800/30 border border-brand-500/30 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <span className="text-lg sm:text-2xl">🔎</span>
-                            <div>
-                                <h3 className="text-brand-300 font-bold mb-1">I’m analyzing your logic, not just your score.</h3>
-                                <p className="text-sm text-slate-300">
-                                    Don't worry about getting these wrong. I'm just finding your baseline.
-                                </p>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="bg-slate-800/50 border border-slate-700/50 rounded-xl p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
-                            <span className="text-lg sm:text-2xl">📝</span>
-                            <div>
-                                <h3 className="text-slate-300 font-bold mb-1">General Practice Mode</h3>
-                                <p className="text-sm text-slate-400">
-                                    Standard practice mode using questions from the current exam config.
-                                </p>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                <QuizModeBanner quizType={quizType} />
 
                 <div className="w-full max-w-3xl mb-4">
                     <QuestionProvenanceBadge />
                 </div>
 
                 {/* Active filter pill — surfaces domain / Bloom focused drill and fallback banner */}
-                {(activeFilters.domain || activeFilters.bloomLevel || activeFilters.bloomFallback) && (
-                    <div className="w-full max-w-3xl mb-4">
-                        <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 px-4 py-3 flex flex-wrap items-center gap-2">
-                            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-indigo-300">
-                                Focused Drill
-                            </span>
-                            {activeFilters.domain && (
-                                <span className="inline-flex items-center rounded-full bg-slate-800/70 border border-slate-700 px-2.5 py-0.5 text-xs text-slate-200">
-                                    Domain: <span className="font-semibold text-white ml-1">{activeFilters.domain}</span>
-                                </span>
-                            )}
-                            {activeFilters.bloomLevel && (
-                                <span className="inline-flex items-center rounded-full bg-slate-800/70 border border-slate-700 px-2.5 py-0.5 text-xs text-slate-200">
-                                    Bloom: <span className="font-semibold text-white ml-1">{activeFilters.bloomLevel}</span>
-                                </span>
-                            )}
-                            <span className="text-xs text-slate-400 ml-auto">
-                                Answers still count toward mastery &amp; readiness.
-                            </span>
-                        </div>
-                        {activeFilters.bloomFallback && (
-                            <div className="mt-2 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-xs text-amber-200">
-                                No questions matched that Bloom level in this domain yet — running the full domain instead. The Bloom filter will activate once content is tagged.
-                            </div>
-                        )}
-                    </div>
-                )}
+                <ActiveFilterPill filters={activeFilters} />
 
                 <div className="w-full max-w-3xl">
                     <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl shadow-black/20 border border-slate-700 overflow-hidden max-w-full">
@@ -1940,118 +1395,28 @@ export default function Quiz() {
                                     onReorder={(newOrder) => setMatchingState(prev => prev ? { ...prev, currentOrder: newOrder } : prev)}
                                 />
                             ) : (
-                            <div className="space-y-3">
-                                {(currentQuestion.options || []).map((opt, i) => {
-                                    let borderClass = 'border-slate-700 hover:border-brand-500/50 hover:bg-slate-700/50';
-                                    let textClass = 'text-slate-300';
-                                    let dotClass = 'border-slate-500 group-hover:border-brand-400';
-                                    let resultIcon = '';
-
-                                    if (selectedOption === i) {
-                                        borderClass = 'border-brand-500 bg-brand-500/10 shadow-lg shadow-brand-500/10';
-                                        textClass = 'text-brand-300 font-medium';
-                                        dotClass = 'border-brand-500 bg-brand-500';
-                                    }
-
-                                    if (showExplanation) {
-                                        if (i === currentQuestion.correctAnswer) {
-                                            borderClass = 'border-emerald-500 bg-emerald-500/10';
-                                            textClass = 'text-emerald-300 font-medium';
-                                            dotClass = 'border-emerald-500 bg-emerald-500';
-                                            resultIcon = '✓';
-                                        } else if (selectedOption === i) {
-                                            // Gentle incorrect styling — no flash, just a subdued border
-                                            borderClass = 'border-red-500/60 bg-red-500/5';
-                                            textClass = 'text-red-300/80 font-medium';
-                                            dotClass = 'border-red-500/60 bg-red-500/40';
-                                            resultIcon = '✗';
-                                        }
-                                    }
-
-                                    return (
-                                        <button
-                                            key={i}
-                                            onClick={() => handleOptionSelect(i)}
-                                            disabled={showExplanation}
-                                            className={`w-full text-left p-4 rounded-xl border-2 transition-colors duration-500 ease-in-out flex items-center gap-4 group motion-reduce:transition-none ${borderClass} ${showExplanation && i === currentQuestion.correctAnswer ? 'correct-pop' : ''}`}
-                                        >
-                                            <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors duration-500 ease-in-out ${dotClass}`}>
-                                                {showExplanation && resultIcon ? (
-                                                    <span className="text-xs font-bold text-white">{resultIcon}</span>
-                                                ) : (
-                                                    selectedOption === i && <div className="w-2 h-2 bg-white rounded-full" />
-                                                )}
-                                            </div>
-                                            <span className={`text-base transition-colors duration-500 ease-in-out ${textClass}`}>
-                                                {opt}
-                                            </span>
-                                        </button>
-                                    );
-                                })}
-                            </div>
+                            <AnswerOptions
+                                options={currentQuestion.options || []}
+                                selectedOption={selectedOption}
+                                correctAnswer={currentQuestion.correctAnswer}
+                                showExplanation={showExplanation}
+                                onSelect={handleOptionSelect}
+                            />
                             )}
 
                             {showExplanation && explanationExpanded && (
-                                <div className="answer-reveal mt-8 pt-6 border-t border-slate-700">
-                                    <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-3 sm:p-6 lg:p-10">
-                                        {currentQuestion.type === "emv" && currentQuestion.scenarios && (
-                                            <EmvCalculation scenarios={currentQuestion.scenarios} />
-                                        )}
-
-                                        <div className="bg-blue-900/20 rounded-lg border border-blue-500/30 text-blue-200 p-4 mb-4">
-                                            <p className="text-xl md:text-2xl font-bold text-white mb-1">Let’s walk through the thinking behind this question.</p>
-                                            {currentQuestion.bloomLevel && BLOOM_LEVELS.includes(currentQuestion.bloomLevel) && (
-                                                <div className="flex items-center gap-2 mt-2">
-                                                    <span className="text-sm md:text-base text-blue-300/70">Bloom's Taxonomy level:</span>
-                                                    <span
-                                                        title={`Bloom's Taxonomy: ${BLOOM_DESCRIPTIONS[currentQuestion.bloomLevel as BloomLevel]}`}
-                                                        className="text-sm md:text-base font-bold px-3 py-1 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 flex items-center gap-1.5"
-                                                    >
-                                                        <Brain className="w-5 h-5" />
-                                                        {currentQuestion.bloomLevel}
-                                                    </span>
-                                                    <span className="text-sm md:text-base text-blue-200/60 hidden md:inline">
-                                                        — {BLOOM_DESCRIPTIONS[currentQuestion.bloomLevel as BloomLevel]}
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        {!tutorBreakdown && !loadingBreakdown ? (
-                                            <div className="text-center p-4">
-                                                <button
-                                                    onClick={() => fetchTutorBreakdown(currentQuestion, selectedOption!)}
-                                                    className="text-brand-400 hover:text-brand-300 underline"
-                                                >
-                                                    Load Coach Breakdown
-                                                </button>
-                                                <div className="mt-4 p-4 text-left leading-relaxed text-base md:text-lg text-slate-200">
-                                                    <StructuredExplanation explanation={currentQuestion.explanation} title="Standard Explanation" />
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <TutorBreakdown
-                                                breakdown={tutorBreakdown}
-                                                loading={loadingBreakdown}
-                                                onExpandDepth={handleExpandDepth}
-                                                depthContent={depthContent}
-                                                depthLoading={depthLoading}
-                                                coachMode={coachMode}
-                                                onCoachModeChange={handleCoachModeChange}
-                                                correctAnswerIndex={currentQuestion.correctAnswer}
-                                            />
-                                        )}
-
-                                        <div className="mt-6 border-t border-slate-700/50 pt-4">
-                                            <div className="text-sm md:text-base font-semibold text-slate-200 tracking-wide">
-                                                📘 Reference
-                                            </div>
-                                            <div className="mt-1 text-sm md:text-base text-slate-400 italic">
-                                                {DOMAIN_CITATIONS[currentQuestion.domain] ?? EXAM_REFERENCES[activeExamId] ?? "Exam Reference Guide"}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ExplanationPanel
+                                    question={currentQuestion}
+                                    activeExamId={activeExamId}
+                                    tutorBreakdown={tutorBreakdown}
+                                    loadingBreakdown={loadingBreakdown}
+                                    depthContent={depthContent}
+                                    depthLoading={depthLoading}
+                                    coachMode={coachMode}
+                                    onCoachModeChange={handleCoachModeChange}
+                                    onExpandDepth={handleExpandDepth}
+                                    onLoadBreakdown={() => fetchTutorBreakdown(currentQuestion, selectedOption!)}
+                                />
                             )}
                         </div>
 

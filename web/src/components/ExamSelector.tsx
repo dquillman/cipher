@@ -1,32 +1,18 @@
 import { useState, useEffect } from 'react';
-import { collection, query, getDocs, where } from 'firebase/firestore';
-import { db } from '../firebase';
+import { ExamService, type ExamSummary } from '../services/ExamService';
 import { useExam } from '../contexts/ExamContext';
 import { trackExamSelected } from '../lib/ga4';
 
-interface Exam {
-    id: string;
-    name: string;
-}
-
 export default function ExamSelector() {
     const { selectedExamId, switchExam, examName: currentExamName } = useExam();
-    const [exams, setExams] = useState<Exam[]>([]);
+    const [exams, setExams] = useState<ExamSummary[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchExams = async () => {
             try {
-                // Filter for published exams only
-                const q = query(collection(db, 'exams'), where('isPublished', '==', true));
-                const snapshot = await getDocs(q);
-
-                const fetchedExams = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    name: doc.data().name || 'Unnamed Exam'
-                }));
-                fetchedExams.sort((a, b) => a.name.localeCompare(b.name));
+                const fetchedExams = await ExamService.fetchPublishedExams();
                 setExams(fetchedExams);
             } catch (error) {
                 console.error("Error fetching exams:", error);

@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
-import { auth, db } from '../../firebase';
-import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { auth } from '../../firebase';
+import { QuizRunService } from '../../services/QuizRunService';
 
 /**
  * EC-109: Usage Heatmap
@@ -85,22 +85,7 @@ export default function UsageHeatmap({ examId }: UsageHeatmapProps) {
 
         const fetchActivity = async () => {
             try {
-                const runsRef = collection(db, 'quizRuns', uid, 'runs');
-                let runs: any[];
-
-                try {
-                    const q = examId
-                        ? query(runsRef, where('examId', '==', examId), where('status', '==', 'completed'), limit(1000))
-                        : query(runsRef, where('status', '==', 'completed'), limit(1000));
-                    const snap = await getDocs(q);
-                    runs = snap.docs.map(d => d.data());
-                } catch {
-                    // Fallback if index missing
-                    const q = query(runsRef, where('status', '==', 'completed'), limit(1000));
-                    const snap = await getDocs(q);
-                    runs = snap.docs.map(d => d.data());
-                    if (examId) runs = runs.filter((r: any) => r.examId === examId);
-                }
+                const runs = await QuizRunService.getCompletedRuns(uid, examId);
 
                 // Build a date -> question count map
                 const dateCounts: Record<string, number> = {};

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged, type User } from 'firebase/auth';
 import { auth } from '../firebase';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { UserProfileService } from '../services/UserProfileService';
 import { User as UserIcon, Shield, LayoutGrid } from 'lucide-react';
 
 /**
@@ -11,7 +11,6 @@ import { User as UserIcon, Shield, LayoutGrid } from 'lucide-react';
 export default function IdentityIndicator() {
     const [user, setUser] = useState<User | null>(null);
     const [role, setRole] = useState<string | null>(null);
-    const db = getFirestore();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -19,12 +18,7 @@ export default function IdentityIndicator() {
             if (currentUser) {
                 try {
                     // Fetch role from Firestore user profile
-                    const profileDoc = await getDoc(doc(db, 'users', currentUser.uid));
-                    if (profileDoc.exists()) {
-                        setRole(profileDoc.data()?.role || 'user');
-                    } else {
-                        setRole('user');
-                    }
+                    setRole(await UserProfileService.getUserRole(currentUser.uid));
                 } catch (error) {
                     console.error('Error fetching user role:', error);
                     setRole('user');
@@ -35,7 +29,7 @@ export default function IdentityIndicator() {
         });
 
         return () => unsubscribe();
-    }, [db]);
+    }, []);
 
     if (!user) return null;
 

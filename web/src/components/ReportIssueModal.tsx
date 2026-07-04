@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import { X, MessageSquare, Loader2, CheckCircle2, Upload } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { v4 as uuidv4 } from 'uuid';
+import { IssueReportService } from '../services/IssueReportService';
 import { useAuth } from '../App';
 import { useLocation } from 'react-router-dom';
-import { APP_VERSION } from '../version';
 import { useExam } from '../contexts/ExamContext';
 
 interface ReportIssueModalProps {
@@ -39,68 +35,19 @@ export default function ReportIssueModal({ isOpen, onClose, context }: ReportIss
             let attachmentUrl = null;
 
             if (screenshot) {
-                // Lazy getStorage() keeps the storage SDK out of the entry bundle —
-                // this modal is the only place in the app that uses it.
-                const storage = getStorage();
-                const filename = `${Date.now()}_${uuidv4()}_${screenshot.name}`;
-                const storageRef = ref(storage, `uploads/${user?.uid || 'anonymous'}/issues/${filename}`);
-                await uploadBytes(storageRef, screenshot);
-                attachmentUrl = await getDownloadURL(storageRef);
+                attachmentUrl = await IssueReportService.uploadScreenshot(user?.uid || 'anonymous', screenshot);
             }
 
-            const environment = window.location.hostname.includes('staging')
-                ? 'staging'
-                : 'prod';
-
-            const ua = navigator.userAgent;
-
-            const deviceType = /Mobi|Android/i.test(ua)
-                ? 'mobile'
-                : /iPad|Tablet/i.test(ua)
-                ? 'tablet'
-                : 'desktop';
-
-            const os = /Windows/i.test(ua)
-                ? 'Windows'
-                : /Mac/i.test(ua) && !/iPhone|iPad|iPod/i.test(ua)
-                ? 'macOS'
-                : /iPhone|iPad|iPod/i.test(ua)
-                ? 'iOS'
-                : /Android/i.test(ua)
-                ? 'Android'
-                : 'Unknown';
-
-            const browser = /Edg/i.test(ua)
-                ? 'Edge'
-                : /Chrome/i.test(ua) && !/Edg/i.test(ua)
-                ? 'Chrome'
-                : /Safari/i.test(ua) && !/Chrome/i.test(ua)
-                ? 'Safari'
-                : /Firefox/i.test(ua)
-                ? 'Firefox'
-                : 'Unknown';
-
-            await addDoc(collection(db, 'issues'), {
+            await IssueReportService.submitIssueReport({
                 userId: user?.uid || 'anonymous',
                 userEmail: user?.email || 'anonymous',
                 type,
                 description,
                 path: location.pathname,
-                timestamp: serverTimestamp(),
-                status: 'new',
-                version: APP_VERSION,
                 attachmentUrl,
-                ...(context || {}),
-                appVersion: APP_VERSION,
-                environment,
-                route: location.pathname,
+                context,
                 examId: selectedExamId ?? null,
                 examName: examName || null,
-                userAgent: ua,
-                submittedFrom: 'exam-coach',
-                deviceType,
-                os,
-                browser,
             });
 
             setSuccess(true);

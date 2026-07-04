@@ -19,5 +19,11 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      // Debug logs are stripped from prod bundles by esbuild `pure` (see
+      // vite.config.ts); this keeps new ones visible at lint time without
+      // failing the build. Use console.warn/error for intentional logging.
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+    },
   },
 ])

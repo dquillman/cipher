@@ -6,8 +6,8 @@ import { useExam } from '../contexts/ExamContext';
 import { LayoutDashboard, BookOpen, ChevronLeft, ChevronRight, Calendar, BarChart2, Mic, Target, HelpCircle, PlayCircle, Flag, AlertTriangle } from 'lucide-react';
 import ReportIssueModal from './ReportIssueModal';
 import { quizReportStore } from '../utils/quizReportStore';
-import { auth, db } from '../firebase';
-import { collection, query, where, getDocs, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { auth } from '../firebase';
+import { QuizRunService } from '../services/QuizRunService';
 import { DISPLAY_VERSION } from '../version';
 
 export default function Sidebar() {
@@ -38,15 +38,7 @@ export default function Sidebar() {
 
             // Abandon any in_progress runs for this exam
             const userId = auth.currentUser!.uid;
-            const runsQuery = query(
-                collection(db, 'quizRuns', userId, 'runs'),
-                where('status', '==', 'in_progress'),
-                where('examId', '==', selectedExamId)
-            );
-            const runsSnap = await getDocs(runsQuery);
-            await Promise.all(runsSnap.docs.map(d =>
-                updateDoc(d.ref, { status: 'abandoned', endedAt: serverTimestamp() })
-            ));
+            await QuizRunService.abandonInProgressRuns(userId, selectedExamId);
 
             const { httpsCallable, getFunctions } = await import('firebase/functions');
             const functions = getFunctions();

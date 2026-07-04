@@ -242,6 +242,80 @@ export const QuizRunService = {
     },
 
     /**
+     * Abandons all in_progress runs for a specific exam (used by Reset Progress).
+     */
+    abandonInProgressRuns: async (userId: string, examId: string) => {
+        const runsQuery = query(
+            collection(db, 'quizRuns', userId, 'runs'),
+            where('status', '==', 'in_progress'),
+            where('examId', '==', examId)
+        );
+        const runsSnap = await getDocs(runsQuery);
+        await Promise.all(runsSnap.docs.map(d =>
+            updateDoc(d.ref, { status: 'abandoned', endedAt: serverTimestamp() })
+        ));
+    },
+
+    /**
+     * Gets completed runs, optionally scoped to an exam (used by the usage heatmap).
+     */
+    getCompletedRuns: async (userId: string, examId?: string): Promise<QuizRun[]> => {
+        const runsRef = collection(db, 'quizRuns', userId, 'runs');
+        try {
+            const q = examId
+                ? query(runsRef, where('examId', '==', examId), where('status', '==', 'completed'), limit(1000))
+                : query(runsRef, where('status', '==', 'completed'), limit(1000));
+            const snap = await getDocs(q);
+            return snap.docs.map(d => d.data() as QuizRun);
+        } catch {
+            // Fallback if index missing
+            const q = query(runsRef, where('status', '==', 'completed'), limit(1000));
+            const snap = await getDocs(q);
+            let runs = snap.docs.map(d => d.data() as QuizRun);
+            if (examId) runs = runs.filter(r => r.examId === examId);
+            return runs;
+        }
+    },
+
+    /**
+     * Gets the most recent completed runs for an exam, newest first (used by analytics charts).
+     */
+    getRecentCompletedRuns: async (userId: string, examId: string): Promise<QuizRun[]> => {
+        const runsRef = collection(db, 'quizRuns', userId, 'runs');
+        try {
+            const q = query(
+                runsRef,
+                where('examId', '==', examId),
+                where('status', '==', 'completed'),
+                orderBy('completedAt', 'desc'),
+                limit(50)
+            );
+            const snapshot = await getDocs(q);
+            return snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            } as QuizRun));
+        } catch {
+            console.warn("SpeedAccuracyChart: Composite index not available, using fallback query");
+            const fallbackQ = query(
+                runsRef,
+                where('status', '==', 'completed'),
+                limit(100)
+            );
+            const snapshot = await getDocs(fallbackQ);
+            return snapshot.docs
+                .map(doc => ({ id: doc.id, ...doc.data() } as QuizRun))
+                .filter(r => r.examId === examId)
+                .sort((a, b) => {
+                    const aTime = a.completedAt?.seconds || 0;
+                    const bTime = b.completedAt?.seconds || 0;
+                    return bTime - aTime;
+                })
+                .slice(0, 50);
+        }
+    },
+
+    /**
      * Get a specific run by ID (for resuming via direct link/startup).
      */
     getRunById: async (userId: string, runId: string): Promise<QuizRun | null> => {

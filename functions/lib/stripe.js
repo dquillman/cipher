@@ -184,21 +184,42 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
     }
     // Idempotency: Stripe retries deliveries, and the handlers below are not
     // all safe to re-run (subscription-deleted does a user lookup + write).
-    // Skip events we've already fully processed; the marker is written only
-    // AFTER successful processing, so a failed attempt will be retried.
+    //
+    // A plain check-then-write is not atomic: two concurrent deliveries of the
+    // same event can both read "not seen" and both process it. Instead we
+    // atomically CLAIM the event in a transaction (create a marker with
+    // status 'processing' iff it does not already exist). Only one invocation
+    // wins the claim; the rest short-circuit. After the handlers succeed we
+    // flip the marker to 'done'; if they throw we delete the claim so Stripe's
+    // retry re-processes the event (marker is never left as a false "done").
     const db = admin.firestore();
     const eventRef = db.collection('stripe_events').doc(event.id);
+    let claimed = false;
     try {
-        const seen = await eventRef.get();
-        if (seen.exists) {
-            console.log(`Skipping already-processed Stripe event ${event.id} (${event.type})`);
-            res.json({ received: true, duplicate: true });
-            return;
-        }
+        claimed = await db.runTransaction(async (tx) => {
+            const seen = await tx.get(eventRef);
+            if (seen.exists)
+                return false;
+            tx.set(eventRef, {
+                type: event.type,
+                status: 'processing',
+                claimedAt: admin.firestore.FieldValue.serverTimestamp(),
+                // expiresAt supports a Firestore TTL policy on
+                // stripe_events.expiresAt (Stripe retries span days, 30d is plenty).
+                expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 30 * 24 * 60 * 60 * 1000),
+            });
+            return true;
+        });
     }
     catch (err) {
         // Fail-open: better to risk a duplicate than to drop an event.
-        console.warn("Stripe event dedupe check failed, processing anyway:", err);
+        console.warn("Stripe event claim transaction failed, processing anyway:", err);
+        claimed = true;
+    }
+    if (!claimed) {
+        console.log(`Skipping already-processed Stripe event ${event.id} (${event.type})`);
+        res.json({ received: true, duplicate: true });
+        return;
     }
     // Handle the event
     try {
@@ -214,17 +235,25 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
             default:
                 console.log(`Unhandled event type ${event.type}`);
         }
-        // Mark processed. expiresAt supports a Firestore TTL policy on
-        // stripe_events.expiresAt (Stripe retries span days, 30d is plenty).
+        // Handlers succeeded — finalize the claim.
         await eventRef.set({
-            type: event.type,
+            status: 'done',
             processedAt: admin.firestore.FieldValue.serverTimestamp(),
-            expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + 30 * 24 * 60 * 60 * 1000),
-        });
+        }, { merge: true });
         res.json({ received: true });
     }
     catch (error) {
         console.error("Error processing webhook:", error);
+        // Release the claim so Stripe's retry can re-process this event.
+        // Swallow cleanup errors: the 500 below already triggers a retry, and
+        // a stale 'processing' marker will simply block that retry — we prefer
+        // surfacing the original failure to the log.
+        try {
+            await eventRef.delete();
+        }
+        catch (cleanupErr) {
+            console.error("Failed to release Stripe event claim after error:", cleanupErr);
+        }
         res.status(500).send("Internal Server Error");
     }
 });
@@ -236,15 +265,37 @@ async function handleCheckoutSessionCompleted(session) {
         console.error("No userId in session metadata:", session.id);
         return;
     }
+    // Defense-in-depth: the metadata userId originates from an authenticated
+    // createCheckoutSession call and forged events are already rejected by the
+    // webhook signature check, but never grant an entitlement to a UID that
+    // isn't well-formed or doesn't map to a real account.
+    if (!isValidUid(userId)) {
+        console.error(`Refusing Pro grant: malformed userId in session metadata: ${JSON.stringify(userId)} (session ${session.id})`);
+        return;
+    }
+    const db = admin.firestore();
+    const userRef = db.collection('users').doc(userId);
+    const userSnap = await userRef.get();
+    if (!userSnap.exists) {
+        console.error(`Refusing Pro grant: no user document for ${userId} (session ${session.id})`);
+        return;
+    }
     console.log(`Granting Pro access to user ${userId}`);
     // Update user document
-    const db = admin.firestore();
-    await db.collection('users').doc(userId).set({
+    await userRef.set({
         isPro: true,
         stripeCustomerId: customerId,
         subscriptionStatus: 'active',
         lastUpdated: admin.firestore.FieldValue.serverTimestamp()
     }, { merge: true });
+}
+// Firebase Auth UIDs are 1–128 chars. Reject anything with path-breaking or
+// obviously non-UID characters before using the value as a Firestore doc id.
+function isValidUid(uid) {
+    return typeof uid === 'string'
+        && uid.length > 0
+        && uid.length <= 128
+        && /^[A-Za-z0-9_-]+$/.test(uid);
 }
 async function handleSubscriptionDeleted(sub) {
     // Ideally we find the user by stripeCustomerId

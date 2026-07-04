@@ -10,8 +10,8 @@ import {
     Legend,
     ResponsiveContainer
 } from 'recharts';
-import { collection, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
-import { db, auth } from '../../firebase';
+import { auth } from '../../firebase';
+import { QuizRunService } from '../../services/QuizRunService';
 
 interface ChartData {
     xKey: string;   // unique per data point (prevents category collision)
@@ -69,41 +69,7 @@ export default function SpeedAccuracyChart({ currentExamId }: SpeedAccuracyChart
 
             try {
                 const userId = auth.currentUser.uid;
-                const runsRef = collection(db, 'quizRuns', userId, 'runs');
-
-                let runs: any[] = [];
-
-                try {
-                    const q = query(
-                        runsRef,
-                        where('examId', '==', currentExamId),
-                        where('status', '==', 'completed'),
-                        orderBy('completedAt', 'desc'),
-                        limit(50)
-                    );
-                    const snapshot = await getDocs(q);
-                    runs = snapshot.docs.map(doc => ({
-                        id: doc.id,
-                        ...doc.data()
-                    }));
-                } catch {
-                    console.warn("SpeedAccuracyChart: Composite index not available, using fallback query");
-                    const fallbackQ = query(
-                        runsRef,
-                        where('status', '==', 'completed'),
-                        limit(100)
-                    );
-                    const snapshot = await getDocs(fallbackQ);
-                    runs = snapshot.docs
-                        .map(doc => ({ id: doc.id, ...doc.data() }))
-                        .filter((r: any) => r.examId === currentExamId)
-                        .sort((a: any, b: any) => {
-                            const aTime = a.completedAt?.seconds || 0;
-                            const bTime = b.completedAt?.seconds || 0;
-                            return bTime - aTime;
-                        })
-                        .slice(0, 50);
-                }
+                const runs = await QuizRunService.getRecentCompletedRuns(userId, currentExamId);
 
                 // Exclude diagnostics, reverse to chronological order
                 const nonDiag = runs
