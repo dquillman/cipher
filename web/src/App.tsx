@@ -9,6 +9,7 @@ import { isValidVersion, evaluateVersion } from "./utils/versionCheck";
 const Landing = lazy(() => import("./pages/Landing"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const MarketingCommandCenter = lazy(() => import("./pages/MarketingCommandCenter"));
+const TestimonialModeration = lazy(() => import("./pages/TestimonialModeration"));
 const Login = lazy(() => import("./pages/Login"));
 const ExamList = lazy(() => import("./pages/ExamList"));
 const Quiz = lazy(() => import("./pages/Quiz"));
@@ -481,6 +482,7 @@ function App() {
                   <Route path="faq" element={<Faq />} />
                   <Route path="start-here" element={<StartHere />} />
                   <Route path="mcc" element={<MarketingCommandCenter />} />
+                  <Route path="testimonials" element={<TestimonialModeration />} />
                 </Route>
               </Route>
 

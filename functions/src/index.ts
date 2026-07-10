@@ -4,6 +4,9 @@ import OpenAI from "openai";
 import { requirePro } from './guards';
 import { enforceRateLimit } from './rateLimit';
 
+// Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
+export { scheduleOnboardingDrip } from './onboardingDrip';
+
 console.log("Global Index Execution Started");
 admin.initializeApp();
 console.log("Admin Initialized");
