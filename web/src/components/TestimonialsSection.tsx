@@ -1,37 +1,41 @@
 import { type PmiSafeTestimonial, PMI_SAFE_TESTIMONIALS } from "../data/testimonials.pmi-safe";
 import { type FullTestimonial, FULL_TESTIMONIALS } from "../data/testimonials.full";
+import { useApprovedTestimonials, type TestimonialDisplayItem } from "../hooks/useApprovedTestimonials";
 
 /**
  * Multi-quote testimonial section for landing pages.
  *
- * - `variant="pmi-safe"` — PMP, PgMP, any PMI-credential LP. Pulls from
- *   `PMI_SAFE_TESTIMONIALS`, which by construction contains no contributor
- *   names. Use here.
+ * - `variant="pmi-safe"` — PMP, PgMP, any PMI-credential LP. Static seed pulls
+ *   from `PMI_SAFE_TESTIMONIALS`, which by construction contains no contributor
+ *   names.
  * - `variant="full"` — /lp/security-plus, /lp/shrm-cp, any non-PMI surface.
- *   Pulls full attribution.
+ *   Static seed pulls full attribution.
  *
- * The discriminated union prevents calling `variant="full"` while accidentally
- * rendering PMI-safe data, or vice versa. The data files themselves are
- * separately tree-shaken — importing the wrong file into a PMI LP is the
- * only way to leak a name, and `tests/testimonials-attribution.spec.ts`
- * fails CI if that happens.
+ * Live-approved testimonials (Firestore `testimonials` where status==='approved')
+ * are the PRIMARY source; the static seed above is the fallback shown until at
+ * least one testimonial is approved. The live hook maps each variant's data
+ * with the same name-safety rule as the static split — the PMI-safe path never
+ * reads a name field — so `tests/testimonials-attribution.spec.ts` stays green.
+ * The static seed also renders on first paint (live loads async), so the
+ * prerendered HTML CI asserts on always carries the safe static data.
  */
 type Props = { variant: "pmi-safe" } | { variant: "full" };
 
 export default function TestimonialsSection(props: Props) {
-  if (props.variant === "pmi-safe") {
-    return <Section items={PMI_SAFE_TESTIMONIALS} renderAttribution={renderPmiSafe} />;
-  }
-  return <Section items={FULL_TESTIMONIALS} renderAttribution={renderFull} />;
+  const live = useApprovedTestimonials(props.variant);
+
+  const staticItems: TestimonialDisplayItem[] =
+    props.variant === "pmi-safe"
+      ? PMI_SAFE_TESTIMONIALS.map(toPmiSafeDisplay)
+      : FULL_TESTIMONIALS.map(toFullDisplay);
+
+  // Live is primary once loaded AND non-empty; otherwise fall back to static.
+  const items = live && live.length > 0 ? live : staticItems;
+
+  return <Section items={items} />;
 }
 
-function Section<T extends { id: string; quote: string }>({
-  items,
-  renderAttribution,
-}: {
-  items: readonly T[];
-  renderAttribution: (t: T) => string;
-}) {
+function Section({ items }: { items: readonly TestimonialDisplayItem[] }) {
   return (
     <section
       aria-labelledby="testimonials-heading"
@@ -60,7 +64,7 @@ function Section<T extends { id: string; quote: string }>({
               </span>
             </blockquote>
             <figcaption className="mt-5 text-xs font-semibold tracking-wide text-slate-400">
-              {renderAttribution(t)}
+              {t.attribution}
             </figcaption>
           </li>
         ))}
@@ -69,11 +73,15 @@ function Section<T extends { id: string; quote: string }>({
   );
 }
 
-function renderPmiSafe(t: PmiSafeTestimonial): string {
-  return `— ${t.institutionalCredential}, ${t.role}`;
+function toPmiSafeDisplay(t: PmiSafeTestimonial): TestimonialDisplayItem {
+  return { id: t.id, quote: t.quote, attribution: `— ${t.institutionalCredential}, ${t.role}` };
 }
 
-function renderFull(t: FullTestimonial): string {
+function toFullDisplay(t: FullTestimonial): TestimonialDisplayItem {
   const personal = t.personalCredential ? `, ${t.personalCredential}` : "";
-  return `— ${t.fullName}${personal} · ${t.institutionalCredential} · ${t.role}`;
+  return {
+    id: t.id,
+    quote: t.quote,
+    attribution: `— ${t.fullName}${personal} · ${t.institutionalCredential} · ${t.role}`,
+  };
 }
