@@ -15,6 +15,10 @@ export default defineConfig({
   // expressions) from the build; dev server and console.warn/error are
   // untouched. Complements the eslint no-console rule.
   esbuild: {
+    // Vite 8: `pure` dropped from the ESBuildOptions type but still honored by
+    // esbuild at transform time. Keep it (surgical — preserves console.warn/error,
+    // unlike `drop: ['console']`) and silence the stale type.
+    // @ts-expect-error pure is a valid esbuild transform option
     pure: ['console.log', 'console.debug', 'console.info', 'console.trace'],
   },
   build: {
