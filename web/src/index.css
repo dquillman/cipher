@@ -183,3 +183,126 @@ html, body, #root {
 /* (Per-class prefers-reduced-motion guards intentionally removed 2026-06-13 —
    see the EC-030 note above. Hero entrance, shimmer, drift, and scroll-reveal
    now run regardless of the OS reduce-motion setting.) */
+
+/* ━━━ THE DECODER — public-surface identity (2026-07-04) ━━━━━━━━━━━━━━━━━━
+   Scoped to `.decoder` (the root div of each PUBLIC page: landing, LPs,
+   pricing, blog, story, exam-lens, login). The logged-in app under /app/*
+   never gets this class, so it keeps the original Satoshi/indigo identity.
+
+   Mechanism: Tailwind v4 utilities resolve their CSS variables at the use
+   site, so overriding the vars inside .decoder recolors/retypes every
+   existing bg-brand-* / text-brand-* / font-display / font-mono utility in
+   the subtree without touching class names. */
+.decoder {
+    /* signal-cyan ramp replaces indigo (analysis voice).
+       300/400 are the bright accent tier (text, glows, ink-on-cyan CTAs);
+       500-700 are deliberately deep so every legacy `bg-brand-600 text-white`
+       button in the subtree keeps AA contrast with zero per-file edits. */
+    --color-brand-50:  #ecfeff;
+    --color-brand-100: #cff9fe;
+    --color-brand-200: #a5f0fc;
+    --color-brand-300: #7ee9fa;
+    --color-brand-400: #43e5ff;
+    --color-brand-500: #0c8fa9;
+    --color-brand-600: #0a7590;
+    --color-brand-700: #085f75;
+    --color-brand-800: #0a4d5f;
+    --color-brand-900: #0c3f4e;
+
+    /* verify-amber (verdict voice) — slightly warmer than old accent */
+    --color-accent-400: #ffc457;
+    --color-accent-500: #ffb224;
+    --color-accent-600: #e29a0e;
+
+    /* type: decode voice */
+    --font-display: 'Clash Display', 'Satoshi', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace;
+
+    background-color: #060b16;
+}
+
+/* CTA contrast: cyan is a light hue — primary CTAs inside .decoder flip to
+   dark text. Applied via .cta-decode on the buttons themselves. */
+.decoder .cta-decode {
+    background: var(--color-brand-400);
+    color: #06121a;
+    font-weight: 700;
+}
+.decoder .cta-decode:hover { background: var(--color-brand-300); }
+
+/* Corner ticks on primary CTAs — the instrument signature. */
+.decoder .cta-ticks { position: relative; }
+.decoder .cta-ticks::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    pointer-events: none;
+    background:
+        linear-gradient(var(--color-brand-400), var(--color-brand-400)) top left / 8px 1.5px,
+        linear-gradient(var(--color-brand-400), var(--color-brand-400)) top left / 1.5px 8px,
+        linear-gradient(var(--color-brand-400), var(--color-brand-400)) bottom right / 8px 1.5px,
+        linear-gradient(var(--color-brand-400), var(--color-brand-400)) bottom right / 1.5px 8px;
+    background-repeat: no-repeat;
+    opacity: 0.55;
+    transition: inset 0.2s ease;
+}
+.decoder .cta-ticks:hover::after { inset: -9px; }
+
+/* CTA breathe recolored: the base keyframes hardcode indigo shadows. */
+.decoder .cta-breathe { animation: cta-breathe-cyan 3.2s ease-in-out infinite; }
+@keyframes cta-breathe-cyan {
+    0%, 100% { box-shadow: 0 10px 24px -6px rgba(34, 207, 238, 0.30); }
+    50%      { box-shadow: 0 14px 36px -4px rgba(67, 229, 255, 0.50); }
+}
+
+/* Headline decode keyword — mono voice, live caret. */
+.decoder .decode-word {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-brand-400);
+    white-space: nowrap;
+}
+.decoder .decode-caret {
+    display: inline-block;
+    width: 0.55ch;
+    height: 0.9em;
+    transform: translateY(0.12em);
+    background: var(--color-brand-400);
+    margin-left: 2px;
+    animation: decode-caret 1s steps(2) infinite;
+}
+@keyframes decode-caret { 50% { opacity: 0; } }
+
+/* Scanning beam over the live-demo terminal. pointer-events:none — the demo
+   underneath keeps its hover/click behavior untouched. */
+.decoder .scan-wrap { position: relative; }
+.decoder .scanline {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 2px;
+    z-index: 30;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--color-brand-400) 35%, var(--color-brand-400) 65%, transparent);
+    filter: drop-shadow(0 0 6px var(--color-brand-400));
+    opacity: 0.8;
+    animation: scan-sweep 5.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes scan-sweep {
+    0%   { top: 4%;  opacity: 0; }
+    6%   { opacity: 0.8; }
+    46%  { top: 95%; opacity: 0.8; }
+    52%  { opacity: 0; }
+    100% { top: 95%; opacity: 0; }
+}
+
+/* Exam marquee ticker — decorative strip under the hero. Pauses on hover. */
+.decoder .ticker { overflow: hidden; }
+.decoder .ticker-track {
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    animation: ticker-scroll 38s linear infinite;
+}
+.decoder .ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes ticker-scroll { to { transform: translateX(-50%); } }

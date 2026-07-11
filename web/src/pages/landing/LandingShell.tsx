@@ -51,7 +51,7 @@ export default function LandingShell({ exam, examShortName, pageId, children }: 
   const handleCta = (loc: string) => trackCtaClick(`${pageId}-${loc}`);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 antialiased">
+    <div className="decoder min-h-screen bg-slate-950 text-slate-100 antialiased">
       {/* Sticky header — minimal: logo + single CTA */}
       <header className="sticky top-0 z-40 w-full border-b border-slate-800/70 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">

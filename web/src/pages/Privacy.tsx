@@ -4,7 +4,7 @@ import PublicFooter from '../components/layout/PublicFooter';
 
 export default function Privacy() {
   return (
-    <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+    <div className="decoder bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
       <PublicNav />
 
       <main className="pt-28 pb-20">

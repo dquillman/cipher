@@ -5,6 +5,7 @@ import { trackLandingPageView, trackCtaClick, trackPricingView, captureUtmParams
 import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
 import HeroBackground from "../components/landing/HeroBackground";
+import DecodeWord from "../components/landing/DecodeWord";
 import { useHeroMotion } from "../components/landing/useHeroMotion";
 import { useInView } from "../hooks/useInView";
 import CountUp from "../components/CountUp";
@@ -196,7 +197,7 @@ export default function Landing() {
   const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
   return (
-    <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+    <div className="decoder bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
       <SeoHead {...SEO.landing} />
       <ScrollProgress />
 
@@ -205,7 +206,9 @@ export default function Landing() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <img src="/favicon.png" alt="CipherExam" className="h-8 w-8 rounded-lg object-contain" />
+            <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟨</span>
             <span className="text-lg font-bold tracking-tight text-white font-display">CipherExam</span>
+            <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟩</span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -234,9 +237,9 @@ export default function Landing() {
             <button
               onClick={handleCta}
               data-magnetic-cta
-              className={`rounded-full px-5 py-2 text-sm font-bold transition-colors hidden md:block ${
+              className={`rounded-md px-5 py-2 text-sm font-bold transition-colors hidden md:block ${
                 scrolled
-                  ? "bg-brand-600 text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500"
+                  ? "cta-decode shadow-lg shadow-brand-500/25"
                   : "bg-white text-slate-950 hover:bg-slate-200"
               }`}
             >
@@ -281,7 +284,7 @@ export default function Landing() {
             </button>
             <div className="pt-4 border-t border-slate-800 flex flex-col gap-3">
               <button onClick={() => handleMobileNav(() => navigate("/login"))} className="w-full rounded-xl border border-slate-700 px-4 py-3 text-base font-bold text-white hover:bg-slate-800 transition-colors">Sign In</button>
-              <button onClick={() => handleMobileNav(handleCta)} className="w-full rounded-xl bg-brand-600 px-4 py-3 text-base font-bold text-white hover:bg-brand-500 transition-colors">Start Free Trial</button>
+              <button onClick={() => handleMobileNav(handleCta)} className="cta-decode w-full rounded-xl px-4 py-3 text-base transition-colors">Start Free Trial</button>
             </div>
           </div>
         </div>
@@ -296,7 +299,7 @@ export default function Landing() {
           <img
             src="/media/hero-ambient.jpg"
             alt=""
-            className="hero-ambient h-full w-full object-cover opacity-45 [mask-image:linear-gradient(to_bottom,black_35%,transparent_96%)]"
+            className="hero-ambient h-full w-full object-cover opacity-25 [mask-image:linear-gradient(to_bottom,black_35%,transparent_96%)]"
           />
         </div>
         {/* WebGL "data current" — fades in over the still image (client-only, gated) */}
@@ -327,8 +330,8 @@ export default function Landing() {
               </div>
 
               <h1 className="hero-enter hero-enter-2 text-5xl font-extrabold tracking-tight text-white sm:text-6xl xl:text-7xl mb-6 leading-[1.05] font-display">
-                Learn How Certification{" "}
-                <span className="text-shimmer">Exams Think</span>
+                Learn How Certification Exams{" "}
+                <DecodeWord text="Think" />
               </h1>
 
               <p className="hero-enter hero-enter-3 max-w-xl mx-auto lg:mx-0 text-lg text-slate-400 mb-3 leading-relaxed">
@@ -343,13 +346,13 @@ export default function Landing() {
                 <button
                   onClick={handleCta}
                   data-magnetic
-                  className="cta-breathe w-full sm:w-auto rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white hover:bg-brand-500 transition-colors"
+                  className="cta-breathe cta-decode cta-ticks w-full sm:w-auto rounded-md px-8 py-4 text-base transition-colors"
                 >
                   Start Free Trial
                 </button>
                 <button
                   onClick={() => scrollTo("differentiator")}
-                  className="w-full sm:w-auto rounded-full border border-slate-700 bg-slate-800/50 px-8 py-4 text-base font-bold text-white hover:bg-slate-800 transition-colors"
+                  className="w-full sm:w-auto rounded-md border border-slate-700 bg-slate-800/40 px-8 py-4 font-mono text-sm font-medium text-slate-300 hover:border-brand-400/50 hover:text-brand-300 transition-colors"
                 >
                   See How It Works
                 </button>
@@ -374,12 +377,13 @@ export default function Landing() {
 
             {/* Right: live product demo */}
             <div className="lg:col-span-6 hero-enter hero-enter-4">
-              <div className="demo-float relative rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1">
+              <div className="demo-float scan-wrap relative rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1 overflow-hidden">
+                <div className="scanline" aria-hidden="true" />
                 <div className="flex items-center gap-2 px-4 pt-3 pb-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-brand-400 shadow-[0_0_8px] shadow-brand-400/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
                   <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
-                  <span className="ml-2 font-mono text-[10px] tracking-widest text-slate-600 uppercase">cipherexam — live demo</span>
+                  <span className="ml-2 font-mono text-[10px] tracking-widest text-slate-500 uppercase">cipher · live decode</span>
                 </div>
                 <InteractiveDemo />
                 <p className="text-xs text-slate-600 mt-2 pb-2 text-center">
@@ -390,6 +394,25 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* ━━━ EXAM TICKER — decorative marquee (Decoder identity) ━━━━━━━━━━━ */}
+      <div className="ticker border-y border-slate-800/80" aria-hidden="true">
+        <div className="ticker-track">
+          {[
+            "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
+            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1102", "SIX SIGMA · GREEN BELT",
+            "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
+          ].concat([
+            "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
+            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1102", "SIX SIGMA · GREEN BELT",
+            "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
+          ]).map((t, i) => (
+            <span key={i} className="font-mono text-[11px] tracking-[0.22em] text-slate-500 px-7 py-3 border-r border-slate-800/80">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
 
       {/* ━━━ SECTION 2 — THE PROBLEM ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection id="problem" className="py-24 bg-slate-950 border-t border-slate-900">

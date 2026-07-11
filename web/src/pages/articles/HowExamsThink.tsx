@@ -21,7 +21,7 @@ export default function HowExamsThink() {
   };
 
   return (
-    <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+    <div className="decoder bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
       <SeoHead
         {...BLOG_POSTS.howExamsThink}
         ogType="article"

@@ -193,7 +193,7 @@ export default function ExamLensGlossary() {
   ];
 
   return (
-    <div className="bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+    <div className="decoder bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
       <SeoHead
         title="Exam Lens — Per-Certification Reasoning Frameworks · CipherExam"
         description="Exam Lens is CipherExam's name for the per-certification reasoning frameworks that explain why one answer is BEST. Glossary of every Lens — PMP, Security+, SHRM-CP, ITIL, Scrum, Six Sigma, CIA, CPP, Network+, A+, PgMP."

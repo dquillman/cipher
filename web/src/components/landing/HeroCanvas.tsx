@@ -44,10 +44,10 @@ const VERT = /* glsl */ `
   varying vec3  vColor;
   varying float vAlpha;
 
-  // Brand palette — indigo / blue / violet (see web/src/index.css @theme).
-  const vec3 C_A = vec3(0.388, 0.400, 0.945); // #6366f1 brand-500
-  const vec3 C_B = vec3(0.231, 0.510, 0.965); // #3b82f6 blue-500
-  const vec3 C_C = vec3(0.655, 0.545, 0.980); // #a78bfa violet-400
+  // Decoder palette — signal cyan family (see .decoder block in index.css).
+  const vec3 C_A = vec3(0.133, 0.812, 0.933); // #22cfee brand-500
+  const vec3 C_B = vec3(0.263, 0.898, 1.000); // #43e5ff brand-400
+  const vec3 C_C = vec3(0.494, 0.914, 0.980); // #7ee9fa brand-300
 
   //
   // Ashima Arts simplex noise (3D) — public domain / MIT.
