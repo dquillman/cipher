@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where, limit } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase";
 
 /**
@@ -22,10 +22,19 @@ export type TestimonialDisplayItem = {
  * therefore `tests/testimonials-attribution.spec.ts`) showing the static
  * PMI-safe data — live data never appears in the first paint that CI asserts on.
  *
- * PMI-safe hardening: for `variant === "pmi-safe"` the mapper NEVER reads any
- * name field (`userDisplayName`). Attribution is derived only from the exam,
- * so an approved testimonial carrying a real name can never leak it onto a PMI
- * landing page — the same invariant the two separate static data files encode.
+ * Source of truth: the `published_testimonials` collection — the sanitized,
+ * public-read (`allow read: if true`), PII-free mirror that Admin-Core's
+ * testimonials review page writes on approval. We deliberately do NOT read the
+ * raw `testimonials` collection: it holds PII and is admin/owner-read only, so a
+ * public landing page can't (and shouldn't) query it. Every doc here is already
+ * approved-and-consented — presence in the collection IS the approval gate — so
+ * there's no `status`/`consent` filtering to do. Public docs carry only
+ * `firstName`, `quote`, `rating`, `examName`, `publishedAt`.
+ *
+ * PMI-safe hardening: for `variant === "pmi-safe"` the mapper NEVER reads the
+ * `firstName` field. Attribution is derived only from the exam, so a published
+ * testimonial carrying a first name can never leak it onto a PMI landing page —
+ * the same invariant the two separate static data files encode.
  */
 export function useApprovedTestimonials(
   variant: "pmi-safe" | "full",
@@ -37,25 +46,23 @@ export function useApprovedTestimonials(
 
     (async () => {
       try {
-        // Single-field equality + limit → no composite index required.
+        // Newest first; single-field orderBy + limit → no composite index required.
         const snap = await getDocs(
           query(
-            collection(db, "testimonials"),
-            where("status", "==", "approved"),
-            limit(12),
+            collection(db, "published_testimonials"),
+            orderBy("publishedAt", "desc"),
+            limit(3),
           ),
         );
 
         const rows = snap.docs
           .map((d) => ({ id: d.id, ...d.data() }) as Record<string, unknown>)
-          // Only surface testimonials the user consented to share.
-          .filter((r) => r.consentToShare === true && typeof r.text === "string" && (r.text as string).trim().length > 0)
-          .slice(0, 3)
+          .filter((r) => typeof r.quote === "string" && (r.quote as string).trim().length > 0)
           .map((r) => mapToDisplayItem(r, variant));
 
         if (!cancelled) setItems(rows);
       } catch {
-        // Offline / rules / no data → signal "use static fallback".
+        // Offline / no data / missing index → signal "use static fallback".
         if (!cancelled) setItems([]);
       }
     })();
@@ -72,7 +79,7 @@ function mapToDisplayItem(
   r: Record<string, unknown>,
   variant: "pmi-safe" | "full",
 ): TestimonialDisplayItem {
-  const quote = (r.text as string).trim();
+  const quote = (r.quote as string).trim();
   const examName = typeof r.examName === "string" && r.examName ? r.examName : "certification";
 
   if (variant === "pmi-safe") {
@@ -85,9 +92,7 @@ function mapToDisplayItem(
   }
 
   const name =
-    r.consentToShare === true && typeof r.userDisplayName === "string" && r.userDisplayName.trim()
-      ? r.userDisplayName.trim()
-      : null;
+    typeof r.firstName === "string" && r.firstName.trim() ? r.firstName.trim() : null;
 
   return {
     id: (r.id as string) ?? quote.slice(0, 24),

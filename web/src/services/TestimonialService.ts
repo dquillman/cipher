@@ -1,15 +1,5 @@
 import { db } from '../firebase';
-import {
-    doc,
-    setDoc,
-    updateDoc,
-    serverTimestamp,
-    collection,
-    onSnapshot,
-    query,
-    where,
-    type Unsubscribe,
-} from 'firebase/firestore';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { APP_VERSION } from '../version';
 
 export type TestimonialStatus = 'pending_review' | 'approved' | 'rejected';
@@ -51,45 +41,9 @@ export const TestimonialService = {
         });
     },
 
-    /**
-     * Moderation: flip a testimonial's review status. Admin-only — enforced by
-     * Firestore rules (only role==='admin' may update the `status` field).
-     * `approve` stamps who/when so the audit trail survives.
-     */
-    setStatus: async (
-        userId: string,
-        status: TestimonialStatus,
-        adminUid: string | null,
-    ) => {
-        await updateDoc(doc(db, 'testimonials', userId), {
-            status,
-            approvedAt: status === 'approved' ? serverTimestamp() : null,
-            approvedBy: status === 'approved' ? adminUid : null,
-        });
-    },
-
-    /**
-     * Live subscription to every testimonial with the given status, for the
-     * moderation queue. Single-field equality filter → no composite index.
-     */
-    subscribeByStatus: (
-        status: TestimonialStatus,
-        onChange: (rows: (TestimonialDoc & { id: string })[]) => void,
-        onError?: (e: Error) => void,
-    ): Unsubscribe => {
-        const q = query(
-            collection(db, 'testimonials'),
-            where('status', '==', status),
-        );
-        return onSnapshot(
-            q,
-            (snap) => {
-                const rows = snap.docs.map(
-                    (d) => ({ id: d.id, ...(d.data() as TestimonialDoc) }),
-                );
-                onChange(rows);
-            },
-            (err) => onError?.(err),
-        );
-    },
+    // Moderation lives in Admin-Core (src/pages/Testimonials.tsx): an admin
+    // approves a raw testimonials/{uid} doc there, which publishes a sanitized
+    // copy to `published_testimonials`. This product app only SUBMITS raw docs
+    // and READS the public mirror (see hooks/useApprovedTestimonials) — it never
+    // moderates, so no setStatus/subscribeByStatus here.
 };
