@@ -37,6 +37,10 @@ export default defineConfig({
           // gives one stable, cacheable chunk shared across those routes.
           if (p.includes('node_modules/three/')) return 'three-vendor'
           if (p.includes('node_modules/gsap/')) return 'gsap-vendor'
+          // Charting stack (recharts + its d3 dependency tree) — dominates the
+          // Stats route chunk (~400KB). Splitting it out keeps Stats.tsx edits
+          // from re-downloading the whole chart library on every deploy.
+          if (/node_modules\/(recharts|d3-[a-z-]+|victory-vendor|internmap|delaunator|robust-predicates)\//.test(p)) return 'charts-vendor'
         },
       },
     },

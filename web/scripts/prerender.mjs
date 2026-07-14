@@ -193,6 +193,19 @@ async function main() {
         if (canons.length > 1) {
           for (let i = 0; i < canons.length - 1; i++) canons[i].remove();
         }
+
+        // Strip runtime-injected modulepreload hints for heavy DECORATIVE lazy
+        // chunks. Vite injects these <link> tags when a dynamic chunk loads
+        // during the prerender session; baking them into the static HTML makes
+        // every real visitor eagerly download ~570KB of below-the-fold WebGL/
+        // animation code (three-vendor + HeroCanvas + gsap-vendor) on first
+        // paint, defeating the lazy-loading. Route/content chunks keep their
+        // preloads — those genuinely speed up LCP.
+        const HEAVY_DECOR = ['three-vendor', 'HeroCanvas', 'gsap-vendor'];
+        document.querySelectorAll('link[rel="modulepreload"]').forEach((l) => {
+          const href = l.getAttribute('href') || '';
+          if (HEAVY_DECOR.some((n) => href.includes(n))) l.remove();
+        });
       });
 
       const html = await page.content();
