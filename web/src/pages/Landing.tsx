@@ -6,6 +6,7 @@ import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
 import HeroBackground from "../components/landing/HeroBackground";
 import DecodeWord from "../components/landing/DecodeWord";
+import ReadinessVerdict from "../components/landing/ReadinessVerdict";
 import { useHeroMotion } from "../components/landing/useHeroMotion";
 import { useInView } from "../hooks/useInView";
 import CountUp from "../components/CountUp";
@@ -749,10 +750,44 @@ export default function Landing() {
         </div>
       </RevealSection>
 
-      {/* ━━━ SECTION 7 — COMPARISON / PRICING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      {/* ━━━ SECTION 7 — THE READINESS VERDICT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <RevealSection id="readiness-verdict" className="py-24 bg-slate-950 border-t border-slate-900">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <Eyebrow n="07" label="The Readiness Verdict" center />
+            <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
+              Most apps tell you you’re ready. We tell you the truth.
+            </h2>
+            <p className="text-lg text-slate-400 leading-relaxed">
+              Every full mock exam returns a real score, an honest pass/fail verdict, and a
+              domain-by-domain breakdown of exactly where you’re losing points — then drops you
+              straight into targeted practice on your weakest area. No inflated readiness meters.
+              No false confidence walking into the real thing.
+            </p>
+          </div>
+
+          <ReadinessVerdict />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            {[
+              { k: "No inflation", title: "A verdict, not a vibe", body: "A real pass/fail against the actual passing bar — so you find out here, not on exam day." },
+              { k: "Domain x-ray", title: "See where the points leak", body: "Per-domain accuracy shows precisely which objectives are dragging your score down." },
+              { k: "One click to fix", title: "Straight into the fix", body: "Smart Practice auto-targets your weakest domain. Your diagnosis becomes your next session." },
+            ].map((p, i) => (
+              <div key={i} className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
+                <div className="font-mono text-[11px] tracking-[0.16em] text-brand-400 uppercase mb-2.5">// {p.k}</div>
+                <h3 className="text-lg font-bold text-white font-display mb-1.5">{p.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed">{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </RevealSection>
+
+      {/* ━━━ SECTION 8 — COMPARISON / PRICING ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection id="pricing" className="py-24 bg-slate-900/50">
         <div ref={pricingRef} className="mx-auto max-w-3xl px-6">
-          <Eyebrow n="07" label="Comparison" center />
+          <Eyebrow n="08" label="Comparison" center />
           <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 text-center font-display">
             CipherExam vs Traditional Exam Prep
           </h2>
@@ -831,7 +866,7 @@ export default function Landing() {
       <RevealSection className="py-24 bg-slate-900/50">
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center mb-16">
-            <Eyebrow n="08" label="By the Numbers" center />
+            <Eyebrow n="09" label="By the Numbers" center />
             <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
               Built for Serious Exam Prep
             </h2>
@@ -858,7 +893,7 @@ export default function Landing() {
       {/* ━━━ SECTION 10 — STUDY SMARTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <RevealSection className="py-24 bg-slate-950 border-t border-slate-900">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <Eyebrow n="09" label="Study Smarter" center />
+          <Eyebrow n="10" label="Study Smarter" center />
           <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
             Study Smarter. Not Longer.
           </h2>
@@ -889,7 +924,7 @@ export default function Landing() {
       <RevealSection id="testimonial" className="py-24 bg-slate-900/50 border-t border-slate-900">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center mb-10">
-            <Eyebrow n="10" label="From Beta Testing" center />
+            <Eyebrow n="11" label="From Beta Testing" center />
           </div>
 
           <figure className="relative rounded-2xl border border-slate-800 bg-slate-950 p-8 sm:p-12">
