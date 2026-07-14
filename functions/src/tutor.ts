@@ -110,13 +110,21 @@ const processPatternInteraction = async (userId: string, pattern: PatternData, i
     console.log(`Pattern processed: ${patternId} for user ${userId}`);
 };
 
+// minInstances: 1 — this call sits directly on the post-answer path; a cold
+// start added 1-3s before any logic ran. ~$10/mo at 512MB; drop to 0 if cost
+// ever outweighs the latency.
 export const generateTutorBreakdown = functions
-    .runWith({ memory: '512MB', timeoutSeconds: 60 })
+    .runWith({ memory: '512MB', timeoutSeconds: 60, minInstances: 1 })
     .https.onCall(async (data: TutorPayload, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Must be authenticated');
     }
-    await requirePro(context);
+
+    // Pro gate, started now and awaited alongside the cache read below —
+    // its user-doc lookup runs in parallel instead of adding a serial
+    // round-trip. The rejection is captured (never floating) and re-thrown
+    // before any data is returned.
+    const proCheck: Promise<unknown> = requirePro(context).then(() => null, (e: unknown) => e);
 
     // 0. Force Debug / Entry Logging
     console.log("generateTutorBreakdown invoked", {
@@ -174,9 +182,18 @@ export const generateTutorBreakdown = functions
         .digest('hex');
     const cacheRef = admin.firestore().collection('tutor_cache').doc(cacheKey);
 
+    const [proError, cachedSnap] = await Promise.all([
+        proCheck,
+        cacheRef.get().catch((err) => {
+            console.warn("tutor_cache read failed, generating fresh:", err);
+            return null;
+        }),
+    ]);
+    if (proError) throw proError;
+
     try {
-        const cached = await cacheRef.get();
-        if (cached.exists) {
+        const cached = cachedSnap;
+        if (cached && cached.exists) {
             const result = cached.data()?.result as TutorResponse | undefined;
             if (result?.verdict) {
                 // Per-user pattern stats must still update on cache hits.

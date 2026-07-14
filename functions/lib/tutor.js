@@ -66,14 +66,21 @@ const processPatternInteraction = async (userId, pattern, isCorrect, examId) => 
     await batch.commit();
     console.log(`Pattern processed: ${patternId} for user ${userId}`);
 };
+// minInstances: 1 — this call sits directly on the post-answer path; a cold
+// start added 1-3s before any logic ran. ~$10/mo at 512MB; drop to 0 if cost
+// ever outweighs the latency.
 exports.generateTutorBreakdown = functions
-    .runWith({ memory: '512MB', timeoutSeconds: 60 })
+    .runWith({ memory: '512MB', timeoutSeconds: 60, minInstances: 1 })
     .https.onCall(async (data, context) => {
     var _a, _b, _c;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Must be authenticated');
     }
-    await (0, guards_1.requirePro)(context);
+    // Pro gate, started now and awaited alongside the cache read below —
+    // its user-doc lookup runs in parallel instead of adding a serial
+    // round-trip. The rejection is captured (never floating) and re-thrown
+    // before any data is returned.
+    const proCheck = (0, guards_1.requirePro)(context).then(() => null, (e) => e);
     // 0. Force Debug / Entry Logging
     console.log("generateTutorBreakdown invoked", {
         uid: context.auth.uid,
@@ -119,9 +126,18 @@ exports.generateTutorBreakdown = functions
     }))
         .digest('hex');
     const cacheRef = admin.firestore().collection('tutor_cache').doc(cacheKey);
+    const [proError, cachedSnap] = await Promise.all([
+        proCheck,
+        cacheRef.get().catch((err) => {
+            console.warn("tutor_cache read failed, generating fresh:", err);
+            return null;
+        }),
+    ]);
+    if (proError)
+        throw proError;
     try {
-        const cached = await cacheRef.get();
-        if (cached.exists) {
+        const cached = cachedSnap;
+        if (cached && cached.exists) {
             const result = (_c = cached.data()) === null || _c === void 0 ? void 0 : _c.result;
             if (result === null || result === void 0 ? void 0 : result.verdict) {
                 // Per-user pattern stats must still update on cache hits.

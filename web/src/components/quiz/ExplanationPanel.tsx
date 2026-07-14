@@ -59,14 +59,24 @@ export default function ExplanationPanel({
                     )}
                 </div>
 
-                {!tutorBreakdown && !loadingBreakdown ? (
+                {!tutorBreakdown ? (
+                    /* No breakdown yet — show the curated explanation IMMEDIATELY
+                       so there's something real to read while the coach generates.
+                       The breakdown swaps in the moment it arrives. */
                     <div className="text-center p-4">
-                        <button
-                            onClick={onLoadBreakdown}
-                            className="text-brand-400 hover:text-brand-300 underline"
-                        >
-                            Load Coach Breakdown
-                        </button>
+                        {loadingBreakdown ? (
+                            <div className="flex items-center justify-center gap-2 text-sm text-brand-300">
+                                <span className="h-2 w-2 rounded-full bg-brand-400 animate-pulse" />
+                                Coach breakdown incoming — here's the standard explanation meanwhile:
+                            </div>
+                        ) : (
+                            <button
+                                onClick={onLoadBreakdown}
+                                className="text-brand-400 hover:text-brand-300 underline"
+                            >
+                                Load Coach Breakdown
+                            </button>
+                        )}
                         <div className="mt-4 p-4 text-left leading-relaxed text-base md:text-lg text-slate-200">
                             <StructuredExplanation explanation={question.explanation} title="Standard Explanation" />
                         </div>
@@ -74,7 +84,7 @@ export default function ExplanationPanel({
                 ) : (
                     <TutorBreakdown
                         breakdown={tutorBreakdown}
-                        loading={loadingBreakdown}
+                        loading={false}
                         onExpandDepth={onExpandDepth}
                         depthContent={depthContent}
                         depthLoading={depthLoading}
