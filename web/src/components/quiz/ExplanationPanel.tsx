@@ -1,4 +1,5 @@
-import { Brain } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Brain, Sparkles } from 'lucide-react';
 import TutorBreakdown, { type TutorResponse, type CoachMode } from '../TutorBreakdown';
 import StructuredExplanation from '../explanations/StructuredExplanation';
 import EmvCalculation from '../explanations/EmvCalculation';
@@ -33,6 +34,33 @@ export default function ExplanationPanel({
     onExpandDepth,
     onLoadBreakdown,
 }: ExplanationPanelProps) {
+    // Anti-flash / anti-yank rules for the standard-explanation fallback:
+    // 1. GRACE: while the coach is generating, wait ~800ms before revealing the
+    //    standard explanation — cache hits arrive inside the window, so fast
+    //    responses render the coach directly with no one-second flash.
+    // 2. PIN: once the standard explanation IS on screen, never auto-replace
+    //    it. The arriving breakdown becomes a "Show Coach Breakdown" button and
+    //    swaps only when the reader asks.
+    const [standardVisible, setStandardVisible] = useState(!loadingBreakdown && !tutorBreakdown);
+    const [pinnedStandard, setPinnedStandard] = useState(false);
+    const standardVisibleRef = useRef(standardVisible);
+    standardVisibleRef.current = standardVisible;
+
+    useEffect(() => {
+        if (tutorBreakdown) return;
+        if (!loadingBreakdown) { setStandardVisible(true); return; }
+        const t = setTimeout(() => setStandardVisible(true), 800);
+        return () => clearTimeout(t);
+    }, [loadingBreakdown, tutorBreakdown]);
+
+    useEffect(() => {
+        // Breakdown just arrived while the reader had the standard text open →
+        // pin instead of yanking it away.
+        if (tutorBreakdown && standardVisibleRef.current) setPinnedStandard(true);
+    }, [tutorBreakdown]);
+
+    const showCoach = tutorBreakdown && !pinnedStandard;
+
     return (
         <div className="answer-reveal mt-8 pt-6 border-t border-slate-700">
             <div className="bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-3 sm:p-6 lg:p-10">
@@ -59,29 +87,7 @@ export default function ExplanationPanel({
                     )}
                 </div>
 
-                {!tutorBreakdown ? (
-                    /* No breakdown yet — show the curated explanation IMMEDIATELY
-                       so there's something real to read while the coach generates.
-                       The breakdown swaps in the moment it arrives. */
-                    <div className="text-center p-4">
-                        {loadingBreakdown ? (
-                            <div className="flex items-center justify-center gap-2 text-sm text-brand-300">
-                                <span className="h-2 w-2 rounded-full bg-brand-400 animate-pulse" />
-                                Coach breakdown incoming — here's the standard explanation meanwhile:
-                            </div>
-                        ) : (
-                            <button
-                                onClick={onLoadBreakdown}
-                                className="text-brand-400 hover:text-brand-300 underline"
-                            >
-                                Load Coach Breakdown
-                            </button>
-                        )}
-                        <div className="mt-4 p-4 text-left leading-relaxed text-base md:text-lg text-slate-200">
-                            <StructuredExplanation explanation={question.explanation} title="Standard Explanation" />
-                        </div>
-                    </div>
-                ) : (
+                {showCoach ? (
                     <TutorBreakdown
                         breakdown={tutorBreakdown}
                         loading={false}
@@ -92,6 +98,39 @@ export default function ExplanationPanel({
                         onCoachModeChange={onCoachModeChange}
                         correctAnswerIndex={question.correctAnswer}
                     />
+                ) : (
+                    <div className="text-center p-4">
+                        {tutorBreakdown && pinnedStandard ? (
+                            /* Breakdown arrived while the standard text was being
+                               read — swap only when the reader asks. */
+                            <button
+                                onClick={() => setPinnedStandard(false)}
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm transition-colors shadow-lg shadow-brand-500/20"
+                            >
+                                <Sparkles className="w-4 h-4" />
+                                Coach Breakdown is ready — view it
+                            </button>
+                        ) : loadingBreakdown ? (
+                            <div className="flex items-center justify-center gap-2 text-sm text-brand-300">
+                                <span className="h-2 w-2 rounded-full bg-brand-400 animate-pulse" />
+                                {standardVisible
+                                    ? "Coach breakdown incoming — here's the standard explanation meanwhile:"
+                                    : "Coach is thinking…"}
+                            </div>
+                        ) : (
+                            <button
+                                onClick={onLoadBreakdown}
+                                className="text-brand-400 hover:text-brand-300 underline"
+                            >
+                                Load Coach Breakdown
+                            </button>
+                        )}
+                        {standardVisible && (
+                            <div className="mt-4 p-4 text-left leading-relaxed text-base md:text-lg text-slate-200">
+                                <StructuredExplanation explanation={question.explanation} title="Standard Explanation" />
+                            </div>
+                        )}
+                    </div>
                 )}
 
                 <div className="mt-6 border-t border-slate-700/50 pt-4">
