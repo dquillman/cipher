@@ -78,14 +78,87 @@ export default function TutorBreakdown({ breakdown, loading, onExpandDepth, dept
         };
     }, [breakdown?.verdict, loading, isMuted, handleSpeak]);
 
+    if (!breakdown && !loading) return null;
+
+    // Header is shared between the loading skeleton and the loaded card so the
+    // Quick/Deep toggle never disappears during a mode switch — that vanishing
+    // was what made switching back to Quick feel impossible. Toggle is disabled
+    // while loading (prevents a second in-flight request racing the first);
+    // audio controls render only once there's a verdict to read.
+    const header = (
+        <div className="bg-indigo-900/30 px-6 py-3 border-b border-indigo-500/20 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+                <span className="text-xl">👨‍🏫</span>
+                <h3 className="text-indigo-200 font-bold font-display">Coach Breakdown</h3>
+            </div>
+            <div className="flex items-center gap-2">
+                {/* Coach Mode Toggle */}
+                <div className="flex bg-slate-800/80 rounded-lg p-0.5 border border-slate-700/50">
+                    <button
+                        onClick={() => onCoachModeChange('quick')}
+                        disabled={loading}
+                        className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-all disabled:cursor-wait ${coachMode === 'quick' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                        title="Quick: concise verdict + mental rule"
+                    >
+                        Quick
+                    </button>
+                    <button
+                        onClick={() => onCoachModeChange('deep')}
+                        disabled={loading}
+                        className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-all disabled:cursor-wait ${coachMode === 'deep' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
+                        title="Deep: structured breakdown with exam lens, conflicts, patterns"
+                    >
+                        Deep
+                    </button>
+                </div>
+                {breakdown && (
+                    <>
+                        <button
+                            onClick={() => handleSpeak(breakdown.verdict)}
+                            className={`p-2 rounded-full hover:bg-white/10 transition-colors ${isSpeaking ? 'text-brand-400 animate-pulse' : 'text-slate-400'}`}
+                            title="Replay Audio"
+                        >
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                            </svg>
+                        </button>
+                        <button
+                            onClick={toggleMute}
+                            className={`p-2 rounded-full hover:bg-white/10 transition-colors ${isMuted ? 'text-red-400' : 'text-slate-400'}`}
+                            title={isMuted ? "Unmute" : "Mute Auto-Play"}
+                        >
+                            {isMuted ? (
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                                </svg>
+                            ) : (
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            )}
+                            {isMuted && <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>}
+                        </button>
+                    </>
+                )}
+            </div>
+        </div>
+    );
+
     if (loading) {
         return (
-            <div className="mt-6 p-6 bg-slate-800/50 rounded-xl border border-slate-700 animate-pulse">
-                <div className="h-4 bg-slate-700 rounded w-1/3 mb-4"></div>
-                <div className="h-20 bg-slate-700 rounded mb-4"></div>
-                <div className="space-y-2">
-                    <div className="h-3 bg-slate-700 rounded w-3/4"></div>
-                    <div className="h-3 bg-slate-700 rounded w-5/6"></div>
+            <div className="mt-6 bg-slate-800/80 backdrop-blur-sm rounded-xl border border-indigo-500/30 overflow-hidden">
+                {header}
+                <div className="p-6 animate-pulse">
+                    <div className="h-3 bg-slate-700 rounded w-1/4 mb-3"></div>
+                    <div className="h-16 bg-slate-700 rounded mb-5"></div>
+                    <div className="h-3 bg-slate-700 rounded w-1/4 mb-3"></div>
+                    <div className="space-y-2">
+                        <div className="h-3 bg-slate-700 rounded w-3/4"></div>
+                        <div className="h-3 bg-slate-700 rounded w-5/6"></div>
+                        <div className="h-3 bg-slate-700 rounded w-2/3"></div>
+                    </div>
                 </div>
             </div>
         );
@@ -95,60 +168,7 @@ export default function TutorBreakdown({ breakdown, loading, onExpandDepth, dept
 
     return (
         <div className="mt-6 bg-slate-800/80 backdrop-blur-sm rounded-xl border border-indigo-500/30 overflow-hidden animate-in fade-in slide-in-from-top-2">
-            {/* Header */}
-            <div className="bg-indigo-900/30 px-6 py-3 border-b border-indigo-500/20 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <span className="text-xl">👨‍🏫</span>
-                    <h3 className="text-indigo-200 font-bold font-display">Coach Breakdown</h3>
-                </div>
-                <div className="flex items-center gap-2">
-                    {/* Coach Mode Toggle */}
-                    <div className="flex bg-slate-800/80 rounded-lg p-0.5 border border-slate-700/50">
-                        <button
-                            onClick={() => onCoachModeChange('quick')}
-                            className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-all ${coachMode === 'quick' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
-                            title="Quick: concise verdict + mental rule"
-                        >
-                            Quick
-                        </button>
-                        <button
-                            onClick={() => onCoachModeChange('deep')}
-                            className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-all ${coachMode === 'deep' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'}`}
-                            title="Deep: structured breakdown with exam lens, conflicts, patterns"
-                        >
-                            Deep
-                        </button>
-                    </div>
-                    <button
-                        onClick={() => handleSpeak(breakdown.verdict)}
-                        className={`p-2 rounded-full hover:bg-white/10 transition-colors ${isSpeaking ? 'text-brand-400 animate-pulse' : 'text-slate-400'}`}
-                        title="Replay Audio"
-                    >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                        </svg>
-                    </button>
-                    <button
-                        onClick={toggleMute}
-                        className={`p-2 rounded-full hover:bg-white/10 transition-colors ${isMuted ? 'text-red-400' : 'text-slate-400'}`}
-                        title={isMuted ? "Unmute" : "Mute Auto-Play"}
-                    >
-                        {isMuted ? (
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                            </svg>
-                        ) : (
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4" /> {/* Simple mic/speaker icon alternate */}
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /> {/* Edit icon - wait, wrong icon. Proceeding with generic sound icon above */}
-                            </svg>
-                        )}
-                        {/* Correct Mute Icon */}
-                        {isMuted && <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>}
-                    </button>
-                </div>
-            </div>
+            {header}
 
             <div className="p-6 space-y-6">
                 {/* 1. Verdict */}
