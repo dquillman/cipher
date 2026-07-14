@@ -12,6 +12,7 @@ import SubscriptionUpsellModal from '../components/SubscriptionUpsellModal';
 import { useExam } from '../contexts/ExamContext';
 import { SmartQuizService } from '../services/smartQuiz';
 import { QuizRunService, deriveDomainResultsFromAnswers } from '../services/QuizRunService';
+import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import { UsageEventService } from '../services/UsageEventService';
 import { useSmartQuizReview } from '../contexts/SmartQuizReviewContext';
 import QuestionProvenanceBadge from '../components/QuestionProvenanceBadge';
@@ -225,19 +226,7 @@ export default function Quiz() {
                         console.error("Failed to persist trap run", e);
                     }
 
-                    const fetchedQs: Question[] = [];
-                    for (const id of trapIds) {
-                        const docRef = doc(db, 'questions', id);
-                        const d = await getDoc(docRef);
-                        if (d.exists()) {
-                            const data = d.data();
-                            fetchedQs.push({
-                                id: d.id,
-                                ...data,
-                                difficulty: data.difficulty
-                            } as Question);
-                        }
-                    }
+                    const fetchedQs = await fetchQuestionDocsByIds<Question>(trapIds);
                     setQuestions(fetchedQs);
                     setLoading(false);
                     return;
@@ -276,19 +265,7 @@ export default function Quiz() {
                         patternId: location.state.patternId,
                     });
 
-                    const fetchedQs: Question[] = [];
-                    for (const id of drillIds) {
-                        const docRef = doc(db, 'questions', id);
-                        const d = await getDoc(docRef);
-                        if (d.exists()) {
-                            const data = d.data();
-                            fetchedQs.push({
-                                id: d.id,
-                                ...data,
-                                difficulty: data.difficulty
-                            } as Question);
-                        }
-                    }
+                    const fetchedQs = await fetchQuestionDocsByIds<Question>(drillIds);
                     setQuestions(fetchedQs);
                     setLoading(false);
                     return;
@@ -303,14 +280,7 @@ export default function Quiz() {
                     if (run) {
                         // Re-fetch questions from snapshot IDs
                         setQuizType(run.quizType || run.type || 'standard'); // Derived from DATA
-                        const fetchedQs: Question[] = [];
-                        for (const id of run.snapshot.questionIds) {
-                            const docRef = doc(db, 'questions', id);
-                            const d = await getDoc(docRef);
-                            if (d.exists()) {
-                                fetchedQs.push({ id: d.id, ...d.data() } as Question);
-                            }
-                        }
+                        const fetchedQs = await fetchQuestionDocsByIds<Question>(run.snapshot.questionIds);
                         setQuestions(fetchedQs);
                         if (run.snapshot.currentQuestionIndex !== undefined) {
                             setCurrentQuestionIndex(run.snapshot.currentQuestionIndex);
@@ -343,14 +313,7 @@ export default function Quiz() {
                         console.error("Failed to persist diagnostic start", e);
                     }
 
-                    const fetchedQs: Question[] = [];
-                    for (const id of diagIds) {
-                        const docRef = doc(db, 'questions', id);
-                        const d = await getDoc(docRef);
-                        if (d.exists()) {
-                            fetchedQs.push({ id: d.id, ...d.data() } as Question);
-                        }
-                    }
+                    const fetchedQs = await fetchQuestionDocsByIds<Question>(diagIds);
                     setQuestions(fetchedQs);
                     setLoading(false);
                     return;
@@ -360,15 +323,7 @@ export default function Quiz() {
                 const stateIds = location.state?.questionIds as string[] | undefined;
                 if (stateIds && stateIds.length > 0) {
                     console.log("Loading specific Smart Quiz questions:", stateIds);
-                    const fetchedQs: Question[] = [];
-                    for (const id of stateIds) {
-                        // Note: In a real app, use where('documentId', 'in', [...]) for better performance if < 30 items
-                        const docRef = doc(db, 'questions', id);
-                        const d = await getDoc(docRef);
-                        if (d.exists()) {
-                            fetchedQs.push({ id: d.id, ...d.data() } as Question);
-                        }
-                    }
+                    const fetchedQs = await fetchQuestionDocsByIds<Question>(stateIds);
                     setQuestions(fetchedQs);
                     setLoading(false);
                     return;

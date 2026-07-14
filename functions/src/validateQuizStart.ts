@@ -4,7 +4,13 @@ import { getFreeTierDailyLimit } from './freeTier';
 
 const db = admin.firestore();
 
-export const validateQuizStart = functions.https.onCall(async (_data, context) => {
+// minInstances: 1 keeps one warm instance — this callable gates EVERY quiz
+// start, so a cold start here adds 1-3s to question load for the first user
+// after any idle period. Costs roughly $4-6/month at 256MB; cut it back to 0
+// if that ever matters more than the latency.
+export const validateQuizStart = functions
+    .runWith({ minInstances: 1 })
+    .https.onCall(async (_data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
     }

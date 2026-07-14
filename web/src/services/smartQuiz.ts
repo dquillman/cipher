@@ -70,23 +70,31 @@ export const SmartQuizService = {
         // Setup exclusion set for fast lookup
         const excludedSet = new Set(excludeIds);
 
-        // We'll try to get questions from each target domain
-        for (const domain of targetDomains) {
-            // Stop if we have enough questions
-            if (usedQuestionIds.size >= maxQuestions) break;
-
+        // Fire every domain query in PARALLEL (they were serial — one full
+        // round-trip per domain), then run the selection pass in the original
+        // domain order so the picking semantics are unchanged.
+        const batchSize = questionsPerDomain * 3; // Fetch 3x needed to allow for some randomness
+        const domainBatches = await Promise.all(targetDomains.map(async (domain) => {
             try {
-                // Fetch a batch to shuffle
-                const batchSize = questionsPerDomain * 3; // Fetch 3x needed to allow for some randomness
                 const q = query(
                     collection(db, 'questions'),
                     where('examId', '==', examId),
                     where('domain', '==', domain),
                     limit(batchSize)
                 );
-
                 const snap = await getDocs(q);
-                const docs = snap.docs.map(d => d.id);
+                return { domain, ids: snap.docs.map(d => d.id) };
+            } catch (err) {
+                console.error(`Error fetching for domain ${domain}:`, err);
+                return { domain, ids: [] as string[] };
+            }
+        }));
+
+        for (const { ids: docs } of domainBatches) {
+            // Stop if we have enough questions
+            if (usedQuestionIds.size >= maxQuestions) break;
+
+            {
 
                 // Shuffle candidates
                 const shuffled = docs.sort(() => 0.5 - Math.random());
@@ -114,8 +122,6 @@ export const SmartQuizService = {
                     // Let's just break if we have ANY questions, we want to fill the set.
                 }
 
-            } catch (err) {
-                console.error(`Error fetching for domain ${domain}:`, err);
             }
         }
 
@@ -161,7 +167,8 @@ export const SmartQuizService = {
             return SmartQuizService.generateSimulationExam(examId, 15);
         }
 
-        for (const domain of domains) {
+        // All domain queries in parallel — was one serial round-trip per domain.
+        const perDomain = await Promise.all(domains.map(async (domain) => {
             try {
                 const q = query(
                     collection(db, 'questions'),
@@ -169,17 +176,18 @@ export const SmartQuizService = {
                     where('domain', '==', domain),
                     limit(QUESTIONS_PER_DOMAIN * 3) // Fetch extra for randomness
                 );
-
                 const snap = await getDocs(q);
-                const domainIds = snap.docs.map(d => d.id);
-
-                // Shuffle and take up to 3
-                const shuffled = domainIds.sort(() => 0.5 - Math.random());
-                const selected = shuffled.slice(0, QUESTIONS_PER_DOMAIN);
-                selectedIds.push(...selected);
+                return snap.docs.map(d => d.id);
             } catch (error) {
                 console.error(`Error fetching questions for domain ${domain}:`, error);
+                return [] as string[];
             }
+        }));
+
+        for (const domainIds of perDomain) {
+            // Shuffle and take up to 3
+            const shuffled = domainIds.sort(() => 0.5 - Math.random());
+            selectedIds.push(...shuffled.slice(0, QUESTIONS_PER_DOMAIN));
         }
 
         // Final shuffle to mix domains

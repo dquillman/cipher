@@ -4,8 +4,7 @@ import { Mic, Play, Square, Volume2, Settings, Check, Headphones } from 'lucide-
 import DashboardLink from '../components/DashboardLink';
 import { useVoiceAssistant, pickCipherVoice } from '../hooks/useVoiceAssistant';
 import { SmartQuizService } from '../services/smartQuiz';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import type { Question } from '../hooks/useSimulator';
 import { useExam } from '../contexts/ExamContext';
 
@@ -149,13 +148,7 @@ export default function VerbalMode() {
 
         try {
             const ids = await SmartQuizService.generateSimulationExam(examId, targetQuestionCount);
-            const loadedQuestions: Question[] = [];
-            for (const id of ids) {
-                const snap = await getDoc(doc(db, 'questions', id));
-                if (snap.exists()) {
-                    loadedQuestions.push({ id: snap.id, ...snap.data() } as Question);
-                }
-            }
+            const loadedQuestions = await fetchQuestionDocsByIds<Question>(ids);
 
             if (isMounted.current) {
                 if (loadedQuestions.length === 0) {

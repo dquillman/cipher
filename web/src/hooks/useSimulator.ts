@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
-import { db, auth } from '../firebase';
+import { auth } from '../firebase';
 import { SmartQuizService } from '../services/smartQuiz';
+import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import { XPService } from '../services/xpService';
 import { useExam } from '../contexts/ExamContext';
 import { EXAMS, isExam } from '../config/exams';
@@ -87,15 +87,7 @@ export const useSimulator = () => {
                     return;
                 }
 
-                const questionsData: Question[] = [];
-                // In a real app, we'd batch this or use a where 'in' query if ID limit permits
-                for (const id of ids) {
-                    const docRef = doc(db, 'questions', id);
-                    const snap = await getDoc(docRef);
-                    if (snap.exists()) {
-                        questionsData.push({ id: snap.id, ...snap.data() } as Question);
-                    }
-                }
+                const questionsData = await fetchQuestionDocsByIds<Question>(ids);
                 setQuestions(questionsData);
 
             } catch (error) {
