@@ -23,7 +23,7 @@ export default function SmartQuizReviewModal({ open, onClose, reviewText, loadin
     const paragraphs = reviewText ? reviewText.split(/\n\s*\n/) : [];
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div className="decoder fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
             <div className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800/95 border border-slate-700/60 rounded-2xl shadow-2xl shadow-black/50 max-w-2xl w-full mx-4 overflow-hidden">
                 {/* Header */}
                 <div className="px-7 pt-6 pb-4 border-b border-slate-800/80">

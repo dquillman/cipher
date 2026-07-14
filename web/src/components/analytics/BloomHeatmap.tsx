@@ -418,7 +418,7 @@ function BloomCellDetailModal({ cell, onClose }: BloomCellDetailModalProps) {
 
     return createPortal(
         <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            className="decoder fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
             onClick={onClose}
             role="dialog"
             aria-modal="true"

@@ -84,7 +84,7 @@ export default function TestimonialPrompt({ examId, examName, onClose }: Testimo
 
   if (submitted) {
     return (
-      <div className="fixed bottom-4 right-4 z-50 w-[340px] rounded-xl border border-green-200 bg-white p-4 shadow-xl">
+      <div className="decoder fixed bottom-4 right-4 z-50 w-[340px] rounded-xl border border-green-200 bg-white p-4 shadow-xl">
         <div className="flex items-center gap-2 text-green-700">
           <CheckCircle2 size={20} />
           <span className="font-semibold">Thanks — we hear you.</span>
@@ -94,7 +94,7 @@ export default function TestimonialPrompt({ examId, examName, onClose }: Testimo
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-[360px] rounded-xl border border-slate-200 bg-white p-4 shadow-xl">
+    <div className="decoder fixed bottom-4 right-4 z-50 w-[360px] rounded-xl border border-slate-200 bg-white p-4 shadow-xl">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm font-semibold text-slate-900">How's it going so far?</p>

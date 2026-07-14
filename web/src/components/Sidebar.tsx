@@ -90,7 +90,11 @@ export default function Sidebar() {
                 <img src="/favicon.png" alt="CipherExam" className="h-8 w-8 min-w-8 rounded-lg object-contain" />
                 {!isCollapsed && (
                     <div className="flex flex-col overflow-hidden">
-                        <span className="text-lg font-bold tracking-tight text-white truncate">CipherExam</span>
+                        <span className="text-lg font-bold tracking-tight text-white truncate font-display">
+                            <span className="font-mono font-semibold text-brand-400" aria-hidden="true">⟨</span>
+                            CipherExam
+                            <span className="font-mono font-semibold text-brand-400" aria-hidden="true">⟩</span>
+                        </span>
                         <span className="text-xs font-bold text-slate-400 font-mono truncate">v{DISPLAY_VERSION}</span>
                     </div>
                 )}

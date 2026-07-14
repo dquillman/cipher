@@ -298,7 +298,7 @@ function FreePlanBanner() {
 function AppLayout() {
   const { isCollapsed } = useSidebar();
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex relative overflow-x-hidden">
+    <div className="decoder min-h-screen bg-slate-900 text-slate-100 flex relative overflow-x-hidden">
       <TrialModal />
       <Sidebar />
       <MobileNav />

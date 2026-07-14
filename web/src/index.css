@@ -214,10 +214,31 @@ html, body, #root {
     --color-accent-500: #ffb224;
     --color-accent-600: #e29a0e;
 
+    /* Legacy hard-coded indigo-* utilities (~100 call sites, mostly in-app)
+       remap to the same signal ramp — Tailwind v4 utilities resolve through
+       these vars, so no per-file edits. Same contrast strategy as brand-*:
+       bright 300/400 accents, deep 500+ fills that keep white text AA. */
+    --color-indigo-50:  #ecfeff;
+    --color-indigo-100: #cff9fe;
+    --color-indigo-200: #a5f0fc;
+    --color-indigo-300: #7ee9fa;
+    --color-indigo-400: #43e5ff;
+    --color-indigo-500: #0c8fa9;
+    --color-indigo-600: #0a7590;
+    --color-indigo-700: #085f75;
+    --color-indigo-800: #0a4d5f;
+    --color-indigo-900: #0c3f4e;
+    --color-indigo-950: #062f3c;
+
     /* type: decode voice */
     --font-display: 'Clash Display', 'Satoshi', sans-serif;
     --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace;
+}
 
+/* Deep-ink ground on PAGE ROOTS only (all pair .decoder with min-h-screen).
+   Scoped this way so .decoder on translucent overlays (portal modals) never
+   paints an opaque wall over the page behind them. */
+.decoder.min-h-screen {
     background-color: #060b16;
 }
 
