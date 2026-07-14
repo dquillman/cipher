@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Brain, Sparkles } from 'lucide-react';
 import TutorBreakdown, { type TutorResponse, type CoachMode } from '../TutorBreakdown';
 import StructuredExplanation from '../explanations/StructuredExplanation';
@@ -43,8 +43,6 @@ export default function ExplanationPanel({
     //    swaps only when the reader asks.
     const [standardVisible, setStandardVisible] = useState(!loadingBreakdown && !tutorBreakdown);
     const [pinnedStandard, setPinnedStandard] = useState(false);
-    const standardVisibleRef = useRef(standardVisible);
-    standardVisibleRef.current = standardVisible;
 
     useEffect(() => {
         if (tutorBreakdown) return;
@@ -53,11 +51,19 @@ export default function ExplanationPanel({
         return () => clearTimeout(t);
     }, [loadingBreakdown, tutorBreakdown]);
 
-    useEffect(() => {
-        // Breakdown just arrived while the reader had the standard text open →
-        // pin instead of yanking it away.
-        if (tutorBreakdown && standardVisibleRef.current) setPinnedStandard(true);
-    }, [tutorBreakdown]);
+    // PIN decision happens DURING RENDER (React's derive-state-from-previous-
+    // render pattern), not in a useEffect: an effect fires after paint, which
+    // let one frame of the coach panel flash in and yank the standard text
+    // before the pin re-rendered it back (verified live: coach appeared at
+    // t≈9.4s for ~600ms, then flipped back). Render-phase adjustment re-runs
+    // before anything is committed, so the swap frame never paints.
+    const [prevBreakdown, setPrevBreakdown] = useState(tutorBreakdown);
+    if (tutorBreakdown !== prevBreakdown) {
+        setPrevBreakdown(tutorBreakdown);
+        if (tutorBreakdown && standardVisible && !pinnedStandard) {
+            setPinnedStandard(true);
+        }
+    }
 
     const showCoach = tutorBreakdown && !pinnedStandard;
 
@@ -104,7 +110,7 @@ export default function ExplanationPanel({
                             /* Breakdown arrived while the standard text was being
                                read — swap only when the reader asks. */
                             <button
-                                onClick={() => setPinnedStandard(false)}
+                                onClick={() => { setPinnedStandard(false); setStandardVisible(false); }}
                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm transition-colors shadow-lg shadow-brand-500/20"
                             >
                                 <Sparkles className="w-4 h-4" />

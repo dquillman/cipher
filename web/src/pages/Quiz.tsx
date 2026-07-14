@@ -420,8 +420,11 @@ export default function Quiz() {
 
                 if (!filterDomain && examDomains && examDomains.length >= 2) {
                     // --- Adaptive multi-domain distribution ---
-                    const masterySnap = await getDoc(doc(db, 'userMastery', `${user.uid}_${activeExamId}`));
-                    const mData = masterySnap.exists() ? masterySnap.data()?.masteryData || {} : {};
+                    // Resilient: a failed mastery read (rules hiccup, offline)
+                    // must degrade to "no mastery data", never kill the loader.
+                    const mData = await getDoc(doc(db, 'userMastery', `${user.uid}_${activeExamId}`))
+                        .then(s => (s.exists() ? s.data()?.masteryData || {} : {}))
+                        .catch(err => { console.warn('userMastery read failed, continuing without it:', err); return {}; });
 
                     // Rank domains weakest → strongest
                     const ranked = examDomains
@@ -611,6 +614,9 @@ export default function Quiz() {
                 console.error("Error fetching smart questions:", error);
                 const uid = auth.currentUser?.uid;
                 if (uid) FrictionEventService.emit(uid, 'error_shown', { page: 'quiz', examId: activeExamId, errorMessage: String(error) });
+                // A loader failure is NOT "the question bank is empty" — surface
+                // the retry UI instead of the misleading "No questions found".
+                setValidationError('Could not load your questions. Please retry.');
             } finally {
                 setLoading(false);
                 // EC-130: Log slow loads (> 5s)
