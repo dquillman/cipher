@@ -1,7 +1,11 @@
 import * as admin from 'firebase-admin';
 import * as functions from "firebase-functions";
 import OpenAI from "openai";
+import { createHash } from "crypto";
 import { requirePro } from './guards';
+
+// Bump when the prompts or models below change — invalidates cached breakdowns.
+const TUTOR_PROMPT_VERSION = 'v2';
 
 
 interface TutorPayload {
@@ -106,7 +110,9 @@ const processPatternInteraction = async (userId: string, pattern: PatternData, i
     console.log(`Pattern processed: ${patternId} for user ${userId}`);
 };
 
-export const generateTutorBreakdown = functions.https.onCall(async (data: TutorPayload, context) => {
+export const generateTutorBreakdown = functions
+    .runWith({ memory: '512MB', timeoutSeconds: 60 })
+    .https.onCall(async (data: TutorPayload, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Must be authenticated');
     }
@@ -150,11 +156,48 @@ export const generateTutorBreakdown = functions.https.onCall(async (data: TutorP
 
     const client = new OpenAI({ apiKey });
 
-    // DEBUG: Force Log Everything - REMOVED for Production
+    // Shared cross-user cache. A breakdown depends only on the question
+    // content, the picked option, the coach mode, and the lens — not the user
+    // — and the question bank is fixed. First request pays the OpenAI call
+    // (~2-6s); every later request by ANY user is a single Firestore read.
+    // Content-hash key: the payload carries no questionId.
+    const cacheKey = createHash('sha256')
+        .update(JSON.stringify({
+            v: TUTOR_PROMPT_VERSION,
+            questionStem,
+            options,
+            userSelectedOptionIndex,
+            coachMode: isDeep ? 'deep' : 'quick',
+            lensName: lensName || null,
+            lensFramework: lensFramework || null,
+        }))
+        .digest('hex');
+    const cacheRef = admin.firestore().collection('tutor_cache').doc(cacheKey);
+
+    try {
+        const cached = await cacheRef.get();
+        if (cached.exists) {
+            const result = cached.data()?.result as TutorResponse | undefined;
+            if (result?.verdict) {
+                // Per-user pattern stats must still update on cache hits.
+                if (result.pattern) {
+                    processPatternInteraction(userId, result.pattern, isCorrect, examId).catch(err => {
+                        console.error("Failed to process pattern:", err);
+                    });
+                }
+                return result;
+            }
+        }
+    } catch (err) {
+        console.warn("tutor_cache read failed, generating fresh:", err);
+    }
 
     try {
         const response = await client.chat.completions.create({
-            model: "gpt-4o", // Use high-quality model for reasoning
+            // Quick mode is a tightly constrained rewrite of the provided
+            // rationale — mini handles it at equal quality in a fraction of
+            // the latency. Deep mode keeps the full model for reasoning.
+            model: isDeep ? "gpt-4o" : "gpt-4o-mini",
             messages: [
                 {
                     role: "system",
@@ -261,6 +304,13 @@ IMPORTANT: Return valid JSON.
                 console.error("Failed to process pattern:", err);
             });
         }
+
+        // Fire-and-forget cache write — next request for this exact breakdown
+        // (any user) skips the OpenAI call entirely.
+        cacheRef.set({
+            result,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        }).catch(err => console.warn("tutor_cache write failed:", err));
 
         return result;
 

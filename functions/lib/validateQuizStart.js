@@ -5,7 +5,13 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const freeTier_1 = require("./freeTier");
 const db = admin.firestore();
-exports.validateQuizStart = functions.https.onCall(async (_data, context) => {
+// minInstances: 1 keeps one warm instance — this callable gates EVERY quiz
+// start, so a cold start here adds 1-3s to question load for the first user
+// after any idle period. Costs roughly $4-6/month at 256MB; cut it back to 0
+// if that ever matters more than the latency.
+exports.validateQuizStart = functions
+    .runWith({ minInstances: 1 })
+    .https.onCall(async (_data, context) => {
     var _a, _b, _c, _d, _e, _f, _g;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
