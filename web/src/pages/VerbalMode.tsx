@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mic, Play, Square, Volume2, Settings, Check, Headphones } from 'lucide-react';
+import { Mic, Play, Square, Volume2, Settings, Check, Headphones, SkipForward } from 'lucide-react';
 import DashboardLink from '../components/DashboardLink';
 import { useVoiceAssistant, pickCipherVoice } from '../hooks/useVoiceAssistant';
 import { SmartQuizService } from '../services/smartQuiz';
@@ -85,6 +85,7 @@ export default function VerbalMode() {
     const isMounted = useRef(true);
     const statusRef = useRef<ModeState>('SETUP');
     const answeredRef = useRef(false); // one answer per question, mouse or voice
+    const advancedRef = useRef(false); // one advance per question — speech end OR Next button
 
     // Sync refs with state
     useEffect(() => { questionsRef.current = questions; }, [questions]);
@@ -255,6 +256,7 @@ export default function VerbalMode() {
         }));
 
         setLastAnswer({ selected: selectedIndex, correct: correctIdx });
+        advancedRef.current = false;
         setStatus('FEEDBACK');
         const feedback = isCorrect
             ? pickQuip(QUIPS.correct)
@@ -263,10 +265,28 @@ export default function VerbalMode() {
 
         speak(`${feedback} ${explanation}. Moving on.`, () => {
             if (!isMounted.current) return;
-            const next = currentIndexRef.current + 1;
-            setCurrentIndex(next); // Update State
-            playQuestion(next); // Pass index
+            advanceToNext();
         }, currentVoice, CIPHER_TONE);
+    }
+
+    // Single advance path, used by the natural end of the feedback speech AND
+    // the Next Question button. The ref guard makes it idempotent: a double
+    // click, or a click racing the speech's onEnd, can only advance once
+    // (stopAll() also invalidates the cancelled speech's pending callbacks).
+    function advanceToNext() {
+        if (advancedRef.current) return;
+        advancedRef.current = true;
+        const next = currentIndexRef.current + 1;
+        setCurrentIndex(next); // Update State
+        playQuestion(next); // Pass index
+    }
+
+    // "Next Question" — the explanation read-out can run long; this cuts the
+    // voice off and moves on immediately (or finishes on the last question).
+    function handleSkipToNext() {
+        if (statusRef.current !== 'FEEDBACK') return;
+        stopAll();
+        advanceToNext();
     }
 
     function processAnswer(spokenText: string) {
@@ -463,6 +483,19 @@ export default function VerbalMode() {
                         {status === 'LISTENING' && (
                             <div className="text-center">
                                 <p className="text-slate-500 text-sm">Detected: <span className="text-white font-mono">{transcript || "..."}</span></p>
+                            </div>
+                        )}
+
+                        {/* Skip the (often long) spoken explanation and move on */}
+                        {status === 'FEEDBACK' && (
+                            <div className="flex justify-center">
+                                <button
+                                    onClick={handleSkipToNext}
+                                    className="flex items-center gap-2 px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold shadow-lg shadow-indigo-500/25 transition-all hover:scale-[1.02]"
+                                >
+                                    {currentIndex >= questions.length - 1 ? 'Finish Session' : 'Next Question'}
+                                    <SkipForward className="w-5 h-5" />
+                                </button>
                             </div>
                         )}
                     </div>
