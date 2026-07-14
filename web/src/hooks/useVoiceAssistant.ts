@@ -6,6 +6,34 @@ interface VoiceAssistantConfig {
     onError?: (error: string) => void;
 }
 
+export interface SpeakOptions {
+    rate?: number;
+    pitch?: number;
+}
+
+// Preferred voices for the Cipher coach, best first. The "Online (Natural)"
+// entries are Edge's neural voices — the same trick Admin-Core's JARVIS panel
+// uses for its human-sounding UK voice, but American. Chrome falls through to
+// Google US English; everything else lands on any en-US voice.
+const CIPHER_VOICE_PREF = [
+    'Microsoft Andrew Online (Natural) - English (United States)',
+    'Microsoft Brian Online (Natural) - English (United States)',
+    'Microsoft Guy Online (Natural) - English (United States)',
+    'Microsoft Ava Online (Natural) - English (United States)',
+    'Microsoft Aria Online (Natural) - English (United States)',
+    'Microsoft Christopher Online (Natural) - English (United States)',
+    'Google US English',
+];
+
+export function pickCipherVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
+    return (
+        CIPHER_VOICE_PREF.map((n) => voices.find((v) => v.name === n)).find(Boolean) ??
+        voices.find((v) => v.lang === 'en-US') ??
+        voices.find((v) => v.lang.startsWith('en')) ??
+        null
+    );
+}
+
 export const useVoiceAssistant = (config: VoiceAssistantConfig = {}) => {
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [isListening, setIsListening] = useState(false);
@@ -14,6 +42,11 @@ export const useVoiceAssistant = (config: VoiceAssistantConfig = {}) => {
     const recognitionRef = useRef<any>(null);
     const synthesisRef = useRef<SpeechSynthesis>(window.speechSynthesis);
     const configRef = useRef(config);
+    // Generation token: bumped by every speak()/stopAll(). Chunk callbacks from
+    // a cancelled utterance compare against it and no-op, so interrupting mid-
+    // sentence (e.g. answering by mouse during the question read) can never
+    // queue a stale chunk behind the new speech.
+    const speakSessionRef = useRef(0);
 
     // Update config ref if it changes
     useEffect(() => {
@@ -73,10 +106,11 @@ export const useVoiceAssistant = (config: VoiceAssistantConfig = {}) => {
         };
     }, []);
 
-    const speak = useCallback((text: string, onEnd?: () => void, voice?: SpeechSynthesisVoice | null) => {
+    const speak = useCallback((text: string, onEnd?: () => void, voice?: SpeechSynthesisVoice | null, opts?: SpeakOptions) => {
         if (!synthesisRef.current) return;
 
-        // Cancel any ongoing speech
+        // Cancel any ongoing speech and invalidate its pending chunk callbacks
+        const session = ++speakSessionRef.current;
         synthesisRef.current.cancel();
 
         // Chunking logic to avoid browser TTS timeout on long text
@@ -98,6 +132,7 @@ export const useVoiceAssistant = (config: VoiceAssistantConfig = {}) => {
         let currentChunk = 0;
 
         const speakNext = () => {
+            if (session !== speakSessionRef.current) return; // superseded
             if (currentChunk >= safeChunks.length) {
                 setIsSpeaking(false);
                 onEnd?.();
@@ -117,9 +152,8 @@ export const useVoiceAssistant = (config: VoiceAssistantConfig = {}) => {
                 utterance.voice = voice;
             }
 
-            // slightly faster rate for long questions?
-            utterance.rate = 1.0;
-            utterance.pitch = 1.0;
+            utterance.rate = opts?.rate ?? 1.0;
+            utterance.pitch = opts?.pitch ?? 1.0;
 
             utterance.onstart = () => setIsSpeaking(true);
 
@@ -166,6 +200,7 @@ export const useVoiceAssistant = (config: VoiceAssistantConfig = {}) => {
     }, []);
 
     const stopAll = useCallback(() => {
+        speakSessionRef.current++; // invalidate pending chunk callbacks
         if (synthesisRef.current) synthesisRef.current.cancel();
         if (recognitionRef.current) recognitionRef.current.abort();
         setIsSpeaking(false);

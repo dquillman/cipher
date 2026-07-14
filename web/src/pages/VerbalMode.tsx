@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mic, Play, Square, Volume2, Settings, Check, Headphones } from 'lucide-react';
 import DashboardLink from '../components/DashboardLink';
-import { useVoiceAssistant } from '../hooks/useVoiceAssistant';
+import { useVoiceAssistant, pickCipherVoice } from '../hooks/useVoiceAssistant';
 import { SmartQuizService } from '../services/smartQuiz';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -10,6 +10,43 @@ import type { Question } from '../hooks/useSimulator';
 import { useExam } from '../contexts/ExamContext';
 
 type ModeState = 'SETUP' | 'LOADING' | 'READING' | 'LISTENING' | 'FEEDBACK' | 'FINISHED';
+
+// The Cipher coach persona: brisk, slightly lower-pitched, confident American.
+// Deliberately NOT Jarvis's signature (en-GB, 0.98/1.02) — same humanity
+// (neural voices via pickCipherVoice), different character.
+const CIPHER_TONE = { rate: 1.04, pitch: 0.92 };
+
+// Spoken persona lines — dry-witty coach for working professionals. Rotated
+// randomly so repeat sessions don't feel canned. Keep entries SHORT: they're
+// heard, not read.
+const QUIPS = {
+    intro: [
+        (n: number) => `${n} questions, zero mercy. Let's decode.`,
+        (n: number) => `Alright — ${n} questions. I'll read, you decide. Deal.`,
+        (n: number) => `Session armed: ${n} questions. Coffee optional, judgment mandatory.`,
+    ],
+    correct: [
+        "Correct. You made that look easier than it was.",
+        "That's the one. Somewhere, a proctor just sighed.",
+        "Right again. I'm starting to feel decorative.",
+        "Correct. The exam would like a word with whoever trained you.",
+    ],
+    incorrect: [
+        (letter: string) => `Not this time — the answer was ${letter}. Even good decoders hit static.`,
+        (letter: string) => `Close, but the exam wanted ${letter}. Filing that one under plot twist.`,
+        (letter: string) => `That's a miss. Correct answer: ${letter}. Don't worry — I've already deleted the evidence.`,
+        (letter: string) => `Incorrect — it was ${letter}. The upside: you will never fall for that trap again.`,
+    ],
+    retry: [
+        "I didn't catch that. My hearing is excellent, so let's blame the microphone. A, B, C, or D — or just click one.",
+        "Still nothing. Say the option letter like you mean it — or click it, I won't judge.",
+    ],
+    outroHigh: (s: number, t: number) => `${s} out of ${t}. Frankly, I'd let you sign my audit. Well done.`,
+    outroMid: (s: number, t: number) => `${s} out of ${t}. Solid work — we'll sharpen the rest.`,
+    outroLow: (s: number, t: number) => `${s} out of ${t}. The exam won this round. We're taking the rematch.`,
+};
+
+const pickQuip = <T,>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];
 
 interface SessionStats {
     score: number;
@@ -37,17 +74,24 @@ export default function VerbalMode() {
     const [targetQuestionCount, setTargetQuestionCount] = useState(5);
     const [stats, setStats] = useState<SessionStats>({ score: 0, wrong: 0, details: [] });
 
+    // Feedback visuals for mouse/voice answers: which option was picked and
+    // which was correct, shown while the coach explains.
+    const [lastAnswer, setLastAnswer] = useState<{ selected: number; correct: number } | null>(null);
+
     // Refs to handle stale closures in async voice callbacks
     const questionsRef = useRef<Question[]>([]);
     const currentIndexRef = useRef(0);
     const statsRef = useRef<SessionStats>({ score: 0, wrong: 0, details: [] });
     const hasReceivedInput = useRef(false);
     const isMounted = useRef(true);
+    const statusRef = useRef<ModeState>('SETUP');
+    const answeredRef = useRef(false); // one answer per question, mouse or voice
 
     // Sync refs with state
     useEffect(() => { questionsRef.current = questions; }, [questions]);
     useEffect(() => { currentIndexRef.current = currentIndex; }, [currentIndex]);
     useEffect(() => { statsRef.current = stats; }, [stats]);
+    useEffect(() => { statusRef.current = status; }, [status]);
 
     // Voice Hook
     const { speak, listen, stopAll, voices } = useVoiceAssistant({
@@ -55,30 +99,32 @@ export default function VerbalMode() {
             console.error("Voice Error:", err);
             if (status === 'LISTENING') {
                 if (err === 'no-speech') {
-                    speak("I didn't hear anything. Please say Option A, B, C, or D.", () => {
+                    speak("I didn't hear anything. Say A, B, C, or D — or just click your answer.", () => {
                         if (isMounted.current) startListening();
-                    }, currentVoice);
+                    }, currentVoice, CIPHER_TONE);
                 } else {
                     setStatus('SETUP');
-                    speak("Voice error. Stopping session.", undefined, currentVoice);
+                    speak("Voice error. Stopping session.", undefined, currentVoice, CIPHER_TONE);
                 }
             }
         },
         onListeningEnd: () => {
             if (status === 'LISTENING' && !hasReceivedInput.current) {
                 setTimeout(() => {
-                    if (isMounted.current && status === 'LISTENING') {
+                    if (isMounted.current && status === 'LISTENING' && !hasReceivedInput.current) {
                         speak("I didn't catch that.", () => {
                             if (isMounted.current) startListening();
-                        }, currentVoice);
+                        }, currentVoice, CIPHER_TONE);
                     }
                 }, 500);
             }
         }
     });
 
-    // Determine actual voice object
-    const currentVoice = voices.find(v => v.voiceURI === selectedVoiceURI) || null;
+    // Determine actual voice object. With no explicit user choice, default to
+    // the best available US neural voice (Edge "Online Natural" > Google US)
+    // instead of the browser's robotic default.
+    const currentVoice = voices.find(v => v.voiceURI === selectedVoiceURI) || pickCipherVoice(voices);
 
     useEffect(() => {
         return () => {
@@ -130,7 +176,9 @@ export default function VerbalMode() {
     function startSession(loadedQs: Question[]) {
         if (loadedQs.length === 0) return;
         setStatus('READING');
-        playQuestion(0, loadedQs);
+        speak(pickQuip(QUIPS.intro)(loadedQs.length), () => {
+            if (isMounted.current) playQuestion(0, loadedQs);
+        }, currentVoice, CIPHER_TONE);
     }
 
     function playQuestion(index: number, currentQuestions = questions) {
@@ -145,13 +193,17 @@ export default function VerbalMode() {
         const q = validQuestions[index];
         const textToRead = `Question ${index + 1}. ${q.stem}. Option A: ${q.options[0]}. Option B: ${q.options[1]}. Option C: ${q.options[2]}. Option D: ${q.options[3]}. What is your answer?`;
 
+        answeredRef.current = false;
+        setLastAnswer(null);
         setStatus('READING');
 
         setTimeout(() => {
             speak(textToRead, () => {
                 if (!isMounted.current) return;
+                // A mouse click may have answered mid-read; don't reopen the mic.
+                if (answeredRef.current) return;
                 startListening();
-            }, currentVoice);
+            }, currentVoice, CIPHER_TONE);
         }, 1000);
     }
 
@@ -168,54 +220,83 @@ export default function VerbalMode() {
         });
     }
 
-    function processAnswer(spokenText: string) {
-        const lower = spokenText.toLowerCase();
-        let selectedIndex = -1;
+    // Word-boundary parsing. The old substring test (`lower.includes('a')`)
+    // mis-fired on ordinary words — "the Answer is D" selected A. Contractions
+    // like "I'd" are stripped so their trailing letter can't match either.
+    function parseSpokenAnswer(spokenText: string): number {
+        const lower = spokenText.toLowerCase().replace(/\b\w+'(d|ll|s|re|ve|m)\b/g, ' ');
+        const letter = lower.match(/\b(?:option\s+|letter\s+|answer\s+)?([abcd])\b/);
+        if (letter) return { a: 0, b: 1, c: 2, d: 3 }[letter[1] as 'a' | 'b' | 'c' | 'd'];
+        if (/\b(one|first|1)\b/.test(lower)) return 0;
+        if (/\b(two|second|2)\b/.test(lower)) return 1;
+        if (/\b(three|third|3)\b/.test(lower)) return 2;
+        if (/\b(four|fourth|last|4)\b/.test(lower)) return 3;
+        return -1;
+    }
 
-        if (lower.includes('a') || lower.includes('one') || lower.includes('first')) selectedIndex = 0;
-        else if (lower.includes('b') || lower.includes('two') || lower.includes('second')) selectedIndex = 1;
-        else if (lower.includes('c') || lower.includes('three') || lower.includes('third')) selectedIndex = 2;
-        else if (lower.includes('d') || lower.includes('four') || lower.includes('last')) selectedIndex = 3;
-
-        if (selectedIndex !== -1) {
-            // ALWAYS USE REF HERE TO AVOID STALE CLOSURE
-            const currentQ = questionsRef.current[currentIndexRef.current];
-            if (!currentQ) {
-                console.error("No question found at index using refs", currentIndexRef.current);
-                return;
-            }
-
-            const correctIdx = typeof currentQ.correctAnswer === 'string' ? parseInt(currentQ.correctAnswer as unknown as string, 10) : currentQ.correctAnswer;
-            const isCorrect = selectedIndex === correctIdx;
-
-            // Update Stats
-            setStats(prev => ({
-                score: prev.score + (isCorrect ? 1 : 0),
-                wrong: prev.wrong + (isCorrect ? 0 : 1),
-                details: [...prev.details, {
-                    questionId: currentQ.id,
-                    selectedOption: selectedIndex,
-                    correctOption: correctIdx,
-                    isCorrect,
-                    domain: currentQ.domain
-                }]
-            }));
-
-            setStatus('FEEDBACK');
-            const feedback = isCorrect ? "Correct!" : `Incorrect. The answer was ${['A', 'B', 'C', 'D'][correctIdx]}.`;
-            const explanation = `Here is why: ${currentQ.explanation}`;
-
-            speak(`${feedback} ${explanation}. Moving on...`, () => {
-                if (!isMounted.current) return;
-                const next = currentIndexRef.current + 1;
-                setCurrentIndex(next); // Update State
-                playQuestion(next); // Pass index
-            }, currentVoice);
-        } else {
-            speak("I didn't catch that. Please say Option A, B, C, or D.", () => {
-                startListening();
-            }, currentVoice);
+    // Shared answer path — reached by voice (parsed transcript) or mouse click.
+    function submitAnswer(selectedIndex: number) {
+        if (answeredRef.current) return; // one answer per question
+        // ALWAYS USE REF HERE TO AVOID STALE CLOSURE
+        const currentQ = questionsRef.current[currentIndexRef.current];
+        if (!currentQ) {
+            console.error("No question found at index using refs", currentIndexRef.current);
+            return;
         }
+        answeredRef.current = true;
+
+        const correctIdx = typeof currentQ.correctAnswer === 'string' ? parseInt(currentQ.correctAnswer as unknown as string, 10) : currentQ.correctAnswer;
+        const isCorrect = selectedIndex === correctIdx;
+
+        // Update Stats
+        setStats(prev => ({
+            score: prev.score + (isCorrect ? 1 : 0),
+            wrong: prev.wrong + (isCorrect ? 0 : 1),
+            details: [...prev.details, {
+                questionId: currentQ.id,
+                selectedOption: selectedIndex,
+                correctOption: correctIdx,
+                isCorrect,
+                domain: currentQ.domain
+            }]
+        }));
+
+        setLastAnswer({ selected: selectedIndex, correct: correctIdx });
+        setStatus('FEEDBACK');
+        const feedback = isCorrect
+            ? pickQuip(QUIPS.correct)
+            : pickQuip(QUIPS.incorrect)(['A', 'B', 'C', 'D'][correctIdx]);
+        const explanation = `Here is why: ${currentQ.explanation}`;
+
+        speak(`${feedback} ${explanation}. Moving on.`, () => {
+            if (!isMounted.current) return;
+            const next = currentIndexRef.current + 1;
+            setCurrentIndex(next); // Update State
+            playQuestion(next); // Pass index
+        }, currentVoice, CIPHER_TONE);
+    }
+
+    function processAnswer(spokenText: string) {
+        const selectedIndex = parseSpokenAnswer(spokenText);
+        if (selectedIndex !== -1) {
+            submitAnswer(selectedIndex);
+        } else {
+            speak(pickQuip(QUIPS.retry), () => {
+                startListening();
+            }, currentVoice, CIPHER_TONE);
+        }
+    }
+
+    // Mouse path: clicking an option answers immediately — during the read,
+    // while listening, whenever. Cancels any in-flight speech/mic first.
+    function handleMouseAnswer(i: number) {
+        const st = statusRef.current;
+        if (st !== 'READING' && st !== 'LISTENING') return;
+        if (answeredRef.current) return;
+        hasReceivedInput.current = true; // suppress the "didn't catch that" retry
+        stopAll();
+        setTranscript(['A', 'B', 'C', 'D'][i]);
+        submitAnswer(i);
     }
 
     const finishSession = async () => {
@@ -224,7 +305,9 @@ export default function VerbalMode() {
         const finalStats = statsRef.current;
         const finalCount = questionsRef.current.length;
 
-        speak(`Session complete. You got ${finalStats.score} out of ${finalCount} correct. Great job.`, undefined, currentVoice);
+        const ratio = finalCount > 0 ? finalStats.score / finalCount : 0;
+        const outro = ratio >= 0.8 ? QUIPS.outroHigh : ratio >= 0.5 ? QUIPS.outroMid : QUIPS.outroLow;
+        speak(`Session complete. ${outro(finalStats.score, finalCount)}`, undefined, currentVoice, CIPHER_TONE);
 
         // Note: Verbal mode results are saved via QuizRunService (quizRuns collection)
     };
@@ -236,7 +319,7 @@ export default function VerbalMode() {
         // Preview
         const v = voices.find(voice => voice.voiceURI === uri);
         if (v) {
-            speak("This is my voice.", undefined, v);
+            speak("This is my voice. I can live with it if you can.", undefined, v, CIPHER_TONE);
         }
     };
 
@@ -290,7 +373,7 @@ export default function VerbalMode() {
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <Mic className="w-4 h-4 mt-0.5 text-emerald-400 shrink-0" />
-                                    <span>Answer by saying the option letter (A, B, C, or D)</span>
+                                    <span>Answer by voice (say "Option A") — or just click an option</span>
                                 </li>
                                 <li className="flex items-start gap-2">
                                     <Headphones className="w-4 h-4 mt-0.5 text-amber-400 shrink-0" />
@@ -341,7 +424,7 @@ export default function VerbalMode() {
                         {status === 'LISTENING' && (
                             <div className="absolute top-32 left-0 w-full text-center">
                                 <span className="text-slate-500 text-sm bg-slate-900/80 px-4 py-2 rounded-full border border-slate-700/50">
-                                    Start answer with <strong>"Option..."</strong>
+                                    Say <strong>"Option A–D"</strong> — or click your answer
                                 </span>
                             </div>
                         )}
@@ -353,12 +436,33 @@ export default function VerbalMode() {
                                 {questions[currentIndex].stem}
                             </h2>
                             <div className="grid gap-3">
-                                {questions[currentIndex].options.map((opt, i) => (
-                                    <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-slate-800/50 border border-slate-700/50">
-                                        <span className="font-bold text-indigo-400 w-6">{['A', 'B', 'C', 'D'][i]}</span>
-                                        <span className="text-slate-200 text-lg leading-snug">{opt}</span>
-                                    </div>
-                                ))}
+                                {questions[currentIndex].options.map((opt, i) => {
+                                    const answerable = status === 'READING' || status === 'LISTENING';
+                                    let frame = 'bg-slate-800/50 border-slate-700/50';
+                                    let key = 'text-indigo-400';
+                                    if (answerable) {
+                                        frame += ' hover:border-indigo-400/70 hover:bg-slate-800 cursor-pointer';
+                                    } else if (status === 'FEEDBACK' && lastAnswer) {
+                                        if (i === lastAnswer.correct) {
+                                            frame = 'bg-emerald-500/10 border-emerald-500/60';
+                                            key = 'text-emerald-400';
+                                        } else if (i === lastAnswer.selected) {
+                                            frame = 'bg-red-500/10 border-red-500/50';
+                                            key = 'text-red-400';
+                                        }
+                                    }
+                                    return (
+                                        <button
+                                            key={i}
+                                            onClick={() => handleMouseAnswer(i)}
+                                            disabled={!answerable}
+                                            className={`flex items-start gap-3 p-4 rounded-xl border text-left transition-colors disabled:cursor-default ${frame}`}
+                                        >
+                                            <span className={`font-bold w-6 ${key}`}>{['A', 'B', 'C', 'D'][i]}</span>
+                                            <span className="text-slate-200 text-lg leading-snug">{opt}</span>
+                                        </button>
+                                    );
+                                })}
                             </div>
                         </div>
 
