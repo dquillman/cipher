@@ -831,6 +831,8 @@ export default function Quiz() {
                 lensFramework: examLensConfig?.framework,
             });
             setTutorBreakdown(result.data as TutorResponse);
+            // Guided path (dashboard): the "read a Coach Breakdown" step
+            localStorage.setItem('ec_breakdown_seen', '1');
 
             // Track Thinking Traps for Suggestion Engine
             const responseData = result.data as TutorResponse;

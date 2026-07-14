@@ -16,6 +16,8 @@ import TrendIndicatorCard from '../components/analytics/TrendIndicatorCard';
 import { getAnsweredCount, deriveMetrics, type RunMetrics } from '../utils/questionMetrics';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import { Flame } from 'lucide-react';
+import GuidedPath from '../components/onboarding/GuidedPath';
+import { StudyPlanService } from '../services/StudyPlanService';
 
 const ACTIVITY_MODE_LABELS: Record<string, string> = {
     diagnostic: "Diagnostic Quiz",
@@ -48,6 +50,8 @@ export default function Dashboard() {
     const [showStreakModal, setShowStreakModal] = useState(false);
 
     const [recentActivity, setRecentActivity] = useState<RunMetrics[]>([]);
+    // Guided path: null = still probing (gates the card so steps never flicker)
+    const [hasStudyPlan, setHasStudyPlan] = useState<boolean | null>(null);
     const [activeRuns, setActiveRuns] = useState<any[]>([]);
     const [dailyProgress, setDailyProgress] = useState(0);
     const [dailyGoal, setDailyGoal] = useState(10);
@@ -78,6 +82,21 @@ export default function Dashboard() {
             setDomainTotalCounts({});
         }
     }, [selectedExamId, examDomains, examLoading]);
+
+    // Guided path: does a study plan exist for this exam?
+    useEffect(() => {
+        let cancelled = false;
+        const unsub = auth.onAuthStateChanged(async (user) => {
+            if (!user || !selectedExamId) return;
+            try {
+                const plan = await StudyPlanService.getCurrentPlan(user.uid, selectedExamId);
+                if (!cancelled) setHasStudyPlan(!!plan);
+            } catch {
+                if (!cancelled) setHasStudyPlan(false);
+            }
+        });
+        return () => { cancelled = true; unsub(); };
+    }, [selectedExamId]);
 
     // 2. Fetch User Data (Progress, Activity, Goals)
     useEffect(() => {
@@ -420,6 +439,18 @@ export default function Dashboard() {
                             <div>
                                 <h2 className="text-2xl md:text-3xl font-bold text-white font-display">Welcome back!</h2>
                                 <p className="text-slate-400 mt-1">Consistency is key. Keep up your daily practice to master the <strong>{examName}</strong>.</p>
+                                {/* Getting-started guide — stage-aware, self-hides once completed */}
+                                {hasStudyPlan !== null && (
+                                    <GuidedPath
+                                        steps={{
+                                            diagnostic: contextDiagnostic === true,
+                                            practice: recentActivity.some(r => r.quizType !== 'diagnostic' && r.mode !== 'diagnostic'),
+                                            breakdown: localStorage.getItem('ec_breakdown_seen') === '1',
+                                            plan: hasStudyPlan,
+                                            mock: recentActivity.some(r => r.quizType === 'simulation' || r.mode === 'simulation'),
+                                        }}
+                                    />
+                                )}
                             </div>
                         )}
 
