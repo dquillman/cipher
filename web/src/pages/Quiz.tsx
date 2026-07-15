@@ -370,11 +370,27 @@ export default function Quiz() {
                     bloomFallbackApplied = true;
                 }
 
-                // Surface active filters to the UI (pill + fallback banner)
+                // Final safety fallback: if ANY filter (domain and/or Bloom) still
+                // left us with zero questions, drop ALL filters and load the full
+                // exam bank. This is what strands users on "No questions found"
+                // when a stale cross-exam filter lingers in navigation state — e.g.
+                // clicking a "People" mastery ring on PMP, then switching to an
+                // exam that has no "People" domain. The exam has questions; the
+                // filter just matched none. Recover instead of dead-ending.
+                let filterFellBackToAll = false;
+                if (allQuestions.length === 0 && (filterDomain || filterBloomLevel)) {
+                    console.warn(`No questions for examId=${activeExamId} with domain=${filterDomain ?? 'any'}/bloom=${filterBloomLevel ?? 'any'}. Falling back to the full exam bank.`);
+                    questionsSnap = await getDocs(query(questionsRef, where('examId', '==', activeExamId)));
+                    allQuestions = questionsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Question[];
+                    filterFellBackToAll = true;
+                }
+
+                // Surface active filters to the UI (pill + fallback banner).
+                // Cleared when we fell all the way back to the full bank.
                 setActiveFilters({
-                    domain: filterDomain,
-                    bloomLevel: bloomFallbackApplied ? undefined : filterBloomLevel,
-                    bloomFallback: bloomFallbackApplied,
+                    domain: filterFellBackToAll ? undefined : filterDomain,
+                    bloomLevel: (bloomFallbackApplied || filterFellBackToAll) ? undefined : filterBloomLevel,
+                    bloomFallback: bloomFallbackApplied && !filterFellBackToAll,
                 });
 
                 if (allQuestions.length === 0) {
@@ -1174,7 +1190,23 @@ export default function Quiz() {
     }
 
     if (questions.length === 0) {
-        return <div className="min-h-screen flex items-center justify-center">No questions found. Please add some in the Admin CMS.</div>;
+        // Reached only if the exam bank is genuinely empty (the loader now falls
+        // back to the full bank when a filter matches nothing). Give the learner
+        // a way out instead of an admin-facing dead end.
+        return (
+            <div className="min-h-screen flex items-center justify-center p-4">
+                <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl border border-slate-700 text-center max-w-md w-full">
+                    <p className="text-slate-200 text-lg font-semibold mb-2">No questions available for this exam yet.</p>
+                    <p className="text-slate-400 text-sm mb-6">We’re still building this question bank. Try another exam in the meantime.</p>
+                    <button
+                        onClick={() => navigate('/app')}
+                        className="px-6 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-bold transition-colors"
+                    >
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+        );
     }
 
     if (quizCompleted) {
