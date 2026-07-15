@@ -16,7 +16,7 @@ import { SEO } from "../config/seo";
 import {
   Scale, MessageSquareOff, Repeat,
   Lightbulb, BarChart3, ClipboardList, Crosshair,
-  Search, Wrench, TrendingUp,
+  Search, Wrench, TrendingUp, ShieldCheck,
 } from "lucide-react";
 
 /* ─── Shared icons & paths ────────────────────────────────────────────────── */
@@ -982,6 +982,9 @@ export default function Landing() {
             Start Your Free Trial
           </button>
           <p className="mt-6 font-mono text-xs tracking-wide text-slate-500">7-day free trial — no credit card required.</p>
+          <p className="mt-2 inline-flex items-center gap-2 font-mono text-xs tracking-wide text-emerald-400">
+            <ShieldCheck className="w-4 h-4" /> Plus a 30-day money-back guarantee.
+          </p>
         </div>
       </section>
 

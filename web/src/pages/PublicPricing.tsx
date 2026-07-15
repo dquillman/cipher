@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Check } from 'lucide-react';
+import { Check, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import { trackPricingView, trackCtaClick } from '../lib/ga4';
 import { useEffect } from 'react';
@@ -128,6 +128,9 @@ export default function PublicPricing() {
                             >
                                 Start Free Trial
                             </button>
+                            <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-emerald-300">
+                                <ShieldCheck className="w-4 h-4" /> 30-day money-back guarantee
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -154,6 +157,12 @@ export default function PublicPricing() {
                             <dt className="text-lg font-semibold text-white mb-2">Can I cancel anytime?</dt>
                             <dd className="text-slate-300 leading-relaxed">
                                 Yes. You can cancel your subscription at any time from your account settings. Cancellation takes effect at the end of your current billing period — no questions asked.
+                            </dd>
+                        </div>
+                        <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
+                            <dt className="text-lg font-semibold text-white mb-2">What's the money-back guarantee?</dt>
+                            <dd className="text-slate-300 leading-relaxed">
+                                If CipherExam Pro isn't for you, email us within 30 days of your first payment and we'll refund it in full — no questions asked. You risk nothing.
                             </dd>
                         </div>
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">

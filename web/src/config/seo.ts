@@ -81,6 +81,14 @@ export const SEO = {
           },
           {
             '@type': 'Question',
+            name: "What's the money-back guarantee?",
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: "If CipherExam Pro isn't for you, email us within 30 days of your first payment and we'll refund it in full, no questions asked.",
+            },
+          },
+          {
+            '@type': 'Question',
             name: 'Which certifications are included?',
             acceptedAnswer: {
               '@type': 'Answer',
