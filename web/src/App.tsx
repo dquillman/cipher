@@ -1,5 +1,6 @@
 ﻿import { Routes, Route, Navigate, Outlet, useLocation, Link } from "react-router-dom";
-import React, { useEffect, useState, createContext, useContext, lazy, Suspense, type ReactNode } from "react";
+import React, { useEffect, useState, createContext, useContext, Suspense, type ReactNode } from "react";
+import { lazyWithReload as lazy, isDeployChunkError } from "./utils/lazyWithReload";
 import { onAuthStateChanged, type User, signOut } from "firebase/auth";
 import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -374,6 +375,20 @@ class AppErrorBoundary extends React.Component<{ children: ReactNode }, { error:
   }
   render() {
     if (this.state.error) {
+      // Stale chunk after a deploy: don't scare the user with a red stack —
+      // it's just a new version. (lazyWithReload already auto-reloads once;
+      // this is the fallback if the reload cooldown is still active.)
+      if (isDeployChunkError(this.state.error)) {
+        return (
+          <div className="flex min-h-screen items-center justify-center bg-slate-900 text-white p-8">
+            <div className="max-w-md text-center">
+              <h1 className="text-2xl font-bold text-white mb-3 font-display">A new version is available</h1>
+              <p className="text-slate-400 mb-6">CipherExam was just updated. Reload to get the latest — your progress is saved.</p>
+              <button onClick={() => window.location.reload()} className="px-8 py-3 bg-brand-600 hover:bg-brand-500 rounded-lg font-bold transition-colors">Reload</button>
+            </div>
+          </div>
+        );
+      }
       return (
         <div className="flex min-h-screen items-center justify-center bg-slate-900 text-white p-8">
           <div className="max-w-lg text-center">
