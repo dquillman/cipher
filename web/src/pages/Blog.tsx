@@ -1,27 +1,15 @@
 import { Link } from 'react-router-dom';
 import PublicNav from '../components/layout/PublicNav';
 import PublicFooter from '../components/layout/PublicFooter';
-import { BookOpen, Bot, Target } from 'lucide-react';
 import SeoHead from '../components/SeoHead';
 import { SEO } from '../config/seo';
+import BlogCover, { type BlogCoverKey } from '../components/blog/BlogCover';
 
-const categoryConfig = {
-  'Study Strategy': {
-    gradient: 'from-brand-500/20 to-blue-600/10',
-    icon: BookOpen,
-  },
-  'AI & Learning': {
-    gradient: 'from-emerald-500/20 to-teal-600/10',
-    icon: Bot,
-  },
-  'Exam Tips': {
-    gradient: 'from-amber-500/20 to-orange-600/10',
-    icon: Target,
-  },
-} as const;
+type Category = 'Study Strategy' | 'AI & Learning' | 'Exam Tips';
 
-type Category = keyof typeof categoryConfig;
-
+// NOTE: every post MUST declare a `cover` (a BlogCoverKey). It's a required
+// field, so the build fails if a new post is added without one. Design its
+// matching scene in components/blog/BlogCover.tsx.
 const articles: {
   slug: string;
   title: string;
@@ -30,6 +18,7 @@ const articles: {
   readTime: string;
   date: string;
   category: Category;
+  cover: BlogCoverKey;
 }[] = [
   {
     slug: 'how-certification-exams-think',
@@ -39,6 +28,7 @@ const articles: {
     readTime: '5 min read',
     date: 'May 2026',
     category: 'Study Strategy',
+    cover: 'reasoning-frames',
   },
   {
     slug: 'cognitive-heatmap',
@@ -48,6 +38,7 @@ const articles: {
     readTime: '11 min read',
     date: 'Jun 2026',
     category: 'Study Strategy',
+    cover: 'heatmap',
   },
   {
     slug: 'recall-only-prep-fails',
@@ -57,6 +48,7 @@ const articles: {
     readTime: '10 min read',
     date: 'May 2026',
     category: 'Study Strategy',
+    cover: 'plateau',
   },
   {
     slug: 'study-by-blooms-level',
@@ -66,6 +58,7 @@ const articles: {
     readTime: '11 min read',
     date: 'May 2026',
     category: 'Study Strategy',
+    cover: 'blooms',
   },
   {
     slug: 'first-30-days-certification-study-plan',
@@ -75,6 +68,7 @@ const articles: {
     readTime: '9 min read',
     date: 'Jan 2026',
     category: 'Study Strategy',
+    cover: 'thirty-days',
   },
   {
     slug: 'how-ai-explanations-change-the-way-you-study',
@@ -84,6 +78,7 @@ const articles: {
     readTime: '6 min read',
     date: 'Feb 2026',
     category: 'AI & Learning',
+    cover: 'ai-explain',
   },
   {
     slug: '5-study-mistakes-that-cost-your-certification-exam',
@@ -93,6 +88,7 @@ const articles: {
     readTime: '7 min read',
     date: 'Feb 2026',
     category: 'Exam Tips',
+    cover: 'five-mistakes',
   },
   {
     slug: 'why-certification-exam-questions-are-so-confusing',
@@ -102,6 +98,7 @@ const articles: {
     readTime: '8 min read',
     date: 'Mar 2026',
     category: 'Exam Tips',
+    cover: 'confusing',
   },
 ];
 
@@ -128,18 +125,14 @@ export default function Blog() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {articles.map((a) => {
-              const cfg = categoryConfig[a.category];
-              const Icon = cfg.icon;
               return (
                 <Link
                   key={a.slug}
                   to={`/blog/${a.slug}`}
                   className="block rounded-2xl border border-slate-800 bg-slate-800/50 overflow-hidden hover:border-brand-500/30 hover:bg-slate-800/60 transition-all group"
                 >
-                  {/* Gradient thumbnail */}
-                  <div className={`h-36 bg-gradient-to-br ${cfg.gradient} flex items-center justify-center`}>
-                    <Icon className="w-10 h-10 text-slate-400/60 group-hover:text-slate-300/80 transition-colors" />
-                  </div>
+                  {/* Per-post cover art */}
+                  <BlogCover variant={a.cover} className="h-36 w-full overflow-hidden group-hover:opacity-95 transition-opacity" />
 
                   <div className="p-5">
                     {/* Category badge */}
