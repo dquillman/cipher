@@ -18,6 +18,14 @@ export const EXAMS: Record<string, ExamConfig> = {
         fullMock: { questionCount: 180, durationMinutes: 230 },
         questionTypes: ['mcq', 'emv', 'matching'],
     },
+    // Forward-looking bank for the July 2026 PMP content change. Kept alongside
+    // the current PMP; mirrors its mock config, lens, and question types.
+    "6kECziMtR1BS3MpABLW5": {
+        id: "6kECziMtR1BS3MpABLW5",
+        name: "PMP Exam v2026",
+        fullMock: { questionCount: 180, durationMinutes: 230 },
+        questionTypes: ['mcq', 'emv', 'matching'],
+    },
     "IpECw0XAtBkgD1HyvYas": {
         id: "IpECw0XAtBkgD1HyvYas",
         name: "Certified ScrumMaster (CSM)",
@@ -84,6 +92,7 @@ export const EXAMS: Record<string, ExamConfig> = {
  *  Keys are Firestore document IDs from the `exams` collection. */
 export const EXAM_LENS: Record<string, { lensName: string; framework: string }> = {
     "7qmPagj9A6RpkC0CwGkY": { lensName: "PMI Decision Lens",              framework: "What would PMI want you to do?" },
+    "6kECziMtR1BS3MpABLW5": { lensName: "PMI Decision Lens",              framework: "What would PMI want you to do?" },
     "IpECw0XAtBkgD1HyvYas": { lensName: "Scrum Guide Lens",              framework: "What does the Scrum Guide say the role should do?" },
     "bpfawZDj3qalhoU4mdd3": { lensName: "SHRM Competency Lens",          framework: "What aligns with SHRM behavioral competencies?" },
     "XGfL6RE2ls7cokP2tqMa": { lensName: "DMAIC Lens",                    framework: "Where does this fall in Define-Measure-Analyze-Improve-Control?" },
