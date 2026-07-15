@@ -983,7 +983,7 @@ export default function Landing() {
           </button>
           <p className="mt-6 font-mono text-xs tracking-wide text-slate-500">7-day free trial — no credit card required.</p>
           <p className="mt-2 inline-flex items-center gap-2 font-mono text-xs tracking-wide text-emerald-400">
-            <ShieldCheck className="w-4 h-4" /> Plus a 30-day money-back guarantee.
+            <ShieldCheck className="w-4 h-4" /> Plus a 60-day money-back guarantee — no conditions.
           </p>
         </div>
       </section>
