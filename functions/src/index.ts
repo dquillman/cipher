@@ -6,6 +6,8 @@ import { enforceRateLimit } from './rateLimit';
 
 // Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
 export { scheduleOnboardingDrip } from './onboardingDrip';
+// Exam countdown emails (D-14/7/3/1). Daily scheduled job at 14:00 UTC.
+export { sendExamCountdownEmails } from './examCountdown';
 
 console.log("Global Index Execution Started");
 admin.initializeApp();

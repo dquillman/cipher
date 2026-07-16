@@ -224,6 +224,74 @@ export const SEO = {
     ogImage: 'https://cipherexam.com/og-default.png',
   },
 
+  comparePocketPrep: {
+    title: 'Pocket Prep Alternative — Reasoning-First Cert Prep · CipherExam',
+    description:
+      'Looking for a Pocket Prep alternative? CipherExam explains the reasoning behind every question — Bloom’s-classified, 11 certs in one subscription, 60-day money-back guarantee. Free 7-day trial, no credit card.',
+    canonical: '/compare/pocketprep-alternative',
+    ogImage: 'https://cipherexam.com/og-default.png',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Which certifications does CipherExam cover?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'PMP (including a dedicated PMP Exam v2026 bank), Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — all in one subscription.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What does CipherExam cost?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: '$19/month, or $190/year. Every plan starts with a 7-day free trial — no credit card required — and Pro is covered by a 60-day, no-conditions money-back guarantee.',
+          },
+        },
+      ],
+    },
+  },
+
+  compareBestPmpSimulator2026: {
+    title: 'Best PMP Exam Simulator for the 2026 Exam — Buyer’s Guide · CipherExam',
+    description:
+      'The PMP exam changes in July 2026. What to look for in a simulator — full 180-question timing, new-ECO coverage, all three question types — and how CipherExam meets each criterion. Free 7-day trial.',
+    canonical: '/compare/best-pmp-exam-simulator-2026',
+    ogImage: 'https://cipherexam.com/og-pmp.png',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'When does the PMP exam change?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'PMI rolls out the updated PMP exam, built against a new Exam Content Outline, in July 2026. If your exam date is after the change, make sure your prep materials are aligned to the new outline.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Is CipherExam ready for the 2026 PMP exam?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. PMP Exam v2026 is a first-class exam in CipherExam with its own question bank, a full 180-question / 230-minute mock, and all three question types: multiple choice, EMV math, and matching.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Will using a simulator guarantee I pass?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No tool can promise that. A good simulator removes the two most common failure modes — unfamiliar pacing and unfamiliar reasoning. The rest is your preparation.',
+          },
+        },
+      ],
+    },
+  },
+
   terms: {
     title: 'Terms of Service · CipherExam',
     description: 'CipherExam terms of service.',

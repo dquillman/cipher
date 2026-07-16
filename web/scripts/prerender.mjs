@@ -52,6 +52,8 @@ const ROUTES = [
   '/lp/six-sigma',
   '/lp/pgmp',
   '/lp/cia',
+  '/compare/pocketprep-alternative',
+  '/compare/best-pmp-exam-simulator-2026',
   '/blog',
   '/blog/study-by-blooms-level',
   '/blog/recall-only-prep-fails',

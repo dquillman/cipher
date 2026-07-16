@@ -28,6 +28,8 @@ const routes = [
   { path: '/lp/six-sigma', changefreq: 'weekly', priority: 0.8 },
   { path: '/lp/pgmp', changefreq: 'weekly', priority: 0.8 },
   { path: '/lp/cia', changefreq: 'weekly', priority: 0.8 },
+  { path: '/compare/pocketprep-alternative', changefreq: 'monthly', priority: 0.8 },
+  { path: '/compare/best-pmp-exam-simulator-2026', changefreq: 'monthly', priority: 0.85 },
   { path: '/blog', changefreq: 'weekly', priority: 0.8 },
   { path: '/exam-lens', changefreq: 'monthly', priority: 0.85 },
   { path: '/blog/study-by-blooms-level', changefreq: 'monthly', priority: 0.8 },

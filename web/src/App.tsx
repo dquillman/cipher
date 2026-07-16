@@ -43,6 +43,9 @@ const APlusCore2PracticeLP = lazy(() => import("./pages/landing/APlusCore2Practi
 const SixSigmaPracticeLP = lazy(() => import("./pages/landing/SixSigmaPracticeLP"));
 const PgmpPracticeLP = lazy(() => import("./pages/landing/PgmpPracticeLP"));
 const CiaPart1PracticeLP = lazy(() => import("./pages/landing/CiaPart1PracticeLP"));
+// Comparison / alternative SEO pages (added 2026-07-16)
+const PocketPrepAlternative = lazy(() => import("./pages/compare/PocketPrepAlternative"));
+const BestPmpSimulator2026 = lazy(() => import("./pages/compare/BestPmpSimulator2026"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Help = lazy(() => import("./pages/Help"));
@@ -468,6 +471,9 @@ function App() {
               <Route path="/lp/six-sigma" element={<SixSigmaPracticeLP />} />
               <Route path="/lp/pgmp" element={<PgmpPracticeLP />} />
               <Route path="/lp/cia" element={<CiaPart1PracticeLP />} />
+              {/* Comparison / alternative SEO pages */}
+              <Route path="/compare/pocketprep-alternative" element={<PocketPrepAlternative />} />
+              <Route path="/compare/best-pmp-exam-simulator-2026" element={<BestPmpSimulator2026 />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/signin" element={<Navigate to="/login" replace />} />
