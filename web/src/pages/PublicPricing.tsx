@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import PublicNav from '../components/layout/PublicNav';
 import PublicFooter from '../components/layout/PublicFooter';
 import SeoHead from '../components/SeoHead';
+import GuaranteeSeal from '../components/GuaranteeSeal';
 import { SEO } from '../config/seo';
 
 export default function PublicPricing() {
@@ -77,7 +78,16 @@ export default function PublicPricing() {
                         <p className="mt-3 text-xs text-slate-500 text-center">Want unlimited practice? <span className="text-brand-400">See Pro</span></p>
                     </div>
 
-                    {/* Pro Tier */}
+                    {/* Pro Tier — wrapper stays overflow-visible so the guarantee
+                        sticker can overhang the corner like a physical seal. */}
+                    <div className="relative">
+                    {/* Gold guarantee sticker, slapped on the top-right corner (md+). */}
+                    <GuaranteeSeal
+                        size={124}
+                        tilt={-14}
+                        animate
+                        className="hidden md:block absolute -top-8 -right-6 z-20 pointer-events-none"
+                    />
                     <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-3xl p-8 border border-brand-500/30 flex flex-col relative overflow-hidden group">
                         <div className="absolute inset-0 bg-brand-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -132,6 +142,20 @@ export default function PublicPricing() {
                                 <ShieldCheck className="w-4 h-4" /> 60-day money-back guarantee
                             </p>
                         </div>
+                    </div>
+                    </div>
+                </div>
+
+                {/* Risk-free band — makes the guarantee unmissable, sticker + copy. */}
+                <div className="mt-14 w-full max-w-3xl rounded-3xl border border-amber-500/25 bg-gradient-to-br from-amber-500/[0.07] to-amber-900/[0.04] px-8 py-8 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                    <GuaranteeSeal size={128} tilt={-8} animate className="shrink-0" />
+                    <div>
+                        <h2 className="text-2xl font-bold text-white font-display">Love it, or your money back.</h2>
+                        <p className="mt-2 text-slate-300 leading-relaxed">
+                            Try CipherExam Pro for a full <span className="text-amber-300 font-semibold">60 days</span>. If it's
+                            not for you, email us for a complete refund — <span className="text-white font-semibold">no conditions,
+                            no proof of anything, no fine print.</span> The risk is entirely on us.
+                        </p>
                     </div>
                 </div>
 

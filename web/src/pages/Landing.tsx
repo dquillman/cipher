@@ -11,6 +11,7 @@ import { useHeroMotion } from "../components/landing/useHeroMotion";
 import { useInView } from "../hooks/useInView";
 import CountUp from "../components/CountUp";
 import ScrollProgress from "../components/ScrollProgress";
+import GuaranteeSeal from "../components/GuaranteeSeal";
 import SeoHead from "../components/SeoHead";
 import { SEO } from "../config/seo";
 import {
@@ -964,6 +965,8 @@ export default function Landing() {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-600/10" />
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`, backgroundRepeat: 'repeat', backgroundSize: '128px 128px' }} />
+        {/* Gold guarantee seal, tucked into the corner like a sticker. */}
+        <GuaranteeSeal size={132} tilt={-13} className="hidden lg:block absolute top-10 right-10 z-10" />
         <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
           <h2 className="text-4xl font-bold text-white sm:text-5xl mb-6 font-display">
             Stop Guessing.{" "}
