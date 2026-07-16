@@ -378,7 +378,12 @@ export default function Landing() {
             </div>
 
             {/* Right: live product demo */}
-            <div className="lg:col-span-6 hero-enter hero-enter-4">
+            <div className="lg:col-span-6 hero-enter hero-enter-4 relative">
+              {/* Gold guarantee seal — stuck on the demo panel's corner, front and
+                  center in the hero so the risk-reversal is the first thing seen */}
+              <div className="absolute -top-7 -right-2 z-20 pointer-events-none max-lg:scale-[0.8] max-lg:origin-top-right">
+                <GuaranteeSeal size={132} tilt={-12} animate />
+              </div>
               <div className="demo-float scan-wrap relative rounded-2xl shadow-2xl shadow-brand-500/10 ring-1 ring-brand-500/10 bg-gradient-to-b from-brand-500/[0.03] to-transparent p-1 overflow-hidden">
                 <div className="scanline" aria-hidden="true" />
                 <div className="flex items-center gap-2 px-4 pt-3 pb-2">

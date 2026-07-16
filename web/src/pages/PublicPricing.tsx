@@ -78,25 +78,24 @@ export default function PublicPricing() {
                         <p className="mt-3 text-xs text-slate-500 text-center">Want unlimited practice? <span className="text-brand-400">See Pro</span></p>
                     </div>
 
-                    {/* Pro Tier — wrapper stays overflow-visible so the guarantee
-                        sticker can overhang the corner like a physical seal. */}
-                    <div className="relative">
-                    {/* Gold guarantee sticker, slapped on the top-right corner (md+). */}
-                    <GuaranteeSeal
-                        size={124}
-                        tilt={-14}
-                        animate
-                        className="hidden md:block absolute -top-8 -right-6 z-20 pointer-events-none"
-                    />
-                    <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-3xl p-8 border border-brand-500/30 flex flex-col relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-brand-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    {/* Pro Tier */}
+                    <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-3xl p-8 border border-brand-500/30 flex flex-col relative group">
+                        <div className="absolute inset-0 rounded-3xl overflow-hidden">
+                            <div className="absolute inset-0 bg-brand-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        {/* POPULAR tag — centered on the top border so the seal owns the corner */}
+                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">POPULAR</span>
+                        {/* Gold guarantee sticker — inside the card, clear of all copy */}
+                        <GuaranteeSeal
+                            size={116}
+                            tilt={-12}
+                            animate
+                            className="hidden lg:block absolute top-6 right-6 z-10 pointer-events-none"
+                        />
 
                         <div className="relative">
-                            <div className="flex justify-between items-center">
-                                <h3 className="text-2xl font-bold text-white">Pro Membership</h3>
-                                <span className="bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
-                            </div>
-                            <div className="mt-4 flex items-baseline flex-wrap gap-x-2">
+                            <h3 className="text-2xl font-bold text-white lg:pr-32">Pro Membership</h3>
+                            <div className="mt-4 flex items-baseline flex-wrap gap-x-2 lg:pr-32">
                                 {billingInterval === 'year' && (
                                     <span className="text-lg text-slate-500 line-through">$228</span>
                                 )}
@@ -142,7 +141,6 @@ export default function PublicPricing() {
                                 <ShieldCheck className="w-4 h-4" /> 60-day money-back guarantee
                             </p>
                         </div>
-                    </div>
                     </div>
                 </div>
 
