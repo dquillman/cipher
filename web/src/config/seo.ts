@@ -84,7 +84,7 @@ export const SEO = {
             name: "What's the money-back guarantee?",
             acceptedAnswer: {
               '@type': 'Answer',
-              text: "If CipherExam Pro isn't for you, email us within 60 days of your first payment for a full refund — no mock-exam requirements, no fine print.",
+              text: "Use CipherExam Pro for up to 60 days. Not for you? Email support@cipherexam.com within 60 days of your first payment and we'll refund every dollar you've paid — no conditions, no proof of anything, no fine print.",
             },
           },
           {

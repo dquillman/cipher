@@ -150,9 +150,10 @@ export default function PublicPricing() {
                     <div>
                         <h2 className="text-2xl font-bold text-white font-display">Love it, or your money back.</h2>
                         <p className="mt-2 text-slate-300 leading-relaxed">
-                            Try CipherExam Pro for a full <span className="text-amber-300 font-semibold">60 days</span>. If it's
-                            not for you, email us for a complete refund — <span className="text-white font-semibold">no conditions,
-                            no proof of anything, no fine print.</span> The risk is entirely on us.
+                            Use CipherExam Pro for up to <span className="text-amber-300 font-semibold">60 days</span>. Not for you?
+                            Email <a href="mailto:support@cipherexam.com" className="text-amber-300 font-semibold underline underline-offset-2 hover:text-amber-200">support@cipherexam.com</a> within
+                            60 days of your first payment and we'll refund every dollar you've paid — <span className="text-white font-semibold">no
+                            conditions, no proof of anything, no fine print.</span>
                         </p>
                     </div>
                 </div>
@@ -184,7 +185,7 @@ export default function PublicPricing() {
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
                             <dt className="text-lg font-semibold text-white mb-2">What's the money-back guarantee?</dt>
                             <dd className="text-slate-300 leading-relaxed">
-                                If CipherExam Pro isn't for you, email us within 60 days of your first payment for a full refund. No mock-exam requirements, no proof of anything, no fine print — just email us.
+                                Use CipherExam Pro for up to 60 days. Not for you? Email <a href="mailto:support@cipherexam.com" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">support@cipherexam.com</a> within 60 days of your first payment and we'll refund every dollar you've paid — no conditions, no proof of anything, no fine print.
                             </dd>
                         </div>
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">

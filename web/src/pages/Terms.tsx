@@ -18,7 +18,7 @@ export default function Terms() {
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white font-display tracking-tight mb-2">
             Terms of Service
           </h1>
-          <p className="text-sm text-slate-500 mb-12">Last updated: March 19, 2026</p>
+          <p className="text-sm text-slate-500 mb-12">Last updated: July 16, 2026</p>
 
           <div className="space-y-8 text-base text-slate-300 leading-relaxed">
 
@@ -69,7 +69,12 @@ export default function Terms() {
               <p className="mt-3">
                 Subscription fees are billed in advance on a monthly or annual basis depending on your
                 selected plan. You may cancel your subscription at any time. Cancellation takes effect at the
-                end of the current billing period. We do not offer prorated refunds for partial billing periods.
+                end of the current billing period.
+              </p>
+              <p className="mt-3">
+                Pro purchases include a 60-day money-back guarantee: email us within 60 days of your first
+                payment and we&apos;ll refund everything you&apos;ve paid, no conditions. Outside that window,
+                cancellations take effect at period end without prorated refunds.
               </p>
             </section>
 
