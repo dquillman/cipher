@@ -160,6 +160,19 @@ export default function PublicPricing() {
                     </div>
                 </div>
 
+                {/* "Built to be canceled" — answers subscription fatigue head-on.
+                    Companion to the guarantee band: zero risk in, zero trap out. */}
+                <div className="mt-6 w-full max-w-3xl rounded-3xl border border-slate-700 bg-slate-800/30 px-8 py-8 text-center sm:text-left">
+                    <h2 className="text-2xl font-bold text-white font-display">Built to be canceled.</h2>
+                    <p className="mt-2 text-slate-300 leading-relaxed">
+                        This isn't another forever-subscription. Most students study for
+                        <span className="text-brand-300 font-semibold"> 2–3 months</span>, pass, and cancel — about
+                        <span className="text-white font-semibold"> $38–57 total</span>. Cancel in two clicks from your
+                        account settings, keep access through the end of your billing period, and the 60-day guarantee
+                        sits under all of it. Passing your exam and leaving is the outcome we built for.
+                    </p>
+                </div>
+
                 <p className="mt-12 text-slate-500 text-sm">
                     Secure payments powered by <span className="text-slate-400 font-bold">Stripe</span>.
                     No credit card required for trial.
