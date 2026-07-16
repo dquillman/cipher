@@ -11,7 +11,8 @@ import { SEO } from '../config/seo';
 
 export default function PublicPricing() {
     const navigate = useNavigate();
-    const [billingInterval, setBillingInterval] = useState<'month' | 'year'>('month');
+    // Yearly is the default anchor — better value for the user, better LTV for us.
+    const [billingInterval, setBillingInterval] = useState<'month' | 'year'>('year');
 
     useEffect(() => { trackPricingView(); }, []);
 
@@ -113,6 +114,7 @@ export default function PublicPricing() {
                                 <p className="text-xs text-slate-500">$15.83/mo billed annually</p>
                             )}
                             <p className="mt-2 text-brand-200 text-sm">7-day free trial. Cancel anytime.</p>
+                            <p className="mt-1.5 text-xs text-slate-400">Retaking one exam costs $275–$555. A year of Pro is $190.</p>
 
                             <ul className="mt-8 space-y-4 mb-8">
                                 {[

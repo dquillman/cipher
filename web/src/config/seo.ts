@@ -360,6 +360,13 @@ export const BLOG_POSTS: Record<
     canonical: '/blog/how-ai-explanations-change-the-way-you-study',
     datePublished: '2026-05-04',
   },
+  pmpExamChanges2026: {
+    title: 'The PMP Exam Changes in July 2026 — Is Your Prep Current? · CipherExam',
+    description:
+      'PMI updates the PMP exam against a new Exam Content Outline in July 2026. How to check whether your prep materials are current — and a bridge plan if you’re mid-prep.',
+    canonical: '/blog/pmp-exam-changes-july-2026',
+    datePublished: '2026-07-16',
+  },
   firstThirtyDays: {
     title: 'The First 30 Days of a Certification Study Plan · CipherExam',
     description:

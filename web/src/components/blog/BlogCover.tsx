@@ -14,7 +14,8 @@ export type BlogCoverKey =
     | 'thirty-days'
     | 'ai-explain'
     | 'five-mistakes'
-    | 'confusing';
+    | 'confusing'
+    | 'outline-2026';
 
 const INK = '#0B1526';
 const LINE = '#1B2A44';
@@ -185,6 +186,37 @@ export default function BlogCover({ variant, className = '' }: { variant: BlogCo
                         <circle cx="380" cy="110" r="7" fill={GREEN} opacity="0.2" />
                         <circle cx="380" cy="110" r="4" fill={GREEN} />
                         <text x="352" y="150" fontFamily="ui-monospace, monospace" fontSize="26" fill={CYAN} opacity="0.5">?</text>
+                    </Frame>
+                );
+
+            // "PMP Exam Changes July 2026" — the old exam outline dissolving
+            // mid-decode into the new one, with an amber changeover date tab.
+            case 'outline-2026':
+                return (
+                    <Frame id="oc" glow="#12314a">
+                        {/* old outline page — eroding */}
+                        <rect x="78" y="45" width="118" height="105" rx="8" fill="#0E1E30" stroke={LINE} strokeWidth="1.5" />
+                        <text x="92" y="66" fontFamily="ui-monospace, monospace" fontSize="10" letterSpacing="2" fill={FAINT}>ECO · OLD</text>
+                        {[80, 94, 108, 122, 136].map((y, i) => (
+                            <line key={i} x1="92" y1={y} x2={182 - i * 14} y2={y}
+                                stroke={FAINT} strokeWidth="4" strokeLinecap="round"
+                                strokeDasharray={i >= 2 ? '6 5' : undefined} opacity={0.5 - i * 0.07} />
+                        ))}
+                        {/* dissolve field — glyphs mid-decode between the pages */}
+                        {[[214, 70, 0.5], [232, 100, 0.7], [220, 130, 0.4], [248, 62, 0.35], [252, 118, 0.55]].map(([x, y, o], i) => (
+                            <circle key={i} cx={x} cy={y} r="2.5" fill={CYAN} opacity={o} />
+                        ))}
+                        <text x="212" y="95" fontFamily="ui-monospace, monospace" fontSize="16" fill={CYAN_DIM} opacity="0.8">◇λ#</text>
+                        {/* new outline page — resolved */}
+                        <rect x="284" y="45" width="118" height="105" rx="8" fill="#0E1E30" stroke={CYAN_DIM} strokeWidth="1.5" />
+                        <text x="298" y="66" fontFamily="ui-monospace, monospace" fontSize="10" letterSpacing="2" fill={CYAN}>ECO · NEW</text>
+                        {[80, 94, 108, 122, 136].map((y, i) => (
+                            <line key={i} x1="298" y1={y} x2={298 + 90 - (i % 3) * 16} y2={y}
+                                stroke={CYAN} strokeWidth="4" strokeLinecap="round" opacity={0.85 - i * 0.09} />
+                        ))}
+                        {/* changeover date tab */}
+                        <rect x="330" y="32" width="86" height="22" rx="11" fill={AMBER} opacity="0.15" stroke={AMBER} strokeWidth="1.5" />
+                        <text x="344" y="47" fontFamily="ui-monospace, monospace" fontSize="11" fontWeight="700" letterSpacing="1.5" fill={AMBER}>JUL 2026</text>
                     </Frame>
                 );
         }

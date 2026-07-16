@@ -21,6 +21,16 @@ const articles: {
   cover: BlogCoverKey;
 }[] = [
   {
+    slug: 'pmp-exam-changes-july-2026',
+    title: 'The PMP Exam Changes in July 2026 — Is Your Prep Current?',
+    excerpt: "PMI updates the PMP against a new Exam Content Outline in July 2026. If your materials were built for the old exam, nothing in your prep will tell you — here's how to check.",
+    author: 'Dave',
+    readTime: '8 min read',
+    date: 'Jul 2026',
+    category: 'Exam Tips',
+    cover: 'outline-2026',
+  },
+  {
     slug: 'how-certification-exams-think',
     title: "How Certification Exams Actually Think (And Why Your Prep Tools Don't Match)",
     excerpt: "Most prep tools drill facts. The exams test reasoning frames — Exam Lens, Security Triad, SHRM Competency. Here's the gap, and how to close it.",

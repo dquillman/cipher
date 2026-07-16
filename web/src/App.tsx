@@ -28,6 +28,7 @@ const StudyByBloomsLevel = lazy(() => import("./pages/articles/StudyByBloomsLeve
 const RecallOnlyPrepFails = lazy(() => import("./pages/articles/RecallOnlyPrepFails"));
 const CognitiveHeatmap = lazy(() => import("./pages/articles/CognitiveHeatmap"));
 const HowExamsThink = lazy(() => import("./pages/articles/HowExamsThink"));
+const PmpExamChangesJuly2026 = lazy(() => import("./pages/articles/PmpExamChangesJuly2026"));
 const ExamLensGlossary = lazy(() => import("./pages/ExamLensGlossary"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 // Tier 1 ad landing pages (added 2026-05-11 via dquillman/cipher-marketing campaign)
@@ -454,6 +455,7 @@ function App() {
               <Route path="/blog/recall-only-prep-fails" element={<RecallOnlyPrepFails />} />
               <Route path="/blog/cognitive-heatmap" element={<CognitiveHeatmap />} />
               <Route path="/blog/how-certification-exams-think" element={<HowExamsThink />} />
+              <Route path="/blog/pmp-exam-changes-july-2026" element={<PmpExamChangesJuly2026 />} />
               <Route path="/exam-lens" element={<ExamLensGlossary />} />
               {/* Tier 1 ad landing pages — see dquillman/cipher-marketing for campaign context */}
               <Route path="/lp/pmp" element={<PmpPracticeLP />} />

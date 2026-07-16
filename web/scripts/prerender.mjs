@@ -61,6 +61,7 @@ const ROUTES = [
   '/blog/5-study-mistakes-that-cost-your-certification-exam',
   '/blog/how-ai-explanations-change-the-way-you-study',
   '/blog/first-30-days-certification-study-plan',
+  '/blog/pmp-exam-changes-july-2026',
   '/terms',
   '/privacy',
 ];

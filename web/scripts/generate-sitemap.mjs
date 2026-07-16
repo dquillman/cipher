@@ -38,6 +38,7 @@ const routes = [
   { path: '/blog/5-study-mistakes-that-cost-your-certification-exam', changefreq: 'monthly', priority: 0.7 },
   { path: '/blog/how-ai-explanations-change-the-way-you-study', changefreq: 'monthly', priority: 0.7 },
   { path: '/blog/first-30-days-certification-study-plan', changefreq: 'monthly', priority: 0.7 },
+  { path: '/blog/pmp-exam-changes-july-2026', changefreq: 'monthly', priority: 0.8 },
   { path: '/terms', changefreq: 'yearly', priority: 0.2 },
   { path: '/privacy', changefreq: 'yearly', priority: 0.2 },
 ];

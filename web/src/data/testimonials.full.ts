@@ -29,6 +29,9 @@ export const FULL_TESTIMONIALS: readonly FullTestimonial[] = [
     fullName: "Markus Kopko",
     personalCredential: "PgMP",
     institutionalCredential: "PMI AI Standards Core Team Member",
-    role: "CipherExam beta tester",
+    // Scoped 2026-07-16: Markus has since launched a competing PgMP prep tool.
+    // Disclosing that is both honest and stronger — a competitor praising the
+    // product. Quote stays until 3+ student testimonials replace the marquee.
+    role: "CipherExam beta tester — now builds a competing PgMP prep tool",
   },
 ];
