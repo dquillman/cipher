@@ -1,5 +1,7 @@
 import { Flag, ChevronRight, ChevronLeft } from 'lucide-react';
 import type { Question } from '../../hooks/useSimulator';
+import StudyThemeToggle from '../quiz/StudyThemeToggle';
+import type { StudyTheme } from '../../hooks/useStudyTheme';
 
 interface QuestionCardProps {
     question: Question;
@@ -14,6 +16,8 @@ interface QuestionCardProps {
     isFirst: boolean;
     isLast: boolean;
     onSubmit: () => void;
+    studyTheme?: StudyTheme;
+    onToggleStudyTheme?: () => void;
 }
 
 export function QuestionCard({
@@ -28,7 +32,9 @@ export function QuestionCard({
     onPrev,
     isFirst,
     isLast,
-    onSubmit
+    onSubmit,
+    studyTheme,
+    onToggleStudyTheme
 }: QuestionCardProps) {
     return (
         <div className="flex-1 flex flex-col h-full bg-slate-900 overflow-hidden relative">
@@ -38,16 +44,21 @@ export function QuestionCard({
                     <h2 className="text-white font-bold text-lg md:text-xl font-display">{question.domain || "General Knowledge"}</h2>
                     <p className="text-slate-400 text-sm font-mono mt-0.5">Question {currentNumber} of {totalQuestions}</p>
                 </div>
-                <button
-                    onClick={onFlag}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${isFlagged
-                        ? 'bg-amber-500/10 border-amber-500/50 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.1)]'
-                        : 'bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-500 hover:text-white'
-                        }`}
-                >
-                    <Flag className={`w-4 h-4 ${isFlagged ? 'fill-current' : ''}`} />
-                    <span className="text-sm font-medium hidden md:inline">{isFlagged ? 'Flagged' : 'Flag for Review'}</span>
-                </button>
+                <div className="flex items-center gap-3">
+                    {studyTheme && onToggleStudyTheme && (
+                        <StudyThemeToggle theme={studyTheme} onToggle={onToggleStudyTheme} />
+                    )}
+                    <button
+                        onClick={onFlag}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${isFlagged
+                            ? 'bg-amber-500/10 border-amber-500/50 text-amber-400 shadow-[0_0_10px_rgba(245,158,11,0.1)]'
+                            : 'bg-slate-800 border-slate-700 text-slate-400 hover:border-slate-500 hover:text-white'
+                            }`}
+                    >
+                        <Flag className={`w-4 h-4 ${isFlagged ? 'fill-current' : ''}`} />
+                        <span className="text-sm font-medium hidden md:inline">{isFlagged ? 'Flagged' : 'Flag for Review'}</span>
+                    </button>
+                </div>
             </header>
 
             {/* Scrollable Content */}

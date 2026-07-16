@@ -3,9 +3,12 @@ import { useSimulator } from '../hooks/useSimulator';
 import { QuestionNavigator } from '../components/simulator/QuestionNavigator';
 import { QuestionCard } from '../components/simulator/QuestionCard';
 import { useExam } from '../contexts/ExamContext';
+import { useStudyTheme } from '../hooks/useStudyTheme';
 
 export default function Simulator() {
     // const navigate = useNavigate();
+    // Daylight study mode — light skin for bright rooms / long sessions
+    const { theme: studyTheme, toggleTheme: toggleStudyTheme } = useStudyTheme();
     const { examName } = useExam();
     const {
         loading,
@@ -56,6 +59,8 @@ export default function Simulator() {
                 question={currentQ}
                 currentNumber={currentIndex + 1}
                 totalQuestions={questions.length}
+                studyTheme={studyTheme}
+                onToggleStudyTheme={toggleStudyTheme}
                 selectedOption={answers[currentIndex]}
                 isFlagged={flagged[currentIndex]}
                 onSelect={handleAnswer}

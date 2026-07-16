@@ -28,8 +28,12 @@ import QuizModeBanner from '../components/quiz/QuizModeBanner';
 import ActiveFilterPill from '../components/quiz/ActiveFilterPill';
 import AnswerOptions from '../components/quiz/AnswerOptions';
 import ExplanationPanel from '../components/quiz/ExplanationPanel';
+import StudyThemeToggle from '../components/quiz/StudyThemeToggle';
+import { useStudyTheme } from '../hooks/useStudyTheme';
 
 export default function Quiz() {
+    // Daylight study mode — light skin for bright rooms / long sessions
+    const { theme: studyTheme, toggleTheme: toggleStudyTheme } = useStudyTheme();
     const [questions, setQuestions] = useState<Question[]>([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
@@ -1307,9 +1311,12 @@ export default function Quiz() {
                         <div className="h-6 w-px bg-slate-700"></div>
                         <span className="text-sm font-medium text-slate-400 font-display">{currentQuestion.domain}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-brand-400">Q{currentQuestionIndex + 1}</span>
-                        <span className="text-sm text-slate-500">/ {questions.length}</span>
+                    <div className="flex items-center gap-3">
+                        <StudyThemeToggle theme={studyTheme} onToggle={toggleStudyTheme} />
+                        <div className="flex items-center gap-2">
+                            <span className="text-sm font-bold text-brand-400">Q{currentQuestionIndex + 1}</span>
+                            <span className="text-sm text-slate-500">/ {questions.length}</span>
+                        </div>
                     </div>
                 </div>
             </header>

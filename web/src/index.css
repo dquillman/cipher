@@ -327,3 +327,106 @@ html, body, #root {
 }
 .decoder .ticker:hover .ticker-track { animation-play-state: paused; }
 @keyframes ticker-scroll { to { transform: translateX(-50%); } }
+
+/* ═════════════════════════════════════════════════════════════════════════
+   DAYLIGHT STUDY MODE
+   A light skin for the study surfaces (Quiz, Simulator, Verbal Mode) —
+   bright rooms and long reading sessions. html.daylight is set ONLY while
+   a study surface is mounted (see hooks/useStudyTheme.ts), so the rest of
+   the app and the marketing site stay dark: dark is the brand default.
+
+   Works as a scoped utility remap: unlayered rules beat Tailwind's
+   @layer utilities, so every study subcomponent recolors without markup
+   changes. Cool cyan-biased paper — the Decoder palette re-tuned for
+   print-like contrast, not a generic white flip.
+   ═══════════════════════════════════════════════════════════════════════ */
+html.daylight { color-scheme: light; }
+
+/* ── grounds ── */
+html.daylight .bg-slate-900  { background-color: #E9EEF5; }
+html.daylight .bg-slate-950  { background-color: #DFE6EF; }
+html.daylight .bg-slate-800  { background-color: #FBFCFE; }
+html.daylight .bg-slate-700  { background-color: #E2E8F2; }
+html.daylight .bg-slate-600  { background-color: #D5DDEA; }
+html.daylight .bg-slate-900\/80,
+html.daylight .bg-slate-900\/50,
+html.daylight .bg-slate-900\/30 { background-color: rgba(233, 238, 245, 0.92); }
+html.daylight .bg-slate-800\/80,
+html.daylight .bg-slate-800\/70,
+html.daylight .bg-slate-800\/60,
+html.daylight .bg-slate-800\/50,
+html.daylight .bg-slate-800\/40 { background-color: rgba(255, 255, 255, 0.82); }
+html.daylight .bg-slate-700\/60,
+html.daylight .bg-slate-700\/50 { background-color: #E7EDF5; }
+html.daylight .bg-white\/10     { background-color: rgba(11, 21, 38, 0.06); }
+
+/* ── text ── */
+html.daylight .text-white     { color: #0B1526; }
+html.daylight .text-slate-100 { color: #16233A; }
+html.daylight .text-slate-200 { color: #24344E; }
+html.daylight .text-slate-300 { color: #31435C; }
+html.daylight .text-slate-400 { color: #51637E; }
+/* slate-500/600 already read fine on light — unmapped on purpose */
+
+/* keep labels white on solid colored controls */
+html.daylight .bg-brand-500.text-white,
+html.daylight .bg-brand-600.text-white,
+html.daylight .bg-emerald-500.text-white,
+html.daylight .bg-emerald-600.text-white,
+html.daylight .bg-amber-500.text-white,
+html.daylight .bg-red-600.text-white { color: #FFFFFF; }
+
+/* ── borders ── */
+html.daylight .border-slate-500,
+html.daylight .border-slate-600,
+html.daylight .border-slate-700,
+html.daylight .border-slate-800   { border-color: #CFD9E5; }
+html.daylight .border-slate-700\/50 { border-color: #DBE2EC; }
+
+/* ── brand (signal cyan → readable teal on paper) ── */
+html.daylight .text-brand-300,
+html.daylight .text-brand-400 { color: #0E7C97; }
+html.daylight .bg-brand-500   { background-color: #0E7C97; }
+html.daylight .bg-brand-600   { background-color: #0C6F87; }
+html.daylight .bg-brand-500\/10 { background-color: rgba(14, 124, 151, 0.10); }
+html.daylight .border-brand-400,
+html.daylight .border-brand-500 { border-color: #0E7C97; }
+html.daylight .border-brand-500\/30,
+html.daylight .border-brand-500\/20 { border-color: rgba(14, 124, 151, 0.35); }
+html.daylight .ring-brand-500\/40,
+html.daylight .ring-brand-500\/30 { --tw-ring-color: rgba(14, 124, 151, 0.35); }
+
+/* ── semantic hues, darkened for light-ground contrast ── */
+html.daylight .text-emerald-300,
+html.daylight .text-emerald-400 { color: #0B8A5C; }
+html.daylight .text-green-400   { color: #15803D; }
+html.daylight .text-red-300,
+html.daylight .text-red-400     { color: #C0362C; }
+html.daylight .text-red-300\/80 { color: rgba(192, 54, 44, 0.85); }
+html.daylight .text-amber-300,
+html.daylight .text-amber-400   { color: #935F0C; }
+html.daylight .text-purple-300  { color: #6D28D9; }
+html.daylight .bg-purple-900\/30 { background-color: #EDE9FE; }
+
+/* ── hover states ── */
+html.daylight .hover\:bg-slate-700:hover   { background-color: #DDE5EF; }
+html.daylight .hover\:bg-slate-600:hover   { background-color: #D5DDEA; }
+html.daylight .hover\:bg-slate-800:hover   { background-color: #F2F5FA; }
+html.daylight .hover\:text-white:hover     { color: #0B1526; }
+html.daylight .hover\:border-slate-500:hover { border-color: #B9C6D6; }
+html.daylight .hover\:text-slate-200:hover { color: #24344E; }
+html.daylight .hover\:text-slate-300:hover { color: #31435C; }
+
+/* ── coach / Bloom band (blue-indigo family) ── */
+html.daylight .text-blue-200     { color: #27467F; }
+html.daylight .text-blue-200\/60 { color: rgba(39, 70, 127, 0.65); }
+html.daylight .text-blue-300\/70 { color: rgba(39, 70, 127, 0.78); }
+html.daylight .bg-blue-900\/20   { background-color: #E3ECFA; }
+html.daylight .text-indigo-100,
+html.daylight .text-indigo-200   { color: #312E81; }
+html.daylight .text-indigo-300,
+html.daylight .text-indigo-400   { color: #4F46E5; }
+html.daylight .bg-indigo-900\/30,
+html.daylight .bg-indigo-900\/20 { background-color: #E7E9FB; }
+html.daylight .hover\:text-indigo-200:hover { color: #312E81; }
+html.daylight .bg-indigo-600.text-white { color: #FFFFFF; }

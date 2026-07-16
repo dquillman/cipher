@@ -62,7 +62,7 @@ export default function PublicPricing() {
                             <span className="ml-1 text-xl text-slate-400">/ forever</span>
                         </div>
                         <ul className="mt-8 space-y-4 flex-1">
-                            {['Daily Quiz (5 Questions)', 'Basic Progress Tracking', 'Standard Explanations', 'Community Exam Coverage', 'Study Plan (Basic)'].map((feat) => (
+                            {['Daily Quiz (5 Questions)', 'Basic Progress Tracking', 'Standard Explanations', 'Community Exam Coverage', 'Study Plan (Basic)', 'Dark & Daylight study modes'].map((feat) => (
                                 <li key={feat} className="flex items-center gap-3">
                                     <Check className="w-5 h-5 text-slate-500" />
                                     <span className="text-slate-300">{feat}</span>

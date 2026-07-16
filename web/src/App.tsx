@@ -13,6 +13,8 @@ const MarketingCommandCenter = lazy(() => import("./pages/MarketingCommandCenter
 const Login = lazy(() => import("./pages/Login"));
 const ExamList = lazy(() => import("./pages/ExamList"));
 const Quiz = lazy(() => import("./pages/Quiz"));
+// Dev-only harness for the Daylight study-mode skin (route gated by DEV below)
+const DaylightPreview = lazy(() => import("./pages/DaylightPreview"));
 const About = lazy(() => import("./pages/About"));
 const Story = lazy(() => import("./pages/Story"));
 const PublicPricing = lazy(() => import("./pages/PublicPricing"));
@@ -442,6 +444,7 @@ function App() {
               <Route path="/story" element={<Story />} />
               <Route path="/pricing" element={<PublicPricing />} />
               <Route path="/verify-events" element={<EventVerifier />} />
+              {import.meta.env.DEV && <Route path="/dev/daylight" element={<DaylightPreview />} />}
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/why-certification-exam-questions-are-so-confusing" element={<WhyCertExamsConfusing />} />
               <Route path="/blog/5-study-mistakes-that-cost-your-certification-exam" element={<FiveStudyMistakes />} />
