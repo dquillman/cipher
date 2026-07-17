@@ -2,6 +2,7 @@ __pycache__/
 *.pyc
 _selftest/
 assets/.icon-installed
+apikey.txt
 # Your personal notes stay local. Comment this out to version your brain.
 brain/*
 !brain/welcome.md

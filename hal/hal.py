@@ -330,9 +330,18 @@ BANNER = r"""
 def ensure_api_key() -> None:
     if os.environ.get("ANTHROPIC_API_KEY"):
         return
+    # Convenience: read the key from a local apikey.txt next to hal.py, so you
+    # can paste your key into a file instead of setting an environment variable.
+    keyfile = Path(__file__).parent / "apikey.txt"
+    if keyfile.exists():
+        key = keyfile.read_text(encoding="utf-8").strip().strip('"').strip("'").strip()
+        if key:
+            os.environ["ANTHROPIC_API_KEY"] = key
+            return
     # The SDK also resolves `ant auth login` profiles; only warn, don't block.
-    print(dim("Note: ANTHROPIC_API_KEY is not set. Relying on an `ant auth login` "
-              "profile if you have one; otherwise set the key and retry.\n"))
+    print(dim("No Anthropic API key found. Easiest fix: paste your key into a file "
+              "named 'apikey.txt' in this folder. (Or set ANTHROPIC_API_KEY, or run "
+              "`ant auth login`.) Get a key at console.anthropic.com.\n"))
 
 
 def build_hal(args) -> Hal:
