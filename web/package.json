@@ -52,6 +52,7 @@
   },
   "overrides": {
     "@babel/core": "7.29.7",
-    "protobufjs": "7.6.3"
+    "protobufjs": "7.6.3",
+    "websocket-driver": "0.7.5"
   }
 }
