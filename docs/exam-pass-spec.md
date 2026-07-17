@@ -30,6 +30,20 @@ email support@cipherexam.com within 60 days of payment → full refund, no condi
   extend/upgrade. Never hard-cut a user mid-study without warning.
 - Stripe: one Product "Exam Pass", one $59 one-time Price; examId captured via checkout metadata.
 
+## Rescheduler rule — "your pass covers you through your exam" (Dave, 2026-07-16)
+The study plan already captures `examDate` (study_plans.examDate — same field the countdown
+emails use). The pass honors it:
+- **One free self-service extension per pass:** if the user's examDate falls within 30 days
+  AFTER pass expiry, offer a one-click free extension to examDate + 7 days (cap: +30 days total).
+  Surface it automatically in the D-14 expiry banner: "Your pass ends <date>, but your exam is
+  <examDate> — extend free?" No support ticket required.
+- **Beyond the free extension** (second reschedule, or exam further than the cap): paid extension,
+  $19 / 30 days — identical to one subscription month, so switching to the sub is always the
+  equal-or-better honest alternative.
+- **Anti-gaming:** extension keys off a SNAPSHOT of examDate (taken at purchase, or first entry
+  if later) — editing the date on day 89 doesn't move the goalposts. One free extension, hard cap.
+- Marketing line this earns: "Rescheduled? Your pass moves with your exam."
+
 ## Decision triggers (revisit when)
 - Trial→paid conversion is healthy but checkout-page abandonment cites subscription objections, or
 - Support/refund emails mention "didn't want a subscription" ≥3 times.
