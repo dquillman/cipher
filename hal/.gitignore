@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+_selftest/
+# Your personal notes stay local. Comment this out to version your brain.
+brain/*
+!brain/welcome.md
