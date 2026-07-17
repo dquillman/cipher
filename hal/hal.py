@@ -223,51 +223,90 @@ class Hal:
             "messages": self.messages,
         }
 
-    def ask(self, user_text: str) -> str:
-        """Send one user turn, run any tool calls, stream HAL's reply. Returns final text."""
+    def stream(self, user_text: str):
+        """Run one user turn and yield UI-agnostic events.
+
+        Events (dicts): {type: "tool_use", name}, {type: "tool_result", name,
+        summary, is_error}, {type: "text", text}, {type: "final", text},
+        {type: "error", message}. Every UI (terminal, web) consumes this same
+        stream, so the brain logic lives in exactly one place.
+        """
+        turn_start = len(self.messages)
         self.messages.append({"role": "user", "content": user_text})
         final_text_parts: list[str] = []
 
-        for _ in range(MAX_TOOL_TURNS):
-            printed_label = False
-            with self.client.messages.stream(**self._create_kwargs()) as stream:
-                for event in stream:
-                    if event.type == "content_block_start" and event.content_block.type == "tool_use":
-                        print(dim(f"\n  · consulting the brain ({event.content_block.name})…"))
-                    elif event.type == "content_block_delta" and event.delta.type == "text_delta":
-                        if not printed_label:
-                            print(f"{hal_label()}: ", end="", flush=True)
-                            printed_label = True
-                        print(event.delta.text, end="", flush=True)
-                response = stream.get_final_message()
+        try:
+            for _ in range(MAX_TOOL_TURNS):
+                with self.client.messages.stream(**self._create_kwargs()) as stream:
+                    for event in stream:
+                        if event.type == "content_block_start" and event.content_block.type == "tool_use":
+                            yield {"type": "tool_use", "name": event.content_block.name}
+                        elif event.type == "content_block_delta" and event.delta.type == "text_delta":
+                            yield {"type": "text", "text": event.delta.text}
+                    response = stream.get_final_message()
 
-            if printed_label:
-                print()  # newline after streamed text
+                self.messages.append({"role": "assistant", "content": response.content})
+                final_text_parts = [b.text for b in response.content if b.type == "text"]
 
-            # Record HAL's turn (full content, incl. tool_use / thinking blocks).
-            self.messages.append({"role": "assistant", "content": response.content})
-            final_text_parts = [b.text for b in response.content if b.type == "text"]
+                if response.stop_reason != "tool_use":
+                    break
 
-            if response.stop_reason != "tool_use":
-                break
+                tool_results = []
+                for block in response.content:
+                    if block.type == "tool_use":
+                        result, is_error = run_tool(self.brain, block.name, dict(block.input))
+                        yield {
+                            "type": "tool_result",
+                            "name": block.name,
+                            "summary": (result.splitlines()[0][:120] if result else "ok"),
+                            "is_error": is_error,
+                        }
+                        tool_results.append({
+                            "type": "tool_result",
+                            "tool_use_id": block.id,
+                            "content": result,
+                            "is_error": is_error,
+                        })
+                self.messages.append({"role": "user", "content": tool_results})
+            else:
+                yield {"type": "error", "message": "stopped: too many tool turns"}
+        except anthropic.APIError as e:
+            # Discard the whole failed turn so history never ends on a dangling
+            # tool_use (which would 400 the next request).
+            del self.messages[turn_start:]
+            yield {"type": "error", "message": str(e)}
+            return
 
-            # Execute every requested tool and feed results back.
-            tool_results = []
-            for block in response.content:
-                if block.type == "tool_use":
-                    result, is_error = run_tool(self.brain, block.name, dict(block.input))
-                    print(dim(f"    ↳ {block.name}: {result.splitlines()[0][:80] if result else 'ok'}"))
-                    tool_results.append({
-                        "type": "tool_result",
-                        "tool_use_id": block.id,
-                        "content": result,
-                        "is_error": is_error,
-                    })
-            self.messages.append({"role": "user", "content": tool_results})
-        else:
-            print(dim("\n  (stopped: too many tool turns)"))
+        yield {"type": "final", "text": "\n".join(final_text_parts).strip()}
 
-        return "\n".join(final_text_parts).strip()
+    def ask(self, user_text: str) -> str:
+        """Terminal renderer: consume the event stream and print it. Returns final text."""
+        printed_label = False
+        final = ""
+        for ev in self.stream(user_text):
+            if ev["type"] == "tool_use":
+                if printed_label:
+                    print()
+                    printed_label = False
+                print(dim(f"  · consulting the brain ({ev['name']})…"))
+            elif ev["type"] == "tool_result":
+                mark = "!" if ev["is_error"] else "↳"
+                print(dim(f"    {mark} {ev['name']}: {ev['summary']}"))
+            elif ev["type"] == "text":
+                if not printed_label:
+                    print(f"{hal_label()}: ", end="", flush=True)
+                    printed_label = True
+                print(ev["text"], end="", flush=True)
+            elif ev["type"] == "error":
+                if printed_label:
+                    print()
+                    printed_label = False
+                print(_c("31", f"  ⚠ {ev['message']}"))
+            elif ev["type"] == "final":
+                final = ev["text"]
+        if printed_label:
+            print()
+        return final
 
 
 # ---- entry points --------------------------------------------------------
@@ -342,15 +381,27 @@ def repl(hal: Hal) -> None:
         print()
 
 
+def launch_web(hal: Hal, *, host: str, port: int, open_browser: bool) -> int:
+    """Start the JARVIS web UI (local HUD in the browser)."""
+    import server  # local module
+    return server.serve(hal, host=host, port=port, open_browser=open_browser)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="HAL — a Claude console wired into your 2nd Brain.")
     parser.add_argument("mode", nargs="?", default="chat", choices=["chat", "app"],
                         help="'chat' (default) or 'app' (expert of a code/project folder).")
     parser.add_argument("prompt", nargs="*", help="Optional one-shot question.")
+    parser.add_argument("--ui", default=os.environ.get("HAL_UI", "terminal"),
+                        choices=["terminal", "jarvis", "web"],
+                        help="Which interface to open: 'terminal' (default) or 'jarvis'/'web' (browser HUD).")
     parser.add_argument("--brain", help="Brain directory (folder of notes).")
     parser.add_argument("--dir", help="In 'app' mode, the project folder to be expert on.")
     parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Model id (default {DEFAULT_MODEL}).")
     parser.add_argument("--effort", default=DEFAULT_EFFORT, help=f"Reasoning effort (default {DEFAULT_EFFORT}).")
+    parser.add_argument("--host", default=os.environ.get("HAL_HOST", "127.0.0.1"), help="Web UI host.")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("HAL_PORT", "8765")), help="Web UI port.")
+    parser.add_argument("--no-browser", action="store_true", help="Don't auto-open the browser (web UI).")
     args = parser.parse_args(argv)
 
     ensure_api_key()
@@ -359,6 +410,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.prompt:
         hal.ask(" ".join(args.prompt))
         return 0
+
+    if args.ui in ("jarvis", "web"):
+        return launch_web(hal, host=args.host, port=args.port, open_browser=not args.no_browser)
 
     repl(hal)
     return 0
