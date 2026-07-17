@@ -17,6 +17,9 @@ import threading
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import parse_qs, urlparse
+
+import hal as hal_module
 
 UI_DIR = Path(__file__).parent / "ui"
 
@@ -43,25 +46,42 @@ def serve(hal, *, host: str = "127.0.0.1", port: int = 8765, open_browser: bool 
 
         # -- routes --------------------------------------------------------
         def do_GET(self):  # noqa: N802
-            if self.path in ("/", "/index.html"):
+            route = urlparse(self.path)
+            path = route.path
+            if path in ("/", "/index.html"):
                 return self._serve_file("index.html", "text/html; charset=utf-8")
-            if self.path == "/api/state":
+            if path == "/api/state":
                 return self._json({
                     "model": hal.model,
                     "effort": hal.effort,
+                    "models": hal_module.MODEL_CHOICES,
                     "brain": hal.brain.stats(),
                 })
-            if self.path == "/api/notes":
+            if path == "/api/notes":
                 try:
                     return self._json({"notes": hal.brain.list_notes()})
                 except Exception as e:  # pragma: no cover
                     return self._json({"error": str(e)}, 500)
-            if self.path.startswith("/ui/"):
-                name = self.path[len("/ui/"):]
+            if path == "/api/graph":
+                try:
+                    return self._json(hal.brain.graph())
+                except Exception as e:  # pragma: no cover
+                    return self._json({"error": str(e)}, 500)
+            if path == "/api/note":
+                qs = parse_qs(route.query)
+                note_path = (qs.get("path", [""])[0] or "").strip()
+                try:
+                    return self._json({"path": note_path, "content": hal.brain.read_note(note_path)})
+                except Exception as e:
+                    return self._json({"error": str(e)}, 400)
+            if path.startswith("/ui/"):
+                name = path[len("/ui/"):]
                 return self._serve_file(name, self._ctype(name))
             return self._json({"error": "not found"}, 404)
 
         def do_POST(self):  # noqa: N802
+            if self.path == "/api/model":
+                return self._set_model()
             if self.path != "/api/chat":
                 return self._json({"error": "not found"}, 404)
             length = int(self.headers.get("Content-Length", "0") or "0")
@@ -73,6 +93,19 @@ def serve(hal, *, host: str = "127.0.0.1", port: int = 8765, open_browser: bool 
             if not message:
                 return self._json({"error": "empty message"}, 400)
             return self._stream_chat(message)
+
+        def _set_model(self) -> None:
+            length = int(self.headers.get("Content-Length", "0") or "0")
+            try:
+                payload = json.loads(self.rfile.read(length) or b"{}")
+                model = (payload.get("model") or "").strip()
+            except (ValueError, TypeError):
+                return self._json({"error": "bad request"}, 400)
+            if not model:
+                return self._json({"error": "empty model"}, 400)
+            with _lock:  # don't swap the model mid-turn
+                hal.model = model
+            return self._json({"model": hal.model})
 
         # -- chat streaming (NDJSON) --------------------------------------
         def _stream_chat(self, message: str) -> None:

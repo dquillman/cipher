@@ -9,8 +9,8 @@ tools, and a streaming chat loop — with **two interchangeable interfaces**:
 
 - **Terminal** — a fast, glowing text console (default).
 - **JARVIS UI** — a browser HUD with an animated arc-reactor core, streaming
-  replies, voice in/out, and a live skin switcher (**JARVIS · HAL 9000 ·
-  Minimal**).
+  replies, voice in/out, a live skin switcher (**JARVIS · HAL 9000 · Minimal**),
+  a **model switcher**, and a **3D brain map** of your notes.
 
 Both front-ends drive the *same* brain logic (`Hal.stream`), so switching UI
 never changes how HAL thinks. Not part of the CipherExam app; it's a standalone
@@ -60,6 +60,30 @@ The JARVIS UI runs a small local web server (stdlib only, no extra installs) on
 `127.0.0.1:8765` by default — change it with `--host` / `--port`. Voice input
 (speech-to-text) and spoken replies use your browser's built-in Web Speech API;
 toggle them with the **VOICE** and **SPEAK** buttons.
+
+### Switching model
+
+Pick the model live from the dropdown at the top of the JARVIS UI — Fable 5,
+Opus 4.8, Opus 4.7, or Sonnet 5. The change applies to your next message. In the
+terminal, use `/model <id>` (or `/models` to list). At launch, `--model <id>` or
+`HAL_MODEL`. All offered models share the same request surface HAL uses (adaptive
+thinking + effort), so switching is a drop-in.
+
+### 3D brain map
+
+Click **BRAIN 3D** in the top bar to see your notes as an orbiting
+force-directed graph:
+
+- **Folders** are diamonds, **notes** are dots, colored by top-level folder.
+- **Links** come from folder structure plus references between notes —
+  `[[wikilinks]]` and mentions of another note's name.
+- **Drag** to orbit, **scroll** to zoom, **hover** for the path, **click** a
+  node to preview its contents. From the preview, *Ask HAL about this* jumps back
+  to chat with the note teed up. **REBUILD** re-scans the brain; **ROTATE**
+  toggles auto-spin.
+
+The graph is drawn with a small self-contained WebGL-free renderer (plain
+canvas) — no external libraries, so it works offline.
 
 ## What HAL can do with the brain
 

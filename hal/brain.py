@@ -9,8 +9,11 @@ outside it (``..``, absolute paths, symlinks that escape) is rejected.
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from pathlib import Path
+
+WIKILINK = re.compile(r"\[\[([^\]|#]+)")
 
 # Files we treat as readable text. Everything else is listed but not opened.
 TEXT_SUFFIXES = {
@@ -141,3 +144,102 @@ class Brain:
         notes = self.list_notes()
         readable = [n for n in notes if Path(n).suffix.lower() in TEXT_SUFFIXES]
         return {"root": str(self.root), "notes": len(notes), "readable": len(readable)}
+
+    # -- graph (for the 3D brain view) -------------------------------------
+
+    def graph(self, max_nodes: int = 600) -> dict:
+        """Model the brain as a node/edge graph.
+
+        Nodes: one per folder (a hub) and one per note. Edges: folder→child
+        containment, plus note↔note references detected from ``[[wikilinks]]``
+        and mentions of another note's name. Meant for visualization, not
+        precision — cheap enough to recompute on demand.
+        """
+        all_notes = self.list_notes()
+        notes = all_notes[:max_nodes]
+
+        nodes: list[dict] = []
+        ids: dict[str, int] = {}
+
+        def top(path: str) -> str:
+            return path.split("/")[0] if "/" in path else "root"
+
+        def add(nid: str, label: str, group: str, ntype: str, size: float) -> None:
+            if nid in ids:
+                return
+            ids[nid] = len(nodes)
+            nodes.append({"id": nid, "label": label, "group": group, "type": ntype, "size": round(size, 2)})
+
+        # Folder hub nodes (every ancestor folder of every note).
+        folders: set[str] = set()
+        for n in notes:
+            parts = n.split("/")
+            for i in range(len(parts) - 1):
+                folders.add("/".join(parts[: i + 1]))
+        for f in sorted(folders):
+            add("dir:" + f, f.split("/")[-1], top(f), "folder", 3.4)
+
+        # Note nodes, sized by content length.
+        basename_map: dict[str, str] = {}
+        for n in notes:
+            try:
+                size_bytes = (self.root / n).stat().st_size
+            except OSError:
+                size_bytes = 0
+            radius = max(1.2, min(4.5, 1.2 + size_bytes / 3500))
+            add(n, Path(n).stem, top(n), "note", radius)
+            if Path(n).suffix.lower() in TEXT_SUFFIXES:
+                basename_map[Path(n).stem.lower()] = n
+
+        edges: list[dict] = []
+
+        # Containment: folder → note and folder → subfolder.
+        for n in notes:
+            parent = "/".join(n.split("/")[:-1])
+            if parent and ("dir:" + parent) in ids:
+                edges.append({"source": "dir:" + parent, "target": n, "kind": "contains"})
+        for f in folders:
+            parent = "/".join(f.split("/")[:-1])
+            if parent and ("dir:" + parent) in ids:
+                edges.append({"source": "dir:" + parent, "target": "dir:" + f, "kind": "contains"})
+
+        # Reference edges from note contents. One compiled regex over all
+        # basenames (>= 4 chars) keeps this linear in total text size.
+        long_names = [b for b in basename_map if len(b) >= 4]
+        mention_re = (
+            re.compile(r"\b(" + "|".join(re.escape(b) for b in long_names) + r")\b", re.I)
+            if long_names else None
+        )
+        seen_pairs: set[tuple[str, str]] = set()
+        for n in notes:
+            if Path(n).suffix.lower() not in TEXT_SUFFIXES:
+                continue
+            try:
+                text = (self.root / n).read_bytes()[:MAX_READ_BYTES].decode("utf-8", "replace")
+            except OSError:
+                continue
+            targets: set[str] = set()
+            for m in WIKILINK.finditer(text):
+                key = m.group(1).strip().split("/")[-1].lower()
+                if key in basename_map:
+                    targets.add(basename_map[key])
+            if mention_re:
+                for m in mention_re.finditer(text):
+                    targets.add(basename_map[m.group(1).lower()])
+            for t in targets:
+                if t == n:
+                    continue
+                pair = tuple(sorted((n, t)))
+                if pair in seen_pairs:
+                    continue
+                seen_pairs.add(pair)
+                edges.append({"source": n, "target": t, "kind": "ref"})
+
+        return {
+            "nodes": nodes,
+            "edges": edges,
+            "truncated": len(all_notes) > len(notes),
+            "counts": {"notes": sum(1 for x in nodes if x["type"] == "note"),
+                       "folders": sum(1 for x in nodes if x["type"] == "folder"),
+                       "edges": len(edges)},
+        }

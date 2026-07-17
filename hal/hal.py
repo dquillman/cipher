@@ -41,6 +41,15 @@ DEFAULT_EFFORT = os.environ.get("HAL_EFFORT", "high")
 MAX_TOKENS = 16000
 MAX_TOOL_TURNS = 40  # safety cap on the agentic loop per user message
 
+# Models offered in the switcher. All share the modern request surface
+# (adaptive thinking + effort) that HAL sends, so switching is a drop-in.
+MODEL_CHOICES = [
+    {"id": "claude-fable-5", "label": "Fable 5 · most capable"},
+    {"id": "claude-opus-4-8", "label": "Opus 4.8"},
+    {"id": "claude-opus-4-7", "label": "Opus 4.7"},
+    {"id": "claude-sonnet-5", "label": "Sonnet 5 · faster"},
+]
+
 # ---- terminal styling (no dependencies) ---------------------------------
 
 _USE_COLOR = sys.stdout.isatty() and os.environ.get("NO_COLOR") is None
@@ -358,10 +367,25 @@ def repl(hal: Hal) -> None:
             print(f"{hal_label()}: Signing off.")
             return
         if line == "/help":
-            print(dim("  /brain   show brain location & stats\n"
-                      "  /notes   list notes\n"
-                      "  /reset   forget this conversation (brain is untouched)\n"
-                      "  /exit    leave"))
+            print(dim("  /brain          show brain location & stats\n"
+                      "  /notes          list notes\n"
+                      "  /model [id]     show or switch the model\n"
+                      "  /models         list model choices\n"
+                      "  /reset          forget this conversation (brain is untouched)\n"
+                      "  /exit           leave"))
+            continue
+        if line == "/models":
+            for m in MODEL_CHOICES:
+                mark = "•" if m["id"] == hal.model else " "
+                print(dim(f"  {mark} {m['id']:20s} {m['label']}"))
+            continue
+        if line == "/model" or line.startswith("/model "):
+            arg = line[len("/model"):].strip()
+            if not arg:
+                print(dim(f"  current model: {hal.model}  (use /model <id>, /models to list)"))
+            else:
+                hal.model = arg
+                print(dim(f"  model set to {hal.model} (takes effect next message)."))
             continue
         if line == "/brain":
             print(dim(f"  {json.dumps(hal.brain.stats(), indent=2)}"))
