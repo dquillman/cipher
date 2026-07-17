@@ -50,6 +50,18 @@ python hal.py app --dir /path/to/project
 On Windows, double-click `hal.bat` (terminal) or `jarvis.bat` (browser HUD).
 On macOS/Linux, `./hal.sh` or `./jarvis.sh`.
 
+### Desktop icon
+
+Want a one-click launcher on your Desktop?
+
+- **Windows:** double-click **`install-desktop-icon.bat`** once. It puts a **HAL**
+  icon (the arc-reactor, `assets/hal.ico`) on your Desktop that opens the JARVIS
+  UI. To preset your project folders, edit the `BRAIN=` line in `jarvis.bat`
+  first.
+- **macOS/Linux:** run **`./install-desktop-icon.sh`** once. Linux adds HAL to
+  your apps menu and Desktop; macOS creates a double-clickable `HAL.command` on
+  your Desktop.
+
 ### Switching UI
 
 - **At launch:** `--ui terminal` (default) or `--ui jarvis`. You can also set
