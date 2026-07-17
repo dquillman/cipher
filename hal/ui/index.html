@@ -257,22 +257,52 @@ async function setModel(id, announce){
 }
 $("#model").addEventListener("change", e => setModel(e.target.value, true));
 
-// ---- speech ---------------------------------------------------------
-let speak = false;
+// ---- speech (text-to-speech) ---------------------------------------
+let speak = false, currentUtter = null;
+const TTS = "speechSynthesis" in window;
 function pickVoice(){ const vs=speechSynthesis.getVoices();
   return vs.find(v=>/google uk english male|daniel|arthur/i.test(v.name))||vs.find(v=>/en-GB/i.test(v.lang))||vs.find(v=>/en/i.test(v.lang))||vs[0]; }
-function say(text){ if(!speak||!("speechSynthesis" in window)||!text) return;
-  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); const v=pickVoice(); if(v)u.voice=v;
-  u.rate=1.02; u.pitch=0.9; u.onstart=()=>setState("speaking"); u.onend=()=>setState("idle"); speechSynthesis.speak(u); }
-$("#speakToggle").addEventListener("click", e=>{ speak=!speak; e.currentTarget.setAttribute("aria-pressed",String(speak)); if(!speak)speechSynthesis.cancel(); });
+function utter(text, onend){
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); const v=pickVoice(); if(v) u.voice=v;
+  u.rate=1.02; u.pitch=0.9;
+  u.onstart=()=>setState("speaking");
+  u.onend=()=>{ if(document.body.classList.contains("speaking")) setState("idle"); onend&&onend(); };
+  currentUtter=u;                 // keep a reference (Chrome GC bug)
+  speechSynthesis.speak(u);
+}
+function say(text){ if(speak && TTS && text) utter(text); }
+$("#speakToggle").addEventListener("click", e=>{
+  if(!TTS){ addSys("This browser can't speak replies. Use Chrome or Edge.", true); return; }
+  speak=!speak; e.currentTarget.setAttribute("aria-pressed",String(speak));
+  if(speak){ if(!pickVoice()){ addSys("No text-to-speech voice found on this system.", true); }
+    else { utter("Voice online. I'm listening."); addSys("spoken replies on"); } }
+  else { speechSynthesis.cancel(); addSys("spoken replies off"); }
+});
 
+// ---- speech recognition (voice input) ------------------------------
 const SR = window.SpeechRecognition||window.webkitSpeechRecognition; let rec=null, listening=false;
 if(SR){ rec=new SR(); rec.lang="en-US"; rec.interimResults=true; rec.continuous=false;
+  rec.onstart=()=>addSys("listening… speak now");
   rec.onresult=e=>{ let interim="",final=""; for(const r of e.results){ r.isFinal?(final+=r[0].transcript):(interim+=r[0].transcript);} $("#input").value=(final||interim).trim(); };
-  rec.onend=()=>{ setListening(false); if($("#input").value.trim()) send(); }; rec.onerror=()=>setListening(false); }
+  rec.onend=()=>{ setListening(false); if($("#input").value.trim()) send(); };
+  rec.onerror=e=>{ setListening(false);
+    const msg={
+      "not-allowed":"Microphone blocked. Click the camera/mic icon in the address bar and allow it, then try again.",
+      "service-not-allowed":"Microphone blocked by the browser or OS settings.",
+      "audio-capture":"No microphone found. Check that one is plugged in and enabled.",
+      "network":"Speech recognition needs an internet connection (Chrome sends audio to Google).",
+      "no-speech":"Didn't catch anything — try again and speak clearly."
+    }[e.error] || ("Voice input error: "+e.error);
+    addSys(msg, true); };
+}
 function setListening(on){ listening=on; $("#micToggle").setAttribute("aria-pressed",String(on)); $("#micBtn").classList.toggle("rec",on); $("#micBtn").textContent=on?"◉":"🎙"; }
-function toggleMic(){ if(!rec){ addSys("Voice input isn't supported in this browser.",true); return; }
-  if(listening){ rec.stop(); return; } try{ $("#input").value=""; rec.start(); setListening(true);}catch(e){ setListening(false);} }
+function toggleMic(){
+  if(!SR||!rec){ addSys("Voice input needs Chrome or Edge (this browser doesn't support it).", true); return; }
+  if(listening){ rec.stop(); return; }
+  try{ $("#input").value=""; rec.start(); setListening(true); }
+  catch(e){ setListening(false); addSys("Could not start the microphone: "+e.message, true); }
+}
 $("#micBtn").addEventListener("click", toggleMic); $("#micToggle").addEventListener("click", toggleMic);
 
 // ---- chat streaming -------------------------------------------------
