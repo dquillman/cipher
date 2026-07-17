@@ -1,8 +1,15 @@
 @echo off
-rem HAL — your brain, on the line. Double-click to open the HAL console.
-rem Uses the local Python and this folder's hal.py. Set HAL_BRAIN_DIR to point
-rem at your real "2nd Brain" folder, or pass --brain "C:\path\to\brain".
+rem HAL — terminal console. Double-click to open.
+rem Give HAL your projects by editing the BRAIN line below, or pass folders:
+rem   hal.bat --brain "G:\Users\daveq\2nd Brain" "G:\Users\daveq\projects"
 setlocal
 cd /d "%~dp0"
-python hal.py %*
+
+set "PY=python"
+where py >nul 2>nul && set "PY=py -3"
+
+set "BRAIN="
+rem example: set "BRAIN=--brain "G:\Users\daveq\2nd Brain""
+
+%PY% hal.py %BRAIN% %*
 pause

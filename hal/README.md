@@ -36,8 +36,9 @@ python hal.py
 # JARVIS browser UI (opens automatically)
 python hal.py --ui jarvis
 
-# Point at your real notes (works with either UI)
+# Give HAL your real notes — or SEVERAL projects at once
 python hal.py --ui jarvis --brain "~/2nd Brain"
+python hal.py --ui jarvis --brain "~/2nd Brain" "~/projects/cipher" "~/work/docs"
 
 # One-shot question (no UI)
 python hal.py "what did I note about the exam pass?"
@@ -84,6 +85,31 @@ force-directed graph:
 
 The graph is drawn with a small self-contained WebGL-free renderer (plain
 canvas) — no external libraries, so it works offline.
+
+## Multiple projects at once
+
+The "brain" can be **one or many** root folders — your notes, a code repo, a
+docs folder, all together. Pass several to `--brain` (space-separated), or set
+`HAL_BRAIN_DIR` to a list joined by your OS path separator (`;` on Windows, `:`
+on macOS/Linux).
+
+Each root becomes a **project**, labeled by its folder name, and every file is
+addressed as `project/path/...` — so `cipher/functions/index.js` and
+`2nd-brain/daily/2026-07-15.md` never collide. Search, chat, and the 3D map span
+all projects; each shows as its own colored cluster. Noise folders
+(`node_modules`, `.git`, `venv`, `dist`, build output, …) are skipped
+automatically. Each project is sandboxed: HAL can't traverse from one into
+another except through the project label.
+
+```bash
+# Windows
+python hal.py --ui jarvis --brain "G:\Users\daveq\2nd Brain" "G:\Users\daveq\source\cipher"
+set HAL_BRAIN_DIR=G:\Users\daveq\2nd Brain;G:\Users\daveq\source\cipher
+
+# macOS/Linux
+python hal.py --ui jarvis --brain "~/2nd Brain" ~/src/cipher ~/work
+export HAL_BRAIN_DIR="$HOME/2nd Brain:$HOME/src/cipher"
+```
 
 ## What HAL can do with the brain
 

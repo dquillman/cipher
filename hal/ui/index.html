@@ -454,8 +454,9 @@ window.addEventListener("resize", ()=>{ if(document.body.classList.contains("vie
 (async function init(){
   try{
     STATE = await (await fetch("/api/state")).json();
+    const roots = (STATE.brain && STATE.brain.roots) || [];
     $("#brainpath").textContent = STATE.brain ? STATE.brain.root.replace(/^.*[\\/](?=[^\\/]*[\\/][^\\/]*$)/,"…/") : "—";
-    $("#brainpath").title = STATE.brain ? STATE.brain.root : "";
+    $("#brainpath").title = roots.length ? roots.map(r=>`${r.label}: ${r.root} (${r.notes})`).join("\n") : (STATE.brain ? STATE.brain.root : "");
     $("#modelName").textContent = STATE.model || "—";
     // populate model select
     const sel=$("#model"); const seen=new Set();
@@ -463,7 +464,8 @@ window.addEventListener("resize", ()=>{ if(document.body.classList.contains("vie
     if(STATE.model && !seen.has(STATE.model)){ const o=document.createElement("option"); o.value=STATE.model; o.textContent=STATE.model+" (current)"; sel.appendChild(o); }
     sel.value = STATE.model||"";
     const n = STATE.brain ? STATE.brain.notes : 0;
-    addSys(`online · ${n} note${n===1?"":"s"} in the brain · ${STATE.model}`);
+    const proj = roots.length>1 ? ` across ${roots.length} projects` : "";
+    addSys(`online · ${n} file${n===1?"":"s"}${proj} · ${STATE.model}`);
   }catch(e){ addSys("could not reach the brain backend", true); }
   if("speechSynthesis" in window){ speechSynthesis.onvoiceschanged=pickVoice; pickVoice(); }
   $("#input").focus();

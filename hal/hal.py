@@ -336,11 +336,24 @@ def ensure_api_key() -> None:
 
 
 def build_hal(args) -> Hal:
-    brain_dir = args.brain or os.environ.get("HAL_BRAIN_DIR") or (
-        args.dir if getattr(args, "dir", None) else str(Path(__file__).parent / "brain")
-    )
-    brain = Brain(brain_dir)
+    roots: list[str] = []
+    if args.brain:
+        roots += args.brain  # nargs='+' → list
+    if getattr(args, "dir", None):
+        roots.append(args.dir)
+    if not roots:
+        env = os.environ.get("HAL_BRAIN_DIR")
+        if env:
+            roots += [p for p in env.split(os.pathsep) if p.strip()]
+    if not roots:
+        roots = [str(Path(__file__).parent / "brain")]
+    brain = Brain(roots)
     system = SYSTEM_PROMPT + (APP_SYSTEM_SUFFIX if getattr(args, "mode", None) == "app" else "")
+    if len(brain.order) > 1:
+        system += ("\n\nYou currently have access to several projects: "
+                   + ", ".join(brain.order)
+                   + ". Each file is addressed as <project>/<path>. When you cite or "
+                   "write a file, include the project prefix.")
     return Hal(brain, model=args.model, effort=args.effort, system=system)
 
 
@@ -419,7 +432,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--ui", default=os.environ.get("HAL_UI", "terminal"),
                         choices=["terminal", "jarvis", "web"],
                         help="Which interface to open: 'terminal' (default) or 'jarvis'/'web' (browser HUD).")
-    parser.add_argument("--brain", help="Brain directory (folder of notes).")
+    parser.add_argument("--brain", nargs="+",
+                        help="One or more project folders HAL can access (space-separated).")
     parser.add_argument("--dir", help="In 'app' mode, the project folder to be expert on.")
     parser.add_argument("--model", default=DEFAULT_MODEL, help=f"Model id (default {DEFAULT_MODEL}).")
     parser.add_argument("--effort", default=DEFAULT_EFFORT, help=f"Reasoning effort (default {DEFAULT_EFFORT}).")
