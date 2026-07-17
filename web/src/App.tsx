@@ -285,8 +285,10 @@ import TrialModal from "./components/TrialModal";
 import AppHeader from "./components/layout/AppHeader";
 
 function FreePlanBanner() {
-  const { isPro, questionsAnsweredToday, dailyLimit } = useSubscription();
-  if (isPro) return null;
+  const { isPro, hasPassFor, questionsAnsweredToday, dailyLimit } = useSubscription();
+  const { selectedExamId } = useExam();
+  // Exam Pass holders bypass the free-tier quota for their covered exam.
+  if (isPro || hasPassFor(selectedExamId)) return null;
   const countColor = questionsAnsweredToday >= dailyLimit
     ? 'text-red-400'
     : questionsAnsweredToday >= dailyLimit - 2
@@ -320,7 +322,7 @@ function AppLayout() {
   );
 }
 
-import { ExamProvider } from "./contexts/ExamContext";
+import { ExamProvider, useExam } from "./contexts/ExamContext";
 import { SmartQuizReviewProvider, useSmartQuizReview } from "./contexts/SmartQuizReviewContext";
 import SmartQuizReviewModal from "./components/SmartQuizReviewModal";
 

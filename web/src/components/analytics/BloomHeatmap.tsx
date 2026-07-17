@@ -176,6 +176,7 @@ export default function BloomHeatmap({ examId, examDomains = [] }: Props) {
 
             <BloomCellDetailModal
                 cell={selectedCell}
+                examId={examId}
                 onClose={() => setSelectedCell(null)}
             />
         </div>
@@ -381,13 +382,14 @@ function BarFallback({ stats }: { stats: BloomStatLine[] }) {
 
 interface BloomCellDetailModalProps {
     cell: SelectedCell | null;
+    examId: string | null;
     onClose: () => void;
 }
 
-function BloomCellDetailModal({ cell, onClose }: BloomCellDetailModalProps) {
+function BloomCellDetailModal({ cell, examId, onClose }: BloomCellDetailModalProps) {
     const navigate = useNavigate();
-    const { isPro } = useSubscription();
-    const drillSize = isPro ? 10 : 5;
+    const { isPro, hasPassFor } = useSubscription();
+    const drillSize = (isPro || (examId ? hasPassFor(examId) : false)) ? 10 : 5;
 
     // Close on Escape
     useEffect(() => {

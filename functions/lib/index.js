@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.captureLead = exports.startTrial = exports.validateQuizStart = exports.cleanupTimedOutSessions = exports.seedExamSources = exports.markSourceReviewed = exports.triggerExamUpdateCheck = exports.checkForExamUpdates = exports.getMarketingAnalytics = exports.generateMarketingCopyVariants = exports.generateMarketingCopy = exports.logVisitorEvent = exports.evaluateQuestionQuality = exports.analyzeExamHealth = exports.cancelSubscription = exports.getSubscriptionDetails = exports.stripeWebhook = exports.createPortalSession = exports.createCheckoutSession = exports.deleteUser = exports.resetExamProgress = exports.getGlobalStats = exports.getAdminUserList = exports.resetUserProgress = exports.deleteExamQuestions = exports.batchGenerateQuestions = exports.generateQuestions = exports.getAdaptiveQuestions = exports.createUserProfile = exports.scheduleOnboardingDrip = void 0;
+exports.captureLead = exports.startTrial = exports.validateQuizStart = exports.cleanupTimedOutSessions = exports.seedExamSources = exports.markSourceReviewed = exports.triggerExamUpdateCheck = exports.checkForExamUpdates = exports.getMarketingAnalytics = exports.generateMarketingCopyVariants = exports.generateMarketingCopy = exports.logVisitorEvent = exports.evaluateQuestionQuality = exports.analyzeExamHealth = exports.extendExamPass = exports.createPassCheckoutSession = exports.cancelSubscription = exports.getSubscriptionDetails = exports.stripeWebhook = exports.createPortalSession = exports.createCheckoutSession = exports.deleteUser = exports.resetExamProgress = exports.getGlobalStats = exports.getAdminUserList = exports.resetUserProgress = exports.deleteExamQuestions = exports.batchGenerateQuestions = exports.generateQuestions = exports.getAdaptiveQuestions = exports.createUserProfile = exports.sendExamCountdownEmails = exports.scheduleOnboardingDrip = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const openai_1 = require("openai");
@@ -23,6 +23,9 @@ const rateLimit_1 = require("./rateLimit");
 // Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
 var onboardingDrip_1 = require("./onboardingDrip");
 Object.defineProperty(exports, "scheduleOnboardingDrip", { enumerable: true, get: function () { return onboardingDrip_1.scheduleOnboardingDrip; } });
+// Exam countdown emails (D-14/7/3/1). Daily scheduled job at 14:00 UTC.
+var examCountdown_1 = require("./examCountdown");
+Object.defineProperty(exports, "sendExamCountdownEmails", { enumerable: true, get: function () { return examCountdown_1.sendExamCountdownEmails; } });
 console.log("Global Index Execution Started");
 admin.initializeApp();
 console.log("Admin Initialized");
@@ -921,6 +924,9 @@ Object.defineProperty(exports, "createPortalSession", { enumerable: true, get: f
 Object.defineProperty(exports, "stripeWebhook", { enumerable: true, get: function () { return stripe_1.stripeWebhook; } });
 Object.defineProperty(exports, "getSubscriptionDetails", { enumerable: true, get: function () { return stripe_1.getSubscriptionDetails; } });
 Object.defineProperty(exports, "cancelSubscription", { enumerable: true, get: function () { return stripe_1.cancelSubscription; } });
+var examPass_1 = require("./examPass"); // 90-day Exam Pass (docs/exam-pass-spec.md)
+Object.defineProperty(exports, "createPassCheckoutSession", { enumerable: true, get: function () { return examPass_1.createPassCheckoutSession; } });
+Object.defineProperty(exports, "extendExamPass", { enumerable: true, get: function () { return examPass_1.extendExamPass; } });
 var analytics_1 = require("./analytics");
 Object.defineProperty(exports, "analyzeExamHealth", { enumerable: true, get: function () { return analytics_1.analyzeExamHealth; } });
 var quality_1 = require("./quality"); // Phase 2

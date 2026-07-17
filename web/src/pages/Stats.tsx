@@ -136,7 +136,7 @@ export default function Stats() {
         });
     }, [selectedExamId]);
 
-    const isProGated = !checkPermission('analytics');
+    const isProGated = !checkPermission('analytics', selectedExamId);
 
     return (
         <div className="space-y-6 md:space-y-8 pb-8">

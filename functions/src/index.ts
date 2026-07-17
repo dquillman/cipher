@@ -1060,6 +1060,7 @@ export const deleteUser = functions.https.onCall(async (data, context) => {
 });
 
 export { createCheckoutSession, createPortalSession, stripeWebhook, getSubscriptionDetails, cancelSubscription } from './stripe';
+export { createPassCheckoutSession, extendExamPass } from './examPass'; // 90-day Exam Pass (docs/exam-pass-spec.md)
 export { analyzeExamHealth } from './analytics';
 export { evaluateQuestionQuality } from './quality'; // Phase 2
 

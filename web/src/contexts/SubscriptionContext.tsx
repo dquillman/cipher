@@ -3,18 +3,23 @@ import { useAuth } from '../App';
 import { db } from '../firebase';
 import { doc, onSnapshot, collection, query, where, getDocs, Timestamp, updateDoc } from 'firebase/firestore';
 import { getUserEntitlement, type UserEntitlement } from '../utils/entitlement';
+import { parsePassEntitlement, isPassActiveFor, type PassEntitlement } from '../utils/passEntitlement';
 import { getAnsweredCount } from '../utils/questionMetrics';
 import { getFreeTierDailyLimit } from '../utils/freeTier';
 
 interface SubscriptionContextType {
     isPro: boolean;
     entitlement: UserEntitlement;
+    /** 90-day Exam Pass entitlement (users/{uid}.entitlement), live from the user doc. Null if none. */
+    passEntitlement: PassEntitlement | null;
+    /** True if an active (unexpired) exam pass covers this examId. Access rule: isPro || hasPassFor(examId). */
+    hasPassFor: (examId: string) => boolean;
     loading: boolean;
     questionsAnsweredToday: number;
     dailyLimit: number;
     canTakeQuiz: boolean; // Computed: (isPro || questionsAnsweredToday < dailyLimit)
     incrementDailyCount: (count: number) => void; // Optimistic update
-    checkPermission: (feature: 'analytics' | 'simulator' | 'visual_mnemonics') => boolean;
+    checkPermission: (feature: 'analytics' | 'simulator' | 'visual_mnemonics', examId?: string) => boolean;
 }
 
 const SubscriptionContext = createContext<SubscriptionContextType | null>(null);
@@ -32,6 +37,7 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
 
     // Default safe state
     const [entitlement, setEntitlement] = useState<UserEntitlement>(getUserEntitlement(undefined, user));
+    const [passEntitlement, setPassEntitlement] = useState<PassEntitlement | null>(null);
     const [loading, setLoading] = useState(true);
     const [questionsAnsweredToday, setQuestionsAnsweredToday] = useState(0);
 
@@ -50,6 +56,7 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         if (!user) {
             setEntitlement(getUserEntitlement(undefined, null));
+            setPassEntitlement(null);
             setLoading(false);
             return;
         }
@@ -90,13 +97,16 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
                 }
 
                 setEntitlement(newEntitlement);
+                setPassEntitlement(parsePassEntitlement(data.entitlement));
             } else {
                 setEntitlement(getUserEntitlement(undefined));
+                setPassEntitlement(null);
             }
             setLoading(false);
         }, (error) => {
             console.warn("SubscriptionProvider: Failed to subscribe to user profile (likely permission error or missing doc). Defaulting to free/stateless.", error);
             setEntitlement(getUserEntitlement(undefined));
+            setPassEntitlement(null);
             setLoading(false);
         });
 
@@ -145,8 +155,12 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
         setQuestionsAnsweredToday(prev => prev + count);
     };
 
-    const checkPermission = (_feature: 'analytics' | 'simulator' | 'visual_mnemonics') => {
+    // Exam Pass: content for exam X is unlocked if isPro OR hasPassFor(X).
+    const hasPassFor = (examId: string) => isPassActiveFor(passEntitlement, examId);
+
+    const checkPermission = (_feature: 'analytics' | 'simulator' | 'visual_mnemonics', examId?: string) => {
         if (entitlement.isPro) return true;
+        if (examId && isPassActiveFor(passEntitlement, examId)) return true;
         return false;
     };
 
@@ -158,6 +172,8 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
         <SubscriptionContext.Provider value={{
             isPro,
             entitlement,
+            passEntitlement,
+            hasPassFor,
             loading,
             questionsAnsweredToday,
             dailyLimit: DAILY_LIMIT,

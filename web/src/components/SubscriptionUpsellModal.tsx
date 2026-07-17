@@ -7,11 +7,14 @@ interface SubscriptionUpsellModalProps {
     isOpen: boolean;
     onClose: () => void;
     reason?: 'daily_limit' | 'pro_feature';
+    /** Exam Pass variant: name of the exam the user's active pass covers.
+     *  Set when a pass holder hits a gate on a NON-covered exam. */
+    passCoversExamName?: string;
 }
 
 import { useMarketingCopy } from '../hooks/useMarketingCopy';
 
-export default function SubscriptionUpsellModal({ isOpen, onClose, reason = 'pro_feature' }: SubscriptionUpsellModalProps) {
+export default function SubscriptionUpsellModal({ isOpen, onClose, reason = 'pro_feature', passCoversExamName }: SubscriptionUpsellModalProps) {
     const navigate = useNavigate();
     const copy = useMarketingCopy();
 
@@ -59,9 +62,14 @@ export default function SubscriptionUpsellModal({ isOpen, onClose, reason = 'pro
                     </div>
 
                     <h2 className="text-2xl font-bold text-white mb-2">{content.title}</h2>
-                    <p className="text-slate-400 mb-8 max-w-xs mx-auto">
+                    <p className={`text-slate-400 max-w-xs mx-auto ${passCoversExamName ? 'mb-3' : 'mb-8'}`}>
                         {content.description}
                     </p>
+                    {passCoversExamName && (
+                        <p className="text-blue-300 text-sm mb-8 max-w-xs mx-auto">
+                            Your pass covers {passCoversExamName}. Want all 11 certs? Upgrade to Pro.
+                        </p>
+                    )}
 
                     <ul className="text-left space-y-3 mb-8 bg-slate-900/50 p-6 rounded-xl border border-slate-700/50">
                         <li className="flex items-center gap-3 text-sm text-slate-300">

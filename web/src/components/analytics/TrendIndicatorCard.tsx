@@ -22,7 +22,7 @@ export default function TrendIndicatorCard() {
             .finally(() => setLoading(false));
     }, [selectedExamId]);
 
-    const isProGated = !checkPermission('analytics');
+    const isProGated = !checkPermission('analytics', selectedExamId);
 
     // Loading skeleton
     if (loading) {

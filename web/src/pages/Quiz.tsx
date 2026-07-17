@@ -21,7 +21,7 @@ import MatchingQuestion, { shuffleMatchPairs } from '../components/MatchingQuest
 import PBQQuestion, { initPBQState, isPBQCorrect, type PBQState } from '../components/PBQQuestion';
 import { FrictionEventService } from '../services/FrictionEventService';
 import { trackExplanationViewed, trackActivatedUser } from '../lib/ga4';
-import { DEFAULT_EXAM_ID, EXAM_LENS } from '../config/exams';
+import { DEFAULT_EXAM_ID, EXAM_LENS, EXAMS } from '../config/exams';
 import type { Question } from '../types/Question';
 import QuizCompletionSummary from '../components/quiz/QuizCompletionSummary';
 import QuizModeBanner from '../components/quiz/QuizModeBanner';
@@ -86,20 +86,13 @@ export default function Quiz() {
     // Diagnostic Persistence State -> MOVED to below line 77 to access 'location'
 
 
-    const { isPro, canTakeQuiz, incrementDailyCount } = useSubscription();
+    const { isPro, canTakeQuiz, incrementDailyCount, hasPassFor, passEntitlement } = useSubscription();
     const [showUpsell, setShowUpsell] = useState(false);
     const [validationError, setValidationError] = useState<string | null>(null);
     const [retryCount, setRetryCount] = useState(0);
 
     // Measurement Metrics
     const [explanationRenderTime, setExplanationRenderTime] = useState<number | null>(null);
-
-    // Block access immediately if limit reached via direct URL, but handle graceful redirect/modal
-    useEffect(() => {
-        if (!loading && !canTakeQuiz) {
-            setShowUpsell(true);
-        }
-    }, [loading, canTakeQuiz]);
 
 
 
@@ -127,6 +120,18 @@ export default function Quiz() {
 
     const [activeExamId, setActiveExamId] = useState<string>('');
     const [reinforcementMessage, setReinforcementMessage] = useState<string | null>(null);
+
+    // Exam Pass: content for this exam is unlocked if isPro OR an active pass covers it.
+    const passCoversExam = activeExamId ? hasPassFor(activeExamId) : false;
+    const hasContentAccess = isPro || passCoversExam;
+
+    // Block access immediately if limit reached via direct URL, but handle graceful redirect/modal.
+    // Pass holders bypass the free-tier daily limit for their covered exam.
+    useEffect(() => {
+        if (!loading && !canTakeQuiz && !passCoversExam) {
+            setShowUpsell(true);
+        }
+    }, [loading, canTakeQuiz, passCoversExam]);
 
     useEffect(() => {
         // Determine the effective exam ID
@@ -208,7 +213,7 @@ export default function Quiz() {
                         location.state.patternId,
                         location.state.domainTags,
                         activeExamId,
-                        isPro ? 7 : 5,
+                        hasContentAccess ? 7 : 5,
                         location.state.masteryScore || 0
                     );
 
@@ -433,7 +438,7 @@ export default function Quiz() {
                 // 4. Selection Logic (SRS Algorithm)
                 // Priority: Learning (Review) > New > Mastered (Refresh)
 
-                const TARGET_SIZE = isPro ? 10 : 5;
+                const TARGET_SIZE = hasContentAccess ? 10 : 5;
                 let selected: Question[] = [];
                 const selectedIds = new Set<string>();
                 const shuffle = (arr: any[]) => arr.sort(() => 0.5 - Math.random());
@@ -1019,10 +1024,10 @@ export default function Quiz() {
         if (mode === 'diagnostic' || mode === 'trap') return;
 
         // Open modal via app-level context (survives route changes)
-        smartReview.openReview({ isPartial, isPro });
+        smartReview.openReview({ isPartial, isPro: hasContentAccess });
 
         // Free users: locked modal, no OpenAI call
-        if (!isPro) return;
+        if (!hasContentAccess) return;
 
         try {
             const answeredCount = quizDetails.length;
@@ -1220,7 +1225,7 @@ export default function Quiz() {
                 totalQuestions={questions.length}
                 sessionTraps={sessionTraps}
                 domainResults={domainResults}
-                isPro={isPro}
+                isPro={hasContentAccess}
                 activeExamId={activeExamId}
                 onUpsell={() => setShowUpsell(true)}
             />
@@ -1459,6 +1464,11 @@ export default function Quiz() {
                 isOpen={showUpsell}
                 onClose={() => window.location.href = '/app'}
                 reason="daily_limit"
+                passCoversExamName={
+                    passEntitlement && passEntitlement.expiresAt.getTime() > Date.now() && passEntitlement.examId !== activeExamId
+                        ? (EXAMS[passEntitlement.examId]?.name ?? 'your exam')
+                        : undefined
+                }
             />
         </div>
     );

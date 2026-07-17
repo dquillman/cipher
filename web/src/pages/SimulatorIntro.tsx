@@ -22,7 +22,7 @@ interface SimulationAttempt {
 }
 
 export default function SimulatorIntro() {
-    const { isPro } = useSubscription();
+    const { isPro, hasPassFor } = useSubscription();
     const navigate = useNavigate();
     const { examName, selectedExamId: activeExamId, examDomains, hasCompletedDiagnostic } = useExam();
     const examConfig = Object.values(EXAMS).find(e => isExam(activeExamId, e.id));
@@ -122,7 +122,7 @@ export default function SimulatorIntro() {
     // Gate Logic (uses RCM-adjusted score so XP confidence influences gating)
     const displayedScore = readiness ? applyReadinessConfidence(readiness.overallScore, userXp) : null;
     const isBorderline = displayedScore !== null && displayedScore >= 50 && displayedScore < 70;
-    const eligibility = getMockEligibility({ hasCompletedDiagnostic: hasCompletedDiagnostic ?? false, readiness: displayedScore, isPro });
+    const eligibility = getMockEligibility({ hasCompletedDiagnostic: hasCompletedDiagnostic ?? false, readiness: displayedScore, isPro: isPro || hasPassFor(activeExamId) });
 
     const formatTime = (seconds?: number) => {
         if (!seconds) return '--:--';

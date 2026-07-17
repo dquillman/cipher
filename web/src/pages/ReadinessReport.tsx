@@ -164,7 +164,7 @@ export default function ReadinessReportPage() {
                     {/* Main Score Card */}
                     <div className="md:col-span-2 bg-slate-800 rounded-2xl p-5 md:p-8 border border-slate-700 shadow-xl relative overflow-hidden">
 
-                        {!checkPermission('analytics') && (
+                        {!checkPermission('analytics', selectedExamId) && (
                             <div className="absolute inset-0 z-20 bg-slate-800/60 backdrop-blur-md flex flex-col items-center justify-center text-center p-6">
                                 <div className="w-16 h-16 bg-slate-900 rounded-full flex items-center justify-center mb-4 shadow-xl border border-slate-700">
                                     <Lock className="w-8 h-8 text-indigo-400" />
@@ -182,7 +182,7 @@ export default function ReadinessReportPage() {
                             </div>
                         )}
 
-                        <div className={`flex flex-col md:flex-row items-center gap-4 md:gap-8 ${!checkPermission('analytics') ? 'blur-sm opacity-50 pointer-events-none' : ''}`}>
+                        <div className={`flex flex-col md:flex-row items-center gap-4 md:gap-8 ${!checkPermission('analytics', selectedExamId) ? 'blur-sm opacity-50 pointer-events-none' : ''}`}>
                             {/* Radial Chart OR Building State */}
                             <div className="relative w-36 h-36 md:w-48 md:h-48 flex-shrink-0">
                                 {report.isPreliminary ? (
@@ -305,7 +305,7 @@ export default function ReadinessReportPage() {
                         </div>
 
                         {displayedScore !== null && !report.isPreliminary && (
-                            <div className={`mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between text-sm ${!checkPermission('analytics') ? 'blur-sm opacity-50' : ''}`}>
+                            <div className={`mt-4 pt-4 border-t border-slate-700/50 flex items-center justify-between text-sm ${!checkPermission('analytics', selectedExamId) ? 'blur-sm opacity-50' : ''}`}>
                                 <span className="text-slate-400">
                                     Confidence: <span className="text-slate-200 font-medium">{confidenceLabel}</span>
                                 </span>

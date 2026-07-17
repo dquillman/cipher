@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 // Removed unused doc, onSnapshot, auth, db (except if needed for redirect, but window.location used here)
-import { Check, ArrowLeft } from 'lucide-react';
+import { Check, ArrowLeft, Ticket } from 'lucide-react';
 import SubscriptionModal from '../components/SubscriptionModal';
 import { useSubscription } from '../contexts/SubscriptionContext';
+import { useExam } from '../contexts/ExamContext';
+import { EXAMS } from '../config/exams';
 
 // Initialize Stripe with the publishable key
 // Ideally this comes from env vars: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -16,8 +18,18 @@ import { trackPricingView } from '../lib/ga4';
 
 export default function Pricing() {
     const [loading, setLoading] = useState(false);
-    const { entitlement } = useSubscription();  // Use Context
+    const { entitlement, passEntitlement } = useSubscription();  // Use Context
     const isPro = entitlement.plan === 'pro';   // Only true if actually PAID Pro. Trial is not 'pro' plan.
+
+    // --- 90-Day Exam Pass ---
+    const { selectedExamId } = useExam();
+    const [passExamId, setPassExamId] = useState(selectedExamId);
+    const [confirmingPass, setConfirmingPass] = useState(false);
+    const [passLoading, setPassLoading] = useState(false);
+    const hasActivePass = !!passEntitlement && passEntitlement.expiresAt.getTime() > Date.now();
+    const activePassExamName = hasActivePass
+        ? (EXAMS[passEntitlement!.examId]?.name ?? 'your exam')
+        : null;
 
     // EC-111: Track pricing page view as conversion intent + GA4
     useEffect(() => {
@@ -68,6 +80,26 @@ export default function Pricing() {
             alert(`Checkout failed: ${error.message}`);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handlePassCheckout = async () => {
+        setPassLoading(true);
+        try {
+            const createPassCheckoutSession = httpsCallable(functions, 'createPassCheckoutSession');
+            const { data }: any = await createPassCheckoutSession({ examId: passExamId });
+
+            if (data?.url) {
+                window.location.href = data.url;
+            } else {
+                console.error("No checkout URL returned");
+                alert("Failed to start checkout. Please try again.");
+            }
+        } catch (error: any) {
+            console.error("Pass checkout failed:", error);
+            alert(`Checkout failed: ${error.message}`);
+        } finally {
+            setPassLoading(false);
         }
     };
 
@@ -142,7 +174,7 @@ export default function Pricing() {
                 </div>
             </div>
 
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
                 {/* Free Tier */}
                 <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
                     <h3 className="text-2xl font-bold text-white">Starter</h3>
@@ -234,6 +266,113 @@ export default function Pricing() {
                             )}
                         </button>
                     </div>
+                </div>
+
+                {/* 90-Day Exam Pass */}
+                <div className={`bg-slate-800/50 rounded-3xl p-8 border ${hasActivePass ? 'border-green-500/50 ring-2 ring-green-500/20' : 'border-amber-500/30'} flex flex-col relative overflow-hidden`}>
+                    <div className="flex justify-between items-center">
+                        <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                            <Ticket className="w-6 h-6 text-amber-400" />
+                            Exam Pass
+                        </h3>
+                        {hasActivePass ? (
+                            <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                                <Check className="w-3 h-3" /> ACTIVE
+                            </span>
+                        ) : (
+                            <span className="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full">NO SUBSCRIPTION</span>
+                        )}
+                    </div>
+                    <div className="mt-4 flex items-baseline">
+                        <span className="text-4xl font-bold tracking-tight text-white">$59</span>
+                        <span className="ml-1 text-xl text-slate-400">/ one-time</span>
+                    </div>
+                    <p className="mt-2 text-amber-200/80 text-sm">90 days. One exam. No auto-renew.</p>
+
+                    <ul className="mt-8 space-y-4 flex-1">
+                        {[
+                            'Everything in Pro for one exam',
+                            '90 days of full access',
+                            'One-time payment — never renews',
+                            'Rescheduled? Your pass moves with your exam.'
+                        ].map((feat) => (
+                            <li key={feat} className="flex items-center gap-3">
+                                <div className="bg-amber-500/20 p-1 rounded-full">
+                                    <Check className="w-4 h-4 text-amber-400" />
+                                </div>
+                                <span className="text-slate-300">{feat}</span>
+                            </li>
+                        ))}
+                    </ul>
+
+                    {hasActivePass ? (
+                        <div className="mt-8 space-y-2">
+                            <div className="w-full py-4 rounded-xl font-bold text-center bg-green-600/20 text-green-400 border border-green-500/30">
+                                Pass Active — {activePassExamName}
+                            </div>
+                            <p className="text-xs text-slate-500 text-center">
+                                Ends {passEntitlement!.expiresAt.toLocaleDateString()}
+                            </p>
+                        </div>
+                    ) : isPro ? (
+                        <div className="mt-8 w-full py-4 rounded-xl font-bold text-center bg-slate-700/50 text-slate-400 border border-slate-700">
+                            Included with your Pro plan
+                        </div>
+                    ) : (
+                        <div className="mt-8 space-y-3">
+                            <label className="block text-left">
+                                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide">Your exam</span>
+                                <select
+                                    value={passExamId}
+                                    onChange={(e) => { setPassExamId(e.target.value); setConfirmingPass(false); }}
+                                    className="mt-1 w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
+                                >
+                                    {Object.values(EXAMS).map((exam) => (
+                                        <option key={exam.id} value={exam.id}>{exam.name}</option>
+                                    ))}
+                                </select>
+                            </label>
+
+                            {confirmingPass ? (
+                                <>
+                                    <p className="text-sm text-amber-300 text-left">
+                                        Your pass covers <span className="font-bold">{EXAMS[passExamId]?.name ?? 'this exam'}</span> only. Correct?
+                                    </p>
+                                    <button
+                                        onClick={handlePassCheckout}
+                                        disabled={passLoading}
+                                        className="w-full py-4 rounded-xl font-bold transition-all shadow-lg flex justify-center items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white hover:from-amber-400 hover:to-orange-500 hover:shadow-amber-500/25"
+                                    >
+                                        {passLoading ? (
+                                            <>
+                                                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                Processing...
+                                            </>
+                                        ) : (
+                                            'Confirm & Checkout — $59'
+                                        )}
+                                    </button>
+                                    <button
+                                        onClick={() => setConfirmingPass(false)}
+                                        disabled={passLoading}
+                                        className="w-full py-2 text-slate-400 hover:text-white text-sm font-medium transition-colors"
+                                    >
+                                        Change exam
+                                    </button>
+                                </>
+                            ) : (
+                                <button
+                                    onClick={() => setConfirmingPass(true)}
+                                    className="w-full py-4 rounded-xl font-bold transition-all bg-amber-500/10 text-amber-300 border border-amber-500/40 hover:bg-amber-500/20"
+                                >
+                                    Get Exam Pass
+                                </button>
+                            )}
+                            <p className="text-xs text-slate-500 text-left">
+                                Standard 60-day money-back guarantee — full refund, no conditions.
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
 

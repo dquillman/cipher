@@ -4,6 +4,7 @@ exports.stripeWebhook = exports.cancelSubscription = exports.getSubscriptionDeta
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const stripe_1 = require("stripe");
+const examPass_1 = require("./examPass");
 // Initialize Stripe with secret key from environment variables
 // We use a getter to avoid initializing if the key is missing during build
 const getStripe = () => {
@@ -164,6 +165,7 @@ exports.cancelSubscription = functions.https.onCall(async (data, context) => {
     }
 });
 exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
+    var _a;
     const signature = req.headers['stripe-signature'];
     const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
     if (!endpointSecret || !signature) {
@@ -226,7 +228,13 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
         switch (event.type) {
             case 'checkout.session.completed':
                 const session = event.data.object;
-                await handleCheckoutSessionCompleted(session);
+                if (((_a = session.metadata) === null || _a === void 0 ? void 0 : _a.type) === 'exam-pass') {
+                    // One-time 90-day Exam Pass purchase (docs/exam-pass-spec.md).
+                    await (0, examPass_1.fulfillExamPassCheckout)(session);
+                }
+                else {
+                    await handleCheckoutSessionCompleted(session);
+                }
                 break;
             case 'customer.subscription.deleted':
                 const sub = event.data.object;

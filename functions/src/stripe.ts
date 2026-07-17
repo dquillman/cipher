@@ -1,6 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import Stripe from "stripe";
+import { fulfillExamPassCheckout } from "./examPass";
 
 
 
@@ -252,7 +253,12 @@ export const stripeWebhook = functions.https.onRequest(async (req, res) => {
         switch (event.type) {
             case 'checkout.session.completed':
                 const session = event.data.object as Stripe.Checkout.Session;
-                await handleCheckoutSessionCompleted(session);
+                if (session.metadata?.type === 'exam-pass') {
+                    // One-time 90-day Exam Pass purchase (docs/exam-pass-spec.md).
+                    await fulfillExamPassCheckout(session);
+                } else {
+                    await handleCheckoutSessionCompleted(session);
+                }
                 break;
             case 'customer.subscription.deleted':
                 const sub = event.data.object as Stripe.Subscription;

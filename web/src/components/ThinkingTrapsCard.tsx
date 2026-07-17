@@ -47,7 +47,7 @@ export default function ThinkingTrapsCard() {
     }, [user, selectedExamId]);
 
     const handleReviewClick = () => {
-        if (checkPermission('analytics')) {
+        if (checkPermission('analytics', selectedExamId)) {
             setShowProModal(true);
         } else {
             setShowModal(true);

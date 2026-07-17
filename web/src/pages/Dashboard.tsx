@@ -10,6 +10,7 @@ import { useExam } from '../contexts/ExamContext';
 
 
 import ReportIssueModal from '../components/ReportIssueModal';
+import PassExpiryBanner from '../components/PassExpiryBanner';
 import { useTrial } from '../hooks/useTrial';
 import ThinkingTrapsCard from '../components/ThinkingTrapsCard';
 import TrendIndicatorCard from '../components/analytics/TrendIndicatorCard';
@@ -316,6 +317,9 @@ export default function Dashboard() {
                 </div>
 
                 <div className="space-y-6 md:space-y-8">
+                    {/* Exam Pass expiry / free-extension banner (D-14 window) */}
+                    <PassExpiryBanner />
+
                     {/* Trial Banner */}
                     {trial.status === 'active' && (
                         <div className={`rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border shadow-lg ${trial.daysRemaining <= 2
