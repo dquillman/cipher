@@ -345,7 +345,7 @@ const Graph = (function(){
   const cv=$("#graph"); const ctx=cv.getContext("2d");
   let W=0,H=0,DPR=1;
   let nodes=[], edges=[], byId={}, loaded=false, raf=0, fitted=false;
-  let yaw=0.5, pitch=-0.35, zoom=1.5, dist=200, alpha=1;
+  let yaw=0.5, pitch=-0.35, zoom=1.6, dist=180, alpha=1, autoframe=true;
   let autorotate=true, dragging=false, lastX=0, lastY=0, moved=0;
   let hover=null, selected=null;
 
@@ -366,7 +366,7 @@ const Graph = (function(){
       byId={}; nodes=g.nodes.map((n,i)=>{ const a=Math.acos(1-2*(i+.5)/g.nodes.length), b=Math.PI*(1+Math.sqrt(5))*i, R=210;
         const nn=Object.assign({},n,{x:R*Math.sin(a)*Math.cos(b),y:R*Math.sin(a)*Math.sin(b),z:R*Math.cos(a),vx:0,vy:0,vz:0}); byId[n.id]=nn; return nn; });
       edges=g.edges.filter(e=>byId[e.source]&&byId[e.target]);
-      loaded=true; alpha=1; fitted=false;
+      loaded=true; alpha=1; fitted=false; autoframe=true;
       const c=g.counts||{}; $("#glabel").innerHTML=`BRAIN MAP · <b>${c.notes||0}</b> notes · <b>${c.folders||0}</b> folders · <b>${c.edges||0}</b> links`+(g.truncated?" (capped)":"");
     }catch(e){ $("#glabel").innerHTML="BRAIN MAP · <b>backend unreachable</b>"; }
   }
@@ -409,6 +409,12 @@ const Graph = (function(){
     physics();
     // project
     for(const n of nodes){ const p=project(n); n._p=p; }
+    // auto-frame: continuously size the actual graph to fill the view
+    if(autoframe && nodes.length){
+      let mr=1; for(const n of nodes){ const r=Math.hypot(n._p.sx-W/2, n._p.sy-H/2); if(r>mr) mr=r; }
+      const want=0.46*Math.min(W,H);
+      zoom=Math.max(0.3,Math.min(4, zoom*(1+(want/mr-1)*0.08)));
+    }
     // edges
     const acc=getComputedStyle(document.documentElement).getPropertyValue("--accent").trim();
     for(const e of edges){ const a=byId[e.source]._p, b=byId[e.target]._p;
@@ -417,7 +423,7 @@ const Graph = (function(){
       ctx.lineWidth = hl?1.4:0.6; ctx.beginPath(); ctx.moveTo(a.sx,a.sy); ctx.lineTo(b.sx,b.sy); ctx.stroke(); }
     // nodes back-to-front
     const order=nodes.slice().sort((a,b)=>b._p.depth - a._p.depth);
-    for(const n of order){ const p=n._p; const r=Math.max(2.4,n.size*p.s*2.6);
+    for(const n of order){ const p=n._p; const r=Math.max(2.6,n.size*p.s*2.9);
       const focused = (hover&&hover.id===n.id)||(selected&&selected.id===n.id);
       const a = Math.min(1, 0.45 + (p.s*0.5));
       if(n.type==="folder"){ ctx.fillStyle=colorFor(n,a); ctx.save(); ctx.translate(p.sx,p.sy); ctx.rotate(Math.PI/4);
@@ -436,7 +442,7 @@ const Graph = (function(){
   function pick(mx,my){
     let best=null, bd=16;
     for(const n of nodes){ const p=n._p; if(!p) continue; const dx=p.sx-mx, dy=p.sy-my; const d=Math.hypot(dx,dy);
-      const r=Math.max(6,n.size*p.s*2.6+6); if(d<r && p.depth<bd){ best=n; bd=p.depth; } }
+      const r=Math.max(6,n.size*p.s*2.9+6); if(d<r && p.depth<bd){ best=n; bd=p.depth; } }
     return best;
   }
 
@@ -452,7 +458,7 @@ const Graph = (function(){
     if(n){ tip.style.display="block"; tip.style.left=mx+"px"; tip.style.top=my+"px"; tip.textContent=(n.type==="folder"?"📁 ":"")+n.id; cv.style.cursor="pointer"; }
     else { tip.style.display="none"; cv.style.cursor=dragging?"grabbing":"grab"; }
   });
-  cv.addEventListener("wheel", e=>{ e.preventDefault(); zoom*=(e.deltaY<0?1.1:0.9); zoom=Math.max(0.3,Math.min(4,zoom)); }, {passive:false});
+  cv.addEventListener("wheel", e=>{ e.preventDefault(); autoframe=false; zoom*=(e.deltaY<0?1.1:0.9); zoom=Math.max(0.3,Math.min(4,zoom)); }, {passive:false});
   cv.addEventListener("click", e=>{ if(moved>6) return; const rect=cv.getBoundingClientRect();
     const n=pick(e.clientX-rect.left, e.clientY-rect.top); if(n) selectNode(n); });
 
