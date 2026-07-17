@@ -1,46 +1,67 @@
 @echo off
 rem ============================================================
 rem  HAL — JARVIS browser HUD.  Double-click this to run HAL.
-rem  First run also: finds Python, installs what it needs,
-rem  and drops a "HAL" icon on your Desktop.
+rem  Finds a WORKING Python, installs what it needs, launches.
 rem ============================================================
 setlocal enabledelayedexpansion
 cd /d "%~dp0"
 
-rem --- find a Python (py launcher, PATH, or common install spots) ---
+rem ---- find a Python that actually RUNS (test each candidate) ----
 set "PY="
-where py >nul 2>nul && set "PY=py -3"
-if not defined PY ( where python >nul 2>nul && set "PY=python" )
-if not defined PY ( if exist "G:\Python311\python.exe" set "PY=G:\Python311\python.exe" )
-if not defined PY ( if exist "%LOCALAPPDATA%\Programs\Python\Python312\python.exe" set "PY=%LOCALAPPDATA%\Programs\Python\Python312\python.exe" )
-if not defined PY ( if exist "%LOCALAPPDATA%\Programs\Python\Python311\python.exe" set "PY=%LOCALAPPDATA%\Programs\Python\Python311\python.exe" )
+for %%C in ("py -3" "py" "python" "python3") do (
+  if not defined PY (
+    %%~C -c "import sys" >nul 2>nul && set "PY=%%~C"
+  )
+)
+if not defined PY for %%P in (
+  "%LOCALAPPDATA%\Programs\Python\Python313\python.exe"
+  "%LOCALAPPDATA%\Programs\Python\Python312\python.exe"
+  "%LOCALAPPDATA%\Programs\Python\Python311\python.exe"
+  "%LOCALAPPDATA%\Programs\Python\Python310\python.exe"
+  "C:\Python313\python.exe" "C:\Python312\python.exe" "C:\Python311\python.exe"
+  "G:\Python311\python.exe"
+) do (
+  if not defined PY if exist "%%~P" (
+    "%%~P" -c "import sys" >nul 2>nul && set PY="%%~P"
+  )
+)
+
 if not defined PY (
   echo.
-  echo   Python was not found. Install it from https://www.python.org/downloads/
-  echo   ^(tick "Add Python to PATH" during install^), then run this again.
+  echo   HAL could not find a working Python on this PC.
+  echo   Quick fix ^(about 2 minutes^):
+  echo     1. Open  https://www.python.org/downloads/
+  echo     2. Download and run the installer.
+  echo     3. IMPORTANT: on the first screen tick  "Add python.exe to PATH".
+  echo     4. Click Install, let it finish, then double-click jarvis.bat again.
   echo.
-  pause & exit /b 1
+  pause
+  exit /b 1
 )
+echo Using Python: !PY!
 
-rem --- make sure the one dependency is installed ---
-%PY% -c "import anthropic" 2>nul || (
+rem ---- ensure the one dependency (anthropic) ----
+!PY! -c "import anthropic" >nul 2>nul || (
   echo Installing HAL's dependency ^(one time^)...
-  %PY% -m pip install -r requirements.txt
+  !PY! -m pip install -r requirements.txt
 )
 
-rem --- first run: auto-create the Desktop icon (once) ---
+rem ---- first run: Desktop icon (optional, never blocks launch) ----
 if not exist "%~dp0assets\.icon-installed" (
-  echo Setting up your HAL Desktop icon...
-  set "PSICON=powershell"
-  where pwsh >nul 2>nul && set "PSICON=pwsh"
-  !PSICON! -NoProfile -ExecutionPolicy Bypass -File "%~dp0install-desktop-icon.ps1"
-  echo installed> "%~dp0assets\.icon-installed"
-  echo.
+  if exist "%~dp0install-desktop-icon.ps1" (
+    echo Setting up your HAL Desktop icon...
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0install-desktop-icon.ps1" 2>nul
+  ) else (
+    echo ^(Desktop icon script missing - skipping; you can add it later.^)
+  )
+  echo installed> "%~dp0assets\.icon-installed" 2>nul
 )
 
-rem --- optional: set your projects here (edit or leave blank) ---
+rem ---- optional: set your projects here (edit or leave blank) ----
 set "BRAIN="
 rem example: set "BRAIN=--brain "G:\Users\daveq\2nd Brain" "G:\Users\daveq\source""
 
-%PY% hal.py --ui jarvis %BRAIN% %*
+echo.
+echo Starting HAL... your browser will open shortly.
+!PY! hal.py --ui jarvis %BRAIN% %*
 pause
