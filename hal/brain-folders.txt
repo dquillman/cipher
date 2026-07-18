@@ -1,0 +1,20 @@
+# ===  HAL — your notes folders  ===
+#
+# Put ONE folder path per line. HAL reads every note in the folders you list.
+# Lines starting with #  are ignored (they're just notes to you).
+#
+# HOW TO USE:
+#   1. Add a line below with the full path to your notes folder.
+#   2. Save this file.
+#   3. Start HAL (double-click jarvis).
+#
+# EXAMPLE — delete the # in front of a line to turn it on:
+#
+# G:\Users\daveq\2nd Brain\brain
+#
+# You can list several folders (notes, code projects, docs) — one per line:
+#
+# G:\Users\daveq\2nd Brain\brain
+# G:\Users\daveq\source
+#
+# ----  add your folder(s) below this line  ----

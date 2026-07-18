@@ -355,6 +355,14 @@ def build_hal(args) -> Hal:
         if env:
             roots += [p for p in env.split(os.pathsep) if p.strip()]
     if not roots:
+        # Easiest config: one folder path per line in brain-folders.txt.
+        cfg = Path(__file__).parent / "brain-folders.txt"
+        if cfg.exists():
+            for line in cfg.read_text(encoding="utf-8", errors="replace").splitlines():
+                s = line.strip().strip('"').strip("'").strip()
+                if s and not s.startswith("#"):
+                    roots.append(s)
+    if not roots:
         roots = [str(Path(__file__).parent / "brain")]
     brain = Brain(roots)
     system = SYSTEM_PROMPT + (APP_SYSTEM_SUFFIX if getattr(args, "mode", None) == "app" else "")

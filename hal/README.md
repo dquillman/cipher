@@ -105,6 +105,10 @@ docs folder, all together. Pass several to `--brain` (space-separated), or set
 `HAL_BRAIN_DIR` to a list joined by your OS path separator (`;` on Windows, `:`
 on macOS/Linux).
 
+**Easiest way (no command line):** open **`brain-folders.txt`** in the `hal`
+folder and paste one folder path per line, then start HAL. That's it — no
+quotes, no flags. `--brain` and `HAL_BRAIN_DIR` still override it when set.
+
 Each root becomes a **project**, labeled by its folder name, and every file is
 addressed as `project/path/...` — so `cipher/functions/index.js` and
 `2nd-brain/daily/2026-07-15.md` never collide. Search, chat, and the 3D map span
