@@ -762,7 +762,7 @@ export default function Landing() {
           <div className="text-center max-w-3xl mx-auto mb-14">
             <Eyebrow n="07" label="The Readiness Verdict" center />
             <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
-              Most apps tell you you’re ready. We tell you the truth.
+              Most apps say you’re ready. We tell you the truth.
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed">
               Every full mock exam returns a real score, an honest pass/fail verdict, and a
