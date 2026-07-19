@@ -979,9 +979,31 @@ export default function Landing() {
               Start Thinking Like the Exam.
             </span>
           </h2>
-          <p className="text-xl text-slate-400 mb-10">
+          <p className="text-xl text-slate-400 mb-8">
             Join professionals preparing for certification exams with CipherExam.
           </p>
+          {/* Price, up front — no click-through to /pricing just to see the cost.
+              Exam Pass leads (most popular); subscription is the alternative. */}
+          <div className="mb-10 flex flex-col items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="rounded-2xl border border-brand-500/40 bg-brand-500/10 px-6 py-4">
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-4xl font-bold text-white font-display">$59</span>
+                  <span className="text-sm text-slate-300">Exam Pass · 90 days</span>
+                </div>
+                <p className="mt-1 font-mono text-[11px] tracking-wide text-brand-200">Most popular · one-time · nothing to cancel</p>
+              </div>
+              <span className="font-mono text-sm text-slate-600">or</span>
+              <div>
+                <div className="flex items-baseline justify-center gap-1.5">
+                  <span className="text-2xl font-bold text-white">$19</span>
+                  <span className="text-sm text-slate-400">/mo</span>
+                </div>
+                <p className="mt-1 font-mono text-[11px] tracking-wide text-slate-500">free tier · cancel anytime</p>
+              </div>
+            </div>
+            <p className="font-mono text-[11px] tracking-wide text-slate-500">Both backed by the 60-day money-back guarantee.</p>
+          </div>
           <button
             onClick={handleCta}
             data-magnetic-cta

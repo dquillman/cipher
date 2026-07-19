@@ -54,7 +54,7 @@ export default function PublicPricing() {
                     </div>
                 </div>
 
-                <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+                <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl w-full items-start">
                     {/* Free Tier */}
                     <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
                         <h3 className="text-2xl font-bold text-white">Starter</h3>
@@ -76,16 +76,18 @@ export default function PublicPricing() {
                         >
                             Get Started Free
                         </button>
-                        <p className="mt-3 text-xs text-slate-500 text-center">Want unlimited practice? <span className="text-brand-400">See Pro</span></p>
+                        <p className="mt-3 text-xs text-slate-500 text-center">Want unlimited practice? <span className="text-brand-400">See the Exam Pass</span></p>
                     </div>
 
-                    {/* Pro Tier */}
-                    <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-3xl p-8 border border-brand-500/30 flex flex-col relative group">
+                    {/* Exam Pass — the hero plan. Flat $59 one-time for 90 days; ignores the
+                        billing toggle (it's not a subscription). Priced at parity with 3 months
+                        of Pro ($57) but one-time — the "no subscription trap" play. */}
+                    <div className="bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-3xl p-8 border border-brand-500/40 ring-1 ring-brand-500/30 flex flex-col relative group lg:-mt-4 lg:pb-12">
                         <div className="absolute inset-0 rounded-3xl overflow-hidden">
                             <div className="absolute inset-0 bg-brand-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
-                        {/* POPULAR tag — centered on the top border so the seal owns the corner */}
-                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">POPULAR</span>
+                        {/* MOST POPULAR tag — centered on the top border so the seal owns the corner */}
+                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-500 to-purple-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">MOST POPULAR</span>
                         {/* Gold guarantee sticker — inside the card, clear of all copy */}
                         <GuaranteeSeal
                             size={116}
@@ -95,34 +97,22 @@ export default function PublicPricing() {
                         />
 
                         <div className="relative">
-                            <h3 className="text-2xl font-bold text-white lg:pr-32">Pro Membership</h3>
+                            <h3 className="text-2xl font-bold text-white lg:pr-32">Exam Pass</h3>
                             <div className="mt-4 flex items-baseline flex-wrap gap-x-2 lg:pr-32">
-                                {billingInterval === 'year' && (
-                                    <span className="text-lg text-slate-500 line-through">$228</span>
-                                )}
-                                <span className="text-4xl font-bold tracking-tight text-white">
-                                    ${billingInterval === 'month' ? '19' : '190'}
-                                </span>
-                                <span className="text-xl text-slate-400">
-                                    / {billingInterval === 'month' ? 'month' : 'year'}
-                                </span>
-                                {billingInterval === 'year' && (
-                                    <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">Save $38/yr</span>
-                                )}
+                                <span className="text-4xl font-bold tracking-tight text-white">$59</span>
+                                <span className="text-xl text-slate-400">one-time</span>
                             </div>
-                            {billingInterval === 'year' && (
-                                <p className="text-xs text-slate-500">$15.83/mo billed annually</p>
-                            )}
-                            <p className="mt-2 text-brand-200 text-sm">7-day free trial. Cancel anytime.</p>
-                            <p className="mt-1.5 text-xs text-slate-400">Retaking one exam costs $275–$555. A year of Pro is $190.</p>
+                            <p className="text-xs text-slate-500">90 days of full access — no subscription</p>
+                            <p className="mt-2 text-brand-200 text-sm">Pay once, pass, done.</p>
+                            <p className="mt-1.5 text-xs text-slate-400">About the same as 3 months of Pro ($57) — but one-time, with nothing to cancel.</p>
 
                             <ul className="mt-8 space-y-4 mb-8">
                                 {[
-                                    'Unlimited AI Quizzes',
-                                    'Detailed Domain Analytics',
-                                    'Priority Support',
-                                    'Full Exam Simulators',
-                                    'AI-Powered Study Plans'
+                                    'Everything in Pro Membership',
+                                    '90 days of full access',
+                                    'One-time payment — no auto-renew',
+                                    'Free reschedule if your exam date moves',
+                                    'Unlimited AI quizzes & full simulators'
                                 ].map((feat) => (
                                     <li key={feat} className="flex items-center gap-3">
                                         <div className="bg-brand-500/20 p-1 rounded-full">
@@ -137,12 +127,63 @@ export default function PublicPricing() {
                                 onClick={handleCta}
                                 className="w-full py-4 rounded-xl font-bold transition-all shadow-lg bg-gradient-to-r from-brand-500 to-purple-600 text-white hover:from-brand-400 hover:to-purple-500 hover:shadow-brand-500/25"
                             >
-                                Start Free Trial
+                                Get the Exam Pass
                             </button>
                             <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-emerald-300">
-                                <ShieldCheck className="w-4 h-4" /> 60-day money-back guarantee
+                                <ShieldCheck className="w-4 h-4" /> 60-day money-back guarantee — full refund, no conditions
                             </p>
                         </div>
+                    </div>
+
+                    {/* Pro Tier — the subscription option, demoted below the Exam Pass hero. */}
+                    <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
+                        <h3 className="text-2xl font-bold text-white">Pro Membership</h3>
+                        <div className="mt-4 flex items-baseline flex-wrap gap-x-2">
+                            {billingInterval === 'year' && (
+                                <span className="text-lg text-slate-500 line-through">$228</span>
+                            )}
+                            <span className="text-4xl font-bold tracking-tight text-white">
+                                ${billingInterval === 'month' ? '19' : '190'}
+                            </span>
+                            <span className="text-xl text-slate-400">
+                                / {billingInterval === 'month' ? 'month' : 'year'}
+                            </span>
+                            {billingInterval === 'year' && (
+                                <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">Save $38/yr</span>
+                            )}
+                        </div>
+                        {billingInterval === 'year' && (
+                            <p className="text-xs text-slate-500">$15.83/mo billed annually</p>
+                        )}
+                        <p className="mt-2 text-brand-200 text-sm">7-day free trial. Cancel anytime.</p>
+                        <p className="mt-1.5 text-xs text-slate-400">Best if you're studying long-term or across multiple certs.</p>
+
+                        <ul className="mt-8 space-y-4 mb-8 flex-1">
+                            {[
+                                'Unlimited AI Quizzes',
+                                'Detailed Domain Analytics',
+                                'Priority Support',
+                                'Full Exam Simulators',
+                                'AI-Powered Study Plans'
+                            ].map((feat) => (
+                                <li key={feat} className="flex items-center gap-3">
+                                    <div className="bg-brand-500/20 p-1 rounded-full">
+                                        <Check className="w-4 h-4 text-brand-400" />
+                                    </div>
+                                    <span className="text-white font-medium">{feat}</span>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <button
+                            onClick={handleCta}
+                            className="w-full py-4 rounded-xl font-bold transition-colors bg-slate-700 text-white hover:bg-slate-600"
+                        >
+                            Start Free Trial
+                        </button>
+                        <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-emerald-300">
+                            <ShieldCheck className="w-4 h-4" /> 60-day money-back guarantee
+                        </p>
                     </div>
                 </div>
 
