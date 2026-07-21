@@ -1,4 +1,4 @@
-﻿import { auth, db } from '../firebase';
+import { auth, db } from '../firebase';
 import { Link } from 'react-router-dom';
 import MasteryRing from '../components/MasteryRing';
 import { DashboardSkeleton } from '../components/ui/Skeleton';
@@ -73,6 +73,28 @@ export default function Dashboard() {
         if (done) markDiagnosticComplete();
     }, [recentActivity, contextDiagnostic, markDiagnosticComplete]);
 
+    // Helper to fetch total questions per domain
+    async function fetchDomainTotals(examId: string, domains: string[]) {
+        const totals: Record<string, number> = {};
+
+        for (const domain of domains) {
+            try {
+                const q = query(
+                    collection(db, 'questions'),
+                    where('examId', '==', examId),
+                    where('domain', '==', domain)
+                );
+                const snapshot = await getCountFromServer(q);
+                totals[domain] = snapshot.data().count;
+            } catch (e) {
+                console.error(`Error fetching total for ${domain}:`, e);
+                totals[domain] = 100;
+            }
+        }
+        setDomainTotalCounts(totals);
+    }
+
+
     // 1. Fetch domain totals when exam context changes
     useEffect(() => {
         if (examLoading) return;
@@ -146,7 +168,7 @@ export default function Dashboard() {
                         setRecentActivity(perRun);
                     };
 
-                    unsubscribeActivity = onSnapshot(activityQuery, handleActivitySnapshot, (_err) => {
+                    unsubscribeActivity = onSnapshot(activityQuery, handleActivitySnapshot, () => {
                         // Fallback if composite index missing
                         console.warn('[Dashboard] Composite index missing for activity query, using fallback');
                         const fallbackQuery = query(
@@ -232,26 +254,6 @@ export default function Dashboard() {
         };
     }, [selectedExamId]); // Re-subscribe when exam changes
 
-    // Helper to fetch total questions per domain
-    const fetchDomainTotals = async (examId: string, domains: string[]) => {
-        const totals: Record<string, number> = {};
-
-        for (const domain of domains) {
-            try {
-                const q = query(
-                    collection(db, 'questions'),
-                    where('examId', '==', examId),
-                    where('domain', '==', domain)
-                );
-                const snapshot = await getCountFromServer(q);
-                totals[domain] = snapshot.data().count;
-            } catch (e) {
-                console.error(`Error fetching total for ${domain}:`, e);
-                totals[domain] = 100;
-            }
-        }
-        setDomainTotalCounts(totals);
-    };
 
     const saveGoal = async () => {
         if (!auth.currentUser) return;

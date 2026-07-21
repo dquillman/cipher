@@ -24,6 +24,9 @@ functions/exam-coach-ai-platform-firebase-adminsdk-fbsvc-ae6b0d59c6.json
 functions/.runtimeconfig.json
 
 functions/*.json
+!functions/package.json
+!functions/package-lock.json
+!functions/tsconfig.json
 functions/.runtimeconfig.json
 *.env
 .env*

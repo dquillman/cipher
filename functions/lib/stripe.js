@@ -5,6 +5,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const stripe_1 = require("stripe");
 const examPass_1 = require("./examPass");
+const billingConfig_1 = require("./billingConfig");
 // Initialize Stripe with secret key from environment variables
 // We use a getter to avoid initializing if the key is missing during build
 const getStripe = () => {
@@ -23,45 +24,42 @@ exports.createCheckoutSession = functions.https.onCall(async (data, context) => 
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     }
-    const userId = context.auth.uid;
-    const { priceId, successUrl, cancelUrl } = data;
-    if (!priceId) {
-        throw new functions.https.HttpsError('invalid-argument', 'Price ID is required.');
+    const billingInterval = (0, billingConfig_1.parseBillingInterval)(data === null || data === void 0 ? void 0 : data.billingInterval);
+    if (!billingInterval) {
+        throw new functions.https.HttpsError('invalid-argument', 'Billing interval must be month or year.');
     }
     try {
         const stripe = getStripe();
+        const priceId = (0, billingConfig_1.getSubscriptionPrices)()[billingInterval];
+        const urls = (0, billingConfig_1.getCheckoutUrls)();
         const session = await stripe.checkout.sessions.create({
             mode: 'subscription',
             payment_method_types: ['card'],
-            line_items: [
-                {
-                    price: priceId,
-                    quantity: 1,
-                },
-            ],
-            success_url: successUrl,
-            cancel_url: cancelUrl,
+            line_items: [{ price: priceId, quantity: 1 }],
+            success_url: urls.subscriptionSuccessUrl,
+            cancel_url: urls.subscriptionCancelUrl,
             metadata: {
-                userId: userId,
+                userId: context.auth.uid,
+                billingInterval,
+                expectedPriceId: priceId,
             },
-            customer_email: context.auth.token.email, // Pre-fill email
+            customer_email: context.auth.token.email,
         });
         return { sessionId: session.id, url: session.url };
     }
     catch (error) {
-        console.error("Stripe createCheckoutSession error:", error);
-        throw new functions.https.HttpsError('internal', error.message || 'Unable to create checkout session.');
+        console.error('Stripe createCheckoutSession error:', error);
+        throw new functions.https.HttpsError('internal', 'Unable to create checkout session.');
     }
 });
 /**
  * Creates a Stripe Customer Portal session for managing subscriptions.
  */
-exports.createPortalSession = functions.https.onCall(async (data, context) => {
+exports.createPortalSession = functions.https.onCall(async (_data, context) => {
     var _a;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     }
-    const { returnUrl } = data;
     const userId = context.auth.uid;
     try {
         const db = admin.firestore();
@@ -73,7 +71,7 @@ exports.createPortalSession = functions.https.onCall(async (data, context) => {
         const stripe = getStripe();
         const session = await stripe.billingPortal.sessions.create({
             customer: customerId,
-            return_url: returnUrl || 'https://exam-coach-ai-platform.web.app/pricing',
+            return_url: (0, billingConfig_1.getCheckoutUrls)().portalReturnUrl,
         });
         return { url: session.url };
     }
@@ -233,7 +231,7 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
                     await (0, examPass_1.fulfillExamPassCheckout)(session);
                 }
                 else {
-                    await handleCheckoutSessionCompleted(session);
+                    await handleCheckoutSessionCompleted(session, getStripe());
                 }
                 break;
             case 'customer.subscription.deleted':
@@ -265,36 +263,45 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-async function handleCheckoutSessionCompleted(session) {
-    var _a;
+async function handleCheckoutSessionCompleted(session, stripe) {
+    var _a, _b, _c, _d;
     const userId = (_a = session.metadata) === null || _a === void 0 ? void 0 : _a.userId;
-    const customerId = session.customer;
-    if (!userId) {
-        console.error("No userId in session metadata:", session.id);
-        return;
+    if (!userId || !isValidUid(userId)) {
+        throw new Error(`Refusing Pro grant for invalid user metadata on session ${session.id}`);
     }
-    // Defense-in-depth: the metadata userId originates from an authenticated
-    // createCheckoutSession call and forged events are already rejected by the
-    // webhook signature check, but never grant an entitlement to a UID that
-    // isn't well-formed or doesn't map to a real account.
-    if (!isValidUid(userId)) {
-        console.error(`Refusing Pro grant: malformed userId in session metadata: ${JSON.stringify(userId)} (session ${session.id})`);
-        return;
+    if (session.mode !== 'subscription' ||
+        session.status !== 'complete' ||
+        session.payment_status !== 'paid' ||
+        typeof session.subscription !== 'string' ||
+        typeof session.customer !== 'string') {
+        throw new Error(`Refusing Pro grant for incomplete subscription session ${session.id}`);
+    }
+    const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 1 });
+    const actualPriceId = (_c = (_b = lineItems.data[0]) === null || _b === void 0 ? void 0 : _b.price) === null || _c === void 0 ? void 0 : _c.id;
+    const allowedPriceIds = Object.values((0, billingConfig_1.getSubscriptionPrices)());
+    if (!actualPriceId || !allowedPriceIds.includes(actualPriceId)) {
+        throw new Error(`Refusing Pro grant for unexpected Stripe price on session ${session.id}`);
+    }
+    if (((_d = session.metadata) === null || _d === void 0 ? void 0 : _d.expectedPriceId) !== actualPriceId) {
+        throw new Error(`Refusing Pro grant for mismatched Stripe metadata on session ${session.id}`);
     }
     const db = admin.firestore();
     const userRef = db.collection('users').doc(userId);
     const userSnap = await userRef.get();
     if (!userSnap.exists) {
-        console.error(`Refusing Pro grant: no user document for ${userId} (session ${session.id})`);
-        return;
+        throw new Error(`Refusing Pro grant: no user document for ${userId}`);
     }
     console.log(`Granting Pro access to user ${userId}`);
-    // Update user document
     await userRef.set({
         isPro: true,
-        stripeCustomerId: customerId,
+        plan: 'pro',
+        trial: false,
+        trialConsumed: true,
+        access: 'paid',
+        accessLevel: 'pro',
+        stripeCustomerId: session.customer,
         subscriptionStatus: 'active',
-        lastUpdated: admin.firestore.FieldValue.serverTimestamp()
+        lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
 }
 // Firebase Auth UIDs are 1–128 chars. Reject anything with path-breaking or
@@ -303,7 +310,7 @@ function isValidUid(uid) {
     return typeof uid === 'string'
         && uid.length > 0
         && uid.length <= 128
-        && /^[A-Za-z0-9_-]+$/.test(uid);
+        && !uid.includes('/');
 }
 async function handleSubscriptionDeleted(sub) {
     // Ideally we find the user by stripeCustomerId
@@ -317,6 +324,10 @@ async function handleSubscriptionDeleted(sub) {
         console.log(`Revoking Pro access for user ${userDoc.id}`);
         await userDoc.ref.set({
             isPro: false,
+            plan: 'starter',
+            trial: false,
+            access: 'free',
+            accessLevel: 'free',
             subscriptionStatus: 'canceled',
             lastUpdated: admin.firestore.FieldValue.serverTimestamp()
         }, { merge: true });

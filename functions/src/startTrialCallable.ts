@@ -1,7 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import { resolveProAccess } from './entitlement';
 
 const db = admin.firestore();
+const TRIAL_DAYS = 14;
 
 export const startTrial = functions.https.onCall(async (_data, context) => {
     if (!context.auth) {
@@ -9,31 +11,34 @@ export const startTrial = functions.https.onCall(async (_data, context) => {
     }
 
     const uid = context.auth.uid;
-    const userDoc = await db.collection('users').doc(uid).get();
-    const userData = userDoc.data();
+    const userRef = db.collection('users').doc(uid);
+    const endDate = new Date(Date.now() + TRIAL_DAYS * 24 * 60 * 60 * 1000);
 
-    // Block if trial was already consumed
-    if (userData?.trialConsumed === true) {
-        throw new functions.https.HttpsError('failed-precondition', 'Trial already used');
-    }
+    await db.runTransaction(async transaction => {
+        const userDoc = await transaction.get(userRef);
+        if (!userDoc.exists) {
+            throw new functions.https.HttpsError('failed-precondition', 'User profile is not ready.');
+        }
 
-    // Block if already Pro (paid)
-    if (userData?.isPro === true && userData?.trial !== true) {
-        throw new functions.https.HttpsError('failed-precondition', 'Already on Pro plan');
-    }
+        const userData = userDoc.data();
+        if (userData?.trialConsumed === true || userData?.trial === true) {
+            throw new functions.https.HttpsError('failed-precondition', 'Trial already used');
+        }
+        const accessReason = resolveProAccess(userData);
+        if (accessReason === 'paid' || accessReason === 'comped' || accessReason === 'tester') {
+            throw new functions.https.HttpsError('failed-precondition', 'Pro access already active');
+        }
 
-    const now = new Date();
-    const endDate = new Date();
-    endDate.setDate(now.getDate() + 14);
-
-    await db.collection('users').doc(uid).update({
-        plan: 'pro',
-        trial: true,
-        trialStartedAt: admin.firestore.FieldValue.serverTimestamp(),
-        trialEndsAt: admin.firestore.Timestamp.fromDate(endDate),
-        trialLengthDays: 14,
-        trialConsumed: true,
-        accessLevel: 'pro'
+        transaction.update(userRef, {
+            plan: 'trial',
+            trial: true,
+            trialStartedAt: admin.firestore.FieldValue.serverTimestamp(),
+            trialEndsAt: admin.firestore.Timestamp.fromDate(endDate),
+            trialLengthDays: TRIAL_DAYS,
+            trialConsumed: true,
+            access: 'trial',
+            accessLevel: 'pro',
+        });
     });
 
     console.log(`Trial started for user ${uid}, expires ${endDate.toISOString()}`);

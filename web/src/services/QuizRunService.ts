@@ -1,4 +1,4 @@
-﻿import { db } from '../firebase';
+import { db } from '../firebase';
 import { collection, doc, setDoc, getDoc, updateDoc, serverTimestamp, query, where, orderBy, limit, getDocs } from 'firebase/firestore';
 
 export interface QuizRunSnapshot {
@@ -326,7 +326,7 @@ export const QuizRunService = {
                 return snap.data() as QuizRun;
             }
             return null;
-        } catch (error) {
+        } catch {
             return null;
         }
     }

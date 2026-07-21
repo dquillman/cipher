@@ -4,6 +4,7 @@ exports.validateQuizStart = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const freeTier_1 = require("./freeTier");
+const entitlement_1 = require("./entitlement");
 const db = admin.firestore();
 // minInstances: 1 keeps one warm instance — this callable gates EVERY quiz
 // start, so a cold start here adds 1-3s to question load for the first user
@@ -12,27 +13,22 @@ const db = admin.firestore();
 exports.validateQuizStart = functions
     .runWith({ minInstances: 1 })
     .https.onCall(async (_data, context) => {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'Authentication required');
     }
     const uid = context.auth.uid;
     const userDoc = await db.collection('users').doc(uid).get();
     const userData = userDoc.data();
-    // Pro users bypass daily limit
-    const isPro = (userData === null || userData === void 0 ? void 0 : userData.isPro) === true || (userData === null || userData === void 0 ? void 0 : userData.plan) === 'pro';
-    const isTrialActive = (userData === null || userData === void 0 ? void 0 : userData.trial) === true && ((_a = userData === null || userData === void 0 ? void 0 : userData.trialEndsAt) === null || _a === void 0 ? void 0 : _a.toDate()) > new Date();
-    const isTester = (userData === null || userData === void 0 ? void 0 : userData.testerOverride) === true && (!(userData === null || userData === void 0 ? void 0 : userData.testerExpiresAt) || (userData === null || userData === void 0 ? void 0 : userData.testerExpiresAt.toDate()) > new Date());
-    if (isPro || isTrialActive || isTester) {
+    if ((0, entitlement_1.resolveProAccess)(userData)) {
         return { allowed: true };
     }
     // Free-tier cap — 20/day during the 7-day taste window
     // (post-signup or post-trial-end, whichever is later), then 5/day.
     // See ./freeTier.ts for policy. MUST match web/src/utils/freeTier.ts.
-    const accountCreatedAt = (_d = (_c = (_b = userData === null || userData === void 0 ? void 0 : userData.createdAt) === null || _b === void 0 ? void 0 : _b.toDate) === null || _c === void 0 ? void 0 : _c.call(_b)) !== null && _d !== void 0 ? _d : null;
-    const trialEndsAt = (_g = (_f = (_e = userData === null || userData === void 0 ? void 0 : userData.trialEndsAt) === null || _e === void 0 ? void 0 : _e.toDate) === null || _f === void 0 ? void 0 : _f.call(_e)) !== null && _g !== void 0 ? _g : null;
+    const accountCreatedAt = (_c = (_b = (_a = userData === null || userData === void 0 ? void 0 : userData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a)) !== null && _c !== void 0 ? _c : null;
+    const trialEndsAt = (_f = (_e = (_d = userData === null || userData === void 0 ? void 0 : userData.trialEndsAt) === null || _d === void 0 ? void 0 : _d.toDate) === null || _e === void 0 ? void 0 : _e.call(_d)) !== null && _f !== void 0 ? _f : null;
     const dailyLimit = (0, freeTier_1.getFreeTierDailyLimit)({ accountCreatedAt, trialEndsAt });
-    // Count today's answered questions
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const todayTimestamp = admin.firestore.Timestamp.fromDate(today);
@@ -43,7 +39,7 @@ exports.validateQuizStart = functions
     runsSnap.forEach(doc => {
         const answers = doc.data().answers;
         if (Array.isArray(answers)) {
-            totalAnswered += answers.filter((a) => (a === null || a === void 0 ? void 0 : a.selectedOption) !== undefined).length;
+            totalAnswered += answers.filter(answer => (answer === null || answer === void 0 ? void 0 : answer.selectedOption) !== undefined).length;
         }
     });
     if (totalAnswered >= dailyLimit) {

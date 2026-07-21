@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { getFreeTierDailyLimit } from './freeTier';
+import { resolveProAccess } from './entitlement';
 
 const db = admin.firestore();
 
@@ -19,12 +20,7 @@ export const validateQuizStart = functions
     const userDoc = await db.collection('users').doc(uid).get();
     const userData = userDoc.data();
 
-    // Pro users bypass daily limit
-    const isPro = userData?.isPro === true || userData?.plan === 'pro';
-    const isTrialActive = userData?.trial === true && userData?.trialEndsAt?.toDate() > new Date();
-    const isTester = userData?.testerOverride === true && (!userData?.testerExpiresAt || userData?.testerExpiresAt.toDate() > new Date());
-
-    if (isPro || isTrialActive || isTester) {
+    if (resolveProAccess(userData)) {
         return { allowed: true };
     }
 
@@ -35,7 +31,6 @@ export const validateQuizStart = functions
     const trialEndsAt = userData?.trialEndsAt?.toDate?.() ?? null;
     const dailyLimit = getFreeTierDailyLimit({ accountCreatedAt, trialEndsAt });
 
-    // Count today's answered questions
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const todayTimestamp = admin.firestore.Timestamp.fromDate(today);
@@ -48,7 +43,7 @@ export const validateQuizStart = functions
     runsSnap.forEach(doc => {
         const answers = doc.data().answers;
         if (Array.isArray(answers)) {
-            totalAnswered += answers.filter((a: any) => a?.selectedOption !== undefined).length;
+            totalAnswered += answers.filter(answer => answer?.selectedOption !== undefined).length;
         }
     });
 

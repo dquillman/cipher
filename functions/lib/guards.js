@@ -3,26 +3,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.requirePro = void 0;
 const admin = require("firebase-admin");
 const https_1 = require("firebase-functions/v2/https");
+const entitlement_1 = require("./entitlement");
 async function requirePro(context) {
     if (!context.auth) {
         throw new https_1.HttpsError('unauthenticated', 'User must be authenticated.');
     }
-    const uid = context.auth.uid;
-    const db = admin.firestore();
-    const userDoc = await db.collection('users').doc(uid).get();
+    const userDoc = await admin.firestore().collection('users').doc(context.auth.uid).get();
     if (!userDoc.exists) {
         throw new https_1.HttpsError('permission-denied', 'User profile not found.');
     }
-    const userData = userDoc.data();
-    const isPro = (userData === null || userData === void 0 ? void 0 : userData.isPro) === true ||
-        (userData === null || userData === void 0 ? void 0 : userData.plan) === 'pro' ||
-        (userData === null || userData === void 0 ? void 0 : userData.trialActive) === true ||
-        (userData === null || userData === void 0 ? void 0 : userData.testerOverride) === true ||
-        (userData === null || userData === void 0 ? void 0 : userData.billingStatus) === 'comped';
-    if (!isPro) {
+    const accessReason = (0, entitlement_1.resolveProAccess)(userDoc.data());
+    if (!accessReason) {
         throw new https_1.HttpsError('permission-denied', 'Pro subscription required.');
     }
-    return true;
+    return accessReason;
 }
 exports.requirePro = requirePro;
 //# sourceMappingURL=guards.js.map

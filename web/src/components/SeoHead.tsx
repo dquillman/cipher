@@ -52,6 +52,9 @@ export default function SeoHead({
 }: SeoHeadProps) {
   const robots = noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large';
   const url = canonical.startsWith('http') ? canonical : `${SITE}${canonical}`;
+  const serializedJsonLd = jsonLd
+    ? JSON.stringify(jsonLd).replace(/</g, '\\u003c')
+    : null;
 
   return (
     <>
@@ -80,11 +83,10 @@ export default function SeoHead({
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={title} />
 
-      {jsonLd ? (
+      {serializedJsonLd ? (
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializedJsonLd }}
         />
       ) : null}
 

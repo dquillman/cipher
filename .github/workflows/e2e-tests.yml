@@ -7,6 +7,44 @@ on:
     branches: [ main, master ]
 
 jobs:
+  quality:
+    name: Lint, Build, and Unit Tests
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            web/package-lock.json
+            functions/package-lock.json
+            marketing-dashboard/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          npm ci --prefix web
+          npm ci --prefix functions
+          npm ci --prefix marketing-dashboard
+
+      - name: Lint web
+        run: npm run lint --prefix web
+
+      - name: Build web
+        run: npm run build:no-prerender --prefix web
+
+      - name: Lint and test functions
+        run: |
+          npm run lint --prefix functions
+          npm test --prefix functions
+
+      - name: Build marketing dashboard
+        run: npm run build --prefix marketing-dashboard
   test:
     name: Run E2E Tests
     timeout-minutes: 60
@@ -23,7 +61,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: web/package-lock.json
 

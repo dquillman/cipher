@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { useAuth } from '../App';
 import { db } from '../firebase';
-import { doc, onSnapshot, collection, query, where, getDocs, Timestamp, updateDoc } from 'firebase/firestore';
+import { doc, onSnapshot, collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
 import { getUserEntitlement, type UserEntitlement } from '../utils/entitlement';
 import { parsePassEntitlement, isPassActiveFor, type PassEntitlement } from '../utils/passEntitlement';
 import { getAnsweredCount } from '../utils/questionMetrics';
@@ -73,28 +73,10 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
             setLoading(false);
         }
 
-        const unsubscribeProfile = onSnapshot(doc(db, 'users', user.uid), async (snapshot) => {
+        const unsubscribeProfile = onSnapshot(doc(db, 'users', user.uid), (snapshot) => {
             if (snapshot.exists()) {
                 const data = snapshot.data();
                 const newEntitlement = getUserEntitlement(data, user);
-
-                // Check for EXPIRATION enforcement (Write operation)
-                // If the local helper says it's expired (based on time) but the DB still says 'trial'
-                // We must downgrade them in the DB to 'free'.
-                if (newEntitlement.isTrialExpired && data.trial === true) {
-                    console.log("SubscriptionProvider: Trial expired, downgrading user...");
-                    try {
-                        await updateDoc(doc(db, 'users', user.uid), {
-                            plan: 'starter',
-                            trial: false,
-                            accessLevel: 'free',
-                            trialConsumed: true // Ensure this stays true
-                        });
-                        // The write will trigger a new snapshot, updating state naturally.
-                    } catch (err) {
-                        console.error("Failed to downgrade expired user:", err);
-                    }
-                }
 
                 setEntitlement(newEntitlement);
                 setPassEntitlement(parsePassEntitlement(data.entitlement));

@@ -1,6 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import Stripe from "stripe";
+import { getCheckoutUrls } from "./billingConfig";
 
 /**
  * 90-Day Exam Pass (docs/exam-pass-spec.md).
@@ -20,6 +21,10 @@ const FREE_EXTENSION_BUFFER_DAYS = 7;  // extend to examDate + 7 days...
 const FREE_EXTENSION_CAP_DAYS = 30;    // ...capped at old expiry + 30 days
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+
+function isValidDocumentId(value: string): boolean {
+    return value.length > 0 && value.length <= 128 && !value.includes('/');
+}
 
 // Mirrors getStripe() in stripe.ts — key from functions/.env (TEST mode today).
 const getStripe = () => {
@@ -71,50 +76,47 @@ export const createPassCheckoutSession = functions.https.onCall(async (data, con
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     }
 
-    const uid = context.auth.uid;
-    const { examId, successUrl, cancelUrl } = data;
+    const examId = typeof data?.examId === 'string' ? data.examId.trim() : '';
+    if (!isValidDocumentId(examId)) {
+        throw new functions.https.HttpsError('invalid-argument', 'A valid examId is required.');
+    }
 
-    if (typeof examId !== 'string' || examId.trim().length === 0) {
-        throw new functions.https.HttpsError('invalid-argument', 'examId is required.');
+    const examSnap = await admin.firestore().collection('exams').doc(examId).get();
+    if (!examSnap.exists) {
+        throw new functions.https.HttpsError('not-found', 'Exam not found.');
     }
 
     const metadata = {
         type: 'exam-pass',
-        uid: uid,
-        examId: examId,
+        uid: context.auth.uid,
+        examId,
     };
 
     try {
         const stripe = getStripe();
-
+        const urls = getCheckoutUrls();
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             payment_method_types: ['card'],
-            line_items: [
-                {
-                    price_data: {
-                        currency: 'usd',
-                        unit_amount: 5900,
-                        product_data: {
-                            name: 'CipherExam Exam Pass — 90 days',
-                        },
-                    },
-                    quantity: 1,
+            line_items: [{
+                price_data: {
+                    currency: 'usd',
+                    unit_amount: 5900,
+                    product_data: { name: 'CipherExam Exam Pass — 90 days' },
                 },
-            ],
-            success_url: successUrl,
-            cancel_url: cancelUrl,
-            metadata: metadata,
-            payment_intent_data: {
-                metadata: metadata,
-            },
-            customer_email: context.auth.token.email, // Pre-fill email
+                quantity: 1,
+            }],
+            success_url: urls.passSuccessUrl,
+            cancel_url: urls.passCancelUrl,
+            metadata,
+            payment_intent_data: { metadata },
+            customer_email: context.auth.token.email,
         });
 
         return { sessionId: session.id, url: session.url };
-    } catch (error: any) {
-        console.error("Stripe createPassCheckoutSession error:", error);
-        throw new functions.https.HttpsError('internal', error.message || 'Unable to create checkout session.');
+    } catch (error: unknown) {
+        console.error('Stripe createPassCheckoutSession error:', error);
+        throw new functions.https.HttpsError('internal', 'Unable to create checkout session.');
     }
 });
 
@@ -130,9 +132,15 @@ export async function fulfillExamPassCheckout(session: Stripe.Checkout.Session):
     const uid = session.metadata?.uid;
     const examId = session.metadata?.examId;
 
-    if (!uid || !examId) {
-        console.error(`[exam-pass] Missing uid/examId in session metadata (session ${session.id})`);
-        return;
+    if (!uid || !examId || !isValidDocumentId(uid) || !isValidDocumentId(examId)) {
+        throw new Error(`[exam-pass] Invalid uid/examId metadata on session ${session.id}`);
+    }
+    if (session.mode !== 'payment' ||
+        session.status !== 'complete' ||
+        session.payment_status !== 'paid' ||
+        session.amount_total !== 5900 ||
+        session.currency !== 'usd') {
+        throw new Error(`[exam-pass] Refusing unverified payment session ${session.id}`);
     }
 
     const db = admin.firestore();
@@ -185,7 +193,7 @@ export async function fulfillExamPassCheckout(session: Stripe.Checkout.Session):
  * Not eligible → { eligible: false, reason }. The paid $19/30d extension is
  * not built yet; 'paid_extension_required' signals that path.
  */
-export const extendExamPass = functions.https.onCall(async (data, context) => {
+export const extendExamPass = functions.https.onCall(async (_data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     }

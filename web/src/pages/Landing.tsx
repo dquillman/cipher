@@ -88,8 +88,6 @@ function RevealSection({ children, className = "", id }: { children: React.React
 
 export default function Landing() {
   const location = useLocation();
-  if (location.pathname !== "/") return null;
-
   const navigate = useNavigate();
   const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
@@ -197,6 +195,8 @@ export default function Landing() {
 
   /* ── Detect touch device for demo hint ──────────────────────────────────── */
   const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+  if (location.pathname !== "/") return null;
 
   return (
     <div className="decoder bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">

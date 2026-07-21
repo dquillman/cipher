@@ -38,7 +38,7 @@ export const useMarketingCopy = () => {
                         pro_value_secondary: data.pro_value_secondary || prev.pro_value_secondary
                     }));
                 }
-            } catch (error) {
+            } catch {
                 // Silent fallback - do not surface error to user
                 // Using console.debug to avoid cluttering production logs, or warn for dev visibility
                 console.debug("Using default marketing copy (remote fetch skipped or failed)");

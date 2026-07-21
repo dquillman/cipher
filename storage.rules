@@ -6,10 +6,23 @@ rules_version = '2';
 // paths. Keep this in sync with Migraine Tracker's storage.rules (identical).
 service firebase.storage {
   match /b/{bucket}/o {
-    // Cipher Exam: per-user uploads.
+    function isAdmin() {
+      return request.auth != null &&
+             (request.auth.token.admin == true ||
+              request.auth.token.super_admin == true ||
+              request.auth.token.email == 'dquillman2112@gmail.com');
+    }
+
+    // Cipher Exam: private, per-user issue screenshots.
     match /uploads/{userId}/{allPaths=**} {
-      allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow read: if request.auth != null &&
+                     (request.auth.uid == userId || isAdmin());
+      allow create, update: if request.auth != null
+                            && request.auth.uid == userId
+                            && request.resource.size < 10 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+      allow delete: if request.auth != null &&
+                       (request.auth.uid == userId || isAdmin());
     }
 
     // Migraine Tracker: bug-report attachments, scoped to the uploader.
@@ -21,7 +34,6 @@ service firebase.storage {
                    && request.resource.contentType.matches('image/.*|application/pdf|text/plain');
     }
 
-    // Everything else: denied.
     match /{allPaths=**} {
       allow read, write: if false;
     }

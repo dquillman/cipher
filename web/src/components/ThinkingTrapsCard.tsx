@@ -160,7 +160,7 @@ export default function ThinkingTrapsCard() {
                                 );
                             }
                         }
-                    } catch (e) {
+                    } catch {
                         // ignore errors logic
                     }
                     return null;

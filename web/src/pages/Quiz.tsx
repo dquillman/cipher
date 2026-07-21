@@ -340,7 +340,7 @@ export default function Quiz() {
 
                 // 1. Fetch questions (optionally filtered by domain and/or Bloom level)
                 const questionsRef = collection(db, 'questions');
-                let constraints: any[] = [where('examId', '==', activeExamId)];
+                const constraints: any[] = [where('examId', '==', activeExamId)];
 
                 const filterDomain = location.state?.filterDomain as string | undefined;
                 if (filterDomain) {
@@ -914,7 +914,7 @@ export default function Quiz() {
                 context: tutorBreakdown,
                 style: type
             });
-            // @ts-ignore
+            // @ts-expect-error Callable result is narrowed by the deployed function contract.
             setDepthContent(result.data.content);
         } catch (err) {
             console.error("Failed to generate depth:", err);

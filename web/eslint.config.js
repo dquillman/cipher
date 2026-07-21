@@ -24,6 +24,12 @@ export default defineConfig([
       // vite.config.ts); this keeps new ones visible at lint time without
       // failing the build. Use console.warn/error for intentional logging.
       'no-console': ['warn', { allow: ['warn', 'error'] }],
+      // Keep legacy debt visible while making lint a usable CI gate. New code
+      // should not add to these warning-only categories.
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/purity': 'warn',
+      'react-refresh/only-export-components': 'warn',
     },
   },
 ])

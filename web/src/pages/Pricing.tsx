@@ -44,16 +44,6 @@ export default function Pricing() {
     const functions = getFunctions();
     const copy = useMarketingCopy();
 
-    // Both IDs must belong to the SAME Stripe account/mode as the
-    // STRIPE_SECRET_KEY deployed with the Cloud Functions (functions/.env).
-    // Currently that key is TEST-mode (acct_1ScUyKPISVVFkTmY), so these are
-    // that account's test prices ($19/mo, $190/yr on prod_TZeN9wLRQuhpSi).
-    // GOING LIVE: swap the functions STRIPE_SECRET_KEY + STRIPE_WEBHOOK_SECRET
-    // to live-mode values AND replace both IDs with live-mode prices in the
-    // same change — a mixed pair makes checkout fail with "No such price".
-    const PRICE_ID_MONTHLY = "price_1ScV4PPISVVFkTmYtxipM6eN";
-    const PRICE_ID_YEARLY = "price_1ScXMIPISVVFkTmY9U5uaLTk";
-
     // Removed manual useEffect listener
 
 
@@ -61,13 +51,7 @@ export default function Pricing() {
         setLoading(true);
         try {
             const createCheckoutSession = httpsCallable(functions, 'createCheckoutSession');
-            const priceId = billingInterval === 'month' ? PRICE_ID_MONTHLY : PRICE_ID_YEARLY;
-
-            const { data }: any = await createCheckoutSession({
-                priceId: priceId,
-                successUrl: window.location.origin + '/success',
-                cancelUrl: window.location.origin + '/pricing',
-            });
+            const { data }: any = await createCheckoutSession({ billingInterval });
 
             if (data?.url) {
                 window.location.href = data.url;
@@ -111,9 +95,7 @@ export default function Pricing() {
         setLoading(true);
         try {
             const createPortalSession = httpsCallable(functions, 'createPortalSession');
-            const { data }: any = await createPortalSession({
-                returnUrl: window.location.origin + '/pricing',
-            });
+            const { data }: any = await createPortalSession();
 
             if (data?.url) {
                 window.location.href = data.url;

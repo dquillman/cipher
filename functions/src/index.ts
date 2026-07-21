@@ -31,12 +31,16 @@ export const createUserProfile = functions.auth.user().onCreate(async (user) => 
             photoURL: user.photoURL || null,
             role: 'user', // Default role
 
-            // Enforce Trial Persistence (Server-Side Authority)
-            plan: 'pro',
+            // Server-owned trial ledger. `plan: trial` prevents stale trials
+            // from being mistaken for paid Pro access by backend guards.
+            plan: 'trial',
             trial: true,
             trialStartedAt: admin.firestore.FieldValue.serverTimestamp(),
             trialEndsAt: admin.firestore.Timestamp.fromDate(endDate),
+            trialLengthDays: 14,
+            trialConsumed: true,
             access: 'trial',
+            accessLevel: 'pro',
 
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             updatedAt: admin.firestore.FieldValue.serverTimestamp()

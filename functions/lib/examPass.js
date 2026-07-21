@@ -4,6 +4,7 @@ exports.extendExamPass = exports.fulfillExamPassCheckout = exports.createPassChe
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const stripe_1 = require("stripe");
+const billingConfig_1 = require("./billingConfig");
 /**
  * 90-Day Exam Pass (docs/exam-pass-spec.md).
  *
@@ -20,6 +21,9 @@ const FREE_EXTENSION_WINDOW_DAYS = 30; // examDateSnapshot must fall within 30d 
 const FREE_EXTENSION_BUFFER_DAYS = 7; // extend to examDate + 7 days...
 const FREE_EXTENSION_CAP_DAYS = 30; // ...capped at old expiry + 30 days
 const DAY_MS = 24 * 60 * 60 * 1000;
+function isValidDocumentId(value) {
+    return value.length > 0 && value.length <= 128 && !value.includes('/');
+}
 // Mirrors getStripe() in stripe.ts — key from functions/.env (TEST mode today).
 const getStripe = () => {
     const key = process.env.STRIPE_SECRET_KEY;
@@ -64,46 +68,44 @@ exports.createPassCheckoutSession = functions.https.onCall(async (data, context)
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     }
-    const uid = context.auth.uid;
-    const { examId, successUrl, cancelUrl } = data;
-    if (typeof examId !== 'string' || examId.trim().length === 0) {
-        throw new functions.https.HttpsError('invalid-argument', 'examId is required.');
+    const examId = typeof (data === null || data === void 0 ? void 0 : data.examId) === 'string' ? data.examId.trim() : '';
+    if (!isValidDocumentId(examId)) {
+        throw new functions.https.HttpsError('invalid-argument', 'A valid examId is required.');
+    }
+    const examSnap = await admin.firestore().collection('exams').doc(examId).get();
+    if (!examSnap.exists) {
+        throw new functions.https.HttpsError('not-found', 'Exam not found.');
     }
     const metadata = {
         type: 'exam-pass',
-        uid: uid,
-        examId: examId,
+        uid: context.auth.uid,
+        examId,
     };
     try {
         const stripe = getStripe();
+        const urls = (0, billingConfig_1.getCheckoutUrls)();
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             payment_method_types: ['card'],
-            line_items: [
-                {
+            line_items: [{
                     price_data: {
                         currency: 'usd',
                         unit_amount: 5900,
-                        product_data: {
-                            name: 'CipherExam Exam Pass — 90 days',
-                        },
+                        product_data: { name: 'CipherExam Exam Pass — 90 days' },
                     },
                     quantity: 1,
-                },
-            ],
-            success_url: successUrl,
-            cancel_url: cancelUrl,
-            metadata: metadata,
-            payment_intent_data: {
-                metadata: metadata,
-            },
-            customer_email: context.auth.token.email, // Pre-fill email
+                }],
+            success_url: urls.passSuccessUrl,
+            cancel_url: urls.passCancelUrl,
+            metadata,
+            payment_intent_data: { metadata },
+            customer_email: context.auth.token.email,
         });
         return { sessionId: session.id, url: session.url };
     }
     catch (error) {
-        console.error("Stripe createPassCheckoutSession error:", error);
-        throw new functions.https.HttpsError('internal', error.message || 'Unable to create checkout session.');
+        console.error('Stripe createPassCheckoutSession error:', error);
+        throw new functions.https.HttpsError('internal', 'Unable to create checkout session.');
     }
 });
 /**
@@ -118,9 +120,15 @@ async function fulfillExamPassCheckout(session) {
     var _a, _b, _c;
     const uid = (_a = session.metadata) === null || _a === void 0 ? void 0 : _a.uid;
     const examId = (_b = session.metadata) === null || _b === void 0 ? void 0 : _b.examId;
-    if (!uid || !examId) {
-        console.error(`[exam-pass] Missing uid/examId in session metadata (session ${session.id})`);
-        return;
+    if (!uid || !examId || !isValidDocumentId(uid) || !isValidDocumentId(examId)) {
+        throw new Error(`[exam-pass] Invalid uid/examId metadata on session ${session.id}`);
+    }
+    if (session.mode !== 'payment' ||
+        session.status !== 'complete' ||
+        session.payment_status !== 'paid' ||
+        session.amount_total !== 5900 ||
+        session.currency !== 'usd') {
+        throw new Error(`[exam-pass] Refusing unverified payment session ${session.id}`);
     }
     const db = admin.firestore();
     const userRef = db.collection('users').doc(uid);
@@ -167,7 +175,7 @@ exports.fulfillExamPassCheckout = fulfillExamPassCheckout;
  * Not eligible → { eligible: false, reason }. The paid $19/30d extension is
  * not built yet; 'paid_extension_required' signals that path.
  */
-exports.extendExamPass = functions.https.onCall(async (data, context) => {
+exports.extendExamPass = functions.https.onCall(async (_data, context) => {
     var _a;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
