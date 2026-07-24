@@ -24,3 +24,8 @@ else
 fi
 
 echo "Hosting deploy complete. Rules untouched (owned by Admin-Core)."
+
+# Teach HAL what shipped (best-effort — the bridge always exits 0, so a memory
+# failure can never fail this deploy). Version from web/package.json, changelog
+# from the HEAD commit; writes the shared Second Brain and syncs to Firestore.
+node "G:/Users/daveq/2nd Brain/teach-hal.mjs" cipher "$(pwd)/web" || true
