@@ -18,6 +18,11 @@ export default defineConfig({
     pure: ['console.log', 'console.debug', 'console.info', 'console.trace'],
   },
   build: {
+    // Explicit, not relying on the default. dist/ accumulates prerendered
+    // {route}/index.html files that Vite does not track, so a stale one can
+    // survive a build and ship HTML pointing at asset hashes that no longer
+    // exist — a white screen that looks like a clean deploy. Always start empty.
+    emptyOutDir: true,
     rollupOptions: {
       output: {
         // Long-term-cacheable vendor chunks. The entry chunk changes every

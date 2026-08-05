@@ -6,6 +6,7 @@ import SubscriptionModal from '../components/SubscriptionModal';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useExam } from '../contexts/ExamContext';
 import { EXAMS } from '../config/exams';
+import { REFUND_MAILTO } from '../config/support';
 
 // Initialize Stripe with the publishable key
 // Ideally this comes from env vars: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
@@ -275,6 +276,17 @@ export default function Pricing() {
                             </div>
                             <p className="text-xs text-slate-500 text-center">
                                 Ends {passEntitlement!.expiresAt.toLocaleDateString()}
+                            </p>
+                            {/* Pass holders are not isPro, so SubscriptionModal never opens
+                                for them — without this they have no refund path at all. */}
+                            <p className="text-xs text-slate-500 text-center pt-1">
+                                <a
+                                    href={REFUND_MAILTO}
+                                    className="text-amber-400/90 hover:text-amber-300 underline underline-offset-2"
+                                >
+                                    Request a refund
+                                </a>{' '}
+                                — 60-day guarantee, no conditions.
                             </p>
                         </div>
                     ) : isPro ? (

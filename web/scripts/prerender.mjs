@@ -24,7 +24,7 @@
  * If a route fetches data at mount, this prerender will capture the
  * post-fetch state. Pages depending on user auth (/app/*) are skipped.
  */
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, rm } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'node:http';
@@ -34,6 +34,15 @@ import { chromium } from 'playwright';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
 const PORT = 4173 + Math.floor(Math.random() * 100); // avoid clash with vite preview
+
+// How long to wait for the hydration signal before falling back to the
+// "did content actually render?" check. The chart/WebGL-heavy routes are the
+// slow ones, so this is sized for them on a cold, loaded machine.
+const READY_TIMEOUT_MS = 45000;
+// Rendered text below this is a shell or an error page, not an article.
+const MIN_CONTENT_CHARS = 500;
+// Retry once — a single timeout is usually machine load, not a broken route.
+const MAX_ATTEMPTS = 2;
 
 // Public routes to prerender. Keep in sync with App.tsx + sitemap.xml + generate-sitemap.mjs.
 const ROUTES = [
@@ -146,8 +155,10 @@ async function main() {
 
   let success = 0;
   let failed = 0;
+  const failedRoutes = [];
 
-  for (const route of ROUTES) {
+  // One route render attempt. Returns the serialized HTML, or throws.
+  async function renderRoute(route) {
     const url = `http://127.0.0.1:${PORT}${route}`;
     const page = await context.newPage();
     try {
@@ -163,14 +174,32 @@ async function main() {
       // Wait for the React.lazy() chunk to finish loading + replace the Suspense
       // fallback spinner (.animate-spin) with the actual route content. This is the
       // reliable signal that hydration is complete.
-      await page.waitForFunction(
-        () => {
+      //
+      // The spinner predicate is a proxy for "route rendered", not proof of it, and
+      // it produces FALSE FAILURES: the heaviest routes (charts-vendor + three-vendor,
+      // ~850KB) can finish painting real content while some transient spinner is still
+      // in the tree. So on timeout we fall back to asking the question we actually
+      // care about — did substantive content render? — and only fail if it didn't.
+      // Without this, a route ships as "failed" despite being perfectly renderable.
+      try {
+        await page.waitForFunction(
+          () => {
+            const root = document.getElementById('root');
+            if (!root || root.children.length === 0) return false;
+            return !root.querySelector('.animate-spin');
+          },
+          { timeout: READY_TIMEOUT_MS },
+        );
+      } catch (readyErr) {
+        const rendered = await page.evaluate((minText) => {
           const root = document.getElementById('root');
-          if (!root || root.children.length === 0) return false;
-          return !root.querySelector('.animate-spin');
-        },
-        { timeout: 30000 },
-      );
+          if (!root) return false;
+          const text = (root.innerText || '').trim();
+          return Boolean(root.querySelector('h1')) && text.length >= minText;
+        }, MIN_CONTENT_CHARS);
+        if (!rendered) throw readyErr;
+        console.warn(`  ⚠ ${route} spinner never cleared, but content rendered — accepting`);
+      }
       // Extra settle: React 19 head hoisting + final layout paint
       await page.waitForTimeout(750);
 
@@ -211,28 +240,62 @@ async function main() {
         });
       });
 
-      const html = await page.content();
-      const outPath =
-        route === '/'
-          ? join(DIST, 'index.html')
-          : join(DIST, route.replace(/^\//, ''), 'index.html');
-      await mkdir(dirname(outPath), { recursive: true });
-      await writeFile(outPath, html, 'utf8');
-      console.log(`  ✓ ${route} → ${outPath.replace(DIST, 'dist')} (${(html.length / 1024).toFixed(1)} KB)`);
-      success++;
-    } catch (err) {
-      console.error(`  ✗ ${route} FAILED: ${err.message.slice(0, 120)}`);
-      failed++;
+      return await page.content();
     } finally {
       await page.close();
     }
+  }
+
+  for (const route of ROUTES) {
+    const outPath =
+      route === '/'
+        ? join(DIST, 'index.html')
+        : join(DIST, route.replace(/^\//, ''), 'index.html');
+
+    let html = null;
+    let lastErr = null;
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      try {
+        html = await renderRoute(route);
+        break;
+      } catch (err) {
+        lastErr = err;
+        if (attempt < MAX_ATTEMPTS) {
+          console.warn(`  ↻ ${route} attempt ${attempt} failed, retrying: ${err.message.slice(0, 80)}`);
+        }
+      }
+    }
+
+    if (html === null) {
+      // Remove any output from a PREVIOUS build. Vite only clears dist when it
+      // owns the directory, so without this a failed route silently keeps last
+      // build's HTML — which references asset hashes that no longer exist,
+      // serving a white screen that looks like a successful deploy. Better to
+      // have no file: Firebase then falls through to _catchall.html, which at
+      // least boots the SPA (noindex, but functional).
+      await rm(outPath, { force: true });
+      console.error(`  ✗ ${route} FAILED after ${MAX_ATTEMPTS} attempts: ${lastErr.message.slice(0, 120)}`);
+      console.error(`    cleared stale ${outPath.replace(DIST, 'dist')} so it cannot ship`);
+      failedRoutes.push(route);
+      failed++;
+      continue;
+    }
+
+    await mkdir(dirname(outPath), { recursive: true });
+    await writeFile(outPath, html, 'utf8');
+    console.log(`  ✓ ${route} → ${outPath.replace(DIST, 'dist')} (${(html.length / 1024).toFixed(1)} KB)`);
+    success++;
   }
 
   await browser.close();
   server.close();
 
   console.log(`\n✓ Prerender complete: ${success} success, ${failed} failed`);
-  if (failed > 0) process.exit(1);
+  if (failed > 0) {
+    console.error(`\n✗ Not deployable — these routes have NO prerendered HTML and will`);
+    console.error(`  fall through to the noindex SPA shell:\n    ${failedRoutes.join('\n    ')}`);
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {
