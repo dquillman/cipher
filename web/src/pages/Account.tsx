@@ -102,7 +102,7 @@ export default function Account() {
             const noCustomer = String(err?.code ?? '').includes('failed-precondition');
             setPortalError(
                 noCustomer
-                    ? 'No billing history yet — this account has never been charged.'
+                    ? "No billing portal for this account yet. If you bought an Exam Pass before August 2026, email support for a receipt — one-time purchases made then didn't create a billing record."
                     : 'Could not open the billing portal. Please try again.',
             );
         } finally {

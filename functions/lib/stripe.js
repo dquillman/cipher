@@ -77,6 +77,13 @@ exports.createPortalSession = functions.https.onCall(async (_data, context) => {
     }
     catch (error) {
         console.error("Error creating portal session:", error);
+        // Preserve HttpsError codes. This catch used to re-wrap everything as
+        // 'internal', including the failed-precondition thrown just above for
+        // "no Stripe customer" — so the client could not tell "you have never
+        // been billed" from "something broke" and showed a generic retry error
+        // to users for whom retrying can never work.
+        if (error instanceof functions.https.HttpsError)
+            throw error;
         throw new functions.https.HttpsError('internal', error.message);
     }
 });

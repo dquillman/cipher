@@ -87,6 +87,12 @@ exports.createPassCheckoutSession = functions.https.onCall(async (data, context)
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             payment_method_types: ['card'],
+            // Payment-mode checkout defaults to customer_creation 'if_required',
+            // which for a card payment creates NO customer. Pass buyers were
+            // therefore left with no stripeCustomerId and no billing portal —
+            // they had paid $59 and could not pull their own receipt. Always
+            // create one so the portal works for them too.
+            customer_creation: 'always',
             line_items: [{
                     price_data: {
                         currency: 'usd',
@@ -117,7 +123,7 @@ exports.createPassCheckoutSession = functions.https.onCall(async (data, context)
  * for the same session is a no-op (on top of the webhook's event-claim guard).
  */
 async function fulfillExamPassCheckout(session) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     const uid = (_a = session.metadata) === null || _a === void 0 ? void 0 : _a.uid;
     const examId = (_b = session.metadata) === null || _b === void 0 ? void 0 : _b.examId;
     if (!uid || !examId || !isValidDocumentId(uid) || !isValidDocumentId(examId)) {
@@ -148,8 +154,14 @@ async function fulfillExamPassCheckout(session) {
     // Anti-gaming snapshot: examDate at purchase (or first entry later, see extendExamPass).
     const examDateSnapshot = await getActivePlanExamDate(uid, examId);
     console.log(`[exam-pass] Granting 90-day pass for exam ${examId} to user ${uid} (session ${session.id})`);
-    await userRef.set({
-        entitlement: {
+    // Persist the Stripe customer so the billing portal works for pass-only
+    // buyers (createPortalSession reads users/{uid}.stripeCustomerId, which was
+    // previously written only by the subscription flow). Never overwrite an
+    // existing id — a Pro subscriber who also buys a pass keeps their original
+    // customer record.
+    const passCustomerId = typeof session.customer === 'string' ? session.customer : null;
+    const existingCustomerId = (_d = userSnap.data()) === null || _d === void 0 ? void 0 : _d.stripeCustomerId;
+    await userRef.set(Object.assign(Object.assign({ entitlement: {
             type: 'exam-pass',
             examId: examId,
             purchasedAt: now,
@@ -157,9 +169,7 @@ async function fulfillExamPassCheckout(session) {
             examDateSnapshot: examDateSnapshot,
             freeExtensionUsed: false,
             stripeSessionId: session.id,
-        },
-        lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
-    }, { merge: true });
+        } }, (passCustomerId && !existingCustomerId ? { stripeCustomerId: passCustomerId } : {})), { lastUpdated: admin.firestore.FieldValue.serverTimestamp() }), { merge: true });
 }
 exports.fulfillExamPassCheckout = fulfillExamPassCheckout;
 /**
