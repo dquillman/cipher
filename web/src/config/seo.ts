@@ -28,7 +28,7 @@ export const SEO = {
   pricing: {
     title: 'Pricing — $0 Free or $19/mo Pro · CipherExam',
     description:
-      'Free Starter forever, or Pro at $19/month (save 17% yearly). 7-day free trial. No credit card required. Cancel anytime.',
+      'Free Starter forever, Pro at $19/month, or a one-time $59 Exam Pass for 90 days. 7-day free trial. No credit card required. Cancel anytime.',
     canonical: '/pricing',
     jsonLd: [
       {
@@ -50,8 +50,8 @@ export const SEO = {
           },
           {
             '@type': 'Offer',
-            name: 'Pro Yearly',
-            price: '190',
+            name: 'Exam Pass — 90 days',
+            price: '59',
             priceCurrency: 'USD',
             availability: 'https://schema.org/InStock',
             url: SITE + '/pricing',
@@ -247,7 +247,7 @@ export const SEO = {
           name: 'What does CipherExam cost?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '$19/month, or $190/year. Every plan starts with a 7-day free trial — no credit card required — and Pro is covered by a 60-day, no-conditions money-back guarantee.',
+            text: '$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 7-day free trial — no credit card required — and both are covered by a 60-day, no-conditions money-back guarantee.',
           },
         },
       ],

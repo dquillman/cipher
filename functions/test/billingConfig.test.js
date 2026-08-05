@@ -9,7 +9,9 @@ const {
 
 test('billing interval accepts only supported server-side plans', () => {
   assert.equal(parseBillingInterval('month'), 'month');
-  assert.equal(parseBillingInterval('year'), 'year');
+  // Pro is monthly-only since the live annual price was deleted 2026-08-04.
+  // 'year' must be rejected, not silently resolved to a dead price id.
+  assert.equal(parseBillingInterval('year'), null);
   assert.equal(parseBillingInterval('price_attacker'), null);
 });
 
@@ -25,21 +27,31 @@ test('configured prices override defaults and are validated', () => {
   assert.equal(getSubscriptionPrices({
     STRIPE_SECRET_KEY: 'sk_test_example',
     STRIPE_PRICE_MONTHLY: 'price_customMonthly',
-    STRIPE_PRICE_YEARLY: 'price_customYearly',
-  }).year, 'price_customYearly');
+  }).month, 'price_customMonthly');
   assert.throws(() => getSubscriptionPrices({
     STRIPE_PRICE_MONTHLY: 'not-a-price',
   }), /invalid/);
 });
 
+test('no yearly price is exposed to checkout', () => {
+  const prices = getSubscriptionPrices({ STRIPE_SECRET_KEY: 'sk_live_example' });
+  assert.deepEqual(Object.keys(prices), ['month']);
+  // The deleted live annual price must never reappear in the allow-list that
+  // handleCheckoutSessionCompleted validates against.
+  assert.ok(!Object.values(prices).includes('price_1TuEaQBH0CNhR0Vacg981ipq'));
+});
+
 test('checkout redirects are server-owned HTTPS URLs', () => {
   assert.equal(getPublicOrigin({ CIPHER_PUBLIC_ORIGIN: 'https://cipherexam.com/path' }), 'https://cipherexam.com');
+  // Paths MUST stay under /app/* — they are React Router routes nested inside
+  // <Route path="/app/*">. A bare /success or /pricing lands on the marketing
+  // 404 / marketing pricing page instead of the post-checkout screen.
   assert.deepEqual(getCheckoutUrls({ CIPHER_PUBLIC_ORIGIN: 'https://cipherexam.com' }), {
-    subscriptionSuccessUrl: 'https://cipherexam.com/success',
-    subscriptionCancelUrl: 'https://cipherexam.com/pricing',
-    passSuccessUrl: 'https://cipherexam.com/success?product=exam-pass',
-    passCancelUrl: 'https://cipherexam.com/pricing',
-    portalReturnUrl: 'https://cipherexam.com/pricing',
+    subscriptionSuccessUrl: 'https://cipherexam.com/app/success',
+    subscriptionCancelUrl: 'https://cipherexam.com/app/pricing',
+    passSuccessUrl: 'https://cipherexam.com/app/success?product=exam-pass',
+    passCancelUrl: 'https://cipherexam.com/app/pricing',
+    portalReturnUrl: 'https://cipherexam.com/app/pricing',
   });
   assert.throws(() => getPublicOrigin({ CIPHER_PUBLIC_ORIGIN: 'http://evil.example' }), /HTTPS/);
 });

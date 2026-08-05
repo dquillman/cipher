@@ -55,7 +55,6 @@ export default function PricingCard({
             <span className="text-4xl font-extrabold text-slate-50">$19</span>
             <span className="ml-1 text-sm font-semibold text-slate-500">/ month</span>
           </p>
-          <p className="mt-1 text-xs text-slate-500">Yearly saves 17% — ~$189/yr</p>
           <p className="mt-3 text-sm font-semibold text-brand-300">7-day free trial. Cancel anytime.</p>
           <ul className="mt-6 space-y-3 text-sm text-slate-300">
             <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Unlimited AI Quizzes</li>

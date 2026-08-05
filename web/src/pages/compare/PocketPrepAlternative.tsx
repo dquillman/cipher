@@ -137,7 +137,7 @@ export default function PocketPrepAlternative() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does it cost?</dt>
-            <dd className="mt-1">$19/month, or $190/year. Every plan starts with a 7-day free trial — no credit card required — and Pro is covered by a 60-day, no-conditions money-back guarantee.</dd>
+            <dd className="mt-1">$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 7-day free trial — no credit card required — and both are covered by a 60-day, no-conditions money-back guarantee.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>
