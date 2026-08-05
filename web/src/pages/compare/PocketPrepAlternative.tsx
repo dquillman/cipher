@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SUPPORT_EMAIL } from '../../config/support';
 import { trackCtaClick } from "../../lib/ga4";
 import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "../landing/LandingShell";
 import PricingCard from "../landing/PricingCard";
@@ -104,7 +105,7 @@ export default function PocketPrepAlternative() {
             <p className="mt-2 text-slate-300">
               Start with the 7-day free trial — no credit card required. If you go
               Pro, you're covered by a 60-day, no-conditions money-back guarantee.
-              Email <span className="text-brand-300">support@cipherexam.com</span> within
+              Email <span className="text-brand-300">{SUPPORT_EMAIL}</span> within
               60 days of your first payment and we refund everything you've paid.
             </p>
           </div>
