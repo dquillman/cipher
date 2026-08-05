@@ -1,0 +1,86 @@
+[
+  {
+    "id": "good-cpi",
+    "stem": "A project has a BAC of $500,000. To date, EV is $200,000 and AC is $250,000. What is the CPI?",
+    "options": ["0.80", "1.25", "1.00", "0.50"],
+    "correctAnswer": 0,
+    "domain": "Process"
+  },
+  {
+    "id": "BAD-cpi-inverted",
+    "stem": "A project has a BAC of $500,000. To date, EV is $200,000 and AC is $250,000. What is the CPI?",
+    "options": ["0.80", "1.25", "1.00", "0.50"],
+    "correctAnswer": 1,
+    "domain": "Process"
+  },
+  {
+    "id": "good-eac",
+    "stem": "A project has a BAC of $800,000, EV of $200,000 and AC of $250,000. Assuming current cost performance continues, what is the EAC?",
+    "options": ["$1,000,000", "$850,000", "$640,000", "$800,000"],
+    "correctAnswer": 0,
+    "domain": "Process"
+  },
+  {
+    "id": "BAD-eac-wrong-variant",
+    "stem": "A project has a BAC of $800,000, EV of $200,000 and AC of $250,000. Assuming current cost performance continues, what is the EAC?",
+    "options": ["$1,000,000", "$850,000", "$640,000", "$800,000"],
+    "correctAnswer": 1,
+    "domain": "Process"
+  },
+  {
+    "id": "good-channels-total",
+    "stem": "A project team has 10 stakeholders. How many communication channels exist?",
+    "options": ["45", "50", "90", "55"],
+    "correctAnswer": 0,
+    "domain": "People"
+  },
+  {
+    "id": "BAD-channels-added",
+    "stem": "A project team of 6 stakeholders grows to 10 stakeholders. How many additional communication channels are created?",
+    "options": ["30", "45", "15", "24"],
+    "correctAnswer": 1,
+    "domain": "People"
+  },
+  {
+    "id": "good-pert",
+    "stem": "An activity has an optimistic estimate of 10 days, a most likely estimate of 20 days, and a pessimistic estimate of 36 days. Using PERT, what is the expected duration?",
+    "options": ["21 days", "22 days", "20 days", "26 days"],
+    "correctAnswer": 0,
+    "domain": "Process"
+  },
+  {
+    "id": "BAD-pert-triangular-mixup",
+    "stem": "An activity has an optimistic estimate of 10 days, a most likely estimate of 20 days, and a pessimistic estimate of 36 days. Using PERT, what is the expected duration?",
+    "options": ["21 days", "22 days", "20 days", "26 days"],
+    "correctAnswer": 1,
+    "domain": "Process"
+  },
+  {
+    "id": "good-sd",
+    "stem": "An activity has an optimistic estimate of 10 days and a pessimistic estimate of 40 days, with a most likely estimate of 25 days. What is the standard deviation?",
+    "options": ["5 days", "6 days", "30 days", "3 days"],
+    "correctAnswer": 0,
+    "domain": "Process"
+  },
+  {
+    "id": "good-emv-total",
+    "stem": "A risk register lists two threats. Risk 1 has a 30% probability of a -$100,000 impact. Risk 2 has a 20% probability of a -$50,000 impact. What is the total EMV used to set the contingency reserve?",
+    "options": ["-$40,000", "-$150,000", "-$30,000", "-$10,000"],
+    "correctAnswer": 0,
+    "domain": "Process"
+  },
+  {
+    "id": "good-emv-compare-savings",
+    "stem": "A team compares two vendors. Vendor A offers a 50% probability of saving $60,000. Vendor B offers a 30% probability of saving $150,000. Using EMV analysis, which vendor should be selected?",
+    "options": ["Vendor A", "Vendor B"],
+    "correctAnswer": 1,
+    "domain": "Process"
+  },
+  {
+    "id": "good-emv-compare-cost",
+    "stem": "A manager compares two contracts. A fixed-price contract has a 70% probability of costing $500,000. A time-and-materials contract has a 45% probability of costing $400,000. Based on expected monetary value, which contract minimizes expected cost?",
+    "options": ["Fixed-price contract", "Time-and-materials contract"],
+    "correctAnswer": 1,
+    "domain": "Process"
+  }
+]

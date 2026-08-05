@@ -3,6 +3,7 @@ import * as admin from "firebase-admin";
 import OpenAI from "openai";
 import { requirePro } from './guards';
 import { enforceRateLimit } from './rateLimit';
+import { PMP_FORMULA_REFERENCE } from './pmpFormulas';
 
 // Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
 export { scheduleOnboardingDrip } from './onboardingDrip';
@@ -309,7 +310,7 @@ export const generateQuestions = functions
                 messages: [
                     {
                         role: "system",
-                        content: "You are a senior PMP instructor and exam question author. Return ONLY a raw JSON array of objects. Do not include markdown formatting."
+                        content: `You are a senior PMP instructor and exam question author. Return ONLY a raw JSON array of objects. Do not include markdown formatting.\n\n${PMP_FORMULA_REFERENCE}`
                     },
                     {
                         role: "user",
@@ -572,7 +573,7 @@ export const batchGenerateQuestions = functions
                             {
                                 role: "system",
                                 content: isPMP
-                                    ? `You are a senior PMP instructor and exam question author for the "${examName}". Description: ${examDescription}. Return a JSON object with a "questions" array.`
+                                    ? `You are a senior PMP instructor and exam question author for the "${examName}". Description: ${examDescription}. Return a JSON object with a "questions" array.\n\n${PMP_FORMULA_REFERENCE}`
                                     : `You are an expert exam question generator for the "${examName}". Description: ${examDescription}. Return a JSON object with a "questions" array.`
                             },
                             {
