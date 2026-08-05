@@ -3,14 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCheckoutUrls = exports.getPublicOrigin = exports.getSubscriptionPrices = exports.parseBillingInterval = void 0;
 const DEFAULT_TEST_PRICES = {
     month: 'price_1ScV4PPISVVFkTmYtxipM6eN',
-    year: 'price_1ScXMIPISVVFkTmY9U5uaLTk',
 };
 const DEFAULT_LIVE_PRICES = {
     month: 'price_1TH4B4BH0CNhR0VajnZ1kBMi',
-    year: 'price_1TuEaQBH0CNhR0Vacg981ipq',
 };
 function parseBillingInterval(value) {
-    return value === 'month' || value === 'year' ? value : null;
+    return value === 'month' ? value : null;
 }
 exports.parseBillingInterval = parseBillingInterval;
 function getSubscriptionPrices(env = process.env) {
@@ -19,7 +17,6 @@ function getSubscriptionPrices(env = process.env) {
     const defaults = isLive ? DEFAULT_LIVE_PRICES : DEFAULT_TEST_PRICES;
     const prices = {
         month: env.STRIPE_PRICE_MONTHLY || defaults.month,
-        year: env.STRIPE_PRICE_YEARLY || defaults.year,
     };
     for (const price of Object.values(prices)) {
         if (!/^price_[A-Za-z0-9]+$/.test(price)) {
@@ -40,14 +37,19 @@ function getPublicOrigin(env = process.env) {
     return url.origin;
 }
 exports.getPublicOrigin = getPublicOrigin;
+// These must match the ROUTER paths in web/src/App.tsx, not the marketing site.
+// Success and the in-app pricing page are nested under <Route path="/app/*">,
+// so they live at /app/success and /app/pricing — a bare /success 404s.
+// Everyone hitting these is authenticated (checkout requires auth), so
+// RequireAuth on /app/* is satisfied.
 function getCheckoutUrls(env = process.env) {
     const origin = getPublicOrigin(env);
     return {
-        subscriptionSuccessUrl: `${origin}/success`,
-        subscriptionCancelUrl: `${origin}/pricing`,
-        passSuccessUrl: `${origin}/success?product=exam-pass`,
-        passCancelUrl: `${origin}/pricing`,
-        portalReturnUrl: `${origin}/pricing`,
+        subscriptionSuccessUrl: `${origin}/app/success`,
+        subscriptionCancelUrl: `${origin}/app/pricing`,
+        passSuccessUrl: `${origin}/app/success?product=exam-pass`,
+        passCancelUrl: `${origin}/app/pricing`,
+        portalReturnUrl: `${origin}/app/pricing`,
     };
 }
 exports.getCheckoutUrls = getCheckoutUrls;

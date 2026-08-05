@@ -132,8 +132,8 @@ export default function BestPmpSimulator2026() {
               180-question full mocks, a dedicated PMP Exam v2026 bank, all three
               question types, Bloom's-classified reasoning explanations — and if we
               still don't fit how you study, the 60-day guarantee means you're out
-              nothing. $19/month, or $190/year, with 10 more certifications included
-              in the same subscription.
+              nothing. $19/month, with 10 more certifications included in the same
+              subscription.
             </p>
           </div>
         </div>
@@ -169,7 +169,7 @@ export default function BestPmpSimulator2026() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does CipherExam cost?</dt>
-            <dd className="mt-1">$19/month, or $190/year — covering PMP plus 10 other certifications. 7-day free trial, no credit card required, and a 60-day, no-conditions money-back guarantee on Pro.</dd>
+            <dd className="mt-1">$19/month for Pro — covering PMP plus 10 other certifications — or a one-time $59 Exam Pass for a single exam for 90 days. 7-day free trial, no credit card required, and a 60-day, no-conditions money-back guarantee.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Will using a simulator guarantee I pass?</dt>

@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { Check, ShieldCheck } from 'lucide-react';
-import { useState } from 'react';
 import { trackPricingView, trackCtaClick } from '../lib/ga4';
 import { useEffect } from 'react';
 import PublicNav from '../components/layout/PublicNav';
@@ -11,8 +10,6 @@ import { SEO } from '../config/seo';
 
 export default function PublicPricing() {
     const navigate = useNavigate();
-    // Yearly is the default anchor — better value for the user, better LTV for us.
-    const [billingInterval, setBillingInterval] = useState<'month' | 'year'>('year');
 
     useEffect(() => { trackPricingView(); }, []);
 
@@ -36,22 +33,9 @@ export default function PublicPricing() {
                         Start free. Upgrade when you're ready to go all-in on exam prep.
                     </p>
 
-                    {/* Billing Toggle */}
-                    <div className="mt-8 flex justify-center items-center gap-4">
-                        <span className={`text-sm font-medium ${billingInterval === 'month' ? 'text-white' : 'text-slate-400'}`}>Monthly</span>
-                        <button
-                            onClick={() => setBillingInterval(billingInterval === 'month' ? 'year' : 'month')}
-                            className="relative w-14 h-8 bg-slate-700 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 focus:ring-offset-slate-900"
-                        >
-                            <div
-                                className={`absolute left-1 top-1 w-6 h-6 bg-brand-500 rounded-full transition-transform ${billingInterval === 'year' ? 'translate-x-6' : 'translate-x-0'}`}
-                            />
-                        </button>
-                        <span className={`text-sm font-medium flex items-center gap-2 ${billingInterval === 'year' ? 'text-white' : 'text-slate-400'}`}>
-                            Yearly
-                            <span className="bg-green-500/20 text-green-400 text-xs px-2 py-0.5 rounded-full font-bold">SAVE 17%</span>
-                        </span>
-                    </div>
+                    {/* Pro is monthly-only. The non-renewing $59 / 90-day Exam
+                        Pass is the alternative to subscribing, so there is no
+                        billing-interval toggle. */}
                 </div>
 
                 <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl w-full items-start">
@@ -139,22 +123,9 @@ export default function PublicPricing() {
                     <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
                         <h3 className="text-2xl font-bold text-white">Pro Membership</h3>
                         <div className="mt-4 flex items-baseline flex-wrap gap-x-2">
-                            {billingInterval === 'year' && (
-                                <span className="text-lg text-slate-500 line-through">$228</span>
-                            )}
-                            <span className="text-4xl font-bold tracking-tight text-white">
-                                ${billingInterval === 'month' ? '19' : '190'}
-                            </span>
-                            <span className="text-xl text-slate-400">
-                                / {billingInterval === 'month' ? 'month' : 'year'}
-                            </span>
-                            {billingInterval === 'year' && (
-                                <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">Save $38/yr</span>
-                            )}
+                            <span className="text-4xl font-bold tracking-tight text-white">$19</span>
+                            <span className="text-xl text-slate-400">/ month</span>
                         </div>
-                        {billingInterval === 'year' && (
-                            <p className="text-xs text-slate-500">$15.83/mo billed annually</p>
-                        )}
                         <p className="mt-2 text-brand-200 text-sm">7-day free trial. Cancel anytime.</p>
                         <p className="mt-1.5 text-xs text-slate-400">Best if you're studying long-term or across multiple certs.</p>
 

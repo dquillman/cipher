@@ -39,7 +39,6 @@ export default function Pricing() {
         }
     }, [isPro]);
 
-    const [billingInterval, setBillingInterval] = useState<'month' | 'year'>('month');
     const [isSubModalOpen, setIsSubModalOpen] = useState(false);
     const functions = getFunctions();
     const copy = useMarketingCopy();
@@ -51,7 +50,7 @@ export default function Pricing() {
         setLoading(true);
         try {
             const createCheckoutSession = httpsCallable(functions, 'createCheckoutSession');
-            const { data }: any = await createCheckoutSession({ billingInterval });
+            const { data }: any = await createCheckoutSession({ billingInterval: 'month' });
 
             if (data?.url) {
                 window.location.href = data.url;
@@ -137,23 +136,9 @@ export default function Pricing() {
                     {copy.pro_value_secondary}
                 </p>
 
-                {/* Billing Toggle */}
-                <div className="mt-8 flex justify-center items-center gap-4">
-                    <span className={`text-sm font-medium ${billingInterval === 'month' ? 'text-white' : 'text-slate-400'}`}>Monthly</span>
-                    <button
-                        onClick={() => setBillingInterval(billingInterval === 'month' ? 'year' : 'month')}
-                        className="relative w-14 h-8 bg-slate-700 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900"
-                    >
-                        <div
-                            className={`absolute left-1 top-1 w-6 h-6 bg-blue-500 rounded-full transition-transform ${billingInterval === 'year' ? 'translate-x-6' : 'translate-x-0'
-                                }`}
-                        />
-                    </button>
-                    <span className={`text-sm font-medium flex items-center gap-2 ${billingInterval === 'year' ? 'text-white' : 'text-slate-400'}`}>
-                        Yearly
-                        <span className="bg-green-500/20 text-green-400 text-xs px-2 py-0.5 rounded-full font-bold">SAVE 17%</span>
-                    </span>
-                </div>
+                {/* Pro is monthly-only. The non-renewing $59 / 90-day Exam Pass
+                    below is the alternative to a subscription — there is no
+                    annual plan, so there is no billing-interval toggle. */}
             </div>
 
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
@@ -202,12 +187,8 @@ export default function Pricing() {
                             )}
                         </div>
                         <div className="mt-4 flex items-baseline">
-                            <span className="text-4xl font-bold tracking-tight text-white">
-                                ${billingInterval === 'month' ? '19' : '190'}
-                            </span>
-                            <span className="ml-1 text-xl text-slate-400">
-                                / {billingInterval === 'month' ? 'month' : 'year'}
-                            </span>
+                            <span className="text-4xl font-bold tracking-tight text-white">$19</span>
+                            <span className="ml-1 text-xl text-slate-400">/ month</span>
                         </div>
                         <p className="mt-2 text-blue-200 text-sm">{isPro ? 'Your plan renews automatically.' : 'Cancel anytime.'}</p>
 

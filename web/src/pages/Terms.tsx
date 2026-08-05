@@ -67,9 +67,9 @@ export default function Terms() {
                 subscription.
               </p>
               <p className="mt-3">
-                Subscription fees are billed in advance on a monthly or annual basis depending on your
-                selected plan. You may cancel your subscription at any time. Cancellation takes effect at the
-                end of the current billing period.
+                Subscription fees are billed monthly in advance. You may cancel your subscription at any
+                time. Cancellation takes effect at the end of the current billing period. The Exam Pass is a
+                one-time purchase covering a single exam for 90 days; it does not renew.
               </p>
               <p className="mt-3">
                 Pro purchases include a 60-day money-back guarantee: email us within 60 days of your first

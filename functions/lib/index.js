@@ -20,6 +20,7 @@ const admin = require("firebase-admin");
 const openai_1 = require("openai");
 const guards_1 = require("./guards");
 const rateLimit_1 = require("./rateLimit");
+const pmpFormulas_1 = require("./pmpFormulas");
 // Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
 var onboardingDrip_1 = require("./onboardingDrip");
 Object.defineProperty(exports, "scheduleOnboardingDrip", { enumerable: true, get: function () { return onboardingDrip_1.scheduleOnboardingDrip; } });
@@ -287,7 +288,7 @@ exports.generateQuestions = functions
             messages: [
                 {
                     role: "system",
-                    content: "You are a senior PMP instructor and exam question author. Return ONLY a raw JSON array of objects. Do not include markdown formatting."
+                    content: `You are a senior PMP instructor and exam question author. Return ONLY a raw JSON array of objects. Do not include markdown formatting.\n\n${pmpFormulas_1.PMP_FORMULA_REFERENCE}`
                 },
                 {
                     role: "user",
@@ -501,7 +502,7 @@ exports.batchGenerateQuestions = functions
                         {
                             role: "system",
                             content: isPMP
-                                ? `You are a senior PMP instructor and exam question author for the "${examName}". Description: ${examDescription}. Return a JSON object with a "questions" array.`
+                                ? `You are a senior PMP instructor and exam question author for the "${examName}". Description: ${examDescription}. Return a JSON object with a "questions" array.\n\n${pmpFormulas_1.PMP_FORMULA_REFERENCE}`
                                 : `You are an expert exam question generator for the "${examName}". Description: ${examDescription}. Return a JSON object with a "questions" array.`
                         },
                         {
