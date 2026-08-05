@@ -84,7 +84,7 @@ exports.createPortalSession = functions.https.onCall(async (_data, context) => {
  * Retrieves subscription details for the authenticated user.
  */
 exports.getSubscriptionDetails = functions.https.onCall(async (data, context) => {
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     if (!context.auth)
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     const userId = context.auth.uid;
@@ -104,19 +104,26 @@ exports.getSubscriptionDetails = functions.https.onCall(async (data, context) =>
         if (subscriptions.data.length === 0)
             return { status: 'none', isPro: false };
         const sub = subscriptions.data[0];
+        const item = (_c = (_b = sub.items) === null || _b === void 0 ? void 0 : _b.data) === null || _c === void 0 ? void 0 : _c[0];
         const paymentMethod = sub.default_payment_method;
         // Map Stripe SKU to readable name
         // MVP: Assuming single plan type or mapping by amount
         const planName = (sub.items.data[0].price.unit_amount || 0) > 2000 ? 'Yearly Pro' : 'Monthly Pro';
+        // current_period_end moved OFF the subscription and onto the subscription
+        // ITEM in recent Stripe API versions (we construct the SDK with
+        // 2025-11-17.clover). Reading the old top-level field returned undefined,
+        // which the client rendered as "Access ends December 31, 1969" — epoch 0.
+        // Prefer the item, fall back to the legacy field, then to cancel_at.
+        const periodEnd = (_f = (_e = (_d = item === null || item === void 0 ? void 0 : item.current_period_end) !== null && _d !== void 0 ? _d : sub.current_period_end) !== null && _e !== void 0 ? _e : sub.cancel_at) !== null && _f !== void 0 ? _f : null;
         return {
             status: sub.status,
-            currentPeriodEnd: sub.current_period_end,
+            currentPeriodEnd: periodEnd,
             cancelAtPeriodEnd: sub.cancel_at_period_end,
             planName: planName,
-            last4: ((_b = paymentMethod === null || paymentMethod === void 0 ? void 0 : paymentMethod.card) === null || _b === void 0 ? void 0 : _b.last4) || '••••',
-            brand: ((_c = paymentMethod === null || paymentMethod === void 0 ? void 0 : paymentMethod.card) === null || _c === void 0 ? void 0 : _c.brand) || 'card',
+            last4: ((_g = paymentMethod === null || paymentMethod === void 0 ? void 0 : paymentMethod.card) === null || _g === void 0 ? void 0 : _g.last4) || '••••',
+            brand: ((_h = paymentMethod === null || paymentMethod === void 0 ? void 0 : paymentMethod.card) === null || _h === void 0 ? void 0 : _h.brand) || 'card',
             amount: (sub.items.data[0].price.unit_amount || 0) / 100,
-            interval: (_d = sub.items.data[0].price.recurring) === null || _d === void 0 ? void 0 : _d.interval,
+            interval: (_j = sub.items.data[0].price.recurring) === null || _j === void 0 ? void 0 : _j.interval,
             subscriptionId: sub.id
         };
     }
