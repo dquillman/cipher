@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { SUPPORT_EMAIL } from '../config/support';
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../App";
 import { trackLandingPageView, trackCtaClick, trackPricingView, captureUtmParams } from "../lib/ga4";
@@ -1033,7 +1034,7 @@ export default function Landing() {
             <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
             <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
             <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <a href="mailto:support@cipherexam.com" className="hover:text-white transition-colors">Contact</a>
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-white transition-colors">Contact</a>
           </div>
         </div>
       </footer>

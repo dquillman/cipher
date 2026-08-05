@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SUPPORT_EMAIL } from '../config/support';
 import PublicNav from '../components/layout/PublicNav';
 import PublicFooter from '../components/layout/PublicFooter';
 
@@ -167,8 +168,9 @@ export default function Terms() {
               <h2 className="text-xl font-bold text-white mb-3">11. Contact</h2>
               <p>
                 If you have questions about these Terms of Service, please contact us at{' '}
-                <a href="mailto:support@cipherexam.com" className="text-brand-400 hover:text-brand-300 transition-colors">
-                  support@cipherexam.com
+                <a href={`mailto:${SUPPORT_EMAIL}`} className="text-brand-400 hover:text-brand-300 transition-colors">
+
+
                 </a>.
               </p>
             </section>

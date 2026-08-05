@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { SUPPORT_EMAIL } from '../config/support';
 import { Check, ShieldCheck } from 'lucide-react';
 import { trackPricingView, trackCtaClick } from '../lib/ga4';
 import { useEffect } from 'react';
@@ -165,7 +166,7 @@ export default function PublicPricing() {
                         <h2 className="text-2xl font-bold text-white font-display">Love it, or your money back.</h2>
                         <p className="mt-2 text-slate-300 leading-relaxed">
                             Use CipherExam Pro for up to <span className="text-amber-300 font-semibold">60 days</span>. Not for you?
-                            Email <a href="mailto:support@cipherexam.com" className="text-amber-300 font-semibold underline underline-offset-2 hover:text-amber-200">support@cipherexam.com</a> within
+                            Email <a href={`mailto:${SUPPORT_EMAIL}`} className="text-amber-300 font-semibold underline underline-offset-2 hover:text-amber-200">{SUPPORT_EMAIL}</a> within
                             60 days of your first payment and we'll refund every dollar you've paid — <span className="text-white font-semibold">no
                             conditions, no proof of anything, no fine print.</span>
                         </p>
@@ -212,7 +213,7 @@ export default function PublicPricing() {
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
                             <dt className="text-lg font-semibold text-white mb-2">What's the money-back guarantee?</dt>
                             <dd className="text-slate-300 leading-relaxed">
-                                Use CipherExam Pro for up to 60 days. Not for you? Email <a href="mailto:support@cipherexam.com" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">support@cipherexam.com</a> within 60 days of your first payment and we'll refund every dollar you've paid — no conditions, no proof of anything, no fine print.
+                                Use CipherExam Pro for up to 60 days. Not for you? Email <a href={`mailto:${SUPPORT_EMAIL}`} className="text-brand-400 hover:text-brand-300 underline underline-offset-2">{SUPPORT_EMAIL}</a> within 60 days of your first payment and we'll refund every dollar you've paid — no conditions, no proof of anything, no fine print.
                             </dd>
                         </div>
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">

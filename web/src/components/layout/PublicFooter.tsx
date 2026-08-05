@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { SUPPORT_EMAIL } from '../../config/support';
 
 const columnHeaderClass = 'text-sm font-bold text-slate-300 uppercase tracking-wider mb-4';
 const footerLinkClass = 'text-sm text-slate-500 hover:text-white transition-colors';
@@ -17,8 +18,9 @@ export default function PublicFooter() {
             <p className="text-sm text-slate-500 leading-relaxed mb-4">
               AI-powered certification exam prep. Understand how exams think.
             </p>
-            <a href="mailto:support@cipherexam.com" className={footerLinkClass}>
-              support@cipherexam.com
+            <a href={`mailto:${SUPPORT_EMAIL}`} className={footerLinkClass}>
+
+
             </a>
           </div>
 
