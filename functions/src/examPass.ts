@@ -98,6 +98,12 @@ export const createPassCheckoutSession = functions.https.onCall(async (data, con
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             payment_method_types: ['card'],
+            // Payment-mode checkout defaults to customer_creation 'if_required',
+            // which for a card payment creates NO customer. Pass buyers were
+            // therefore left with no stripeCustomerId and no billing portal —
+            // they had paid $59 and could not pull their own receipt. Always
+            // create one so the portal works for them too.
+            customer_creation: 'always',
             line_items: [{
                 price_data: {
                     currency: 'usd',
@@ -166,6 +172,14 @@ export async function fulfillExamPassCheckout(session: Stripe.Checkout.Session):
 
     console.log(`[exam-pass] Granting 90-day pass for exam ${examId} to user ${uid} (session ${session.id})`);
 
+    // Persist the Stripe customer so the billing portal works for pass-only
+    // buyers (createPortalSession reads users/{uid}.stripeCustomerId, which was
+    // previously written only by the subscription flow). Never overwrite an
+    // existing id — a Pro subscriber who also buys a pass keeps their original
+    // customer record.
+    const passCustomerId = typeof session.customer === 'string' ? session.customer : null;
+    const existingCustomerId = userSnap.data()?.stripeCustomerId;
+
     await userRef.set({
         entitlement: {
             type: 'exam-pass',
@@ -176,6 +190,7 @@ export async function fulfillExamPassCheckout(session: Stripe.Checkout.Session):
             freeExtensionUsed: false,
             stripeSessionId: session.id,
         },
+        ...(passCustomerId && !existingCustomerId ? { stripeCustomerId: passCustomerId } : {}),
         lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
 }
