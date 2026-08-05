@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { X, CreditCard, Calendar, AlertTriangle, Loader2 } from 'lucide-react';
+import { X, CreditCard, Calendar, AlertTriangle, Loader2, ShieldCheck } from 'lucide-react';
+import { REFUND_MAILTO } from '../config/support';
 
 interface SubscriptionModalProps {
     isOpen: boolean;
@@ -208,6 +209,26 @@ export default function SubscriptionModal({ isOpen, onClose, onManageBillingFrom
                             </div>
                         </>
                     )}
+                </div>
+
+                {/* Refund path. Deliberately OUTSIDE the details conditional: someone
+                    asking for their money back has often already cancelled, so they
+                    hit the "No active subscription found" branch — the exact state
+                    where they most need this and would otherwise see a dead end. */}
+                <div className="px-6 py-4 border-t border-slate-800 bg-slate-800/30">
+                    <div className="flex items-start gap-3">
+                        <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                        <p className="text-xs text-slate-400 leading-relaxed">
+                            Covered by our 60-day money-back guarantee — full refund, no conditions.{' '}
+                            <a
+                                href={REFUND_MAILTO}
+                                className="text-brand-400 hover:text-brand-300 font-medium underline underline-offset-2"
+                            >
+                                Request a refund
+                            </a>{' '}
+                            and we'll take care of it.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
