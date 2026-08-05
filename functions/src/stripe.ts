@@ -113,15 +113,26 @@ export const getSubscriptionDetails = functions.https.onCall(async (data, contex
         if (subscriptions.data.length === 0) return { status: 'none', isPro: false };
 
         const sub: any = subscriptions.data[0];
+        const item: any = sub.items?.data?.[0];
         const paymentMethod = sub.default_payment_method as Stripe.PaymentMethod | undefined;
 
         // Map Stripe SKU to readable name
         // MVP: Assuming single plan type or mapping by amount
         const planName = (sub.items.data[0].price.unit_amount || 0) > 2000 ? 'Yearly Pro' : 'Monthly Pro';
 
+        // current_period_end moved OFF the subscription and onto the subscription
+        // ITEM in recent Stripe API versions (we construct the SDK with
+        // 2025-11-17.clover). Reading the old top-level field returned undefined,
+        // which the client rendered as "Access ends December 31, 1969" — epoch 0.
+        // Prefer the item, fall back to the legacy field, then to cancel_at.
+        const periodEnd = item?.current_period_end
+            ?? sub.current_period_end
+            ?? sub.cancel_at
+            ?? null;
+
         return {
             status: sub.status,
-            currentPeriodEnd: sub.current_period_end,
+            currentPeriodEnd: periodEnd,
             cancelAtPeriodEnd: sub.cancel_at_period_end,
             planName: planName, // "Monthly Pro" or "Yearly Pro"
             last4: paymentMethod?.card?.last4 || '••••',

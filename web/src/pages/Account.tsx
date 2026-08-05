@@ -37,7 +37,16 @@ interface SubscriptionDetails {
     subscriptionId: string;
 }
 
-function formatDate(timestamp: number) {
+/**
+ * Stripe epoch seconds → readable date, or null when we don't have one.
+ *
+ * Returning null matters: a missing timestamp used to fall through to
+ * `new Date(0)` and render "December 31, 1969" as a confident-looking renewal
+ * date. Better to omit the sentence than to state a wrong date about someone's
+ * billing.
+ */
+function formatDate(timestamp: number | null | undefined): string | null {
+    if (typeof timestamp !== 'number' || !Number.isFinite(timestamp) || timestamp <= 0) return null;
     return new Date(timestamp * 1000).toLocaleDateString(undefined, {
         year: 'numeric', month: 'long', day: 'numeric',
     });
@@ -121,10 +130,17 @@ export default function Account() {
     let planLabel = 'Starter (free)';
     let planNote = 'Upgrade any time — or buy a single Exam Pass.';
     if (details) {
+        const periodEnd = formatDate(details.currentPeriodEnd);
         planLabel = details.planName;
-        planNote = details.cancelAtPeriodEnd
-            ? `Access ends ${formatDate(details.currentPeriodEnd)}. You will not be charged again.`
-            : `Renews ${formatDate(details.currentPeriodEnd)} at $${details.amount}/${details.interval}.`;
+        if (details.cancelAtPeriodEnd) {
+            planNote = periodEnd
+                ? `Access ends ${periodEnd}. You will not be charged again.`
+                : 'Canceled — you will not be charged again.';
+        } else {
+            planNote = periodEnd
+                ? `Renews ${periodEnd} at $${details.amount}/${details.interval}.`
+                : `$${details.amount}/${details.interval}.`;
+        }
     } else if (entitlement.plan === 'trial') {
         planLabel = 'Pro trial';
         planNote = entitlement.trialEndsAt
@@ -235,8 +251,10 @@ export default function Account() {
                                     <div>
                                         <p className="text-sm font-bold text-red-500">Cancel your subscription?</p>
                                         <p className="text-xs text-red-400 mt-1">
-                                            You keep Pro access until {formatDate(details.currentPeriodEnd)}, then
-                                            move to the free Starter plan. You will not be charged again.
+                                            {formatDate(details.currentPeriodEnd)
+                                                ? `You keep Pro access until ${formatDate(details.currentPeriodEnd)}, then move to the free Starter plan.`
+                                                : 'You keep Pro access until the end of the period you have paid for, then move to the free Starter plan.'}{' '}
+                                            You will not be charged again.
                                         </p>
                                     </div>
                                 </div>
