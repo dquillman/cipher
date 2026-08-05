@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, VideoOff } from 'lucide-react';
 import { useExam } from '../contexts/ExamContext';
@@ -8,6 +8,21 @@ export default function StartHere() {
     const navigate = useNavigate();
 
     const [videoError, setVideoError] = useState(false);
+
+    // Seeing this page IS the acknowledgement.
+    //
+    // Dashboard.tsx redirects here whenever the user has no diagnostic AND
+    // ec_onboarding_ack is unset. Previously the only things that set that flag
+    // were the two "start the diagnostic" buttons below — both of which navigate
+    // straight into a quiz. So there was no way to acknowledge orientation and
+    // go to the Dashboard: clicking Dashboard in the sidebar bounced back here,
+    // every time, and the nav link read as broken rather than as a gate.
+    //
+    // Acking on mount keeps the nudge (first-time users still land here once)
+    // without the dead end.
+    useEffect(() => {
+        localStorage.setItem('ec_onboarding_ack', 'true');
+    }, []);
 
     // Treat null (loading) same as false (pre-diagnostic view)
     const hasCompletedDiagnostic = contextDiagnostic === true;
