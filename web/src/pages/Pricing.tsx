@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 // Removed unused doc, onSnapshot, auth, db (except if needed for redirect, but window.location used here)
 import { Check, ArrowLeft, Ticket } from 'lucide-react';
-import SubscriptionModal from '../components/SubscriptionModal';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useExam } from '../contexts/ExamContext';
 import { EXAMS } from '../config/exams';
@@ -40,7 +40,7 @@ export default function Pricing() {
         }
     }, [isPro]);
 
-    const [isSubModalOpen, setIsSubModalOpen] = useState(false);
+    const navigate = useNavigate();
     const functions = getFunctions();
     const copy = useMarketingCopy();
 
@@ -87,38 +87,16 @@ export default function Pricing() {
         }
     };
 
+    // Billing lives on /app/account now — status, invoices, cancellation and
+    // refunds in one place, reachable from the sidebar and not gated on isPro.
+    // This page's job is selling; it should not also be the place you go to stop
+    // paying. Two cancel paths that could silently diverge is worse than one.
     const handleManageSubscription = () => {
-        setIsSubModalOpen(true);
-    };
-
-    const redirectToStripePortal = async () => {
-        setLoading(true);
-        try {
-            const createPortalSession = httpsCallable(functions, 'createPortalSession');
-            const { data }: any = await createPortalSession();
-
-            if (data?.url) {
-                window.location.href = data.url;
-            } else {
-                console.error("No portal URL returned");
-                alert("Failed to redirect to billing portal.");
-            }
-        } catch (error: any) {
-            console.error("Portal redirect failed:", error);
-            alert(`Failed to load billing portal: ${error.message}`);
-        } finally {
-            setLoading(false);
-        }
+        navigate('/app/account');
     };
 
     return (
         <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center py-20 px-4">
-            <SubscriptionModal
-                isOpen={isSubModalOpen}
-                onClose={() => setIsSubModalOpen(false)}
-                onManageBillingFromStripe={redirectToStripePortal}
-            />
-
             <div className="max-w-4xl w-full text-center space-y-6">
                 <h1 className="text-4xl md:text-5xl font-bold text-white font-display">
                     {copy.pro_value_primary}
@@ -277,8 +255,8 @@ export default function Pricing() {
                             <p className="text-xs text-slate-500 text-center">
                                 Ends {passEntitlement!.expiresAt.toLocaleDateString()}
                             </p>
-                            {/* Pass holders are not isPro, so SubscriptionModal never opens
-                                for them — without this they have no refund path at all. */}
+                            {/* Kept alongside the Account page: a pass holder looking at their
+                                own active pass is exactly where a refund question occurs. */}
                             <p className="text-xs text-slate-500 text-center pt-1">
                                 <a
                                     href={REFUND_MAILTO}

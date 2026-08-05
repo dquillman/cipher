@@ -51,6 +51,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const Help = lazy(() => import("./pages/Help"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const Success = lazy(() => import("./pages/Success"));
+const Account = lazy(() => import("./pages/Account"));
 const SimulatorIntro = lazy(() => import("./pages/SimulatorIntro"));
 const Simulator = lazy(() => import("./pages/Simulator"));
 const SimulatorResults = lazy(() => import("./pages/SimulatorResults"));
@@ -493,6 +494,7 @@ function App() {
                   <Route path="quiz" element={<Quiz />} />
                   <Route path="quiz/:examId" element={<Quiz />} />
                   <Route path="pricing" element={<Pricing />} />
+                  <Route path="account" element={<Account />} />
                   <Route path="success" element={<Success />} />
                   <Route path="help" element={<Help />} />
                   <Route element={<MockExamGuard />}>
