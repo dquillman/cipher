@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../App';
 import { useSidebar } from '../contexts/SidebarContext';
 import { useExam } from '../contexts/ExamContext';
-import { LayoutDashboard, BookOpen, ChevronLeft, ChevronRight, Calendar, BarChart2, Mic, Target, HelpCircle, PlayCircle, Flag, AlertTriangle } from 'lucide-react';
+import { LayoutDashboard, BookOpen, ChevronLeft, ChevronRight, Calendar, BarChart2, Mic, Target, HelpCircle, PlayCircle, Flag, AlertTriangle, UserCircle } from 'lucide-react';
 import ReportIssueModal from './ReportIssueModal';
 import { quizReportStore } from '../utils/quizReportStore';
 import { auth } from '../firebase';
@@ -79,6 +79,11 @@ export default function Sidebar() {
         { label: "Exams", path: "/app/exams", icon: <BookOpen className="w-5 h-5" /> },
         { label: "Stats", path: "/app/stats", icon: <BarChart2 className="w-5 h-5" /> },
         { label: "FAQ", path: "/app/faq", icon: <HelpCircle className="w-5 h-5" /> },
+        // Billing, cancellation and refunds live here. Kept in the primary nav on
+        // purpose: these used to be reachable only through the pricing page, which
+        // meant a customer looking to cancel or get a refund had to navigate a page
+        // trying to sell them something.
+        { label: "Account", path: "/app/account", icon: <UserCircle className="w-5 h-5" /> },
     ];
 
     const menuItems = allMenuItems;
