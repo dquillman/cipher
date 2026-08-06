@@ -2,11 +2,15 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import OpenAI from 'openai';
 import { enforceRateLimit } from './rateLimit';
+import { resolveOpenAIKey } from './openaiKey';
 
 const getOpenAI = () => {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey || apiKey === 'dummy-key-for-deploy') {
-        throw new Error('OPENAI_API_KEY is missing or invalid in environment secrets.');
+    // Resolves from functions.config() as well as the env var. Reading env only
+    // made this diagnostic report a missing key while the tutor was working
+    // fine off the config store — i.e. the health check was wrong, not the app.
+    const apiKey = resolveOpenAIKey();
+    if (!apiKey) {
+        throw new Error('OpenAI key missing from both functions.config().openai.key and OPENAI_API_KEY.');
     }
     return new OpenAI({ apiKey });
 };

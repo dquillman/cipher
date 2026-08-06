@@ -4,6 +4,7 @@ import OpenAI from "openai";
 import { requirePro } from './guards';
 import { enforceRateLimit } from './rateLimit';
 import { PMP_FORMULA_REFERENCE } from './pmpFormulas';
+import { resolveOpenAIKey } from './openaiKey';
 
 // Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
 export { scheduleOnboardingDrip } from './onboardingDrip';
@@ -54,15 +55,19 @@ export const createUserProfile = functions.auth.user().onCreate(async (user) => 
 });
 
 
-// Lazy init OpenAI to prevent deploy-time crashes if env var is missing
+// Lazy init OpenAI to prevent deploy-time crashes if the key is missing.
+// Resolves from BOTH stores (see openaiKey.ts) — this file previously read
+// process.env only, so with the key living in functions.config() it silently
+// used 'dummy-key-for-deploy' and every completion 401'd.
 let openai: OpenAI;
 const getOpenAI = () => {
     if (!openai) {
-        if (!process.env.OPENAI_API_KEY) {
-            console.warn("OPENAI_API_KEY is not set.");
+        const key = resolveOpenAIKey();
+        if (!key) {
+            console.warn("OpenAI key missing from both functions.config().openai.key and OPENAI_API_KEY.");
         }
         openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY || 'dummy-key-for-deploy',
+            apiKey: key || 'dummy-key-for-deploy',
         });
     }
     return openai;

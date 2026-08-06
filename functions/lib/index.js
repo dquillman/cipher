@@ -21,6 +21,7 @@ const openai_1 = require("openai");
 const guards_1 = require("./guards");
 const rateLimit_1 = require("./rateLimit");
 const pmpFormulas_1 = require("./pmpFormulas");
+const openaiKey_1 = require("./openaiKey");
 // Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
 var onboardingDrip_1 = require("./onboardingDrip");
 Object.defineProperty(exports, "scheduleOnboardingDrip", { enumerable: true, get: function () { return onboardingDrip_1.scheduleOnboardingDrip; } });
@@ -64,15 +65,19 @@ exports.createUserProfile = functions.auth.user().onCreate(async (user) => {
         console.error(`Failed to create profile for user ${user.uid}:`, error);
     }
 });
-// Lazy init OpenAI to prevent deploy-time crashes if env var is missing
+// Lazy init OpenAI to prevent deploy-time crashes if the key is missing.
+// Resolves from BOTH stores (see openaiKey.ts) — this file previously read
+// process.env only, so with the key living in functions.config() it silently
+// used 'dummy-key-for-deploy' and every completion 401'd.
 let openai;
 const getOpenAI = () => {
     if (!openai) {
-        if (!process.env.OPENAI_API_KEY) {
-            console.warn("OPENAI_API_KEY is not set.");
+        const key = (0, openaiKey_1.resolveOpenAIKey)();
+        if (!key) {
+            console.warn("OpenAI key missing from both functions.config().openai.key and OPENAI_API_KEY.");
         }
         openai = new openai_1.default({
-            apiKey: process.env.OPENAI_API_KEY || 'dummy-key-for-deploy',
+            apiKey: key || 'dummy-key-for-deploy',
         });
     }
     return openai;
