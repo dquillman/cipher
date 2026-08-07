@@ -14,7 +14,7 @@
             ],
             "predeploy": [
                 "npm --prefix \"$RESOURCE_DIR\" run build",
-                "node \"$RESOURCE_DIR/scripts/check-email-config.mjs\""
+                "npm --prefix \"$RESOURCE_DIR\" run check:email"
             ]
         }
     ],
