@@ -108,8 +108,30 @@ exports.scheduleOnboardingDrip = functions.firestore
     }
     const apiKey = resolveKey();
     if (!apiKey) {
-        console.warn("[drip] RESEND_API_KEY not set — skipping send (deploy-safe no-op). " +
-            "Set RESEND_API_KEY (and RESEND_FROM) to activate the drip.");
+        // console.ERROR, not warn. This was console.warn until 2026-08-06 and the
+        // drip sent nothing for weeks with nobody noticing — a warning in Cloud
+        // Logging is functionally invisible. Error level surfaces in Firebase
+        // error reporting and can be alerted on.
+        console.error(`[drip] RESEND_API_KEY not set — NO ONBOARDING EMAIL SENT for ${uid}. ` +
+            "Every signup is silently receiving nothing. Set RESEND_API_KEY " +
+            "(and RESEND_FROM) in functions/.env and redeploy.");
+        // Queryable health state so a dashboard can surface this without anyone
+        // reading logs. Never allowed to break the trigger.
+        await admin
+            .firestore()
+            .doc("systemHealth/email")
+            .set({
+            ok: false,
+            reason: "RESEND_API_KEY not set",
+            lastFailureAt: admin.firestore.FieldValue.serverTimestamp(),
+            lastFailureSource: "scheduleOnboardingDrip",
+        }, { merge: true })
+            .catch(() => undefined);
+        // Stamp the user so backfillOnboardingDrip can find them once the key
+        // is set — this trigger is onCreate and will never fire for them again.
+        await snap.ref
+            .set({ onboardingDripBlockedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true })
+            .catch(() => undefined);
         return;
     }
     const base = new Date(); // signup time
@@ -152,6 +174,17 @@ exports.scheduleOnboardingDrip = functions.firestore
         onboardingDripScheduledAt: admin.firestore.FieldValue.serverTimestamp(),
         onboardingDripResult: { scheduled, total: exports.DRIP_SEQUENCE.length, results },
     }, { merge: true });
+    // Clear the health flag once sends actually work.
+    await admin
+        .firestore()
+        .doc("systemHealth/email")
+        .set({
+        ok: scheduled > 0,
+        reason: scheduled > 0 ? null : "Resend accepted zero of the scheduled sends",
+        lastSuccessAt: admin.firestore.FieldValue.serverTimestamp(),
+        lastSuccessSource: "scheduleOnboardingDrip",
+    }, { merge: true })
+        .catch(() => undefined);
     console.log(`[drip] scheduled ${scheduled}/${exports.DRIP_SEQUENCE.length} emails for ${uid}`);
 });
 //# sourceMappingURL=onboardingDrip.js.map
