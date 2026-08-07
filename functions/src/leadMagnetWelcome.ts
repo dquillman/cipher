@@ -198,10 +198,34 @@ export const sendLeadMagnetWelcome = functions.firestore
 
     const apiKey = resolveKey();
     if (!apiKey) {
-      console.warn(
-        "[lead-welcome] RESEND_API_KEY not set — skipping send (deploy-safe no-op). " +
-          "Set RESEND_API_KEY (and RESEND_FROM) to activate the lead sequence.",
+      // Error, not warn — see the same block in onboardingDrip.ts. A warning
+      // here is invisible, and an invisible mail failure is how the drip went
+      // weeks without sending anything.
+      console.error(
+        `[lead-welcome] RESEND_API_KEY not set — NO WELCOME EMAIL SENT for ${captureId}. ` +
+          "Lead-magnet captures are silently receiving nothing. Set RESEND_API_KEY " +
+          "(and RESEND_FROM) in functions/.env and redeploy.",
       );
+      await admin
+        .firestore()
+        .doc("systemHealth/email")
+        .set(
+          {
+            ok: false,
+            reason: "RESEND_API_KEY not set",
+            lastFailureAt: admin.firestore.FieldValue.serverTimestamp(),
+            lastFailureSource: "sendLeadMagnetWelcome",
+          },
+          { merge: true },
+        )
+        .catch(() => undefined);
+      // Stamp the capture so a backfill can find it — onCreate won't refire.
+      await snap.ref
+        .set(
+          { welcomeSequenceBlockedAt: admin.firestore.FieldValue.serverTimestamp() },
+          { merge: true },
+        )
+        .catch(() => undefined);
       return;
     }
 
@@ -259,6 +283,22 @@ export const sendLeadMagnetWelcome = functions.firestore
       },
       { merge: true },
     );
+
+    // Clear the health flag once sends actually work, so the doc can't sit
+    // permanently red after the key is fixed.
+    await admin
+      .firestore()
+      .doc("systemHealth/email")
+      .set(
+        {
+          ok: scheduled > 0,
+          reason: scheduled > 0 ? null : "Resend accepted zero of the scheduled sends",
+          lastSuccessAt: admin.firestore.FieldValue.serverTimestamp(),
+          lastSuccessSource: "sendLeadMagnetWelcome",
+        },
+        { merge: true },
+      )
+      .catch(() => undefined);
 
     console.log(
       `[lead-welcome] scheduled ${scheduled}/${LEAD_SEQUENCE.length} emails for ${captureId} (${cluster})`,

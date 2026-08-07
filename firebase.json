@@ -13,7 +13,8 @@
                 "firebase-debug.*.log"
             ],
             "predeploy": [
-                "npm --prefix \"$RESOURCE_DIR\" run build"
+                "npm --prefix \"$RESOURCE_DIR\" run build",
+                "node \"$RESOURCE_DIR/scripts/check-email-config.mjs\""
             ]
         }
     ],
