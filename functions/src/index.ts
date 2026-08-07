@@ -10,6 +10,8 @@ import { resolveOpenAIKey } from './openaiKey';
 export { scheduleOnboardingDrip } from './onboardingDrip';
 // Exam countdown emails (D-14/7/3/1). Daily scheduled job at 14:00 UTC.
 export { sendExamCountdownEmails } from './examCountdown';
+// Lead-magnet welcome sequence (Day 0/2/5). Fires on leadCaptures/{id} create.
+export { sendLeadMagnetWelcome } from './leadMagnetWelcome';
 
 console.log("Global Index Execution Started");
 admin.initializeApp();

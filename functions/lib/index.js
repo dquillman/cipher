@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.captureLead = exports.startTrial = exports.validateQuizStart = exports.cleanupTimedOutSessions = exports.seedExamSources = exports.markSourceReviewed = exports.triggerExamUpdateCheck = exports.checkForExamUpdates = exports.getMarketingAnalytics = exports.generateMarketingCopyVariants = exports.generateMarketingCopy = exports.logVisitorEvent = exports.evaluateQuestionQuality = exports.analyzeExamHealth = exports.extendExamPass = exports.createPassCheckoutSession = exports.cancelSubscription = exports.getSubscriptionDetails = exports.stripeWebhook = exports.createPortalSession = exports.createCheckoutSession = exports.deleteUser = exports.resetExamProgress = exports.getGlobalStats = exports.getAdminUserList = exports.resetUserProgress = exports.deleteExamQuestions = exports.batchGenerateQuestions = exports.generateQuestions = exports.getAdaptiveQuestions = exports.createUserProfile = exports.sendExamCountdownEmails = exports.scheduleOnboardingDrip = void 0;
+exports.captureLead = exports.startTrial = exports.validateQuizStart = exports.cleanupTimedOutSessions = exports.seedExamSources = exports.markSourceReviewed = exports.triggerExamUpdateCheck = exports.checkForExamUpdates = exports.getMarketingAnalytics = exports.generateMarketingCopyVariants = exports.generateMarketingCopy = exports.logVisitorEvent = exports.evaluateQuestionQuality = exports.analyzeExamHealth = exports.extendExamPass = exports.createPassCheckoutSession = exports.cancelSubscription = exports.getSubscriptionDetails = exports.stripeWebhook = exports.createPortalSession = exports.createCheckoutSession = exports.deleteUser = exports.resetExamProgress = exports.getGlobalStats = exports.getAdminUserList = exports.resetUserProgress = exports.deleteExamQuestions = exports.batchGenerateQuestions = exports.generateQuestions = exports.getAdaptiveQuestions = exports.createUserProfile = exports.sendLeadMagnetWelcome = exports.sendExamCountdownEmails = exports.scheduleOnboardingDrip = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const openai_1 = require("openai");
@@ -28,6 +28,9 @@ Object.defineProperty(exports, "scheduleOnboardingDrip", { enumerable: true, get
 // Exam countdown emails (D-14/7/3/1). Daily scheduled job at 14:00 UTC.
 var examCountdown_1 = require("./examCountdown");
 Object.defineProperty(exports, "sendExamCountdownEmails", { enumerable: true, get: function () { return examCountdown_1.sendExamCountdownEmails; } });
+// Lead-magnet welcome sequence (Day 0/2/5). Fires on leadCaptures/{id} create.
+var leadMagnetWelcome_1 = require("./leadMagnetWelcome");
+Object.defineProperty(exports, "sendLeadMagnetWelcome", { enumerable: true, get: function () { return leadMagnetWelcome_1.sendLeadMagnetWelcome; } });
 console.log("Global Index Execution Started");
 admin.initializeApp();
 console.log("Admin Initialized");

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Check } from "lucide-react";
+import { Check, Ticket } from "lucide-react";
 
 /**
  * Tier 1 LP pricing card — byte-for-byte from the verified live /pricing
@@ -21,7 +21,7 @@ export default function PricingCard({
         Start free. Upgrade when you're ready to go all-in on exam prep.
       </p>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {/* Starter */}
         <div className="rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-lg">
           <h3 className="text-lg font-semibold text-slate-100">Starter</h3>
@@ -72,6 +72,36 @@ export default function PricingCard({
           </Link>
           <p className="mt-3 text-center text-xs text-slate-500">
             Secure payments powered by Stripe. No credit card required for trial.
+          </p>
+        </div>
+
+        {/* 90-Day Exam Pass — one-time, non-renewing. Mirrors the third card on
+            /pricing. It was missing here entirely, so every LP visitor saw only
+            two of the three ways to buy. */}
+        <div className="rounded-2xl border border-amber-500/30 bg-slate-900 p-8 shadow-lg sm:col-span-2 lg:col-span-1">
+          <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-100">
+            <Ticket className="h-5 w-5 text-amber-400" /> Exam Pass
+          </h3>
+          <p className="mt-4 flex items-baseline">
+            <span className="text-4xl font-extrabold text-slate-50">$59</span>
+            <span className="ml-1 text-sm font-semibold text-slate-500">/ one-time</span>
+          </p>
+          <p className="mt-3 text-sm font-semibold text-amber-300">90 days. One exam. No auto-renew.</p>
+          <ul className="mt-6 space-y-3 text-sm text-slate-300">
+            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-amber-400" /> Everything in Pro for one exam</li>
+            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-amber-400" /> 90 days of full access</li>
+            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-amber-400" /> One-time payment — never renews</li>
+            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-amber-400" /> Rescheduled? Your pass moves with your exam.</li>
+          </ul>
+          <Link
+            to={signupHref}
+            onClick={onCtaClick}
+            className="mt-8 block w-full rounded-md border border-amber-500/60 px-4 py-2.5 text-center text-sm font-semibold text-amber-300 transition hover:bg-amber-500/10 hover:text-amber-200"
+          >
+            Get the Exam Pass
+          </Link>
+          <p className="mt-3 text-center text-xs text-slate-500">
+            Buy after you sign up — no subscription required.
           </p>
         </div>
       </div>
