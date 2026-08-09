@@ -21,16 +21,27 @@ export const EXAM_REFERENCES: Record<string, string> = {
     // and calls out differences from the PMBOK® Guide, which it names without
     // an edition number — so the ECO itself is the citation, not a PMBOK edition.
     [PMP_2026_EXAM_ID]: "PMI PMP® Examination Content Outline – July 2026",
-    [PGMP_EXAM_ID]: "PMI PgMP® Examination Content Outline · The Standard for Program Management",
-    "IpECw0XAtBkgD1HyvYas": "The Scrum Guide (2020) – Schwaber & Sutherland",
-    "bpfawZDj3qalhoU4mdd3": "SHRM Body of Applied Skills & Knowledge (SHRM BASK)",
-    "XGfL6RE2ls7cokP2tqMa": "ASQ Certified Six Sigma Green Belt Body of Knowledge",
-    "Vs3aNmifAJc9bYRFCxXc": "APA Payroll Source – Certified Payroll Professional Study Guide",
-    "dtgTymjijqUr4NEIHbE1": "IIA Global Internal Audit Standards (2025)",
-    "6FKeXlV2dzv4I03tewcU": "ITIL 4 Foundation: ITIL 4 Edition (Axelos)",
-    "79cuGMNydTwDMhyiDjry": "CompTIA Security+ SY0-701 Exam Objectives",
-    "gp6QwBz0FXFIntLSQSYr": "CompTIA Network+ N10-008 Exam Objectives",
-    "cxBsVz8AVaocdEYbgSMA": "CompTIA A+ 220-1102 (Core 2) Exam Objectives",
+    [PGMP_EXAM_ID]: "PMI PgMP® Examination Content Outline – March 2024 · The Standard for Program Management, Fifth Edition",
+    // Scrum Alliance builds the CSM from its own learning objectives; the Scrum
+    // Guide is the underlying framework, not the exam blueprint. Cite both.
+    "IpECw0XAtBkgD1HyvYas": "Scrum Alliance CSM Learning Objectives (Jan 2022) · The Scrum Guide (Nov 2020)",
+    // Bank is written against the 2024 BASK. SHRM's 2026 BASK took effect for
+    // exams from 1 May 2026 and merged Inclusion & Diversity with Global Mindset
+    // into "Inclusive Mindset". Cite what the content IS until it is re-authored;
+    // claiming the 2026 edition before then would be the false-relabel mistake.
+    "bpfawZDj3qalhoU4mdd3": "SHRM Body of Applied Skills & Knowledge (BASK) – 2024 edition (superseded 1 May 2026)",
+    "XGfL6RE2ls7cokP2tqMa": "ASQ Certified Six Sigma Green Belt Body of Knowledge – 2022 edition",
+    // The Payroll Source is a study guide, not the blueprint. The blueprint is
+    // the CPP Content Outline, and it is dated because payroll content turns
+    // over annually with the tax year.
+    "Vs3aNmifAJc9bYRFCxXc": "PayrollOrg CPP Content Outline – 2019 KSA (superseded 5 Sep 2026)",
+    "dtgTymjijqUr4NEIHbE1": "IIA CIA Part 1 Expanded Test Specifications – 2025 syllabus · Global Internal Audit Standards (2025)",
+    // Administered by PeopleCert, not Axelos. ITIL Foundation V5 launched
+    // Feb 2026; ITIL 4 remains bookable until its 31 Dec 2027 sunset.
+    "6FKeXlV2dzv4I03tewcU": "ITIL 4 Foundation syllabus v4.2.0 (PeopleCert, Mar 2025)",
+    "79cuGMNydTwDMhyiDjry": "CompTIA Security+ SY0-701 Exam Objectives (launched Nov 2023; current)",
+    "gp6QwBz0FXFIntLSQSYr": "CompTIA Network+ N10-008 Exam Objectives (retired Dec 2024; superseded by N10-009)",
+    "cxBsVz8AVaocdEYbgSMA": "CompTIA A+ 220-1102 Core 2 Exam Objectives (retired 25 Sep 2025; superseded by 220-1202)",
 };
 
 /**

@@ -6,6 +6,7 @@ import { useVoiceAssistant, pickCipherVoice } from '../hooks/useVoiceAssistant';
 import { SmartQuizService } from '../services/smartQuiz';
 import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import type { Question } from '../hooks/useSimulator';
+import { filterToSingleIndexGraded } from '../utils/scoring';
 import { useExam } from '../contexts/ExamContext';
 
 type ModeState = 'SETUP' | 'LOADING' | 'READING' | 'LISTENING' | 'FEEDBACK' | 'FINISHED';
@@ -149,7 +150,19 @@ export default function VerbalMode() {
 
         try {
             const ids = await SmartQuizService.generateSimulationExam(examId, targetQuestionCount);
-            const loadedQuestions = await fetchQuestionDocsByIds<Question>(ids);
+            const fetched = await fetchQuestionDocsByIds<Question>(ids);
+
+            // GUARD — same reason as useSimulator. Verbal mode reads exactly four
+            // options aloud and grades with `selectedIndex === correctAnswer`, so
+            // a format with a multi-index key (or no `correctAnswer`) is graded
+            // wrong on every attempt. Excluding is honest; grading it is not.
+            // Drop this when verbal mode can accept a set of answers.
+            const loadedQuestions = filterToSingleIndexGraded(fetched);
+            if (loadedQuestions.length !== fetched.length) {
+                console.warn(
+                    `[VerbalMode] Excluded ${fetched.length - loadedQuestions.length} question(s) whose format verbal mode cannot grade.`
+                );
+            }
 
             if (isMounted.current) {
                 if (loadedQuestions.length === 0) {

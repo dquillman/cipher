@@ -56,8 +56,9 @@ const ROUTES = [
   '/lp/shrm-cp',
   '/lp/csm',
   '/lp/itil',
-  '/lp/network-plus',
-  '/lp/a-plus-core-2',
+  // Network+ (N10-008) and A+ Core 2 (220-1102) LPs are excluded: both target
+  // retired CompTIA exam codes and the banks are flagged retired in config/exams.ts.
+  // We do not market prep for exams nobody can sit. Restore when current-code banks exist.
   '/lp/six-sigma',
   '/lp/pgmp',
   '/lp/cia',

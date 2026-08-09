@@ -408,11 +408,23 @@ export default function Landing() {
         <div className="ticker-track">
           {[
             "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
-            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1102", "SIX SIGMA · GREEN BELT",
+            // Network+ and A+ Core 2 are deliberately absent: both banks target
+            // exam codes CompTIA has retired (N10-008, 220-1102), so they are
+            // flagged `retired` in config/exams.ts and are not for sale. The
+            // ticker previously advertised "NETWORK+ · N10-009" — objectives we
+            // have never had content for. Re-add each only when a bank exists
+            // for the current code.
+            "ITIL 4 · FOUNDATION", "SIX SIGMA · GREEN BELT",
             "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
           ].concat([
             "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
-            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1102", "SIX SIGMA · GREEN BELT",
+            // Network+ and A+ Core 2 are deliberately absent: both banks target
+            // exam codes CompTIA has retired (N10-008, 220-1102), so they are
+            // flagged `retired` in config/exams.ts and are not for sale. The
+            // ticker previously advertised "NETWORK+ · N10-009" — objectives we
+            // have never had content for. Re-add each only when a bank exists
+            // for the current code.
+            "ITIL 4 · FOUNDATION", "SIX SIGMA · GREEN BELT",
             "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
           ]).map((t, i) => (
             <span key={i} className="font-mono text-[11px] tracking-[0.22em] text-slate-500 px-7 py-3 border-r border-slate-800/80">

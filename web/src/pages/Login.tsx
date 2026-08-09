@@ -36,8 +36,11 @@ const LP_EXAM_SLUG_TO_ID: Record<string, string> = {
     'shrm-cp':        'bpfawZDj3qalhoU4mdd3',
     'csm':            'IpECw0XAtBkgD1HyvYas',
     'itil':           '6FKeXlV2dzv4I03tewcU',
-    'network-plus':   'gp6QwBz0FXFIntLSQSYr',
-    'a-plus-core-2':  'cxBsVz8AVaocdEYbgSMA',
+    // 'network-plus' and 'a-plus-core-2' are deliberately absent. Both banks
+    // target retired CompTIA exam codes (N10-008, 220-1102) and are flagged
+    // `retired` in config/exams.ts. Same rule as the retired PMP bank: no public,
+    // shareable link may park a user on an outline nobody can sit for. Restore a
+    // slug only when a bank exists for the current code (N10-009 / 220-1202).
     'six-sigma':      'XGfL6RE2ls7cokP2tqMa',
     'pgmp':           'bF7IQUrKjbP2KLwiSNqt',
     'cia':            'dtgTymjijqUr4NEIHbE1',

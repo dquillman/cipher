@@ -1,4 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
+import { examLineage } from '../config/exams';
 
 /**
  * 90-Day Exam Pass entitlement — mirrors users/{uid}.entitlement written by
@@ -49,8 +50,22 @@ export function parsePassEntitlement(raw: unknown): PassEntitlement | null {
     };
 }
 
-/** True if the pass covers `examId` and has not expired. */
+/**
+ * True if the pass covers `examId` and has not expired.
+ *
+ * Coverage is matched across the exam's LINEAGE, not by strict id equality. A
+ * pass is bought for a certification, not for a Firestore document: when PMI
+ * replaced the PMP outline on 9 July 2026 and the bank was rebuilt under a new
+ * id, strict equality would have silently revoked every live PMP pass the
+ * moment its holder moved to the current bank. Five gates depend on this
+ * function (App, MockExamGuard, Quiz, SimulatorIntro, BloomHeatmap), so the
+ * failure would have read as "my paid access vanished".
+ *
+ * See examLineage in config/exams.ts for how the chain is declared.
+ */
 export function isPassActiveFor(pass: PassEntitlement | null, examId: string): boolean {
     if (!pass) return false;
-    return pass.examId === examId && pass.expiresAt.getTime() > Date.now();
+    if (pass.expiresAt.getTime() <= Date.now()) return false;
+    if (pass.examId === examId) return true;
+    return examLineage(examId).includes(pass.examId);
 }

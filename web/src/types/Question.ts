@@ -60,11 +60,13 @@ export interface Question {
     stimulusOrder?: number;
 
     /** `multi-response`: indices into `options` that are all correct.
-     *  Present instead of `correctAnswer` for multi-select items. */
+     *  Present instead of `correctAnswer` for multi-select items.
+     *
+     *  There is deliberately NO `selectCount` field. The count of correct
+     *  answers is not shown to the candidate — the real exam does not reveal it,
+     *  and a "pick 2 of 5" hint is a large unearned clue. Scoring derives
+     *  everything it needs from this array (utils/scoring.ts). */
     correctAnswers?: number[];
-    /** `multi-response`: how many options the candidate must pick.
-     *  Defaults to `correctAnswers.length` when omitted. */
-    selectCount?: number;
 
     /** `graphic` / `enhanced-matching`: alt text for the referenced visual.
      *  Required for accessibility whenever the image carries the question. */

@@ -29,21 +29,20 @@ const ExamContext = createContext<ExamContextType | undefined>(undefined);
  * nothing to cite — the same standard components/QuestionProvenanceBadge.tsx
  * already sets. Only the supersession itself is claimed.
  *
- * There is deliberately NO automatic remapping of a stored retired-bank ID
- * onto the live bank. `selectedExamId` is the key that paid access and all
- * per-exam state hang off:
- *   - utils/passEntitlement.ts `isPassActiveFor` matches `pass.examId` by
- *     strict equality, so rewriting the stored ID revokes a paid $59 Exam
- *     Pass on the very next app load. Gates that would flip: App.tsx:292,
- *     MockExamGuard.tsx:20, Quiz.tsx:125, SimulatorIntro.tsx:125,
- *     analytics/BloomHeatmap.tsx:392.
- *   - Dashboard progress queries and DiagnosticService.hasCompletedRun are
- *     scoped by examId, so a rewrite also blanks visible progress/readiness
- *     and re-locks the mock exam for "no diagnostic".
- * Entitlement records cannot be rewritten from the client, so until a
- * server-side migration moves pass documents onto the new bank ID, moving a
- * user between banks stays a deliberate act through the exam picker
- * (`switchExam`) — never a side effect of loading the app.
+ * A stored retired-bank ID IS now remapped onto its successor on load. That was
+ * unsafe until entitlements became lineage-aware and is safe now:
+ *   - utils/passEntitlement.ts `isPassActiveFor` used to match `pass.examId` by
+ *     strict equality, so rewriting the stored ID revoked a paid $59 Exam Pass
+ *     on the very next app load, across five gates (App, MockExamGuard, Quiz,
+ *     SimulatorIntro, BloomHeatmap). It now matches across `examLineage`, so a
+ *     pass bought for the 2021 bank covers the 2026 bank and no access is lost.
+ *   - Known, accepted consequence: Dashboard progress and
+ *     DiagnosticService.hasCompletedRun are scoped by examId, so a migrated user
+ *     sees a fresh readiness picture on the new bank and is asked to retake the
+ *     diagnostic. Their old attempts are untouched in Firestore. That is the
+ *     correct trade — a stale readiness score against a retired outline is worse
+ *     than a one-time re-baseline, because it tells someone they are ready for
+ *     an exam that no longer exists.
  *
  * The retired bank is surfaced rather than silently swapped: `examName` below
  * resolves from EXAMS, so it reads "PMP (2021 outline — retired)" wherever the
@@ -63,7 +62,20 @@ const ExamContext = createContext<ExamContextType | undefined>(undefined);
  */
 function resolveInitialExamId(): string {
     try {
-        return localStorage.getItem('selectedExamId') || DEFAULT_EXAM_ID;
+        const stored = localStorage.getItem('selectedExamId');
+        if (!stored) return DEFAULT_EXAM_ID;
+
+        // Walk a retired bank forward to the outline currently in effect. Pure
+        // mapping, no write — this runs inside a useState initializer, which
+        // under StrictMode can run more than once and for discarded renders.
+        // Persistence happens on the next switchExam; re-deriving is idempotent.
+        let cursor = stored;
+        const seen = new Set<string>([cursor]);
+        while (EXAMS[cursor]?.supersededBy && !seen.has(EXAMS[cursor].supersededBy!)) {
+            cursor = EXAMS[cursor].supersededBy!;
+            seen.add(cursor);
+        }
+        return cursor;
     } catch {
         // localStorage unavailable (private mode, prerender) — fall back cleanly.
         return DEFAULT_EXAM_ID;

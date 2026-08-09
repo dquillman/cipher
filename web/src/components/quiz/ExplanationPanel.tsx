@@ -3,6 +3,7 @@ import TutorBreakdown, { type TutorResponse, type CoachMode } from '../TutorBrea
 import StructuredExplanation from '../explanations/StructuredExplanation';
 import EmvCalculation from '../explanations/EmvCalculation';
 import { resolveCitation } from '../../utils/domainCitations';
+import { gradesBySingleIndex } from '../../utils/scoring';
 import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../../types/Bloom';
 import type { Question } from '../../types/Question';
 
@@ -42,6 +43,7 @@ export default function ExplanationPanel({
     onLoadBreakdown,
 }: ExplanationPanelProps) {
     const showCoach = tutorBreakdown !== null || loadingBreakdown;
+    const coachSupported = gradesBySingleIndex(question.type);
 
     return (
         <div className="answer-reveal mt-8 pt-6 border-t border-slate-700">
@@ -82,12 +84,20 @@ export default function ExplanationPanel({
                     />
                 ) : (
                     <div className="text-center p-4">
-                        <button
-                            onClick={onLoadBreakdown}
-                            className="text-brand-400 hover:text-brand-300 underline"
-                        >
-                            Load Coach Breakdown
-                        </button>
+                        {/* The coach callable takes a single correctAnswerIndex +
+                            userSelectedOptionIndex, so formats that don't grade by a
+                            single index (matching / pbq / multi-response) can't use it —
+                            Quiz.tsx returns early on exactly this predicate. Offering the
+                            button anyway gave those three formats a control that silently
+                            did nothing. Standard explanation still shows. */}
+                        {coachSupported && (
+                            <button
+                                onClick={onLoadBreakdown}
+                                className="text-brand-400 hover:text-brand-300 underline"
+                            >
+                                Load Coach Breakdown
+                            </button>
+                        )}
                         <div className="mt-4 p-4 text-left leading-relaxed text-base md:text-lg text-slate-200">
                             <StructuredExplanation explanation={question.explanation} title="Standard Explanation" />
                         </div>

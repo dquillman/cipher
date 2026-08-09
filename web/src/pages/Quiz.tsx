@@ -23,6 +23,7 @@ import { FrictionEventService } from '../services/FrictionEventService';
 import { trackExplanationViewed, trackActivatedUser } from '../lib/ga4';
 import { DEFAULT_EXAM_ID, EXAM_LENS, EXAMS } from '../config/exams';
 import type { Question } from '../types/Question';
+import { canSubmitMultiResponse, toggleSelection, gradeAnswer, gradesBySingleIndex } from '../utils/scoring';
 import QuizCompletionSummary from '../components/quiz/QuizCompletionSummary';
 import QuizModeBanner from '../components/quiz/QuizModeBanner';
 import ActiveFilterPill from '../components/quiz/ActiveFilterPill';
@@ -30,6 +31,11 @@ import AnswerOptions from '../components/quiz/AnswerOptions';
 import ExplanationPanel from '../components/quiz/ExplanationPanel';
 import StudyThemeToggle from '../components/quiz/StudyThemeToggle';
 import { useStudyTheme } from '../hooks/useStudyTheme';
+
+/** Persisted `selectedOption` for a format that has no single chosen index
+ *  (matching, pbq, multi-response). Never a real option index — consumers only
+ *  test this field for `!== undefined` to mean "answered". */
+const NO_SINGLE_INDEX = -1;
 
 export default function Quiz() {
     // Daylight study mode — light skin for bright rooms / long sessions
@@ -79,6 +85,12 @@ export default function Quiz() {
 
     // PBQ: Performance-based question state
     const [pbqState, setPbqState] = useState<PBQState | null>(null);
+
+    // ECO "Multiple-Response": ticked option indices for the current question.
+    // Kept separate from `selectedOption` so single-select MCQ — 100% of current
+    // production content — is untouched by this format. Scoring lives in
+    // utils/scoring.ts (all-or-nothing, matching PMI's no-partial-credit rule).
+    const [multiSelected, setMultiSelected] = useState<number[]>([]);
 
     // Smart Quiz Review (app-level context)
     const smartReview = useSmartQuizReview();
@@ -670,10 +682,18 @@ export default function Quiz() {
         } else {
             setPbqState(null);
         }
+        // Multiple-response: always start the question with nothing ticked.
+        setMultiSelected([]);
     }, [currentQuestionIndex, questions]);
 
     const handleOptionSelect = (index: number) => {
         if (showExplanation) return;
+        // Multiple-response: tick/untick, never replace. Single-select is
+        // unchanged — it still swaps the one chosen option.
+        if (questions[currentQuestionIndex]?.type === 'multi-response') {
+            setMultiSelected(prev => toggleSelection(prev, index));
+            return;
+        }
         setSelectedOption(index);
     };
 
@@ -684,23 +704,43 @@ export default function Quiz() {
         setQuestionStartTime(Date.now());
     }, [currentQuestionIndex, loading]);
 
+    // ── THE grading call ───────────────────────────────────────────────────
+    // Every place that decides "was this answer right?" goes through here:
+    // handleSubmit, handleNext, and the Quit & Save path. Those three used to
+    // each carry their own copy of the format ternary, which meant adding a
+    // format was three edits and missing one produced a question graded right
+    // on screen and wrong in the saved record — invisible until someone reads
+    // their stats. The branch itself lives in utils/scoring.ts (gradeAnswer)
+    // and is unit tested there; Quiz.wiring.test.ts asserts this stays the
+    // only grading site in this file.
+    const gradeCurrentQuestion = (q: Question): boolean => gradeAnswer({
+        type: q.type,
+        isPbqCorrect: q.pbqConfig && pbqState ? () => isPBQCorrect(q.pbqConfig!, pbqState) : undefined,
+        isMatchingCorrect: matchingState
+            ? () => matchingState.currentOrder.every((v, i) => v === matchingState.correctOrder[i])
+            : undefined,
+        correctAnswers: q.correctAnswers,
+        multiSelected,
+        correctAnswer: q.correctAnswer,
+        selectedOption,
+    });
+
     const handleSubmit = () => {
         const currentQuestion = questions[currentQuestionIndex];
 
         // EC-119: Matching questions use matchingState instead of selectedOption
         const isMatching = currentQuestion.type === 'matching' && matchingState;
         const isPBQ = currentQuestion.type === 'pbq' && pbqState && currentQuestion.pbqConfig;
-        if (!isMatching && !isPBQ && selectedOption === null) return;
+        // Multiple-response uses multiSelected instead of selectedOption.
+        const isMultiResponse = currentQuestion.type === 'multi-response';
+        if (isMultiResponse && !canSubmitMultiResponse(multiSelected)) return;
+        if (!isMatching && !isPBQ && !isMultiResponse && selectedOption === null) return;
 
         const endTime = Date.now();
         const duration = (endTime - questionStartTime) / 1000; // in seconds
         setQuestionDurations([...questionDurations, duration]);
 
-        const isCorrect = isPBQ
-            ? isPBQCorrect(currentQuestion.pbqConfig!, pbqState!)
-            : isMatching
-            ? matchingState!.currentOrder.every((v, i) => v === matchingState!.correctOrder[i])
-            : selectedOption === currentQuestion.correctAnswer;
+        const isCorrect = gradeCurrentQuestion(currentQuestion);
 
         if (isCorrect) {
             setScore(prev => prev + 1);
@@ -741,8 +781,11 @@ export default function Quiz() {
         trackExplanationViewed(currentQuestion.id, selectedExamId || '');
         setTutorBreakdown(null); // Reset breakdown
 
-        // Always fetch tutor breakdown for learning reinforcement
-        fetchTutorBreakdown(currentQuestion, selectedOption!);
+        // Always fetch tutor breakdown for learning reinforcement.
+        // `?? -1` only ever fires for formats that carry no single selected
+        // index (matching / pbq / multi-response), and those return early
+        // inside fetchTutorBreakdownWithMode before the value is read.
+        fetchTutorBreakdown(currentQuestion, selectedOption ?? -1);
 
         // Save Granular Question Progress (SRS)
         updateQuestionProgress(currentQuestion.id, isCorrect);
@@ -841,8 +884,13 @@ export default function Quiz() {
     };
 
     const fetchTutorBreakdownWithMode = async (question: Question, selectedOptIdx: number, mode: CoachMode) => {
-        // Matching / PBQ questions don't use the tutor breakdown flow
-        if (question.type === 'matching' || question.type === 'pbq') return;
+        // The callable's contract is a single correctAnswerIndex +
+        // userSelectedOptionIndex. Formats that don't grade by a single index
+        // (matching / pbq / multiple-response) have neither, and inventing one
+        // would coach against the wrong answer. Same predicate ExplanationPanel
+        // uses to hide the "Load Coach Breakdown" button, so the button can
+        // never be offered for a request that returns here.
+        if (!gradesBySingleIndex(question.type)) return;
 
         setLoadingBreakdown(true);
         lastBreakdownRef.current = { question, selectedOptIdx };
@@ -1072,16 +1120,20 @@ export default function Quiz() {
     const handleNext = async () => {
         // Save details for the JUST FINISHED question
         const currentQuestion = questions[currentQuestionIndex];
-        const isCorrect = currentQuestion.type === 'pbq' && pbqState && currentQuestion.pbqConfig
-            ? isPBQCorrect(currentQuestion.pbqConfig, pbqState)
-            : currentQuestion.type === 'matching' && matchingState
-            ? matchingState.currentOrder.every((v, i) => v === matchingState.correctOrder[i])
-            : selectedOption === currentQuestion.correctAnswer;
+        const isMultiResponse = currentQuestion.type === 'multi-response';
+        const isCorrect = gradeCurrentQuestion(currentQuestion);
 
         setQuizDetails(prev => [...prev, {
             questionId: currentQuestion.id,
             selectedOption,
-            correctOption: currentQuestion.correctAnswer,
+            // A multiple-response item has no single correct index. `null` is
+            // the honest value; the whole key goes in correctOptions alongside.
+            // Nothing reads these two fields today (the results view derives
+            // everything from isCorrect + domain) — they are recorded so the
+            // stored detail is a truthful record of the answer, not because a
+            // consumer is currently broken without them.
+            correctOption: isMultiResponse ? null : currentQuestion.correctAnswer,
+            ...(isMultiResponse ? { selectedOptions: multiSelected, correctOptions: currentQuestion.correctAnswers ?? [] } : {}),
             isCorrect,
             domain: currentQuestion.domain,
             explanationViewed: explanationExpanded,
@@ -1096,7 +1148,16 @@ export default function Quiz() {
                     activeRunId,
                     {
                         questionId: currentQuestion.id,
-                        selectedOption: selectedOption !== null ? selectedOption : -1, // -1 for skip if allowed? Assuming selectedOption is required by UI
+                        // NO_SINGLE_INDEX (-1) for formats that have no single
+                        // chosen option — matching, pbq, multi-response. It is a
+                        // sentinel, not an option index: every consumer of this
+                        // field only asks `!== undefined` ("was this answered?"),
+                        // which -1 correctly answers yes to. See the field doc on
+                        // QuizRun.answers in QuizRunService.ts.
+                        selectedOption: selectedOption !== null ? selectedOption : NO_SINGLE_INDEX,
+                        // For multi-response, the real answer is the tick set —
+                        // persist it so the record isn't just the sentinel.
+                        ...(isMultiResponse ? { selectedOptions: multiSelected } : {}),
                         isCorrect: isCorrect,
                         domain: currentQuestion.domain
                     },
@@ -1132,6 +1193,7 @@ export default function Quiz() {
             setTutorBreakdown(null);
             setDepthContent(null);
             setMatchingState(null); // Reset for next question (initialized via effect)
+            setMultiSelected([]);   // Reset multiple-response ticks
         } else {
             // End of quiz. We need to save this last question's details immediately before saving results.
             // But state updates are async. 
@@ -1139,7 +1201,8 @@ export default function Quiz() {
             const finalDetails = [...quizDetails, {
                 questionId: currentQuestion.id,
                 selectedOption,
-                correctOption: currentQuestion.correctAnswer,
+                correctOption: isMultiResponse ? null : currentQuestion.correctAnswer,
+                ...(isMultiResponse ? { selectedOptions: multiSelected, correctOptions: currentQuestion.correctAnswers ?? [] } : {}),
                 isCorrect,
                 domain: currentQuestion.domain,
                 explanationViewed: explanationExpanded,
@@ -1280,17 +1343,16 @@ export default function Quiz() {
 
                                             if (showExplanation) {
                                                 const currentQuestion = questions[currentQuestionIndex];
-                                                const isCorrect = currentQuestion.type === 'pbq' && pbqState && currentQuestion.pbqConfig
-                                                    ? isPBQCorrect(currentQuestion.pbqConfig, pbqState)
-                                                    : currentQuestion.type === 'matching' && matchingState
-                                                    ? matchingState.currentOrder.every((v, i) => v === matchingState.correctOrder[i])
-                                                    : selectedOption === currentQuestion.correctAnswer;
+                                                const isMultiResponse = currentQuestion.type === 'multi-response';
+                                                const isCorrect = gradeCurrentQuestion(currentQuestion);
 
                                                 const isPbqOrMatching = currentQuestion.type === 'matching' || currentQuestion.type === 'pbq';
+                                                const noSingleIndex = isPbqOrMatching || isMultiResponse;
                                                 finalDetails = [...quizDetails, {
                                                     questionId: currentQuestion.id,
-                                                    selectedOption: isPbqOrMatching ? null : selectedOption,
-                                                    correctOption: isPbqOrMatching ? null : currentQuestion.correctAnswer,
+                                                    selectedOption: noSingleIndex ? null : selectedOption,
+                                                    correctOption: noSingleIndex ? null : currentQuestion.correctAnswer,
+                                                    ...(isMultiResponse ? { selectedOptions: multiSelected, correctOptions: currentQuestion.correctAnswers ?? [] } : {}),
                                                     isCorrect,
                                                     domain: currentQuestion.domain,
                                                     explanationViewed: explanationExpanded,
@@ -1408,6 +1470,12 @@ export default function Quiz() {
                                 correctAnswer={currentQuestion.correctAnswer}
                                 showExplanation={showExplanation}
                                 onSelect={handleOptionSelect}
+                                // Multiple-response renders checkboxes; `multi`
+                                // is false for every other type, so single-select
+                                // MCQ renders exactly as before.
+                                multi={currentQuestion.type === 'multi-response'}
+                                selectedOptions={multiSelected}
+                                correctAnswers={currentQuestion.correctAnswers}
                             />
                             )}
 
@@ -1422,7 +1490,7 @@ export default function Quiz() {
                                     coachMode={coachMode}
                                     onCoachModeChange={handleCoachModeChange}
                                     onExpandDepth={handleExpandDepth}
-                                    onLoadBreakdown={() => fetchTutorBreakdown(currentQuestion, selectedOption!)}
+                                    onLoadBreakdown={() => fetchTutorBreakdown(currentQuestion, selectedOption ?? -1)}
                                 />
                             )}
                         </div>
@@ -1431,10 +1499,10 @@ export default function Quiz() {
                             {!showExplanation ? (
                                 <button
                                     onClick={handleSubmit}
-                                    disabled={currentQuestion.type === 'pbq' ? !pbqState : currentQuestion.type === 'matching' ? !matchingState : selectedOption === null}
+                                    disabled={currentQuestion.type === 'pbq' ? !pbqState : currentQuestion.type === 'matching' ? !matchingState : currentQuestion.type === 'multi-response' ? !canSubmitMultiResponse(multiSelected) : selectedOption === null}
                                     className="w-full sm:w-auto bg-brand-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-brand-500/30 hover:bg-brand-500 hover:shadow-brand-500/40 transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                                 >
-                                    {currentQuestion.type === 'pbq' ? 'Submit PBQ' : currentQuestion.type === 'matching' ? 'Check Matches' : 'Submit Answer'}
+                                    {currentQuestion.type === 'pbq' ? 'Submit PBQ' : currentQuestion.type === 'matching' ? 'Check Matches' : currentQuestion.type === 'multi-response' ? 'Submit Answers' : 'Submit Answer'}
                                 </button>
                             ) : (
                                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">

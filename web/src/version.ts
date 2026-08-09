@@ -1,7 +1,7 @@
 // 🔒 SINGLE SOURCE OF TRUTH FOR APP VERSION
 // Update this file for every release before build + deploy
 
-export const APP_VERSION = '1.22.29';
+export const APP_VERSION = '1.23.0';
 
 const isStaging = typeof window !== 'undefined' && window.location.hostname.includes('staging');
 
