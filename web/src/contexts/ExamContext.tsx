@@ -3,7 +3,7 @@ import { doc, getDoc, collection, query, where, limit, getDocs } from 'firebase/
 import { db, auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { DiagnosticService } from '../services/DiagnosticService';
-import { DEFAULT_EXAM_ID } from '../config/exams';
+import { DEFAULT_EXAM_ID, EXAMS } from '../config/exams';
 
 interface ExamContextType {
     selectedExamId: string;
@@ -18,10 +18,60 @@ interface ExamContextType {
 
 const ExamContext = createContext<ExamContextType | undefined>(undefined);
 
-export function ExamProvider({ children }: { children: ReactNode }) {
-    const [selectedExamId, setSelectedExamId] = useState<string>(() => {
+/**
+ * PMP has two banks in Firestore, both declared in web/src/config/exams.ts:
+ * `PMP_EXAM_ID` (retired, written against the 2021 outline) and
+ * `PMP_2026_EXAM_ID` (live, aligned to the PMI "PMP Examination Content
+ * Outline – July 2026": People 33% / Process 41% / Business Environment 26%).
+ *
+ * No cutover date is asserted anywhere in this file. The July 2026 ECO PDF
+ * prints no effective date and never mentions the 2021 outline, so there is
+ * nothing to cite — the same standard components/QuestionProvenanceBadge.tsx
+ * already sets. Only the supersession itself is claimed.
+ *
+ * There is deliberately NO automatic remapping of a stored retired-bank ID
+ * onto the live bank. `selectedExamId` is the key that paid access and all
+ * per-exam state hang off:
+ *   - utils/passEntitlement.ts `isPassActiveFor` matches `pass.examId` by
+ *     strict equality, so rewriting the stored ID revokes a paid $59 Exam
+ *     Pass on the very next app load. Gates that would flip: App.tsx:292,
+ *     MockExamGuard.tsx:20, Quiz.tsx:125, SimulatorIntro.tsx:125,
+ *     analytics/BloomHeatmap.tsx:392.
+ *   - Dashboard progress queries and DiagnosticService.hasCompletedRun are
+ *     scoped by examId, so a rewrite also blanks visible progress/readiness
+ *     and re-locks the mock exam for "no diagnostic".
+ * Entitlement records cannot be rewritten from the client, so until a
+ * server-side migration moves pass documents onto the new bank ID, moving a
+ * user between banks stays a deliberate act through the exam picker
+ * (`switchExam`) — never a side effect of loading the app.
+ *
+ * The retired bank is surfaced rather than silently swapped: `examName` below
+ * resolves from EXAMS, so it reads "PMP (2021 outline — retired)" wherever the
+ * app shows the exam name, and QuestionProvenanceBadge labels every question
+ * drawn from it as coming from the superseded outline.
+ */
+
+/**
+ * Resolves the exam ID the app boots with: the user's last selection, else
+ * DEFAULT_EXAM_ID (the live 2026 bank, so new users never start on the
+ * retired outline).
+ *
+ * Pure read by contract. This is a `useState` initializer, so under
+ * <StrictMode> (web/src/main.tsx) and concurrent rendering it can run more
+ * than once and can run for a render that is thrown away. It must never
+ * write storage or have any other side effect.
+ */
+function resolveInitialExamId(): string {
+    try {
         return localStorage.getItem('selectedExamId') || DEFAULT_EXAM_ID;
-    });
+    } catch {
+        // localStorage unavailable (private mode, prerender) — fall back cleanly.
+        return DEFAULT_EXAM_ID;
+    }
+}
+
+export function ExamProvider({ children }: { children: ReactNode }) {
+    const [selectedExamId, setSelectedExamId] = useState<string>(resolveInitialExamId);
     const [examName, setExamName] = useState<string>('');
     const [bankVersion, setBankVersion] = useState<string>('1.0');
     const [examDomains, setExamDomains] = useState<string[]>([]);
@@ -67,7 +117,11 @@ export function ExamProvider({ children }: { children: ReactNode }) {
 
                     if (snap.exists()) {
                         const data = snap.data();
-                        setExamName(data.name || 'Unknown Exam');
+                        // config/exams.ts wins over the Firestore `name`: it is the
+                        // repo's source of truth and carries the retirement label
+                        // ("PMP (2021 outline — retired)"). A stale Firestore name
+                        // must not be able to present a retired bank as current.
+                        setExamName(EXAMS[selectedExamId]?.name || data.name || 'Unknown Exam');
                         setBankVersion(data.bankVersion || '1.0');
                         setExamDomains(data.domains || []);
                     } else {
@@ -88,7 +142,7 @@ export function ExamProvider({ children }: { children: ReactNode }) {
                             // State updates will trigger re-render, but we set them here to be immediate for this cycle if needed
                             // Actually, updating selectedExamId triggers the effect again, so we can just return or let it re-run.
                             // But to avoid flicker, we can set them:
-                            setExamName(data.name || 'Unknown Exam');
+                            setExamName(EXAMS[firstExam.id]?.name || data.name || 'Unknown Exam');
                             setBankVersion(data.bankVersion || '1.0');
                             setExamDomains(data.domains || []);
                         } else {
@@ -119,6 +173,10 @@ export function ExamProvider({ children }: { children: ReactNode }) {
         return () => unsubscribe();
     }, []);
 
+    // The only path that changes which bank a user is on. It is user-initiated
+    // and reversible (the picker can switch straight back), and it sets no
+    // sticky opt-out flag: nothing here may leave a permanent mark that a
+    // future content-outline migration would have to work around.
     const switchExam = async (examId: string) => {
         localStorage.setItem('selectedExamId', examId);
         setSelectedExamId(examId);

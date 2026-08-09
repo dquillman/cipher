@@ -52,9 +52,11 @@ export default function PmpPracticeLP() {
             internalize the frame, not just the facts.
           </li>
           <li>
-            <strong>180-question Full Mock with EMV math.</strong> Same length and pacing as
-            the actual PMP. EMV / earned-value math is supported natively, not buried in a
-            text box.
+            <strong>180-question Full Mock with EMV math.</strong> The real PMP is 180
+            questions (170 scored, 10 pretest) inside a 240-minute sitting. Our Full Mock
+            runs the same 180 questions on the same 240-minute clock, so you rehearse
+            stamina and pacing at exam scale — not just recall. EMV / earned-value math is
+            supported natively, not buried in a text box.
           </li>
         </ol>
       </SectionBlock>
@@ -105,8 +107,16 @@ export default function PmpPracticeLP() {
       <SectionBlock title="Frequently asked">
         <dl className="space-y-6">
           <div>
-            <dt className="font-semibold text-slate-100">Is this aligned to the current PMP exam (post-2021 update)?</dt>
-            <dd className="mt-1">Yes — the question library is built against PMI's current published exam objectives (People / Process / Business Environment).</dd>
+            <dt className="font-semibold text-slate-100">Is this aligned to the 2026 PMP Exam Content Outline?</dt>
+            <dd className="mt-1">
+              Yes. PMI's 2026 ECO took effect on 9 July 2026 and is the exam everyone sits now — the
+              2021 outline is retired. The domains keep their names (People / Process / Business
+              Environment), but the weightings moved to <strong>33% People, 41% Process, 26% Business
+              Environment</strong>, and PMI consolidated 35 tasks down to 26. CipherExam ships a
+              dedicated <strong>PMP Exam v2026</strong> bank written against that outline, and it's
+              what you land on automatically when you start a trial from this page — nothing to
+              pick. The retired 2021 bank stays available only if you deliberately switch to it.
+            </dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do you cover EMV / earned-value math?</dt>
@@ -114,7 +124,7 @@ export default function PmpPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
-            <dd className="mt-1">180 questions in 230 minutes — the same length as the actual PMP exam.</dd>
+            <dd className="mt-1">180 questions in 240 minutes (4 hours) — the same question count and the same clock PMI allots for the live PMP. You run it timed, in one sitting. What we don't reproduce is the rest of the sitting's structure: PMI's two 10-minute breaks and the one-way case-study boundary aren't simulated.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>

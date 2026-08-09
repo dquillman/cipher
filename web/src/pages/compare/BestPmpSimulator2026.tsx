@@ -8,11 +8,38 @@ import GuaranteeSeal from "../../components/GuaranteeSeal";
 
 /**
  * /compare/best-pmp-exam-simulator-2026 — honest buyer's-guide SEO page for
- * candidates evaluating PMP exam simulators ahead of the July 2026 exam change.
+ * candidates evaluating PMP exam simulators now that the July 2026 Examination
+ * Content Outline is live.
  *
  * Format: what to look for in a simulator (criteria first), then how CipherExam
  * meets each criterion. No competitor names, no invented facts — we compare
  * only on CipherExam's own verifiable differentiators. Voice: product voice.
+ *
+ * FACT SOURCE: every claim about the real exam on this page comes from PMI's
+ * "PMP Examination Content Outline – July 2026": 180 questions (170 scored +
+ * 10 pretest) in 240 minutes with two 10-minute breaks; domain weighting
+ * People 33% / Process 41% / Business Environment 26%; the item formats named
+ * in the outline's question-type section — eight of them, including Pull-down
+ * List. Do not restate exam facts here from memory, blog posts, or the old
+ * 2021 outline.
+ *
+ * PRODUCT-CLAIM SOURCE: every claim about CipherExam on this page must be
+ * traceable to code, not to config intent.
+ *   - Full mock length/clock: config/exams.ts fullMock (180 / 240) consumed by
+ *     hooks/useSimulator.ts:62-67. No break logic exists — do not imply breaks.
+ *   - Item rendering: components/simulator/QuestionCard.tsx maps
+ *     question.options to a single-select list. That is the simulator's only
+ *     answer UI. MatchingQuestion and EmvCalculation are rendered by Quiz.tsx
+ *     only, never by Simulator.tsx / SimulatorResults.tsx. Do NOT claim the
+ *     simulator renders drag-and-drop matching or steps EMV math.
+ *   - config/exams.ts questionTypes for 6kECziMtR1BS3MpABLW5 lists eight
+ *     formats, but that field has zero consumers repo-wide; it is a roadmap
+ *     declaration, not shipped behaviour. Copy follows the code.
+ *   - Bloom: bloomLevel is optional (types/Question.ts:41, useSimulator.ts:20)
+ *     and SimulatorResults.tsx:381-383 surfaces an untagged count. Never write
+ *     "every question is classified by Bloom's taxonomy".
+ * This page must stay consistent with /blog/pmp-exam-changes-july-2026, which
+ * makes the same disclosure (PmpExamChangesJuly2026.tsx:229-238).
  */
 const PAGE_ID = "compare-best-pmp-simulator-2026";
 const SIGNUP_HREF = `/login?exam=pmp&utm_lp=${PAGE_ID}`;
@@ -24,7 +51,7 @@ export default function BestPmpSimulator2026() {
       <Hero
         eyebrow="Buyer's Guide · CipherExam"
         h1="Choosing a PMP exam simulator for the 2026 exam"
-        sub="PMI updates the PMP exam against a new Exam Content Outline in July 2026. That makes this the worst possible year to pick a simulator on question count alone. Here's a plain checklist of what actually matters — and how CipherExam measures up on each point."
+        sub="PMI's new Examination Content Outline went live in July 2026, and every PMP sitting is now scored against it. That makes this the worst possible year to pick a simulator on question count alone. Here's a plain checklist of what actually matters — and how CipherExam measures up on each point."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         testimonialBadge="pmi-safe"
@@ -42,48 +69,79 @@ export default function BestPmpSimulator2026() {
 
       <SectionBlock title="1. Full-length timing that matches the real exam">
         <p>
-          The actual PMP is 180 questions in 230 minutes. A simulator that serves
-          50-question sets can't train the thing most first-time takers underestimate:
-          decision fatigue in hour three. Whatever you buy, confirm it runs a true
-          180-question, 230-minute mock.
+          The actual PMP is 180 questions — 170 scored, 10 unscored pretest items
+          seeded at random — in 240 minutes, broken by two 10-minute breaks. That's
+          a four-hour day. A simulator that serves 50-question sets can't train the
+          thing most first-time takers underestimate: decision fatigue in hour three.
+          Whatever you buy, confirm it runs a true full-length 180-question mock on
+          one clock.
         </p>
         <p>
-          <strong>How CipherExam meets it:</strong> our PMP Full Mock is 180 questions
-          in 230 minutes — same length, same pacing as the real thing.
+          <strong>How CipherExam meets it:</strong> our PMP full mock is all 180
+          questions on a single 240-minute clock — not split across two evenings,
+          not pausable when a scenario gets ugly. One limit worth knowing before
+          you buy: we run those 240 minutes straight through, without the exam's
+          two scheduled 10-minute breaks. You find out what your hour-three
+          judgment looks like here, where it's free to be bad.
         </p>
       </SectionBlock>
 
-      <SectionBlock title="2. Coverage of the new 2026 Exam Content Outline">
+      <SectionBlock title="2. Built on the 2026 Exam Content Outline, not the retired one">
         <p>
-          This is the big one for 2026. If you sit the exam after the July 2026
-          change, prep built against the old outline can leave gaps you won't
-          discover until test day. Ask any vendor directly: <em>is your question bank
-          updated for the 2026 ECO, or still aligned to the previous outline?</em>{" "}
-          If the answer is vague, that's your answer.{" "}
+          This is the big one, and it is no longer hypothetical. The July 2026
+          outline is what your exam is scored against today, and it reweighted the
+          three domains: <strong>People 33%, Process 41%, Business Environment 26%</strong>.
+          Business Environment went from the domain everyone skimmed to more than a
+          quarter of the exam. Prep still built to the retired outline doesn't just
+          feel dated — it under-trains an entire quarter of the test. Ask any vendor
+          directly: <em>is your question bank written to the 2026 ECO, or still
+          aligned to the previous outline?</em> If the answer is vague, that's your
+          answer.{" "}
           <Link to="/blog/pmp-exam-changes-july-2026">
-            Here's our full breakdown of what changes in July 2026
+            Here's our full breakdown of what changed in July 2026
           </Link>
           , including a bridge plan if you're mid-prep.
         </p>
         <p>
-          <strong>How CipherExam meets it:</strong> we maintain a dedicated{" "}
-          <strong>PMP Exam v2026</strong> question bank as a first-class exam
-          alongside the current PMP — same full-mock format, built for the new
-          outline. You pick the bank that matches your exam date.
+          <strong>How CipherExam meets it:</strong> <strong>PMP Exam v2026</strong> is a
+          first-class exam in CipherExam with its own question bank, written to the new
+          outline and weighted 33 / 41 / 26 to match it. It's live now — start a mock
+          against it and your question mix matches the exam you'll actually sit.
         </p>
       </SectionBlock>
 
-      <SectionBlock title="3. All three question types — not just multiple choice">
+      <SectionBlock title="3. Question formats — the PMP is not a radio-button exam">
         <p>
-          The PMP isn't a pure multiple-choice exam. You'll also see calculation
-          questions (earned value / EMV math) and matching-style items. If your
-          simulator renders everything as four radio buttons, the first time you
-          meet the other formats will be on the real exam.
+          The 2026 outline names a much wider set of item formats than most
+          candidates picture. Alongside ordinary single-answer multiple choice,
+          it lists <strong>case or scenario</strong> items (new — one detailed
+          situation, sometimes with charts, followed by a series of questions),{" "}
+          <strong>graphic-based</strong> items (new — read the chart or diagram,
+          then answer), <strong>multiple-response</strong> items with more than
+          one correct answer, <strong>matching</strong> and{" "}
+          <strong>enhanced matching</strong> (drag-and-drop, sometimes onto a
+          diagram), <strong>point-and-click</strong> hotspots on an image, and{" "}
+          <strong>pull-down lists</strong>. Several of those are computer-based
+          testing only. The point isn't to memorize the taxonomy — it's that a
+          tool which renders everything as four radio buttons leaves the unfamiliar
+          formats for exam day.
         </p>
         <p>
-          <strong>How CipherExam meets it:</strong> our PMP banks include all three
-          question types — multiple choice, EMV/earned-value calculations (interactive,
-          not buried in a text box), and matching.
+          <strong>How CipherExam meets it — and where it doesn't:</strong> on
+          formats, it doesn't yet, and you should hear that here rather than
+          discover it after paying. The <strong>PMP Exam v2026</strong> bank ships
+          today as scenario-driven single-answer multiple choice, and our
+          simulator presents every item that way: one stem, one list of options.
+          We do not simulate the linked case-study section, graphic-based items,
+          point-and-click hotspots, matching or enhanced matching, or pull-down
+          lists — and, as above, we don't reproduce the two-break structure.
+          Those formats change how you click, not how you decide, so our work has
+          gone into the deciding first. We'll update this page the day that
+          changes. If drilling the newer item formats is your single highest
+          priority right now, take the free trial and judge for yourself before
+          you pay us anything — and either way, spend an hour in PMI's own exam
+          tutorial before test day, which is the only place the real interface
+          lives.
         </p>
       </SectionBlock>
 
@@ -95,11 +153,14 @@ export default function BestPmpSimulator2026() {
           doesn't catch you the same way.
         </p>
         <p>
-          <strong>How CipherExam meets it:</strong> every question is classified by
-          Bloom's taxonomy, so you can see whether you're missing recall questions or
-          judgment questions — they need different fixes. And every explanation is
-          walked through the Exam Lens: what would PMI want you to do, and why the
-          tempting wrong answers are wrong.
+          <strong>How CipherExam meets it:</strong> questions carry a Bloom's-taxonomy
+          level, and your mock results break accuracy out by level — so you can see
+          whether you're missing recall questions or judgment questions, which need
+          different fixes. Coverage isn't total, and we don't paper over it: any
+          question not yet tagged is reported to you as untagged rather than quietly
+          folded into the numbers. And every explanation is walked through the Exam
+          Lens: what would PMI want you to do, and why the tempting wrong answers are
+          wrong.
         </p>
       </SectionBlock>
 
@@ -129,10 +190,13 @@ export default function BestPmpSimulator2026() {
           <div>
             <h2 className="text-2xl font-bold text-slate-50">Evaluate us against this checklist</h2>
             <p className="mt-2 text-slate-300">
-              180-question full mocks, a dedicated PMP Exam v2026 bank, all three
-              question types, Bloom's-classified reasoning explanations — and if we
-              still don't fit how you study, the 60-day guarantee means you're out
-              nothing. $19/month, with 10 more certifications included in the same
+              Full-length 180-question mocks on a single 240-minute clock, a PMP
+              Exam v2026 bank weighted to the new outline, a Bloom's-taxonomy
+              breakdown of every result set, and Exam Lens reasoning on every
+              explanation — plus a straight answer above about the formats we
+              don't simulate. If we still don't fit how you study, the 60-day
+              guarantee means you're out nothing.
+              $19/month, with 10 more certifications included in the same
               subscription.
             </p>
           </div>
@@ -156,16 +220,16 @@ export default function BestPmpSimulator2026() {
       <SectionBlock title="Frequently asked">
         <dl className="space-y-6">
           <div>
-            <dt className="font-semibold text-slate-100">When exactly does the PMP exam change?</dt>
-            <dd className="mt-1">PMI rolls out the updated exam, built against a new Exam Content Outline, in July 2026. If your exam date is after the change, make sure your prep materials are aligned to the new outline. <Link to="/blog/pmp-exam-changes-july-2026" className="text-brand-400 hover:text-brand-300">Full details and a bridge plan here</Link>.</dd>
+            <dt className="font-semibold text-slate-100">Has the PMP exam already changed?</dt>
+            <dd className="mt-1">Yes. PMI's updated exam, built against the July 2026 Examination Content Outline, is live — the previous outline is retired, so every PMP sitting now is the new one. It's still 180 questions (170 scored plus 10 unscored pretest items), but the clock changed: you now get 240 minutes, up from the 230 the retired outline allowed, with two 10-minute breaks. The domains are reweighted to People 33% / Process 41% / Business Environment 26%. <Link to="/blog/pmp-exam-changes-july-2026" className="text-brand-400 hover:text-brand-300">Full details and a bridge plan here</Link>.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-100">Is CipherExam ready for the 2026 exam?</dt>
-            <dd className="mt-1">Yes. PMP Exam v2026 is a first-class exam in CipherExam with its own question bank, full 180-question / 230-minute mock, and all three question types (multiple choice, EMV math, matching).</dd>
+            <dt className="font-semibold text-slate-100">Is CipherExam ready for the 2026 PMP exam?</dt>
+            <dd className="mt-1">On content, yes: PMP Exam v2026 is a first-class exam in CipherExam with its own question bank, written to the July 2026 outline and weighted 33 / 41 / 26 to match it, with full-length 180-question mocks on a 240-minute clock and an explanation on every item. On formats, no — not yet: that bank is single-answer multiple choice today, and our simulator presents every item that way. We don't render case-study sets, graphic-based items, point-and-click, matching, or pull-down lists, and we don't reproduce the exam's two 10-minute breaks. If the newer formats are what you're shopping for, use the free trial to check before you buy.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-100">What if I'm mid-prep and my exam date might slip past July 2026?</dt>
-            <dd className="mt-1">Both banks are in the same subscription — practice against the current PMP now and switch to the v2026 bank if your date moves. No add-on purchase.</dd>
+            <dt className="font-semibold text-slate-100">I started studying before July 2026 — is my prep wasted?</dt>
+            <dd className="mt-1">No, but it needs a top-up. The domain names didn't change and most of the underlying judgment carries over; the weighting did change, and Business Environment is now more than a quarter of the exam. Practise against the PMP Exam v2026 bank so your question mix matches the exam you'll sit. It's in the same subscription — no add-on purchase.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does CipherExam cost?</dt>

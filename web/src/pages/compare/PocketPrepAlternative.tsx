@@ -63,11 +63,13 @@ export default function PocketPrepAlternative() {
             account, one price, no per-exam add-ons.
           </li>
           <li>
-            <strong>Ready for the July 2026 PMP change.</strong> PMI updates the PMP
-            exam against a new Exam Content Outline in July 2026. We maintain a
-            dedicated PMP Exam v2026 question bank alongside the current one, so
-            your prep matches the exam you'll actually sit.{" "}
-            <Link to="/blog/pmp-exam-changes-july-2026">Here's what's changing</Link>.
+            <strong>Built for the PMP exam that's live today.</strong> PMI's new
+            Exam Content Outline took effect on 9 July 2026 — the domains still read
+            People / Process / Business Environment, but the weightings moved to
+            33% / 41% / 26% and 35 tasks were consolidated into 26. We ship a
+            dedicated PMP Exam v2026 bank written against that outline, so your
+            practice mix matches the exam you'll actually sit.{" "}
+            <Link to="/blog/pmp-exam-changes-july-2026">Here's what changed</Link>.
           </li>
           <li>
             <strong>A 60-day, no-conditions money-back guarantee.</strong> Use
@@ -134,7 +136,7 @@ export default function PocketPrepAlternative() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Which certifications does CipherExam cover?</dt>
-            <dd className="mt-1">PMP (including a dedicated PMP Exam v2026 bank), Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — all in one subscription.</dd>
+            <dd className="mt-1">PMP (with a dedicated PMP Exam v2026 bank built to PMI's July 2026 Exam Content Outline), Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — all in one subscription.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does it cost?</dt>

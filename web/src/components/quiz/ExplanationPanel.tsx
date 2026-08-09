@@ -2,7 +2,7 @@ import { Brain } from 'lucide-react';
 import TutorBreakdown, { type TutorResponse, type CoachMode } from '../TutorBreakdown';
 import StructuredExplanation from '../explanations/StructuredExplanation';
 import EmvCalculation from '../explanations/EmvCalculation';
-import { DOMAIN_CITATIONS, EXAM_REFERENCES } from '../../utils/domainCitations';
+import { resolveCitation } from '../../utils/domainCitations';
 import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../../types/Bloom';
 import type { Question } from '../../types/Question';
 
@@ -99,7 +99,10 @@ export default function ExplanationPanel({
                         📘 Reference
                     </div>
                     <div className="mt-1 text-sm md:text-base text-slate-400 italic">
-                        {DOMAIN_CITATIONS[question.domain] ?? EXAM_REFERENCES[activeExamId] ?? "Exam Reference Guide"}
+                        {/* Scoped by exam first: a domain citation only applies inside
+                            its own bank, so a "Process" domain in Six Sigma/ITIL/SHRM
+                            can never resolve to a PMI/PMBOK reference. */}
+                        {resolveCitation(question.examId ?? activeExamId, question.domain)}
                     </div>
                 </div>
             </div>
