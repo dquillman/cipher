@@ -10,25 +10,27 @@
  * into a wrong grade. Add the renderer first, then the member.
  *
  * Currently implemented:
- *   'mcq'      → single-select multiple choice (Quiz.tsx default path)
- *   'emv'      → CipherExam expected-monetary-value calculation item
- *   'matching' → drag-and-drop matching (Quiz.tsx L1395)
- *   'pbq'      → CipherExam performance-based question (Quiz.tsx L1388)
+ *   'mcq'            → single-select multiple choice (Quiz.tsx default path)
+ *   'emv'            → CipherExam expected-monetary-value calculation item
+ *   'matching'       → drag-and-drop matching
+ *   'pbq'            → CipherExam performance-based question
+ *   'multi-response' → multi-select, all-or-nothing (utils/scoring.ts)
  * 'emv' and 'pbq' are CipherExam presentation formats, not PMI question types.
  *
- * NOT YET IMPLEMENTED — the PMP Examination Content Outline (July 2026) names
- * EIGHT question types. Six of them have no renderer here, so they are
- * deliberately absent from the union rather than accepted and mis-scored:
- *   1. Case or Scenario (NEW; all modalities)      — no shared-stimulus renderer
- *   2. Enhanced Matching (CBT only)                — no image-drop renderer
- *   3. Graphic-Based (NEW; all modalities)         — no exhibit renderer
- *   4. Multiple-Choice Single Response             — implemented as 'mcq'
- *   5. Multiple-Response (all modalities)          — no multi-select scorer
- *   6. Point and Click / hotspot (CBT only)        — no hotspot renderer
- *   7. Matching (CBT only)                         — implemented as 'matching'
- *   8. Pull-down List (CBT only)                   — no dropdown renderer
+ * Coverage of the EIGHT question types named in the PMP Examination Content
+ * Outline (July 2026). A type stays out of the union until it has a renderer
+ * AND a scorer — admitting one early turns a compile error into a silent
+ * mis-grade, which is strictly worse than not supporting it:
+ *   1. Case or Scenario (NEW; all modalities)      — TODO, needs shared-stimulus model
+ *   2. Enhanced Matching (CBT only)                — TODO, needs image-drop renderer
+ *   3. Graphic-Based (NEW; all modalities)         — TODO, needs exhibit renderer
+ *   4. Multiple-Choice Single Response             — DONE as 'mcq'
+ *   5. Multiple-Response (all modalities)          — DONE as 'multi-response'
+ *   6. Point and Click / hotspot (CBT only)        — TODO, needs hotspot renderer
+ *   7. Matching (CBT only)                         — DONE as 'matching'
+ *   8. Pull-down List (CBT only)                   — TODO, needs dropdown renderer
  */
-export type QuestionType = 'mcq' | 'emv' | 'matching' | 'pbq';
+export type QuestionType = 'mcq' | 'emv' | 'matching' | 'pbq' | 'multi-response';
 
 export type ExamConfig = {
     id: string;
@@ -39,6 +41,10 @@ export type ExamConfig = {
      *  attempts and live pass entitlements keep resolving to a name — but it
      *  must never be offered for sale. See SELLABLE_EXAMS. */
     retired?: boolean;
+    /** The bank that replaces this one when its outline is superseded.
+     *  Entitlements follow this chain, so a pass bought for an older bank keeps
+     *  working after a cutover instead of silently expiring. See examLineage. */
+    supersededBy?: string;
 };
 
 /** Retired 2021-outline PMP bank. Kept for historical references and for users
@@ -77,6 +83,7 @@ export const EXAMS: Record<string, ExamConfig> = {
         name: "PMP (PMI)",
         fullMock: { questionCount: 180, durationMinutes: 230 },
         retired: true,
+        supersededBy: PMP_2026_EXAM_ID,
     },
     "IpECw0XAtBkgD1HyvYas": {
         id: "IpECw0XAtBkgD1HyvYas",
@@ -113,15 +120,26 @@ export const EXAMS: Record<string, ExamConfig> = {
         name: "CompTIA Security+ (SY0-701)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
     },
+    // RETIRED: this bank is written against N10-008, which CompTIA replaced with
+    // N10-009 on 20 June 2024 and stopped administering in December 2024. It is
+    // prep for an exam nobody can sit. Flagged retired rather than relabelled —
+    // renaming it "N10-009" without re-authoring the content against the V9
+    // objectives would turn a stale bank into a false claim. No `supersededBy`
+    // until an N10-009 bank exists to point at.
     "gp6QwBz0FXFIntLSQSYr": {
         id: "gp6QwBz0FXFIntLSQSYr",
         name: "CompTIA Network+ (N10-008)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
+        retired: true,
     },
+    // RETIRED: written against 220-1102 (Core 2 V14). CompTIA launched V15
+    // (220-1202) on 25 March 2025 and stopped administering 220-1102 on
+    // 25 September 2025. Same reasoning as Network+ above.
     "cxBsVz8AVaocdEYbgSMA": {
         id: "cxBsVz8AVaocdEYbgSMA",
         name: "CompTIA A+ Core 2 (220-1102)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
+        retired: true,
     },
     "bF7IQUrKjbP2KLwiSNqt": {
         id: "bF7IQUrKjbP2KLwiSNqt",
@@ -162,6 +180,45 @@ export const SELLABLE_EXAMS: ExamConfig[] = Object.values(EXAMS).filter(e => !e.
 export function isSellableExam(examId: string | undefined): boolean {
     if (!examId) return false;
     return EXAMS[examId] ? !EXAMS[examId].retired : false;
+}
+
+/**
+ * Every bank in the same certification lineage as `examId`, walking
+ * `supersededBy` in both directions.
+ *
+ * This exists so entitlements survive a content-outline cutover. Someone who
+ * bought a 90-day PMP pass in June 2026 bought "the PMP", not one particular
+ * Firestore document — when PMI replaced the outline on 9 July their pass has
+ * to keep working, and matching `pass.examId` by strict equality silently broke
+ * it. Encoding the lineage means the next cutover is a one-line config change
+ * instead of a data migration under time pressure.
+ *
+ * Returns `[examId]` for a bank with no lineage, so callers need no special case.
+ */
+export function examLineage(examId: string): string[] {
+    const chain = new Set<string>([examId]);
+
+    // Forward: this bank and everything that replaces it.
+    let cursor: string | undefined = EXAMS[examId]?.supersededBy;
+    while (cursor && !chain.has(cursor)) {
+        chain.add(cursor);
+        cursor = EXAMS[cursor]?.supersededBy;
+    }
+
+    // Backward: anything this bank replaces, transitively. Re-scanning until
+    // stable handles a chain of three or more outlines regardless of key order.
+    let grew = true;
+    while (grew) {
+        grew = false;
+        for (const e of Object.values(EXAMS)) {
+            if (e.supersededBy && chain.has(e.supersededBy) && !chain.has(e.id)) {
+                chain.add(e.id);
+                grew = true;
+            }
+        }
+    }
+
+    return [...chain];
 }
 
 export function isExam(examId: string | undefined, configId: string): boolean {

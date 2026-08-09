@@ -1,9 +1,18 @@
+/// <reference types="vitest/config" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Vitest owns unit tests under src/. `tests/` belongs to Playwright and must
+  // stay excluded — Playwright's test() throws if Vitest collects those files,
+  // which fails the whole run even when every unit test passes.
+  test: {
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    exclude: ['tests/**', 'node_modules/**', 'dist/**'],
+    environment: 'node',
+  },
   plugins: [
     react(),
     // Emits web/stats.json on every build (kept OUT of dist so it never

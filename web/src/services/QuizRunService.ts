@@ -21,7 +21,16 @@ export interface QuizRun {
     // Progress
     answers: {
         questionId: string;
+        /** Index into the question's `options`, OR -1 when the format has no
+         *  single chosen option (matching, pbq, multi-response). -1 is a
+         *  sentinel, never a real index. Every reader of this field in the app
+         *  only tests `!== undefined` to mean "the candidate answered this",
+         *  which -1 correctly satisfies; nothing dereferences it as an index.
+         *  `isCorrect` is the authoritative grade for every format. */
         selectedOption: number;
+        /** `multi-response` only: the indices actually ticked. Present because
+         *  selectedOption cannot represent a set. */
+        selectedOptions?: number[];
         isCorrect: boolean;
         domain?: string;
         timestamp: any;
@@ -124,7 +133,7 @@ export const QuizRunService = {
     saveProgress: async (
         userId: string,
         runId: string,
-        answer: { questionId: string, selectedOption: number, isCorrect: boolean, domain?: string },
+        answer: { questionId: string, selectedOption: number, selectedOptions?: number[], isCorrect: boolean, domain?: string },
         nextIndex: number
     ) => {
         try {

@@ -6,6 +6,7 @@ import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import { XPService } from '../services/xpService';
 import { useExam } from '../contexts/ExamContext';
 import { EXAMS, isExam, type QuestionType } from '../config/exams';
+import { filterToSingleIndexGraded } from '../utils/scoring';
 import type { BloomLevel } from '../types/Bloom';
 
 export interface Question {
@@ -88,7 +89,27 @@ export const useSimulator = () => {
                 }
 
                 const questionsData = await fetchQuestionDocsByIds<Question>(ids);
-                setQuestions(questionsData);
+
+                // GUARD — do not let a format this surface cannot grade into the
+                // exam. The simulator stores one option index per question
+                // (`answers: Record<number, number>`) and grades with
+                // `selected === q.correctAnswer`. A multi-response doc has no
+                // `correctAnswer` at all, so it would be marked wrong no matter
+                // what the candidate picked, and SimulatorResults would highlight
+                // no option as correct — a silent mis-grade on a full mock, which
+                // is the single worst place in the product to be quietly wrong.
+                // `fetchQuestionDocsByIds` is an unvalidated cast from the same
+                // bank Quiz.tsx reads, so the runtime filter is the only thing
+                // standing here; the local `Question` interface above declaring
+                // `correctAnswer: number` as required proves nothing at runtime.
+                // Drop this filter only when this surface renders multi-select.
+                const gradable = filterToSingleIndexGraded(questionsData);
+                if (gradable.length !== questionsData.length) {
+                    console.warn(
+                        `[useSimulator] Excluded ${questionsData.length - gradable.length} question(s) whose format the simulator cannot grade.`
+                    );
+                }
+                setQuestions(gradable);
 
             } catch (error) {
                 console.error("Error loading exam:", error);

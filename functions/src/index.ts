@@ -5,6 +5,7 @@ import { requirePro } from './guards';
 import { enforceRateLimit } from './rateLimit';
 import { PMP_FORMULA_REFERENCE } from './pmpFormulas';
 import { resolveOpenAIKey } from './openaiKey';
+import { performExamUpdateCheck } from './examWatch';
 
 // Ticket 1.2 — Resend onboarding drip (Day 4-7). Fires on users/{uid} create.
 export { scheduleOnboardingDrip } from './onboardingDrip';
@@ -1331,95 +1332,9 @@ export const triggerExamUpdateCheck = functions.https.onCall(async (data, contex
     }
 });
 
-const performExamUpdateCheck = async () => {
-    const sourcesSnapshot = await db.collection('exam_update_sources').get();
-    const results: any[] = [];
-    const crypto = require('crypto'); // Re-added crypto import
-
-    const updatePromises = sourcesSnapshot.docs.map(async (doc) => {
-        const source = doc.data();
-        let status = 'ok';
-        let signature = source.lastKnownSignature;
-        let lastChangeDetectedAt = source.lastChangeDetectedAt;
-        let lastErrorCode = null;
-        let lastErrorMessage = null;
-
-        try {
-            console.log(`Checking ${source.url}...`);
-            const response = await axios.get(source.url, {
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
-                },
-                validateStatus: () => true, // Helper to catch 403s manually
-                timeout: 10000
-            });
-
-            if ([401, 403, 429].includes(response.status)) {
-                status = 'manual_review';
-                lastErrorCode = response.status;
-                lastErrorMessage = `Access blocked (${response.status}). Manual verification required.`;
-            } else if (response.status >= 500) {
-                status = 'error';
-                lastErrorCode = response.status;
-                lastErrorMessage = `Server error (${response.status})`;
-            } else if (response.status >= 400) {
-                status = 'error';
-                lastErrorCode = response.status;
-                lastErrorMessage = `Client error (${response.status})`;
-            } else {
-                // 200 OK
-                let newSignature = '';
-                if (response.headers['etag']) {
-                    newSignature = `etag:${response.headers['etag']}`;
-                } else if (response.headers['last-modified']) {
-                    newSignature = `mod:${response.headers['last-modified']}`;
-                } else {
-                    const hash = crypto.createHash('sha256').update(JSON.stringify(response.data)).digest('hex');
-                    newSignature = `hash:${hash}`;
-                }
-
-                if (source.lastKnownSignature && newSignature !== source.lastKnownSignature) {
-                    status = 'changed';
-                    lastChangeDetectedAt = admin.firestore.Timestamp.now();
-                } else {
-                    // If it was 'reviewed_ok', we can keep it or set to 'ok'. 
-                    // Let's set to 'ok' to indicate automated check passed.
-                    // BUT per requirements "Keep reviewed_ok as reviewed_ok until..."
-                    if (source.status === 'reviewed_ok') {
-                        status = 'reviewed_ok';
-                    } else {
-                        status = 'ok';
-                    }
-                }
-                signature = newSignature;
-            }
-
-        } catch (error: any) {
-            console.error(`Error checking ${source.name}:`, error.message);
-            status = 'error';
-            lastErrorMessage = error.message;
-        }
-
-        const updateData: any = {
-            lastCheckedAt: admin.firestore.Timestamp.now(),
-            status,
-            lastKnownSignature: signature,
-            lastChangeDetectedAt,
-            lastErrorCode,
-            lastErrorMessage
-        };
-
-        // If status is manual_review or error, we don't overwrite the last signature usually, 
-        // but keeping it null or stale is fine.
-
-        await doc.ref.update(updateData);
-        results.push({ name: source.name, status, url: source.url });
-    });
-
-    await Promise.all(updatePromises);
-    return results;
-};
+// performExamUpdateCheck now lives in ./examWatch. The previous inline version
+// detected the July 2026 PMP outline change and wrote it to a Firestore field
+// that nothing read, so nobody found out for four weeks. See that module.
 
 export const markSourceReviewed = functions.https.onCall(async (data: { sourceId: string, status: string, note?: string }, context) => {
     if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
@@ -1447,39 +1362,145 @@ export const markSourceReviewed = functions.https.onCall(async (data: { sourceId
 export const seedExamSources = functions.https.onCall(async (data, context) => {
     if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
 
+    // One source per certification we sell. Previously only PMP was watched —
+    // the other nine banks had no monitoring at all, so an outline change in any
+    // of them was undetectable by construction.
+    //
+    // `examId` links a source to the bank it threatens, so an alert can name the
+    // content that just went stale instead of only naming a URL.
     const sources = [
         {
-            name: "PMI PMP Exam Content Outline (ECO)",
-            url: "https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/pmp-examination-content-outline.pdf",
+            name: "PMI PMP Examination Content Outline",
+            // The 2026 outline lives at a DIFFERENT path than the 2021 one. The old
+            // entry watched .../pmp-examination-content-outline.pdf, which is the
+            // superseded document — it would have kept reporting "no change" on a
+            // file PMI had stopped updating.
+            url: "https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/new-pmp-examination-content-outline-2026.pdf",
             type: "pdf",
-            lastCheckedAt: null,
-            lastKnownSignature: null,
-            status: "ok",
-            lastChangeDetectedAt: null,
-            notes: "The official blueprint for the exam."
+            examId: "6kECziMtR1BS3MpABLW5",
+            examName: "PMP",
+            notes: "Authoritative blueprint. PMI builds the exam from the ECO, not the PMBOK Guide.",
         },
         {
-            name: "PMI Exam Updates Page",
-            url: "https://www.pmi.org/certifications/project-management-pmp/earn-the-pmp/pmp-exam-preparation/pmp-exam-updates",
+            name: "PMI PMP Exam Updates Page",
+            url: "https://www.pmi.org/certifications/project-management-pmp/new-exam",
             type: "web",
-            lastCheckedAt: null,
-            lastKnownSignature: null,
-            status: "ok",
-            lastChangeDetectedAt: null,
-            notes: "Official page announcing changes to the PMP exam."
-        }
+            examId: "6kECziMtR1BS3MpABLW5",
+            examName: "PMP",
+            notes: "Announces cutover dates. 403s any crawler-shaped user-agent — needs the browser UA.",
+        },
+        {
+            name: "PMI PgMP Examination Content Outline",
+            url: "https://www.pmi.org/certifications/program-management-pgmp",
+            type: "web",
+            examId: "bF7IQUrKjbP2KLwiSNqt",
+            examName: "PgMP",
+            notes: "PMI updates program-management credentials on its own cadence, not the PMP's.",
+        },
+        {
+            name: "CompTIA Security+ Exam Objectives",
+            url: "https://www.comptia.org/certifications/security",
+            type: "web",
+            examId: "79cuGMNydTwDMhyiDjry",
+            examName: "Security+",
+            notes: "CompTIA refreshes roughly every three years and publishes retirement dates.",
+        },
+        {
+            name: "CompTIA Network+ Exam Objectives",
+            url: "https://www.comptia.org/certifications/network",
+            type: "web",
+            examId: "gp6QwBz0FXFIntLSQSYr",
+            examName: "Network+",
+            notes: "Config claims N10-008; the marketing ticker claims N10-009. Under audit.",
+        },
+        {
+            name: "CompTIA A+ Exam Objectives",
+            url: "https://www.comptia.org/certifications/a",
+            type: "web",
+            examId: "cxBsVz8AVaocdEYbgSMA",
+            examName: "A+ Core 2",
+            notes: "Core 1/Core 2 series roll together; a series bump retires both halves.",
+        },
+        {
+            name: "Scrum Guide",
+            url: "https://scrumguides.org/scrum-guide.html",
+            type: "web",
+            examId: "IpECw0XAtBkgD1HyvYas",
+            examName: "CSM",
+            notes: "The 2020 revision is the current one; the guide is the CSM's source of truth.",
+        },
+        {
+            name: "SHRM Body of Applied Skills and Knowledge (BASK)",
+            url: "https://www.shrm.org/credentials/certification/exam-preparation/bask",
+            type: "web",
+            examId: "bpfawZDj3qalhoU4mdd3",
+            examName: "SHRM-CP",
+            notes: "BASK is revised periodically and drives the exam blueprint.",
+        },
+        {
+            name: "ASQ Six Sigma Green Belt Body of Knowledge",
+            url: "https://asq.org/cert/six-sigma-green-belt",
+            type: "web",
+            examId: "XGfL6RE2ls7cokP2tqMa",
+            examName: "Six Sigma Green Belt",
+            notes: "ASQ republishes the BoK with new weightings on revision.",
+        },
+        {
+            name: "IIA CIA Exam Syllabus",
+            url: "https://www.theiia.org/en/certifications/cia/",
+            type: "web",
+            examId: "dtgTymjijqUr4NEIHbE1",
+            examName: "CIA Part 1",
+            notes: "Global Internal Audit Standards took effect January 2025; syllabus follows.",
+        },
+        {
+            name: "PayrollOrg CPP Content Outline",
+            url: "https://www.payroll.org/certification/certification-exams/cpp-certification",
+            type: "web",
+            examId: "Vs3aNmifAJc9bYRFCxXc",
+            examName: "CPP",
+            notes: "Payroll content is year-sensitive — tax figures change annually, not just on outline revisions.",
+        },
+        {
+            name: "PeopleCert ITIL 4 Foundation",
+            url: "https://www.peoplecert.org/ways-to-get-certified/itil-4-foundation",
+            type: "web",
+            examId: "6FKeXlV2dzv4I03tewcU",
+            examName: "ITIL 4 Foundation",
+            notes: "Administered by PeopleCert; Axelos attribution may be outdated.",
+        },
     ];
 
-    let count = 0;
+    let created = 0;
+    let updated = 0;
     for (const source of sources) {
-        // Check if exists
         const snapshot = await db.collection('exam_update_sources').where('name', '==', source.name).get();
+        const payload = {
+            ...source,
+            // Never clobber accumulated state on re-seed — only fill what's missing.
+            ...(snapshot.empty
+                ? {
+                      lastCheckedAt: null,
+                      lastSuccessAt: null,
+                      lastKnownSignature: null,
+                      lastKnownExcerpt: null,
+                      status: "never_fetched",
+                      lastChangeDetectedAt: null,
+                      consecutiveFailures: 0,
+                  }
+                : {}),
+        };
         if (snapshot.empty) {
-            await db.collection('exam_update_sources').add(source);
-            count++;
+            await db.collection('exam_update_sources').add(payload);
+            created++;
+        } else {
+            // Re-seeding refreshes the URL and exam linkage of an existing source,
+            // which is how a stale watched URL gets corrected.
+            await snapshot.docs[0].ref.set(payload, { merge: true });
+            updated++;
         }
     }
-    return { success: true, message: `Seeded ${count} sources.` };
+    return { success: true, message: `Seeded ${created} new sources, refreshed ${updated}.`, total: sources.length };
 });
 
 // --- Session Cleanup Function ---
