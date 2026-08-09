@@ -36,6 +36,28 @@ admin.initializeApp({
 const db = admin.firestore();
 
 (async () => {
+    // --test-alert proves the notification path end to end with a synthetic
+    // payload. An alert path that has never fired is not a verified alert path,
+    // and "detection that goes nowhere" is the exact defect this module was
+    // written to fix — so it must be provable on demand, not only when a real
+    // outline changes months from now.
+    if (process.argv.includes("--test-alert")) {
+        const { buildAlert, sendAlert } = require(path.join(__dirname, "..", "lib", "examWatch.js"));
+        const key = process.env.RESEND_API_KEY;
+        if (!key) {
+            console.error("RESEND_API_KEY not set in this shell. Load functions/.env first.");
+            process.exit(1);
+        }
+        const { subject, html } = buildAlert(
+            [{ name: "TEST — not a real change", examName: "TEST", url: "https://example.invalid/outline.pdf", examId: "test", changed: true, neverSucceeded: false, status: "changed", bytes: 2048, previousBytes: 1024 }],
+            [{ name: "TEST — not a real failure", examName: "TEST", url: "https://example.invalid/blocked", changed: false, neverSucceeded: true, status: "never_fetched", httpStatus: 403 }],
+        );
+        console.log(`Sending test alert: ${subject}`);
+        await sendAlert(`[TEST] ${subject}`, `<p style="background:#fee2e2;padding:10px;border-radius:4px"><strong>This is a test of the CipherExam exam-watch alert path. No exam outline actually changed.</strong></p>${html}`, key);
+        console.log("Sent. Check your inbox — if it does not arrive, the watcher can detect but cannot tell you.");
+        process.exit(0);
+    }
+
     const snap = await db.collection("exam_update_sources").get();
     const active = snap.docs.filter((d) => d.data().disabled !== true);
     console.log(

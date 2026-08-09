@@ -210,7 +210,7 @@ async function checkOne(
     return { ...base, status, changed, neverSucceeded: false, bytes, previousBytes: s.lastKnownBytes };
 }
 
-function buildAlert(changed: CheckOutcome[], broken: CheckOutcome[]): { subject: string; html: string } {
+export function buildAlert(changed: CheckOutcome[], broken: CheckOutcome[]): { subject: string; html: string } {
     const parts: string[] = [];
 
     if (changed.length) {
@@ -296,6 +296,15 @@ export const performExamUpdateCheck = async (): Promise<CheckOutcome[]> => {
     }
 
     const { subject, html } = buildAlert(changed, broken);
+    await sendAlert(subject, html, apiKey);
+    console.log(`[examWatch] alert sent to ${alertRecipient()}: ${subject}`);
+    return outcomes;
+};
+
+/** The single Resend call. Exported so it can be exercised without waiting for
+ *  a real outline change — an alert path that has never sent is not a verified
+ *  alert path, and that is the precise failure this module exists to prevent. */
+export async function sendAlert(subject: string, html: string, apiKey: string): Promise<void> {
     await axios.post(
         RESEND_ENDPOINT,
         {
@@ -307,10 +316,7 @@ export const performExamUpdateCheck = async (): Promise<CheckOutcome[]> => {
         },
         { headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" }, timeout: 15000 },
     );
-
-    console.log(`[examWatch] alert sent to ${alertRecipient()}: ${subject}`);
-    return outcomes;
-};
+}
 
 
 /** A monitored blueprint URL, one per certification we sell. */

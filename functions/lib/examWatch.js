@@ -30,7 +30,7 @@
  *      what moved instead of just that something did.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EXAM_SOURCES = exports.performExamUpdateCheck = void 0;
+exports.EXAM_SOURCES = exports.sendAlert = exports.performExamUpdateCheck = exports.buildAlert = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const axios_1 = require("axios");
@@ -187,6 +187,7 @@ function buildAlert(changed, broken) {
         html: `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;max-width:640px">${parts.join("\n")}<p style="margin-top:24px;color:#64748b;font-size:13px">Weekly check. Sources live in the <code>exam_update_sources</code> collection.</p></div>`,
     };
 }
+exports.buildAlert = buildAlert;
 /**
  * Runs every source, then alerts on anything that changed or that we cannot see.
  * Throws if there is something to report and the alert could not be sent — a
@@ -219,6 +220,15 @@ const performExamUpdateCheck = async () => {
         throw new Error(msg);
     }
     const { subject, html } = buildAlert(changed, broken);
+    await sendAlert(subject, html, apiKey);
+    console.log(`[examWatch] alert sent to ${alertRecipient()}: ${subject}`);
+    return outcomes;
+};
+exports.performExamUpdateCheck = performExamUpdateCheck;
+/** The single Resend call. Exported so it can be exercised without waiting for
+ *  a real outline change — an alert path that has never sent is not a verified
+ *  alert path, and that is the precise failure this module exists to prevent. */
+async function sendAlert(subject, html, apiKey) {
     await axios_1.default.post(RESEND_ENDPOINT, {
         from: fromAddress(),
         to: [alertRecipient()],
@@ -226,10 +236,8 @@ const performExamUpdateCheck = async () => {
         html,
         tags: [{ name: "campaign", value: "exam-watch" }],
     }, { headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" }, timeout: 15000 });
-    console.log(`[examWatch] alert sent to ${alertRecipient()}: ${subject}`);
-    return outcomes;
-};
-exports.performExamUpdateCheck = performExamUpdateCheck;
+}
+exports.sendAlert = sendAlert;
 // One source per certification we sell. Previously only PMP was watched —
 // the other nine banks had no monitoring at all, so an outline change in any
 // of them was undetectable by construction.
