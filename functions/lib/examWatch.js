@@ -249,21 +249,19 @@ exports.EXAM_SOURCES = [
         examName: "PMP",
         notes: "Authoritative blueprint. PMI builds the exam from the ECO, not the PMBOK Guide.",
     },
-    {
-        name: "PMI PMP Exam Updates Page",
-        url: "https://www.pmi.org/certifications/project-management-pmp/new-exam",
-        type: "web",
-        examId: "6kECziMtR1BS3MpABLW5",
-        examName: "PMP",
-        notes: "Announces cutover dates. 403s any crawler-shaped user-agent — needs the browser UA.",
-    },
+    // NOTE: PMI's HTML exam-updates page (/certifications/project-management-pmp/new-exam)
+    // is deliberately NOT registered. It returns 403 to any server-side fetch
+    // regardless of user-agent, so it could only ever sit in a permanent
+    // "watcher blind" state — a standing false alarm is how an alert stream
+    // becomes something people mute. The ECO PDF above IS the blueprint PMI
+    // builds the exam from, and it fetches cleanly, so it is the real signal.
     {
         name: "PMI PgMP Examination Content Outline",
-        url: "https://www.pmi.org/certifications/program-management-pgmp",
-        type: "web",
+        url: "https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/program-management-professional-examination-content-outline.pdf",
+        type: "pdf",
         examId: "bF7IQUrKjbP2KLwiSNqt",
         examName: "PgMP",
-        notes: "PMI updates program-management credentials on its own cadence, not the PMP's.",
+        notes: "The PgMP ECO itself. Verified 1.3 MB PDF; pmi.org HTML pages 403 server-side fetches, PDFs do not.",
     },
     {
         name: "CompTIA Security+ Exam Objectives",
@@ -307,11 +305,11 @@ exports.EXAM_SOURCES = [
     },
     {
         name: "ASQ Six Sigma Green Belt Body of Knowledge",
-        url: "https://asq.org/cert/six-sigma-green-belt",
-        type: "web",
+        url: "https://www.asq.org/cert/resource/pdf/certification/2022-SSGB-BoK.pdf",
+        type: "pdf",
         examId: "XGfL6RE2ls7cokP2tqMa",
         examName: "Six Sigma Green Belt",
-        notes: "ASQ republishes the BoK with new weightings on revision.",
+        notes: "The 2022 CSSGB Body of Knowledge PDF. asq.org 403s HTML but serves this.",
     },
     {
         name: "IIA CIA Exam Syllabus",
@@ -323,11 +321,11 @@ exports.EXAM_SOURCES = [
     },
     {
         name: "PayrollOrg CPP Content Outline",
-        url: "https://www.payroll.org/certification/certification-exams/cpp-certification",
-        type: "web",
+        url: "https://info.payroll.org/pdfs/certification/CPP-KSA-Outline-09-28-2019.pdf",
+        type: "pdf",
         examId: "Vs3aNmifAJc9bYRFCxXc",
         examName: "CPP",
-        notes: "Payroll content is year-sensitive — tax figures change annually, not just on outline revisions.",
+        notes: "The CPP KSA content outline PDF. Currently the 2019 edition; a new outline takes effect 5 Sep 2026, so expect this to change.",
     },
     {
         name: "PeopleCert ITIL 4 Foundation",
