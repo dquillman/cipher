@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { Eye, EyeOff } from 'lucide-react';
 import { trackSignupComplete, trackTrialStart } from '../lib/ga4';
+import { PMP_2026_EXAM_ID, PMP_EXAM_ID as PMP_2021_RETIRED_EXAM_ID } from '../config/exams';
 
 /**
  * Maps the `?exam=` query-param slug (used by /lp/* ad landing pages) to
@@ -15,9 +16,22 @@ import { trackSignupComplete, trackTrialStart } from '../lib/ga4';
  * Source of IDs: web/src/config/exams.ts (EXAMS map keys).
  * If a slug isn't in this map, we leave localStorage alone and the
  * ExamProvider falls back to DEFAULT_EXAM_ID — same behaviour as today.
+ *
+ * `pmp` points at the LIVE bank, aligned to the PMI "PMP Examination Content
+ * Outline – July 2026" (People 33% / Process 41% / Business Environment 26%),
+ * which supersedes the 2021 outline. Every PMP marketing CTA uses this bare
+ * slug — LandingShell, PmpPracticeLP, BestPmpSimulator2026, PocketPrepAlternative
+ * and LeadMagnetCapture all emit `?exam=pmp` — so it must resolve to the
+ * outline currently in effect. (No cutover date is stated here: the July 2026
+ * ECO PDF prints none, and this file cites no date the source does not state.)
+ *
+ * There is deliberately no slug for the retired bank. Adding one would be a
+ * public, shareable link that parks whoever follows it on a superseded outline,
+ * and no marketing surface asks for it. Reaching the retired bank stays an
+ * in-app, reversible choice through the exam picker.
  */
 const LP_EXAM_SLUG_TO_ID: Record<string, string> = {
-    'pmp':            '7qmPagj9A6RpkC0CwGkY',
+    'pmp':            PMP_2026_EXAM_ID,
     'security-plus':  '79cuGMNydTwDMhyiDjry',
     'shrm-cp':        'bpfawZDj3qalhoU4mdd3',
     'csm':            'IpECw0XAtBkgD1HyvYas',
@@ -41,7 +55,22 @@ export default function Login() {
         if (!examSlug) return;
         const examId = LP_EXAM_SLUG_TO_ID[examSlug];
         if (!examId) return;
-        localStorage.setItem('selectedExamId', examId);
+        try {
+            // Never move an existing user off the retired PMP bank on their
+            // behalf. Repointing `pmp` at the 2026 bank turned this write from
+            // a no-op into a silent bank switch for them, and selectedExamId is
+            // what paid access hangs off: utils/passEntitlement.ts
+            // `isPassActiveFor` matches pass.examId by strict equality, so the
+            // rewrite would revoke a live $59 Exam Pass and reset per-exam
+            // progress and diagnostic state. An ad link must not be able to do
+            // that. Switching banks stays an in-app, reversible choice.
+            const stored = localStorage.getItem('selectedExamId');
+            if (stored === PMP_2021_RETIRED_EXAM_ID && examId === PMP_2026_EXAM_ID) return;
+            localStorage.setItem('selectedExamId', examId);
+        } catch {
+            // localStorage unavailable (private mode) — the ExamProvider falls
+            // back to DEFAULT_EXAM_ID, same as a visitor with no stored choice.
+        }
     }, [examSlug]);
 
     // Default to signup if mode=signup in URL, otherwise login.

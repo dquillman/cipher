@@ -5,7 +5,7 @@ import { SmartQuizService } from '../services/smartQuiz';
 import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import { XPService } from '../services/xpService';
 import { useExam } from '../contexts/ExamContext';
-import { EXAMS, isExam } from '../config/exams';
+import { EXAMS, isExam, type QuestionType } from '../config/exams';
 import type { BloomLevel } from '../types/Bloom';
 
 export interface Question {
@@ -18,7 +18,7 @@ export interface Question {
     examId?: string;
     imageUrl?: string;
     bloomLevel?: BloomLevel; // Bloom's Taxonomy cognitive level
-    type?: 'mcq' | 'emv' | 'pbq';
+    type?: QuestionType;
     scenarios?: {
         label: string;
         probability: number;

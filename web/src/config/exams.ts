@@ -1,90 +1,132 @@
+/**
+ * Single source of truth for question formats across the app.
+ * Do not redeclare this union elsewhere — import it from here
+ * (types/Question.ts and hooks/useSimulator.ts both do).
+ *
+ * MEMBERSHIP RULE: a member may exist here only once Quiz.tsx can both RENDER
+ * and SCORE it. The union is the contract Quiz.tsx switches on; anything added
+ * without a renderer silently falls through to the single-select MCQ path and
+ * is scored against `correctAnswer`, turning what should be a compile error
+ * into a wrong grade. Add the renderer first, then the member.
+ *
+ * Currently implemented:
+ *   'mcq'      → single-select multiple choice (Quiz.tsx default path)
+ *   'emv'      → CipherExam expected-monetary-value calculation item
+ *   'matching' → drag-and-drop matching (Quiz.tsx L1395)
+ *   'pbq'      → CipherExam performance-based question (Quiz.tsx L1388)
+ * 'emv' and 'pbq' are CipherExam presentation formats, not PMI question types.
+ *
+ * NOT YET IMPLEMENTED — the PMP Examination Content Outline (July 2026) names
+ * EIGHT question types. Six of them have no renderer here, so they are
+ * deliberately absent from the union rather than accepted and mis-scored:
+ *   1. Case or Scenario (NEW; all modalities)      — no shared-stimulus renderer
+ *   2. Enhanced Matching (CBT only)                — no image-drop renderer
+ *   3. Graphic-Based (NEW; all modalities)         — no exhibit renderer
+ *   4. Multiple-Choice Single Response             — implemented as 'mcq'
+ *   5. Multiple-Response (all modalities)          — no multi-select scorer
+ *   6. Point and Click / hotspot (CBT only)        — no hotspot renderer
+ *   7. Matching (CBT only)                         — implemented as 'matching'
+ *   8. Pull-down List (CBT only)                   — no dropdown renderer
+ */
 export type QuestionType = 'mcq' | 'emv' | 'matching' | 'pbq';
 
 export type ExamConfig = {
     id: string;
     name: string;
     fullMock?: { questionCount: number; durationMinutes: number };
-    /** Question types this exam supports. Defaults to ['mcq'] if not specified. */
-    questionTypes: QuestionType[];
+    /** Set when the certifying body has superseded the outline this bank is
+     *  built against. The bank stays in EXAMS so existing selections, past
+     *  attempts and live pass entitlements keep resolving to a name — but it
+     *  must never be offered for sale. See SELLABLE_EXAMS. */
+    retired?: boolean;
 };
 
+/** Retired 2021-outline PMP bank. Kept for historical references and for users
+ *  who already have it selected; NOT the default any more. */
 export const PMP_EXAM_ID = "7qmPagj9A6RpkC0CwGkY";
+/** Live PMP bank, aligned to the July 2026 Examination Content Outline
+ *  (People 33% / Process 41% / Business Environment 26%). */
+export const PMP_2026_EXAM_ID = "6kECziMtR1BS3MpABLW5";
 export const PGMP_EXAM_ID = "bF7IQUrKjbP2KLwiSNqt";
 
+/** Every entry here is user-visible verbatim: Pricing.tsx renders
+ *  `Object.values(EXAMS)` as the $59 Exam Pass purchase dropdown, and
+ *  Account.tsx / PassExpiryBanner.tsx / Quiz.tsx look names up by entitlement
+ *  id. So (a) insertion order is the order buyers see, live banks first, and
+ *  (b) `name` is customer copy — do not encode internal lifecycle state
+ *  ("retired", "deprecated", "v2 bank") in it. Removing a superseded bank is
+ *  also not an option: existing pass holders' ids must keep resolving to a
+ *  name. Filtering unsellable banks out of the purchase dropdown belongs in
+ *  Pricing.tsx, not here. */
 export const EXAMS: Record<string, ExamConfig> = {
+    // LIVE: aligned to the PMP Examination Content Outline, July 2026, which
+    // PMI cut over to on 9 July 2026 (People 33 / Process 41 / BE 26).
+    // 180 questions (170 scored + 10 pretest) in 240 minutes — ECO p.17.
+    "6kECziMtR1BS3MpABLW5": {
+        id: "6kECziMtR1BS3MpABLW5",
+        name: "PMP Exam v2026",
+        fullMock: { questionCount: 180, durationMinutes: 240 },
+    },
+    // SUPERSEDED: built against the 2021 ECO (People 42 / Process 50 / BE 8);
+    // the last exam on that outline was 8 July 2026. Its mock keeps the 2021
+    // exam's own 230-minute clock — the July 2026 ECO's 240 minutes does not
+    // describe this bank. Retained so existing selections, historical attempts
+    // and pass entitlements keep resolving; no longer the default.
     "7qmPagj9A6RpkC0CwGkY": {
         id: "7qmPagj9A6RpkC0CwGkY",
         name: "PMP (PMI)",
         fullMock: { questionCount: 180, durationMinutes: 230 },
-        questionTypes: ['mcq', 'emv', 'matching'],
-    },
-    // Forward-looking bank for the July 2026 PMP content change. Kept alongside
-    // the current PMP; mirrors its mock config, lens, and question types.
-    "6kECziMtR1BS3MpABLW5": {
-        id: "6kECziMtR1BS3MpABLW5",
-        name: "PMP Exam v2026",
-        fullMock: { questionCount: 180, durationMinutes: 230 },
-        questionTypes: ['mcq', 'emv', 'matching'],
+        retired: true,
     },
     "IpECw0XAtBkgD1HyvYas": {
         id: "IpECw0XAtBkgD1HyvYas",
         name: "Certified ScrumMaster (CSM)",
         fullMock: { questionCount: 50, durationMinutes: 60 },
-        questionTypes: ['mcq'],
     },
     "bpfawZDj3qalhoU4mdd3": {
         id: "bpfawZDj3qalhoU4mdd3",
         name: "SHRM-CP",
         fullMock: { questionCount: 134, durationMinutes: 220 },
-        questionTypes: ['mcq'],
     },
     "XGfL6RE2ls7cokP2tqMa": {
         id: "XGfL6RE2ls7cokP2tqMa",
         name: "Six Sigma Green Belt (CSSGB)",
         fullMock: { questionCount: 110, durationMinutes: 258 },
-        questionTypes: ['mcq'],
     },
     "Vs3aNmifAJc9bYRFCxXc": {
         id: "Vs3aNmifAJc9bYRFCxXc",
         name: "Certified Payroll Professional (CPP)",
         fullMock: { questionCount: 190, durationMinutes: 240 },
-        questionTypes: ['mcq'],
     },
     "dtgTymjijqUr4NEIHbE1": {
         id: "dtgTymjijqUr4NEIHbE1",
         name: "CIA Part 1",
         fullMock: { questionCount: 125, durationMinutes: 150 },
-        questionTypes: ['mcq'],
     },
     "6FKeXlV2dzv4I03tewcU": {
         id: "6FKeXlV2dzv4I03tewcU",
         name: "ITIL 4 Foundation",
         fullMock: { questionCount: 40, durationMinutes: 60 },
-        questionTypes: ['mcq'],
     },
     "79cuGMNydTwDMhyiDjry": {
         id: "79cuGMNydTwDMhyiDjry",
         name: "CompTIA Security+ (SY0-701)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
-        questionTypes: ['mcq', 'matching', 'pbq'],
     },
     "gp6QwBz0FXFIntLSQSYr": {
         id: "gp6QwBz0FXFIntLSQSYr",
         name: "CompTIA Network+ (N10-008)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
-        questionTypes: ['mcq', 'matching', 'pbq'],
     },
     "cxBsVz8AVaocdEYbgSMA": {
         id: "cxBsVz8AVaocdEYbgSMA",
         name: "CompTIA A+ Core 2 (220-1102)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
-        questionTypes: ['mcq', 'matching', 'pbq'],
     },
     "bF7IQUrKjbP2KLwiSNqt": {
         id: "bF7IQUrKjbP2KLwiSNqt",
         name: "PgMP (PMI)",
         fullMock: { questionCount: 170, durationMinutes: 240 },
-        questionTypes: ['mcq'],
     },
 };
 
@@ -105,7 +147,22 @@ export const EXAM_LENS: Record<string, { lensName: string; framework: string }> 
     "bF7IQUrKjbP2KLwiSNqt": { lensName: "Program Governance Lens",          framework: "How does this serve the program's strategic objectives and benefits realization?" },
 };
 
-export const DEFAULT_EXAM_ID = PMP_EXAM_ID;
+/** New users land on the live 2026-ECO PMP bank, not the retired 2021 one. */
+export const DEFAULT_EXAM_ID = PMP_2026_EXAM_ID;
+
+/** Exams that may be offered for purchase. Anything flagged `retired` is
+ *  excluded: selling a $59 Exam Pass for an outline the certifying body has
+ *  already superseded is a refund waiting to happen. Retired banks stay in
+ *  EXAMS so existing pass holders' IDs keep resolving to a name — they just
+ *  cannot be bought again. Use this anywhere a user CHOOSES an exam to pay
+ *  for; use EXAMS anywhere an existing ID is looked up. */
+export const SELLABLE_EXAMS: ExamConfig[] = Object.values(EXAMS).filter(e => !e.retired);
+
+/** True if `examId` is a bank we still sell. Retired banks return false. */
+export function isSellableExam(examId: string | undefined): boolean {
+    if (!examId) return false;
+    return EXAMS[examId] ? !EXAMS[examId].retired : false;
+}
 
 export function isExam(examId: string | undefined, configId: string): boolean {
     if (!examId) return false;

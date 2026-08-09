@@ -28,7 +28,7 @@ export const EXAMS: Record<string, ExamConfig> = {
         name: "Project Management Professional",
         domains: ["People", "Process", "Business Environment"],
         firestoreIds: ["default-exam", "7qmPagj9A6RpkC0CwGkY"],
-        fullMock: { questionCount: 180, durationMinutes: 230 },
+        fullMock: { questionCount: 180, durationMinutes: 240 },
     },
     // ADD NEW EXAMS HERE
 };

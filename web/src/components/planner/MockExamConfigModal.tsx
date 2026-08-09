@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { X, Clock, AlertTriangle } from 'lucide-react';
+import { EXAMS } from '../../config/exams';
+import { useExam } from '../../contexts/ExamContext';
 
 interface MockExamConfigModalProps {
     isOpen: boolean;
@@ -7,34 +9,80 @@ interface MockExamConfigModalProps {
     onStart: (config: { count: number; durationMinutes: number, mode: 'custom' | 'full-mock' }) => void;
 }
 
+/** Used only when the selected exam has no fullMock entry in config/exams.ts.
+ *  Deliberately generic — never exam-specific. */
+const FALLBACK_MOCK = { questionCount: 100, durationMinutes: 120 };
+
+const FULL_SIMULATION = 'Full Simulation';
+
+/** "4 hours", "3 hours 50 min", "45 minutes" */
+function formatDurationLong(mins: number): string {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    if (h === 0) return `${m} minutes`;
+    const hourPart = `${h} ${h === 1 ? 'hour' : 'hours'}`;
+    return m === 0 ? hourPart : `${hourPart} ${m} min`;
+}
+
+/** "4h", "3h 50m", "45m" */
+function formatDurationShort(mins: number): string {
+    if (mins < 60) return `${mins}m`;
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return m === 0 ? `${h}h` : `${h}h ${m}m`;
+}
+
 export default function MockExamConfigModal({ isOpen, onClose, onStart }: MockExamConfigModalProps) {
-    const [selectedDuration, setSelectedDuration] = useState<number | 'custom'>(120); // Default to 2 hours
+    const { selectedExamId } = useExam();
+    const [selectedPreset, setSelectedPreset] = useState<string>('Half-Mock');
     const [customMinutes, setCustomMinutes] = useState<number>(60);
 
+    // Every preset is derived from the selected exam's real full-mock shape, so
+    // a Security+ or SHRM-CP user is never offered a PMP-shaped simulation.
+    const fullMock = EXAMS[selectedExamId]?.fullMock ?? FALLBACK_MOCK;
+
+    const presets = useMemo(() => {
+        const { questionCount, durationMinutes } = fullMock;
+        const scale = (fraction: number) => ({
+            minutes: Math.max(10, Math.round((durationMinutes * fraction) / 5) * 5),
+            questions: Math.max(5, Math.round(questionCount * fraction)),
+        });
+        const drill = scale(0.25);
+        const half = scale(0.5);
+        return [
+            { label: 'Drill Mode', ...drill, description: 'Quick check-in.', isFullMock: false },
+            { label: 'Half-Mock', ...half, description: 'Balanced endurance test.', isFullMock: false },
+            {
+                label: FULL_SIMULATION,
+                minutes: durationMinutes,
+                questions: questionCount,
+                description: `The real deal. ${formatDurationLong(durationMinutes)}.`,
+                isFullMock: true,
+            },
+        ];
+    }, [fullMock.questionCount, fullMock.durationMinutes]);
+
+    // Question pacing for the custom slider follows the real exam's pace
+    // (questions per minute) rather than a hard-coded PMP ratio.
+    const questionsPerMinute = fullMock.questionCount / fullMock.durationMinutes;
+    const getQuestions = (mins: number) => Math.max(1, Math.floor(mins * questionsPerMinute));
+
     if (!isOpen) return null;
-
-    const presets = [
-        { label: 'Drill Mode', minutes: 60, questions: 50, description: 'Quick check-in.' },
-        { label: 'Half-Mock', minutes: 120, questions: 90, description: 'Balanced endurance test.' },
-        { label: 'Full Simulation', minutes: 230, questions: 180, description: 'The real deal. 4 Hours.' },
-    ];
-
-    const getQuestions = (mins: number) => Math.floor(mins / 1.2);
 
     const handleStart = () => {
         let minutes = 0;
         let count = 0;
         let mode: 'custom' | 'full-mock' = 'custom';
 
-        if (selectedDuration === 'custom') {
+        if (selectedPreset === 'custom') {
             minutes = customMinutes;
             count = getQuestions(customMinutes);
         } else {
-            const preset = presets.find(p => p.minutes === selectedDuration);
+            const preset = presets.find(p => p.label === selectedPreset);
             if (preset) {
                 minutes = preset.minutes;
                 count = preset.questions;
-                if (preset.label === 'Full Simulation') mode = 'full-mock';
+                if (preset.isFullMock) mode = 'full-mock';
             }
         }
 
@@ -66,43 +114,43 @@ export default function MockExamConfigModal({ isOpen, onClose, onStart }: MockEx
                     <div className="space-y-3 mb-8">
                         {presets.map(preset => (
                             <button
-                                key={preset.minutes}
-                                onClick={() => setSelectedDuration(preset.minutes)}
-                                className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${selectedDuration === preset.minutes
+                                key={preset.label}
+                                onClick={() => setSelectedPreset(preset.label)}
+                                className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${selectedPreset === preset.label
                                         ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-900/20'
                                         : 'bg-slate-800 border-slate-700 text-slate-300 hover:border-slate-600 hover:bg-slate-750'
                                     }`}
                             >
                                 <div className="text-left">
                                     <div className="font-bold text-lg">{preset.label}</div>
-                                    <div className={`text-sm ${selectedDuration === preset.minutes ? 'text-indigo-100' : 'text-slate-400'}`}>
+                                    <div className={`text-sm ${selectedPreset === preset.label ? 'text-indigo-100' : 'text-slate-400'}`}>
                                         {preset.description}
                                     </div>
                                 </div>
                                 <div className="text-right">
                                     <div className="font-bold text-xl">{preset.questions} Qs</div>
-                                    <div className={`text-sm ${selectedDuration === preset.minutes ? 'text-indigo-200' : 'text-slate-500'}`}>
-                                        {preset.minutes < 60 ? `${preset.minutes}m` : `${Math.floor(preset.minutes / 60)}h ${preset.minutes % 60 > 0 ? preset.minutes % 60 + 'm' : ''}`}
+                                    <div className={`text-sm ${selectedPreset === preset.label ? 'text-indigo-200' : 'text-slate-500'}`}>
+                                        {formatDurationShort(preset.minutes)}
                                     </div>
                                 </div>
                             </button>
                         ))}
 
                         <button
-                            onClick={() => setSelectedDuration('custom')}
-                            className={`w-full p-4 rounded-xl border transition-all ${selectedDuration === 'custom'
+                            onClick={() => setSelectedPreset('custom')}
+                            className={`w-full p-4 rounded-xl border transition-all ${selectedPreset === 'custom'
                                     ? 'bg-slate-800 border-indigo-500 ring-1 ring-indigo-500'
                                     : 'bg-slate-800 border-slate-700 hover:border-slate-600'
                                 }`}
                         >
                             <div className="flex items-center justify-between mb-2">
                                 <span className="font-bold text-white">Custom Duration</span>
-                                {selectedDuration === 'custom' && (
+                                {selectedPreset === 'custom' && (
                                     <span className="text-indigo-400 font-bold">{getQuestions(customMinutes)} Questions</span>
                                 )}
                             </div>
 
-                            {selectedDuration === 'custom' && (
+                            {selectedPreset === 'custom' && (
                                 <div className="mt-3">
                                     <input
                                         type="range"

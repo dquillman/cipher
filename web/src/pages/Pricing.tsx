@@ -5,7 +5,7 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { Check, ArrowLeft, Ticket } from 'lucide-react';
 import { useSubscription } from '../contexts/SubscriptionContext';
 import { useExam } from '../contexts/ExamContext';
-import { EXAMS } from '../config/exams';
+import { EXAMS, SELLABLE_EXAMS, isSellableExam } from '../config/exams';
 import { REFUND_MAILTO } from '../config/support';
 
 // Initialize Stripe with the publishable key
@@ -24,7 +24,11 @@ export default function Pricing() {
 
     // --- 90-Day Exam Pass ---
     const { selectedExamId } = useExam();
-    const [passExamId, setPassExamId] = useState(selectedExamId);
+    // A user sitting on a retired bank must not have it preselected as the exam
+    // they're about to buy a pass for — fall back to the first sellable exam.
+    const [passExamId, setPassExamId] = useState(
+        isSellableExam(selectedExamId) ? selectedExamId : (SELLABLE_EXAMS[0]?.id ?? selectedExamId)
+    );
     const [confirmingPass, setConfirmingPass] = useState(false);
     const [passLoading, setPassLoading] = useState(false);
     const hasActivePass = !!passEntitlement && passEntitlement.expiresAt.getTime() > Date.now();
@@ -280,7 +284,7 @@ export default function Pricing() {
                                     onChange={(e) => { setPassExamId(e.target.value); setConfirmingPass(false); }}
                                     className="mt-1 w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"
                                 >
-                                    {Object.values(EXAMS).map((exam) => (
+                                    {SELLABLE_EXAMS.map((exam) => (
                                         <option key={exam.id} value={exam.id}>{exam.name}</option>
                                     ))}
                                 </select>

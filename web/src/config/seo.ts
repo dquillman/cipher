@@ -239,7 +239,7 @@ export const SEO = {
           name: 'Which certifications does CipherExam cover?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'PMP (including a dedicated PMP Exam v2026 bank), Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — all in one subscription.',
+            text: 'PMP (aligned to PMI’s July 2026 Examination Content Outline), Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — all in one subscription.',
           },
         },
         {
@@ -254,10 +254,21 @@ export const SEO = {
     },
   },
 
+  /**
+   * FAQPage JSON-LD for /compare/best-pmp-exam-simulator-2026.
+   * Two rules, because Google republishes this text verbatim:
+   *  1. Every answer here must have a matching on-page counterpart in
+   *     pages/compare/BestPmpSimulator2026.tsx. Edit both together.
+   *  2. Exam facts come from PMI's July 2026 ECO; product facts come from code,
+   *     not from config intent. In particular, config/exams.ts questionTypes
+   *     for 6kECziMtR1BS3MpABLW5 declares eight formats, but that field has no
+   *     consumers — the shipped simulator renders single-select only
+   *     (components/simulator/QuestionCard.tsx). Do not claim otherwise here.
+   */
   compareBestPmpSimulator2026: {
     title: 'Best PMP Exam Simulator for the 2026 Exam — Buyer’s Guide · CipherExam',
     description:
-      'The PMP exam changes in July 2026. What to look for in a simulator — full 180-question timing, new-ECO coverage, all three question types — and how CipherExam meets each criterion. Free 7-day trial.',
+      'The PMP exam moved to a new Exam Content Outline in July 2026. What to look for in a simulator — full-length 180-question mocks, 2026-ECO domain weighting (33/41/26), honest coverage of the exam’s question formats — and how CipherExam meets each criterion. Free 7-day trial.',
     canonical: '/compare/best-pmp-exam-simulator-2026',
     ogImage: 'https://cipherexam.com/og-pmp.png',
     jsonLd: {
@@ -266,10 +277,10 @@ export const SEO = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'When does the PMP exam change?',
+          name: 'Has the PMP exam already changed?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'PMI rolls out the updated PMP exam, built against a new Exam Content Outline, in July 2026. If your exam date is after the change, make sure your prep materials are aligned to the new outline.',
+            text: 'Yes. PMI’s updated PMP exam, built against the July 2026 Examination Content Outline, is live and the previous outline is retired. The exam is still 180 questions (170 scored plus 10 unscored pretest items), but the allotted time changed to 240 minutes, up from the 230 minutes allowed under the retired outline, with two 10-minute breaks. The domains are reweighted to People 33%, Process 41%, Business Environment 26%.',
           },
         },
         {
@@ -277,7 +288,7 @@ export const SEO = {
           name: 'Is CipherExam ready for the 2026 PMP exam?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes. PMP Exam v2026 is a first-class exam in CipherExam with its own question bank, a full 180-question / 230-minute mock, and all three question types: multiple choice, EMV math, and matching.',
+            text: 'On content, yes: PMP Exam v2026 is a first-class exam in CipherExam with its own question bank, written to the July 2026 outline and weighted 33/41/26 to match it, with full-length 180-question mocks on a 240-minute clock and an explanation on every item. On formats, no — not yet: that bank is single-answer multiple choice today, and the CipherExam simulator presents every item that way. It does not render case-study sets, graphic-based items, point-and-click, matching, or pull-down lists, and it does not reproduce the exam’s two 10-minute breaks.',
           },
         },
         {
@@ -429,11 +440,12 @@ export const BLOG_POSTS: Record<
     datePublished: '2026-05-04',
   },
   pmpExamChanges2026: {
-    title: 'The PMP Exam Changes in July 2026 — Is Your Prep Current? · CipherExam',
+    title: 'The PMP Exam Changed in July 2026 — Is Your Prep Current? · CipherExam',
     description:
-      'PMI updates the PMP exam against a new Exam Content Outline in July 2026. How to check whether your prep materials are current — and a bridge plan if you’re mid-prep.',
+      'PMI’s new Examination Content Outline went live in July 2026: still 180 questions, but now 240 minutes instead of 230, and reweighted to People 33% / Process 41% / Business Environment 26%. How to check whether your prep is current — and a bridge plan if you’re mid-prep.',
     canonical: '/blog/pmp-exam-changes-july-2026',
     datePublished: '2026-07-16',
+    dateModified: '2026-08-08',
   },
   firstThirtyDays: {
     title: 'The First 30 Days of a Certification Study Plan · CipherExam',
