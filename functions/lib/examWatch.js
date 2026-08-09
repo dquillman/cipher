@@ -30,7 +30,7 @@
  *      what moved instead of just that something did.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.performExamUpdateCheck = void 0;
+exports.EXAM_SOURCES = exports.performExamUpdateCheck = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const axios_1 = require("axios");
@@ -79,6 +79,19 @@ function normalise(body, contentType) {
         bytes: text.length,
     };
 }
+/**
+ * Has this source ever been fetched successfully?
+ *
+ * `lastSuccessAt` is written by this module and did not exist in the previous
+ * implementation, so a source carried over from it has a signature but no
+ * success timestamp. Treating that as "never fetched" would fire a false
+ * watcher-blind alert on the first run after deploy — and a monitor that cries
+ * wolf on day one is a monitor people mute. A stored signature is proof of a
+ * past successful fetch, so accept it as one.
+ */
+function hasEverSucceeded(s) {
+    return !!s.lastSuccessAt || !!s.lastKnownSignature;
+}
 async function checkOne(doc) {
     var _a;
     const s = doc.data();
@@ -105,7 +118,7 @@ async function checkOne(doc) {
         });
     }
     catch (err) {
-        const neverSucceeded = !s.lastSuccessAt;
+        const neverSucceeded = !hasEverSucceeded(s);
         await doc.ref.update({
             lastCheckedAt: admin.firestore.Timestamp.now(),
             status: neverSucceeded ? "never_fetched" : "unreachable",
@@ -119,7 +132,7 @@ async function checkOne(doc) {
         // A source that has NEVER been fetched is a broken watcher, not a quiet
         // "needs manual review". That distinction is the whole bug: the PMI
         // updates page sat at 403 indefinitely and read as uneventful.
-        const neverSucceeded = !s.lastSuccessAt;
+        const neverSucceeded = !hasEverSucceeded(s);
         await doc.ref.update({
             lastCheckedAt: admin.firestore.Timestamp.now(),
             status: neverSucceeded ? "never_fetched" : "unreachable",
@@ -180,7 +193,11 @@ function buildAlert(changed, broken) {
  * watcher that fails to notify must not report success.
  */
 const performExamUpdateCheck = async () => {
-    const snap = await db().collection("exam_update_sources").get();
+    const all = await db().collection("exam_update_sources").get();
+    // A superseded source is disabled rather than deleted: keeping the document
+    // preserves its history, and deleting monitoring is never the safe default.
+    const snap = { docs: all.docs.filter((d) => d.data().disabled !== true), empty: false };
+    snap.empty = snap.docs.length === 0;
     if (snap.empty) {
         console.warn("[examWatch] no sources registered — nothing is being monitored");
         return [];
@@ -213,6 +230,114 @@ const performExamUpdateCheck = async () => {
     return outcomes;
 };
 exports.performExamUpdateCheck = performExamUpdateCheck;
+// One source per certification we sell. Previously only PMP was watched —
+// the other nine banks had no monitoring at all, so an outline change in any
+// of them was undetectable by construction.
+//
+// `examId` links a source to the bank it threatens, so an alert can name the
+// content that just went stale instead of only naming a URL.
+exports.EXAM_SOURCES = [
+    {
+        name: "PMI PMP Examination Content Outline",
+        // The 2026 outline lives at a DIFFERENT path than the 2021 one. The old
+        // entry watched .../pmp-examination-content-outline.pdf, which is the
+        // superseded document — it would have kept reporting "no change" on a
+        // file PMI had stopped updating.
+        url: "https://www.pmi.org/-/media/pmi/documents/public/pdf/certifications/new-pmp-examination-content-outline-2026.pdf",
+        type: "pdf",
+        examId: "6kECziMtR1BS3MpABLW5",
+        examName: "PMP",
+        notes: "Authoritative blueprint. PMI builds the exam from the ECO, not the PMBOK Guide.",
+    },
+    {
+        name: "PMI PMP Exam Updates Page",
+        url: "https://www.pmi.org/certifications/project-management-pmp/new-exam",
+        type: "web",
+        examId: "6kECziMtR1BS3MpABLW5",
+        examName: "PMP",
+        notes: "Announces cutover dates. 403s any crawler-shaped user-agent — needs the browser UA.",
+    },
+    {
+        name: "PMI PgMP Examination Content Outline",
+        url: "https://www.pmi.org/certifications/program-management-pgmp",
+        type: "web",
+        examId: "bF7IQUrKjbP2KLwiSNqt",
+        examName: "PgMP",
+        notes: "PMI updates program-management credentials on its own cadence, not the PMP's.",
+    },
+    {
+        name: "CompTIA Security+ Exam Objectives",
+        url: "https://www.comptia.org/certifications/security",
+        type: "web",
+        examId: "79cuGMNydTwDMhyiDjry",
+        examName: "Security+",
+        notes: "CompTIA refreshes roughly every three years and publishes retirement dates.",
+    },
+    {
+        name: "CompTIA Network+ Exam Objectives",
+        url: "https://www.comptia.org/certifications/network",
+        type: "web",
+        examId: "gp6QwBz0FXFIntLSQSYr",
+        examName: "Network+",
+        notes: "Config claims N10-008; the marketing ticker claims N10-009. Under audit.",
+    },
+    {
+        name: "CompTIA A+ Exam Objectives",
+        url: "https://www.comptia.org/certifications/a",
+        type: "web",
+        examId: "cxBsVz8AVaocdEYbgSMA",
+        examName: "A+ Core 2",
+        notes: "Core 1/Core 2 series roll together; a series bump retires both halves.",
+    },
+    {
+        name: "Scrum Guide",
+        url: "https://scrumguides.org/scrum-guide.html",
+        type: "web",
+        examId: "IpECw0XAtBkgD1HyvYas",
+        examName: "CSM",
+        notes: "The 2020 revision is the current one; the guide is the CSM's source of truth.",
+    },
+    {
+        name: "SHRM Body of Applied Skills and Knowledge (BASK)",
+        url: "https://www.shrm.org/credentials/certification/exam-preparation/bask",
+        type: "web",
+        examId: "bpfawZDj3qalhoU4mdd3",
+        examName: "SHRM-CP",
+        notes: "BASK is revised periodically and drives the exam blueprint.",
+    },
+    {
+        name: "ASQ Six Sigma Green Belt Body of Knowledge",
+        url: "https://asq.org/cert/six-sigma-green-belt",
+        type: "web",
+        examId: "XGfL6RE2ls7cokP2tqMa",
+        examName: "Six Sigma Green Belt",
+        notes: "ASQ republishes the BoK with new weightings on revision.",
+    },
+    {
+        name: "IIA CIA Exam Syllabus",
+        url: "https://www.theiia.org/en/certifications/cia/",
+        type: "web",
+        examId: "dtgTymjijqUr4NEIHbE1",
+        examName: "CIA Part 1",
+        notes: "Global Internal Audit Standards took effect January 2025; syllabus follows.",
+    },
+    {
+        name: "PayrollOrg CPP Content Outline",
+        url: "https://www.payroll.org/certification/certification-exams/cpp-certification",
+        type: "web",
+        examId: "Vs3aNmifAJc9bYRFCxXc",
+        examName: "CPP",
+        notes: "Payroll content is year-sensitive — tax figures change annually, not just on outline revisions.",
+    },
+    {
+        name: "PeopleCert ITIL 4 Foundation",
+        url: "https://www.peoplecert.org/ways-to-get-certified/itil-4-foundation",
+        type: "web",
+        examId: "6FKeXlV2dzv4I03tewcU",
+        examName: "ITIL 4 Foundation",
+        notes: "Administered by PeopleCert; Axelos attribution may be outdated.",
+    },
+];
 /** Lazy so importing this module never races admin.initializeApp(). */
 function db() {
     return admin.firestore();
