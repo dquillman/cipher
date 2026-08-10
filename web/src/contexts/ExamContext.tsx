@@ -4,6 +4,7 @@ import { db, auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { DiagnosticService } from '../services/DiagnosticService';
 import { DEFAULT_EXAM_ID, EXAMS } from '../config/exams';
+import { trackExamSelected } from '../lib/ga4';
 
 interface ExamContextType {
     selectedExamId: string;
@@ -190,6 +191,12 @@ export function ExamProvider({ children }: { children: ReactNode }) {
     // sticky opt-out flag: nothing here may leave a permanent mark that a
     // future content-outline migration would have to work around.
     const switchExam = async (examId: string) => {
+        // Tracked here rather than at the call sites. switchExam is the only path
+        // that changes banks and it has two callers — the header ExamSelector and
+        // the ExamList "Select Exam" cards. Only the first was instrumented, which
+        // is why exam_selected reported 3 users while explanation_viewed, strictly
+        // downstream of it, reported 8.
+        trackExamSelected(examId, EXAMS[examId]?.name || examId);
         localStorage.setItem('selectedExamId', examId);
         setSelectedExamId(examId);
     };

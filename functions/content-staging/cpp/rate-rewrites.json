@@ -1,0 +1,268 @@
+[
+  {
+    "_id": "KhqaYFNtKQJLgp9q1Zuo",
+    "reason": "STALE. The shipped explanation asserted \"The dependent care FSA annual limit of $5,000\" and \"The $5,000 limit applies per household.\" P.L. 119-21 raised the IRC Sec. 129 exclusion to $7,500 ($3,750 MFS) for tax years beginning after 12/31/2025, so the explanation is now wrong for 2026. Rewritten so the per-pay-period arithmetic runs off the employee's elected amount rather than the statutory ceiling, which removes the annual rot entirely.",
+    "replacement": {
+      "stem": "Marisol, a payroll specialist at a biweekly-paid employer, is loading a new hire's dependent care assistance plan election of $6,500 for the plan year. Employees are paid every other Friday. What per-pay-period pre-tax deduction should Marisol set up?",
+      "options": [
+        "$270.83, dividing the annual election by 24 pay periods, which is the divisor for a semimonthly payroll rather than a biweekly one",
+        "$541.67, dividing the annual election by 12 months, which spreads the election across calendar months instead of scheduled paydays",
+        "$250.00, dividing the annual election by the 26 pay periods in a biweekly year",
+        "$325.00, dividing the annual election by 20 pay periods after excluding the six weeks in which a company holiday falls"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A biweekly payroll has 26 pay periods (52 weeks divided by 2), so $6,500 divided by 26 equals $250.00 per period. The election amount the employee chooses drives the per-period math; the IRC Sec. 129 statutory exclusion ceiling is a separate figure that Congress adjusts (it moved for 2026) and it only caps how much may be sheltered, not how the deduction is spread. Option 0 uses 24, the semimonthly divisor, a classic confusion between biweekly and semimonthly frequency. Option 1 uses 12, treating the deduction as monthly when it is actually taken every other Friday. Option 3 invents a 20-period schedule; holidays shift pay dates but never reduce the number of biweekly periods. Watch for 27-pay-period years, where the employer must decide whether to prorate over 27 periods or hold the per-period amount and stop early.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3406",
+      "difficulty": "medium",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "b17KoYaFxq7rSSTA9NqW",
+    "reason": "STALE, duplicate of the item above (this bank ships every question twice under two _ids). The $5,000 dependent care ceiling in the shipped explanation was superseded for 2026. Here the figure is pedagogically necessary, so this replacement teaches the 2026 value and names the tax year in the stem. Also de-duplicates the pair.",
+    "replacement": {
+      "stem": "During open enrollment for the 2026 plan year, Devon, a payroll manager, is asked by an employee whether she can run all $9,000 of her expected day-care cost through the company's dependent care assistance plan on a pre-tax basis. She and her spouse file jointly. For tax year 2026, what should Devon tell her?",
+      "options": [
+        "The pre-tax exclusion is capped at $7,500 for 2026, so she can shelter $7,500 and the remaining $1,500 must be paid with after-tax dollars",
+        "She can exclude the full $9,000, because dependent care assistance is excluded without a dollar limit as long as the care enables both spouses to work",
+        "She is capped at $5,000 for 2026, the long-standing dependent care ceiling that applies to every filer other than married filing separately",
+        "She is capped at $3,750 for 2026, because the married filing separately ceiling applies to any married employee regardless of how the couple actually files"
+      ],
+      "correctAnswer": 0,
+      "explanation": "For tax year 2026 the IRC Sec. 129 exclusion for employer-provided dependent care assistance is $7,500 ($3,750 for married filing separately), raised by P.L. 119-21 from the $5,000/$2,500 amounts that had stood since 1986. Amounts elected above the ceiling are taxable wages subject to income tax and FICA, and the total benefit is reported in Box 10 of Form W-2 with the excess also flowing into Boxes 1, 3, and 5. Option 1 is wrong because Sec. 129 has always been capped. Option 2 states the pre-2026 ceiling. Option 3 applies the married filing separately amount to a joint filer. One payroll trap: the increase is permissive, not automatic, so Devon must confirm the plan document was amended to adopt $7,500 before allowing an election above the old limit. Because Congress sets this figure by statute, verify the current-year ceiling each plan year rather than carrying it forward.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3406",
+      "difficulty": "easy",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "a659lT0zEq7wrQFuwQ3j",
+    "reason": "SOON-STALE. $5,250 is correct for 2026, but P.L. 119-21 made IRC Sec. 127 permanent and indexes the $5,250 exclusion for inflation for tax years beginning after 2026, so a bare figure goes wrong in January 2027. The tax year is now named in the stem and the indexing rule is taught in the explanation. The prior version also implied that only the excess over $5,250 was in play without saying which wage bases it hits.",
+    "replacement": {
+      "stem": "Priya, a payroll analyst, is closing out tax year 2026. An employee received $8,000 of employer-paid tuition during the year under the company's written IRC Section 127 educational assistance program, for a degree unrelated to her job. How much must Priya add to that employee's taxable wages for 2026?",
+      "options": [
+        "$0, because Section 127 assistance is excluded in full whenever the program is in writing and does not discriminate in favor of highly compensated employees",
+        "$2,750, the excess over the $5,250 Section 127 exclusion for tax year 2026, added to federal income tax, Social Security, and Medicare wages",
+        "$8,000, because the coursework was not job-related and Section 127 shelters only education that maintains or improves skills required in the employee's current position",
+        "$2,750, added to federal income tax wages only, since educational assistance above the exclusion is exempt from FICA"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For tax year 2026, Section 127 excludes up to $5,250 per employee per calendar year, so $8,000 minus $5,250 leaves $2,750 of taxable compensation. That excess is wages for income tax withholding, Social Security, Medicare, and FUTA, and lands in Boxes 1, 3, and 5 of the W-2. Option 0 ignores the ceiling. Option 2 confuses Section 127 with the Section 132(d) working condition fringe: Section 127 assistance expressly does not have to be job-related, while Section 132(d) can shelter job-related education without a dollar cap. Option 3 wrongly treats the excess as income-tax-only; there is no FICA carve-out. Note for future years: P.L. 119-21 made Section 127 permanent, made qualified education loan payments a permanent part of it, and indexes the $5,250 for tax years beginning after 2026, so confirm the current-year figure rather than reciting $5,250 from memory.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3201",
+      "difficulty": "medium",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "kcXJxNRMKJxr1gBueuxh",
+    "reason": "SOON-STALE, duplicate of the Section 127 item above. Rewritten to be fully figure-agnostic: it tests the structure of a Section 127 program (written plan, nondiscrimination, no job-relatedness requirement, ceiling then taxable) so it survives the 2027 indexing with no edit. Also de-duplicates the pair.",
+    "replacement": {
+      "stem": "Andre, a payroll coordinator, is asked to brief new managers on how the company's IRC Section 127 educational assistance program works, before the coming year's dollar ceiling has been announced. Which statement is accurate no matter what that year's ceiling turns out to be?",
+      "options": [
+        "Assistance is excluded only if the coursework maintains or improves skills required in the employee's current job, the same standard that governs working condition fringe benefits",
+        "Assistance is excluded only to the extent the employee itemizes deductions and forgoes any education credit on the personal return",
+        "Assistance is excluded from federal income tax wages but is always included in Social Security and Medicare wages, because Section 127 is an income tax provision only",
+        "Assistance paid under a written, nondiscriminatory plan is excluded from wages up to a per-employee annual ceiling, and anything above that ceiling is taxable compensation unless it independently qualifies as a working condition fringe benefit"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Section 127 requires a separate written plan, reasonable notice to eligible employees, and no discrimination in favor of highly compensated employees or owners. Within those conditions, assistance up to a per-employee annual ceiling is excluded from income tax and FICA wages; amounts above the ceiling are taxable wages unless the education is job-related and can be excluded instead as a Section 132(d) working condition fringe. Option 0 imports the Section 132(d) job-relatedness test, which Section 127 deliberately does not impose. Option 1 describes an individual return mechanism that has nothing to do with an employer exclusion. Option 2 is backwards: qualifying Section 127 assistance is excluded from both income tax and FICA wages. Because the dollar ceiling is a statutory figure that Congress changes and that is inflation-indexed for tax years beginning after 2026, payroll should pull the current-year amount from Publication 15-B rather than relying on a remembered number.",
+      "domain": "Core Payroll Concepts",
+      "objective": "K1401",
+      "difficulty": "easy",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "7lqrD4OFKPc3bjTh8UWC",
+    "reason": "SOON-STALE framing. The 22 percent optional flat rate is correct for 2026, but the shipped stem carried the figure with no tax year, and the flat rate is tied to a statutory rate schedule that has moved before. Tax year is now named in the stem, the conditions for using the optional flat rate are taught, and the distractors now separate the flat rate from the 24 percent backup withholding rate and the 37 percent mandatory rate that the original explanation blurred together.",
+    "replacement": {
+      "stem": "In March 2026, Tomas processes a $5,000 performance bonus on a check separate from regular wages. The employee's year-to-date supplemental wages are far below $1 million, income tax was withheld from her regular wages earlier in the year, and Tomas elects the optional flat rate method. For tax year 2026, how much federal income tax should he withhold from the bonus?",
+      "options": [
+        "$1,100, which is 22 percent of $5,000, the optional flat rate for supplemental wages in 2026",
+        "$1,200, which is 24 percent of $5,000, applying the backup withholding rate to the payment",
+        "$1,850, which is 37 percent of $5,000, because the mandatory flat rate applies to any bonus paid on a separate check",
+        "$0 at the time of payment, because supplemental wages are trued up on the employee's return and are not subject to withholding when paid separately from regular wages"
+      ],
+      "correctAnswer": 0,
+      "explanation": "For 2026 the optional flat rate on supplemental wages is 22 percent, so $5,000 times 0.22 equals $1,100. The optional flat rate is available only if the supplemental wages are identified separately from regular wages and the employer withheld income tax from the employee's regular wages in the current or prior calendar year; otherwise the aggregate method must be used. Option 1 uses 24 percent, which is the backup withholding rate for reportable payments to payees with a missing or incorrect TIN, not a wage withholding rate. Option 2 misapplies the mandatory 37 percent rate, which attaches only to the portion of supplemental wages exceeding $1 million in a calendar year, not to separate checks generally. Option 3 is simply wrong: supplemental wages are wages and are subject to withholding when paid. P.L. 119-21 permanently extended the underlying individual rate structure, but payroll should still confirm the flat rate in the current Publication 15 each January.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3302",
+      "difficulty": "easy",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "C2jfIKp3W6jCNqjc322U",
+    "reason": "SOON-STALE framing, duplicate of the supplemental wage item above. Rewritten to test the $1 million mandatory flat rate boundary, which the original only mentioned in passing and stated ambiguously enough to imply the 37 percent rate applies to the whole payment. Tax year named. Also de-duplicates the pair.",
+    "replacement": {
+      "stem": "An executive at Renata's company has already received $960,000 in supplemental wages during calendar year 2026. In November the board approves an additional $200,000 retention bonus. How must Renata withhold federal income tax on the November payment?",
+      "options": [
+        "Withhold 22 percent on the entire $200,000, because the optional flat rate is applied to each supplemental payment evaluated on its own",
+        "Withhold 37 percent on the entire $200,000, because once cumulative supplemental wages pass $1 million the mandatory rate applies to the whole payment that crosses the line",
+        "Withhold 22 percent on the $40,000 that brings the year-to-date total to $1 million and 37 percent on the $160,000 above it",
+        "Withhold using the employee's Form W-4 and the aggregate method, because the mandatory flat rate applies only when the employer has no W-4 on file for the employee"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The mandatory flat rate applies to supplemental wages in excess of $1 million paid to an employee during a calendar year, and for 2026 that rate is 37 percent. Renata splits the payment: $40,000 brings the year-to-date supplemental total to exactly $1 million and may be withheld at the 22 percent optional flat rate, and the $160,000 above the threshold must be withheld at 37 percent. Option 0 ignores the cumulative test, which looks at all supplemental wages paid during the year, not one check at a time. Option 1 overstates the rule by applying 37 percent to the pre-threshold portion as well. Option 3 is wrong on two counts: the mandatory rate cannot be waived by any W-4 election, and neither the aggregate method nor a W-4 entry may be used for the above-threshold portion. The $1 million threshold is statutory and is not indexed, but the 37 percent rate tracks the top individual rate, so confirm it in the current Publication 15.",
+      "domain": "Core Payroll Concepts",
+      "objective": "K1302",
+      "difficulty": "medium",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "VRHDMrTq80gZtn1oVgur",
+    "reason": "WRONG HARDCODED FIGURE. The shipped explanation read \"wages exceeding $200,000 (single/$200,000 MFJ/$125,000 MFS)\". The taxpayer-level threshold for married filing jointly is $250,000, not $200,000. Rewritten to separate the employer's $200,000 withholding trigger (which ignores filing status) from the taxpayer-level thresholds that are settled on Form 8959, and to make explicit that the threshold is statutory and unindexed so it does not move with the wage base.",
+    "replacement": {
+      "stem": "Keisha's employee is married filing jointly and will earn $220,000 in wages from Keisha's company in 2026; the employee's spouse has no earnings. The employee asks Keisha to stop withholding Additional Medicare Tax because the couple's joint threshold has not been reached. How should Keisha respond?",
+      "options": [
+        "The employee is correct: withholding begins only once combined household wages exceed $250,000, the joint filing threshold for the tax",
+        "Withholding is required on wages above $200,000 paid by this employer regardless of the employee's filing status, and any over- or under-withholding is settled on the couple's return",
+        "Withholding begins once the employee's wages exceed the Social Security wage base, which is the trigger point for the additional 0.9 percent",
+        "Withholding is required, and the employer must also match the 0.9 percent just as it matches regular Medicare tax"
+      ],
+      "correctAnswer": 1,
+      "explanation": "An employer must withhold the 0.9 percent Additional Medicare Tax on wages it pays an employee in excess of $200,000 in a calendar year, without regard to the employee's filing status, the spouse's earnings, or wages paid by any other employer. The filing-status thresholds ($250,000 married filing jointly, $125,000 married filing separately, $200,000 for everyone else) apply to the employee's own liability computed on Form 8959, which is exactly why over- and under-withholding is trued up on the return. Option 0 applies a return-level threshold to employer withholding. Option 2 confuses two unrelated limits: the Social Security wage base ($184,500 for 2026) caps OASDI only, while Medicare has no wage base at all. Option 3 is wrong because there is no employer match on the Additional Medicare Tax. The $200,000 withholding threshold is set by statute and is not inflation-indexed, so unlike the wage base it does not change from year to year.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3301",
+      "difficulty": "medium",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "yzZvnBgsqkhcCIa5gMlA",
+    "reason": "WRONG HARDCODED FIGURE, duplicate of the Additional Medicare item above (same bad \"$200,000 MFJ\" text). Rewritten from the employer-liability side, which is the accrual question a CPP candidate actually faces, and stated so the 2026 wage base appears only as a contrasting fact with its year named. Also de-duplicates the pair.",
+    "replacement": {
+      "stem": "Wendell is building the employer payroll tax accrual for a high earner whose 2026 wages will run well above $200,000. Which statement correctly describes his employer's own Medicare tax liability on that employee?",
+      "options": [
+        "The employer matches 1.45 percent up to the Social Security wage base and 2.35 percent on wages above it, mirroring the employee's total Medicare withholding",
+        "The employer owes no further Medicare tax once the employee's wages exceed the Social Security wage base, because Medicare and Social Security share the same annual ceiling",
+        "The employer matches the full 2.35 percent on wages over $200,000, since every FICA component is matched dollar for dollar",
+        "The employer matches 1.45 percent on all wages with no ceiling, but owes no match on the 0.9 percent Additional Medicare Tax, which is withheld from the employee only"
+      ],
+      "correctAnswer": 3,
+      "explanation": "The employee pays 1.45 percent Medicare tax on all wages plus 0.9 percent Additional Medicare Tax on wages over $200,000, for 2.35 percent on the excess. The employer's obligation stops at 1.45 percent on all wages: Medicare has no wage base, and Congress created no employer share of the Additional Medicare Tax. Options 0 and 1 both borrow the Social Security ceiling, which is $184,500 for 2026 and applies only to OASDI. Option 2 assumes symmetry that does not exist in the statute. Two practical points: if an employer fails to withhold the Additional Medicare Tax it remains liable for the amount until the employee pays it, and the 0.9 percent is reported with Medicare tax withheld in Box 6 of Form W-2 rather than on a separate line.",
+      "domain": "Core Payroll Concepts",
+      "objective": "K1301",
+      "difficulty": "medium",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "aoLEqNJz2KeqpLa1ZrIR",
+    "reason": "STALE NUMERIC ANCHOR. A distractor read \"Taxable only if the vehicle costs over $50,000 at the time of purchase,\" which invites candidates to memorize $50,000 as the relevant vehicle ceiling. The real annually adjusted ceiling is $61,700 for 2026 and it governs which valuation method may be used, not whether the benefit is taxable. Rewritten so the keyed point is that cost never determines taxability, with the year-named ceiling appearing only as supporting context.",
+    "replacement": {
+      "stem": "Grace, a payroll coordinator, learns that several sales managers drive company-owned cars home and use them on weekends. Her CFO tells her nothing needs to be reported because the cars were inexpensive. How should Grace treat the personal-use miles?",
+      "options": [
+        "The value of the personal use is a taxable fringe benefit that must be imputed to each driver's wages, regardless of what the vehicle cost",
+        "No imputation is required, because an employer-owned vehicle is a working condition fringe benefit whenever the employee also uses it for business",
+        "No imputation is required unless the vehicle's value exceeds the IRS ceiling for the cents-per-mile method, which is the dollar test for taxability",
+        "The employee deducts the personal-use value as an unreimbursed employee business expense, so payroll only needs to report total miles driven"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Personal use of an employer-provided vehicle is taxable compensation subject to federal income tax, Social Security, and Medicare, and the vehicle's cost has no bearing on whether it is taxable. Cost matters only for which valuation method is permitted: the cents-per-mile and fleet-average rules are available only when the vehicle's fair market value is at or below a ceiling the IRS adjusts every year, which is $61,700 for vehicles first made available in 2026. Option 1 overreaches on the working condition fringe, which shelters the business portion of the use, never the personal portion. Option 2 is the trap: it converts a valuation-eligibility limit into a taxability test. Option 3 relies on the unreimbursed employee business expense deduction, which TCJA suspended and P.L. 119-21 made permanently unavailable to employees. Only qualified nonpersonal use vehicles such as marked police cars and ambulances are excluded outright.",
+      "domain": "Core Payroll Concepts",
+      "objective": "K1403",
+      "difficulty": "easy",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "cEtQpYM7VdkN8LfKZa8a",
+    "reason": "STALE NUMERIC ANCHOR, duplicate of the company-vehicle item above. Replaced with a fully figure-free item on the IRC Section 3402(s) election not to withhold income tax on vehicle personal use, a real gap in this bank and one that cannot rot. Also de-duplicates the pair.",
+    "replacement": {
+      "stem": "To avoid large year-end withholding surprises on imputed vehicle income, Omar's employer elects under IRC Section 3402(s) not to withhold federal income tax on the value of employees' personal use of company cars. What is the payroll consequence of that election?",
+      "options": [
+        "The value becomes nontaxable to the employee, because the election reclassifies the personal use as a working condition fringe benefit",
+        "The value is left off Form W-2 entirely, and the employee picks it up directly on the individual return",
+        "The value remains taxable wages and Social Security and Medicare tax must still be withheld; only federal income tax withholding is waived, and the employer must notify each affected employee of the election",
+        "The election waives federal income tax, Social Security, and Medicare withholding, though the employer still owes its own share of FICA on the imputed amount"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Section 3402(s) lets an employer elect not to deduct and withhold federal income tax on the value of an employee's personal use of an employer-provided highway motor vehicle. The election is narrow: the value is still wages, it must still appear on the employee's Form W-2, and Social Security and Medicare tax must still be withheld and matched. The election is conditioned on notifying the affected employee, generally by January 31 of the election year or within 30 days after the vehicle is first made available, and on the employer timely reporting the benefit on the wage statement. Option 0 confuses a withholding election with an exclusion from income. Option 1 would defeat the reporting condition the statute imposes. Option 3 extends the waiver to FICA, which the provision does not do, and then inconsistently keeps the employer share. Employers commonly pair this election with the special accounting rule for November and December benefits.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3203",
+      "difficulty": "hard",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "7ttk6YQYIKXdHHksGnKs",
+    "reason": "SOON-STALE AND OUTDATED TERMINOLOGY. The keyed answer referred to \"the number of exemptions claimed on the levy form.\" Personal exemptions were suspended by TCJA and permanently repealed by P.L. 119-21; the Form 668-W statement now collects filing status and number of dependents, and the Publication 1494 exempt-amount table is derived from the standard deduction and reissued every year. Rewritten to key on using the current-year table and to teach the default that applies when the employee does not respond.",
+    "replacement": {
+      "stem": "Nadia receives a Form 668-W wage levy for an employee. The employee completes and returns the Statement of Dependents and Filing Status, claiming head of household with two dependents. How does Nadia determine how much of each paycheck is exempt from the levy?",
+      "options": [
+        "She applies the ceiling that governs ordinary creditor garnishments, withholding 25 percent of disposable earnings and releasing the balance to the employee",
+        "She uses the amount derived from the employee's most recent Form W-4, since the levy exemption follows the employee's income tax withholding election",
+        "She remits the employee's entire net pay and lets the IRS refund the exempt portion directly, because a levy attaches to all wages until it is released",
+        "She looks up the exempt amount in the IRS Publication 1494 table issued for the current year, using the filing status and number of dependents the employee certified on the levy form, and remits everything above that amount"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Publication 1494 converts filing status and number of dependents into a per-pay-period exempt amount built from the standard deduction and additional standard deduction amounts. Because those amounts are inflation-adjusted, the IRS reissues the table every year, so payroll must pull the current-year version rather than reuse a saved copy. Everything above the exempt amount goes to the IRS. Option 0 imports the Consumer Credit Protection Act's 25 percent cap, which by its terms does not limit federal tax levies. Option 1 uses the wrong form: the certification is made on the statement accompanying Form 668-W, not on Form W-4, and the two can differ. Option 2 ignores the exempt amount entirely. If the employee does not return the statement within three days, the exempt amount is computed as married filing separately with zero dependents, the least favorable result. The levy is continuous and stays in force until the IRS releases it on Form 668-D.",
+      "domain": "Compliance/Research and Resources",
+      "objective": "K2304",
+      "difficulty": "medium",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "WOCS2agbkixlr9avUu3h",
+    "reason": "SOON-STALE, duplicate of the Form 668-W item above. Replaced with a distinct ordering/priority calculation item that closes the specific misconception the original distractor raised, namely that a 25 percent cap constrains a federal tax levy. Contains no year-sensitive figure. Also de-duplicates the pair.",
+    "replacement": {
+      "stem": "Luis is running payroll for an employee who has been subject to an IRS wage levy for two months. A creditor garnishment for a credit card judgment arrives this week, and the collection agent insists on 25 percent of disposable earnings. After applying the levy, almost no pay remains. What should Luis do?",
+      "options": [
+        "Split the available disposable earnings pro rata between the levy and the creditor garnishment so that neither order goes entirely unsatisfied",
+        "Satisfy the levy first, since it reaches everything above the Publication 1494 exempt amount, and remit nothing on the later creditor garnishment if no earnings remain",
+        "Satisfy the creditor garnishment first up to the 25 percent CCPA ceiling, then apply the levy to whatever disposable earnings are left",
+        "Withhold 25 percent for the creditor and cap the levy at 25 percent as well, so that no more than 50 percent of disposable earnings is taken in any period"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A federal tax levy already in force when a creditor garnishment arrives has priority, and it reaches all pay above the Publication 1494 exempt amount. Title III of the Consumer Credit Protection Act does not limit federal tax levies, so there is no 25 percent ceiling to apply to the levy, and the later creditor order is honored only out of whatever remains, which is frequently nothing. Luis should return the creditor's answer form stating that no funds are available because of a prior federal tax levy. Option 0 invents a pro rata rule that no federal provision supports. Option 2 inverts the order of priority. Option 3 stacks two caps that do not exist for this pairing. The important exception to know: a child support withholding order already in effect when the levy arrives is honored first, and the IRS will generally reduce the levy to accommodate it.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3306",
+      "difficulty": "medium",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "Pukc6afah6eb6kWpYDzX",
+    "reason": "OUT-OF-BAND DEFECT found during this year-sensitivity audit, flagged for separate approval. The shipped explanation contained leaked model self-talk (\"= $550... wait. Actually:\") and the keyed option's own parenthetical arithmetic (\"$500 + $100 = $600 / 45 hours\") evaluates to $13.33, contradicting the keyed answer of $12.22 and colliding with distractor 3. Not a stale-figure problem, but the item is unanswerable as shipped. Rewritten with correct math and non-overlapping distractors.",
+    "replacement": {
+      "stem": "Bianca's employee is paid $10.00 per hour, worked 45 hours in a single workweek, and earned a $100 nondiscretionary production bonus attributable to that same week. What is the employee's FLSA regular rate for the week, and what additional overtime premium is owed?",
+      "options": [
+        "$12.22 per hour, computed as $450 in straight time plus the $100 bonus divided by 45 hours, with an additional half-time premium of $30.56 for the 5 overtime hours",
+        "$10.00 per hour, with a $25.00 overtime premium, because a production bonus is a discretionary payment excluded from the regular rate",
+        "$12.22 per hour, with an additional premium of $91.67, computed as 1.5 times the regular rate for each of the 5 overtime hours",
+        "$11.11 per hour, computed as $500 divided by 45 hours, because the bonus is first allocated to the 5 overtime hours and then spread across all hours worked"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The regular rate is all remuneration for the workweek divided by all hours actually worked: ($10.00 times 45 equals $450) plus the $100 bonus equals $550, divided by 45 hours equals $12.22. Because the $550 already compensates every hour at straight time, only the half-time premium remains on the overtime hours: $12.22 divided by 2 equals $6.11, times 5 overtime hours equals $30.56. Total owed for the week is $580.56. Option 1 treats the bonus as discretionary; a promised production bonus is nondiscretionary and must be included in the regular rate, while only bonuses whose fact and amount are left to the employer's sole discretion until at or near the end of the period may be excluded. Option 2 pays the full time-and-a-half on top of straight time that was already paid, double-counting the straight-time component. Option 3 misallocates the bonus to overtime hours; the bonus is spread over all hours the employee actually worked in the period it covers.",
+      "domain": "Calculation of the Paycheck",
+      "objective": "K3101",
+      "difficulty": "hard",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  },
+  {
+    "_id": "xJvdNZIpR1wssYSsXDq1",
+    "reason": "OUT-OF-BAND DEFECT, duplicate of the broken regular-rate item above (same leaked self-talk and same contradictory keyed arithmetic). Replaced with a distinct retroactive-bonus recomputation item, which is the harder and more frequently tested half of the same objective, and which also separates the FLSA obligation from the supplemental wage tax treatment that the original conflated. Also de-duplicates the pair.",
+    "replacement": {
+      "stem": "In January 2026, Reggie's employer pays a nondiscretionary production bonus covering the 13 workweeks of the prior quarter. Several employees who share in the bonus worked overtime during some of those weeks. What must Reggie do?",
+      "options": [
+        "Nothing beyond the tax step, since the bonus is supplemental wages and withholding at the optional flat rate satisfies the employer's obligations",
+        "Add the entire bonus to the workweek in which it is paid and pay a half-time premium on any overtime hours worked during that single week",
+        "Reallocate the bonus across the workweeks it covers, recompute the regular rate for each of those weeks, and pay the additional half-time premium on the overtime hours worked in each affected week",
+        "Exclude the bonus from the regular rate entirely, because it was calculated and paid after the work was performed, which makes it discretionary"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A nondiscretionary bonus that covers more than one workweek must be apportioned back over the period it was earned. The employer recomputes each covered week's regular rate with that week's share of the bonus included, then owes an additional half-time premium on the overtime hours worked in each of those weeks. Where no better basis exists, the bonus may be allocated equally to each workweek or to each hour worked in the period. Option 0 confuses two independent obligations: withholding on supplemental wages settles the tax question and says nothing about wage-hour liability. Option 1 concentrates the entire bonus in the pay week, which overstates the premium for that week and pays nothing for the other twelve. Option 3 misstates the discretionary test, which turns on whether the employer retained sole discretion over both the fact and the amount until at or near the end of the period, not on when the check was cut; a promised production bonus is nondiscretionary no matter when it is paid.",
+      "domain": "Core Payroll Concepts",
+      "objective": "K1204",
+      "difficulty": "hard",
+      "source": "authored-2026-08-eco-refresh"
+    }
+  }
+]

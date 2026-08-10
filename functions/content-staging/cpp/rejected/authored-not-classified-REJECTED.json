@@ -1,0 +1,1502 @@
+[
+  {
+    "stem": "A compound journal entry in payroll:",
+    "options": [
+      "Contains more than two line items — multiple debits and/or credits in a single entry",
+      "Involves only one debit and one credit, representing a simple two-line transaction",
+      "Records only employer taxes, not employee deductions, separating the employer's share of payroll tax obligations from the employee withholding amounts in distinct journal entries",
+      "Is an entry that has been posted twice by mistake, creating a duplicate transaction"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Payroll journal entries are almost always compound entries because they involve multiple debits (wage expense, employer tax expense) and multiple credits (various tax liabilities, deduction liabilities, cash). A simple entry has only one debit and one credit. Compound entries are standard in payroll accounting due to the many components involved. Distractor analysis: \"one debit and one credit\" is the definition of a simple entry, which is exactly what a payroll entry is not. \"Records only employer taxes\" confuses the scope of an entry with its structure — an entry is compound because of its line count, not because of which party's taxes it carries. \"Posted twice by mistake\" describes a duplicate posting, corrected by a reversing entry, not a compound entry.",
+    "domain": "Accounting",
+    "objective": "K7301",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Federal tax deposits must be made electronically using:",
+    "options": [
+      "Paper check mailed to the IRS processing center",
+      "Cash payment at a local authorized bank branch",
+      "EFTPS (Electronic Federal Tax Payment System)",
+      "Wire transfer directly to the U.S. Treasury"
+    ],
+    "correctAnswer": 2,
+    "explanation": "All federal tax deposits must be made electronically using EFTPS (Electronic Federal Tax Payment System). Employers must enroll in EFTPS and schedule deposits in advance. Paper checks, cash payments, and direct wire transfers are not accepted for employment tax deposits. Penalties apply for failure to deposit electronically. Distractor analysis: a same-day wire is only a backup mechanism arranged through a financial institution when EFTPS fails; it is not the required deposit channel. A paper check is permitted only for the small de minimis balance paid with a return, never for a deposit. Cash at a bank branch has not been an acceptable federal deposit method since paper Form 8109 coupons were eliminated.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2203",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Parallel testing during a payroll system implementation involves:",
+    "options": [
+      "Running both the old and new systems simultaneously to compare results and verify accuracy",
+      "Having two different teams process payroll independently using the same system",
+      "Running the new system at double speed to test performance under heavy load conditions",
+      "Testing the new system in isolation without comparison to the existing system's output, relying solely on predefined test cases to validate payroll calculation accuracy"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Parallel testing runs the existing and new payroll systems at the same time for one or more pay cycles, comparing results to ensure the new system produces accurate output. Discrepancies are investigated and resolved before the old system is decommissioned. This is the most thorough testing method but also the most resource-intensive. Distractor analysis: two teams keying the same system is a dual-entry or duplicate-processing check, not parallel testing. Running at double speed describes load or stress testing. Testing the new system in isolation against predefined cases is unit or user-acceptance testing — it has no legacy baseline to compare against, which is the entire point of a parallel run.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4405",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Allocated tips on Form W-2 apply when:",
+    "options": [
+      "Tips are paid through credit card transactions only, as cash tips are not subject to allocation requirements",
+      "Any employee receives cash tips over $20 per month, which triggers the employer's obligation to allocate and report the tip income on the employee's annual W-2 form",
+      "The employer provides a tip pool for all employees, distributing gratuities equally among front-of-house staff",
+      "A large food or beverage establishment's employees report tips below 8% of the establishment's gross receipts"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Tip allocation is required for large food or beverage establishments (those with more than 10 employees) when total tips reported by employees are less than 8% of the establishment's gross receipts. Allocated tips are reported in Box 8 of Form W-2 but are not subject to withholding. The $20/month threshold triggers regular tip reporting, not allocation. Distractor analysis: the credit-card-only option is wrong because allocation is driven by total reported tips measured against gross receipts, and cash tips are included in that measurement. The $20-per-month figure is the threshold at which an employee must report tips to the employer, not the allocation trigger. A tip pool changes how tips are shared among staff; it does not determine whether allocation is required.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2701",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An employer receives a federal tax levy (IRS Form 668-W) for an employee. Which statement about processing this levy is correct?",
+    "options": [
+      "The employer must calculate the exempt amount using the employee's filing status and number of exemptions claimed on the levy form",
+      "The levy only applies to future wages and cannot attach to any wages already earned but not yet paid at the time the levy is received by the employer",
+      "The employer must wait 30 calendar days before beginning to withhold, providing the employee time to negotiate a payment arrangement with the IRS",
+      "The employer withholds a flat 25% of disposable earnings, applying the same percentage limit that governs ordinary creditor garnishments under federal law"
+    ],
+    "correctAnswer": 0,
+    "explanation": "When processing an IRS levy (Form 668-W), the employer uses Publication 1494 to determine the exempt amount based on the employee's filing status and number of exemptions claimed on Part 3 of the levy. All earnings above the exempt amount must be remitted to the IRS. The levy is continuous and attaches to wages already earned but not yet paid. There is no 30-day waiting period. Distractor analysis: the flat 25% is the CCPA ceiling for ordinary creditor garnishments — a federal levy takes everything above the Publication 1494 exempt amount, with no percentage cap. The levy is continuous and reaches wages already earned but not yet paid. There is no 30-day grace period; withholding begins with the first payday after the levy is received.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2201",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Which federal form does an employee complete to claim withholding allowances and filing status for federal income tax?",
+    "options": [
+      "Form 941",
+      "Form W-4",
+      "Form I-9",
+      "Form W-2"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Form W-4 (Employee's Withholding Certificate) is completed by the employee to indicate filing status, dependents, and additional withholding amounts. Form W-2 reports annual wages and taxes. Form I-9 verifies employment eligibility. Form 941 is the employer's quarterly federal tax return. Distractor analysis: Form W-2 is the employer's annual wage and tax statement furnished to the employee, not an election form. Form 941 is the employer's quarterly federal tax return. Form I-9 verifies identity and work authorization and carries no withholding function.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1501",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Backup withholding at 24% applies when:",
+    "options": [
+      "The employee's annual wages exceed the Social Security wage base, triggering an additional withholding requirement on all excess compensation paid during the year",
+      "An employer cannot determine the employee's state of residence for the purpose of calculating and remitting the appropriate state income tax withholding",
+      "An employee requests additional federal income tax withholding on Form W-4 beyond the standard amount calculated from filing status and dependents",
+      "A payee fails to provide a correct Taxpayer Identification Number (TIN) for reportable payments, which represents the primary compliance standard for this requirement"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Backup withholding (currently 24%) applies to certain reportable payments (1099-type) when the payee fails to furnish a correct TIN, the IRS notifies the payer of an incorrect TIN, or the payee fails to certify they are not subject to backup withholding. It does not apply to regular W-2 wages, additional W-4 withholding, or Social Security wages. Distractor analysis: exceeding the Social Security wage base stops OASDI withholding; it does not start backup withholding. An unknown state of residence is a state sourcing problem resolved under state rules, not by a federal 24% rate. Extra withholding requested in Step 4(c) of Form W-4 is voluntary additional income tax withholding, unrelated to backup withholding.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1303",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Stock options are generally taxable to the employee:",
+    "options": [
+      "At the time of exercise for nonqualified stock options (NQSOs), based on the spread between exercise price and fair market value, as required under current federal payroll regulations",
+      "Only when the stock is eventually sold by the employee on the open market, with all gains treated as long-term capital gains regardless of the holding period or option type",
+      "At the time the options are granted by the employer, with the taxable amount determined by the estimated future value of the stock options on the grant date",
+      "Stock options are never taxable to the employee, as all employer-provided equity compensation is excluded from income under the Internal Revenue Code fringe benefit provisions"
+    ],
+    "correctAnswer": 0,
+    "explanation": "For NQSOs, the taxable event occurs at exercise — the spread (FMV minus exercise price) is treated as compensation subject to income tax, Social Security, and Medicare. The employer must report and withhold accordingly. Incentive Stock Options (ISOs) have different rules — generally no tax at exercise (though AMT may apply), with taxation at sale. Distractor analysis: \"never taxable\" ignores IRC Sec. 83 — equity compensation is not a Sec. 132 fringe benefit. Taxation only at sale with automatic long-term capital gain treatment misstates both NQSOs and ISOs, since holding periods govern character. Taxation at grant applies only to the rare option with a readily ascertainable fair market value on the grant date.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3206",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll system interface with the general ledger ensures:",
+    "options": [
+      "Time and attendance data is collected by the GL, with the general ledger system serving as the timekeeping system of record for hours worked",
+      "Payroll transactions are automatically posted to the correct GL accounts for financial reporting",
+      "The GL system calculates payroll taxes, performing all federal, state, and local tax computations",
+      "Employee pay stubs are printed from the GL system, using the general ledger's reporting module to generate and distribute individual earnings statements each pay period"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The payroll-to-GL interface automatically transfers payroll journal entries (wages, taxes, deductions, employer costs) to the appropriate general ledger accounts. This ensures accurate financial reporting without manual journal entry creation. The GL does not calculate taxes, print pay stubs, or collect time data — those are payroll system functions. Distractor analysis: tax calculation is a payroll engine function — the general ledger only receives the resulting amounts. Pay stubs are produced and distributed by the payroll system. Time and attendance data is captured by a T&A system that feeds payroll, upstream of the general ledger entirely.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4103",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the Portal-to-Portal Act, which of the following travel activities is generally NOT compensable under the FLSA?",
+    "options": [
+      "An employee's ordinary daily commute from home to the regular fixed worksite using their personal vehicle under normal circumstances",
+      "Travel between job sites during the workday when an employee is assigned to multiple locations by the employer during a single shift",
+      "Travel from the employer's primary office to a client location when the trip occurs during regular working hours as part of assigned duties",
+      "Time spent as a passenger on a required out-of-town trip that cuts across the employee's normal working hours, even when it falls on a Saturday or Sunday"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Portal-to-Portal Act (1947) amended the FLSA to exclude ordinary home-to-work commuting from compensable time. However, travel between job sites during the workday, travel during overnight business trips that occurs during regular working hours, and employer-directed travel to client sites are generally compensable. The key distinction is that normal commuting benefits the employee, while other travel benefits the employer. Distractor analysis: travel between job sites during the workday is hours worked under 29 CFR 785.38. Travel from the office to a client site during regular working hours is compensable employer-directed travel. Passenger travel on a required out-of-town trip is compensable when it cuts across the employee's normal working hours, even on a day the employee would not otherwise work.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1203",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "When an employee dies, wages paid to the estate or beneficiary in the same calendar year of death are:",
+    "options": [
+      "Not subject to federal income tax withholding but are subject to FICA taxes",
+      "Subject to all regular payroll taxes including federal income tax and FICA",
+      "Completely tax-free under the Internal Revenue Code bereavement provisions",
+      "Subject to federal income tax withholding but exempt from FICA taxes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Wages paid in the same calendar year as the employee's death to the estate or beneficiary are subject to Social Security and Medicare taxes (FICA) but not federal income tax withholding. They are reported on Form W-2 (for FICA) and Form 1099-MISC (for the income amount). Wages paid in the year following death are exempt from FICA and reported only on Form 1099-MISC. Distractor analysis: \"all regular payroll taxes including federal income tax\" ignores that federal income tax withholding stops at death. \"Completely tax-free\" is wrong — there is no bereavement exclusion; the payment is income to the estate or beneficiary and is reported on Form 1099-MISC. \"Income tax but exempt from FICA\" reverses the rule; that pattern applies to wages paid in the year after death.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3303",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The income statement reflects payroll costs as:",
+    "options": [
+      "Operating expenses that reduce net income for the period",
+      "Long-term investments in human capital on the balance sheet",
+      "Assets that increase the company’s net worth over time",
+      "Cash inflows from employee contributions recorded as revenue"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Payroll costs (wages, employer taxes, benefits) appear on the income statement as operating expenses, directly reducing net income. Higher payroll costs lower profitability. On the balance sheet, any unpaid payroll obligations appear as current liabilities. Payroll is not an asset, cash inflow, or investment from an accounting perspective. Distractor analysis: human capital is not capitalized as a balance-sheet asset under GAAP, so payroll cannot be a long-term investment line. Payroll never increases net worth as an asset — it consumes it. Employee deductions are amounts withheld and held as liabilities pending remittance to third parties; they are never employer revenue.",
+    "domain": "Accounting",
+    "objective": "K7105",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The penalty for failing to file Form W-2 with the SSA by the deadline depends on:",
+    "options": [
+      "The number of employees at the company, with larger employers paying proportionally higher per-form penalties regardless of how late the filing is",
+      "The employee's filing status, as penalties vary based on whether the affected worker files as single, married filing jointly, or head of household",
+      "Whether the company is publicly traded, since SEC-regulated entities face different penalty structures than privately held businesses",
+      "How late the filing is submitted — penalties increase the longer the delay, as required under current federal guidelines"
+    ],
+    "correctAnswer": 3,
+    "explanation": "IRS penalties for late W-2 filing are tiered based on delay: a lower penalty if filed within 30 days of the deadline, a higher penalty if filed by August 1, and the maximum penalty for filing after August 1 or not filing at all. Intentional disregard carries even higher penalties. The amount per return increases with longer delays. Distractor analysis: employer size affects only the maximum annual penalty cap available to small businesses, not the per-return tier. The employee's personal filing status is irrelevant to an information-return penalty assessed against the employer. Public versus private status affects SEC reporting obligations, not IRC Sec. 6721 penalties.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2501",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the Common Law Test, which factor is most important in determining whether a worker is an employee or an independent contractor?",
+    "options": [
+      "The degree of control the employer exercises over how the work is performed, as required under current federal guidelines",
+      "Whether the worker has a business license or has registered a separate legal entity such as an LLC or corporation for their services",
+      "Whether the worker uses their own tools and equipment, which indicates the level of financial investment and operational independence in performing the contracted services",
+      "The length of the working relationship between the employer and the worker, including whether the engagement is ongoing or project-based in nature"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The IRS Common Law Test focuses primarily on behavioral control — the degree to which the employer directs how, when, and where the work is performed. While tools, relationship duration, and business licenses are relevant factors, the core question is control. More control = more likely an employee. Distractor analysis: a business license or LLC registration is evidence of independence but is not determinative — misclassified workers frequently hold one. Supplying one's own tools is a single financial-control factor among several. Length of the relationship is a type-of-relationship factor, again secondary to behavioral control.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1104",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A ghost employee fraud scheme is best detected by:",
+    "options": [
+      "Comparing the payroll register to the HR employee master file and verifying active status",
+      "Reducing the payroll processing frequency from biweekly to monthly",
+      "Eliminating direct deposit and paying only by check, forcing all employees to physically present themselves to collect wages and thereby exposing any fictitious identities",
+      "Increasing all employee pay rates by the same percentage"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Ghost employees are fictitious workers added to the payroll by someone with system access. Comparing the payroll register to the HR master file (and verifying employees are real and active) is the primary detection method. Additional controls include physical paycheck distribution, address analysis (multiple employees at same address), and random audits of new hires. Distractor analysis: abolishing direct deposit is operationally impractical and does not stop a fraudster who also controls check distribution. An across-the-board raise changes amounts paid, not whether the payees exist. Reducing processing frequency lowers the number of runs but adds no detective control.",
+    "domain": "Audits",
+    "objective": "K6102",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll skills assessment for staff development should evaluate:",
+    "options": [
+      "Only the employee's typing speed, because data entry efficiency is the primary skill required for accurate and timely payroll processing across all organizational levels",
+      "Technical payroll knowledge, compliance awareness, system proficiency, and soft skills",
+      "Only the number of years of payroll experience, since tenure is the most reliable indicator of an employee's capability and readiness for advanced payroll responsibilities",
+      "Only whether the employee has a CPP certification"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A comprehensive skills assessment evaluates multiple dimensions: technical knowledge (tax calculations, wage and hour law), compliance awareness (regulatory updates, filing requirements), system proficiency (payroll software, reporting tools), and soft skills (communication, problem-solving, customer service). Experience, certification, and technical skills are all factors but none alone is sufficient. Distractor analysis: tenure measures time served, not capability or readiness. CPP certification is one credential and says nothing about system proficiency or communication skill. Typing speed is a narrow clerical measure irrelevant to the compliance judgment the role demands.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5405",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An employee's Roth 401(k) contribution differs from a traditional pre-tax 401(k) contribution in that the Roth contribution:",
+    "options": [
+      "Reduces both federal income tax and FICA tax withholding, providing a greater immediate tax benefit than the traditional pre-tax contribution",
+      "Is deductible on the employee's personal tax return, allowing a dollar-for-dollar reduction in adjusted gross income at the time of filing",
+      "Is made with after-tax dollars and does not reduce current federal or state income tax withholding on the employee's paycheck",
+      "Is excluded from Social Security and Medicare wages, lowering the employee's FICA tax obligation during the current contribution year"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Roth 401(k) contributions are made on an after-tax basis — they do not reduce current federal or state income tax withholding. However, qualified distributions in retirement are tax-free. In contrast, traditional pre-tax 401(k) contributions reduce current income tax but are taxed upon distribution. Both Roth and traditional 401(k) contributions remain subject to FICA taxes. Distractor analysis: no 401(k) deferral, Roth or traditional, is excluded from Social Security and Medicare wages. Claiming a Roth deferral reduces both income tax and FICA compounds that error and also contradicts its after-tax character. A Roth 401(k) deferral is not separately deductible on the employee's Form 1040.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3401",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Employer-provided educational assistance is tax-free up to:",
+    "options": [
+      "$2,500 per semester for all coursework",
+      "$5,250 per year under IRC Section 127",
+      "$10,000 per year under tuition plans",
+      "Any amount, no limit on eligible courses"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Under IRC Section 127, employers can provide up to $5,250 per calendar year in educational assistance benefits tax-free. This includes tuition, fees, books, and supplies. The assistance need not be job-related. Amounts exceeding $5,250 are taxable unless they qualify as a working condition fringe benefit (job-related education under Section 132). Distractor analysis: $10,000 is not a Sec. 127 figure. \"Any amount, no limit\" ignores the statutory cap — only job-related education escapes a dollar limit, and that is under the Sec. 132 working-condition fringe rules. \"$2,500 per semester\" confuses the education tax credits an individual claims on a personal return.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3203",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the FLSA, which of the following white-collar exemptions requires a minimum salary threshold and a primary duty test?",
+    "options": [
+      "Only the computer employee exemption",
+      "Only the executive exemption, which requires managing a department and directing at least two full-time employees as a primary duty of the position",
+      "Executive, administrative, and professional exemptions",
+      "No exemptions require both salary and duties tests — the FLSA bases all exemption determinations solely on the type of work performed by the employee"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The executive, administrative, and professional (\"EAP\") exemptions all require meeting both a salary basis/threshold test and a primary duties test. The executive must manage, direct employees, and have hiring/firing authority. The administrative must exercise independent judgment on significant matters. The professional must perform work requiring advanced knowledge. Distractor analysis: limiting the answer to the executive exemption ignores the administrative and professional tests, which carry the same salary requirement. The computer employee exemption has an alternative hourly-rate route and is not the only exemption with a duties test. Claiming no exemption uses a salary test contradicts 29 CFR Part 541 outright.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1207",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the Portal-to-Portal Act, which of the following travel activities is generally NOT compensable under the FLSA?",
+    "options": [
+      "Travel from the employer's primary office to a client location when the trip occurs during regular working hours as part of assigned duties",
+      "Travel between job sites during the workday when an employee is assigned to multiple locations by the employer during a single shift",
+      "Time spent as a passenger on a required out-of-town trip that cuts across the employee's normal working hours, even when it falls on a Saturday or Sunday",
+      "An employee's ordinary daily commute from home to the regular fixed worksite using their personal vehicle under normal circumstances"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Portal-to-Portal Act (1947) amended the FLSA to exclude ordinary home-to-work commuting from compensable time. However, travel between job sites during the workday, travel during overnight business trips that occurs during regular working hours, and employer-directed travel to client sites are generally compensable. The key distinction is that normal commuting benefits the employee, while other travel benefits the employer. Distractor analysis: travel between job sites during the workday is hours worked under 29 CFR 785.38. Travel from the office to a client site during regular working hours is compensable employer-directed travel. Passenger travel on a required out-of-town trip is compensable when it cuts across the employee's normal working hours, even on a day the employee would not otherwise work.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1203",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Personal use of a company vehicle is:",
+    "options": [
+      "Always tax-free regardless of usage as a working condition fringe benefit",
+      "Taxable only if the vehicle costs over $50,000 at the time of purchase",
+      "A taxable fringe benefit that must be included in the employee's income",
+      "Deductible by the employee as an unreimbursed business expense on their return"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Personal use of a company vehicle is a taxable fringe benefit. The value must be included in the employee's wages and is subject to income tax, Social Security, and Medicare. Employers can use several IRS valuation methods: Annual Lease Value, Cents-per-Mile, or the Commuting Rule. Only qualified nonpersonal use vehicles (police cars, ambulances) are exempt. Distractor analysis: unreimbursed employee business expenses are not deductible by employees under current law, and personal use would not qualify in any event. The working-condition fringe exclusion covers business use only, never personal use. There is no $50,000 vehicle-cost trigger for taxability — a fair market value cap exists only as an eligibility test for the cents-per-mile valuation method.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3203",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An employee who is paid biweekly has a dependent care FSA election of $5,000 per year. What is the per-pay-period pre-tax deduction?",
+    "options": [
+      "$416.67 ($5,000 ÷ 12 pay periods), applying a monthly frequency divisor that distributes the annual election evenly across twelve calendar months",
+      "$192.31 ($5,000 ÷ 26 pay periods), reflecting the standard biweekly allocation for annual dependent care flexible spending account elections",
+      "$250.00 ($5,000 ÷ 20 pay periods), based on a custom pay schedule that excludes holiday weeks and other non-standard payroll processing periods",
+      "$208.33 ($5,000 ÷ 24 pay periods), using the semimonthly pay frequency divisor to calculate each periodic deduction from the employee gross pay"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Biweekly pay frequency means 26 pay periods per year (52 weeks ÷ 2). The dependent care FSA annual limit of $5,000 divided by 26 pay periods equals $192.31 per pay period. Common errors include using 24 (semimonthly) or 12 (monthly) as the divisor. The $5,000 limit applies per household regardless of pay frequency. Distractor analysis: 24 is the semimonthly divisor, 12 is the monthly divisor, and 20 is not a standard pay-period count. The annual election is spread across every scheduled pay period in the plan year, not across a subset that excludes holiday or short weeks.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3406",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Personal use of a company vehicle is:",
+    "options": [
+      "Taxable only if the vehicle costs over $50,000 at the time of purchase",
+      "A taxable fringe benefit that must be included in the employee's income",
+      "Always tax-free regardless of usage as a working condition fringe benefit",
+      "Deductible by the employee as an unreimbursed business expense on their return"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Personal use of a company vehicle is a taxable fringe benefit. The value must be included in the employee's wages and is subject to income tax, Social Security, and Medicare. Employers can use several IRS valuation methods: Annual Lease Value, Cents-per-Mile, or the Commuting Rule. Only qualified nonpersonal use vehicles (police cars, ambulances) are exempt. Distractor analysis: unreimbursed employee business expenses are not deductible by employees under current law, and personal use would not qualify in any event. The working-condition fringe exclusion covers business use only, never personal use. There is no $50,000 vehicle-cost trigger for taxability — a fair market value cap exists only as an eligibility test for the cents-per-mile valuation method.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3203",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A nonresident alien employee is generally subject to which federal income tax withholding rules?",
+    "options": [
+      "A flat 50% withholding rate on all compensation earned within the United States, regardless of treaty provisions or the employee's country of residence",
+      "No federal income tax withholding of any kind, as nonresident aliens are completely exempt from U.S. federal tax obligations on wages earned domestically",
+      "Special NRA withholding rules that may include additional withholding and treaty-based exemptions, as established by the relevant federal regulatory framework",
+      "The same rules as U.S. citizens with no differences in withholding calculations, Form W-4 completion requirements, or available filing status selections"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Nonresident aliens (NRAs) are subject to special withholding rules. They generally cannot claim \"married\" status or the standard deduction on Form W-4, and may have additional withholding requirements. However, tax treaty benefits may reduce or eliminate withholding on certain types of income. Form 8233 is used to claim treaty exemptions for NRA employees. Distractor analysis: nonresident aliens are not treated identically to citizens — Notice 1392 restricts filing status choices and requires an additional amount in the withholding computation. There is no flat 50% wage rate; 30% is the statutory rate for certain non-wage FDAP income. \"No withholding at all\" is wrong: U.S.-source wages are taxable unless a treaty exemption is claimed on Form 8233.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2602",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under multi-state taxation, when an employee works in multiple states, income tax withholding is generally required by:",
+    "options": [
+      "Only the employee’s state of residence, based on residential status alone",
+      "The federal government via a single unified state withholding system",
+      "Only the state where the employer is headquartered for all employees",
+      "Each state where the employee performs services, based on that state's rules"
+    ],
+    "correctAnswer": 3,
+    "explanation": "When an employee works in multiple states, each work state may require income tax withholding based on the wages earned there. Some states have reciprocal agreements that simplify this. The state of residence may also require withholding or credit for taxes paid to other states. Each state's rules determine the withholding obligation. Distractor analysis: residence-only withholding ignores work-state sourcing, which applies unless a reciprocal agreement says otherwise. There is no federal unified state withholding system — each state administers its own. The employer's headquarters state controls only when it also happens to be the state of work or residence.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1304",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll shared services model centralizes payroll processing to:",
+    "options": [
+      "Eliminate all local compliance requirements, since centralized processing removes the obligation",
+      "Remove the need for payroll expertise, because centralized systems are fully automated",
+      "Reduce employee headcount by 90% immediately, as shared services automation replaces virtually all manual payroll processing functions previously performed",
+      "Achieve economies of scale, standardize processes, and improve consistency across business units"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Shared services centralizes repetitive payroll processing to gain efficiency, standardize procedures, leverage technology, and ensure consistent treatment across locations. Local compliance requirements still apply and must be managed within the shared service. While staffing may be optimized, drastic immediate reductions are unrealistic. Payroll expertise remains essential. Distractor analysis: local statutory requirements survive centralization and must still be administered inside the shared service. Centralized systems still require payroll subject-matter expertise to configure, validate, and defend. A 90% immediate headcount reduction is not a design objective and is not achievable.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5206",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The current Social Security wage base determines:",
+    "options": [
+      "The maximum annual elective deferral contribution limit for employee 401(k) retirement plan contributions as set by the Internal Revenue Service",
+      "The maximum amount of annual earnings subject to Medicare tax withholding",
+      "The minimum hourly wage that employers must pay under the Fair Labor Standards Act for all covered non-exempt employees in the United States",
+      "The maximum amount of annual earnings subject to the Social Security (OASDI) tax, reflecting the standard established under federal payroll guidelines"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Social Security wage base is the annual maximum earnings subject to OASDI tax (6.2% employee/6.2% employer). Once wages exceed this amount, no additional Social Security tax is withheld. Medicare has no wage base limit — all earnings are subject to Medicare tax. The FLSA minimum wage and 401(k) limits are separate provisions. Distractor analysis: Medicare has no wage base — all covered wages are subject to it. The elective deferral limit under IRC Sec. 402(g) is a separate annual IRS figure. The FLSA minimum wage is a Department of Labor wage-and-hour floor with no relationship to OASDI.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1301",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll system's master file typically contains:",
+    "options": [
+      "Only the employee's name and Social Security number, as these two fields are sufficient to identify the worker and link to all other payroll processing records",
+      "Employee demographics, pay rates, tax withholding elections, deduction codes, and direct deposit information, consistent with the requirements of federal payroll law",
+      "Historical payroll data exclusively, serving as a long-term repository of past pay records without storing any current employee compensation or tax information",
+      "Only information needed for the current pay period, since historical data is archived separately and not maintained within the active payroll master file system"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The master file is the foundation of the payroll system, containing standing data used each pay cycle: employee demographics, tax elections (W-4 data), pay rates, benefit deductions, direct deposit routing, work location, job classifications, and more. It contains both current and historical data and is updated when employee information changes. Distractor analysis: \"historical data exclusively\" and \"only current-period information\" each describe a subset — the master file carries standing data used every cycle plus the history behind it. Name and Social Security number alone cannot drive a pay calculation, a tax computation, or a direct deposit.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4505",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Setting departmental objectives for the payroll department should align with:",
+    "options": [
+      "Industry benchmarks without considering the organization’s specific needs",
+      "The organization's overall strategic goals and key performance indicators",
+      "Whatever the previous year’s objectives were, unchanged for continuity",
+      "Only the payroll manager’s personal preferences for the department"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Departmental objectives should cascade from the organization's strategic goals. If the company prioritizes cost reduction, payroll objectives might focus on processing efficiency. If compliance is the focus, accuracy and audit readiness take priority. Objectives should be specific, measurable, and aligned with organizational direction — not based on personal preference or rote repetition. Distractor analysis: rolling last year's objectives forward unchanged ignores changed business conditions and regulatory pressure. The manager's personal preference is not a governance basis for departmental goals. Industry benchmarks are a useful input but cannot substitute for the organization's own strategy.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5202",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under federal wage garnishment provisions, the maximum amount that can be garnished from an employee's disposable earnings for ordinary creditor garnishments is:",
+    "options": [
+      "50% of gross earnings before any deductions, applied uniformly regardless of the employee's pay frequency or the federal minimum hourly wage rate",
+      "15% of disposable earnings with no minimum wage test applied, meaning the garnishment percentage is calculated solely on the net disposable amount",
+      "100% of earnings above the federal poverty line, allowing creditors to garnish all compensation that exceeds the government-established poverty threshold",
+      "The lesser of 25% of disposable earnings or the amount by which disposable earnings exceed 30 times the federal minimum wage, as required under current federal payroll regulations"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Title III of the Consumer Credit Protection Act (CCPA) limits ordinary creditor garnishments to the lesser of: 25% of disposable earnings, or the amount by which disposable earnings exceed 30× the federal minimum hourly wage per week. Disposable earnings are gross pay minus legally required deductions (taxes, Social Security). Different limits apply to child support and tax levies. Distractor analysis: 50% of gross earnings both uses the wrong base (disposable, not gross) and borrows the child-support ceiling. 15% with no minimum wage test is the federal student loan administrative wage garnishment rule, a different authority. There is no poverty-line-based garnishment standard in federal law.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2201",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Batch processing in payroll refers to:",
+    "options": [
+      "Running payroll only once per year during the annual compensation cycle",
+      "Processing each payroll transaction individually in real time as it occurs",
+      "Collecting and processing all payroll transactions together at scheduled intervals",
+      "Sending all employee paychecks in a single envelope to each department manager"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Batch processing collects all payroll transactions (time records, deductions, adjustments) and processes them together as a group at scheduled times (e.g., each pay period). This is efficient for high-volume processing. Real-time processing handles transactions individually as they occur. Batch totals are used to verify accuracy of the processed group. Distractor analysis: real-time processing of each transaction as it occurs is the opposite model. Running payroll once a year describes a frequency, not a processing architecture. Physically bundling checks into one envelope is a distribution practice with no bearing on how transactions are processed.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4102",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The Affordable Care Act (ACA) employer shared responsibility provision applies to applicable large employers (ALEs) with at least:",
+    "options": [
+      "100 full-time employees averaging 30+ hours per week",
+      "25 full-time employees under the ACA threshold",
+      "500 full-time employees in large corporations",
+      "50 full-time employees or full-time equivalents"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Under the ACA, an ALE is an employer with 50 or more full-time employees (including full-time equivalents) in the prior calendar year. ALEs must offer affordable, minimum value health coverage to full-time employees or potentially face penalties. Full-time is defined as averaging 30+ hours per week. Distractor analysis: 100 full-time employees was only the transition-relief threshold in the ACA's first year of employer mandate enforcement. 25 employees is the range associated with the small business health care tax credit. 500 is not an ACA threshold at all.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1405",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the Uniform Services Employment and Reemployment Rights Act (USERRA), an employer must reemploy a returning service member within what timeframe after the employee reports back?",
+    "options": [
+      "Promptly, generally within two weeks for service lasting 31–180 days, based on the duration of the military service period",
+      "Within 90 calendar days regardless of the length of military service, providing a standard reemployment window for all returning veterans",
+      "Within 6 months of the employee's discharge date, allowing the employer adequate time to restructure staffing and create a suitable position",
+      "No specific timeframe is required under USERRA as long as the employer eventually offers a comparable position to the returning service member"
+    ],
+    "correctAnswer": 0,
+    "explanation": "USERRA requires prompt reemployment of returning service members. For service of 31–180 days, the employee must apply within 14 days and be promptly reemployed. For service over 180 days, the employee has 90 days to apply. The employee must be restored to the position they would have attained had they remained continuously employed (the \"escalator\" principle). Distractor analysis: a flat 90 days is the employee's application window after service exceeding 180 days, not the employer's reemployment deadline. Six months from discharge has no basis in USERRA. \"No specific timeframe\" ignores both the statute's prompt-reemployment requirement and the escalator principle governing the position offered.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2206",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A business continuity plan (BCP) for payroll should include:",
+    "options": [
+      "A plan to suspend all payroll operations until the emergency ends, since attempting to process payroll during a disruption creates unacceptable compliance and accuracy risks",
+      "Alternative processing methods, communication plans, data backup procedures, and recovery time objectives, which represents the primary compliance standard for this requirement",
+      "Only instructions for manual check writing, which serves as the sole contingency procedure when the automated payroll processing system becomes unavailable",
+      "Only a list of emergency phone numbers for key payroll personnel and IT support staff who can be contacted during a business disruption event"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A comprehensive payroll BCP ensures employees are paid even during disruptions. It includes alternative processing methods (backup vendors, manual procedures), communication plans (notifying employees and banks), data backup and recovery procedures, recovery time objectives, and testing schedules. Suspending payroll is not an option — employees must be paid on time. Distractor analysis: an emergency phone list is one component of a plan, not the plan. Manual check-writing instructions address only the disbursement step and ignore data recovery, communication, and recovery time objectives. Suspending payroll is not an option — state pay-frequency laws still require employees to be paid on the regular payday.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4201",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A statutory employee is characterized by:",
+    "options": [
+      "Working exclusively for government agencies under civil service employment classifications",
+      "Being exempt from all federal employment taxes including Social Security and Medicare",
+      "Being treated as an employee for FICA tax purposes but filing Schedule C for income tax",
+      "Being treated as an independent contractor for all tax purposes, receiving Form 1099-NEC instead of Form W-2"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Statutory employees (e.g., full-time life insurance salespeople, certain drivers, home workers) are treated as employees for FICA (Social Security and Medicare) tax purposes, but they report income and expenses on Schedule C (self-employment) for federal income tax. This hybrid status is specifically defined in IRC Section 3121(d). Distractor analysis: government or civil-service status is a public-sector classification unrelated to IRC Sec. 3121(d). Statutory employees are not exempt from FICA — subjecting them to FICA is the whole purpose of the classification. Treating them as pure independent contractors on Form 1099-NEC ignores that they receive a Form W-2 with the statutory employee box checked.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1108",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A child support income withholding order takes priority over which of the following?",
+    "options": [
+      "Only voluntary deductions such as 401(k) contributions, health insurance premiums, and flexible spending account elections, but not any court-ordered obligations",
+      "Federal tax levies in all cases without exception, as child support orders are given absolute priority over every other type of withholding obligation under federal law",
+      "Most other garnishments, including creditor garnishments, per IRS regulatory guidance",
+      "Nothing — it has the lowest priority among all garnishment types"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Child support withholding orders generally take priority over most other garnishments, including creditor garnishments. The priority between child support and federal tax levies depends on which was received first in most cases. Child support can garnish up to 50-65% of disposable earnings, far more than the 25% limit for ordinary creditors. Distractor analysis: limiting priority to voluntary deductions understates the rule — support orders also outrank creditor garnishments. \"Priority over federal tax levies in all cases\" is too absolute; a levy served before the support order generally retains its priority. \"Lowest priority\" reverses the rule entirely.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2201",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "System security for payroll data should include:",
+    "options": [
+      "Storing data without encryption since it is internal, as payroll information maintained within the company's network does not require additional protection measures beyond firewalls",
+      "Role-based access controls, encryption, audit trails, and regular security assessments",
+      "Giving all employees full access to payroll data for transparency",
+      "Relying exclusively on the vendor's default security settings, since payroll software providers configure adequate protection during the initial system installation process"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Payroll data contains sensitive PII (SSNs, bank accounts, salaries) requiring robust security: role-based access controls limit who sees what, encryption protects data in transit and at rest, audit trails track who accessed or changed data, and regular assessments identify vulnerabilities. Universal access violates confidentiality. Default settings may not meet organizational requirements. Distractor analysis: vendor default settings are a starting configuration, not a control program, and rarely match an organization's risk posture. An internal network does not remove the need to encrypt PII at rest and in transit. Giving all employees full access destroys the confidentiality that payroll data requires.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4105",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Effective customer service in the payroll department includes:",
+    "options": [
+      "Telling employees to figure out their pay stubs on their own, as self-reliance reduces the volume of inquiries and encourages workers to understand their own compensation details",
+      "Responding only to written complaints submitted through formal channels",
+      "Sharing an employee's payroll details with their coworkers to resolve disputes faster, since transparency among team members accelerates the investigation and resolution process",
+      "Responding to employee inquiries accurately, promptly, and with empathy while maintaining confidentiality"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Payroll customer service requires accuracy (correct answers), timeliness (prompt response), empathy (understanding employee concerns about pay), and confidentiality (never sharing one employee's information with another). Payroll affects employees' livelihoods, making trust and responsiveness essential. Multiple channels (phone, email, self-service) should be available. Distractor analysis: restricting service to written complaints ignores phone and self-service channels and delays resolution of pay problems. Disclosing one employee's payroll detail to coworkers is a confidentiality breach regardless of intent. Telling employees to interpret their own stubs abdicates the department's service obligation.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5302",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Setting departmental objectives for the payroll department should align with:",
+    "options": [
+      "Whatever the previous year’s objectives were, unchanged for continuity",
+      "Only the payroll manager’s personal preferences for the department",
+      "Industry benchmarks without considering the organization’s specific needs",
+      "The organization's overall strategic goals and key performance indicators"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Departmental objectives should cascade from the organization's strategic goals. If the company prioritizes cost reduction, payroll objectives might focus on processing efficiency. If compliance is the focus, accuracy and audit readiness take priority. Objectives should be specific, measurable, and aligned with organizational direction — not based on personal preference or rote repetition. Distractor analysis: rolling last year's objectives forward unchanged ignores changed business conditions and regulatory pressure. The manager's personal preference is not a governance basis for departmental goals. Industry benchmarks are a useful input but cannot substitute for the organization's own strategy.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5202",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the FLSA, which of the following white-collar exemptions requires a minimum salary threshold and a primary duty test?",
+    "options": [
+      "Executive, administrative, and professional exemptions",
+      "Only the computer employee exemption",
+      "Only the executive exemption, which requires managing a department and directing at least two full-time employees as a primary duty of the position",
+      "No exemptions require both salary and duties tests — the FLSA bases all exemption determinations solely on the type of work performed by the employee"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The executive, administrative, and professional (\"EAP\") exemptions all require meeting both a salary basis/threshold test and a primary duties test. The executive must manage, direct employees, and have hiring/firing authority. The administrative must exercise independent judgment on significant matters. The professional must perform work requiring advanced knowledge. Distractor analysis: limiting the answer to the executive exemption ignores the administrative and professional tests, which carry the same salary requirement. The computer employee exemption has an alternative hourly-rate route and is not the only exemption with a duties test. Claiming no exemption uses a salary test contradicts 29 CFR Part 541 outright.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1207",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Reconciling the general ledger payroll accounts involves:",
+    "options": [
+      "Comparing GL account balances to payroll register totals, tax filings, and bank statements to identify and resolve differences, per the guidelines outlined in the applicable federal regulations",
+      "Ensuring the GL uses the correct font and formatting, verifying that financial reports meet the organization's presentation standards for internal distribution and external filing purposes",
+      "Only verifying that the GL has been updated each pay period, confirming that journal entries were posted without examining the accuracy of the amounts or account classifications",
+      "Checking that all employees are listed in the GL, reviewing the general ledger for individual employee records to ensure complete representation of the workforce in financial accounts"
+    ],
+    "correctAnswer": 0,
+    "explanation": "GL reconciliation is a critical control that compares payroll-related account balances (wages expense, tax liabilities, benefit liabilities, cash) to source documents: payroll registers, tax returns (941, 940), bank statements, and vendor reports. Discrepancies are investigated and resolved to ensure accurate financial reporting. Distractor analysis: font and formatting are presentation concerns, not reconciliation. Confirming that an entry posted each period proves timeliness but says nothing about whether the amounts or account classifications are right. The general ledger holds account-level balances, not an employee roster, so checking for employee names there is meaningless.",
+    "domain": "Accounting",
+    "objective": "K7402",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "When a payroll department receives a government agency notice regarding a discrepancy, the first step should be:",
+    "options": [
+      "Forward the notice to the employee without review, allowing the individual worker to resolve the matter directly with the agency",
+      "Review the notice carefully, research the issue, and respond within the required timeframe",
+      "Pay any amount demanded immediately without verification, since prompt payment avoids additional penalties",
+      "Ignore the notice until a second notice is received, as initial government correspondence is typically informational"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Government notices require prompt, careful attention. The payroll professional should read the notice thoroughly, understand what is being requested, research the discrepancy (compare records, verify calculations), and respond within the stated deadline. Ignoring notices leads to penalties. Paying without verification may waste money. Forwarding to employees is not appropriate for employer obligations. Distractor analysis: paying on demand without verification may fund an error that originated with the agency, and the money is difficult to recover. Waiting for a second notice forfeits the response window and lets penalties and interest accrue. The notice concerns an employer filing obligation, so forwarding it to the employee resolves nothing and may disclose information improperly.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2204",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under multi-state taxation, when an employee works in multiple states, income tax withholding is generally required by:",
+    "options": [
+      "The federal government via a single unified state withholding system",
+      "Only the employee’s state of residence, based on residential status alone",
+      "Only the state where the employer is headquartered for all employees",
+      "Each state where the employee performs services, based on that state's rules"
+    ],
+    "correctAnswer": 3,
+    "explanation": "When an employee works in multiple states, each work state may require income tax withholding based on the wages earned there. Some states have reciprocal agreements that simplify this. The state of residence may also require withholding or credit for taxes paid to other states. Each state's rules determine the withholding obligation. Distractor analysis: residence-only withholding ignores work-state sourcing, which applies unless a reciprocal agreement says otherwise. There is no federal unified state withholding system — each state administers its own. The employer's headquarters state controls only when it also happens to be the state of work or residence.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1304",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The IRS special accounting rule for fringe benefits allows employers to:",
+    "options": [
+      "Treat the value of benefits provided in the last two months of the year as paid in the following year, which represents the primary compliance standard for this requirement",
+      "Exclude all fringe benefits from Form W-2 reporting, since noncash compensation is tracked separately and reported to the IRS through alternative information returns",
+      "Defer all fringe benefit taxation indefinitely, allowing employers to postpone income inclusion and withholding obligations on noncash benefits for an unlimited period",
+      "Report fringe benefits only when the employee terminates, consolidating all taxable benefit amounts into the final paycheck for withholding and reporting purposes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The special accounting rule allows employers to treat taxable noncash fringe benefits provided during November and December as paid in the following calendar year for reporting and withholding purposes. This simplifies year-end processing but must be applied consistently. It does not defer taxation indefinitely or exclude benefits from reporting. Distractor analysis: indefinite deferral is not permitted — the rule shifts the reporting period by one year, it does not remove the liability. Reporting only at termination has no basis in the regulations. Fringe benefits remain Form W-2 reportable whether or not the special accounting rule is elected.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3205",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the IRS cents-per-mile valuation method for personal use of an employer-provided vehicle, the taxable fringe benefit is calculated by:",
+    "options": [
+      "Using the vehicle's original purchase price divided by its expected useful life to determine an annual depreciation amount allocated to the employee",
+      "Applying the Annual Lease Value table based on the vehicle's fair market value and then prorating for personal versus business usage days",
+      "Subtracting the employee's commuting distance from total miles driven and multiplying the remainder by a flat per-mile reimbursement rate",
+      "Multiplying the IRS standard mileage rate by the number of personal miles driven by the employee during the reporting period"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The cents-per-mile method values personal use of an employer-provided vehicle by multiplying the IRS standard mileage rate by the total personal miles driven. This method is available only if the vehicle's fair market value does not exceed a specified limit (adjusted annually) and is regularly used in the employer's business. The employee must maintain adequate records of personal versus business mileage. Distractor analysis: the Annual Lease Value table is the separate ALV method, used when cents-per-mile is unavailable. Subtracting commuting distance and applying a reimbursement rate confuses this with the Commuting Rule, which uses a flat per-trip amount. Depreciation over useful life is an employer cost-recovery concept, not a fringe benefit valuation method.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3201",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Employers must retain Form I-9 for terminated employees for:",
+    "options": [
+      "The later of 3 years after the hire date or 1 year after the termination date",
+      "Permanently, as employment eligibility verification records must be maintained indefinitely in the employer's files for potential future government inspection and audit",
+      "7 years after the termination date, matching the standard document retention period",
+      "90 days after the termination date, after which employers are permitted to destroy the form"
+    ],
+    "correctAnswer": 0,
+    "explanation": "I-9 retention requirement is the later of: 3 years after the date of hire, or 1 year after the date employment ends. For example, if an employee works for 5 years, the I-9 must be retained for 1 year after termination (since that exceeds 3 years after hire). After the retention period, I-9s should be securely destroyed. Distractor analysis: seven years is a generic document-retention convention, not the USCIS rule. Ninety days relates to receipt and reverification timeframes, not retention. Retaining permanently exceeds the requirement and needlessly enlarges the population of forms exposed in an ICE inspection.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2404",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "When selecting a new payroll system, a Request for Proposal (RFP) should include:",
+    "options": [
+      "Detailed business requirements, current pain points, integration needs, timeline, and evaluation criteria",
+      "The vendor’s proposed solution before requirements are defined, letting them shape the project scope",
+      "Only the company name and contact information, leaving vendors to assess needs independently",
+      "A request for the lowest price with no functional specifications or compliance evaluation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An effective RFP clearly communicates the organization's needs to potential vendors: business requirements, current challenges, integration points (GL, HR, benefits), compliance needs, timeline, budget constraints, and evaluation criteria. This enables vendors to propose targeted solutions. Without detailed requirements, proposals cannot be meaningfully compared. Distractor analysis: letting the vendor propose a solution before requirements exist inverts the process and cedes scope control. Company name and contact information alone give vendors nothing to price or design against. A lowest-price request with no functional or compliance specification produces proposals that cannot be compared on any meaningful axis.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4304",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The aggregate method of withholding supplemental wages involves:",
+    "options": [
+      "Withholding at the employee's marginal tax rate determined by the IRS based on the employee's prior-year adjusted gross income as reported on their most recent filed return",
+      "Combining supplemental and regular wages into one total and withholding tax on the combined amount using the W-4 information, as required under current federal payroll regulations",
+      "Withholding at a flat 22% on all supplemental wages regardless of the employee's filing status, number of dependents, or other W-4 elections that affect withholding",
+      "Exempting supplemental wages from all withholding obligations, as supplemental payments are treated as non-taxable compensation until reported on the annual tax return"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The aggregate method adds supplemental wages to the regular wages for the pay period, calculates withholding on the combined total using the employee's W-4 information and the standard tax tables, then subtracts the tax already withheld on regular wages. The difference is the supplemental wage withholding. This method may result in higher or lower withholding than the flat 22% method. Distractor analysis: the flat 22% describes the optional flat-rate method, which is the alternative to aggregation, not aggregation itself. Supplemental wages are never exempt from withholding. There is no IRS-assigned marginal rate derived from the employee's prior-year adjusted gross income.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3302",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "When a payroll department receives a government agency notice regarding a discrepancy, the first step should be:",
+    "options": [
+      "Pay any amount demanded immediately without verification, since prompt payment avoids additional penalties",
+      "Review the notice carefully, research the issue, and respond within the required timeframe",
+      "Forward the notice to the employee without review, allowing the individual worker to resolve the matter directly with the agency",
+      "Ignore the notice until a second notice is received, as initial government correspondence is typically informational"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Government notices require prompt, careful attention. The payroll professional should read the notice thoroughly, understand what is being requested, research the discrepancy (compare records, verify calculations), and respond within the stated deadline. Ignoring notices leads to penalties. Paying without verification may waste money. Forwarding to employees is not appropriate for employer obligations. Distractor analysis: paying on demand without verification may fund an error that originated with the agency, and the money is difficult to recover. Waiting for a second notice forfeits the response window and lets penalties and interest accrue. The notice concerns an employer filing obligation, so forwarding it to the employee resolves nothing and may disclose information improperly.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2204",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under IRC Section 3509, when an employer misclassifies an employee as an independent contractor, the employer's liability for federal employment taxes is:",
+    "options": [
+      "Zero, because the worker already paid self-employment taxes on the income and therefore no additional employment tax obligation exists for the employer",
+      "A flat penalty of $500 per misclassified worker per quarter, assessed regardless of the total wages paid or the number of quarters the misclassification persisted",
+      "A reduced percentage of the income tax and FICA that should have been withheld, provided the employer filed required information returns",
+      "The full amount of both the employee and employer share of FICA plus the full amount of income tax that should have been withheld from each payment"
+    ],
+    "correctAnswer": 2,
+    "explanation": "IRC Section 3509 provides reduced tax rates for employers who misclassify employees as independent contractors, if they filed required Forms 1099. The reduced rates are approximately 1.5% of wages for income tax (instead of full withholding) and 20% of the employee FICA share. If no 1099s were filed, the rates double. This relief does not apply to intentional misclassification cases. Distractor analysis: full employee and employer FICA plus full income tax is the liability when Sec. 3509 relief is unavailable, such as intentional misclassification. The worker's payment of self-employment tax does not extinguish the employer's obligation, though an abatement may be pursued with Form 4669. There is no $500-per-worker-per-quarter flat penalty in the statute.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1102",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The aggregate method of withholding supplemental wages involves:",
+    "options": [
+      "Combining supplemental and regular wages into one total and withholding tax on the combined amount using the W-4 information, as required under current federal payroll regulations",
+      "Withholding at a flat 22% on all supplemental wages regardless of the employee's filing status, number of dependents, or other W-4 elections that affect withholding",
+      "Exempting supplemental wages from all withholding obligations, as supplemental payments are treated as non-taxable compensation until reported on the annual tax return",
+      "Withholding at the employee's marginal tax rate determined by the IRS based on the employee's prior-year adjusted gross income as reported on their most recent filed return"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The aggregate method adds supplemental wages to the regular wages for the pay period, calculates withholding on the combined total using the employee's W-4 information and the standard tax tables, then subtracts the tax already withheld on regular wages. The difference is the supplemental wage withholding. This method may result in higher or lower withholding than the flat 22% method. Distractor analysis: the flat 22% describes the optional flat-rate method, which is the alternative to aggregation, not aggregation itself. Supplemental wages are never exempt from withholding. There is no IRS-assigned marginal rate derived from the employee's prior-year adjusted gross income.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3302",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The Form I-9 must be completed:",
+    "options": [
+      "By the end of the third business day after the employee's first day of work for pay",
+      "Before the employee starts working, with both Section 1 and Section 2 fully completed",
+      "Only when the employee is a non-citizen, as U.S. citizens are automatically authorized",
+      "Within 30 days of the employee's hire date, allowing sufficient time for the employee to gather and present all required identification and authorization documents"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Section 1 of Form I-9 must be completed by the employee no later than the first day of employment. Section 2 (employer verification of identity and work authorization documents) must be completed within 3 business days of the first day of work for pay. The I-9 is required for ALL employees regardless of citizenship status. Distractor analysis: thirty days has no basis in the I-9 rules. Requiring both sections before the first day is stricter than the regulation — Section 1 is due by the first day of employment and Section 2 follows — and premature document demands invite document-abuse claims. The I-9 is required for every employee, U.S. citizens included.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1501",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll shared services model centralizes payroll processing to:",
+    "options": [
+      "Achieve economies of scale, standardize processes, and improve consistency across business units",
+      "Remove the need for payroll expertise, because centralized systems are fully automated",
+      "Eliminate all local compliance requirements, since centralized processing removes the obligation",
+      "Reduce employee headcount by 90% immediately, as shared services automation replaces virtually all manual payroll processing functions previously performed"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Shared services centralizes repetitive payroll processing to gain efficiency, standardize procedures, leverage technology, and ensure consistent treatment across locations. Local compliance requirements still apply and must be managed within the shared service. While staffing may be optimized, drastic immediate reductions are unrealistic. Payroll expertise remains essential. Distractor analysis: local statutory requirements survive centralization and must still be administered inside the shared service. Centralized systems still require payroll subject-matter expertise to configure, validate, and defend. A 90% immediate headcount reduction is not a design objective and is not achievable.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5206",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Form W-2 must be furnished to employees by:",
+    "options": [
+      "Last day of February the next year",
+      "March 15 of the following year",
+      "January 31 of the following year",
+      "April 15 of the following year"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Employers must furnish Form W-2 to employees by January 31 of the year following the reporting year. The same January 31 deadline applies for filing W-2s with the Social Security Administration. Late filing results in penalties that increase based on delay. Distractor analysis: the last day of February and mid-March were the old paper and electronic SSA filing dates, superseded when the filing deadline was accelerated to January 31. April 15 is the individual income tax return due date and has never governed employer W-2 delivery.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2303",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The Affordable Care Act (ACA) employer shared responsibility provision applies to applicable large employers (ALEs) with at least:",
+    "options": [
+      "25 full-time employees under the ACA threshold",
+      "500 full-time employees in large corporations",
+      "50 full-time employees or full-time equivalents",
+      "100 full-time employees averaging 30+ hours per week"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Under the ACA, an ALE is an employer with 50 or more full-time employees (including full-time equivalents) in the prior calendar year. ALEs must offer affordable, minimum value health coverage to full-time employees or potentially face penalties. Full-time is defined as averaging 30+ hours per week. Distractor analysis: 100 full-time employees was only the transition-relief threshold in the ACA's first year of employer mandate enforcement. 25 employees is the range associated with the small business health care tax credit. 500 is not an ACA threshold at all.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1405",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The fluctuating workweek method of overtime calculation requires:",
+    "options": [
+      "A variable salary that changes based on hours worked each week, with the pay amount adjusted proportionally to reflect the actual number of hours the employee works",
+      "A fixed salary covering all hours worked with overtime paid at half-time (0.5×) the calculated regular rate, as outlined in the applicable section of the Internal Revenue Code",
+      "No overtime payment regardless of hours worked, because salaried employees under the fluctuating workweek arrangement are automatically classified as exempt from overtime",
+      "Overtime paid at 1.5× the regular rate plus a shift differential, combining premium overtime compensation with additional pay for non-standard working hour schedules"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Under the fluctuating workweek method (FWW), the employee receives a fixed salary for all hours worked each week. The regular rate fluctuates based on total hours (salary ÷ hours). Since the salary already covers all hours at straight time, overtime is paid at half-time (0.5×) the regular rate for hours over 40. The employee must clearly understand and agree to this arrangement. Distractor analysis: paying no overtime at all would make the arrangement an unlawful salaried-nonexempt scheme. Paying 1.5x plus a shift differential describes ordinary overtime with premium pay, not the fluctuating workweek. A salary that varies with hours worked defeats the fixed-salary condition the method requires.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3101",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The matching principle in accounting requires:",
+    "options": [
+      "Debits to always equal credits within each individual account in the ledger",
+      "All payments to be made on the same day they are recorded in the books",
+      "Expenses to be recorded in the same period as the revenue they help generate",
+      "Employee pay rates to match industry averages for comparable positions"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The matching principle is a fundamental accounting concept: expenses (including wages) must be recognized in the same period as the revenues they help generate. This provides an accurate picture of profitability for each period. For payroll, this means accruing wages earned in December even if paid in January. Distractor analysis: debits equalling credits is the double-entry rule, not the matching principle. Requiring payment on the day of recording describes cash-basis timing, which matching specifically overrides. Benchmarking pay rates to industry averages is a compensation practice with no accounting content.",
+    "domain": "Accounting",
+    "objective": "K7102",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the FMLA, an eligible employee is entitled to up to 12 weeks of unpaid leave for:",
+    "options": [
+      "The birth or adoption of a child, or a serious health condition of the employee or immediate family member, in accordance with applicable IRS guidelines and requirements",
+      "Vacation and personal time off requested by the employee for leisure, travel, or other non-medical personal reasons that do not qualify as serious health conditions",
+      "Jury duty only, as the FMLA specifically protects employees who are summoned by a court to serve on a jury for an extended period during employment",
+      "Any reason the employee deems necessary, since the FMLA provides broad discretionary leave rights that allow employees to take unpaid time off without restriction"
+    ],
+    "correctAnswer": 0,
+    "explanation": "FMLA provides 12 weeks of unpaid, job-protected leave for qualifying reasons: birth/adoption/foster placement of a child, serious health condition of the employee, serious health condition of a spouse/child/parent, and qualifying exigencies related to military service. It does not cover vacation, general PTO, or any reason the employee chooses. Distractor analysis: vacation and personal leisure time are not qualifying reasons. Jury duty is not an FMLA-covered event, though other laws may protect it. \"Any reason the employee deems necessary\" ignores the statute's enumerated qualifying events and its medical certification requirements.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2305",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Employer-provided educational assistance is tax-free up to:",
+    "options": [
+      "$2,500 per semester for all coursework",
+      "$10,000 per year under tuition plans",
+      "$5,250 per year under IRC Section 127",
+      "Any amount, no limit on eligible courses"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Under IRC Section 127, employers can provide up to $5,250 per calendar year in educational assistance benefits tax-free. This includes tuition, fees, books, and supplies. The assistance need not be job-related. Amounts exceeding $5,250 are taxable unless they qualify as a working condition fringe benefit (job-related education under Section 132). Distractor analysis: $10,000 is not a Sec. 127 figure. \"Any amount, no limit\" ignores the statutory cap — only job-related education escapes a dollar limit, and that is under the Sec. 132 working-condition fringe rules. \"$2,500 per semester\" confuses the education tax credits an individual claims on a personal return.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3203",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "System security for payroll data should include:",
+    "options": [
+      "Storing data without encryption since it is internal, as payroll information maintained within the company's network does not require additional protection measures beyond firewalls",
+      "Giving all employees full access to payroll data for transparency",
+      "Relying exclusively on the vendor's default security settings, since payroll software providers configure adequate protection during the initial system installation process",
+      "Role-based access controls, encryption, audit trails, and regular security assessments"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Payroll data contains sensitive PII (SSNs, bank accounts, salaries) requiring robust security: role-based access controls limit who sees what, encryption protects data in transit and at rest, audit trails track who accessed or changed data, and regular assessments identify vulnerabilities. Universal access violates confidentiality. Default settings may not meet organizational requirements. Distractor analysis: vendor default settings are a starting configuration, not a control program, and rarely match an organization's risk posture. An internal network does not remove the need to encrypt PII at rest and in transit. Giving all employees full access destroys the confidentiality that payroll data requires.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4105",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll system's master file typically contains:",
+    "options": [
+      "Only the employee's name and Social Security number, as these two fields are sufficient to identify the worker and link to all other payroll processing records",
+      "Only information needed for the current pay period, since historical data is archived separately and not maintained within the active payroll master file system",
+      "Historical payroll data exclusively, serving as a long-term repository of past pay records without storing any current employee compensation or tax information",
+      "Employee demographics, pay rates, tax withholding elections, deduction codes, and direct deposit information, consistent with the requirements of federal payroll law"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The master file is the foundation of the payroll system, containing standing data used each pay cycle: employee demographics, tax elections (W-4 data), pay rates, benefit deductions, direct deposit routing, work location, job classifications, and more. It contains both current and historical data and is updated when employee information changes. Distractor analysis: \"historical data exclusively\" and \"only current-period information\" each describe a subset — the master file carries standing data used every cycle plus the history behind it. Name and Social Security number alone cannot drive a pay calculation, a tax computation, or a direct deposit.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4505",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The current Social Security wage base determines:",
+    "options": [
+      "The maximum amount of annual earnings subject to the Social Security (OASDI) tax, reflecting the standard established under federal payroll guidelines",
+      "The maximum amount of annual earnings subject to Medicare tax withholding",
+      "The minimum hourly wage that employers must pay under the Fair Labor Standards Act for all covered non-exempt employees in the United States",
+      "The maximum annual elective deferral contribution limit for employee 401(k) retirement plan contributions as set by the Internal Revenue Service"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Social Security wage base is the annual maximum earnings subject to OASDI tax (6.2% employee/6.2% employer). Once wages exceed this amount, no additional Social Security tax is withheld. Medicare has no wage base limit — all earnings are subject to Medicare tax. The FLSA minimum wage and 401(k) limits are separate provisions. Distractor analysis: Medicare has no wage base — all covered wages are subject to it. The elective deferral limit under IRC Sec. 402(g) is a separate annual IRS figure. The FLSA minimum wage is a Department of Labor wage-and-hour floor with no relationship to OASDI.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1301",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Qualified transportation benefits under IRC Section 132(f) include:",
+    "options": [
+      "Transit passes, vanpooling, and qualified parking up to monthly exclusion limits",
+      "Hotel accommodations for commuting employees who must travel long distances",
+      "Personal vehicle gas reimbursements with no limit, covering all fuel costs incurred",
+      "Airline tickets for business travel, including flights to conferences, client meetings"
+    ],
+    "correctAnswer": 0,
+    "explanation": "IRC Section 132(f) allows employers to provide tax-free qualified transportation fringe benefits: transit passes, vanpool benefits, and qualified parking, each up to monthly exclusion limits set annually. Gas reimbursements for personal commuting, airline tickets, and hotel stays are not qualified transportation benefits under Section 132(f). Distractor analysis: reimbursing personal commuting fuel is taxable wages, not a qualified transportation benefit. Business airline tickets are an accountable-plan reimbursement under IRC Sec. 62, a different provision. Hotel accommodation for a long-distance commuter is taxable unless it meets the narrow lodging-on-employer-premises exclusion.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3404",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "FUTA tax is paid by:",
+    "options": [
+      "The state unemployment agency via premium transfers",
+      "Both employer and employee equally at 3.0% each",
+      "The employee only through payroll deductions",
+      "The employer only — employees do not pay FUTA"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Federal Unemployment Tax Act (FUTA) tax is an employer-only tax. Employees do not contribute to FUTA. The base FUTA rate is 6.0% on the first $7,000 of each employee's wages, but employers receive a credit of up to 5.4% for state unemployment taxes paid, resulting in an effective rate as low as 0.6%. Distractor analysis: there is no employee FUTA deduction — payroll never withholds it. A shared 3.0%/3.0% split does not exist; the gross rate is 6.0% assessed on the employer. State agencies collect state unemployment tax and do not remit FUTA on the employer's behalf, although SUTA payments generate the credit that reduces the effective FUTA rate.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1301",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An employee earns a $600 weekly salary intended to compensate a 40-hour workweek and works 48 hours. Under the FLSA, the minimum additional overtime payment for the 8 overtime hours is:",
+    "options": [
+      "$150.00 (8 hours × $18.75 using an adjusted rate that factors in a weighted average of hourly compensation)",
+      "$120.00 (8 hours × $15.00 straight-time rate with no overtime premium applied to the additional hours worked)",
+      "$180.00 (8 hours × $15.00 regular rate × 1.5), reflecting the standard established under federal payroll guidelines",
+      "$240.00 (8 hours × $30.00 calculated by doubling the base regular rate for all overtime hours in the workweek)"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The regular rate is $600 ÷ 40 hours = $15.00/hour. Overtime is 1.5× the regular rate: $15.00 × 1.5 = $22.50/hour. For 8 OT hours: 8 × $22.50 = $180.00. The total weekly pay would be $600 + $180 = $780. Always calculate the regular rate first, then apply the 1.5 multiplier. Distractor analysis: $240 doubles the regular rate instead of applying the 1.5 multiplier. $150 applies a fabricated weighted rate that no FLSA method produces. $120 pays the overtime hours at straight time and omits the premium entirely.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3101",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A tipped employee under the FLSA must receive a direct cash wage of at least:",
+    "options": [
+      "$5.00 per hour regardless of tips received, as this represents the standard reduced minimum wage floor for all tipped service industry employees",
+      "The full federal minimum wage with no tip credit allowed",
+      "$2.13 per hour, with tips making up the difference to the full federal minimum wage",
+      "No minimum direct cash wage — tips are the sole compensation for tipped employees, and employers have no obligation to supplement tip earnings with hourly pay"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Under the FLSA tip credit provision, employers may pay tipped employees a direct cash wage as low as $2.13/hour, provided the employee's tips bring total compensation to at least the federal minimum wage ($7.25/hour). If tips plus the direct wage do not reach the minimum wage, the employer must make up the difference. Some states require higher direct cash wages or no tip credit. Distractor analysis: $5.00 per hour is not a federal figure. Requiring the full minimum wage with no tip credit describes the law in certain states, not the FLSA. \"No minimum direct cash wage\" is wrong — the FLSA guarantees $2.13 in direct cash wages plus the employer's obligation to make up any shortfall.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1206",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The IRS Trust Fund Recovery Penalty (TFRP) can be assessed against:",
+    "options": [
+      "Only the payroll department manager, since this individual has direct operational responsibility for processing payroll and remitting employment tax deposits",
+      "Only the company's CEO, as the chief executive officer bears sole personal liability for all unpaid trust fund taxes regardless of their involvement in payroll operations",
+      "The company as an entity but never individual employees",
+      "Any responsible person who willfully fails to collect, account for, or pay over employment taxes"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The TFRP (also called the 100% penalty) can be assessed against any person who is responsible for collecting, accounting for, or paying over trust fund taxes (employee withholding) and who willfully fails to do so. \"Responsible persons\" can include officers, directors, payroll managers, bookkeepers, or anyone with authority over the company's finances. Distractor analysis: the TFRP is by design a personal liability penalty, so confining it to the entity misses its purpose. The payroll manager may well be a responsible person but is not the only candidate. The CEO is not automatically liable absent both responsibility for the funds and willfulness.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2501",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Effective delegation in the payroll department requires:",
+    "options": [
+      "Only delegating routine tasks and never complex ones, as complicated payroll processes require manager-level expertise",
+      "Clear communication of expectations, authority to complete the task, and accountability for results, per IRS regulatory guidance",
+      "Assigning tasks without any instructions or follow-up, allowing the team member to independently determine the approach",
+      "Retaining all decision-making authority while assigning the work, ensuring that the manager maintains complete control over every aspect of the delegated task's execution and outcomes"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Effective delegation involves clearly communicating the task, expectations, and deadlines; granting the authority needed to complete the work; providing necessary resources and training; and holding the person accountable for results while providing support. Delegation without guidance sets people up to fail. Retaining all authority defeats the purpose. Distractor analysis: retaining all decision-making authority leaves the delegate unable to act and turns delegation into task-shuffling. Restricting delegation to routine work blocks staff development, which is one of delegation's main purposes. Assigning work with no instructions or follow-up is abdication, not delegation.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5401",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "FUTA tax is paid by:",
+    "options": [
+      "The employer only — employees do not pay FUTA",
+      "The state unemployment agency via premium transfers",
+      "Both employer and employee equally at 3.0% each",
+      "The employee only through payroll deductions"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Federal Unemployment Tax Act (FUTA) tax is an employer-only tax. Employees do not contribute to FUTA. The base FUTA rate is 6.0% on the first $7,000 of each employee's wages, but employers receive a credit of up to 5.4% for state unemployment taxes paid, resulting in an effective rate as low as 0.6%. Distractor analysis: there is no employee FUTA deduction — payroll never withholds it. A shared 3.0%/3.0% split does not exist; the gross rate is 6.0% assessed on the employer. State agencies collect state unemployment tax and do not remit FUTA on the employer's behalf, although SUTA payments generate the credit that reduces the effective FUTA rate.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1301",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A business continuity plan (BCP) for payroll should include:",
+    "options": [
+      "Only instructions for manual check writing, which serves as the sole contingency procedure when the automated payroll processing system becomes unavailable",
+      "Only a list of emergency phone numbers for key payroll personnel and IT support staff who can be contacted during a business disruption event",
+      "Alternative processing methods, communication plans, data backup procedures, and recovery time objectives, which represents the primary compliance standard for this requirement",
+      "A plan to suspend all payroll operations until the emergency ends, since attempting to process payroll during a disruption creates unacceptable compliance and accuracy risks"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A comprehensive payroll BCP ensures employees are paid even during disruptions. It includes alternative processing methods (backup vendors, manual procedures), communication plans (notifying employees and banks), data backup and recovery procedures, recovery time objectives, and testing schedules. Suspending payroll is not an option — employees must be paid on time. Distractor analysis: an emergency phone list is one component of a plan, not the plan. Manual check-writing instructions address only the disbursement step and ignore data recovery, communication, and recovery time objectives. Suspending payroll is not an option — state pay-frequency laws still require employees to be paid on the regular payday.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4201",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Batch processing in payroll refers to:",
+    "options": [
+      "Processing each payroll transaction individually in real time as it occurs",
+      "Collecting and processing all payroll transactions together at scheduled intervals",
+      "Sending all employee paychecks in a single envelope to each department manager",
+      "Running payroll only once per year during the annual compensation cycle"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Batch processing collects all payroll transactions (time records, deductions, adjustments) and processes them together as a group at scheduled times (e.g., each pay period). This is efficient for high-volume processing. Real-time processing handles transactions individually as they occur. Batch totals are used to verify accuracy of the processed group. Distractor analysis: real-time processing of each transaction as it occurs is the opposite model. Running payroll once a year describes a frequency, not a processing architecture. Physically bundling checks into one envelope is a distribution practice with no bearing on how transactions are processed.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4102",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Net pay is calculated as:",
+    "options": [
+      "Total hours worked multiplied by the hourly rate, which produces the final take-home amount",
+      "Gross pay minus all deductions (taxes, voluntary deductions, and involuntary deductions), per IRS regulatory guidance",
+      "Gross pay plus employer contributions for benefits, taxes, and retirement plans, since employer-paid amounts are included in the employee's total compensation package",
+      "Gross pay minus federal income tax only, as state taxes, FICA, and voluntary deductions are handled separately"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Net pay (take-home pay) = gross pay minus all deductions: federal/state/local income tax, Social Security, Medicare, voluntary deductions (401(k), health insurance, FSA), and involuntary deductions (garnishments, tax levies, child support). It does not include employer-paid taxes or contributions, which are separate from the employee's pay. Distractor analysis: adding employer contributions produces total employer cost, not net pay. Subtracting federal income tax only omits FICA, state and local tax, and every voluntary and involuntary deduction. Hours multiplied by rate is gross pay, the starting point rather than the result.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3601",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll skills assessment for staff development should evaluate:",
+    "options": [
+      "Only the number of years of payroll experience, since tenure is the most reliable indicator of an employee's capability and readiness for advanced payroll responsibilities",
+      "Only the employee's typing speed, because data entry efficiency is the primary skill required for accurate and timely payroll processing across all organizational levels",
+      "Technical payroll knowledge, compliance awareness, system proficiency, and soft skills",
+      "Only whether the employee has a CPP certification"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A comprehensive skills assessment evaluates multiple dimensions: technical knowledge (tax calculations, wage and hour law), compliance awareness (regulatory updates, filing requirements), system proficiency (payroll software, reporting tools), and soft skills (communication, problem-solving, customer service). Experience, certification, and technical skills are all factors but none alone is sufficient. Distractor analysis: tenure measures time served, not capability or readiness. CPP certification is one credential and says nothing about system proficiency or communication skill. Typing speed is a narrow clerical measure irrelevant to the compliance judgment the role demands.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5405",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An employee's pre-tax 401(k) contribution reduces taxable wages for:",
+    "options": [
+      "No taxes — 401(k) contributions are fully taxable at the time of deferral, with the tax benefit deferred until the employee begins receiving qualified plan distributions",
+      "Only federal income tax, because state income tax calculations and FICA obligations are both determined independently of elective retirement plan deferrals",
+      "Federal income tax, state income tax, and all FICA taxes",
+      "Federal and state income tax, but NOT Social Security and Medicare (FICA)"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Traditional pre-tax 401(k) contributions reduce wages subject to federal and most state income taxes but remain subject to FICA (Social Security and Medicare) taxes. This means 401(k) contributions lower current income tax but do not reduce FICA withholding. Roth 401(k) contributions are made after all taxes. Distractor analysis: \"no taxes\" ignores the current federal income tax deferral the contribution creates. \"Federal income tax only\" ignores that most states conform to the federal treatment. Including FICA is the classic error — elective deferrals are Social Security and Medicare wages in the year contributed.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3401",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Which federal law prohibits employers from terminating an employee solely because their wages have been garnished for any single indebtedness?",
+    "options": [
+      "The Employee Retirement Income Security Act (ERISA), which governs fiduciary responsibilities and participant protections in employer-sponsored benefit plans",
+      "Title III of the Consumer Credit Protection Act (CCPA), which provides employment protection for workers subject to wage garnishment orders",
+      "The Equal Pay Act (EPA), which addresses wage discrimination based on gender and prohibits adverse employment actions related to compensation disputes",
+      "The Fair Debt Collection Practices Act (FDCPA), which regulates how third-party debt collectors communicate with debtors and their employers"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Title III of the CCPA (15 U.S.C. § 1674) prohibits an employer from discharging an employee because their earnings have been subject to garnishment for any single indebtedness. However, this protection does not extend to garnishments for a second or subsequent debt. Some states provide broader protections against discharge for multiple garnishments. Violations can result in fines and reinstatement. Distractor analysis: the Equal Pay Act addresses sex-based wage discrimination, not garnishment. The Fair Debt Collection Practices Act regulates third-party debt collectors and does not govern the employment relationship. ERISA governs benefit plan fiduciary duties and has nothing to do with discharge for garnishment.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2201",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the Davis-Bacon Act, contractors on federal construction projects over $2,000 must pay workers at least:",
+    "options": [
+      "A rate negotiated between the contractor and the labor union representing the workers on the specific federal construction project",
+      "The locally prevailing wage and fringe benefit rates as determined by the U.S. Department of Labor for that geographic area",
+      "The federal minimum wage of $7.25 per hour, which serves as the universal baseline compensation floor for all federally funded project work",
+      "The state minimum wage rate, since state wage laws supersede all federal prevailing wage requirements on publicly funded construction contracts"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Davis-Bacon Act requires contractors and subcontractors on federal construction contracts over $2,000 to pay laborers and mechanics the locally prevailing wages and fringe benefits as determined by the Department of Labor. These rates often exceed the federal minimum wage and vary by trade classification and geographic location. Payroll professionals must ensure correct reporting on certified payroll (WH-347). Distractor analysis: the federal minimum wage is a floor that sits well below most prevailing wage determinations. State minimum wage law does not supersede federal prevailing wage requirements on covered federal contracts. A privately negotiated union rate does not become the standard unless it matches the Department of Labor determination for the classification and locality.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1210",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll system interface with the general ledger ensures:",
+    "options": [
+      "Employee pay stubs are printed from the GL system, using the general ledger's reporting module to generate and distribute individual earnings statements each pay period",
+      "The GL system calculates payroll taxes, performing all federal, state, and local tax computations",
+      "Payroll transactions are automatically posted to the correct GL accounts for financial reporting",
+      "Time and attendance data is collected by the GL, with the general ledger system serving as the timekeeping system of record for hours worked"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The payroll-to-GL interface automatically transfers payroll journal entries (wages, taxes, deductions, employer costs) to the appropriate general ledger accounts. This ensures accurate financial reporting without manual journal entry creation. The GL does not calculate taxes, print pay stubs, or collect time data — those are payroll system functions. Distractor analysis: tax calculation is a payroll engine function — the general ledger only receives the resulting amounts. Pay stubs are produced and distributed by the payroll system. Time and attendance data is captured by a T&A system that feeds payroll, upstream of the general ledger entirely.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4103",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Third-party sick pay is:",
+    "options": [
+      "Government disability benefits from Social Security, specifically SSDI payments issued to qualified workers who meet the long-term disability criteria established by the SSA",
+      "Payments made by an insurance company or other third party to an employee for periods of sickness or injury, which represents the primary compliance standard for this requirement",
+      "Regular wages paid by the employer during sick leave using the company's own funds, recorded as standard compensation expense on the employer's financial statements",
+      "Workers' compensation payments for on-the-job injuries, administered through the employer's state-mandated workers' comp insurance carrier or self-insured program"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Third-party sick pay (TPSP) is paid by an entity other than the employer (typically an insurance carrier) to employees who are absent due to sickness or injury. TPSP is subject to federal income tax and FICA (for the first 6 months). Employer-paid sick leave is regular wages. SSDI and workers' comp have different tax treatments. Distractor analysis: Social Security disability benefits are a federal entitlement, not employer-related sick pay. Sick leave paid by the employer from its own funds is ordinary wages. Workers' compensation for an on-the-job injury is generally excluded from income under IRC Sec. 104 and follows different reporting rules.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3202",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "New hire reporting must be submitted to the state within how many days of the hire date under federal law?",
+    "options": [
+      "60 days",
+      "10 days",
+      "30 days",
+      "20 days"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Federal law requires employers to report new hires to the state directory within 20 days of the hire date (or the first day of work for pay). Some states require earlier reporting. New hire reporting is used primarily to enforce child support obligations and detect fraud in public assistance programs. Distractor analysis: 10 days is a common state requirement but is not the federal standard. Thirty and sixty days both exceed the federal maximum and would place the employer out of compliance in every state.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2306",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Employee self-service (ESS) portals benefit the payroll department by:",
+    "options": [
+      "Bypassing all internal controls on data changes, streamlining the update process by allowing employees to modify any payroll field without management approval workflows",
+      "Reducing manual data entry by allowing employees to update personal information, view pay stubs, and access W-2s, per the guidelines outlined in the applicable federal regulations",
+      "Eliminating the need for payroll staff entirely, as the self-service platform automates all payroll processing functions without requiring any human oversight or intervention",
+      "Automatically calculating overtime without payroll review, using built-in algorithms that determine exempt and non-exempt status and apply the correct overtime rates"
+    ],
+    "correctAnswer": 1,
+    "explanation": "ESS portals enable employees to update addresses, direct deposit, tax withholding, and view/print pay stubs and W-2s — reducing manual data entry, phone calls, and paperwork for payroll staff. They do not eliminate the need for payroll professionals, automatically calculate complex pay, or bypass controls. Proper ESS systems include audit trails and approval workflows. Distractor analysis: employee self-service does not eliminate payroll staff — approvals, compliance judgment, and exception handling remain. Overtime calculation stays in the payroll engine under professional review, since exempt status and regular-rate determinations are legal judgments. Bypassing controls on data changes is precisely what a properly configured ESS prevents through approval workflow and audit trails.",
+    "domain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "K4104",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The penalty for failing to file Form W-2 with the SSA by the deadline depends on:",
+    "options": [
+      "The number of employees at the company, with larger employers paying proportionally higher per-form penalties regardless of how late the filing is",
+      "Whether the company is publicly traded, since SEC-regulated entities face different penalty structures than privately held businesses",
+      "How late the filing is submitted — penalties increase the longer the delay, as required under current federal guidelines",
+      "The employee's filing status, as penalties vary based on whether the affected worker files as single, married filing jointly, or head of household"
+    ],
+    "correctAnswer": 2,
+    "explanation": "IRS penalties for late W-2 filing are tiered based on delay: a lower penalty if filed within 30 days of the deadline, a higher penalty if filed by August 1, and the maximum penalty for filing after August 1 or not filing at all. Intentional disregard carries even higher penalties. The amount per return increases with longer delays. Distractor analysis: employer size affects only the maximum annual penalty cap available to small businesses, not the per-return tier. The employee's personal filing status is irrelevant to an information-return penalty assessed against the employer. Public versus private status affects SEC reporting obligations, not IRC Sec. 6721 penalties.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2501",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A service level agreement (SLA) between the payroll department and other business units should define:",
+    "options": [
+      "Individual employee performance ratings, documenting how each payroll staff member is evaluated against productivity metrics",
+      "Expected service standards, response times, responsibilities, and escalation procedures",
+      "Only the payroll processing schedule, listing the specific dates and times",
+      "The payroll department's annual budget, including headcount allocations, technology expenditures, and operating costs for all payroll processing activities and services"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An SLA formalizes the relationship between payroll and its internal customers — defining what services are provided, performance standards (accuracy, timeliness), response times for inquiries, mutual responsibilities (e.g., timely submission of time records), and escalation procedures when issues arise. It sets expectations and accountability for both parties. Distractor analysis: the processing calendar is one element inside an SLA, not its definition. The departmental budget is a finance document that no business unit agrees to. Individual performance ratings are confidential HR records and have no place in an interdepartmental agreement.",
+    "domain": "Payroll Administration and Management",
+    "objective": "K5201",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An accountable plan for expense reimbursement must meet which conditions?",
+    "options": [
+      "Only that expenses are under $500 per transaction, as the IRS considers amounts below this threshold to be de minimis and automatically qualifying",
+      "Only that the employee submits receipts for all expenses incurred during the course of business travel or other employer-authorized activities",
+      "Business connection, adequate accounting, and return of excess amounts within a reasonable time, per the guidelines outlined in the applicable federal regulations",
+      "That the employer approves the expense after the fact, regardless of whether the employee provides substantiation or returns any excess reimbursement amounts"
+    ],
+    "correctAnswer": 2,
+    "explanation": "An accountable plan under IRS regulations requires three conditions: (1) business connection — expenses must have a business purpose; (2) adequate accounting — substantiation of expenses within a reasonable time; (3) return of excess — any excess reimbursement must be returned within a reasonable time. If these are not met, the plan is nonaccountable and reimbursements are taxable. Distractor analysis: after-the-fact approval without substantiation fails the adequate-accounting condition. A dollar threshold such as $500 does not appear anywhere in the accountable plan rules. Receipts alone satisfy substantiation but leave the business-connection and return-of-excess conditions unmet, which makes the plan nonaccountable.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3204",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "When an employee repays an overpayment from a prior year, the accounting treatment is to:",
+    "options": [
+      "Record it as revenue in the current year, treating the recovered overpayment as miscellaneous income that increases the organization's total revenue for the current reporting period",
+      "Simply reduce the employee's current gross pay by the net overpayment amount, offsetting the prior-year excess payment against current period compensation without adjusting taxes",
+      "Ignore the repayment since it occurred in a prior year, as closed accounting periods cannot be modified",
+      "Record the repayment based on the gross overpayment amount and adjust the appropriate tax liabilities, per IRS regulatory guidance"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Prior-year overpayment recovery requires careful accounting: the gross amount must be recovered, and tax adjustments depend on the year. Social Security and Medicare taxes can be adjusted if repaid in the same year, but prior-year repayments may require the employee to claim a credit on their tax return. A corrected W-2c may be needed for the prior year. Distractor analysis: netting the repayment against current gross pay understates current-year wages and leaves both years' FICA misstated. Ignoring the repayment leaves the prior-year Form W-2 wrong, and a Form W-2c is required to correct the Social Security and Medicare wages. Recording the recovery as revenue misclassifies a reduction of payroll expense as income.",
+    "domain": "Accounting",
+    "objective": "K7304",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under FLSA child labor provisions, 14- and 15-year-olds may NOT:",
+    "options": [
+      "Work up to 3 hours on a school day in approved occupations, provided the work does not interfere with their education or health and safety requirements",
+      "Work in retail positions during non-school hours",
+      "Perform light office work after school",
+      "Work during school hours or in manufacturing or mining occupations"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The FLSA restricts 14-15 year-olds from working during school hours and prohibits them from manufacturing, mining, and other hazardous occupations. They may work in retail, food service, and office settings during non-school hours, limited to 3 hours on school days and 8 hours on non-school days, with a maximum 18 hours during school weeks. Distractor analysis: working up to three hours on a school day is expressly permitted, not prohibited. Retail work during non-school hours is permitted. Light office work after school is permitted. Only school-hour work and the hazardous occupations, including manufacturing and mining, are barred.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1208",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "IRC Section 125 cafeteria plans allow employees to:",
+    "options": [
+      "Defer all income taxes until retirement by redirecting current compensation into employer-sponsored qualified deferred compensation arrangements under the plan",
+      "Receive unlimited tax-free fringe benefits from their employer without any annual caps, coverage limits, or nondiscrimination testing requirements",
+      "Choose between taxable cash and qualified non-taxable benefits using pre-tax salary reductions, reflecting the standard established under federal payroll guidelines",
+      "Exclude all wages from FICA taxes, effectively eliminating both the employee and employer share of Social Security and Medicare withholding obligations"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Section 125 cafeteria plans let employees choose between taxable cash compensation and specific qualified benefits (health insurance, FSAs, dependent care) using pre-tax salary reductions. This reduces taxable income for both income tax and FICA (in most cases). Benefits are not unlimited — each has its own limits. Not all wages are excluded from FICA. Distractor analysis: cafeteria plan benefits are not unlimited — each qualified benefit carries its own cap and the plan is subject to nondiscrimination testing. Not all wages escape FICA; only the qualifying salary reductions do. Deferring income tax until retirement describes a 401(k)-type deferral, not a Sec. 125 election between cash and benefits.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1402",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the IRS cents-per-mile valuation method for personal use of an employer-provided vehicle, the taxable fringe benefit is calculated by:",
+    "options": [
+      "Multiplying the IRS standard mileage rate by the number of personal miles driven by the employee during the reporting period",
+      "Applying the Annual Lease Value table based on the vehicle's fair market value and then prorating for personal versus business usage days",
+      "Using the vehicle's original purchase price divided by its expected useful life to determine an annual depreciation amount allocated to the employee",
+      "Subtracting the employee's commuting distance from total miles driven and multiplying the remainder by a flat per-mile reimbursement rate"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The cents-per-mile method values personal use of an employer-provided vehicle by multiplying the IRS standard mileage rate by the total personal miles driven. This method is available only if the vehicle's fair market value does not exceed a specified limit (adjusted annually) and is regularly used in the employer's business. The employee must maintain adequate records of personal versus business mileage. Distractor analysis: the Annual Lease Value table is the separate ALV method, used when cents-per-mile is unavailable. Subtracting commuting distance and applying a reimbursement rate confuses this with the Commuting Rule, which uses a flat per-trip amount. Depreciation over useful life is an employer cost-recovery concept, not a fringe benefit valuation method.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3201",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The Form I-9 must be completed:",
+    "options": [
+      "Within 30 days of the employee's hire date, allowing sufficient time for the employee to gather and present all required identification and authorization documents",
+      "Before the employee starts working, with both Section 1 and Section 2 fully completed",
+      "By the end of the third business day after the employee's first day of work for pay",
+      "Only when the employee is a non-citizen, as U.S. citizens are automatically authorized"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Section 1 of Form I-9 must be completed by the employee no later than the first day of employment. Section 2 (employer verification of identity and work authorization documents) must be completed within 3 business days of the first day of work for pay. The I-9 is required for ALL employees regardless of citizenship status. Distractor analysis: thirty days has no basis in the I-9 rules. Requiring both sections before the first day is stricter than the regulation — Section 1 is due by the first day of employment and Section 2 follows — and premature document demands invite document-abuse claims. The I-9 is required for every employee, U.S. citizens included.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1501",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An overpayment to an employee can be recovered by the employer through:",
+    "options": [
+      "Deducting the full amount from the next paycheck regardless of minimum wage protections",
+      "Reducing the employee's future vacation accrual without notice, by applying the overpayment amount as a credit against earned paid time off until the balance is fully recovered",
+      "Filing a lawsuit immediately without attempting recovery through payroll, as litigation is the only legally recognized method for employers to recoup wage overpayments",
+      "Payroll deductions in subsequent pay periods, subject to state wage payment laws and employee notification"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Overpayment recovery must follow state wage payment laws, which vary. Most require written notice to the employee, a reasonable recovery schedule, and may prohibit reducing pay below minimum wage. The employer should document the overpayment, notify the employee, and arrange a recovery plan. Some states require employee consent for deductions. Distractor analysis: quietly reducing future vacation accrual substitutes an unauthorized offset for a wage deduction and still requires authorization in most states. Filing suit immediately is a last resort, not the ordinary recovery mechanism. Taking the full amount from the next check ignores minimum wage protections and state deduction limits.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3405",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Sarbanes-Oxley (SOX) compliance for payroll requires:",
+    "options": [
+      "External audit of every individual paycheck, with independent auditors reviewing each payment transaction to verify accuracy of gross pay, deductions, and net pay calculations",
+      "Mandatory use of a specific payroll software vendor that has been certified by the SEC as compliant with all Sarbanes-Oxley financial reporting and internal control requirements",
+      "Documented internal controls over financial reporting, including payroll processes that affect financial statements, per the guidelines outlined in the applicable federal regulations",
+      "Government approval before each payroll run, requiring federal regulatory clearance before the employer can initiate payroll processing for any given pay period"
+    ],
+    "correctAnswer": 2,
+    "explanation": "SOX Section 404 requires public companies to document and test internal controls over financial reporting. Payroll is a significant component of financial statements (wages, taxes, accruals). Controls must be documented, tested, and audited. SOX does not mandate specific software, government pre-approval, or individual check auditing. Distractor analysis: no federal agency pre-approves payroll runs. External auditors test controls and sample transactions rather than examining every paycheck. SOX is software-agnostic, and the SEC certifies no payroll vendors.",
+    "domain": "Audits",
+    "objective": "K6104",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Unclaimed wages that cannot be returned to employees are subject to:",
+    "options": [
+      "Donation to a charity of the employer’s choice under federal guidelines",
+      "State escheatment (unclaimed property) laws requiring remittance to the state",
+      "Automatic transfer to the employee’s retirement account such as a 401(k)",
+      "Return to the employer’s general revenue permanently after dormancy expires"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Unclaimed or abandoned wages (uncashed paychecks, final pay) are subject to state escheatment laws. After a dormancy period (varies by state), the employer must report and remit the funds to the state's unclaimed property division. The employer cannot keep the funds, donate them, or redirect them. Employees can later claim the funds from the state. Distractor analysis: unclaimed wages cannot be swept into a retirement account without the employee's own election. The employer may not take the funds into revenue when the dormancy period expires — that is conversion of the employee's property. Donating another person's unclaimed property to charity is not permitted under any federal guideline.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2101",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An employee earns $10/hour and works 45 hours in a workweek. The employee also has a $100 nondiscretionary bonus for the week. What is the regular rate of pay?",
+    "options": [
+      "$10.00 (the base hourly rate, with the nondiscretionary bonus excluded from the regular rate)",
+      "$13.75 (($450 + $100) ÷ 40 hours, dividing by statutory hours rather than hours actually worked)",
+      "$12.22 (($450 straight-time earnings + $100 bonus) ÷ 45 hours actually worked)",
+      "$12.00 (($450 + a $90 prorated portion of the bonus) ÷ 45 hours)"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The regular rate includes all remuneration for hours worked, and a nondiscretionary bonus is remuneration. Straight-time earnings are $10.00 × 45 = $450. Adding the $100 bonus gives $550 of total compensation for the week. The regular rate is total compensation divided by hours actually worked: $550 ÷ 45 = $12.22. Because the employee has already been paid straight time for all 45 hours, the additional amount owed is the half-time premium on the 5 overtime hours: $12.22 × 0.5 = $6.11, × 5 hours = $30.56. Distractor analysis: $10.00 omits the nondiscretionary bonus, which must be included in the regular rate. $13.75 divides the correct total by 40 statutory hours instead of the 45 hours actually worked. $12.00 prorates only part of the bonus into the rate, which no FLSA method permits — the full bonus attributable to the workweek enters the regular rate.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3101",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Under the Davis-Bacon Act, contractors on federal construction projects over $2,000 must pay workers at least:",
+    "options": [
+      "The state minimum wage rate, since state wage laws supersede all federal prevailing wage requirements on publicly funded construction contracts",
+      "The federal minimum wage of $7.25 per hour, which serves as the universal baseline compensation floor for all federally funded project work",
+      "A rate negotiated between the contractor and the labor union representing the workers on the specific federal construction project",
+      "The locally prevailing wage and fringe benefit rates as determined by the U.S. Department of Labor for that geographic area"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Davis-Bacon Act requires contractors and subcontractors on federal construction contracts over $2,000 to pay laborers and mechanics the locally prevailing wages and fringe benefits as determined by the Department of Labor. These rates often exceed the federal minimum wage and vary by trade classification and geographic location. Payroll professionals must ensure correct reporting on certified payroll (WH-347). Distractor analysis: the federal minimum wage is a floor that sits well below most prevailing wage determinations. State minimum wage law does not supersede federal prevailing wage requirements on covered federal contracts. A privately negotiated union rate does not become the standard unless it matches the Department of Labor determination for the classification and locality.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1210",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Direct deposit via ACH requires the employer to initiate a transaction through:",
+    "options": [
+      "The employee's bank (RDFI) directly, by contacting the receiving institution to arrange the credit entry to the employee's designated account",
+      "The Originating Depository Financial Institution (ODFI)",
+      "The Department of Labor, which oversees federal wage payment standards and clears employer-initiated direct deposit files",
+      "The Federal Reserve directly, by submitting electronic payment instructions through the central banking system's automated clearing infrastructure"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In the ACH process, the employer (originator) submits payment instructions to their ODFI (bank), which forwards them to the ACH operator (Federal Reserve or EPN), which routes them to the RDFI (employee's bank) for credit to the employee's account. The employer does not interact directly with the Federal Reserve, the employee's bank, or the DOL. Distractor analysis: the Department of Labor has no role in the ACH network; it enforces wage and hour law. The employer does not submit entries to the Federal Reserve directly — the ODFI does that on the originator's behalf. The employer does not contact the employee's RDFI, which receives the entry through the ACH operator.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1704",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A statutory employee is characterized by:",
+    "options": [
+      "Being treated as an employee for FICA tax purposes but filing Schedule C for income tax",
+      "Being exempt from all federal employment taxes including Social Security and Medicare",
+      "Working exclusively for government agencies under civil service employment classifications",
+      "Being treated as an independent contractor for all tax purposes, receiving Form 1099-NEC instead of Form W-2"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statutory employees (e.g., full-time life insurance salespeople, certain drivers, home workers) are treated as employees for FICA (Social Security and Medicare) tax purposes, but they report income and expenses on Schedule C (self-employment) for federal income tax. This hybrid status is specifically defined in IRC Section 3121(d). Distractor analysis: government or civil-service status is a public-sector classification unrelated to IRC Sec. 3121(d). Statutory employees are not exempt from FICA — subjecting them to FICA is the whole purpose of the classification. Treating them as pure independent contractors on Form 1099-NEC ignores that they receive a Form W-2 with the statutory employee box checked.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1108",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A de minimis fringe benefit under IRC Section 132(a)(4) is excludable from an employee's income because:",
+    "options": [
+      "It is mandated by federal law as a required workplace benefit, and all legally required benefits are automatically excluded from taxable income",
+      "It is funded entirely from the employee's after-tax payroll deductions, so the amount has already been included in the employee's gross taxable wages",
+      "Its value is so small that accounting for it would be unreasonable or administratively impractical for the employer to track and report",
+      "It is provided equally to all employees regardless of position, meeting the nondiscrimination requirements that govern all employer-provided fringe benefits"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Under IRC Section 132(a)(4), a de minimis fringe benefit is any property or service whose value is so small that accounting for it would be unreasonable or administratively impractical. Examples include occasional personal use of a company copier, holiday gifts of low value, occasional meal money, and local telephone calls. Cash and cash equivalents (gift cards) generally cannot be de minimis regardless of amount. Distractor analysis: funding from after-tax deductions is not an exclusion rationale — that is simply pay that has already been taxed. Providing a benefit equally to all employees is the nondiscrimination condition attached to other Sec. 132 benefits such as no-additional-cost services, not the de minimis test. No federal law mandates de minimis fringes, and legally required benefits are not automatically excluded from income.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "K3404",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A payroll journal entry for recording gross wages paid would include:",
+    "options": [
+      "A debit to wages/salary expense and credits to various liability accounts (taxes payable, deductions payable) and cash/bank, as required under current federal payroll regulations",
+      "A credit to wages expense and a debit to cash, recording the payment as a reduction in expenses offset by an increase in the company's available cash balance",
+      "A debit to accounts receivable and credit to revenue, treating employee compensation as a receivable asset that generates revenue for the organization through labor services",
+      "Only a debit to cash for the net pay amount, since the net payment to employees is the only transaction that needs to be recorded in the general ledger for payroll"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The payroll journal entry debits wage/salary expense (the total gross pay cost) and credits: tax liability accounts (FIT payable, FICA payable, state tax payable), deduction liability accounts (401(k) payable, benefits payable), and cash/bank (net pay). Debits increase expenses; credits increase liabilities. The entry must balance — total debits equal total credits. Distractor analysis: debiting only cash for net pay records neither the wage expense nor the withheld liabilities, and the entry would not balance. Crediting wage expense and debiting cash reverses the normal balance of both accounts and would reduce reported expense. Debiting accounts receivable and crediting revenue treats a cost of doing business as income.",
+    "domain": "Accounting",
+    "objective": "K7301",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Employers must retain Form I-9 for terminated employees for:",
+    "options": [
+      "Permanently, as employment eligibility verification records must be maintained indefinitely in the employer's files for potential future government inspection and audit",
+      "90 days after the termination date, after which employers are permitted to destroy the form",
+      "7 years after the termination date, matching the standard document retention period",
+      "The later of 3 years after the hire date or 1 year after the termination date"
+    ],
+    "correctAnswer": 3,
+    "explanation": "I-9 retention requirement is the later of: 3 years after the date of hire, or 1 year after the date employment ends. For example, if an employee works for 5 years, the I-9 must be retained for 1 year after termination (since that exceeds 3 years after hire). After the retention period, I-9s should be securely destroyed. Distractor analysis: seven years is a generic document-retention convention, not the USCIS rule. Ninety days relates to receipt and reverification timeframes, not retention. Retaining permanently exceeds the requirement and needlessly enlarges the population of forms exposed in an ICE inspection.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "K2404",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The Additional Medicare Tax of 0.9% applies to:",
+    "options": [
+      "Both employer and employee equally, with each party contributing 0.45%",
+      "All wages regardless of amount, applied uniformly to every dollar of compensation earned",
+      "Wages exceeding the Social Security wage base, as the additional tax is triggered once an employee's earnings surpass the annual OASDI taxable limit",
+      "Wages exceeding $200,000 for individual filers, withheld from the employee only"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Additional Medicare Tax (0.9%) applies to wages exceeding $200,000 (single/$200,000 MFJ/$125,000 MFS). Employers must withhold the additional tax once wages exceed $200,000, regardless of filing status. There is no employer match for the Additional Medicare Tax — it is 100% employee-paid. The threshold is separate from the Social Security wage base. Distractor analysis: applying the tax to all wages ignores the threshold entirely. Tying it to the Social Security wage base confuses two unrelated limits — Medicare has no wage base. Splitting it 0.45%/0.45% invents an employer match that the statute does not provide; the Additional Medicare Tax is entirely employee-paid.",
+    "domain": "Core Payroll Concepts",
+    "objective": "K1301",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Reconciling payroll output to external vendors (such as 401(k) providers) ensures:",
+    "options": [
+      "The vendor’s investment returns match the employer’s payroll contribution projections",
+      "Employee contribution amounts transmitted match the amounts deducted from paychecks",
+      "All employees are enrolled in the same investment fund with uniform elections",
+      "The vendor’s billing matches the payroll department’s allocated spending budget"
+    ],
+    "correctAnswer": 1,
+    "explanation": "External vendor reconciliation verifies that the amounts deducted from employee paychecks for benefits (401(k), FSA, HSA, garnishments) match the amounts transmitted to and received by the vendors. Discrepancies can mean missed contributions, over-deductions, or transmission errors — all of which affect employees and compliance. Distractor analysis: investment performance is the participant's and the plan's concern and is not a payroll control. Uniform fund elections across all employees are neither required nor desirable — participants direct their own investments. Comparing vendor billing to a departmental budget is an accounts-payable review, not a contribution reconciliation.",
+    "domain": "Audits",
+    "objective": "K6202",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  }
+]

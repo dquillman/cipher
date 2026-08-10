@@ -23,9 +23,10 @@ const routes = [
   { path: '/lp/shrm-cp', changefreq: 'weekly', priority: 0.9 },
   { path: '/lp/csm', changefreq: 'weekly', priority: 0.8 },
   { path: '/lp/itil', changefreq: 'weekly', priority: 0.8 },
-  // Network+ (N10-008) and A+ Core 2 (220-1102) LPs are excluded: both target
-  // retired CompTIA exam codes and the banks are flagged retired in config/exams.ts.
-  // We do not market prep for exams nobody can sit. Restore when current-code banks exist.
+  // Restored: these LPs now market the re-authored N10-009 and 220-1202 banks,
+  // the codes CompTIA currently tests.
+  { path: '/lp/network-plus', changefreq: 'weekly', priority: 0.8 },
+  { path: '/lp/a-plus-core-2', changefreq: 'weekly', priority: 0.8 },
   { path: '/lp/six-sigma', changefreq: 'weekly', priority: 0.8 },
   { path: '/lp/pgmp', changefreq: 'weekly', priority: 0.8 },
   { path: '/lp/cia', changefreq: 'weekly', priority: 0.8 },

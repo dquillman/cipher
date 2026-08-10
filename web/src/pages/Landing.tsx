@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { SUPPORT_EMAIL } from '../config/support';
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../App";
-import { trackLandingPageView, trackCtaClick, trackPricingView, captureUtmParams } from "../lib/ga4";
+import { trackCtaClick, trackPricingView } from "../lib/ga4";
 import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
 import HeroBackground from "../components/landing/HeroBackground";
@@ -134,8 +134,8 @@ export default function Landing() {
     return () => { cancelled = true; disposers.forEach((d) => d()); };
   }, []);
 
-  // GA4: Track landing page view + capture UTM params from ad clicks
-  useEffect(() => { captureUtmParams(); trackLandingPageView(); }, []);
+  // GA4: landing_page_view and captureUtmParams now fire from <RouteAnalytics/>
+  // in App.tsx, above VersionGate and AuthProvider — see RouteAnalytics.tsx.
 
   // Scroll to hash target when arriving from another page (e.g. /#testimonial from PublicNav)
   useEffect(() => {
@@ -408,23 +408,11 @@ export default function Landing() {
         <div className="ticker-track">
           {[
             "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
-            // Network+ and A+ Core 2 are deliberately absent: both banks target
-            // exam codes CompTIA has retired (N10-008, 220-1102), so they are
-            // flagged `retired` in config/exams.ts and are not for sale. The
-            // ticker previously advertised "NETWORK+ · N10-009" — objectives we
-            // have never had content for. Re-add each only when a bank exists
-            // for the current code.
-            "ITIL 4 · FOUNDATION", "SIX SIGMA · GREEN BELT",
+            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202", "SIX SIGMA · GREEN BELT",
             "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
           ].concat([
             "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
-            // Network+ and A+ Core 2 are deliberately absent: both banks target
-            // exam codes CompTIA has retired (N10-008, 220-1102), so they are
-            // flagged `retired` in config/exams.ts and are not for sale. The
-            // ticker previously advertised "NETWORK+ · N10-009" — objectives we
-            // have never had content for. Re-add each only when a bank exists
-            // for the current code.
-            "ITIL 4 · FOUNDATION", "SIX SIGMA · GREEN BELT",
+            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202", "SIX SIGMA · GREEN BELT",
             "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
           ]).map((t, i) => (
             <span key={i} className="font-mono text-[11px] tracking-[0.22em] text-slate-500 px-7 py-3 border-r border-slate-800/80">

@@ -1,0 +1,782 @@
+[
+ {
+  "stem": "Priya, a desktop support technician, is asked to stop unauthorized people from slipping in behind badged employees at the server room door. The door already has a badge reader, but staff routinely hold it open for one another. Which physical control most directly prevents this?",
+  "options": [
+   "Install bollards at the exterior entrance to the building.",
+   "Add a second badge reader on the inside of the server room door.",
+   "Install an access control vestibule at the server room entrance.",
+   "Mount motion sensors inside the server room ceiling."
+  ],
+  "correctAnswer": 2,
+  "explanation": "An access control vestibule uses two interlocking doors so only one authenticated person passes at a time, which is the control specifically designed to defeat tailgating. Bollards are anti-vehicle barriers and do nothing about pedestrian entry. A second badge reader still cannot stop a person walking through a door someone else is holding open. Motion sensors are detective, not preventive - they may record that an extra body entered but will not keep the person out.",
+  "domain": "Security",
+  "objective": "2.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Marcus manages IT for a retail chain that has suffered two smash-and-grab break-ins where a vehicle was driven through the storefront glass. Which physical security measure addresses this specific threat?",
+  "options": [
+   "Concrete bollards installed in front of the storefront glass",
+   "An access control vestibule at the employee entrance door",
+   "A magnetometer screening people at the customer entrance",
+   "Video surveillance covering the storefront parking lot"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Bollards are short, fixed posts whose entire purpose is to stop a vehicle from reaching a structure, which is exactly the attack described. An access control vestibule controls pedestrian entry at a staffed door and would not stop a vehicle. A magnetometer detects metal objects carried by people entering and is irrelevant to a ram attack. Video surveillance is detective - it captures evidence after the fact but does not prevent the vehicle from reaching the glass.",
+  "domain": "Security",
+  "objective": "2.1",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Devin, a systems technician, is told by an auditor that the help desk's current multifactor method - a one-time passcode texted to the user's mobile number - is no longer acceptable because passcodes can be intercepted through SIM swapping. Which change best satisfies the auditor while keeping a possession factor?",
+  "options": [
+   "Send the one-time passcode to the user's personal email account.",
+   "Enroll users in an authenticator application that generates TOTP.",
+   "Deliver the one-time passcode by automated voice call instead.",
+   "Raise the password minimum length to 16 characters with rotation."
+  ],
+  "correctAnswer": 1,
+  "explanation": "An authenticator application generates a time-based one-time password locally from a seed stored on the enrolled device, so there is no message in transit for an attacker to redirect through a carrier - it remains a possession factor and removes the SIM-swap path. Email OTP moves the code to another account that is itself protected only by a password and is a common pivot target. A voice call still rides the telephony network the auditor objected to and can be call-forwarded. A longer password strengthens the knowledge factor but supplies no second factor at all, so it does not address the finding.",
+  "domain": "Security",
+  "objective": "2.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Elena, a systems administrator, is told that a contractor needs domain administrator rights for a two-hour maintenance window on three servers and will not need them afterward. Which approach best reflects least privilege and Zero Trust principles?",
+  "options": [
+   "Add the contractor's account to Domain Admins until the project ends.",
+   "Share the built-in domain administrator credentials for the window.",
+   "Create an ACL granting the contractor permanent full control rights.",
+   "Use privileged access management for just-in-time two-hour access."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Just-in-time access through a PAM solution issues elevated rights only for the approved window and revokes them automatically, which is the textbook implementation of least privilege under a Zero Trust model. Adding the account to Domain Admins until the project closes leaves standing privilege for far longer than the task requires and depends on someone remembering to remove it. Sharing the built-in administrator credentials destroys accountability because actions can no longer be attributed to an individual. A permanent full-control ACL is standing privilege by another name and outlives the business need.",
+  "domain": "Security",
+  "objective": "2.1",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Rosa shares a folder on a Windows file server. The share permission for the Sales group is Full Control, while the NTFS permission for the same group on the folder is Read. A Sales user maps the share from her workstation. What is her effective access to the files over the network?",
+  "options": [
+   "Full Control, because share permissions are evaluated last.",
+   "Modify, because Windows averages the two permission sets.",
+   "Read, because the more restrictive of the two sets applies.",
+   "No access, because the conflicting permissions deny the connection."
+  ],
+  "correctAnswer": 2,
+  "explanation": "When a resource is reached across the network, Windows evaluates share and NTFS permissions independently and applies the more restrictive result, so Read wins over Full Control. Share permissions are not evaluated last and do not override NTFS. Windows never averages permission sets - there is no Modify outcome to derive here. Conflicting permissions do not block the connection; the user connects successfully and simply receives the intersection of the two sets.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Hector, a clinic technician, must ensure that USB flash drives carrying patient records remain unreadable if one is lost outside the building. The workstations run Windows 11 Pro. Which built-in feature meets the requirement?",
+  "options": [
+   "Encrypting File System (EFS) applied to the source folder",
+   "BitLocker To Go applied to each removable flash drive",
+   "BitLocker applied to each workstation's internal system drive",
+   "NTFS deny permissions configured on the removable drives"
+  ],
+  "correctAnswer": 1,
+  "explanation": "BitLocker To Go is the Windows feature that applies full-volume encryption to removable media and requires a password or smart card before the volume can be read on another machine. EFS encrypts files on the workstation's volume; copying a file to a FAT-formatted flash drive strips the encryption. BitLocker on the system drive protects the internal disk only and leaves the flash drive in cleartext. NTFS permissions are enforced by the operating system that mounts the volume, so a finder can simply take ownership or read the drive on a Linux system.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Tomas is replacing the wireless configuration at a small law office after learning that an attacker can capture the WPA2-Personal four-way handshake and crack the passphrase offline. Which change addresses that specific weakness?",
+  "options": [
+   "Move the WLAN to WPA3-Personal, which uses SAE for key exchange.",
+   "Keep WPA2 but switch the cipher from AES back to TKIP.",
+   "Keep WPA2 and enable MAC address filtering on the access point.",
+   "Keep WPA2 and lower the access point's transmit power setting."
+  ],
+  "correctAnswer": 0,
+  "explanation": "WPA3-Personal replaces the pre-shared key exchange with Simultaneous Authentication of Equals, which does not expose a crackable handshake, so an offline dictionary attack against captured frames no longer works. TKIP is the older, weaker cipher WPA2 retained for backward compatibility; selecting it moves security backward. MAC filtering is trivially defeated because MAC addresses are broadcast in cleartext and can be spoofed, and it does nothing to the handshake. Lowering transmit power shrinks the coverage area but an attacker within range still captures the same handshake.",
+  "domain": "Security",
+  "objective": "2.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "While auditing a branch office WLAN, Imani finds the access point running WPA2 in mixed mode with both TKIP and AES enabled because an eight-year-old wireless printer cannot negotiate AES. What should she recommend?",
+  "options": [
+   "Leave TKIP enabled, since WPA2 requires it for compatibility.",
+   "Leave TKIP and AES both enabled so clients negotiate a cipher.",
+   "Disable encryption on the guest SSID and keep TKIP in place.",
+   "Replace the legacy printer and configure the WLAN for AES only."
+  ],
+  "correctAnswer": 3,
+  "explanation": "TKIP is a deprecated cipher built around RC4 and retained only as a bridge from WEP; removing the one device that forces it lets the WLAN run AES/CCMP exclusively, which is the correct end state. WPA2 does not require TKIP - AES is the mandatory cipher for WPA2 and TKIP is optional. Leaving mixed mode enabled keeps a weak negotiation path available and can also drop the WLAN to legacy data rates. Turning off encryption on any SSID exposes traffic in cleartext and makes the situation worse rather than resolving the legacy dependency.",
+  "domain": "Security",
+  "objective": "2.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Jamal is deploying 802.1X on a corporate WLAN so wireless users authenticate with their existing directory accounts instead of a shared passphrase. Which authentication service belongs behind the access points?",
+  "options": [
+   "TACACS+",
+   "Kerberos",
+   "RADIUS",
+   "SAML"
+  ],
+  "correctAnswer": 2,
+  "explanation": "In an 802.1X deployment the access point acts as the authenticator and relays EAP traffic to a RADIUS server, which validates the supplicant against the directory - RADIUS is the service the enterprise wireless model is built around. TACACS+ is used to control and log administrator access to network devices themselves, not to authenticate end users onto the WLAN. Kerberos issues tickets after a user has already reached the domain, and access points are not Kerberos clients in this flow. SAML federates browser-based single sign-on to web applications and is not spoken by wireless access points.",
+  "domain": "Security",
+  "objective": "2.3",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Nadia investigates a workstation where a kernel-mode driver signed with a revoked certificate loads at boot, several processes are hidden from Task Manager, and every remediation she applies is reversed after the next restart. The installed antivirus reports the system clean. What is the appropriate resolution?",
+  "options": [
+   "Update the antivirus definitions and run another full scan.",
+   "Back up user data, then reimage the system from clean media.",
+   "Delete the driver file from within the running operating system.",
+   "Enable the software firewall to block the driver's traffic."
+  ],
+  "correctAnswer": 1,
+  "explanation": "The symptoms describe a rootkit operating at or below the level of the operating system, and because the compromised OS can no longer be trusted to report on itself, the defensible fix is to wipe and reinstall or reimage from clean media. Rescanning with the same antivirus from inside the infected OS asks a subverted system to inspect itself, which is why it reported clean in the first place. Deleting the driver from the running OS fails because the rootkit hooks the file system and restores or hides the file. A software firewall may curb outbound traffic but leaves kernel-level persistence fully intact.",
+  "domain": "Security",
+  "objective": "2.4",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Sofia, a desktop technician, is briefed that an attack on several workstations left no files on disk: the payload ran entirely in memory through PowerShell and stored its persistence in registry keys and WMI subscriptions. Which control is best suited to detecting this class of attack?",
+  "options": [
+   "A signature-based antivirus scan of the local file system",
+   "An email security gateway that quarantines attachments",
+   "A software firewall blocking unused outbound ports",
+   "Endpoint detection and response monitoring behavior"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Fileless malware leaves nothing on disk to match, so detection has to come from behavior - EDR monitors process lineage, script execution, and registry and WMI activity, and alerts on the anomaly. Signature-based file scanning has no artifact to hash or match. An email security gateway may block a delivery vector but does nothing once code is already executing in memory on the endpoint. A software firewall restricts network paths and is blind to a legitimate signed interpreter being abused locally.",
+  "domain": "Security",
+  "objective": "2.4",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Ben takes a call from a user whose desktop has become sluggish and whose fans run loudly even when she is not working. Task Manager shows a background process holding the CPU and GPU near 100 percent overnight, but her files open normally and no ransom message has appeared. Which malware type best fits these symptoms?",
+  "options": [
+   "A cryptominer",
+   "A keylogger",
+   "Ransomware",
+   "A boot sector virus"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Sustained maximum CPU and GPU utilization with no other visible damage is the signature of a cryptominer, which monetizes stolen compute cycles rather than the user's data. A keylogger is designed to be quiet and consumes almost no resources because it only records input. Ransomware announces itself with encrypted files and a ransom demand, neither of which is present. A boot sector virus manifests during startup - a system that will not boot or reports no operating system - not as steady processing load in an otherwise healthy session.",
+  "domain": "Security",
+  "objective": "2.4",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Aisha runs IT alone for a 40-person architecture firm with no coverage outside business hours, and its insurer now requires continuous monitoring and response for endpoint threats. The firm cannot hire analysts. Which option meets the requirement?",
+  "options": [
+   "Deploy EDR agents and have the daytime help desk triage alerts.",
+   "Replace antivirus with XDR and correlate the telemetry in house.",
+   "Contract a managed detection and response provider for coverage.",
+   "Add an email security gateway and expand antiphishing training."
+  ],
+  "correctAnswer": 2,
+  "explanation": "MDR is EDR-class tooling delivered with an outside provider's analysts attached, which is precisely how an organization gets 24/7 monitoring and response without hiring staff. Deploying EDR alone still leaves alerts unattended overnight and on weekends, so the coverage gap remains. XDR broadens the telemetry the firm would have to analyze but still assumes in-house analysts the firm does not have. An email gateway plus training reduces one delivery vector but provides no monitoring or response capability at all.",
+  "domain": "Security",
+  "objective": "2.4",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Dmitri, a hospital technician, is shown flyers reading \"Parking permit renewal - scan to update\" that were taped to pillars in the staff garage. Scanning the code opened a page imitating the hospital's single sign-on portal and asking for credentials. Which attack does this describe?",
+  "options": [
+   "Smishing",
+   "QR code phishing",
+   "Dumpster diving",
+   "Tailgating"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Placing a malicious QR code in a physical location so victims navigate to a credential-harvesting page is QR code phishing, a variant CompTIA now calls out explicitly. Smishing delivers the lure over SMS text messaging, and no text message is involved here. Dumpster diving recovers sensitive information from discarded materials rather than soliciting it from the victim. Tailgating is a physical entry technique for following an authorized person through a controlled door and has nothing to do with harvesting credentials.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Renata is asked to classify an email that reached only the company's chief financial officer. It greets him by name and title, cites the board meeting he chaired last week, and links to a page imitating the company's own expense portal that asks him to re-enter his network credentials. The message requests no payment, transfer, or purchase, impersonates no other employee, and no one else in the company received it. Which attack is this?",
+  "options": [
+   "Whaling",
+   "Vishing",
+   "Smishing",
+   "Shoulder surfing"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Whaling is phishing crafted for one high-value executive, and every detail here fits: a single senior target, personalized content drawn from his actual calendar, and a credential-harvesting page. There is no payment or transfer request and no impersonated sender, so this is the executive as the recipient of the lure rather than a fraud scheme built on his identity. Vishing is carried out by voice call, and smishing by SMS text message; this arrived by email. Shoulder surfing is direct visual observation of a screen or keypad and involves no message at all.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Owen takes a report from a traveling consultant who says that in an airport lounge her laptop connected to a network with the same SSID as the lounge's official Wi-Fi but with a much stronger signal, and afterward she was prompted to accept an unfamiliar certificate. Which attack is most likely?",
+  "options": [
+   "A supply chain attack",
+   "A dictionary attack",
+   "A zero-day attack",
+   "An evil twin attack"
+  ],
+  "correctAnswer": 3,
+  "explanation": "An evil twin is a rogue access point broadcasting a duplicate SSID at higher signal strength to lure clients onto attacker-controlled infrastructure, which also explains the unexpected certificate prompt from an interception attempt. A supply chain attack compromises a trusted vendor's software or update channel, and nothing was installed on her laptop here. A dictionary attack guesses passwords from a word list and would not produce a duplicate SSID. A zero-day attack exploits an undisclosed software flaw and does not describe a duplicated wireless network.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Lena reads a vendor advisory stating that attackers are actively exploiting a flaw in a widely deployed file-transfer application, that no fix currently exists, and that a patch is still being developed. How should she classify the exposure when briefing management?",
+  "options": [
+   "An unpatched system",
+   "A non-compliant system",
+   "A zero-day attack",
+   "A brute-force attack"
+  ],
+  "correctAnswer": 2,
+  "explanation": "A zero-day is defined by exploitation occurring while no vendor remediation exists, which is exactly the advisory's description. Calling it an unpatched system is wrong because that term presumes a patch was published and not applied, and here none has shipped. Non-compliance describes drift from an internal configuration standard, which is not what the advisory reports. A brute-force attack is repeated credential guessing and has nothing to do with a software vulnerability being exploited.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Following the SOHO malware removal procedure, Kwame has already investigated and verified the malware symptoms on a Windows Home workstation. What is his next step?",
+  "options": [
+   "Update the anti-malware definitions and run a full scan.",
+   "Quarantine the system by disconnecting it from the network.",
+   "Reimage the workstation from the organization's standard image.",
+   "Educate the end user about how the infection likely occurred."
+  ],
+  "correctAnswer": 1,
+  "explanation": "Quarantine immediately follows verification so the infection cannot spread to other hosts or exfiltrate data while remediation is under way. Updating definitions and scanning comes later in the sequence, after System Restore has been disabled on Windows Home. Reimaging is a last-resort remediation step, not the action taken directly after symptoms are confirmed. End-user education is the final step of the procedure, performed once the system is clean.",
+  "domain": "Security",
+  "objective": "2.6",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Yusuf is remediating malware on a Windows Home system when a junior technician asks him why the procedure calls for turning System Restore off before scanning and back on afterward. What is the correct explanation?",
+  "options": [
+   "Restore points can hold the infected files, so they are purged first.",
+   "System Restore consumes the disk space the scanner needs to work.",
+   "System Restore prevents the computer from starting in safe mode.",
+   "Disabling it forces Windows to download fresh malware definitions."
+  ],
+  "correctAnswer": 0,
+  "explanation": "A restore point captures system state as it was at the time it was taken, so one created while the machine was already infected preserves the malicious files; cleaning a system without purging those snapshots leaves a path for reinfection the moment a user rolls back. The procedure therefore disables System Restore, remediates, then re-enables it and creates a known-good restore point. Restore points do consume disk space, but reclaiming space is not why the procedure disables System Restore - the reason is that the snapshots can contain the malware itself. System Restore has no bearing on the ability to boot into safe mode. Definition updates are pulled by the anti-malware product on its own schedule and are unrelated to System Restore's state.",
+  "domain": "Security",
+  "objective": "2.6",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Farrah traced two infections to promotional USB flash drives that launched an installer the moment they were inserted, and she is now asked to harden the workstation fleet against that specific vector. What should she configure?",
+  "options": [
+   "Enable BitLocker on every workstation's internal system drive.",
+   "Deploy an agent that inventories attached USB media weekly.",
+   "Restrict standard users from installing new device drivers.",
+   "Disable AutoRun and AutoPlay for all removable media."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Disabling AutoRun and AutoPlay removes the mechanism that executes code from removable media without user action, which is the exact behavior that caused both infections. BitLocker protects the internal volume against offline access and has no bearing on what a running Windows session executes from an inserted drive. An inventory agent produces a report of what was plugged in after the fact and blocks nothing. Restricting driver installation limits one class of change but does not stop an installer that autoruns in the user's own context.",
+  "domain": "Security",
+  "objective": "2.7",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Gia reviews event logs on a shared workstation and finds thousands of failed logon attempts against local accounts overnight, cycling through common passwords. Which hardening setting most directly stops the attack from succeeding?",
+  "options": [
+   "Increase the local password minimum length to 12 characters.",
+   "Set local account passwords to expire every 30 days instead.",
+   "Configure a failed-attempts lockout threshold on local accounts.",
+   "Disable the built-in guest account on the shared workstation."
+  ],
+  "correctAnswer": 2,
+  "explanation": "A failed-attempts lockout locks the account after a small number of bad guesses, which halts an automated dictionary or brute-force run regardless of how many passwords the attacker has queued. Longer passwords raise the work factor but leave the attacker free to keep guessing indefinitely. Frequent expiration does not slow an in-progress attack and tends to push users toward predictable variations. Disabling the guest account closes one specific account but does nothing about the other local accounts being targeted.",
+  "domain": "Security",
+  "objective": "2.7",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Malik supports kiosk laptops that sit unattended in a public lobby; their internal drives are not encrypted. He discovers that someone booted one of them from a USB Linux distribution, mounted the internal drive, and altered local account files. Which hardening step most directly prevents an alternate operating system from loading again?",
+  "options": [
+   "Enable Defender Antivirus real-time protection on each kiosk.",
+   "Set a UEFI supervisor password and disable external boot media.",
+   "Configure a 10-minute screensaver lock on each kiosk laptop.",
+   "Apply an account expiration date to the local kiosk account."
+  ],
+  "correctAnswer": 1,
+  "explanation": "A UEFI supervisor password combined with external boot devices disabled stops the firmware from handing control to anything but the installed Windows volume, which removes the attacker's entire approach at the point it begins. Defender Antivirus real-time protection only runs once Windows itself is running; a live Linux session never starts Windows, so no Windows security agent is executing to observe the file changes. A screensaver lock protects a session that is already signed in, and the attacker simply powers the machine off and boots his own media instead. An account expiration date governs whether an account may authenticate to Windows, and the offline file edits described here never authenticate to anything.",
+  "domain": "Security",
+  "objective": "2.7",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Ingrid handles a report that a sales representative's corporate-owned smartphone was stolen from a car. The device is enrolled in MDM, holds customer PII, backs up nightly to the corporate cloud, and the locator application shows it offline. What should she do?",
+  "options": [
+   "Keep polling the locator application until the device reappears.",
+   "Reset the user's directory password and close out the incident.",
+   "Restore the nightly backup to a replacement handset for the user.",
+   "Issue a remote wipe command from the MDM console immediately."
+  ],
+  "correctAnswer": 3,
+  "explanation": "With the device unrecoverable and holding PII, a remote wipe from MDM is the action that protects the data - the command is queued and executes as soon as the device connects. Continuing to poll the locator only tracks a device nobody is going to retrieve and leaves the data exposed. Resetting the directory password protects cloud accounts but does nothing about the PII already stored locally on the phone. Restoring the backup to a replacement restores the user's productivity but leaves the stolen handset fully populated with customer data.",
+  "domain": "Security",
+  "objective": "2.8",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Theo supports a company that allows employees to access corporate email from personal phones under a BYOD policy and now needs every enrolled device to enforce device encryption and an automatic screen lock. What is the most effective way to implement this?",
+  "options": [
+   "Push an MDM configuration profile that enforces both settings.",
+   "Have each employee sign an acceptable use policy acknowledgment.",
+   "Replace the BYOD program with corporate-owned devices for all.",
+   "Install a content filter on the office wireless network gateway."
+  ],
+  "correctAnswer": 0,
+  "explanation": "MDM configuration profiles apply the security settings to the device technically and report compliance, so the requirement is enforced rather than requested. A signed acceptable use policy establishes expectations and liability but cannot make a phone encrypt itself. Replacing BYOD with corporate-owned devices is a costly policy overhaul that still requires configuration profiles to actually set encryption and screen locks. A content filter on the office wireless network only affects traffic while devices are on that network and does not touch device-level settings.",
+  "domain": "Security",
+  "objective": "2.8",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Camila is retiring 60 solid-state drives that stored regulated client data. Policy requires that the data be unrecoverable and that the drives never be reused. Which disposal method is appropriate?",
+  "options": [
+   "Degauss each drive with a certified degaussing wand.",
+   "Perform a standard format on each drive before disposal.",
+   "Shred the drives, since degaussing cannot erase flash.",
+   "Delete the partitions with diskpart and then recycle."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Shredding physically destroys the NAND packages and satisfies a policy requiring both unrecoverability and no reuse, which matters because SSDs store data as trapped electrical charge rather than magnetically. Degaussing disrupts magnetic fields and leaves flash memory contents entirely intact, so it is the classic wrong answer for SSDs. A standard format writes a new file system structure while the underlying data blocks remain recoverable. Deleting partitions with diskpart removes only the partition table and leaves the data in place.",
+  "domain": "Security",
+  "objective": "2.9",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Noor is asked by a compliance officer for proof that a third-party vendor actually destroyed the drives it collected during a data center decommission. Which document satisfies the request?",
+  "options": [
+   "The vendor's pickup manifest listing the drives collected",
+   "A certification of destruction/recycling from the vendor",
+   "A screenshot of the low-level format log for each drive",
+   "The signed non-disclosure agreement with that vendor"
+  ],
+  "correctAnswer": 1,
+  "explanation": "A certification of destruction/recycling is the vendor-issued attestation that specific assets were destroyed or recycled by a stated method on a stated date, which is exactly the evidence an auditor expects. A pickup manifest proves only that the drives left the building, not what happened to them afterward. Low-level format logs describe a sanitization method rather than physical destruction, and they would come from the organization rather than the vendor. An NDA governs confidentiality of information and says nothing about whether the media were destroyed.",
+  "domain": "Security",
+  "objective": "2.9",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "During a review of a small office's router, Reuben finds several inbound ports open on the WAN interface that no one configured; an application on an internal workstation requested the mappings automatically. Which router setting should he change?",
+  "options": [
+   "Disable UPnP on the router's WAN configuration page.",
+   "Change the router's default administrator password.",
+   "Enable IP filtering rules on the guest subnet only.",
+   "Turn on content filtering for the workstation VLAN."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Universal Plug and Play lets internal applications open inbound port mappings on their own without administrator approval, which is precisely the behavior observed, so disabling it restores control over the WAN-facing attack surface. Changing the default administrator password is sound hardening but the mappings were created through UPnP, not by someone logging in to the router. IP filtering on the guest subnet restricts which addresses may communicate there but does not stop an internal workstation from requesting a UPnP mapping. Content filtering inspects outbound requests to sites and categories and never touches inbound port forwarding.",
+  "domain": "Security",
+  "objective": "2.10",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Sanjay is asked to publish a small office's internal web application to customers on the internet. The owner insists that a compromise of the web server must not give an attacker direct access to the accounting workstations on the LAN. Which router configuration best meets that requirement?",
+  "options": [
+   "Forward TCP 443 from the router to the web server on the LAN.",
+   "Enable UPnP so the web server can request its own mapping.",
+   "Disable the router's unused inbound ports and log the rest.",
+   "Place the web server in a screened subnet isolated from the LAN."
+  ],
+  "correctAnswer": 3,
+  "explanation": "A screened subnet puts the publicly reachable server on its own segment with firewall rules between it and the LAN, so a compromised server has no direct path to the accounting workstations - the isolation requirement is the deciding factor. Simple port forwarding to a LAN host publishes the service but leaves the server on the same segment as everything else, which is the exact outcome the owner rejected. UPnP automates the same flawed mapping and removes administrative oversight on top of it. Closing unused inbound ports is good hygiene but the port the application needs must stay open, and nothing about it segments the server from the accounting workstations.",
+  "domain": "Security",
+  "objective": "2.10",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Pilar must install an open-source utility whose vendor site directs downloads to a community mirror. The vendor publishes a SHA-256 value for the installer. What is the most reliable way to confirm the downloaded file has not been altered?",
+  "options": [
+   "Confirm the mirror's page uses HTTPS with a valid certificate.",
+   "Scan the installer with the workstation antivirus before use.",
+   "Compare the computed SHA-256 hash to the vendor's published one.",
+   "Verify the file size matches the figure listed on the mirror."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Comparing a computed hash against the vendor-published value proves the bytes received are identical to the bytes the vendor released, which is the integrity check the published hash exists to support. A valid HTTPS certificate proves only that the transport to the mirror was encrypted and the mirror is who it claims to be - it says nothing about whether the mirror's copy was tampered with. An antivirus scan may catch known malware but cannot detect an unknown or subtle modification. File size is trivially preserved by an attacker and is far too coarse to prove integrity.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Otis is asked to give staff access to a cloud-hosted expense portal using the same directory credentials they already use on their workstations, with no second password issued to anyone. Which approach meets that requirement?",
+  "options": [
+   "Federate the portal with the directory using SAML single sign-on.",
+   "Create a matching local account on each of the staff workstations.",
+   "Issue one shared service account that the whole team signs in with.",
+   "Have users save the portal password in the browser password manager."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Single sign-on federation lets the portal consume a SAML assertion from the organization's identity provider, so staff authenticate once against the existing directory and no separate portal password is ever created. A matching local account authenticates only against that one workstation and has no relationship to a cloud service. A shared service account creates one more credential rather than removing one, and it destroys the ability to attribute activity to an individual. Saving the portal password in the browser stores a second password more conveniently but still requires that second password to exist.",
+  "domain": "Security",
+  "objective": "2.1",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Bianca links a Group Policy object that enforces screen lock settings to the Workstations organizational unit. One laptop never applies it. She confirms the policy is enabled, the laptop is domain joined, and its computer object is still sitting in the default Computers container. What should she do?",
+  "options": [
+   "Remove the laptop from the domain and rejoin it.",
+   "Move the computer object into the Workstations OU.",
+   "Add the computer account to the policy's security filter.",
+   "Run gpupdate /force from the workstation again."
+  ],
+  "correctAnswer": 1,
+  "explanation": "Group Policy applies to objects that fall within the scope of the link, so a computer sitting in the default Computers container is simply not in scope for a GPO linked to the Workstations OU; moving the object into that OU is what brings it into scope. Rejoining the domain recreates the computer account in the same default container it already occupies, leaving the scope problem exactly where it was. Adding the computer to the policy's security filter only refines who receives a policy that already applies to their container, and this object is outside the link entirely. Running gpupdate /force reapplies whatever is in scope, which for this computer is still nothing.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Hugo supports a lab where staff sign in to whichever shared workstation is free. Users complain that documents they saved yesterday are missing today, because each file was written to the local profile of a different machine. Which Active Directory configuration solves this?",
+  "options": [
+   "Copy each user's Documents folder to every workstation.",
+   "Grant every user Full Control NTFS rights to C:\\Users.",
+   "Enable File History on each of the shared workstations.",
+   "Configure folder redirection for Documents to a share."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Folder redirection points the Documents folder at a server share, so the same files follow the user to any workstation she signs in to and are stored centrally rather than in a local profile. Copying the folder to every workstation creates as many divergent copies as there are machines and immediately falls out of sync. Granting Full Control to C:\\Users widens permissions on local profiles without moving any data off the machine. File History keeps versioned local backups on each workstation separately, which does not make yesterday's file appear on today's machine.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Zara is setting permissions on a project folder that about 40 people need identical access to, and roughly five of them change every month as staff rotate on and off the project. Which approach should she use?",
+  "options": [
+   "Grant each user account NTFS rights on the folder directly.",
+   "Give the Everyone group Modify rights on the project share.",
+   "Assign rights to a security group and manage its membership.",
+   "Add each user to the local Administrators group on the server."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Assigning the permission once to a security group and then adding or removing members is how Active Directory is designed to scale access, because monthly staffing changes become membership edits instead of permission edits on the folder. Granting rights to 40 individual accounts means 40 entries to audit and a permission change every time someone rotates. Giving Everyone Modify rights hands the folder to the entire directory, including people with no business need. Adding users to the local Administrators group grants server-wide control far beyond one project folder and violates least privilege outright.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Emeka needs to install an approved line-of-business application on a workstation while the standard user is signed in. The installer exits with the message \"This installation requires administrative privileges.\" Company policy says the user must remain a standard user afterward. What should Emeka do?",
+  "options": [
+   "Disable User Account Control and run the installer again.",
+   "Right-click the installer and choose Run as administrator.",
+   "Add the standard user to the local Administrators group.",
+   "Copy the installer into the Public folder and run it there."
+  ],
+  "correctAnswer": 1,
+  "explanation": "Run as administrator launches that one process with elevated rights, prompting for administrator credentials, so the installer proceeds without changing the signed-in user's account type. Disabling User Account Control removes the elevation prompt for every process on the machine and weakens the workstation permanently to solve a one-time task. Adding the user to local Administrators grants standing privilege and directly contradicts the policy stated in the scenario. Moving the installer to the Public folder changes where the file lives but not the privilege the process runs with, so it exits with the same message.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Lucia is asked to speed up sign-in for an executive who dislikes typing a long password. His laptop has an infrared camera and a TPM, and the security team requires that the new method be tied to that specific device and be no weaker than the password it replaces. What should Lucia configure?",
+  "options": [
+   "Enroll the user in Windows Hello facial recognition.",
+   "Configure one PIN shared by the whole department.",
+   "Save the password in the browser's password manager.",
+   "Enable auto sign-in with the password stored locally."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Windows Hello facial recognition uses the infrared camera and binds the credential to the TPM in that laptop, so the unlock gesture is device-specific and the underlying secret never travels as a typed password. A PIN shared across a department destroys the one-to-one link between a person and a credential and can be used by anyone who overhears it. Storing the password in a browser password manager helps with websites but does not change how the user signs in to Windows. Automatic sign-in with a stored password removes authentication from the device altogether, which is plainly weaker than what it replaces.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Vikram is building a shared breakroom PC. Policy states the machine must not synchronize settings, files, or saved passwords to any consumer cloud identity, and no one person owns the device. How should he configure sign-in?",
+  "options": [
+   "Sign in with the user's personal Microsoft account.",
+   "Enroll the PC in the user's OneDrive personal storage.",
+   "Set up automatic sign-in with no account password.",
+   "Create a local account on the workstation for the room."
+  ],
+  "correctAnswer": 3,
+  "explanation": "A local account exists only on that computer and has no cloud identity behind it, so nothing about the profile synchronizes anywhere, which is exactly what the policy demands for an unowned shared machine. Signing in with a personal Microsoft account attaches the device to one employee's consumer identity and turns on the synchronization the policy forbids. Enrolling the PC in someone's personal OneDrive does the same thing for files specifically. Automatic sign-in with no password removes authentication from the device without deciding anything about which identity type is used, so the synchronization requirement is left unaddressed.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Wren finds that a third-party antivirus subscription lapsed 60 days ago and the product was uninstalled from a group of workstations. The Windows Security dashboard on those machines now reports that no virus and threat protection is running. What should she do first on those workstations?",
+  "options": [
+   "Reinstall the expired third-party antivirus in trial mode.",
+   "Delete the removed product's leftover registry entries.",
+   "Confirm Defender Antivirus is active and update definitions.",
+   "Turn on Windows Update and reboot the affected endpoints."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Defender Antivirus is built into Windows and normally re-activates when a third-party product is removed, but the dashboard says nothing is running, so the correct first action is to activate it and pull current definitions, which restores real-time protection immediately at no cost. Reinstalling an expired product in trial mode buys a few days and returns the machines to the same lapsed state. Cleaning up leftover registry entries from the uninstalled product is housekeeping that can be done later and starts no protection engine by itself. Windows Update delivers definition updates among other things, but on its own it does not activate a disabled antivirus engine.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Anton is provisioning a workstation for a temporary worker who needs to run applications that are already installed and print to the department printer, but who must not be able to install software or change system settings. Which account type should Anton assign?",
+  "options": [
+   "An administrator account",
+   "A standard account",
+   "The built-in guest account",
+   "A power user account"
+  ],
+  "correctAnswer": 1,
+  "explanation": "A standard account can run installed applications and print while being blocked from installing software or altering system-wide settings without elevation, which matches the requirement exactly. An administrator account grants precisely the installation and configuration rights the scenario prohibits. The built-in guest account is disabled by default in current Windows, provides no individual accountability, and is too restricted for routine departmental work. Power user is a legacy group retained for backward compatibility whose elevated rights were folded into standard user behavior years ago, so choosing it neither grants nor restricts anything meaningful today.",
+  "domain": "Security",
+  "objective": "2.2",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Delia takes a ticket from a user who says new windows keep opening on their own while she reads legitimate news sites. The browser is current, the machine scans clean, and the windows stop appearing when she leaves those sites. Which browser setting should Delia change?",
+  "options": [
+   "Enable the browser's pop-up blocker in its settings.",
+   "Clear the browser's saved passwords and form data.",
+   "Switch the browser's home page to the intranet portal.",
+   "Add the news sites to the browser's trusted site list."
+  ],
+  "correctAnswer": 0,
+  "explanation": "The pop-up blocker is the browser setting that suppresses windows a site opens without user action, and the symptom is confined to browsing specific sites on an otherwise clean machine. Clearing saved passwords and form data removes stored credentials and autofill entries and has no effect on whether a site can open a window. Changing the home page controls only what loads at startup. Adding the sites to a trusted list moves in the wrong direction, since trusted zones typically relax restrictions and would allow more of the behavior she wants stopped.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Kofi maintains a loaner laptop that rotating contractors use for short engagements. Each contractor signs in to customer web portals, and no session may leave history, cookies, or cached page data behind for the next person. Which browser setting meets this?",
+  "options": [
+   "Turn off browser sign-in and data synchronization.",
+   "Configure the browser to block all third-party cookies.",
+   "Have each contractor work in a private-browsing window.",
+   "Install a password manager extension for the contractors."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Private-browsing mode keeps history, cookies, and cached data in a temporary session that the browser discards when the window closes, so nothing from one contractor's session persists for the next. Turning off sign-in and synchronization stops the profile from replicating to a cloud account but still writes history and cookies to the local profile. Blocking third-party cookies limits cross-site tracking while first-party session cookies and history are still stored. A password manager extension helps contractors handle credentials but has no bearing on the browsing data left on the machine.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Ines helps a user who reset her password on a customer portal. The portal still greets her under the old session and shows a stale error page that no longer exists on the site; the browser is presenting the pre-reset session cookie and a cached copy of that page. What should Ines do?",
+  "options": [
+   "Reinstall the browser from the vendor's download page.",
+   "Disable all extensions and restart the browser session.",
+   "Add the portal to the browser's pop-up exception list.",
+   "Clear the cached files and cookies for that site."
+  ],
+  "correctAnswer": 3,
+  "explanation": "The stale session cookie and the cached page are exactly the artifacts that clearing cache and cookies for that site removes, forcing the browser to request fresh content and establish a new session. Reinstalling the browser is a far larger action that in most cases preserves the profile where the cookie and cache live, so the symptom can survive it. Disabling extensions is a reasonable step for rendering or script problems but nothing here points at an extension. A pop-up exception governs whether the site may open windows and has no relationship to stored cookies or cached pages.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Rafael supports field technicians who work from hotel and airport networks where the local resolver cannot be trusted and plaintext lookups reveal which sites they visit. He wants name resolution protected inside the browser without deploying a VPN client. What should he enable?",
+  "options": [
+   "Install an ad blocker extension for the traveling users.",
+   "Turn on secure DNS (DNS over HTTPS) in the browser.",
+   "Set the browser to clear browsing data on every exit.",
+   "Add a manual proxy entry in the browser's settings."
+  ],
+  "correctAnswer": 1,
+  "explanation": "Secure DNS sends the browser's name lookups over an encrypted HTTPS channel to a resolver it chooses, so the hotel or airport network can neither read nor forge the responses, which is the exact protection requested. An ad blocker filters page content and never changes how names are resolved. Clearing browsing data on exit protects what is left on the laptop afterward, not the lookups happening on the untrusted network. Adding a manual proxy routes traffic through an intermediary that must itself be trusted and is not the mechanism for protecting DNS.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Tessa investigates a workstation where every search is redirected through an unfamiliar host and pages load slowly. The machine scans clean, but the browser's connection settings list a proxy server address the user says she never configured. What should Tessa do?",
+  "options": [
+   "Remove the unauthorized proxy entry from the settings.",
+   "Reset the browser's home page and default search engine.",
+   "Enable secure DNS so lookups bypass the proxy host.",
+   "Turn on the browser's pop-up blocker for that site."
+  ],
+  "correctAnswer": 0,
+  "explanation": "A proxy entry the user did not set is the mechanism doing the redirection, because every request is being handed to that host first; removing it restores direct connections and ends the redirection and the delay. Resetting the home page and search engine changes where searches start but the traffic still passes through the proxy afterward. Secure DNS encrypts name resolution, and it does not bypass a proxy - once a proxy is configured the browser still hands the request to it regardless of how the name was resolved. A pop-up blocker governs windows a site opens and has nothing to do with where traffic is routed.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Simone is called about a workstation showing injected advertisements on internal pages and occasional redirects. The user installed a PDF converter browser extension that week from a link posted in a public forum rather than from the browser's official store. What should Simone do?",
+  "options": [
+   "Clear the browser's cache and browsing history.",
+   "Add the forum to the browser's blocked site list.",
+   "Remove the extension from the browser.",
+   "Update the browser to the latest available build."
+  ],
+  "correctAnswer": 2,
+  "explanation": "An extension sideloaded from an untrusted source runs with the permissions the user granted it and can rewrite page content, which explains the injected ads and redirects; removing the extension eliminates that code and stops the injection. Clearing cache and history deletes stored artifacts while the extension remains installed and simply re-injects on the next page load. Blocking the forum stops one download path but leaves the already-installed extension running. Updating the browser patches the browser itself and does not remove a third-party extension the user chose to add.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Yara finds that staff reuse one password across a dozen supplier portals because they cannot remember unique ones, and several have written the password on notes at their desks. Management wants unique credentials per site without adding a second factor. What should Yara recommend?",
+  "options": [
+   "Deploy a password manager for storing unique credentials.",
+   "Enable browser data synchronization across all devices.",
+   "Require the password to change every 30 days instead.",
+   "Have users store passwords in a file on shared storage."
+  ],
+  "correctAnswer": 0,
+  "explanation": "A password manager generates and stores a distinct credential per site behind one vault secret, which is what makes unique passwords practical for users who otherwise reuse or write them down. Browser data synchronization copies whatever credentials already exist to more devices and does nothing to make them unique. Forcing a 30-day change on a reused password produces a new password that is still reused everywhere and pushes users toward predictable increments. Storing passwords in a file on shared storage moves the sticky note onto the network where more people can read it.",
+  "domain": "Security",
+  "objective": "2.11",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Gabriel reviews logs for a customer-facing web application after an unauthorized user reached an administrative page. The application's sign-in form accepted the string ' OR '1'='1 in the username field, and the web server log shows that string was passed straight into the database query. Which attack is this?",
+  "options": [
+   "Cross-site scripting",
+   "SQL injection",
+   "On-path attack",
+   "Spoofing"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Supplying database syntax in an input field that is concatenated into a query, so the query's logic is rewritten and authentication is bypassed, is SQL injection. Cross-site scripting injects script that executes in another user's browser rather than in the database engine. An on-path attack requires the attacker to sit between two communicating parties and intercept traffic, and nothing here was intercepted. Spoofing means falsifying an identifier such as a source address, sender, or MAC to appear as someone else, whereas this attacker sent a crafted query string through a form field under no assumed identity.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Halima is told that a comment posted to a company forum contains a script tag that was saved with the comment. Every visitor who opens that thread has the script run in their browser, and their session cookies are sent to an external host. Which attack is this?",
+  "options": [
+   "SQL injection",
+   "Supply chain attack",
+   "Evil twin",
+   "Cross-site scripting"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Storing attacker-supplied script in a page so it executes in the browsers of other users who view it, typically to steal session cookies, is cross-site scripting (XSS). SQL injection manipulates a database query on the server rather than executing script in a visitor's browser. A supply chain attack compromises a trusted vendor's software or update path, and this content came from a public comment field on the company's own site. An evil twin is a rogue wireless access point impersonating a legitimate SSID and has no relationship to web page content.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Duncan analyzes a coffee shop incident where a laptop on the shop's Wi-Fi received ARP replies claiming the default gateway's IP address belonged to another station. That station forwarded the traffic onward, and users saw certificate warnings for well-known sites. Which attack is this?",
+  "options": [
+   "Denial-of-service attack",
+   "Insider threat",
+   "On-path attack",
+   "Shoulder surfing"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Inserting a host between the client and the gateway so traffic passes through it in both directions is an on-path attack, and the certificate warnings are the symptom of that host trying to terminate and re-sign TLS sessions. A denial-of-service attack seeks to make a service unavailable, but here traffic was relayed and connectivity continued. An insider threat originates from someone with authorized access inside the organization, whereas this is an unknown station on a public network. Shoulder surfing is direct visual observation of a screen or keypad and cannot account for forged ARP replies or certificate warnings.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Mira is briefed that the company's public website became unreachable during a sales event. The edge firewall logged traffic from many thousands of distinct source addresses across dozens of countries, arriving at once and saturating the internet link. Which attack does this describe?",
+  "options": [
+   "Distributed denial of service (DDoS)",
+   "A single-source denial-of-service attack",
+   "A brute-force attack on the web server",
+   "A zero-day attack against the web server"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Traffic arriving simultaneously from thousands of distinct addresses in many countries to exhaust a link is a distributed denial of service, launched from a large set of compromised hosts. A single-source denial-of-service attack comes from one address that can be blocked with a single filter, which does not match the log. A brute-force attack targets credentials on a login endpoint and would show repeated authentication failures rather than a saturated link. A zero-day attack exploits an unpatched software flaw, and nothing here indicates an exploit - the site was overwhelmed by volume.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Nils documents an incident in which an employee working at an airport gate reported that a stranger stood close behind her and watched the screen and keyboard while she typed her VPN passphrase. Nothing was installed on the laptop and no message was sent to her. Which attack is this?",
+  "options": [
+   "Impersonation",
+   "Vishing",
+   "Insider threat",
+   "Shoulder surfing"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Directly observing a screen or keyboard to capture credentials as they are entered is shoulder surfing, and the scenario contains no message, no software, and no pretext - only observation. Impersonation requires the attacker to adopt a false identity in an interaction with the victim, and there was no interaction. Vishing is a voice call used to talk a victim into revealing information, and no call took place. An insider threat comes from someone with authorized access to the organization, while this was a stranger in a public terminal.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Oscar interviews an employee who received a phone call from a man who said he was from the company help desk, referenced a ticket number, and asked her to read back the six-digit code that had just arrived on her phone so he could finish verifying her account. No email or text was sent by the caller. Which attack is this?",
+  "options": [
+   "Whaling",
+   "QR code phishing",
+   "Spear phishing",
+   "Vishing"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Using a voice call and a help desk pretext to talk a victim into surrendering an authentication code is vishing, which is defined by the telephone as the delivery channel. Whaling is a message crafted for a single high-value executive, and this employee is neither the target profile nor was a message sent. QR code phishing depends on a scanned code leading to a malicious page, and no code was scanned. Spear phishing is a targeted written message, usually email, so it does not fit an attack carried out entirely by voice.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Marisol is briefed after every endpoint managed by a monitoring product began beaconing to an unknown host. The investigation shows the malicious code arrived inside a digitally signed update the company downloaded from the monitoring vendor's own portal and installed through normal change control. Which attack does this describe?",
+  "options": [
+   "Business email compromise",
+   "Supply chain attack",
+   "Non-compliant system",
+   "Unpatched system"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Compromising a trusted vendor so that its legitimate, signed update distributes malicious code to every downstream customer is a supply chain attack, and the fact that the company followed its own change control is what makes this class of attack so effective. Business email compromise is a fraud scheme conducted through email to redirect payments or data, and no email was involved. A non-compliant system has drifted from an internal hardening standard, whereas these endpoints were patched exactly as policy required. An unpatched system is one where an available fix was not applied, which is the opposite of what happened here.",
+  "domain": "Security",
+  "objective": "2.5",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ }
+]

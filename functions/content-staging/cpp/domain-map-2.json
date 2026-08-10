@@ -1,0 +1,702 @@
+[
+ {
+  "_id": "Vlikwifn0a0Nv24KCV89",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Accounting",
+  "topic": "C. Payroll journal entries"
+ },
+ {
+  "_id": "VllRaQjTVxftnzBanPIv",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - deposit rules"
+ },
+ {
+  "_id": "W33visfrNWjIFl3qfx9D",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System implementation testing"
+ },
+ {
+  "_id": "WG4sTpO05cHtY2AIrzxz",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - allocated tips"
+ },
+ {
+  "_id": "WOCS2agbkixlr9avUu3h",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Involuntary deductions - federal levy"
+ },
+ {
+  "_id": "WOXZ16OFVR8UMhET0cR2",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "E. Employee/Employer Forms - Form W-4"
+ },
+ {
+  "_id": "WosTV12Xlzn2VvjVwxRO",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - backup withholding"
+ },
+ {
+  "_id": "X1HPq2lEeAD8FVKg3oeT",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Taxable compensation - stock options"
+ },
+ {
+  "_id": "XX5Z9AJWP8FnRcffsGUL",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System interfaces - general ledger"
+ },
+ {
+  "_id": "XqdFafNpp3DGOqDPXsoV",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "B. Fair Labor Standards Act - Portal-to-Portal"
+ },
+ {
+  "_id": "Y7TS9OdXu2MMMylCpqCG",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Deceased employee wages"
+ },
+ {
+  "_id": "YHBKpOc4EnZI1j20hBmd",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Accounting",
+  "topic": "Financial statement presentation"
+ },
+ {
+  "_id": "Yjf6Mi6moqNV2g5TTog9",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "C. Reporting - Form W-2 penalties"
+ },
+ {
+  "_id": "ZD4mDlr5PorzfkxJMvuP",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "A. Worker Status - common law test"
+ },
+ {
+  "_id": "ZWRrJKN1GMP7fKiwkXct",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Audits",
+  "topic": "Fraud detection - ghost employees"
+ },
+ {
+  "_id": "ZoyovLFFB3Enj0ffhrtd",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Staff development"
+ },
+ {
+  "_id": "Zri9dbOOTry0U31LmcXh",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Pre-tax vs Roth deductions"
+ },
+ {
+  "_id": "a659lT0zEq7wrQFuwQ3j",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "D. Employee Benefits - educational assistance"
+ },
+ {
+  "_id": "aUS0wz2JCNYIkmcavuEn",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "B. Fair Labor Standards Act - white-collar exemptions"
+ },
+ {
+  "_id": "anEHq1iZSDDFHieYXTAy",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "B. Fair Labor Standards Act - Portal-to-Portal"
+ },
+ {
+  "_id": "aoLEqNJz2KeqpLa1ZrIR",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Taxable fringe benefits - personal vehicle use"
+ },
+ {
+  "_id": "b17KoYaFxq7rSSTA9NqW",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Pre-tax deduction computation"
+ },
+ {
+  "_id": "cEtQpYM7VdkN8LfKZa8a",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Taxable fringe benefits - personal vehicle use"
+ },
+ {
+  "_id": "cQ9hkl5b05636A6EcXIe",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - nonresident alien withholding"
+ },
+ {
+  "_id": "cdfweVPjZwdtRd7GqJaM",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - multi-state taxation"
+ },
+ {
+  "_id": "cokSHQE89j2GprowHFnW",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Service delivery models - shared services"
+ },
+ {
+  "_id": "d3JlPfSjbbouf6qAWasK",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - Social Security wage base"
+ },
+ {
+  "_id": "d5pDjVEm1jeCcUH2sJM2",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System master file"
+ },
+ {
+  "_id": "dDNaAZzBQpWGLKpA2H8N",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Departmental objectives"
+ },
+ {
+  "_id": "dFkGwQfvCBqxQ3spLTu6",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Involuntary deductions - garnishment limits"
+ },
+ {
+  "_id": "dVBUWBmirZ40LdnehZVg",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "Processing methods - batch"
+ },
+ {
+  "_id": "dc2IyYdDvUanmBb2n5x1",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - ACA employer mandate"
+ },
+ {
+  "_id": "dogbLAeHuZP11kGXIFpQ",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - USERRA"
+ },
+ {
+  "_id": "e7Y0P9BlmGkoavGmCha0",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "Business continuity planning"
+ },
+ {
+  "_id": "ewPXTmOuoIWVaAvJ8SvV",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "A. Worker Status - statutory employee"
+ },
+ {
+  "_id": "fOl1qJm2rsYJUixNxqtW",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Involuntary deductions - order priority"
+ },
+ {
+  "_id": "fQakDLX3qJ11RBRVmrEz",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System security"
+ },
+ {
+  "_id": "fYimnjtdaaQTe9SKdNMQ",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Customer service"
+ },
+ {
+  "_id": "g16uKdhG6VXNKT081QqU",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Departmental objectives"
+ },
+ {
+  "_id": "gIfbi4sBFlLjWKZOAI2M",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "B. Fair Labor Standards Act - white-collar exemptions"
+ },
+ {
+  "_id": "gkh3zqSrsm1FbBI6mYwU",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Accounting",
+  "topic": "General ledger reconciliation"
+ },
+ {
+  "_id": "hpBUuSa4IcXNpLyS5Kya",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - agency notices"
+ },
+ {
+  "_id": "hxwFWX8T9yY4UcXafzQ5",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - multi-state taxation"
+ },
+ {
+  "_id": "i2O4GNRuCGKJykopR8va",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Fringe benefit valuation - special accounting rule"
+ },
+ {
+  "_id": "i3sCg3diDAfM3dwgkVE4",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Fringe benefit valuation - cents-per-mile"
+ },
+ {
+  "_id": "iCcQWSCTC1vf2nv59bKa",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "D. Record Retention - Form I-9"
+ },
+ {
+  "_id": "iH8w6XHlcpHzLNZvHM65",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System selection - RFP"
+ },
+ {
+  "_id": "iakeHvtWeLyRHs29jesK",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Supplemental wage withholding - aggregate method"
+ },
+ {
+  "_id": "il2dZLb8D1U1VonW3o9v",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - agency notices"
+ },
+ {
+  "_id": "j2uZCaT4elH1U5OWvp7v",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "A. Worker Status - IRC Sec. 3509"
+ },
+ {
+  "_id": "j7F2FFe23oyWJnj2O9K1",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Supplemental wage withholding - aggregate method"
+ },
+ {
+  "_id": "j80sQgt6vwt7hQJB2Q04",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "E. Employee/Employer Forms - Form I-9"
+ },
+ {
+  "_id": "jiQztOQ3IdNb00rbRpuk",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Service delivery models - shared services"
+ },
+ {
+  "_id": "jy1cA07KYGvDDiIq5r3h",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "C. Reporting - Form W-2 furnishing deadline"
+ },
+ {
+  "_id": "k2BzaIDE2ODH9IwKdbye",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - ACA employer mandate"
+ },
+ {
+  "_id": "kBH5a25AXGPgzSG1UdNN",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Overtime - fluctuating workweek"
+ },
+ {
+  "_id": "kDCVVRxTN4QOoVFV9Ucc",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Accounting",
+  "topic": "Accounting principles - matching"
+ },
+ {
+  "_id": "kNpEzPuYbyLXvhYQW9Zy",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - FMLA"
+ },
+ {
+  "_id": "kcXJxNRMKJxr1gBueuxh",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "D. Employee Benefits - educational assistance"
+ },
+ {
+  "_id": "lF7oTavrt1UlW7Fw4GSg",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System security"
+ },
+ {
+  "_id": "lZCb6zsKJzkQ1Atxx6q6",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System master file"
+ },
+ {
+  "_id": "lZCk6dS7NedZnRKRfScK",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - Social Security wage base"
+ },
+ {
+  "_id": "lbgFHFouT38IELqqE6h5",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "D. Employee Benefits - IRC Sec. 132(f) transportation"
+ },
+ {
+  "_id": "lxneFeb1PfKoPABWf2sl",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - FUTA"
+ },
+ {
+  "_id": "n8PzsSbmTkQHeLGohpUJ",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Overtime computation"
+ },
+ {
+  "_id": "nbTHUY2MpNNcSp6kzhDM",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "B. Fair Labor Standards Act - tipped employees"
+ },
+ {
+  "_id": "nvkPvKTzO7sVEVuJFYWm",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - Trust Fund Recovery Penalty"
+ },
+ {
+  "_id": "o43qqejrLINsKWScVjqg",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Delegation"
+ },
+ {
+  "_id": "odqcQRHxB7Xh2XiG3SuL",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - FUTA"
+ },
+ {
+  "_id": "p18tJzPBbdjsjO3hXR4B",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "Business continuity planning"
+ },
+ {
+  "_id": "pK9vGTVy9bJynuGollLi",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "Processing methods - batch"
+ },
+ {
+  "_id": "q0KdebGlfQ6aNU910Ukg",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Gross-to-net computation"
+ },
+ {
+  "_id": "qiNbMn64zK6mVmGq8qzQ",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Staff development"
+ },
+ {
+  "_id": "qjXev6rHKCDb6sWNqN6x",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Pre-tax deductions - 401(k)"
+ },
+ {
+  "_id": "r729IgFTN60bcfdZlbUr",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - CCPA"
+ },
+ {
+  "_id": "rDVt8CjI0vKlEoHrfWDy",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - Davis-Bacon"
+ },
+ {
+  "_id": "sIUxoQKA94itQVRMnFQ8",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "System interfaces - general ledger"
+ },
+ {
+  "_id": "sTq3mCJMeNrgu6z0FBvD",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Third-party sick pay"
+ },
+ {
+  "_id": "tX8QBi6BMeEPp1OBQMzG",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "C. Reporting - new hire reporting"
+ },
+ {
+  "_id": "thHxYX9ye8vHIlFPmTSR",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Process and Supporting Systems and Administration",
+  "topic": "Employee self-service"
+ },
+ {
+  "_id": "ttk5P6v8fDBTmOjkq0Lp",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "C. Reporting - Form W-2 penalties"
+ },
+ {
+  "_id": "tzIOYZp1Xg7QWCtGRLXu",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Payroll Administration and Management",
+  "topic": "Service level agreements"
+ },
+ {
+  "_id": "u7sG3ck8so3JFWtU0dKL",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "D. Employee Benefits - accountable plan"
+ },
+ {
+  "_id": "ue5AxjyZZFQPVGcx1i43",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Accounting",
+  "topic": "Prior-year overpayment treatment"
+ },
+ {
+  "_id": "uul1noWWH51jtNyIkySR",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "B. Fair Labor Standards Act - child labor"
+ },
+ {
+  "_id": "vHttQ3cBP953Wlciaxz4",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "D. Employee Benefits - IRC Sec. 125 cafeteria plan"
+ },
+ {
+  "_id": "vlCzpaAr1FwebJMQfWLQ",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Fringe benefit valuation - cents-per-mile"
+ },
+ {
+  "_id": "w5uqGVfU2PIabtDs0qc4",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "E. Employee/Employer Forms - Form I-9"
+ },
+ {
+  "_id": "wT0VEta8ydRCKjVM6AxC",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Overpayment recovery"
+ },
+ {
+  "_id": "wbc5FHZQhsS30LY4GhCm",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Audits",
+  "topic": "Internal controls - Sarbanes-Oxley"
+ },
+ {
+  "_id": "xBHvZ63G9mA2or5gdU7i",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "A. Escheatment"
+ },
+ {
+  "_id": "xJvdNZIpR1wssYSsXDq1",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Calculation of the Paycheck",
+  "newDomain": "Calculation of the Paycheck",
+  "topic": "Regular rate of pay"
+ },
+ {
+  "_id": "xTLnm0GWqIq4eezgfhad",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "B. Legislative and Regulatory - Davis-Bacon"
+ },
+ {
+  "_id": "yERyYmDo5ODTFFr52KhT",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "G. Methods and Timing of Pay - direct deposit/ACH"
+ },
+ {
+  "_id": "yHj9AOUN9kv53o7qYg0x",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "A. Worker Status - statutory employee"
+ },
+ {
+  "_id": "yNrTSIUmH4NjS8jStDVH",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "D. Employee Benefits - de minimis fringe"
+ },
+ {
+  "_id": "yWKFa4jCpCT8LZuvfHa4",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Accounting",
+  "topic": "Payroll journal entries"
+ },
+ {
+  "_id": "yXc80UC3cxYfYVtFWHsj",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Compliance/Research and Resources",
+  "newDomain": "Compliance/Research and Resources",
+  "topic": "D. Record Retention - Form I-9"
+ },
+ {
+  "_id": "yzZvnBgsqkhcCIa5gMlA",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Core Payroll Concepts",
+  "newDomain": "Core Payroll Concepts",
+  "topic": "C. Employment Taxes - Additional Medicare Tax"
+ },
+ {
+  "_id": "zMBflFSz0JW65ynJ9Zq2",
+  "source": "authored-2026-08-eco-refresh",
+  "oldDomain": "Administration/Process/Management/Audits/Accounting",
+  "newDomain": "Audits",
+  "topic": "Third-party reconciliation"
+ }
+]

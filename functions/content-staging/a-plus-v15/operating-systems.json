@@ -1,0 +1,617 @@
+[
+  {
+    "stem": "Priya, a technician for a school district, is speccing 400 student laptops. Students only use browser-based courseware, every device must be enrolled and policy-managed from a cloud admin console, verified boot must be built into the platform, and OS updates must arrive automatically from the vendor with no imaging work by district staff. Which workstation operating system best fits these requirements?",
+    "options": [
+      "Windows 11 Pro deployed from a technician-built reference image",
+      "Ubuntu Desktop LTS with an in-house configuration script run at first boot",
+      "macOS on entry-level laptops managed by a local administrator account",
+      "ChromeOS on managed Chromebooks"
+    ],
+    "correctAnswer": 3,
+    "explanation": "ChromeOS is built for exactly this profile: a browser-centric workstation OS with verified boot, cloud-console enrollment and policy, and vendor-delivered automatic updates, so no staff imaging is required. Windows 11 Pro can be managed centrally but the scenario's reference-image workflow is precisely the staff imaging the district wants to avoid, and Windows carries a heavier local application and driver footprint than the use case needs. Ubuntu Desktop is a capable workstation OS but has no built-in vendor cloud admin console, so the district would have to build and maintain the management layer itself. macOS supports strong management, but only through MDM enrollment rather than a local administrator account as described, and it is far more device than a browser-only courseware workload requires.",
+    "domain": "Operating Systems",
+    "objective": "1.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Marcus is preparing a 128 GB USB flash drive that a video team will use to hand single 12 GB project files back and forth between Windows 11 desktops and macOS laptops. Both platforms must be able to read and write the drive without installing third-party drivers. Which filesystem should Marcus format the drive with?",
+    "options": [
+      "APFS",
+      "FAT32",
+      "NTFS",
+      "exFAT"
+    ],
+    "correctAnswer": 3,
+    "explanation": "exFAT is the cross-platform choice: Windows and macOS both read and write it natively, and it has no practical file-size ceiling, so a 12 GB project file transfers fine. FAT32 is also readable and writable by both platforms, but its 4 GB per-file ceiling stops a single 12 GB project file outright, no matter how large the volume itself is. NTFS is the right answer for a Windows internal volume, but macOS mounts NTFS read-only without third-party software, which breaks the read/write requirement. APFS is the modern Apple filesystem and is correct for macOS system volumes, but Windows cannot mount it natively at all.",
+    "domain": "Operating Systems",
+    "objective": "1.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Dana audits a manufacturing floor and finds eight PCs still running an operating system version the vendor declared end-of-life (EOL) 14 months ago. The PCs boot normally and the operators report no problems at all. Which statement best describes the risk Dana should put in her report?",
+    "options": [
+      "The systems will stop booting now that the vendor's EOL date has passed, so hardware failure is imminent.",
+      "EOL ends only telephone and chat support; the vendor continues to ship security updates to properly licensed systems.",
+      "Security updates have ended, so any newly discovered OS vulnerability stays permanently unpatched.",
+      "Installing a current third-party antivirus product returns the systems to a supported, compliant state."
+    ],
+    "correctAnswer": 2,
+    "explanation": "The defining consequence of vendor EOL is the end of security updates: new vulnerabilities found after that date are never fixed, which makes the systems unpatchable and non-compliant with essentially every security framework, regardless of how stable they appear. EOL is a support and update boundary, not a kill switch, so the systems keep booting normally, which is exactly why the risk gets overlooked. The claim that EOL ends only telephone and chat support inverts the lifecycle: extended or paid support sometimes preserves security updates, but ordinary EOL ends them, and support channels are the lesser loss. Third-party antivirus adds a compensating control that may reduce exposure, but it cannot patch the operating system itself and does not restore supported or compliant status.",
+    "domain": "Operating Systems",
+    "objective": "1.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ravi is building the standard image for new workstations. Each ships with a single 4 TB NVMe system drive, and firmware is set to UEFI mode with Secure Boot enabled. The entire 4 TB must be usable on the boot drive. Which partitioning scheme should the image use?",
+    "options": [
+      "Master boot record (MBR), with one extended partition holding logical drives",
+      "GPT for data drives but MBR for the boot drive so legacy boot still works",
+      "MBR at install time, converted to a dynamic disk afterward",
+      "GUID Partition Table (GPT)"
+    ],
+    "correctAnswer": 3,
+    "explanation": "GPT is required here on two counts: it addresses volumes well beyond 2 TB so the full 4 TB is usable, and Windows will only boot in UEFI mode from a GPT disk. MBR is a real scheme still used on legacy systems, but its 32-bit LBA addressing caps a partition at roughly 2 TB, so about half the drive would be stranded; adding an extended partition solves MBR's four-primary-partition limit, not its size limit. Converting to a dynamic disk is a genuine Windows feature for spanning and mirroring, but it does not lift MBR's 2 TB boot-volume ceiling and is deprecated in favor of Storage Spaces. Mixing schemes by role is unnecessary and self-defeating: putting the boot drive on MBR forces legacy/CSM boot, which conflicts with the UEFI and Secure Boot configuration already specified.",
+    "domain": "Operating Systems",
+    "objective": "1.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Elena's company hired 300 remote employees. Laptops will ship sealed from the vendor directly to each home address, and no technician will ever physically touch them. Each laptop must join the corporate cloud directory, apply corporate policy, and install the standard application set the first time the user powers it on and signs in. Which type of installation should Elena plan for?",
+    "options": [
+      "Image deployment from a technician-maintained reference image",
+      "Repair installation launched from the device's recovery partition",
+      "Remote network installation over PXE from the corporate datacenter",
+      "Zero-touch deployment, with the device provisioned at first sign-in"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Zero-touch deployment is defined by this exact scenario: hardware identifiers are registered to the organization by the vendor, and the factory OS provisions itself against the cloud directory the first time the end user signs in, with no technician handling and no imaging. Image deployment is a legitimate mass-deployment method, but it requires someone to apply the image to each machine before it reaches the user, which the scenario forbids. A repair installation from the recovery partition restores or refreshes an already-configured OS after a fault; it is a remediation step, not a provisioning method. PXE-based remote network installation is also real, but it requires the device to boot on a network segment that can reach the deployment server, which a laptop sitting on a home broadband connection cannot do.",
+    "domain": "Operating Systems",
+    "objective": "1.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Tomas boots a new workstation from a USB installer to perform a clean install. Setup reaches the drive selection screen and lists no drives at all, even though the firmware setup utility clearly shows the NVMe SSD. Which action should Tomas take first?",
+    "options": [
+      "Open the setup command prompt and use diskpart to convert the drive to MBR",
+      "Disable Secure Boot in UEFI firmware and restart setup",
+      "Use the Load driver option to supply the vendor's own storage controller driver",
+      "Abandon the clean install and run an in-place upgrade instead"
+    ],
+    "correctAnswer": 2,
+    "explanation": "When firmware sees the disk but Windows setup shows none, the installer is missing a driver for the storage controller, which is common with newer NVMe/RAID controllers; the Load driver option on the drive selection screen injects the vendor's third-party driver from removable media so setup can enumerate the disk. Disabling Secure Boot is a real troubleshooting step for unsigned boot media or certain hypervisors, but Secure Boot does not hide storage devices from setup. Converting the drive to MBR through diskpart cannot even be attempted, since diskpart would need to see the disk that setup already cannot see, and MBR would also break the intended UEFI boot path. An in-place upgrade requires an existing installed Windows instance to upgrade from, which a bare new workstation does not have.",
+    "domain": "Operating Systems",
+    "objective": "1.2",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Callum must reinstall Windows 11 on a laptop at a small branch office. The machine still boots into Windows, but its recovery partition was deleted during an earlier repartition, every USB port on the chassis has failed, there is no optical drive, and the site has no deployment server. The office does have a fast, reliable internet connection. Which boot method should Callum use to start the reinstallation?",
+    "options": [
+      "Internet-based installation over the office's working internet link",
+      "Network boot over PXE from a deployment server in the datacenter",
+      "Multiboot, installing a second copy of Windows 11 alongside the existing one",
+      "External or hot-swappable drive holding the installation media"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The internet-based method downloads the installation files straight from the vendor over the working internet link and starts setup from inside the running Windows installation, so it needs no removable media, no local recovery partition, and no on-site infrastructure, which is the only combination the stated constraints leave open; with the recovery partition already deleted, a local recovery-based reinstall is not available either. PXE network boot is a genuine installation boot method, but it requires a deployment server the client can reach on its own network segment, and the branch office has none. Multiboot places an additional operating system beside the existing one for side-by-side use; it is a coexistence arrangement rather than a way to reinstall, and it would leave the damaged installation in place. An external or hot-swappable drive is a valid boot source in general, but every port that could host one has failed, so the media cannot be attached in the first place.",
+    "domain": "Operating Systems",
+    "objective": "1.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Omar supports a 12-person design firm that has just been acquired and joined the parent company's Active Directory domain. The firm's laptops run Windows 11 Home. They must now join the domain, be encrypted with BitLocker, and accept settings configured in the Local Group Policy Editor (gpedit.msc). Which is the correct path?",
+    "options": [
+      "Perform an in-place edition upgrade from Windows 11 Home to Windows 11 Pro on each laptop",
+      "Install the Remote Server Administration Tools on each Home laptop",
+      "Register the local policy components on Home manually so gpedit.msc opens, then join the domain",
+      "Join each laptop to a workgroup named the same as the domain, so domain resources resolve"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Domain join, BitLocker, and the Local Group Policy Editor are all edition-gated features that Windows 11 Home does not include, so the supported fix for all three at once is an in-place edition upgrade to Windows 11 Pro, which preserves files, apps, and settings. A workgroup is a peer-to-peer model with no central directory; naming it after the domain changes nothing about authentication or policy. Remote Server Administration Tools let an administrator manage servers and directory objects from a client; they do not add the client-side capabilities Home is missing. Hand-registering policy components is an unsupported hack that may make the editor window open, but Home still does not process those local policy settings, and it does nothing for domain join or BitLocker.",
+    "domain": "Operating Systems",
+    "objective": "1.3",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Bianca runs the Windows 11 upgrade readiness check on a three-year-old business desktop with a supported CPU generation, 16 GB of RAM, and a 512 GB SSD. The check fails. In firmware she sees that the machine is booting in legacy/CSM mode and that the platform TPM is disabled. Which action set resolves the failure in a supported way?",
+    "options": [
+      "Add RAM and replace the SSD with a larger model, then rerun the readiness check",
+      "Install the Home edition, which does not enforce the TPM requirement",
+      "Apply the documented registry values that let setup skip the TPM and Secure Boot checks",
+      "Enable the firmware TPM and Secure Boot, convert the disk to GPT, and switch to UEFI boot"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The two failures reported are the hardware requirements Windows 11 actually enforces: TPM 2.0 and UEFI with Secure Boot. Turning on the firmware TPM, converting the system disk from MBR to GPT with the in-box mbr2gpt tool, and switching the firmware from legacy/CSM to UEFI brings the machine into a supported configuration without reinstalling. Adding RAM and storage addresses requirements the machine already exceeds, so it changes nothing. The registry bypass values exist and are widely circulated, but they leave the device in an unsupported state that the vendor may exclude from updates, so they are not the correct answer for a business fleet. No edition choice removes the requirement either: Home enforces the same TPM 2.0 and Secure Boot floor as every other Windows 11 edition, and dropping a business desktop to Home would also give up domain join and BitLocker.",
+    "domain": "Operating Systems",
+    "objective": "1.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ingrid, a desktop support technician at a European subsidiary, images the site's laptops from Windows 11 Pro N installation media. Users immediately report that Windows Media Player, the video app, and several line-of-business applications that depend on media codecs will not run. Which explanation and remedy are correct?",
+    "options": [
+      "N editions are 32-bit only, so 64-bit media components cannot load; reinstall using the 64-bit Pro media",
+      "N editions ship without media-related technologies for regulatory reasons; add the Media Feature Pack",
+      "Secure Boot blocked the unsigned codec binaries during imaging; disable Secure Boot and reimage the laptops",
+      "N editions cannot join a domain, and domain policy is what installs the media apps; join the machines to the domain"
+    ],
+    "correctAnswer": 1,
+    "explanation": "N editions are the European regulatory variants that ship without Windows Media Player and related media technologies, which is why anything depending on those codecs fails; Microsoft supplies the Media Feature Pack, added on Windows 11 through Settings > System > Optional features > Add an optional feature, that restores the missing components without reimaging. Edition and architecture are independent: N editions come in 64-bit like every other current Windows edition, so bitness is not the cause. Secure Boot validates boot-path components, not application codecs, and disabling it would weaken the platform without restoring anything. Domain join is unaffected by N status, and domain policy does not supply the media technologies the edition deliberately omits.",
+    "domain": "Operating Systems",
+    "objective": "1.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Aisha is speccing a single analysis workstation for a genomics lab that standardizes on Windows 10. The chassis has four physical CPU sockets, the team is installing 3 TB of RAM, and researchers must connect to the machine desktop over RDP while long jobs run. Which Windows 10 edition meets all of these requirements?",
+    "options": [
+      "Pro",
+      "Home",
+      "Pro for Workstations",
+      "Enterprise"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Pro for Workstations is the only Windows 10 edition listed that supports four physical processor sockets, and its memory ceiling runs to 6 TB, so it accommodates both the chassis and the 3 TB installation; like every Pro-family edition it can also host incoming Remote Desktop sessions. Home is disqualified twice over, because it can act only as an RDP client and never as an RDP host, and it supports a single socket and 128 GB of RAM. Pro hosts RDP and is a sound general business edition, but it supports two physical sockets and a 2 TB memory ceiling, so both the socket count and the memory installation exceed what it will use. Enterprise raises the memory ceiling to 6 TB and hosts RDP without trouble, but it is still limited to two physical sockets, so the four-socket chassis rules it out.",
+    "domain": "Operating Systems",
+    "objective": "1.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Users on a shared Windows 11 workstation complain that signing in takes nearly four minutes because a dozen vendor utilities and updaters launch at logon. Which tool and location should the technician, Nia, use to stop those utilities from launching at sign-in?",
+    "options": [
+      "Services (services.msc), setting each vendor entry to Disabled",
+      "Task Manager, Startup apps tab",
+      "System Configuration (msconfig.exe), Boot tab",
+      "Device Manager (devmgmt.msc), disabling the associated devices"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In current Windows, per-user startup entries are managed from Task Manager's Startup apps tab, which also reports each item's startup impact so Nia can target the worst offenders. Services (services.msc) governs background services that start with the operating system, not the logon-time helper applications described; disabling the wrong service can break a product's core functionality. System Configuration still exists, but its Boot tab controls boot options such as safe boot and timeout, and its Startup tab now simply redirects to Task Manager. Device Manager manages hardware and drivers, so disabling devices there would break peripherals rather than shorten the logon.",
+    "domain": "Operating Systems",
+    "objective": "1.4",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A Windows 11 desktop reboots without warning two or three times a week. Nothing is on screen when it happens, and the user is never present. Which tool should the technician, Grant, open first to find what the operating system recorded at the moment of each reboot?",
+    "options": [
+      "Resource Monitor (resmon.exe)",
+      "Performance Monitor (perfmon.msc) with a live counter set",
+      "Task Scheduler (taskschd.msc)",
+      "Event Viewer (eventvwr.msc), reviewing the System log entries"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Event Viewer holds the historical record: the System log captures the critical kernel power, bug check, and unexpected shutdown entries written around each restart, which is the only way to investigate events that already happened while nobody was watching. Resource Monitor shows live CPU, memory, disk, and network activity and keeps no history, so it cannot describe a reboot that occurred yesterday. Performance Monitor can log counters over time, but Grant would have to configure a data collector set and then wait for the fault to recur, which is slower than reading logs Windows already wrote. Task Scheduler is worth checking later for a maintenance task that restarts the machine, but it lists what is scheduled to run rather than what the operating system recorded when each reboot actually happened.",
+    "domain": "Operating Systems",
+    "objective": "1.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An internal web application suddenly throws a certificate warning for one user only. Yolanda goes to the affected workstation and works inside that user's signed-in session. The renewed internal root certificate has already been deployed to the fleet, but an expired copy of the old internally issued root is still present in this user's Trusted Root Certification Authorities store and must be removed for that user account alone. Which tool should she launch from within that session?",
+    "options": [
+      "Local Users and Groups (lusrmgr.msc)",
+      "Group Policy Editor (gpedit.msc)",
+      "Certificate Manager (certmgr.msc)",
+      "Registry Editor (regedit.exe)"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Certificate Manager (certmgr.msc) opens the certificate stores of whichever account launched it, so running it inside the affected user's signed-in session opens that user's stores and no one else's, which is exactly the scope described, and lets Yolanda locate and delete the stale root; because the renewed root is already present, removing the expired copy leaves a valid chain and clears the warning. Local Users and Groups manages account and group membership; it has no view into certificate stores. Group Policy Editor can distribute or manage trusted root certificates through policy, but that is a machine- or policy-wide mechanism and is the wrong instrument for surgically removing one certificate from one user's store. Certificates do ultimately live in registry keys, but editing those serialized blobs by hand in regedit is unsupported and risks corrupting the entire store.",
+    "domain": "Operating Systems",
+    "objective": "1.4",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A hardware vendor's support desk asks Devon to send one exportable report that lists a workstation's BIOS/UEFI version, installed physical memory, OS build number, and hardware resource assignments. Which built-in Windows tool produces all of that in a single saved file?",
+    "options": [
+      "Disk Cleanup (cleanmgr.exe)",
+      "Resource Monitor (resmon.exe)",
+      "System Information (msinfo32.exe)",
+      "Disk Defragment (dfrgui.exe)"
+    ],
+    "correctAnswer": 2,
+    "explanation": "System Information is the consolidated inventory tool: its System Summary covers firmware version, installed and available memory, and OS build, its Hardware Resources section covers IRQ, DMA, and memory ranges, and File > Export or Save writes the whole report to a single .nfo or text file for the vendor. Disk Cleanup reclaims space by deleting temporary and unused files and reports nothing about system configuration. Resource Monitor shows live resource consumption per process, which is a troubleshooting view rather than a hardware and OS inventory, and it produces no saved inventory file. Disk Defragment optimizes volumes and reports only fragmentation and media type.",
+    "domain": "Operating Systems",
+    "objective": "1.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A Windows 11 jump box in the server room is suspected of running an unauthorized listener on TCP 4444. Sofia needs to see every listening port on the host together with the process ID that owns it, using only built-in tools. Which command should she run?",
+    "options": [
+      "netstat -ano",
+      "ipconfig /all",
+      "nslookup -type=any localhost",
+      "net use"
+    ],
+    "correctAnswer": 0,
+    "explanation": "netstat -ano lists all connections and listening ports numerically and adds the owning process ID, which Sofia can then match to an image name in Task Manager to identify the listener. ipconfig /all reports adapter configuration such as addresses, DNS servers, and DHCP lease details, but it says nothing about which ports are open or which process owns them. nslookup queries DNS name resolution and cannot enumerate local sockets. net use displays and manages mapped network drives and connections to remote shares, which is unrelated to inbound listeners on this host.",
+    "domain": "Operating Systems",
+    "objective": "1.5",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Kwame has just edited a Group Policy Object that maps a new department drive. A user is already signed in, cannot sign out, and cannot wait for the normal policy refresh interval. Which command should Kwame run on that user's Windows 11 workstation to make the client request and apply the policy immediately?",
+    "options": [
+      "gpresult /r",
+      "gpupdate /force",
+      "net user /domain",
+      "shutdown /r /t 0"
+    ],
+    "correctAnswer": 1,
+    "explanation": "gpupdate triggers an immediate policy refresh, and /force reapplies all settings rather than only those that changed, which is the fastest way to deliver a newly edited GPO to a signed-in client. gpresult /r reports which policies have already applied and is the right tool for verifying the result afterward, but it is read-only and applies nothing. shutdown /r /t 0 would reapply policy at the next boot, but it is a heavier interruption than the sign-out the scenario has already ruled out and it closes the user's open work. net user /domain returns account information from the domain and does not touch Group Policy at all.",
+    "domain": "Operating Systems",
+    "objective": "1.5",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "After removing malware from a Windows 11 laptop, Ana finds that several Windows components fail to launch and Windows reports that protected system files may be damaged. The user's data must be preserved. Which command should she run to verify and repair the operating system's protected files?",
+    "options": [
+      "sfc /scannow",
+      "chkdsk C: /f",
+      "diskpart, then clean on the system disk",
+      "format C: /q"
+    ],
+    "correctAnswer": 0,
+    "explanation": "System File Checker (sfc /scannow) scans all protected operating system files and replaces damaged ones from the local component store, which is precisely the repair the symptoms call for and it leaves user data untouched. chkdsk C: /f repairs filesystem metadata and directory structure errors on the volume; it is useful after disk-level corruption but does not validate or replace Windows system files. Running clean in diskpart erases the partition table on the target disk, destroying everything on it. format C: /q wipes the system volume, which likewise contradicts the requirement to preserve data.",
+    "domain": "Operating Systems",
+    "objective": "1.5",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Miguel must copy a 400 GB departmental share to a new file server across a slow, unreliable WAN link. The copy must preserve NTFS permissions, auditing information, and ownership; mirror deletions on subsequent runs; and resume where it left off if the link drops mid-transfer. Which approach fits?",
+    "options": [
+      "Run copy with wildcards from a scheduled task each night",
+      "robocopy \\\\fileserver01\\share \\\\fileserver02\\share /mir /copyall /z",
+      "Create the destination tree with md, then compare it with dir /s after each pass",
+      "Use diskpart to create the destination volume, format it with /fs:ntfs, and re-share it"
+    ],
+    "correctAnswer": 1,
+    "explanation": "robocopy is the built-in tool designed for exactly these constraints: /mir mirrors the source tree including deletions, /copyall copies all file information including the security descriptor, auditing data, and ownership, and /z runs in restartable mode so an interrupted file resumes instead of restarting. The copy command moves file contents only; it cannot carry NTFS permissions, cannot mirror deletions, and has no restart capability. md and dir create and list directories but transfer no data. diskpart and format prepare and share storage, which is a necessary prerequisite at best but copies nothing and would in fact erase any existing data on the target volume.",
+    "domain": "Operating Systems",
+    "objective": "1.5",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Helena is investigating a suspicious download on a Windows 11 laptop. She needs File Explorer to display items inside the hidden AppData folder and to show full file extensions so she can tell whether a file is really named invoice.pdf or invoice.pdf.exe. Where does she make both changes?",
+    "options": [
+      "Disk Cleanup (cleanmgr.exe), by clearing temporary files so the real files become visible",
+      "The AppData folder's Properties dialog, by clearing the folder's Hidden attribute",
+      "File Explorer Options, View tab, in the Advanced settings list",
+      "System, Advanced system settings, Environment Variables"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Both settings live together in the Advanced settings list on the View tab of File Explorer Options: one radio button selects Show hidden files, folders, and drives, and clearing Hide extensions for known file types stops Windows from truncating the name, which is what exposes invoice.pdf.exe. Clearing the Hidden attribute on the AppData folder's Properties dialog is a real operation, but it changes one folder only, leaves every other hidden item invisible, alters an attribute Windows manages itself, and does nothing about extensions. Disk Cleanup deletes temporary and unneeded files and could actually destroy the sample Helena wants to examine. Environment Variables defines path and shell variables for the system and user, which has nothing to do with how File Explorer displays items.",
+    "domain": "Operating Systems",
+    "objective": "1.6",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Hannah supports a dual-boot laptop running Windows 11 and a Linux distribution. Whenever the user shuts Windows down and then boots Linux, the Windows partition mounts read-only and Linux warns that the volume was not cleanly unmounted. Choosing Restart from Windows and then booting Linux never causes the problem. Which Windows setting should Hannah change?",
+    "options": [
+      "Set the active power plan to High performance",
+      "Turn off Fast startup under Power Options, Choose what the power buttons do",
+      "Change what closing the lid does from Sleep to Do nothing",
+      "Disable USB selective suspend in the advanced power settings"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Fast startup makes shutdown a partial hibernation: Windows saves the kernel session to disk and leaves the NTFS volume flagged as in use, so another operating system sees it as unclean and mounts it read-only. Restart deliberately bypasses fast startup, which is exactly why the symptom appears on shutdown but never on restart, and clearing the box under Power Options, Choose what the power buttons do, resolves it. High performance changes processor and device power policy, not how the volume is dismounted. USB selective suspend governs power to idle USB ports and explains disappearing peripherals, not partition state. The lid-close action controls sleep behavior when the lid closes and has no bearing on how a shutdown finalizes the filesystem.",
+    "domain": "Operating Systems",
+    "objective": "1.6",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Users of a Windows 11 file-preparation workstation report that searching from File Explorer for text inside documents stored on a newly attached D: volume returns no matches, and that any search on that volume takes minutes, while the same searches under the user profile return instantly. The files are visible when the folder is browsed directly, and permissions are correct. Which Windows setting should the technician, Dmitri, adjust?",
+    "options": [
+      "Indexing Options, by adding the D: volume to the indexed locations and rebuilding",
+      "Storage settings, by running Storage Sense on the D: volume to clear temporary files",
+      "Privacy and security settings, by allowing apps to access the file system",
+      "Disk and volumes under Advanced storage settings, by reassigning the volume's drive letter"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Windows Search returns instant results, and searches inside document contents, only for locations included in the index; profile folders are indexed by default while a newly attached volume is not, so searches on D: fall back to a slow, filename-only crawl that takes minutes and never matches text inside the documents, which is exactly the split described. Adding the volume in Indexing Options and rebuilding the catalog resolves it. Running Storage Sense reclaims space by deleting temporary and unused files; it neither indexes content nor speeds a search, and it can remove files the user still wants. Reassigning the drive letter under Disk and volumes changes where the volume is mounted, which does not add it to the index and would break paths that already point at D:. The Privacy settings that control file system access apply to sandboxed store applications, not to the Windows Search indexer or to File Explorer itself.",
+    "domain": "Operating Systems",
+    "objective": "1.6",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A newly hired analyst with low vision needs a Windows 11 laptop configured so that on-screen text is enlarged, a high-contrast theme is applied, and the built-in screen reader starts automatically both at the sign-in screen and after sign-in. Where should the technician, Rhea, configure all three?",
+    "options": [
+      "Personalization, by selecting a dark theme and a larger desktop icon size",
+      "System, Display, by raising the display scaling percentage",
+      "Accounts, by changing the user to an administrator account so assistive tools are permitted to load",
+      "Accessibility (Ease of Access) settings, in the Vision section"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The accessibility settings group, called Ease of Access in earlier releases and Accessibility in Windows 11, is the single location that holds text size, contrast themes, Magnifier, and Narrator, and it is also where Narrator is set to start automatically before and after sign-in, so all three requirements are met in one place. Personalization changes themes, accent colors, and icon sizes as a matter of taste; a dark theme is not a contrast theme and nothing there launches a screen reader. Raising display scaling genuinely enlarges interface elements and is a reasonable companion setting, but on its own it supplies neither the contrast theme nor the screen reader. Accounts settings manage account type and sign-in options; promoting the user to administrator grants privilege she does not need and enables no assistive feature at all.",
+    "domain": "Operating Systems",
+    "objective": "1.6",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A Windows 11 laptop on the office LAN cannot see the shared printer or any file server under Network, and other machines cannot reach its shares either. Its IP configuration is correct for the subnet and the user browses the internet without trouble. Windows shows the connection as a Public network. What should the technician, Ben, do?",
+    "options": [
+      "Turn off Windows Defender Firewall on all three profiles",
+      "Change the network profile for that connection from Public to Private",
+      "Assign a static IP address in the same subnet as the print server",
+      "Add a proxy server exception for the print server's address"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Public profile is designed for untrusted networks and blocks network discovery and file and printer sharing in both directions, which precisely matches a machine that routes to the internet fine but is invisible on the LAN; switching the connection to Private applies the trusted-network firewall rules. Disabling the firewall entirely would appear to fix the symptom but removes protection on every network the laptop ever joins and is never the correct remediation for a profile misclassification. A static IP is unnecessary because addressing is already correct for the subnet, and it introduces a new conflict risk. Proxy exceptions affect how the browser reaches HTTP resources and have no effect on SMB discovery or printer sharing.",
+    "domain": "Operating Systems",
+    "objective": "1.7",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A workstation with a manually configured IPv4 address can ping the file server and public internet hosts by IP address and reaches its default gateway, but no name resolves at all, neither internal hostnames nor public websites. Which client setting should Lena check first?",
+    "options": [
+      "The subnet mask configured on the adapter",
+      "The default gateway configured on the adapter",
+      "The DNS server addresses configured on the adapter",
+      "The metered connection setting for the adapter"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Connectivity by IP address that works while every name lookup fails is the classic signature of missing or incorrect DNS server entries, which is easy to omit when an address is configured manually instead of received from DHCP. A wrong subnet mask would break reachability by IP address on the local segment or cause the host to misroute local traffic, which is not what is happening. A wrong or missing default gateway would prevent the host from reaching anything off its own subnet, yet it is already pinging internet hosts by address. A metered connection can defer updates and background sync to control data usage, but it does not disable name resolution.",
+    "domain": "Operating Systems",
+    "objective": "1.7",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Tobias is working from hotel Wi-Fi. He browses the internet normally, but his mapped drive to \\\\fs01\\projects fails and the internal intranet site does not resolve. Company policy requires that internal resources never be published to the public internet. Which network connection should he establish on the client?",
+    "options": [
+      "Change the hotel network profile from Public to Private",
+      "Configure a proxy server in Network and Internet settings pointing at the hotel gateway",
+      "Connect the corporate VPN so internal traffic uses an encrypted tunnel",
+      "Mark the hotel connection as metered so background traffic stops competing with the file transfer"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A VPN is the client-side mechanism for reaching internal resources from an untrusted outside network: the client authenticates, receives an internal address and internal DNS servers, and tunnels internal traffic, which is what makes both the mapped SMB drive and the intranet name work without exposing either to the public internet. Switching the hotel network profile to Private only relaxes discovery and firewall rules on that local segment; it builds no path to the corporate network and would advertise the laptop to other hotel guests. Pointing a proxy at the hotel gateway routes browser requests through a device the company does not control and still provides no route to internal SMB shares. Marking the connection metered defers updates and background sync to conserve data, but it changes nothing about reachability or name resolution.",
+    "domain": "Operating Systems",
+    "objective": "1.7",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A designer's MacBook needs automatic, scheduled local backups of the entire system to an attached external SSD, so that individual files can be restored from an earlier point in time. Which built-in macOS feature should the technician, Rosa, configure?",
+    "options": [
+      "Time Machine",
+      "Disk Utility",
+      "FileVault",
+      "Keychain Access"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Time Machine is the built-in macOS backup service: it takes automatic incremental snapshots to a designated external volume and provides a browsable interface for restoring files or a full system from a chosen point in time. Disk Utility partitions, formats, erases, and repairs volumes; it can clone a disk image but performs no scheduled versioned backups. FileVault encrypts the startup volume to protect data at rest, which is a confidentiality control rather than a recovery mechanism, and an encrypted drive with no backup is still unrecoverable. Keychain Access stores credentials and certificates for the user, not documents or system state.",
+    "domain": "Operating Systems",
+    "objective": "1.8",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Alvaro must remove a graphics utility from a Mac. The utility was distributed as a .dmg that the user mounted and dragged into place; it did not include an installer package and was not obtained from the App Store. What is the correct uninstallation process?",
+    "options": [
+      "Quit the app and drag its .app bundle from /Applications to the Trash",
+      "Delete the .dmg file from the user's Downloads folder",
+      "Open the App Store, locate the app, and choose its Uninstall option",
+      "Run First Aid in Disk Utility, which clears orphaned application entries"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An application delivered as a .dmg is drag-installed as a self-contained .app bundle, so the uninstall is the reverse: quit it, drag the bundle from /Applications to the Trash, empty the Trash, and clean up any preference or support files the app left in the user's ~/Library. Disk Utility First Aid verifies and repairs volume structures; it has no knowledge of installed applications. Deleting the .dmg only removes the downloaded disk image, leaving the installed application in place, which is a common misconception. The App Store can only manage titles it delivered, and this utility did not come from it, so no store-side uninstall exists for it.",
+    "domain": "Operating Systems",
+    "objective": "1.8",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Colin administers the corporate MacBook fleet at a law firm. Security requires three things: employees must not be able to sign in to a personal Apple ID or iCloud on those Macs, the startup volume must be encrypted, and IT must hold a recovery key it can use if an employee leaves abruptly. Which approach meets all three requirements?",
+    "options": [
+      "Walk each Mac through enabling FileVault, store the recovery key in the signed-in user's iCloud account, and train users not to use personal Apple IDs",
+      "Set a firmware password on each Mac and enable FileVault locally on each machine",
+      "Enroll the Macs in MDM and deploy a configuration profile that restricts Apple ID sign-in and enables FileVault",
+      "Remove local administrator rights from users and enable Keychain syncing so IT can retrieve saved credentials"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Only MDM enrollment with a configuration profile satisfies all three: profile restrictions can block Apple ID and iCloud sign-in, the profile can require and enable FileVault, and MDM escrow puts the recovery key in the organization's hands rather than the employee's. Enabling FileVault by hand and escrowing the key to the user's own iCloud account fails the third requirement outright, since a departed employee controls the key, and user training is not an enforceable restriction. A firmware password prevents booting from alternate media and changing startup settings, which is a useful hardening step but does nothing about Apple ID sign-in or key escrow. Removing administrator rights limits system changes and Keychain syncing shares credentials to the user's own devices; neither encrypts the volume nor gives IT a recovery key.",
+    "domain": "Operating Systems",
+    "objective": "1.8",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ines wrote a maintenance script at /opt/scripts/rotate.sh on a Linux server. The file's owner must be able to read, write, and execute it, while members of the owning group and all other users must be able to read and execute it but never modify it. Which command sets exactly those permissions?",
+    "options": [
+      "chmod 777 /opt/scripts/rotate.sh",
+      "chmod 755 /opt/scripts/rotate.sh",
+      "chmod 644 /opt/scripts/rotate.sh",
+      "chown root:root /opt/scripts/rotate.sh"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In octal notation each digit is the sum of read (4), write (2), and execute (1) for owner, group, and others, so 755 grants the owner 4+2+1 and grants group and others 4+1 (read and execute only), which matches the requirement exactly. 777 grants write to group and others as well, letting any user rewrite a script that runs with elevated intent, which is the specific outcome the requirement forbids. 644 grants read and write to the owner and read to everyone else, but nobody gets execute, so the script cannot be run directly. chown changes ownership rather than permission bits, so it never produces the requested access pattern.",
+    "domain": "Operating Systems",
+    "objective": "1.9",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "On a Linux workstation, a second data disk mounts correctly whenever Nadia runs mount manually, but the mount is gone after every reboot and users find an empty /data directory. Which file should she edit so the volume mounts automatically at boot?",
+    "options": [
+      "/etc/fstab",
+      "/etc/hosts",
+      "/etc/resolv.conf",
+      "/etc/passwd"
+    ],
+    "correctAnswer": 0,
+    "explanation": "/etc/fstab is the filesystem table the system reads at boot to mount volumes automatically; because a manual mount succeeds, the device and filesystem are fine and only the persistent entry is missing. /etc/hosts maps hostnames to IP addresses for local name resolution and has no role in mounting storage. /etc/resolv.conf lists DNS resolvers, which likewise concerns name resolution rather than filesystems. /etc/passwd defines user accounts, home directories, and login shells; it can point a user's home at a path but cannot mount the underlying volume.",
+    "domain": "Operating Systems",
+    "objective": "1.9",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A Linux server alerts that its root filesystem is nearly full. Deshawn has already confirmed the overall filesystem usage percentage and now needs to see which directories under /var are consuming the space. Which command gives him that breakdown?",
+    "options": [
+      "df -h",
+      "top",
+      "du -sh /var/*",
+      "ps aux --sort=-%mem"
+    ],
+    "correctAnswer": 2,
+    "explanation": "du reports disk usage per file and directory, and du -sh /var/* prints one human-readable summary line per subdirectory of /var, which is exactly the breakdown needed to find the offender, typically a runaway log or cache directory. df -h reports free and used space per mounted filesystem, which is the step Deshawn has already completed and cannot attribute usage to any directory. top shows live process activity ranked by CPU or memory and says nothing about disk consumption. ps aux sorted by memory lists processes by resident memory, again a memory view rather than a storage view.",
+    "domain": "Operating Systems",
+    "objective": "1.9",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Neema is signed in as a standard user on a Fedora-based Linux server and must install the nmap package from the distribution repositories. Which command accomplishes this?",
+    "options": [
+      "dnf install nmap",
+      "sudo apt install nmap",
+      "sudo dnf install nmap",
+      "Download the upstream source tarball with curl and run its installer as the standard user"
+    ],
+    "correctAnswer": 2,
+    "explanation": "dnf is the package manager for Fedora-family distributions, and writing into system directories and the package database requires root privilege, which sudo grants for that single command without opening a full root login, so sudo dnf install nmap is the correct form. apt is the package manager for Debian-family distributions; on a Fedora-based system the tool and its repositories are not present, and prefixing it with sudo does not change which package manager the distribution actually uses. Running dnf without elevation is the right tool at the wrong privilege level, because a standard user cannot write to /usr or to the RPM database, so the command aborts on permissions. Building from an upstream tarball bypasses distribution packaging entirely, which leaves the software unmanaged for updates and removal, and the install step would still need root to write into system directories.",
+    "domain": "Operating Systems",
+    "objective": "1.9",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Auditing a Linux server, Marcelo runs grep jvargas /etc/passwd and sees an x in the second field of the returned line. He has been asked to confirm where account password hashes are actually stored. What does the x indicate, and which file should he examine?",
+    "options": [
+      "The x marks the account as locked, so no further file needs to be examined",
+      "The x is a placeholder meaning the hash lives elsewhere; he should examine /etc/shadow next",
+      "The x means no password is set, and he should type a password into /etc/passwd directly",
+      "The x is the encrypted password itself, abbreviated for display in /etc/passwd"
+    ],
+    "correctAnswer": 1,
+    "explanation": "On any modern Linux system the second field of an /etc/passwd entry holds an x, signalling that the real password hash has been moved out of the world-readable /etc/passwd and into /etc/shadow, where hashes and aging information sit behind root-only permissions; /etc/shadow is therefore the file the audit needs. A locked account is marked with a ! or * in the hash field of /etc/shadow, not by the x placeholder in /etc/passwd, so reading x as a lock confuses two different conventions. The x is not an abbreviated hash either: /etc/passwd stores the account name, UID, GID, GECOS field, home directory, and login shell, and it is deliberately readable by every user, which is precisely why hashes were removed from it. An empty second field, not an x, would indicate no password, and hand-writing a secret into a world-readable file is the exact exposure that shadow passwords exist to prevent.",
+    "domain": "Operating Systems",
+    "objective": "1.9",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A CAD package lists these system requirements: a 64-bit operating system, 32 GB of RAM, 200 GB of free storage, and a dedicated graphics card with at least 8 GB of VRAM. The candidate workstation runs 64-bit Windows 11 Pro with 64 GB of RAM, 1 TB free, and integrated graphics that share system memory. What should the technician, Farid, report?",
+    "options": [
+      "The workstation qualifies, because with 64 GB of RAM installed the shared system memory satisfies the VRAM requirement",
+      "The workstation should run the 32-bit build of the package to work around the graphics limitation",
+      "The workstation fails the storage requirement, because CAD scratch files need more than the 1 TB available",
+      "The workstation meets every requirement except graphics; a discrete card with 8 GB of dedicated VRAM is required"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Comparing the machine to the list item by item, the OS, RAM, and storage all exceed the stated minimums, and only the graphics requirement fails, because integrated graphics carve out shared system memory rather than providing dedicated VRAM. Treating shared memory as equivalent to VRAM is the specific misunderstanding the requirement exists to prevent; vendors call for a dedicated card because of both bandwidth and driver support. The storage claim contradicts the published requirement of 200 GB, which 1 TB of free space clears comfortably. Choosing a 32-bit build does not exist as a remedy for a graphics shortfall, and a 32-bit build is capped at 2 GB of user-mode address space (4 GB at best, and only if it is large-address-aware), on a machine specced for 32 GB of RAM.",
+    "domain": "Operating Systems",
+    "objective": "1.10",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Oksana is documenting impact considerations for deploying a 4 GB design suite to 600 workstations. She has already confirmed that every workstation exceeds the published system requirements, that licensing is purchased for all 600 seats, and that the help desk is staffed for the rollout. The remaining detail is that all 600 clients will pull the installer from a single distribution point across the same 1 Gbps campus uplink on a Tuesday morning. Which impact should she document, and what mitigation follows from it?",
+    "options": [
+      "Device impact; re-verify each workstation CPU, RAM, and free storage against the published requirements before scheduling",
+      "Network impact; stage the rollout in waves, throttle the distribution point, or move it outside business hours",
+      "Business impact; reconcile the purchased license count against the number of installations before deploying",
+      "Operation impact; confirm the help desk has staff scheduled to answer installation questions during the rollout"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The one unresolved item is squarely a network impact: 600 clients pulling a 4 GB installer is roughly 2.4 TB across a single shared 1 Gbps uplink, which would starve email, voice, and line-of-business traffic long before the last client finished, so the mitigation is to stage the rollout in waves, throttle the distribution point, or move it outside business hours. Device impact is a real consideration, but the scenario states every workstation already exceeds the requirements, so checking them again surfaces nothing and does nothing for the uplink. Business impact covering licensing genuinely belongs in a deployment plan, but the seats are already purchased, and a license reconciliation is a compliance exercise rather than a defence against bandwidth exhaustion. Operation impact covering support load is likewise legitimate and likewise already handled; staffing the help desk absorbs user questions but does not prevent the network from saturating.",
+    "domain": "Operating Systems",
+    "objective": "1.10",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Rafael must install a 9 GB engineering application on 20 workstations in a secure lab that has no internet access and no optical drives. The vendor supplies the software as a single ISO file, which Rafael has already copied to the lab internal file server. Which distribution method should he use?",
+    "options": [
+      "Burn the ISO to physical media and carry a disc to each workstation",
+      "Copy the ISO from the file server to each workstation and mount it as a virtual optical drive",
+      "Request a downloadable package from the vendor and pull it from the internet on each workstation",
+      "Extract the ISO with a general-purpose archive utility and run whichever executable appears at the top level"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Windows mounts an ISO natively as a virtual optical drive, so the image copied to each workstation can be mounted locally and setup run from the mounted volume, with no optical hardware and no internet access, which is exactly the case a mountable ISO exists to serve; the local copy matters, because mounting directly from a network share frequently fails on sparse and UNC paths. Burning to physical media is a legitimate distribution method in general, but these workstations have no optical drives, so a disc could not be read. Extracting the image with a general-purpose archive tool often appears to work, yet it can drop file attributes and path structure the installer expects, and choosing an arbitrary top-level executable skips the vendor supported entry point; mounting presents the image exactly as shipped. Requesting a downloadable package is sensible where a network path exists, but the lab has no internet access, so the download could never complete.",
+    "domain": "Operating Systems",
+    "objective": "1.10",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A legacy inspection application is supplied only as a 32-bit build, and its bundled scanner driver is likewise available only in a 32-bit version. Devika must run it on a new 64-bit Windows 11 Pro workstation. What should she expect?",
+    "options": [
+      "The application must be installed into Program Files rather than Program Files (x86) so that it can reach the 64-bit driver stack",
+      "Neither the application nor the driver will run, because 64-bit Windows requires 64-bit builds throughout",
+      "Both will work unchanged, because 64-bit Windows provides compatibility for 32-bit code in user mode and kernel mode alike",
+      "The application will run under WOW64 and install to Program Files (x86), but the vendor must supply a 64-bit driver"
+    ],
+    "correctAnswer": 3,
+    "explanation": "64-bit Windows runs 32-bit user-mode applications through the WOW64 subsystem and installs them under Program Files (x86), so the application itself is fine; kernel-mode drivers are governed by a different rule, because a 64-bit kernel loads only 64-bit signed drivers, which is why the scanner needs a 64-bit driver from the vendor. The claim that nothing 32-bit runs is wrong at the application layer, which is the exact layer where WOW64 supplies compatibility. The claim that both run unchanged is wrong in the opposite direction: user-mode compatibility does not extend into kernel mode, and that boundary is precisely what strands legacy peripherals on modern systems. Installing into Program Files instead of Program Files (x86) only misplaces the files, since the install path does not change a process bitness and grants it no access to the 64-bit driver stack.",
+    "domain": "Operating Systems",
+    "objective": "1.10",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A new hire already has an on-premises Active Directory account created by the identity team. She now needs a cloud mailbox, cloud file storage with desktop folder sync, and videoconferencing, and she must reach all of them with the same corporate credentials she uses to sign in to her workstation. What does the technician, Grace, need in place?",
+    "options": [
+      "Confirm that directory synchronization has replicated her account to the tenant, then assign her a license",
+      "Install the desktop clients first, because each client creates the necessary cloud identity during its first sign-in",
+      "Create a separate cloud-only account with a matching password and have the user keep the two passwords in sync manually",
+      "Assign the license to the shared department account and add her as a delegate on it"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Cloud productivity services key off a synchronized identity plus an assigned license: directory synchronization replicates the on-premises account into the tenant so the same credentials work everywhere, and the license is what actually provisions the mailbox, storage, and conferencing workloads. A parallel cloud-only account with a manually matched password defeats single sign-on, creates two objects to manage, and drifts the moment either password changes. Desktop clients consume an identity that already exists; installing them first cannot create a tenant account or grant entitlements. Delegating access on a shared department account gives her someone else's mailbox rather than her own identity, storage, and conferencing entitlements, and it breaks accountability.",
+    "domain": "Operating Systems",
+    "objective": "1.11",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ivo is onboarding a new hire and finds the cloud tenant reports zero available licenses, although headcount has not grown. Reviewing the tenant he sees eleven disabled accounts belonging to employees who left over the past year, each still holding an assigned license. What is the correct interpretation and next step?",
+    "options": [
+      "Disabled accounts release their licenses automatically after 30 days, so he should wait for the seats to free themselves",
+      "Licenses are consumed per sign-in rather than per account, so the disabled accounts are not the cause and he should open a vendor support case",
+      "He should leave the new hire unlicensed, because the desktop applications install and activate without an assigned license",
+      "A license stays consumed until it is explicitly unassigned; complete offboarding for each departed user, then unassign and reuse a seat"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Licensing assignment is an explicit, per-account allocation: blocking sign-in stops the person authenticating but does not return the seat, so eleven disabled accounts hold eleven seats until someone unassigns them. The correct sequence is to satisfy the offboarding retention or legal-hold requirements for each departed user data first, then unassign and reuse the seats. Nothing reclaims licenses automatically after a waiting period, so waiting simply leaves the new hire unprovisioned indefinitely. Licenses are not metered by sign-in activity; they are consumed by assignment, which is exactly why an account nobody uses still costs a seat, and a support case would only restate that. Leaving the new hire unlicensed leaves her account present in the directory but provisions no mailbox, storage, or conferencing, and the desktop applications will not activate without an assigned license.",
+    "domain": "Operating Systems",
+    "objective": "1.11",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "After the corporate cloud storage client is enabled on a Windows 11 laptop, a user reports that her Desktop and Documents folders now show cloud status icons and that a large archive folder under Documents is filling the local SSD. She wants Desktop and Documents to keep syncing, but the archive folder should stop consuming local disk while remaining retrievable. Which configuration should the technician, Sasha, apply?",
+    "options": [
+      "Keep known-folder backup on for Desktop and Documents, and make the archive folder online-only",
+      "Move the archive folder out of the profile onto a network share, then re-enable known-folder backup",
+      "Turn off known-folder backup entirely so that no profile folders sync",
+      "Disable the storage client startup entry so it stops syncing in the background"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Modern cloud storage clients separate two distinct settings: known-folder backup decides which profile folders sync, and per-folder availability decides whether synced content is kept on local disk or streamed on demand. Keeping backup enabled for Desktop and Documents satisfies the first requirement, and marking the archive folder online-only frees its local copies while leaving the files retrievable the moment they are opened, which satisfies the second. Turning off known-folder backup entirely stops Desktop and Documents from syncing, which is the opposite of what she asked for and removes her protection against device loss. Relocating the archive to a network share is a defensible storage design, but it moves the data off the service the company standardized on and makes the folder unreachable when she works offsite. Disabling the client startup entry halts synchronization altogether, so recent changes stop reaching the cloud and the local disk usage never actually falls.",
+    "domain": "Operating Systems",
+    "objective": "1.11",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  }
+]

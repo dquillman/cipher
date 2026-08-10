@@ -1,0 +1,482 @@
+[
+  {
+    "stem": "Maya, a desktop support technician, is called to a workstation that has thrown three blue screens in one morning. Each stop screen reads DRIVER_IRQL_NOT_LESS_OR_EQUAL and names the same vendor .sys file for the machine's network adapter. The only change on the machine was a NIC driver package pushed the previous night. The system still boots into Safe Mode reliably. What should Maya do next?",
+    "options": [
+      "Boot into Safe Mode and roll the network adapter driver back to its previous version.",
+      "Run chkdsk /r against the system volume to repair filesystem corruption on the disk.",
+      "Perform a clean installation of Windows to clear any damage the driver package left.",
+      "Run Windows Memory Diagnostic and replace any DIMM the extended test flags as bad."
+    ],
+    "correctAnswer": 0,
+    "explanation": "The stop code names a specific driver file and the failures began with a driver push, so rolling that driver back from Safe Mode is the smallest change that tests the most likely cause and the loaded driver is not running to block it. chkdsk /r targets disk and filesystem damage, which surfaces as read errors and different stop codes, and it does nothing about a faulting driver. A clean installation would probably clear the fault but is grossly disproportionate to a one-click rollback and destroys the user's configuration. Memory faults do cause blue screens, but they produce codes such as MEMORY_MANAGEMENT or a varying mix, not the same named driver file every time.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Devon, a help desk technician, takes a ticket from a user whose Windows 11 laptop shows repeated 'Your computer is low on memory' balloons every afternoon, with applications becoming sluggish until the user signs out. The laptop has 16 GB of RAM and 400 GB of free disk space. What is Devon's best first step?",
+    "options": [
+      "Run Disk Cleanup to release the space that temporary files and old update packages hold.",
+      "Open Task Manager, sort Processes by Memory, and find the process that grows all day.",
+      "Defragment the system drive with dfrgui.exe so paging operations complete faster.",
+      "Turn off fast startup in Power Options so the laptop fully shuts down each night."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Low-memory warnings mean committed memory is being exhausted, and Task Manager's Processes tab sorted by memory names the growing process in seconds, which is the information every later fix depends on. Disk Cleanup frees storage, and the laptop already has 400 GB free, so it relieves a resource that is not constrained. Defragmenting rearranges files on the drive, which is largely irrelevant on modern hardware and to RAM exhaustion. Turning off fast startup changes shutdown behavior and would at best mask a leak by forcing a daily reset instead of identifying it.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Priya, a systems technician, finds that the backup agent service on a file server no longer starts at boot. The System log records 'The service did not start due to a logon failure.' The service is set to Automatic and was working until the security team completed a service-account password rotation last weekend. What should Priya do?",
+    "options": [
+      "Change the service startup type to Automatic (Delayed Start) so dependencies load first.",
+      "Run sfc /scannow to repair the protected system files the backup agent relies on.",
+      "Update the credentials on the service's Log On tab to the rotated account password.",
+      "Uninstall and reinstall the backup agent so its service entry is registered again."
+    ],
+    "correctAnswer": 2,
+    "explanation": "A logon failure event means the Service Control Manager holds a stale password for the account the service runs as, and the rotation is the change that caused it, so correcting the credentials on the Log On tab in services.msc is the direct fix. Delayed Start solves races where a service loads before its dependencies are ready, which produce dependency or timeout errors rather than a logon failure. sfc /scannow repairs corrupted system files and cannot supply a new account password. Reinstalling the agent recreates the service entry but leaves it pointing at the same stale credentials, so the failure follows the reinstall.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Andre applies a vendor UEFI firmware update to a Windows 11 laptop. On reboot the machine displays 'No operating system found.' In firmware setup the NVMe drive is detected and healthy, and Secure Boot, which was enabled before the flash, now reads as unavailable. Andre confirms from a technician USB that the drive still holds a GPT partition layout with an intact EFI system partition and Windows directory. What is the most likely cause?",
+    "options": [
+      "The flash cleared the firmware's NVRAM boot entries, so no Windows entry is left.",
+      "The firmware update deleted the bootloader files, so a repair install is required.",
+      "The volume's filesystem is corrupt and chkdsk /f must run from the recovery media.",
+      "The firmware reset the boot mode to Legacy/CSM, so the EFI partition is not used."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Firmware updates commonly reset boot configuration to defaults, and Legacy/CSM mode looks for an MBR boot sector, so an intact GPT/UEFI installation reports no operating system until UEFI boot is re-enabled, and Secure Boot reading as unavailable is the tell because firmware offers it only in UEFI mode. A cleared NVRAM boot list is the other common cause of this message and is repaired with bcdboot, but losing boot entries does not remove Secure Boot from setup. Deleted bootloader files do produce this message, but Andre verified that the EFI system partition and the Windows directory are intact. Filesystem corruption produces repair loops and in-Windows errors, and the volume read cleanly from the technician USB, so chkdsk targets a problem that is not present.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Renee supports a domain-joined branch office where six workstations have begun failing sign-in with clock-skew errors. Each affected machine gains about twenty minutes over a single powered-on workday, so a clock she corrects by hand is back outside the allowed skew roughly two hours later, with the machine never powered off in between. What is the most appropriate action?",
+    "options": [
+      "Replace the CMOS battery in each of the six affected branch office workstations.",
+      "Find out why the Windows Time service is not syncing with the domain hierarchy.",
+      "Set each workstation's time zone to match the branch office's actual location.",
+      "Turn off the automatic daylight saving time adjustment on the affected clients."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Kerberos rejects authentication once client and domain controller clocks diverge past the allowed skew, and a gain that accumulates while the machine is running and returns within hours of a manual correction points at time synchronization, so the Windows Time service and its source in the domain hierarchy are what to examine. A dead CMOS battery loses time across power-off cycles rather than gaining steadily through an uninterrupted session, and six simultaneous battery failures is implausible. A wrong time zone produces a constant whole-hour offset that a manual correction would not fix at all. Daylight saving misconfiguration likewise shifts the clock by a full hour on specific dates instead of adding minutes hour after hour.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Tomas is investigating complaints that sign-in at one branch takes six to eight minutes to reach the desktop, while the same users reach the desktop in under a minute at headquarters. The users have roaming profiles, and Tomas finds that several of them store multi-gigabyte video files directly on their desktops. Branch WAN utilization spikes during the morning sign-in window. What is the best remediation?",
+    "options": [
+      "Redirect the large user folders out of the roaming profile so they stop syncing.",
+      "Increase the paging file size on the branch workstations to speed profile loading.",
+      "Turn on fast startup in Power Options so the workstations resume instead of booting.",
+      "Add RAM to the branch workstations so the whole profile can be cached in memory."
+    ],
+    "correctAnswer": 0,
+    "explanation": "A roaming profile copies its contents down at sign-in, so gigabytes of desktop media crossing a saturated WAN fully explains the slow profile load, and folder redirection or exclusion removes that data from the sync. Enlarging the paging file addresses memory pressure and has no effect on how much profile data must traverse the network. Fast startup shortens boot time, but the delay here occurs after boot during profile load, and it does not reduce the data transferred. Additional RAM does not change the volume of profile data pulled across the WAN, which is the actual bottleneck.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Grace, a support technician, connects a 4K webcam to a docking station on a Windows workstation and receives a 'Not enough USB controller resources' message; the camera does not enumerate. The dock already carries a headset, two external drives, a card reader, and a keyboard-video-mouse switch. Moving the webcam to a second dock port produces the same message. What should Grace do?",
+    "options": [
+      "Replace the webcam's USB cable, since resource errors point to a marginal signal path.",
+      "Set the workstation's power plan to High performance so the controller is not throttled.",
+      "Disable USB selective suspend so devices are not powered down during enumeration.",
+      "Connect the webcam to a front-panel port served by a different USB host controller."
+    ],
+    "correctAnswer": 3,
+    "explanation": "The message means the host controller cannot allocate any more endpoints: the webcam declares many of them across its separate video, audio, and control interfaces, and added to the devices already on the dock that exceeds the xHCI controller's endpoint budget, so moving it to a port served by a different host controller gives it a fresh budget to draw on. A failing cable causes intermittent disconnects, enumeration retries, or a reduced link speed, not an identical resource message on a second port of the same controller. Power plan settings govern processor and device power states and neither create nor free endpoints. USB selective suspend controls idle power savings and has no bearing on endpoint allocation at enumeration time.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Luis takes a ticket for a desktop that shuts down and restarts on its own two or three times a day with no blue screen and no warning to the user. The machine is out of warranty, and Luis has a spare power supply on the bench. What should he do first?",
+    "options": [
+      "Swap in the spare power supply, since sudden shutdowns usually mean a power fault.",
+      "Reimage the workstation from the standard image to rule out any software cause.",
+      "Review the System log in Event Viewer for critical events at the reported times.",
+      "Run sfc /scannow and reboot so any damaged protected system files are repaired."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Establishing what the system recorded at the moment of each shutdown is the cheapest and least destructive way to separate a power event from a thermal shutdown, a driver fault, or a scheduled task, and the System log holds exactly that evidence. Swapping the power supply is a plausible eventual fix but it is a parts-first guess made before any evidence has been gathered. Reimaging destroys the user's environment and the diagnostic evidence at once, and it helps nothing if the cause is hardware. sfc /scannow repairs protected system files, which rarely cause silent full shutdowns and would normally announce themselves through other symptoms first.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Hana supports a workstation where one CAD application closes without warning about ten minutes into every session. The behavior started the morning after the monthly patch cycle, no other application on the machine is affected, no low-memory warnings appear, and the workstation itself never reboots or blue screens. What should Hana do first?",
+    "options": [
+      "Increase the paging file on the system drive so the application has more virtual memory.",
+      "Read the Application log in Event Viewer to identify the module named in each crash.",
+      "Reinstall the CAD application and reapply its licensing and workspace configuration.",
+      "Run an extended memory diagnostic overnight and replace any DIMM that reports errors."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Windows writes an Application Error event, which Reliability Monitor also surfaces on its timeline, naming the faulting module and version for each crash, which turns a vague complaint into a specific component Hana can patch, roll back, or exclude. Enlarging the paging file addresses memory exhaustion, and the stem reports no low-memory warnings and no other affected application. Reinstalling the application is a blind fix that costs the user's licensing and workspace configuration and will not help if the fault lives in a shared component the patch cycle updated. Faulty memory destabilizes the whole system rather than one application, and this machine is otherwise stable.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ivan takes a desktop that has become generally unstable: it freezes for a minute at a time several times a day, feels sluggish between the freezes, and has produced two different stop codes this week. The user recently installed a bundle of free PC optimizer and driver updater utilities. sfc and DISM report no corruption, the vendor's hardware diagnostics pass, and the only restore point on the machine was created two weeks ago, after the utilities were installed but before the last quality update. What should Ivan do next?",
+    "options": [
+      "Perform a clean boot with third-party services and startup items disabled, then retest.",
+      "Replace the system drive, because random freezes usually indicate failing storage.",
+      "Roll the machine back to a restore point created before the last quality update.",
+      "Turn off browser hardware acceleration so the graphics driver is exercised less."
+    ],
+    "correctAnswer": 0,
+    "explanation": "A clean boot removes every third-party service and startup entry from the boot path, which is exactly what the utility bundle added, so stability returning under a clean boot identifies that software as the cause of the freezes and varied stop codes. Failing storage announces itself through read errors, SMART warnings, and long I/O waits, and both the vendor diagnostics and the timing of the symptoms point away from it. The only restore point on the machine was taken after the utilities were installed, so rolling back to it keeps them running while discarding the quality update's fixes. Hardware acceleration affects rendering inside the browser and cannot account for kernel stop codes or system-wide freezes.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.1",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Nia calls the help desk because a business app on her iPhone will not update; the App Store shows the update queued and then reverts to 'Update' without completing. The technician confirms the device is on Wi-Fi, the App Store account is signed in, and iPhone Storage shows 190 MB free of 128 GB. What should the technician have Nia do?",
+    "options": [
+      "Reset the network settings so any corrupted Wi-Fi profile is rebuilt from scratch.",
+      "Toggle airplane mode off and on again to re-establish the App Store connection.",
+      "Offload unused apps or delete large media to free space, then retry the update.",
+      "Reinstall iOS in recovery mode to repair the App Store framework on the device."
+    ],
+    "correctAnswer": 2,
+    "explanation": "An update must stage the downloaded package plus working space before it installs, and 190 MB free is far below what a business app needs, so an update that silently reverts is the expected symptom and reclaiming space resolves it. Resetting network settings addresses connectivity failures, but the device is confirmed on Wi-Fi and the download begins normally. Toggling airplane mode is the same connectivity guess and treats a symptom that is not present. Reinstalling iOS is a destructive last resort for OS-level corruption and is wildly disproportionate to a full-storage condition the technician has already observed.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "After an Android OS update rolls out to a fleet of warehouse handhelds, Marcus finds that one line-of-business scanning app now closes immediately at launch on every updated device. The app vendor confirms the current release is supported on the new OS version, and the app launches normally on a factory-fresh device. What should Marcus do?",
+    "options": [
+      "Factory reset each affected handheld to return it to a known-good configuration.",
+      "Roll the operating system back to the previous version on every updated handheld.",
+      "Disable Bluetooth on the handhelds, since radio conflicts often block app launches.",
+      "Clear the scanning app's cache and data, then reinstall the app if it still crashes."
+    ],
+    "correctAnswer": 3,
+    "explanation": "An app that crashes at launch after an OS upgrade but runs on a clean device points to stale cached data or configuration written under the old OS, so clearing cache and data and reinstalling targets exactly that difference. A factory reset clears the same data but wipes every other app, enrollment, and setting on each device, making it the same fix at enormous cost. Rolling the OS back is often unsupported and abandons the security fixes in the update when the vendor has already confirmed compatibility. Disabling Bluetooth has no bearing on an app failing to launch and would break paired scanners and headsets on warehouse hardware.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ellis reports that his company Android phone, which used to last a full shift, now drains from full to empty by mid-afternoon. The change began about a week ago, roughly when he installed a new weather and traffic app. The battery health readout is normal and the phone is not unusually warm. What should the technician check first?",
+    "options": [
+      "The per-app battery usage screen, for the app consuming power in the background.",
+      "The battery itself, arranging a replacement since runtime has dropped off sharply.",
+      "The Wi-Fi radio, disabling it so the phone stops scanning for networks all day.",
+      "The display settings, lowering resolution and refresh rate to extend runtime."
+    ],
+    "correctAnswer": 0,
+    "explanation": "The per-app battery usage screen attributes consumption to specific apps and services, which converts a vague complaint into a named cause and either confirms or clears the newly installed app in one step. Replacing the battery contradicts the reported normal battery health and would leave a power-hungry app to drain the new battery the same way. Disabling Wi-Fi removes a comparatively efficient radio and usually pushes traffic onto cellular, which costs more power rather than less. Lowering resolution and refresh rate is a general power-saving tactic that masks the drain instead of identifying the change that caused it.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Sofia escalates a tablet that no longer rotates its display. The technician verifies rotation lock is off in Quick Settings, confirms the failure occurs in every app including the home screen, and finds that a restart and a full OS update made no difference. A built-in sensor test reports no accelerometer data. What is the appropriate conclusion?",
+    "options": [
+      "The tablet's system cache is corrupt and must be cleared from the recovery menu.",
+      "The accelerometer has failed, so the tablet needs hardware service or a swap.",
+      "Battery saver mode is suppressing sensor polling and needs to be switched off.",
+      "The installed applications are out of date and must be reinstalled one by one."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Rotation lock is cleared, the failure is device-wide rather than app-specific, software remediation has been exhausted, and the sensor itself returns no data, which together isolate the fault to the accelerometer hardware. Clearing the system cache is a reasonable software step, but it is superseded here by a sensor that reports nothing at all even after a full OS update. Battery saver can restrict background activity on some devices, but it does not switch the accelerometer off outright and would not blank the sensor's own diagnostic readout. Reinstalling applications cannot explain a failure that also occurs on the home screen, which is part of the system UI rather than an installed app.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A tablet that was recently returned from a training lab connects to the office wireless network and shows full signal, but no app can reach the internet and the device cannot resolve any hostname. Other devices on the same access point work normally. Ravi checks the tablet's Wi-Fi details and sees a manually entered IP address, subnet mask, and DNS server from the lab's addressing scheme. What should Ravi do?",
+    "options": [
+      "Toggle airplane mode off and on to force the tablet to re-associate with the AP.",
+      "Reboot the office access point so any stale client association is cleared out.",
+      "Move the tablet onto the guest SSID so it bypasses the corporate configuration.",
+      "Switch the tablet's IP configuration from static back to DHCP for this network."
+    ],
+    "correctAnswer": 3,
+    "explanation": "The tablet associates successfully but carries addressing from a different network, so its gateway and DNS server are unreachable on this subnet, and letting DHCP supply a valid configuration restores both routing and name resolution. Toggling airplane mode forces re-association, but the manual configuration survives it and the same failure returns. Rebooting the access point disrupts every other working client to chase a problem confined to one device. Moving the tablet to the guest SSID is a policy-violating workaround that leaves the misconfigured corporate profile in place for the next user who joins with it.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Across a warehouse's forty managed Android handhelds, the current OS release never installs: the update downloads and then is skipped at the scheduled install window. Staff phones of the same model on the same Wi-Fi, but not enrolled in management, take the release without any trouble. Free storage and battery level on the managed handhelds are well above the update thresholds. What should the technician check first?",
+    "options": [
+      "Each handheld's free storage, so the update package has room to stage and install.",
+      "The wireless network, resetting network settings so the download completes cleanly.",
+      "The MDM software-update policy, for a deferral that is withholding the release.",
+      "The model's support status, since the release may no longer cover this hardware."
+    ],
+    "correctAnswer": 2,
+    "explanation": "A failure that tracks enrollment and spares identical unmanaged devices points at management policy, and MDM update-deferral settings hold a release back for a defined period, which matches an update that downloads and is then skipped at the install window. Storage was already verified above the threshold, and a space problem would stop the unmanaged phones as well. The download completes, so the wireless path is working and resetting network settings treats a symptom that is not present. Unmanaged phones of the same model install the same release, which rules out the hardware falling out of support.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Camila's Android phone has stopped completing contactless payments at every register, and the same phone no longer opens the office badge readers. She demonstrates the failure with the phone unlocked, the screen on, and the protective case removed, and a coworker's phone works at both the same register and the same badge reader. What should the technician check first?",
+    "options": [
+      "Whether the wallet application is set as the default contactless payment service.",
+      "Whether the payment terminal needs a reboot to re-read contactless credentials.",
+      "Whether the wallet app's cached card data needs clearing and the card re-adding.",
+      "Whether the NFC radio is still switched on in the phone's connection settings."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Contactless payment and badge reading both ride the same NFC radio, so a single phone failing at both while a coworker's phone succeeds points at the radio being switched off, and confirming that setting costs nothing and explains every observation. A default-service conflict decides which app answers a payment tap and would leave badge reads working. A terminal fault is ruled out by the coworker's phone succeeding at that same register, and it could not affect the badge readers at all. Clearing the wallet's cached card data is scoped to that one app and leaves the failed badge unlocks, which the wallet does not provide, unexplained.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Farid takes a ticket from a user whose iPhone will not install a newly published business app: the App Store shows the Get button, but tapping it returns an error and nothing downloads. Other apps install normally on the same phone over the same Wi-Fi, iPhone Storage shows 40 GB free, and the listing's compatibility section names a minimum iOS release two versions newer than the one the phone runs. What should Farid do?",
+    "options": [
+      "Update the phone to the iOS release the app's compatibility listing requires.",
+      "Offload unused apps so the installer has more room to stage its package files.",
+      "Reset network settings so the stalled App Store download can start over cleanly.",
+      "Sign out of the App Store account and back in to refresh the purchase record."
+    ],
+    "correctAnswer": 0,
+    "explanation": "An app whose listing requires a newer iOS release than the phone runs cannot install on that phone, so bringing the OS up to the stated minimum is the only option that touches the blocker the technician has already identified. Offloading apps frees storage, and the phone reports 40 GB free, so it relieves a constraint that is not present. Resetting network settings addresses downloads that stall or fail to start, but other apps install normally over the same Wi-Fi, which proves the network path is good. Signing out and back in clears account and purchase-record faults, and those would block every app rather than only the one whose minimum version this phone does not meet.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Leilani is handed a Bluetooth headset that a warehouse supervisor cannot pair with his company Android phone. The headset never appears in the phone's list of available devices, its indicator shows the steady pattern the manual calls connected rather than the flashing pattern it calls pairing, and the tablet the headset was originally issued with sits powered on two desks away. The supervisor's phone pairs with his car kit normally. What should Leilani do?",
+    "options": [
+      "Move the phone and the headset closer together, since range is limiting discovery.",
+      "Clear the phone's Bluetooth data and forget every device it has ever paired with.",
+      "Disconnect the headset from the nearby tablet, then put it back into pairing mode.",
+      "Replace the headset, because a unit that will not advertise itself has failed."
+    ],
+    "correctAnswer": 2,
+    "explanation": "A headset already connected to another host does not advertise itself, so no scan can find it, and the steady connected indicator plus the powered-on tablet two desks away identifies that host; breaking the link and putting the headset into pairing mode makes it discoverable again. Range does limit discovery, but the two devices are in the same room and the phone pairs with the car kit, so distance and the phone's radio are both cleared. Clearing Bluetooth data repairs a corrupt phone-side pairing table, which the working car kit rules out, and it costs the supervisor every pairing he has. The headset is plainly alive and connected to something, so replacing it discards working hardware and the next unit would be captured by the tablet the same way.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Trina supports delivery drivers whose company phones run turn-by-turn navigation all day in a windshield mount. Several drivers report that by mid-afternoon the phone responds sluggishly to taps, the screen dims on its own, and the map stutters, and that the phone behaves normally again the next morning. The phones charge in the mount, sit in direct sun, and wear thick protective cases. Battery health and free storage read normal. What is the most likely cause?",
+    "options": [
+      "A background app leaks memory across the day and starves the navigation app.",
+      "The phones are thermally throttling under sun, charging, and navigation load.",
+      "The batteries have aged, so the phones can no longer sustain their rated clocks.",
+      "The navigation app's cache has grown until every screen redraw takes longer."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Direct sun, continuous charging, and sustained GPS, radio, and display use all add heat, and phones respond by dimming the screen and dropping clock speed to protect themselves, which matches sluggishness that builds through the afternoon and is gone by morning. A memory leak also degrades through the day, but it does not dim the display on its own and it would ease when the offending app is closed rather than only after an overnight cool-down. Aged cells do force lower clocks on some devices, but the phones report normal battery health and that would not track a daily heat cycle. A large app cache costs storage and load time rather than brightness and frame rate, and free storage reads normal.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Osman supports a hospital ward where four of twelve identical Android tablets have begun rebooting two or three times a shift, at random, while idle and while in use. All twelve carry the same OS build and the same managed app set, but the four affected tablets are older and also hold several apps that staff installed themselves. Battery health and internal temperature read normal on all four, and the reboots continue after a full charge cycle. What should Osman do next?",
+    "options": [
+      "Replace the batteries in the four tablets, since random reboots follow power loss.",
+      "Factory reset the four tablets and restore each one from its most recent backup.",
+      "Clear the system cache partition on all twelve tablets from the recovery menu.",
+      "Run the four tablets in safe mode for a shift to rule the added apps in or out."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Safe mode starts Android with third-party apps disabled, so a quiet shift points at the staff-installed software the four tablets carry and a shift that still reboots points back at the OS or the hardware, and that split is what every later fix depends on. Battery faults do cause sudden power loss, but these tablets report normal battery health and reboot while idle as well as under load, so swapping parts precedes the evidence. Restoring each tablet from its own backup reinstalls the same added apps and returns the device to the state that is failing, at the cost of a wipe. Clearing the system cache partition is a cheap general remedy, but it changes nothing about which apps run and it disrupts eight tablets that are working.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.2",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Jordan brings in a personal Android phone enrolled in the company BYOD program. Since last week the phone shows a data-usage limit notification days early, responds sluggishly, and displays ads on the home screen. Jordan mentions installing a free video downloader as an APK from a link in a messaging group rather than from the official store. What should the technician do?",
+    "options": [
+      "Uninstall the sideloaded app and revoke install-unknown-apps for the messaging app.",
+      "Raise the account's mobile data allowance so that the usage notifications stop firing.",
+      "Disable cellular data on the phone and require it to run on office Wi-Fi only.",
+      "Clear the browser's cache and cookies so the advertising content is removed."
+    ],
+    "correctAnswer": 0,
+    "explanation": "High network traffic, degraded response, and system-level ads following an install from an unofficial source describe a malicious or adware-laden sideloaded app, so removing it and revoking the per-app install permission that allowed the sideload closes both the infection and the path that enabled it. Raising the data allowance pays for the malicious traffic instead of stopping it and leaves the device compromised. Disabling cellular data hides the usage notification while the app keeps exfiltrating data and serving ads over Wi-Fi. Clearing browser data removes web cache but not an installed application that draws ads outside the browser.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "While browsing on her company iPhone, Alia hits a full-screen page that vibrates the phone, claims '17 viruses detected,' and offers a one-tap link to install a cleaner app to fix it. She calls the help desk before tapping anything. What is the correct guidance?",
+    "options": [
+      "Install the recommended cleaner app, then remove it once its scan has completed.",
+      "Close the tab without touching the page and clear the browser's browsing data.",
+      "Buy the cleaner's licensed version so that the alert stops coming back on her phone.",
+      "Factory reset the iPhone to be certain that the infection has been fully removed."
+    ],
+    "correctAnswer": 1,
+    "explanation": "This is a fake security warning rendered by a web page rather than the result of any device scan, so closing the tab without interacting and clearing browsing data ends it, and the technician can then confirm that nothing was installed. Installing the recommended app is precisely the outcome the scam is built to produce and delivers the payload voluntarily. Paying for it funds the scam, still installs untrusted software, and the alerts have nothing to do with any license state. A factory reset is a severe, data-destroying response to a web page the user never interacted with, and nothing indicates the device was compromised.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.3",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Kenji installed what he believed was his bank's mobile app after following a link in a text message. The app's icon and login screen match the real one, but on first launch it requested SMS, contacts, and accessibility service permissions, and he granted them. He now reports unfamiliar login alerts on his email account. What should the technician conclude and do?",
+    "options": [
+      "The app needs SMS access for multifactor codes, so only the password must change.",
+      "The app's cache is corrupt, and clearing it will stop the unexpected behavior.",
+      "The app is a spoofed clone and must be removed and credentials reset elsewhere.",
+      "The app is out of date, and updating it from the same link resolves the prompts."
+    ],
+    "correctAnswer": 2,
+    "explanation": "An app delivered by a texted link that mimics a legitimate one and requests an accessibility service, which lets it read and drive the screen, is application spoofing, and the leaked credentials confirm it, so removal plus revoking its permissions, resetting credentials from a known-clean device, and reinstalling from the official store is the correct response. A genuine banking app does not need an accessibility service to receive multifactor codes, and treating the permissions as expected leaves the malicious app running. Clearing the cache leaves the malicious app installed with its granted permissions intact. Updating from the same unofficial link refreshes the malware rather than removing it.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "The MDM console flags a corporate-owned Android phone as non-compliant with the reason 'root detected,' and the company's expense app now refuses to launch on that device. The assigned user acknowledges that a friend unlocked the bootloader and installed a superuser manager so he could remove preinstalled apps. What is the appropriate action?",
+    "options": [
+      "Add the device to an MDM exception list so that its compliance check gets skipped.",
+      "Disable the root-detection policy in the MDM so that affected devices keep working.",
+      "Install a module that hides root from detection so that the expense app launches.",
+      "Revoke corporate access and return the phone to stock firmware before re-enrolling."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Root access breaks the OS security model that container-based separation and app protections depend on, so the compliant path is to pull corporate access and restore the vendor's unmodified firmware before the phone is enrolled again. Adding an exception knowingly grants a compromised device access to corporate data and undermines the control it bypasses. Disabling root detection extends the same weakness to every device in the fleet rather than to one phone. Installing a root-hiding module actively defeats a security control and puts the technician in the position of concealing a compromise instead of remediating it.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A corporate Android phone comes back from a third-party screen-repair vendor, which was given the device PIN so it could test the replacement panel, and within a day the user reports a data-usage limit notification and an unfamiliar app that the MDM inventory shows never came from the managed store. Bianca finds developer options enabled with USB debugging switched on, left over from a pilot deployment, on that phone and on eleven others. All twelve are encrypted and use a six-digit PIN. Which action addresses the mechanism that allowed the unauthorized install?",
+    "options": [
+      "Uninstall the unfamiliar app and close the ticket once data usage returns to normal.",
+      "Push a policy that disables developer options and USB debugging on the twelve phones.",
+      "Verify that device encryption is enabled before the phone goes back to its user.",
+      "Require a longer screen-lock PIN so the repair vendor cannot guess it next time."
+    ],
+    "correctAnswer": 1,
+    "explanation": "USB debugging leaves a privileged install-and-inspect interface waiting for a host, and a repair vendor that holds both the phone and its PIN can approve the authorization prompt and then push packages that never pass through the managed store, so disabling developer options by managed policy removes the exposure on all twelve phones at once. Uninstalling the app clears the symptom while leaving the debug interface open for the next repair visit to use the same way. Encryption is already reported as enabled, and it protects data at rest rather than an authorized debug session on a running device. The vendor was given the PIN legitimately for screen testing, so PIN length was never the exposure here; the debug interface left switched on afterward is.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Colin reports that his browser's homepage changed on its own, searches are redirected through an unfamiliar site before reaching results, and pages load noticeably slower than on his coworkers' machines. Windows Security reports no threats. What should the technician examine first?",
+    "options": [
+      "The browser's extensions and proxy settings, resetting the browser to defaults.",
+      "The health of the hard drive, since slow page loads can point to failing storage.",
+      "The saved cookies, deleting them so the redirect stops happening in the browser.",
+      "The default search engine setting, changing it back to the approved provider."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Homepage hijacking, search redirection, and degraded browser performance together are the classic profile of a malicious extension or a browser-scoped proxy redirect, and inspecting extensions and proxy settings finds the mechanism instead of one symptom. Drive health cannot explain redirection through a specific unfamiliar site, and the slowness is confined to the browser. Deleting cookies clears session data but leaves the extension or proxy in place to re-establish the redirect immediately. Resetting the default search engine treats the most visible symptom while the component that changed it remains installed and simply changes it back.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.4",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A user forwards a screenshot of a desktop pop-up warning that her subscription to a brand-name antivirus product has expired and that her PC is unprotected, with a Renew Now button. The technician's asset record shows the workstation has never had a third-party antivirus product installed. What should the technician do?",
+    "options": [
+      "Have the user click Renew Now and complete the purchase to restore protection.",
+      "Uninstall Microsoft Defender Antivirus so the two products no longer conflict.",
+      "Treat it as a false alert and locate and remove the adware or PUP producing it.",
+      "Disable User Account Control so the alerts stop interrupting the user's work."
+    ],
+    "correctAnswer": 2,
+    "explanation": "An expiry warning for software that was never installed is a false alert regarding antivirus protection, so the technician confirms the real protection state in Windows Security and then hunts down whatever is producing the alert, which may be an installed adware program or PUP or a rogue browser notification or extension. Clicking Renew Now hands payment details to the scam and often installs the very payload it advertises. Uninstalling Defender removes the workstation's only real protection on the basis of a conflict that does not exist. Disabling User Account Control suppresses elevation prompts, which are not what the user is seeing, and strips away a control that limits what unauthorized software can change.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Dana is dispatched to a workstation where every document on the user's mapped drive has been renamed with an unfamiliar extension and will not open in any application, a text file demanding payment sits on the desktop, and Windows Update has failed with the same error for several days. The drive letter still browses and the user's profile signs in normally. Which conclusion best fits these symptoms?",
+    "options": [
+      "A failed quality update rolled back and renamed the user's files as it recovered.",
+      "Ransomware encrypted the files, and its interference explains the failed updates.",
+      "The antivirus product quarantined the files, renaming each one as it isolated it.",
+      "The volume's file table is corrupt, so chkdsk has to rebuild the damaged entries."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Files renamed to one unfamiliar extension and unreadable everywhere, plus a payment demand dropped beside them, is the signature of ransomware, and update failures alongside it fit malware that suppresses the servicing path to protect itself. A failed quality update can roll back and can leave a profile broken, but it does not rewrite user data on a network share or leave a ransom note. Antivirus quarantine does rename and lock what it isolates, but it acts on files it has detected rather than every document on a share, it logs each action in its own console, and it leaves no payment demand. File table corruption produces unreadable or cross-linked files, yet the drive still browses, every file carries the same new extension, and no filesystem fault writes a ransom note.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.4",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Desmond is sent to a workstation that cannot open any internal or internet site. ipconfig shows a valid address, mask, and gateway from the office DHCP scope, and the gateway answers pings by IP address. Name lookups return addresses that do not match what the corporate DNS server answers for the same names, and the adapter lists a DNS server the DHCP scope has never issued. What is the most likely cause?",
+    "options": [
+      "The DHCP scope is exhausted, so the client has fallen back to a link-local address.",
+      "The switch port has a duplex mismatch, so most outbound traffic is being dropped.",
+      "The firewall profile switched to Public and is blocking the workstation's traffic.",
+      "Malware on the host rewrote the adapter's DNS entry to redirect name resolution."
+    ],
+    "correctAnswer": 3,
+    "explanation": "An unexplained DNS server on the adapter that the scope never issued, combined with lookups that disagree with the corporate server, is the signature of a host-based change made by malware to steer the user's traffic, and connectivity by IP address confirms the network path itself is healthy. Scope exhaustion produces a 169.254 link-local address, while this client holds a valid lease from the office scope. A duplex mismatch degrades throughput and produces errors and retransmissions rather than swapping the configured DNS server. The Public firewall profile tightens inbound rules and would not rewrite the adapter's DNS entry or change which addresses lookups return.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Noor works a ticket where Windows Update has failed on the same machine for two weeks. She also finds that Defender real-time protection is off and will not stay on, tamper protection has been switched off, and the Windows Update service returns to Disabled within minutes of her setting it back to Automatic. The system volume has 300 GB free. What should Noor conclude?",
+    "options": [
+      "Malware is disabling the security and update services, so an offline scan is needed.",
+      "The update cache is corrupt, so the SoftwareDistribution folder should be renamed.",
+      "The system volume lacks free space, so the update cannot stage its payload files.",
+      "The edition is out of servicing, so the machine needs a feature update to continue."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Security and update services that revert to disabled minutes after being corrected, alongside tamper protection switched off, describe active interference by malware rather than a Windows fault, and scanning from an offline or preinstallation environment runs before the threat's components can load and protect themselves. Renaming SoftwareDistribution rebuilds a corrupt download cache but cannot explain a service that keeps re-disabling itself. The 300 GB of free space directly contradicts the storage condition that option assumes. An edition past its servicing window simply stops being offered updates; it does not turn off real-time protection or disable the update service.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.4",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Miriam is handed a laptop where every HTTPS site, in two different browsers, raises a certificate warning that began last Tuesday. The laptop's clock and time zone are correct, other machines on the same network load the same sites without complaint, and each certificate the browsers present is issued by the same unfamiliar authority, which appears nowhere in the machine's trusted root store and was deployed by no corporate policy. What is the most likely cause?",
+    "options": [
+      "The laptop's clock is wrong, so valid certificates fall outside their valid window.",
+      "The wireless network presents an expired certificate to every client that joins.",
+      "Software on the laptop is intercepting TLS and re-signing it with an untrusted root.",
+      "The browsers are outdated and no longer trust the signature algorithms now in use."
+    ],
+    "correctAnswer": 2,
+    "explanation": "One unfamiliar issuer reissuing the certificate for every site means something on the laptop is terminating and re-signing its TLS sessions, and because that issuer is in no trust store the re-signed certificates fail validation, which is why the warnings follow the machine rather than the network. The clock and time zone were verified as correct, so the validity-window explanation is ruled out by the stem. A network-side certificate problem would affect the other machines on the same network, and they load the same sites cleanly. Outdated browsers reject specific algorithms on specific sites; they do not substitute a single unfamiliar issuer across every site in two different browsers.",
+    "domain": "Software Troubleshooting",
+    "objective": "3.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  }
+]

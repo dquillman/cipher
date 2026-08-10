@@ -179,7 +179,7 @@ export const SEO = {
   lpNetworkPlus: {
     title: 'CompTIA Network+ Practice — OSI Troubleshooting · CipherExam',
     description:
-      'Practice Network+ (N10-008) with native PBQ support and layer-by-layer reasoning through the Exam Lens. Bloom’s-classified questions. Free 7-day trial.',
+      'Practice Network+ (N10-009) with native PBQ support and layer-by-layer reasoning through the Exam Lens. Bloom’s-classified questions. Free 7-day trial.',
     canonical: '/lp/network-plus',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -211,7 +211,7 @@ export const SEO = {
   lpAPlusCore2: {
     title: 'CompTIA A+ Core 2 Practice — PBQ-Native · CipherExam',
     description:
-      'Practice A+ Core 2 (220-1102) with full PBQ support and reasoning explanations tied to the CompTIA six-step troubleshooting methodology. Free 7-day trial.',
+      'Practice A+ Core 2 (220-1202) with full PBQ support and reasoning explanations tied to the CompTIA six-step troubleshooting methodology. Free 7-day trial.',
     canonical: '/lp/a-plus-core-2',
     ogImage: 'https://cipherexam.com/og-default.png',
   },

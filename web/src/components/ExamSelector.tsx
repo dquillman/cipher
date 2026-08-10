@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ExamService, type ExamSummary } from '../services/ExamService';
 import { useExam } from '../contexts/ExamContext';
-import { trackExamSelected } from '../lib/ga4';
 
 export default function ExamSelector() {
     const { selectedExamId, switchExam, examName: currentExamName } = useExam();
@@ -25,9 +24,7 @@ export default function ExamSelector() {
     }, []);
 
     const handleSelect = (examId: string) => {
-        const exam = exams.find(e => e.id === examId);
-        trackExamSelected(examId, exam?.name || 'Unknown');
-        switchExam(examId);
+        switchExam(examId); // fires exam_selected — see ExamContext.switchExam
         setIsOpen(false);
         // We can reload if we suspect deep state issues, but Context *should* propagate
         // window.location.reload(); 

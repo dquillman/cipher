@@ -25,11 +25,15 @@ export const EXAM_REFERENCES: Record<string, string> = {
     // Scrum Alliance builds the CSM from its own learning objectives; the Scrum
     // Guide is the underlying framework, not the exam blueprint. Cite both.
     "IpECw0XAtBkgD1HyvYas": "Scrum Alliance CSM Learning Objectives (Jan 2022) · The Scrum Guide (Nov 2020)",
-    // Bank is written against the 2024 BASK. SHRM's 2026 BASK took effect for
-    // exams from 1 May 2026 and merged Inclusion & Diversity with Global Mindset
-    // into "Inclusive Mindset". Cite what the content IS until it is re-authored;
-    // claiming the 2026 edition before then would be the false-relabel mistake.
-    "bpfawZDj3qalhoU4mdd3": "SHRM Body of Applied Skills & Knowledge (BASK) – 2024 edition (superseded 1 May 2026)",
+    // Re-authored against the 2026 BASK on 2026-08-10 and uploaded, so this
+    // citation is earned rather than asserted: the two questions that taught the
+    // abolished Global Mindset competency were rewritten to Inclusive Mindset,
+    // and 16 questions were added covering Inclusive Mindset and the AI content
+    // the 2026 edition wove through HR practice (the bank previously had none).
+    // Verified in production: Inclusive Mindset 0 -> 12 questions, AI 0 -> 6, and
+    // every surviving "Global Mindset" mention now explains the merge or quotes
+    // the BASK's own retained indicator rather than teaching it as current.
+    "bpfawZDj3qalhoU4mdd3": "SHRM Body of Applied Skills & Knowledge (BASK) – 2026 edition (effective 1 May 2026)",
     "XGfL6RE2ls7cokP2tqMa": "ASQ Certified Six Sigma Green Belt Body of Knowledge – 2022 edition",
     // The Payroll Source is a study guide, not the blueprint. The blueprint is
     // the CPP Content Outline, and it is dated because payroll content turns
@@ -41,7 +45,9 @@ export const EXAM_REFERENCES: Record<string, string> = {
     "6FKeXlV2dzv4I03tewcU": "ITIL 4 Foundation syllabus v4.2.0 (PeopleCert, Mar 2025)",
     "79cuGMNydTwDMhyiDjry": "CompTIA Security+ SY0-701 Exam Objectives (launched Nov 2023; current)",
     "gp6QwBz0FXFIntLSQSYr": "CompTIA Network+ N10-008 Exam Objectives (retired Dec 2024; superseded by N10-009)",
+    "N5mrEby0gKLFs1y88DpM": "CompTIA Network+ N10-009 Exam Objectives (launched Jun 2024; current)",
     "cxBsVz8AVaocdEYbgSMA": "CompTIA A+ 220-1102 Core 2 Exam Objectives (retired 25 Sep 2025; superseded by 220-1202)",
+    "12396VsKMFLnPMXivHKQ": "CompTIA A+ 220-1202 Core 2 V15 Exam Objectives (launched Mar 2025; current)",
 };
 
 /**

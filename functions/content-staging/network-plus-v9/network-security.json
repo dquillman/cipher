@@ -1,0 +1,227 @@
+[
+  {
+    "stem": "Priya, a network technician at a medical billing company, is reviewing the company's data protection posture. Nightly database backups are copied to disks in a locked cabinet, but an auditor notes that anyone who steals a disk could read every record on it. Which control directly addresses the auditor's concern?",
+    "options": [
+      "Enable TLS on all connections to the database server",
+      "Encrypt the backup volumes so the data is protected at rest",
+      "Require multifactor authentication for database logins",
+      "Move the backups to a screened subnet"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The auditor's concern is about stored data on stolen media, which is a data-at-rest problem; encrypting the backup volumes renders a stolen disk unreadable without the key. TLS protects data in transit between hosts, not data sitting on a disk. MFA strengthens login security but does nothing once the physical media leaves the building. A screened subnet is a network zone design for exposing public-facing services; it has no effect on the readability of stolen backup disks.",
+    "domain": "Network Security",
+    "objective": "4.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Marcus deploys a new internal HR web portal. Employees complain that every browser session begins with a warning that the site's identity cannot be verified, and the security team worries users are being trained to click through certificate errors. The server is currently using a certificate the web server generated for itself. What should Marcus do to resolve the warnings properly?",
+    "options": [
+      "Instruct users to add a permanent browser exception for the portal",
+      "Replace HTTPS with HTTP on the internal portal since it is not internet-facing",
+      "Issue the server a certificate from a CA that clients already trust through the company's PKI",
+      "Regenerate the self-signed certificate with a longer validity period"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The warnings occur because a self-signed certificate has no trust chain to a certificate authority the browsers recognize. Issuing the certificate from the organization's PKI (an internal CA whose root is trusted by managed clients) gives browsers a valid chain and removes the warning without weakening security. Telling users to add exceptions institutionalizes the exact click-through habit the security team fears. Dropping HTTPS removes encryption entirely, exposing HR data in transit. A longer validity period changes nothing — the certificate still lacks a trusted issuer, so the warning persists.",
+    "domain": "Network Security",
+    "objective": "4.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Dana administers 200 routers and switches and wants centralized AAA where each network engineer's individual CLI commands can be authorized and logged separately, with authentication traffic fully encrypted between the device and the AAA server. Which protocol best fits these requirements?",
+    "options": [
+      "TACACS+",
+      "RADIUS",
+      "LDAP",
+      "SAML"
+    ],
+    "correctAnswer": 0,
+    "explanation": "TACACS+ separates authentication, authorization, and accounting, supports per-command authorization for device administration, and encrypts the entire packet body — exactly the requirements Dana lists. RADIUS combines authentication and authorization, encrypts only the password field, and is better suited to network access (such as wireless or VPN logins) than granular device administration. LDAP is a directory access protocol used to look up and authenticate against user stores; it provides no per-command authorization or AAA accounting. SAML is a web-based federation standard for single sign-on between identity and service providers, not a device administration protocol.",
+    "domain": "Network Security",
+    "objective": "4.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Elena's company is adopting several cloud SaaS applications. Leadership wants employees to sign in once with their corporate directory credentials and gain access to each cloud app without separate passwords, using an open standard in which the company's identity provider sends signed assertions to each application. Which technology is being described?",
+    "options": [
+      "TACACS+ command authorization",
+      "MAC filtering on the wireless controller",
+      "Geofencing tied to corporate offices",
+      "SAML-based single sign-on"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Signed assertions passed from an identity provider to service providers so users authenticate once for many web applications is the definition of SAML-based SSO. TACACS+ is a AAA protocol for administering network devices, not federating web application logins. MAC filtering controls which hardware addresses may join a network segment and has nothing to do with application authentication. Geofencing restricts access based on physical location; it may complement authentication policy but cannot provide federated sign-on by itself.",
+    "domain": "Network Security",
+    "objective": "4.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A junior accountant at Tomas's firm was found to have standing access to firewall management, the payroll database, and the backup console — none of which her job requires. Tomas wants an authorization principle applied so every account holds only the permissions its role actually needs. Which concept is he applying?",
+    "options": [
+      "Defense in depth",
+      "Implicit deny on the perimeter firewall",
+      "Network segmentation",
+      "Least privilege"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Granting each user only the minimum permissions required for their duties is the principle of least privilege, typically operationalized through role-based access control. Defense in depth is about layering multiple security controls, not scoping an individual's permissions. Implicit deny is a firewall/ACL behavior where unmatched traffic is dropped; it governs traffic flows, not user account rights. Network segmentation isolates groups of devices from each other and would not, on its own, remove the excess permissions attached to the accountant's account.",
+    "domain": "Network Security",
+    "objective": "4.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "After several intrusion attempts against her company's perimeter, security analyst Noor deploys an intentionally vulnerable-looking server in an isolated network segment. It hosts no production data; its only purpose is to attract attackers so their tools and techniques can be observed and logged safely. What has Noor deployed?",
+    "options": [
+      "A honeypot",
+      "A jump box",
+      "A screened subnet",
+      "An IPS in inline mode"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A deliberately exposed decoy system that lures attackers away from production assets while capturing their behavior is a honeypot (a network of them would be a honeynet). A jump box is a hardened intermediary host administrators use to reach protected devices — the opposite of something meant to be attacked. A screened subnet is a buffer zone architecture for hosting legitimate public-facing services, not a decoy. An inline IPS actively inspects and blocks malicious traffic; it defends real systems rather than baiting attackers for observation.",
+    "domain": "Network Security",
+    "objective": "4.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "At a coffee shop, consultant Jae notices two Wi-Fi networks with the identical SSID as the shop's official network. After connecting to the stronger signal, his HTTPS sessions begin producing certificate warnings, and a colleague confirms the shop operates only one access point. Which attack is Jae most likely experiencing?",
+    "options": [
+      "An evil twin access point",
+      "MAC flooding of the shop's switch",
+      "VLAN hopping",
+      "A DDoS attack against the access point"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A rogue access point broadcasting the same SSID as a legitimate network to lure clients into connecting — enabling the attacker to intercept traffic, which explains the certificate warnings — is an evil twin. MAC flooding targets a switch's CAM table to force it to flood frames; it does not create duplicate wireless networks. VLAN hopping lets a wired attacker reach VLANs they should not access and would not present as a duplicate SSID. A DDoS would degrade or deny connectivity to the real AP, not produce a second, stronger copy of the network that intercepts sessions.",
+    "domain": "Network Security",
+    "objective": "4.2",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Users on one office subnet report intermittent connectivity, and Rosa, the network engineer, finds that the MAC address associated with the default gateway's IP in every workstation's ARP cache belongs to an unmanaged PC in a cubicle. Traffic from the subnet appears to be flowing through that PC before reaching the router. What is happening?",
+    "options": [
+      "DNS poisoning is redirecting users to a fake gateway hostname",
+      "A rogue DHCP server is issuing incorrect default gateways",
+      "ARP poisoning is enabling an on-path attack against the subnet",
+      "MAC flooding has forced the switch into fail-open flooding"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Workstations mapping the gateway's IP address to an attacker's MAC address is the signature of ARP poisoning (ARP spoofing): the attacker answers ARP requests with forged replies so traffic destined for the gateway routes through their machine — a classic on-path position. DNS poisoning corrupts name-to-IP resolution, but the gateway's IP itself is correct here; only the MAC mapping is wrong. A rogue DHCP server would hand out a wrong gateway IP address, not alter the MAC associated with the legitimate gateway IP. MAC flooding causes a switch to broadcast frames out all ports for passive sniffing; it does not rewrite ARP caches to funnel traffic through one host.",
+    "domain": "Network Security",
+    "objective": "4.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Shortly after a contractor plugs a personal wireless router into a conference room wall jack, employees across the floor begin receiving IP addresses in an unfamiliar range with the contractor's device listed as their default gateway, and they lose access to internal resources. Which attack or condition does help-desk lead Omar identify?",
+    "options": [
+      "An evil twin attack impersonating the corporate SSID",
+      "A rogue DHCP server handing out bogus network configurations",
+      "DNS spoofing altering internal hostname resolution",
+      "A deauthentication flood against the wireless controller"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A device answering DHCP discover messages with its own address pool and naming itself the gateway is a rogue DHCP service — whether malicious or, as here, an unauthorized router someone plugged in. Clients that lease from it receive wrong addressing and lose access to legitimate resources. An evil twin is a wireless impersonation attack; the symptom here is wrong IP leases on the wired LAN, not a duplicate SSID. DNS spoofing would misdirect name lookups while leaving IP addressing intact. A deauthentication flood knocks wireless clients off an AP; it does not distribute incorrect IP configurations.",
+    "domain": "Network Security",
+    "objective": "4.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "During a penetration test, Sofia crafts frames carrying two 802.1Q tags. The access switch strips the outer tag and forwards the frame to a downstream switch, which reads the inner tag and delivers the frame into the finance VLAN — a segment Sofia's port should never reach. Which attack has she demonstrated?",
+    "options": [
+      "ARP spoofing between the finance VLAN's hosts",
+      "MAC flooding to overflow the CAM table",
+      "An on-path attack using a rogue trunk gateway",
+      "VLAN hopping via double tagging"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Stacking two 802.1Q headers so the second switch honors the inner tag and forwards traffic into a VLAN the attacker is not assigned to is the double-tagging form of VLAN hopping (the other form is switch spoofing via rogue trunk negotiation). ARP spoofing forges IP-to-MAC mappings within a broadcast domain the attacker can already reach — the point of this attack is reaching a segment she cannot. MAC flooding degrades a switch into flooding frames for sniffing but does not cross VLAN boundaries. An on-path attack describes interception positioning generally; it does not describe the double-tag mechanism demonstrated here.",
+    "domain": "Network Security",
+    "objective": "4.2",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Employees at Kenji's company report that typing the correct URL for the corporate payroll site occasionally lands them on a visually identical page hosted at an unrelated IP address. Kenji finds that the company's caching DNS resolver is returning a forged A record for the payroll hostname. Which attack does this describe?",
+    "options": [
+      "ARP poisoning of the resolver's gateway",
+      "DNS poisoning of the resolver's cache",
+      "An evil twin serving a cloned captive portal",
+      "URL filtering misconfiguration on the proxy"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Forged resolution data planted in a caching resolver so a legitimate hostname maps to an attacker-controlled IP is DNS poisoning (cache poisoning); every client using that resolver is silently redirected even though users type the correct URL. ARP poisoning forges MAC-layer mappings inside a local subnet and would not change which IP a hostname resolves to. An evil twin is a rogue wireless AP; these users are being misdirected regardless of how they connect. A URL filtering misconfiguration might wrongly block or allow sites, but it does not answer DNS queries with forged records pointing at an attacker's server.",
+    "domain": "Network Security",
+    "objective": "4.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Aisha wants to stop unauthorized laptops from gaining network access simply by plugging into lobby wall jacks. Her requirements: every device must authenticate with credentials or a certificate before its switch port passes traffic, validated against the corporate directory through a central authentication server. Which solution meets the requirements?",
+    "options": [
+      "802.1X port-based network access control",
+      "Sticky MAC port security on all access ports",
+      "A captive portal on the guest wireless SSID",
+      "ACLs applied to the lobby VLAN's gateway interface"
+    ],
+    "correctAnswer": 0,
+    "explanation": "802.1X is port-based NAC: the switch (authenticator) blocks all traffic except authentication frames until the device (supplicant) proves its identity — via certificate or credentials — to an authentication server such as RADIUS tied to the corporate directory. Sticky MAC port security only pins learned hardware addresses to ports; MAC addresses are spoofable and no identity is verified. A captive portal governs the guest wireless network, not wired lobby jacks. Gateway ACLs filter traffic after a device is already on the network — they cannot keep an unauthorized device from joining the segment in the first place.",
+    "domain": "Network Security",
+    "objective": "4.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "During an assessment of a small branch office, consultant Liam finds the managed switch still accepts the manufacturer's published admin password, and Telnet, HTTP management, and an unused file-transfer service are all enabled. Which device hardening steps should he recommend first?",
+    "options": [
+      "Enable jumbo frames and disable spanning tree on uplinks",
+      "Change the default credentials and disable the unused and insecure services",
+      "Mirror all switch ports to an IDS sensor for monitoring",
+      "Move the switch's management IP into the data VLAN for easier access"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The two foundational hardening moves are exactly what is missing: replace default passwords (which are publicly documented for every vendor) and disable unused or insecure services, replacing Telnet/HTTP management with SSH/HTTPS. Jumbo frames are a performance setting and disabling spanning tree invites switching loops — neither is a security control. Port mirroring to an IDS adds detection but leaves the device trivially compromisable through its default login. Placing management access in the data VLAN worsens the exposure; management traffic should be isolated, not mixed with user traffic.",
+    "domain": "Network Security",
+    "objective": "4.3",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Fatima's company is deploying a public-facing web server. Security policy says internet users must be able to reach it, but if the server is compromised, the attacker must not gain a direct path into the internal LAN. Where should Fatima place the server?",
+    "options": [
+      "On the internal LAN with a port-forward rule from the edge firewall",
+      "Outside the firewall, directly on the internet-facing segment",
+      "In a screened subnet between the untrusted internet and the trusted internal zone",
+      "On the management VLAN alongside the network infrastructure"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A screened subnet (perimeter network) is the zone architecture built for exactly this case: firewalled from the internet so only required service ports are exposed, and firewalled again from the internal network so a compromised server cannot pivot inward. Port-forwarding into the internal LAN gives an attacker who owns the server a foothold inside the trusted zone. Placing the server outside the firewall leaves it with no protection at all and still requires opening paths inward for administration. The management VLAN is the most sensitive segment on the network — putting an internet-reachable host beside switch and firewall management interfaces maximizes the damage of a compromise.",
+    "domain": "Network Security",
+    "objective": "4.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "An IDS alert shows a host on the warehouse floor sending thousands of frames per second, each with a different randomized source MAC address, and the access switch has begun forwarding unicast traffic out every port on that segment. Network engineer Colin needs a switch-level control that limits how many MAC addresses a port may learn and shuts the port down when the limit is exceeded. Which feature should he configure?",
+    "options": [
+      "URL filtering on the perimeter firewall",
+      "Storm control for broadcast traffic",
+      "Port security with a maximum MAC address limit and violation action",
+      "MAC filtering allow-lists maintained on the wireless controller"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The attack is MAC flooding — overflowing the switch's CAM table with bogus source addresses until the switch floods unicast frames like a hub, enabling sniffing. Port security directly counters it by capping the number of MAC addresses a port may learn and applying a violation action (such as err-disable) when the cap is exceeded. URL filtering governs which websites users can reach and is irrelevant to layer 2 CAM exhaustion. Storm control rate-limits broadcast/multicast storms, but these flood frames use unicast with rotating source MACs, which storm control does not address. Wireless-controller MAC filtering applies to Wi-Fi association, not a wired access port on the warehouse switch.",
+    "domain": "Network Security",
+    "objective": "4.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  }
+]

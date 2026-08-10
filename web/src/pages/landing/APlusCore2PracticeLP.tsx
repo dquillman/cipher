@@ -7,7 +7,7 @@ import SeoHead from "../../components/SeoHead";
 import { SEO } from "../../config/seo";
 
 /**
- * /lp/a-plus-core-2 — Tier 1 ad landing page for CompTIA A+ Core 2 (220-1102) candidates.
+ * /lp/a-plus-core-2 — Tier 1 ad landing page for CompTIA A+ Core 2 (220-1202) candidates.
  * Voice: product voice ("we"). No founder narrative — that lives at /story.
  * No testimonials / no lead magnet on this LP (testimonialBadge="none").
  *
@@ -57,7 +57,7 @@ export default function APlusCore2PracticeLP() {
             <strong>Exam Lens explanations.</strong> Every right and wrong answer is walked
             through the same prompt — <em>what step of the CompTIA troubleshooting model is
             this?</em> — anchored to the official CompTIA six-step methodology and the A+
-            220-1102 objectives, so you internalize the order, not just the facts.
+            220-1202 objectives, so you internalize the order, not just the facts.
           </li>
           <li>
             <strong>90-question Full Mock with PBQ support.</strong> Same length and pacing as
@@ -84,7 +84,7 @@ export default function APlusCore2PracticeLP() {
           { letter: "D", text: "Reboot the PC and document that the issue is resolved" },
         ]}
         correctLetter="A"
-        reasoning="Apply the Exam Lens: what step of the CompTIA troubleshooting model is this? Answer A is step one — identify the problem — which explicitly includes gathering information from the user and asking what changed, and it must come before you establish a theory of probable cause. B opens Task Manager and acts on an unverified hunch — that skips ahead to testing a theory and establishing a plan before the problem is even scoped. C commits to a single theory (malware) with no evidence — that's establishing a theory, not identifying the problem. D verifies full functionality and documents (steps five and six) before anything was actually diagnosed. Per the CompTIA six-step methodology in the A+ 220-1102 objectives, you identify the problem before you establish, test, or act on any theory."
+        reasoning="Apply the Exam Lens: what step of the CompTIA troubleshooting model is this? Answer A is step one — identify the problem — which explicitly includes gathering information from the user and asking what changed, and it must come before you establish a theory of probable cause. B opens Task Manager and acts on an unverified hunch — that skips ahead to testing a theory and establishing a plan before the problem is even scoped. C commits to a single theory (malware) with no evidence — that's establishing a theory, not identifying the problem. D verifies full functionality and documents (steps five and six) before anything was actually diagnosed. Per the CompTIA six-step methodology in the A+ 220-1202 objectives, you identify the problem before you establish, test, or act on any theory."
         bloomsLevel="Apply"
       />
 
@@ -106,11 +106,11 @@ export default function APlusCore2PracticeLP() {
         <dl className="space-y-6">
           <div>
             <dt className="font-semibold text-slate-100">How long is the A+ Core 2 exam, and what's the format?</dt>
-            <dd className="mt-1">The real 220-1102 exam is up to 90 questions in 90 minutes. Our Full Mock matches that — 90 questions in 90 minutes — and supports the same question types: multiple-choice, matching, and performance-based questions (PBQs).</dd>
+            <dd className="mt-1">The real 220-1202 exam is up to 90 questions in 90 minutes. Our Full Mock matches that — 90 questions in 90 minutes — and supports the same question types: multiple-choice, matching, and performance-based questions (PBQs).</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Is this aligned to the current A+ Core 2 objectives?</dt>
-            <dd className="mt-1">Yes — the question library is built against CompTIA's published A+ 220-1102 exam objectives, including the six-step troubleshooting methodology that the scenario questions lean on.</dd>
+            <dd className="mt-1">Yes — the question library is built against CompTIA's published A+ 220-1202 exam objectives, including the six-step troubleshooting methodology that the scenario questions lean on.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do you support performance-based questions (PBQs)?</dt>
