@@ -28,18 +28,6 @@
                 "**/.*",
                 "**/node_modules/**"
             ],
-            "redirects": [
-                {
-                    "source": "/lp/network-plus",
-                    "destination": "/exams",
-                    "type": 301
-                },
-                {
-                    "source": "/lp/a-plus-core-2",
-                    "destination": "/exams",
-                    "type": 301
-                }
-            ],
             "rewrites": [
                 {
                     "source": "/app/**",
@@ -84,18 +72,6 @@
                 "**/.*",
                 "**/node_modules/**"
             ],
-            "redirects": [
-                {
-                    "source": "/lp/network-plus",
-                    "destination": "/exams",
-                    "type": 301
-                },
-                {
-                    "source": "/lp/a-plus-core-2",
-                    "destination": "/exams",
-                    "type": 301
-                }
-            ],
             "rewrites": [
                 {
                     "source": "/app/**",
@@ -139,18 +115,6 @@
                 "firebase.json",
                 "**/.*",
                 "**/node_modules/**"
-            ],
-            "redirects": [
-                {
-                    "source": "/lp/network-plus",
-                    "destination": "/exams",
-                    "type": 301
-                },
-                {
-                    "source": "/lp/a-plus-core-2",
-                    "destination": "/exams",
-                    "type": 301
-                }
             ],
             "rewrites": [
                 {

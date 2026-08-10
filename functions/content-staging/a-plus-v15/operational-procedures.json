@@ -1,0 +1,542 @@
+[
+ {
+  "stem": "Marisol, a tier-1 technician, spends 40 minutes discovering that a recurring \"driver unavailable\" error on the accounting department's laser printers is cleared by rolling back the print driver to the previous version. Forty other users have the same printer model. She has already closed the ticket with clear resolution notes. What should she do next so the next technician does not repeat those 40 minutes?",
+  "options": [
+   "Raise the severity level assigned to any future ticket that mentions this printer model so it escalates immediately.",
+   "Add the printer's asset tag and ID to the inventory list so the affected devices can be located quickly.",
+   "Write a knowledge base article describing the symptom, the offending driver version, and the rollback steps.",
+   "File an incident report documenting the 40 minutes of lost technician time."
+  ],
+  "correctAnswer": 2,
+  "explanation": "A knowledge base article is the documentation artifact whose purpose is to capture a known symptom and its verified fix so any technician can reuse it. Raising severity changes how a ticket is routed and prioritized, not whether anyone knows the answer, and inflating severity on a routine issue distorts SLA reporting. Asset tags and inventory lists identify and locate hardware; they carry no troubleshooting knowledge. Incident reports document security events or significant service disruptions, not the normal resolution of a support ticket.",
+  "domain": "Operational Procedures",
+  "objective": "4.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A zero-day vulnerability in the company's VPN concentrator is being actively exploited in the wild. Kwame's team must patch tonight, far inside the normal two-week change advisory cycle. How should the work be classified and handled?",
+  "options": [
+   "As a standard change, because security patching of the VPN concentrator is a routine, pre-approved maintenance activity for the team",
+   "As an emergency change, routed through the expedited approval path with the change record completed and reviewed afterward",
+   "As a normal change, held until the next scheduled change board meeting so a full risk analysis and peer review can be completed first",
+   "As a change freeze exception, which removes the requirement to file a change request at all"
+  ],
+  "correctAnswer": 1,
+  "explanation": "An emergency change is the defined path for work that must proceed before the normal approval cycle can complete; it uses an expedited approval and the documentation is finished retroactively, so the audit trail still exists. A standard change is a low-risk, repetitive activity with standing pre-approval — an out-of-band zero-day patch on a security appliance is neither routine nor pre-approved, however routine ordinary patching of that device may be. Holding this as a normal change buys a full risk analysis and peer review at the price of leaving a known-exploited vulnerability live for two weeks, which is the outcome change management is supposed to prevent, not cause. No change classification, and no exception granted under any date restriction, eliminates the requirement to record the change.",
+  "domain": "Operational Procedures",
+  "objective": "4.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "The nightly backup window at a law firm is too short to finish a weekly full backup of the file server, and the restore team refuses to chain a long series of jobs at recovery time. Ines needs a configuration that yields a current, single-step restore point every night while the backup software still reads only that night's changed data from the production server. Which backup type meets all three constraints?",
+  "options": [
+   "A differential backup",
+   "An incremental backup with in-place recovery",
+   "A synthetic full backup",
+   "A grandfather-father-son (GFS) rotation"
+  ],
+  "correctAnswer": 2,
+  "explanation": "A synthetic full backup is assembled on the backup target itself by merging the existing full image with the incrementals that followed it, which is how it satisfies all three constraints at once: production is read only for that night's changes, the nightly window stays short, and what the restore team receives is a complete image rather than a chain. A differential copies everything changed since the last full directly from the client, so the nightly read grows every night until the next full — it shortens the restore at the price of the window. An incremental with in-place recovery is the chained restore the recovery team refused: every incremental since the last full has to be applied in sequence, and in-place recovery describes only where restored data lands, not how the backup was built. GFS is a retention and rotation scheme governing how long daily, weekly, and monthly copies are kept, and it says nothing about how any single image is produced.",
+  "domain": "Operational Procedures",
+  "objective": "4.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Nadia is replacing memory modules in a desktop at a user's cubicle in a dry, heavily carpeted office. Which approach best protects both the technician and the components?",
+  "options": [
+   "Leave the PC plugged in so the chassis stays grounded, and clip an ESD strap to the case",
+   "Disconnect power at the wall, wear an ESD strap bonded to a properly grounded point, and set the modules on an antistatic mat or in an antistatic bag",
+   "Disconnect power at the wall, then hold each module by its gold contacts so any static she has accumulated discharges through her fingers before it is seated",
+   "Leave the PC plugged in so the chassis stays grounded, and periodically touch the bare power supply housing between modules instead of wearing a strap or mat"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Disconnecting power before servicing a PC, bonding an ESD strap to a known ground, and storing components in antistatic packaging together address both the shock hazard to the technician and the static hazard to the parts. Leaving the system plugged in for grounding is an obsolete and unsafe practice: an ATX supply keeps standby voltage on the board, so the technician is working on live circuitry. Cutting power first is correct in the third option, but handling modules by the gold contacts is the worst possible technique — modules are held by the edges, because the contacts are the path straight into the chips, and a discharge through them is not harmless. Intermittently touching the chassis provides no continuous discharge path and is not a substitute for a strap or an antistatic mat, particularly on dry carpet.",
+  "domain": "Operational Procedures",
+  "objective": "4.4",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A customer calls Dmitri, angry that his \"server unreachable\" ticket has gone six hours without a response. Before Dmitri answers, he needs to know what response time his employer actually committed to for that customer at that priority. Which document defines it?",
+  "options": [
+   "The standard operating procedure (SOP) for server maintenance",
+   "The acceptable use policy (AUP) signed by the customer's employees",
+   "The knowledge base article covering the affected server role",
+   "The service-level agreement (SLA) with that customer"
+  ],
+  "correctAnswer": 3,
+  "explanation": "An SLA is the contractual document that states committed response and resolution targets by priority, so it is the only source that establishes whether six hours is a breach. An SOP describes how a task is performed internally and sets no customer-facing timeline. An AUP governs what end users may do with company systems and has nothing to do with support response times. A knowledge base article carries no contractual force, so whatever it contains it cannot establish what was promised to this customer.",
+  "domain": "Operational Procedures",
+  "objective": "4.1",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Registration workstations at a clinic reboot on hot afternoons whenever the building's HVAC compressors start. Facility power monitoring shows the supply repeatedly sagging to roughly 100 V for several seconds at a time. Every workstation is already plugged into a surge suppressor. What should the technician recommend?",
+  "options": [
+   "Replace the surge suppressors with models carrying a higher joule rating",
+   "Move each workstation to a dedicated circuit with a properly grounded outlet",
+   "Add a power strip with an integrated circuit breaker to each desk",
+   "Install a UPS with automatic voltage regulation at each workstation"
+  ],
+  "correctAnswer": 3,
+  "explanation": "The measured symptom is an under-voltage event (a sag or brownout), and a UPS — particularly one with automatic voltage regulation — corrects low input voltage and carries the load through the dip, which is why the workstations stop rebooting. A surge suppressor only clamps over-voltage transients; increasing its joule rating raises the energy it can absorb during a spike and does nothing at all for a sag. A dedicated circuit helps with overloaded branch circuits, but the sag originates in the building supply and appears on every circuit. A breaker-equipped strip is overcurrent protection, which likewise addresses too much current, not too little voltage.",
+  "domain": "Operational Procedures",
+  "objective": "4.5",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Security asks Camila to preserve evidence from a workstation suspected of exfiltrating customer records. The machine is still powered on and connected to the network. Which sequence best follows incident response practice?",
+  "options": [
+   "Shut the system down cleanly to freeze its state, image the drive to a sterile forensic target, and then document everyone who has handled it",
+   "Capture volatile data such as memory contents and active network connections first, then image the drive, recording chain of custody at every handoff",
+   "Run a full antivirus scan to remove the malicious tool, then image the drive so the resulting image is clean and free of active malware",
+   "Copy the suspicious files to a USB drive, hash them, hand the drive to the security manager, and return the workstation to the user for use"
+  ],
+  "correctAnswer": 1,
+  "explanation": "The order of volatility requires that the most perishable evidence — memory, running processes, and live network connections — be collected before anything that destroys it, and chain of custody must be recorded from the first handoff onward or the evidence becomes inadmissible. Imaging to a sterile target and documenting handlers are both genuine forensic steps, but shutting the machine down first performs them in the wrong order: the volatile data is gone before the image is ever taken. Running antivirus deliberately alters the very artifacts under investigation and destroys evidence of what the tool did, and a 'clean' image is a damaged one. Copying selected files to a USB drive produces no verifiable image of the whole drive no matter how the copies are hashed, and returning the machine to service overwrites the remaining evidence.",
+  "domain": "Operational Procedures",
+  "objective": "4.6",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Hank keeps three copies of the engineering design files: the working copy on the workstation, a copy on an external USB drive, and a copy on the office NAS. All three sit in the same suite. Measured against the 3-2-1 backup rule, what is missing?",
+  "options": [
+   "A third copy of the data, because the working copy does not count as a copy",
+   "At least one copy stored offsite",
+   "A synthetic full backup to shorten the restore chain",
+   "A documented backup rotation scheme"
+  ],
+  "correctAnswer": 1,
+  "explanation": "The 3-2-1 rule calls for three copies of the data on two different media with one copy offsite. Hank's three copies all sit in the same suite, so a fire, flood, or theft takes all three at once; the offsite leg is unsatisfied. The working copy is explicitly counted as one of the three, so the count is already met. A synthetic full is a way of constructing a backup image, not a decision about where copies are kept, so adding one would leave all three copies exactly where they are. A rotation scheme governs how long daily, weekly, and monthly copies are retained, which likewise does nothing about every copy sharing one address.",
+  "domain": "Operational Procedures",
+  "objective": "4.3",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Elena arrives at a user's desk to repair a laptop. The user is loudly complaining that \"IT never fixes anything,\" and interrupts her twice while she tries to ask what the symptom is. What is the most appropriate response?",
+  "options": [
+   "Let the user finish without interrupting, then restate the problem in her own words and ask open-ended questions to narrow the scope",
+   "Politely explain that his earlier tickets were each closed correctly and on time, so he has an accurate picture of IT's track record",
+   "Offer to escalate the ticket immediately to a senior technician and step away, so the user can direct his complaints to someone else",
+   "Continue the repair quietly and avoid engaging with the user until he calms down"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Active listening followed by restating the issue and asking open-ended clarifying questions both de-escalates the customer and produces the information Elena actually needs, which is the prescribed technique for difficult customers. Correcting the record on his earlier tickets is arguing with the customer and being defensive, which the professionalism objectives specifically warn against, and being right about the history does not make it the right move. Escalating solely to hand off an unpleasant conversation dismisses the customer's issue and delays a fix she is capable of performing herself. Working in silence avoids the interaction rather than managing it, and reads as dismissive to a customer who already feels ignored.",
+  "domain": "Operational Procedures",
+  "objective": "4.7",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Priya is scoping a patch for an accounting application. She needs to know which workstations have it installed, which version each one runs, and which file server each workstation depends on — including how those items relate to one another. Which asset management resource is designed to answer that question?",
+  "options": [
+   "A configuration management database (CMDB)",
+   "The inventory list produced by the last barcode-scanner asset audit",
+   "The procurement life-cycle records held by the purchasing department",
+   "The warranty and licensing spreadsheet maintained by the service desk"
+  ],
+  "correctAnswer": 0,
+  "explanation": "A CMDB stores configuration items along with the relationships and dependencies between them, which is exactly what a dependency question requires. An inventory list is a flat enumeration of assets — it tells you what exists, not how items depend on each other. Procurement life-cycle records track requisition, purchase, and retirement dates rather than runtime configuration. The warranty and licensing record tracks entitlement and coverage expiration, not installed versions or server dependencies.",
+  "domain": "Operational Procedures",
+  "objective": "4.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A small engineering firm moved its two rack servers into a converted supply closet with no dedicated cooling. Within a month the servers throttle every afternoon, and Farida finds the intake grilles matted with dust and lint and the racks pushed flat against the back wall. What should she recommend?",
+  "options": [
+   "Raise the closet's humidity with a portable humidifier and add a desk fan, since dry air is what pulls dust onto the intake grilles",
+   "Provide dedicated cooling and ventilation for the closet, reposition the racks for clear intake airflow, and put dust cleanup on a maintenance schedule",
+   "Blow the dust out with compressed air every afternoon, leave the closet door propped open to vent the heat into the corridor, and keep the racks in place",
+   "Install a larger UPS so the servers ride through the afternoon voltage sags causing the throttling, and vacuum the grilles whenever dust becomes visible"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Temperature and humidity-level awareness, proper ventilation, equipment placement, and dust cleanup are the local environment controls this scenario calls for, and the three observed symptoms — afternoon throttling, an uncooled closet, and clogged intakes — are addressed only by that combination. Humidity control exists to keep static discharge down at the low end and condensation and corrosion away at the high end; adding moisture to an already-hot closet worsens conditions and does nothing about dust. Compressed air and vacuums are the correct dust-cleanup tools, but blowing dust around an unventilated closet recirculates it, propping the door open pushes heat into an occupied corridor rather than removing it, and leaving the racks against the wall preserves the blocked airflow that started the problem. The last option's premise is where it fails: it diagnoses an electrical cause, but nothing reported here is a voltage or power event, and thermal throttling is what a processor does when it cannot shed heat — a bigger battery moves no heat out of the closet.",
+  "domain": "Operational Procedures",
+  "objective": "4.5",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "While Owen is working in a wiring closet, the rack-mounted UPS begins smoking and small flames appear at its vents. Which response is correct?",
+  "options": [
+   "Raise the alarm and clear the area per the site's fire safety plan, and only if the fire is still incipient discharge a Class C rated extinguisher into the UPS vents without opening the chassis",
+   "Use a water extinguisher, since the closet contains no flammable chemicals and water is rated for ordinary combustibles in an occupied space",
+   "Unplug the UPS from the wall to remove all power, smother the flames with an antistatic bag, and notify facilities once the fire is out",
+   "Open the UPS chassis, disconnect the internal battery string to fully de-energize the unit, and only then apply a Class C rated extinguisher to the vents"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Fire safety plans put the alarm and getting people out ahead of firefighting, and they authorize a technician to fight a fire only while it is still incipient — small, contained, and not yet spreading. The agent is a Class C extinguisher because the equipment is energized, and it is discharged through the vents rather than by opening a burning enclosure. Water conducts electricity and turns an energized equipment fire into an electrocution hazard; the Class A rating it carries for ordinary combustibles is exactly why it is the wrong agent on live equipment. Pulling the wall plug does not de-energize a UPS, because the internal battery string continues to supply the load, so the third option's first step accomplishes nothing — and an antistatic bag is a thin plastic film, not a fire blanket, so nothing in that option puts the fire out. Opening a burning chassis to reach the battery string exposes the technician to arc flash and venting battery chemicals, and it delays the alarm that should already have been raised.",
+  "domain": "Operational Procedures",
+  "objective": "4.4",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Yusuf needs two automation scripts: one that runs on the company's Ubuntu file servers at boot to remount an NFS share, and one that runs from Windows Group Policy at user log-on to remap drive letters. Which pair of file types fits, using each operating system's own native shell scripting language?",
+  "options": [
+   ".bat for the Linux servers and .vbs for the Windows log-on script",
+   ".py for the Linux servers and .js for the Windows log-on script",
+   ".sh for both, since Windows can execute shell scripts natively",
+   ".sh for the Linux servers and .ps1 for the Windows log-on script"
+  ],
+  "correctAnswer": 3,
+  "explanation": "A .sh shell script is the native shell scripting format on Linux, and a .ps1 PowerShell script is the native shell scripting language on Windows and is the directly supported Group Policy log-on script type. The first pairing fails on its .bat clause: a .bat file is a Windows batch file and will not run on Linux. Its .vbs clause fails for a different reason — .vbs does run on Windows and is still an accepted Group Policy log-on script type, but it is Windows Script Host scripting rather than the operating system's native shell language, which is what the question asks for. Python and JavaScript are general-purpose languages, not either OS's native shell; .py is not the native Linux shell format, and .js runs through that same Windows Script Host layer rather than the Windows shell, so it fails the question's native-shell requirement for the same reason .vbs does. Windows does not natively execute .sh files; that requires WSL or a third-party shell.",
+  "domain": "Operational Procedures",
+  "objective": "4.8",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Tomas, who supports a 200-store retail chain, submits a request to push new firmware to every store switch on the Friday after Thanksgiving. The request is complete: purpose, scope, affected systems, a documented risk analysis, a rollback plan, sandbox testing results, named responsible staff, peer review sign-off, and a 1:00 a.m. maintenance window. The change board denies it anyway. What is the most likely reason?",
+  "options": [
+   "End-user acceptance has not been recorded, and a change cannot be approved until the affected users have signed off on it.",
+   "A fleet-wide firmware push must be submitted as an emergency change, and this one was submitted as a normal change.",
+   "The 1:00 a.m. slot falls outside the maintenance window published for store network equipment.",
+   "The requested date falls inside a change freeze that covers the retail chain's peak sales period."
+  ],
+  "correctAnswer": 3,
+  "explanation": "A change freeze suspends non-emergency changes during a business-critical period, and the Friday after Thanksgiving is the archetypal retail freeze window — a freeze bars the change on the date alone, no matter how complete the paperwork is, which is precisely the situation the stem sets up. End-user acceptance is a genuine change management step, but it is confirmation that the change worked once it has been implemented; treating it as an approval prerequisite inverts the sequence, since there is nothing for users to accept before the change runs. Change type is set by urgency, not by size: an emergency change is the path for work that cannot wait for the normal approval cycle, and a firmware push scheduled in advance for a chosen date is work that can wait, so filing it as a normal change was correct. The maintenance window is the closest competing answer, because a window and a freeze are both date-and-time controls — but a window governs which hours routine changes may run in, and nothing in this scenario turns on the hour; the objection attaches to the calendar date.",
+  "domain": "Operational Procedures",
+  "objective": "4.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "While remoting into a partner company's HR workstation to resolve a printing problem, Sergio sees an open spreadsheet of employee salaries and a desktop folder labeled \"Q3 terminations.\" Neither is related to the printer. How should he proceed?",
+  "options": [
+   "Minimize the windows without reading them, complete only the work the ticket requires, and refrain from discussing the contents afterward",
+   "Close the files, then report to the user's manager exactly what was visible and where it was stored so the exposure is on the record",
+   "Capture a screenshot of the full desktop and attach it to the ticket so the machine's state before any of his changes is documented",
+   "Ask the user to describe the files so he can rule out any connection to the printing issue"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Confidential and private materials encountered incidentally are to be left alone: view nothing beyond what the task requires and use discretion when discussing the encounter afterward. Reporting the file names and contents to a manager broadcasts sensitive personnel information to someone Sergio has no basis to believe is authorized, turning an accidental glimpse into an actual disclosure. Documenting a machine's pre-change state is reasonable practice in general, but a screenshot here copies confidential salary and termination data into a ticketing system, which is a far larger exposure than the original open window. Asking the user to explain the files invites disclosure of information Sergio has no need to know, and the file names already make clear they are unrelated to printing.",
+  "domain": "Operational Procedures",
+  "objective": "4.7",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A dental practice is retiring its imaging workstations. The old drives hold patient records that the practice's own retention schedule requires be kept for seven years, and three patients' files are additionally under a litigation hold. The practice's backup NAS runs a 90-day rotation. The office manager tells Priya, the MSP technician, to \"wipe everything and recycle the drives this week.\" What should she do?",
+  "options": [
+   "Perform a certified low-level wipe of every drive and file the certificates of destruction, since documented sanitization satisfies the practice's obligations for the media.",
+   "Image every drive to the practice's backup NAS first, then wipe and recycle the drives, since a copy on the NAS preserves the records either way.",
+   "Hold the drives and get written confirmation from the practice of where the retained records now live and how the litigation hold is met before anything is wiped or released.",
+   "Copy the three patients' files covered by the litigation hold to a separate archive, then wipe and recycle every drive on the schedule she was given."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Data retention requirements and a litigation hold are obligations attached to the records themselves, and a verbal instruction from the customer does not lift either one; the technician's correct move is to stop short of destruction and get the customer to state, in writing, where the retained copies live and how the hold is satisfied. Certified destruction is exactly backwards here — a certificate proves the data is gone, which is a defense against a data-remanence finding and no defense at all against a demand to produce records the practice was required to still have. Imaging to the NAS looks like preservation, but a copy only counts as a retained record if it survives the retention period, and a 90-day rotation ages it off nearly seven years early. Preserving the three held patients' files addresses the litigation hold and ignores the broader obligation: the seven-year schedule covers the whole record set, so wiping the rest on the original timetable destroys records that must be kept.",
+  "domain": "Operational Procedures",
+  "objective": "4.6",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Talia works for a managed service provider supporting 900 endpoints across 40 small clients. She needs unattended access to any endpoint, plus patch status and alerting for the whole fleet, from one console — without requiring someone to be sitting at the remote machine. Which technology best fits?",
+  "options": [
+   "Remote Desktop Protocol (RDP) published to the internet on TCP 3389 for each endpoint",
+   "A remote monitoring and management (RMM) platform with an agent installed on each endpoint",
+   "Virtual network computing (VNC) configured with a shared password on each endpoint",
+   "Secure Shell (SSH) to each endpoint using key-based authentication"
+  ],
+  "correctAnswer": 1,
+  "explanation": "RMM is purpose-built for exactly this profile: agents give unattended access plus centralized patch, inventory, and alerting across many tenants from a single console. Exposing RDP on 3389 to the internet is one of the most heavily scanned and brute-forced attack surfaces there is, and it still provides no fleet-wide monitoring. VNC with a shared password gives graphical control but the shared credential is a weak, unauditable authentication model, and it too offers no patch reporting. SSH with keys is a secure access method, but it is per-host command-line access, is not natively available on Windows endpoints without configuration, and provides no monitoring layer.",
+  "domain": "Operational Procedures",
+  "objective": "4.9",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Devon needs to move a 78 lb (35 kg) UPS from a pallet on the loading dock to a rack in a second-floor server room. The freight elevator is out of service, the stairwell has a landing halfway up, and he is the only technician on site this Sunday. How should he move it?",
+  "options": [
+   "Keep his back straight and lift with his legs, hold the unit against his chest, and carry it up in one trip without stopping",
+   "Wait for a second person for a team lift and use a hand truck or lift assist, keeping the load close and the back straight",
+   "Carry the unit on one shoulder so its weight rides over his spine instead of out in front of it, and take the stairs in a single trip",
+   "Bend at the waist to get his hands under the unit, lift smoothly without twisting, and set it down at the landing before continuing"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Weight, path, and staffing are all inputs to a lift, not just posture, and the only option that changes the load rather than the technique is the right one: 78 lb up a stairwell is beyond what a single person should carry, so the answer is a team lift plus a mechanical aid, with the standard form — load close to the body, back straight — applied on top of that. The first option applies textbook technique to a load that one person should not be carrying up stairs at all, and correct form does not make an unsafe weight safe; refusing to set the load down at the landing compounds it. Shoulder carrying is a real technique for long or awkward loads, but on stairs it raises the center of gravity and puts the load between the carrier's eyes and the treads, which is the specific reason it is wrong here. Bending at the waist is the error that lifting guidance exists to prevent, because it transfers the load to the lumbar spine instead of the legs, and lifting smoothly and setting the unit down at the landing do not offset it.",
+  "domain": "Operational Procedures",
+  "objective": "4.4",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "An employee's last day is Friday. Renata, the desktop support lead, must make sure the account is disabled, the laptop and badge are collected, the mailbox is retained per policy, and the licensed software seats are reclaimed — with nothing missed and everything auditable. Which document should drive her work?",
+  "options": [
+   "The new user/onboarding setup checklist, worked through in reverse order",
+   "The incident report template used for security events",
+   "The user off-boarding checklist",
+   "The software package custom installation procedure"
+  ],
+  "correctAnswer": 2,
+  "explanation": "The off-boarding checklist exists precisely to make separation repeatable and auditable: account disablement, asset recovery, data retention, and license reclamation in one signed-off list. Running the onboarding checklist backward is not equivalent — off-boarding includes steps such as data retention and mailbox delegation that never appear during onboarding. An incident report documents an unplanned event; a planned resignation is not one. The custom installation procedure covers deploying a package, which is the opposite of the task at hand.",
+  "domain": "Operational Procedures",
+  "objective": "4.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Hector is inventorying what is stored on a workstation before it is wiped and redeployed to another department. Which of the items he found is regulated data?",
+  "options": [
+   "The team's internal meeting notes from last quarter's planning offsite",
+   "A vendor's published product datasheet for the department's printers",
+   "The IT department's new user onboarding setup checklist template",
+   "A spreadsheet of customer credit card numbers and expiration dates"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Credit card payment information is one of the named categories of regulated data, alongside personal government-issued information, PII, and healthcare data, and the handling, storage, and retention obligations that come with it follow the data onto whatever machine holds it — which is why this drive cannot simply be redeployed. Internal meeting notes may well be confidential and covered by an NDA, but confidentiality is a contractual restriction rather than a regulatory one. A vendor's published datasheet is material the vendor distributes to the public on purpose. An onboarding checklist is an internal process document that describes how accounts get created; it holds no individual's regulated personal information.",
+  "domain": "Operational Procedures",
+  "objective": "4.6",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Aiko told a customer his rebuilt workstation would be back on his desk by 2:00 p.m., and she is also due at his desk at 1:30 to collect a second machine. At 1:15 the vendor image she needs fails its checksum, and a fresh download pushes realistic completion to about 5:00 p.m. What should she do?",
+  "options": [
+   "Contact the customer right now, tell him she will be late for the 1:30 pickup, give him the revised 5:00 p.m. estimate, and keep him posted as the rebuild proceeds",
+   "Work the image problem without interruption and give the customer one status update at 2:00 p.m., once the revised estimate is certain enough to be worth stating",
+   "Say nothing about the slip for now, because the download may still finish early and an unnecessary bad-news call would only undermine the customer's confidence in IT",
+   "Ask the service desk to hand the ticket to a technician who can still meet the original 2:00 p.m. commitment, and let that technician make contact with the customer"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Two separate expectations are about to be missed — the 1:30 arrival and the 2:00 p.m. delivery — and the professionalism objectives cover both: be on time and contact the customer if you will be late, and set, meet, and communicate status against the timeline you gave. Contacting the customer at 1:15, while both commitments are still in the future, is the only response that does either. Holding the update until 2:00 p.m. waits for certainty at the cost of letting the customer sit through a missed pickup and a missed deadline with no word; a status update delivered after the commitment has already lapsed is a report, not expectation management. Staying silent on the chance the problem resolves itself is the same failure with a rationalization attached — confidence is damaged by the surprise, not by the early warning, and the customer loses the chance to plan around a workstation he will not have until evening. Reassigning the ticket sounds responsive but does not restore the original timeline: the corrupt image and the download are the constraint, and they follow the ticket to whoever holds it, so the customer still gets no notice and now deals with a technician who has no history with the job.",
+  "domain": "Operational Procedures",
+  "objective": "4.7",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Ravi's team has run nightly backups for two years and the job log reports no failures. During an audit he is asked to demonstrate that the backups are actually usable. Which action best provides that evidence?",
+  "options": [
+   "Export two years of job logs showing every run completed successfully",
+   "Increase backup frequency from nightly to twice daily to reduce potential data loss",
+   "Move the backup target from onsite storage to an offsite facility",
+   "Restore a representative sample of files to an alternative location and verify their contents"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Only a test restore proves recoverability, and restoring to an alternative location rather than in place verifies the data without overwriting production — this is the entire purpose of scheduled backup testing. Job logs prove the job ran and the software believed it succeeded; they cannot detect a corrupt catalog, an unreadable tape, or an excluded directory. Backing up more often changes the recovery point objective but produces more copies of the same unverified data. Relocating the target improves resilience to a site disaster and still says nothing about whether the data can be read back.",
+  "domain": "Operational Procedures",
+  "objective": "4.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Sofia's help desk wants to speed up ticket documentation by pasting raw ticket text — customer names, home addresses, device serial numbers, and account identifiers — into a free public AI chatbot to have it draft resolution notes. Which concern should IT raise first?",
+  "options": [
+   "AI-generated notes could be considered plagiarism of the vendor's published documentation.",
+   "AI models exhibit bias, so tickets from some customers may be summarized less favorably or less thoroughly than others.",
+   "Regulated customer data pasted into a public AI service leaves company control and can violate data privacy obligations.",
+   "Public AI services hallucinate, so the drafted resolution notes may describe troubleshooting steps that were never actually performed."
+  ],
+  "correctAnswer": 2,
+  "explanation": "The distinction between private and public AI turns on data security, data source, and data privacy: anything pasted into a public service leaves the organization's control and may be retained or used for training, which is a direct compliance problem when the input is regulated personal data. The remedy is an internal/private model or de-identified input, not a review step bolted onto a public service. Plagiarism is a genuine AI policy concern but applies to passing off generated or copied content as original work, not to leaking customer PII. Bias is a real listed limitation, though its impact on internal resolution notes is marginal compared with a privacy breach. Hallucination and accuracy are also real limitations and would matter on review of the drafted notes — but they are quality problems that can be corrected, whereas data that has already been sent to a third party cannot be recalled.",
+  "domain": "Operational Procedures",
+  "objective": "4.10",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Ana submits a change request to upgrade the ERP client on 300 workstations. The change board rejects it, noting that the request documents the purpose, the scope, the affected systems, the risk level, and the responsible staff members — but never states how the environment will be returned to its current state if the upgrade breaks order entry. What is missing?",
+  "options": [
+   "The rollback plan",
+   "The sandbox testing results",
+   "The end-user acceptance criteria",
+   "The maintenance window"
+  ],
+  "correctAnswer": 0,
+  "explanation": "The rollback plan is the documented procedure for reverting to the prior known-good state when a change fails, which is exactly the gap the board identified. Sandbox testing validates the change before it is deployed; it reduces the chance of failure but does nothing to recover from one. End-user acceptance confirms the change worked after implementation, so it happens on the success path. The maintenance window states when the change occurs, not how to undo it.",
+  "domain": "Operational Procedures",
+  "objective": "4.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Bianca finds a PowerShell script on a public community forum that claims to clear temporary files fleet-wide. Without reading its contents, she schedules it to run with domain administrator rights on 500 workstations. Which scripting risk does this decision most directly ignore?",
+  "options": [
+   "Browser or system crashes on the workstations caused by the script mishandling memory and open file handles",
+   "The script may target a PowerShell version newer than the one deployed on the workstations, so the scheduled job fails fleet-wide",
+   "Unintentionally introducing malware by executing unreviewed code from an untrusted source with elevated privileges",
+   "Inadvertently changing system settings across the fleet in ways that are difficult to reverse without visiting each workstation"
+  ],
+  "correctAnswer": 2,
+  "explanation": "The defining facts are an untrusted source, code that was never read, and domain administrator rights across 500 machines — that combination is the textbook path for unintentionally introducing malware, and it is the risk that scales catastrophically here. Resource mishandling causing crashes is a genuine scripting risk, but it describes a poorly written trusted script rather than hostile code. Version incompatibility is a compatibility concern that typically produces a failed job and an error message rather than a compromise. Inadvertent setting changes is a real listed risk and is the closest distractor, and the fleet-wide, hard-to-reverse framing makes it tempting — but it describes unintended side effects of code you meant to run; the primary exposure created by running unvetted forum code as an administrator is the malicious payload itself.",
+  "domain": "Operational Procedures",
+  "objective": "4.8",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A pallet of leaking laser toner cartridges is discovered in a storeroom. Miguel is assigned to package and dispose of them and needs to know what personal protective equipment to wear, how to clean the spill, and how the cartridges must be disposed of. Which document provides that information?",
+  "options": [
+   "The printer manufacturer's warranty documentation",
+   "The company's acceptable use policy",
+   "The material safety data sheet (MSDS) for the toner",
+   "The standard operating procedure for routine printer maintenance"
+  ],
+  "correctAnswer": 2,
+  "explanation": "An MSDS is the manufacturer-supplied document that lists a substance's hazards, required PPE, spill handling, and lawful disposal requirements, which is exactly the set of questions Miguel has. Warranty documentation defines repair and replacement coverage and contains no handling or disposal guidance. An AUP governs employee use of company systems, not chemical handling. A printer maintenance SOP may reference the MSDS but describes routine servicing steps, not hazardous-material spill response and disposal.",
+  "domain": "Operational Procedures",
+  "objective": "4.5",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Rosa is installing twelve new network drops between two suites in a leased office building. The most direct path runs above the suspended ceiling, and the building uses that space as a return-air plenum for its HVAC system. The cable on her van is standard riser-rated (CMR) Cat 6. What should she do?",
+  "options": [
+   "Run the CMR cable above the ceiling inside split loom tubing, which contains the smoke the jacket would produce in a fire",
+   "Run the CMR cable above the ceiling and label the bundle, since riser rating is the more stringent listing and therefore covers plenum use",
+   "Run the cable along the floor at the base of the wall under cord covers, keeping the installation out of the plenum entirely",
+   "Use plenum-rated (CMP) cable for the portion above the ceiling, because fire code governs what may be installed in a plenum"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Compliance with government regulations is part of a safe installation, and a return-air plenum is a code-defined space: cable installed in it has to carry a plenum (CMP) listing, because that jacketing is required to produce far less smoke and flame spread in a space that feeds the building's air handlers. The rating hierarchy in the second option is backwards — riser and plenum are separate listings for separate spaces, and CMR sits below CMP, so a riser cable is not an upgrade over a plenum cable. Split loom is a cable-management accessory for bundling and abrasion protection, not a listed fire barrier; it cannot convert an unrated cable into a rated one, and it adds its own combustible plastic to the plenum. Running the cable on the floor genuinely does avoid the plenum, which is why it is the closest wrong answer, but it puts permanent building cabling in a walkway — the trip hazard and equipment-placement failure that cable management exists to prevent — and it does not survive the next inspection or tenant build-out.",
+  "domain": "Operational Procedures",
+  "objective": "4.4",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Marcus diagnoses a six-year-old office laptop for Dana: the display panel and the battery both need replacing, and parts plus labor come to slightly more than a current model already on the company's standard hardware list. Dana says she does not want the disruption of a new machine and tells him to just fix this one. How should Marcus proceed?",
+  "options": [
+   "Order the panel and the battery as instructed, because Dana has authorized the work and questioning a customer's stated decision is not the technician's role here",
+   "Replace the laptop rather than repair it, because a repair costing more than a replacement is never justified and the call is a technical one rather than Dana's",
+   "Refer the cost question to Dana's manager for a ruling, and tell Dana her request is on hold pending review by someone who actually holds the budget authority",
+   "Lay out the repair and the replacement as options with their costs and downtime, let Dana make the call, and document the option chosen and the work performed"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Offering repair and replacement options as needed, and providing proper documentation on the services provided, are both explicit expectations of the communication and professionalism objectives — and offering options means presenting the trade-offs and letting the customer decide, not deciding for her. Carrying out the repair without mentioning the alternative treats Dana's instruction as informed when it is not; she said the machine should be fixed before she knew the fix costs more than a new laptop, and giving her that fact is service, not second-guessing. Overriding her and swapping the hardware is the opposite failure: cost is only one input, and downtime, data migration, and familiarity with the machine are Dana's to weigh, so a technician who unilaterally decides has removed her from a decision that is hers. Escalating to her manager bypasses the customer entirely on a question she is fully able to answer, and telling her the request is on hold turns a two-minute conversation into a delay with a budget review attached.",
+  "domain": "Operational Procedures",
+  "objective": "4.7",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Elias, an IT director, is preparing for a joint product integration in which his firm and a partner firm will each expose internal design documents to the other's engineers. Which agreement covers confidentiality running in both directions?",
+  "options": [
+   "A mutual non-disclosure agreement (MNDA) between the two firms",
+   "An acceptable use policy (AUP) signed by both engineering teams",
+   "A splash screen shown at log-on to both firms' systems",
+   "A perpetual license agreement covering the shared design files"
+  ],
+  "correctAnswer": 0,
+  "explanation": "An NDA binds one party to protect another party's confidential information; when both sides are disclosing, the mutual form — the MNDA — puts each firm under that obligation with respect to the other, which is exactly the arrangement described. An AUP tells an organization's own users what they may and may not do with its systems; it is internal policy and creates no obligation between two companies. A splash screen is a notice mechanism for displaying terms, warnings, or compliance banners at log-on — it can restate an obligation that already exists but cannot create a negotiated one between organizations. A perpetual license agreement settles how long software may be used and on what terms, which is a licensing question rather than a confidentiality one.",
+  "domain": "Operational Procedures",
+  "objective": "4.6",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Ibrahim takes a call at 4:50 p.m.: the warehouse scanning application is down for all 60 workers on the evening shift and shipping stops until it is restored. He has confirmed the outage and ruled out the workstations, but the application team owns the fix and he goes off shift in ten minutes. Which set of ticketing-system actions is correct?",
+  "options": [
+   "Set the severity to low until a root cause is identified, escalate to the application team, and note in the ticket that the workstations have been ruled out",
+   "Escalate to the application team and let that tier assign the severity, since the group that owns the fix is best positioned to judge the business impact",
+   "Set the severity to reflect the business impact, keep the ticket in his own queue so he can pick it up in the morning, and record what he verified in progress notes",
+   "Set the severity to reflect the business impact, escalate the ticket to the application team, and record what he verified in clear, concise progress notes"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Severity captures business impact and drives prioritization, escalation routes the ticket to the tier that can actually resolve it, and clear, concise progress notes let the receiving technician start where Ibrahim stopped — three distinct ticketing-system functions, all three of which this handoff requires. Setting severity low until a root cause is known confuses severity with diagnosis: severity is measured by impact, and a full shift stopped from shipping is high impact whatever is causing it, so that option escalates a ticket the receiving queue will rank last. Severity and escalation level are separate fields, and deferring severity to the tier that owns the fix leaves the ticket unranked until that team next triages — the ticket arrives with no basis for being worked ahead of anything else in the queue. Setting severity and writing good notes but keeping the ticket in his own queue documents the outage accurately and routes it to nobody: Ibrahim goes off shift in ten minutes, so the queue that holds the ticket is the one queue guaranteed not to act on it tonight.",
+  "domain": "Operational Procedures",
+  "objective": "4.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A managed service provider builds an internal AI assistant for its help desk. It runs on the MSP's own hardware, no ticket text leaves the network, and access is limited to help desk staff. Reviewing the first month, Wendy finds the assistant confidently recommending a firewall configuration procedure that matches none of the firewall models the MSP actually deploys. What does this most likely indicate?",
+  "options": [
+   "The output is a hallucination, and the fix is to move the assistant to a large public service that has seen far more firewall documentation",
+   "The deployment secured the data but not the data source: running a model on internal hardware does not ground it in the equipment the MSP deploys",
+   "The assistant is showing bias, favoring whichever vendors appear most often in the tickets it is allowed to read",
+   "The recommendation violates the appropriate-use half of the MSP's AI policy, because configuration guidance is outside what staff may ask an assistant to produce"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Private versus public is a decision about data security, data source, and data privacy, and this deployment got two of the three: ticket data stayed on the MSP's network under its own access control, but nothing about where the model runs connects it to the MSP's device inventory, runbooks, and standards. Confident output describing hardware the MSP does not own is a data source problem, and the remedy is to ground or fine-tune the assistant on the MSP's own documentation rather than to relocate it. Calling it a hallucination and moving to a public service reverses the privacy gain to chase breadth — a large public corpus holds more firewall documentation, but not the MSP's, and reaching it means pushing ticket text off the network. Bias is a real listed limitation and would describe a model that systematically favored one vendor across many answers; one procedure matching no deployed model is not a skew in preference but a mismatch in reference material. Appropriate use governs what staff may ask an assistant to do, and asking for configuration guidance falls inside it — the objection here is to the answer, not to the question.",
+  "domain": "Operational Procedures",
+  "objective": "4.10",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Before blowing accumulated dust and toner out of a stack of returned desktops with compressed air, Nia sets up in the shop's open work bay. Which personal protective equipment does the safety procedure call for?",
+  "options": [
+   "Safety goggles and an air filter mask",
+   "An ESD strap and an antistatic mat",
+   "Cut-resistant gloves and a full face shield",
+   "Hearing protection and steel-toed boots"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Compressed air drives dust and toner particles into the air and back toward the person holding the nozzle, so the personal safety equipment for this task is eye protection plus an air filter mask over the nose and mouth. An ESD strap and antistatic mat are the correct controls when handling boards and modules, but they protect the hardware from static discharge — neither one keeps a particle out of an eye or a lung. Cut-resistant gloves address the sharp sheet-metal edges inside a chassis, which is a genuine hazard when reaching into a case, but not the hazard this task creates. Hearing protection and steel-toed boots belong to loud or heavy-material environments and address neither the eyes nor the airway.",
+  "domain": "Operational Procedures",
+  "objective": "4.4",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Priyanka replaced a failing SSD in a partner firm's laptop two days ago, restored the user's files, watched the machine boot cleanly, and closed the ticket that afternoon. Which action best completes the engagement under proper communication and professionalism practice?",
+  "options": [
+   "Reopen the ticket and hold it open for thirty days, so the record stays live in case the replacement drive fails during its early-life failure window",
+   "Follow up with the user at a later date to confirm that the laptop is performing as expected and that she is satisfied with how the repair was handled",
+   "Forward the drive manufacturer's warranty terms to the user, so she knows exactly what coverage she has available if the replacement drive fails later on",
+   "Ask the user's manager whether the repair met expectations, since the manager approved the purchase of the replacement drive and owns the department budget"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Following up with the customer at a later date to verify satisfaction is a named expectation of the professionalism objectives, and it exists because a machine that booted while the technician was standing there is not yet a repair that has held up in daily use. Holding the ticket open for thirty days substitutes a stalled queue entry for actual contact: nobody is contacted, the ticket's resolution time and any SLA reporting drawn from it are distorted, and a drive that fails on day thirty-one is outside the window anyway. Forwarding warranty terms is legitimate documentation, but coverage for a future failure is a different question from whether the work Priyanka already did resolved the user's problem. Asking the manager collects a secondhand opinion about someone else's experience while skipping the person who had it, and it pulls a routine repair into a reporting line that was never part of the interaction.",
+  "domain": "Operational Procedures",
+  "objective": "4.7",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "During a software audit, Jonas finds a graphics editor installed on a company marketing workstation. The activation key belongs to the designer's own personal-use subscription, purchased with her own money. The application is only ever used on that one machine. How should Jonas treat this?",
+  "options": [
+   "It is acceptable, because the license was legitimately purchased and is activated on only one machine at a time.",
+   "It is acceptable if the designer signs a non-disclosure agreement covering her use of the software.",
+   "It violates the EULA's personal-use terms and must be replaced with a corporate-use license or removed.",
+   "It is acceptable once IT records the key in the asset management system's warranty and licensing field."
+  ],
+  "correctAnswer": 2,
+  "explanation": "A personal-use license grants rights to an individual for non-commercial use; installing it on company equipment for company work is outside the EULA regardless of who paid or how many machines are involved, so the organization needs a corporate-use license or the software must come off. Legitimate purchase and single-seat activation address piracy and seat counting, neither of which is the violation here — the violation is the use category. An NDA governs disclosure of confidential information and cannot grant software rights. Recording the key in an asset register documents an unlicensed install accurately; it does not make it licensed.",
+  "domain": "Operational Procedures",
+  "objective": "4.6",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Every Monday morning, Malik signs in to 14 branch servers one at a time, reads the free space on each volume, and types the numbers into a spreadsheet for the capacity report. He wants to stop doing this by hand. Which scripting use case describes what he should automate?",
+  "options": [
+   "Remapping network drives at log-on",
+   "Installation of applications on endpoints",
+   "Gathering of information and data",
+   "Restarting machines on a schedule"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Collecting the same measurement from many systems and writing the results somewhere is the gathering of information and data use case — the script does exactly the reading and transcription Malik is doing by hand every Monday. Remapping network drives assigns drive letters to shares, usually at log-on; it changes what a user can reach and produces no report. Installation of applications pushes software out to endpoints, which is not what a capacity report needs. Restarting machines schedules reboots, and nothing in this task calls for one — reading free space does not require the server to be restarted, and doing so would take the branches offline for no reason.",
+  "domain": "Operational Procedures",
+  "objective": "4.8",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Ken administers a Linux KVM virtualization host and must reach the graphical consoles of its guest virtual machines — including guests whose own network configuration is broken and that therefore cannot be reached over the network at all. Which remote access method is designed for this?",
+  "options": [
+   "SPICE (Simple Protocol for Independent Computing Environments)",
+   "Windows Remote Management (WinRM)",
+   "RDP from a jump host that sits on the guest network",
+   "Screen-sharing software installed inside each guest operating system"
+  ],
+  "correctAnswer": 0,
+  "explanation": "SPICE delivers the guest's virtual console through the hypervisor rather than through the guest's own network stack, so it still works when the guest has no functioning networking — precisely Ken's requirement. WinRM is a Windows-only management protocol, wrong for a Linux KVM host and equally dependent on guest networking. RDP from a jump host still requires the guest to be reachable on the network, which is the condition that has failed. Screen-sharing software inside the guest has the same dependency plus an agent that cannot be installed or reached on a guest you cannot connect to.",
+  "domain": "Operational Procedures",
+  "objective": "4.9",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ }
+]

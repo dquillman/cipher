@@ -1,0 +1,377 @@
+[
+  {
+    "stem": "Marisol, a help desk technician, is investigating why two servers on the same VLAN cannot communicate. A packet capture shows the frames leaving the first server carry the correct destination MAC address, but the switch is flooding them out every port instead of forwarding them to the second server. At which OSI layer is Marisol troubleshooting?",
+    "options": [
+      "Layer 3, because forwarding decisions are based on IP addresses",
+      "Layer 2, because switches forward frames based on MAC address tables",
+      "Layer 4, because the servers must first establish a TCP session",
+      "Layer 1, because flooding indicates a physical cabling fault"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Switches operate at Layer 2 (Data link), building a MAC address table and forwarding frames based on destination MAC. Flooding out all ports means the switch has not learned the destination MAC, which is a Layer 2 behavior. Layer 3 is wrong because routers, not switches within a VLAN, forward on IP addresses. Layer 4 is wrong because TCP session establishment happens end-to-end and does not govern how a switch forwards frames. Layer 1 is wrong because flooding is a deliberate switch behavior for unknown unicast frames, not a symptom of a cabling fault.",
+    "domain": "Networking Concepts",
+    "objective": "1.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Devon, a network analyst, is examining a capture of a slow file transfer. He sees the receiver repeatedly shrinking its advertised window size and the sender pausing until the window reopens, along with occasional retransmissions of lost segments. Which OSI layer is responsible for the behavior Devon is observing?",
+    "options": [
+      "Layer 4 - Transport, which handles flow control and reliable delivery",
+      "Layer 3 - Network, which handles logical addressing and routing",
+      "Layer 7 - Application, which handles the file transfer protocol itself",
+      "Layer 2 - Data link, which handles frame sequencing on the local segment"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Windowing, flow control, and retransmission of lost segments are Transport layer (Layer 4) functions performed by TCP. Layer 3 is wrong because the Network layer routes packets between networks but provides no delivery guarantees or flow control. Layer 7 is wrong because while the file transfer application generates the data, it relies on TCP for reliability rather than implementing windowing itself. Layer 2 is wrong because the Data link layer moves frames on a single link and has no end-to-end window mechanism between hosts.",
+    "domain": "Networking Concepts",
+    "objective": "1.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Priya, a security engineer, has deployed a sensor that receives a mirrored copy of all traffic entering the data center. During a penetration test, the sensor generated accurate alerts for every attack, but none of the attacks were stopped. Management wants attacks blocked in real time. What should Priya deploy?",
+    "options": [
+      "A second IDS sensor positioned closer to the core switch",
+      "A proxy server configured to cache and inspect web requests",
+      "A load balancer with health checks on the protected servers",
+      "An IPS deployed inline in the traffic path"
+    ],
+    "correctAnswer": 3,
+    "explanation": "An intrusion prevention system (IPS) sits inline, so traffic passes through it and malicious packets can be dropped before reaching the target. The current sensor is an IDS working from a mirrored copy of traffic, which can only detect and alert, never block, and adding a second IDS does not change that limitation. A proxy inspects and caches specific application traffic (typically web) but is not a general attack-blocking sensor for all data center traffic. A load balancer distributes traffic across servers and its health checks detect failed servers, not attacks.",
+    "domain": "Networking Concepts",
+    "objective": "1.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Omar manages a retail website that now runs on six identical web servers. Customers should reach the site through one public address, requests should be spread across the servers, and a failed server should stop receiving traffic automatically. Which appliance meets these requirements?",
+    "options": [
+      "A proxy server",
+      "A load balancer",
+      "A layer 2 switch",
+      "A NAS appliance"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A load balancer presents a single virtual IP, distributes incoming requests across a pool of servers, and uses health checks to remove failed servers from rotation, which is exactly what Omar needs. A proxy sits between clients and servers to filter or cache traffic but does not natively distribute load across a server farm with health-based failover. A layer 2 switch forwards frames but cannot present one address for six servers or make distribution decisions. A NAS provides file-level network storage and has nothing to do with distributing web traffic.",
+    "domain": "Networking Concepts",
+    "objective": "1.2",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Lena, an infrastructure architect, is designing storage for a new virtualization cluster. The hypervisors require block-level storage presented over a dedicated high-speed network so that virtual machine disks perform like local drives. The finance team separately needs a simple shared folder for spreadsheets. Which pairing best fits these two needs?",
+    "options": [
+      "NAS for the hypervisors; SAN for the finance share",
+      "SAN for both, with the finance share mounted as a raw LUN on each PC",
+      "SAN for the hypervisors; NAS for the finance share",
+      "NAS for both, since file-level access is simpler to manage"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A storage area network (SAN) provides block-level storage over a dedicated network, which is what hypervisors need for high-performance VM disks, while network-attached storage (NAS) provides file-level shares ideal for a departmental folder. Reversing the pairing fails because NAS file-level access adds overhead unsuited to VM disk workloads, and end users cannot conveniently use a SAN LUN as a shared folder. Using a SAN for both is wrong because presenting raw LUNs to finance PCs is complex and prevents easy concurrent file sharing. Using NAS for both sacrifices the block-level performance the cluster requires.",
+    "domain": "Networking Concepts",
+    "objective": "1.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Tariq is building a virtual private cloud that hosts application servers in a private subnet. The servers must download operating system patches from vendor sites on the internet, but nothing on the internet should be able to initiate a connection to them. Which cloud component should Tariq deploy?",
+    "options": [
+      "An internet gateway attached directly to the private subnet",
+      "A network security list that allows all inbound traffic",
+      "A VPN gateway connecting the VPC to the on-premises network",
+      "A NAT gateway in a public subnet with a route from the private subnet"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A NAT gateway allows instances in a private subnet to initiate outbound connections to the internet while blocking unsolicited inbound connections, which matches the patch-download requirement exactly. An internet gateway attached to the subnet would make the servers reachable from the internet, violating the inbound restriction. A permissive inbound security list does the opposite of what is required and controls filtering, not translation or routing. A VPN gateway provides private connectivity to on-premises resources and would not give the servers a path to vendor sites on the public internet.",
+    "domain": "Networking Concepts",
+    "objective": "1.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Renata's company is moving a latency-sensitive trading application to a public cloud provider. The application requires consistent throughput and predictable latency between the on-premises data center and the cloud, and traffic must not traverse the public internet. Which connectivity option should Renata choose?",
+    "options": [
+      "A site-to-site IPSec VPN over the company's existing internet circuit",
+      "A dedicated Direct Connect circuit to the cloud provider",
+      "A client VPN profile installed on each application server",
+      "An internet gateway with network security groups restricting traffic"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A Direct Connect (dedicated private circuit) provides a physical connection to the cloud provider that bypasses the public internet, delivering the consistent throughput and predictable latency the application needs. A site-to-site VPN encrypts traffic but still rides the public internet, so latency and throughput remain variable. Client VPN software is designed for individual remote users, not for data-center-to-cloud connectivity. An internet gateway with security groups still sends traffic over the public internet, and security groups filter traffic rather than improving its performance characteristics.",
+    "domain": "Networking Concepts",
+    "objective": "1.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "During a design review, Hana explains that her ticketing platform sees a tenfold traffic surge for two hours whenever concert tickets go on sale, then returns to normal. She wants the cloud environment to add web server instances automatically during the surge and remove them afterward so the company only pays for what it uses. Which cloud characteristic is Hana describing?",
+    "options": [
+      "Elasticity",
+      "Multitenancy",
+      "High availability",
+      "Scalability"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Elasticity is the ability to automatically provision resources when demand rises and release them when demand falls, matching cost to actual usage — exactly the surge-and-shrink pattern Hana describes. Scalability is the closest distractor, but it refers to the capacity to grow to handle increased load, without implying the automatic contraction and pay-per-use aspect that defines elasticity. Multitenancy describes multiple customers sharing the same underlying infrastructure and is unrelated to demand-driven sizing. High availability concerns surviving component failures through redundancy, not adjusting capacity to demand.",
+    "domain": "Networking Concepts",
+    "objective": "1.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Cole, a firewall administrator, must allow a partner to upload nightly data files using SFTP while keeping the rule as narrow as possible. Which port should Cole open on the firewall?",
+    "options": [
+      "TCP 20 and 21",
+      "TCP 69",
+      "TCP 22",
+      "TCP 445"
+    ],
+    "correctAnswer": 2,
+    "explanation": "SFTP is a file transfer capability that runs over Secure Shell (SSH), so it uses TCP port 22. Ports 20 and 21 belong to traditional FTP, a different, unencrypted protocol — a common trap because of the similar name. Port 69 is TFTP, a minimal UDP-based transfer protocol used for tasks like network device boot files, not secure partner uploads. Port 445 is Server Message Block (SMB), used for Windows file sharing on a LAN, not internet file transfer.",
+    "domain": "Networking Concepts",
+    "objective": "1.4",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Aiko has built a GRE tunnel between two branch routers to carry multicast routing updates that the ISP network will not transport natively. A security audit flags that the tunneled traffic crosses the internet unprotected. Aiko must keep the GRE tunnel's ability to carry this traffic while adding confidentiality. What should she implement?",
+    "options": [
+      "Replace GRE with an Authentication Header (AH) tunnel",
+      "Encapsulate the GRE tunnel inside IPSec using ESP",
+      "Enable Internet Key Exchange (IKE) on the GRE tunnel by itself",
+      "Switch the tunnel transport from TCP to UDP"
+    ],
+    "correctAnswer": 1,
+    "explanation": "GRE can encapsulate multicast and other protocols but provides no encryption, so the standard fix is running GRE over IPSec with Encapsulating Security Payload (ESP), which encrypts the tunneled packets while preserving GRE's flexibility. AH alone is wrong because Authentication Header provides integrity and authentication but no confidentiality, and replacing GRE with plain IPSec would lose native multicast transport. IKE is the key-negotiation protocol within IPSec; it cannot be enabled on GRE by itself to encrypt anything. GRE is an IP-level encapsulation (IP protocol 47), not a TCP or UDP application, so switching transports is meaningless.",
+    "domain": "Networking Concepts",
+    "objective": "1.4",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A global DNS provider advertises the same resolver IP address from dozens of sites worldwide, and each user's queries are automatically routed to the nearest site. Nadia, a junior engineer, asks her mentor what this traffic type is called. What is the correct answer?",
+    "options": [
+      "Multicast, because many sites serve the same content",
+      "Broadcast, because the address is reachable everywhere",
+      "Unicast, because each query has exactly one sender",
+      "Anycast, because one address is announced from multiple locations and routing selects the closest"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Anycast assigns the same IP address to multiple nodes, and routing protocols deliver each packet to the topologically nearest instance — the standard design for global DNS resolvers. Multicast is one-to-many delivery to subscribed group members, which is not how DNS queries work; each query reaches a single site. Broadcast sends to all hosts on a local segment and does not cross the internet at all. Unicast correctly describes one sender to one receiver, but it does not capture the defining behavior here: the same destination address existing in many places with proximity-based delivery.",
+    "domain": "Networking Concepts",
+    "objective": "1.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Gustavo must link two campus buildings with fiber. The run is 25 kilometers, and the link must support 10 Gbps. Which media choice is appropriate?",
+    "options": [
+      "Single-mode fiber, because it supports long distances with laser light",
+      "Multimode fiber, because its larger core carries more bandwidth farther",
+      "Twinaxial DAC cable, because it is cheaper than fiber at 10 Gbps",
+      "Cat 6A copper, because it is rated for 10 Gbps operation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Single-mode fiber uses a narrow core and laser light source, supporting 10 Gbps over tens of kilometers, which comfortably covers a 25 km run. Multimode fiber's larger core causes modal dispersion, limiting 10 Gbps links to roughly 300-550 meters depending on grade — the distance claim in that option is backward. Twinaxial DAC cables are indeed cost-effective for 10 Gbps but only over a few meters, such as switch-to-server links within a rack. Cat 6A supports 10 Gbps but only up to 100 meters, far short of 25 km.",
+    "domain": "Networking Concepts",
+    "objective": "1.5",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Imani is connecting twelve servers to a top-of-rack switch at 10 Gbps. Every link is under three meters, and the project budget is tight. Optical transceivers with fiber patch cables would work, but her senior engineer suggests a cheaper option that plugs into the same SFP+ ports. What is the engineer recommending?",
+    "options": [
+      "QSFP transceivers with MPO trunk cables",
+      "RJ45 patch cords rated Cat 5e",
+      "Direct attach copper (DAC) twinaxial cables",
+      "Coaxial cables with F-type connectors"
+    ],
+    "correctAnswer": 2,
+    "explanation": "DAC twinaxial cables have transceiver-style ends permanently attached to a short copper cable and plug directly into SFP+ ports, making them the standard low-cost choice for short in-rack 10 Gbps links. QSFP with MPO cabling is a 40/100 Gbps form factor solution — more capacity and cost than the requirement calls for, and it does not fit SFP+ ports. Cat 5e RJ45 cords are not rated for 10 Gbps and would not plug into SFP+ ports without separate copper transceivers regardless. Coaxial cable with F-type connectors is used for cable TV and broadband drops, not data center server links.",
+    "domain": "Networking Concepts",
+    "objective": "1.5",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "During a building walkthrough, an inspector notices Cat 6 cable running through the open space above a suspended ceiling that is also used to circulate air for the HVAC system. The inspector says the installed cable must be replaced. Which cable should the contractor, Silas, pull in its place?",
+    "options": [
+      "Shielded cable, to prevent interference from the HVAC motors",
+      "Plenum-rated cable, to meet fire code in air-handling spaces",
+      "Outdoor-rated cable, to resist moisture from the air ducts",
+      "Coaxial cable, because its jacket tolerates higher temperatures"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Air-handling spaces such as ceiling plenums require plenum-rated cable, whose jacket produces less toxic smoke and resists flame spread — this is a fire-code requirement, which is why the inspector flagged it. Shielded cable addresses electromagnetic interference, a performance concern, not the safety issue the inspector cited. Outdoor-rated cable protects against moisture and UV, neither of which is the regulatory problem in a plenum. Coaxial cable is the wrong media type entirely for the Ethernet runs, and ordinary coax jackets are not plenum-rated either.",
+    "domain": "Networking Concepts",
+    "objective": "1.5",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Farid is redesigning a data center network. The current three-tier design forces heavy server-to-server (east-west) traffic between racks to travel up through the distribution and core layers, adding latency and creating variable hop counts. Which architecture should Farid propose so that any server is a predictable, equal number of hops from any other?",
+    "options": [
+      "Spine and leaf",
+      "Star/hub and spoke",
+      "Collapsed core",
+      "Point to point"
+    ],
+    "correctAnswer": 0,
+    "explanation": "In a spine-and-leaf architecture every leaf (top-of-rack) switch connects to every spine switch, so any-server-to-any-server traffic crosses exactly one spine — a consistent, low hop count optimized for east-west data center traffic. Star/hub-and-spoke forces all traffic through a central hub, which concentrates east-west traffic at one point rather than distributing it. A collapsed core merges core and distribution to save cost in smaller networks but keeps the hierarchical north-south design. Point-to-point links two sites or devices directly and is not a data center fabric design.",
+    "domain": "Networking Concepts",
+    "objective": "1.6",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Bree is designing the network for a 60-person office in a single building with two switch closets. A consultant's template proposes a full three-tier hierarchy, but Bree's budget cannot cover separate core and distribution switch pairs, and the traffic volume does not justify them. Which design choice keeps hierarchical structure while fitting the budget?",
+    "options": [
+      "Full mesh connections among all access switches",
+      "A spine-and-leaf fabric across both closets",
+      "A flat network with all devices on one unmanaged switch",
+      "A collapsed core combining core and distribution functions"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A collapsed core merges the core and distribution layers into one switch layer while retaining the access layer, preserving hierarchical design at lower cost — the standard answer for small and midsize campus networks. Full mesh among access switches eliminates hierarchy and scales poorly as links multiply. Spine-and-leaf is a data center fabric optimized for east-west server traffic, not a small office campus with user access ports. A flat unmanaged network abandons segmentation, redundancy, and manageability entirely, which is a step backward rather than a budget-conscious hierarchy.",
+    "domain": "Networking Concepts",
+    "objective": "1.6",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A user reports she cannot reach any websites or internal servers. Quentin, the on-site technician, runs ipconfig and finds the workstation's address is 169.254.31.7 with a subnet mask of 255.255.0.0. What does this address tell Quentin?",
+    "options": [
+      "The workstation received a valid lease from a rogue DHCP server",
+      "The workstation is using a loopback address and its NIC has failed",
+      "The workstation self-assigned an APIPA address because it could not reach a DHCP server",
+      "The workstation was statically configured with a public IP address"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Addresses in 169.254.0.0/16 are Automatic Private IP Addressing (APIPA) addresses, which a host assigns to itself when its DHCP requests go unanswered — so Quentin should investigate DHCP reachability (server down, VLAN misconfiguration, or link problem). A rogue DHCP server would hand out some other, likely routable, address rather than the self-assigned range. The loopback address is 127.0.0.1, not 169.254.x.x, and loopback does not indicate NIC hardware failure anyway. 169.254.0.0/16 is a reserved link-local range, not public space, and its presence indicates automatic assignment rather than a static configuration.",
+    "domain": "Networking Concepts",
+    "objective": "1.7",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Yusuf must carve a subnet out of 10.40.8.0/22 for a new department of 50 devices, and the addressing plan requires him to waste as few addresses as possible. Which prefix length should Yusuf assign to the department's subnet?",
+    "options": [
+      "/28, which provides 14 usable host addresses",
+      "/26, which provides 62 usable host addresses",
+      "/24, which provides 254 usable host addresses",
+      "/27, which provides 30 usable host addresses"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A /26 leaves 6 host bits, giving 2^6 - 2 = 62 usable addresses — the smallest standard subnet that fits 50 devices, which is the essence of VLSM: sizing each subnet to actual need. A /28 (14 usable) and a /27 (30 usable) are both too small for 50 devices. A /24 (254 usable) works but wastes roughly 200 addresses, violating the requirement to minimize waste.",
+    "domain": "Networking Concepts",
+    "objective": "1.7",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "While auditing an addressing plan, Chandra finds four address blocks proposed for internal use. Company policy requires all internal networks to use RFC1918 private address space. Which proposed block complies with the policy?",
+    "options": [
+      "172.20.16.0/20",
+      "172.32.0.0/16",
+      "192.169.4.0/24",
+      "11.0.0.0/8"
+    ],
+    "correctAnswer": 0,
+    "explanation": "RFC1918 reserves 10.0.0.0/8, 172.16.0.0/12 (172.16.0.0 through 172.31.255.255), and 192.168.0.0/16 for private use; 172.20.16.0/20 falls inside the 172.16.0.0/12 range and is compliant. 172.32.0.0/16 is just past the upper boundary of the /12 block — a classic trap, since only 172.16 through 172.31 are private. 192.169.4.0/24 looks similar to 192.168.0.0/16 but is publicly routable space. 11.0.0.0/8 is adjacent to the private 10.0.0.0/8 but is public address space.",
+    "domain": "Networking Concepts",
+    "objective": "1.7",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Rosa's company is opening 40 small branch offices. Each branch will get a preconfigured edge appliance shipped directly from the vendor; when a local employee plugs it in, the device must contact the controller, download its configuration automatically, and build tunnels over whatever circuit is available — broadband, LTE, or MPLS. Policies must be defined once at headquarters and pushed everywhere. Which technology set is Rosa deploying?",
+    "options": [
+      "A VXLAN overlay with data center interconnect at each branch",
+      "Traditional site-to-site VPN routers configured individually by console",
+      "SD-WAN with zero-touch provisioning, transport-agnostic tunnels, and central policy management",
+      "A SASE deployment where all branch security is delivered from the cloud"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The scenario describes SD-WAN's signature capabilities: zero-touch provisioning (device self-configures on power-up), transport agnosticism (broadband, LTE, or MPLS underneath), and central policy management from a controller. VXLAN is a Layer 2 encapsulation used chiefly for data center overlays and interconnect, not branch WAN provisioning. Individually console-configured VPN routers are precisely the manual approach zero-touch provisioning replaces, and they lack central policy push. SASE is the closest distractor since it builds on SD-WAN, but the scenario describes connectivity and provisioning requirements, not the cloud-delivered security services (SWG, CASB, ZTNA) that define SASE.",
+    "domain": "Networking Concepts",
+    "objective": "1.8",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Wei operates two data centers connected by a routed Layer 3 WAN. A virtualization project requires live-migrating virtual machines between the sites, which means the same Layer 2 segment must exist in both locations. The WAN routers cannot simply be bridged. Which technology lets Wei extend the Layer 2 segment across the routed connection?",
+    "options": [
+      "802.1Q trunking across the WAN routers",
+      "A GRE tunnel carrying routing protocol updates",
+      "Anycast addressing on the VM gateways",
+      "VXLAN encapsulating Layer 2 frames in UDP across the Layer 3 network"
+    ],
+    "correctAnswer": 3,
+    "explanation": "VXLAN encapsulates Layer 2 Ethernet frames inside UDP/IP packets, allowing a Layer 2 segment to be stretched across any routed Layer 3 network — the standard data center interconnect (DCI) solution for workload mobility like live VM migration. 802.1Q tags VLANs on trunk links but requires contiguous Layer 2 connectivity, which the routed WAN breaks. A GRE tunnel could carry traffic between sites but carrying routing updates does not extend a Layer 2 broadcast domain for migrated VMs. Anycast advertises one address from multiple locations for proximity routing; it does not create a shared Layer 2 segment.",
+    "domain": "Networking Concepts",
+    "objective": "1.8",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "After a breach investigation, consultants tell Dana's company to stop trusting devices simply because they connect from the corporate LAN. The new requirement: every access request must be authenticated and authorized against policy regardless of the user's location, and each user must receive only the minimum access needed for their role. Which architecture do these requirements describe?",
+    "options": [
+      "Zero trust architecture (ZTA)",
+      "A screened subnet (DMZ) protecting internal servers",
+      "Network address translation with private internal addressing",
+      "A hub-and-spoke VPN topology with full internal access after login"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Zero trust architecture removes implicit trust based on network location and applies policy-based authentication, explicit authorization, and least privilege access to every request — the exact requirements listed. A screened subnet still embodies perimeter thinking: hosts inside the boundary are trusted, which is the model being abandoned. NAT with private addressing hides internal topology but grants no per-request authentication or authorization. A VPN that grants full internal access after a single login is the classic implicit-trust pattern zero trust is designed to replace.",
+    "domain": "Networking Concepts",
+    "objective": "1.8",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Noor's team manages 200 switches using hand-typed CLI sessions. An audit found dozens of devices whose running configurations have drifted from the approved baseline, and no one can say who changed what or when. The team adopts an infrastructure as code approach. Which combination of practices most directly fixes both findings?",
+    "options": [
+      "Enable SNMP polling and syslog forwarding on every switch",
+      "Schedule quarterly manual configuration reviews with screenshots archived to a shared drive",
+      "Deploy configurations from version-controlled templates in a central repository and run automated compliance checks against the baseline",
+      "Replace the switches with appliances that support zero-touch provisioning"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Storing configuration templates in a version-controlled central repository provides change history and accountability (who changed what, when), while automated compliance checking detects and corrects configuration drift against the baseline — addressing both audit findings, and reflecting IaC's automation and source control pillars. SNMP and syslog provide monitoring and event data but neither prevent drift nor create authoritative configuration history. Quarterly manual reviews are slow, error-prone, and leave drift unaddressed for months; screenshots are not usable version control. Zero-touch provisioning automates initial deployment but does not manage ongoing configuration changes or drift on devices already in service.",
+    "domain": "Networking Concepts",
+    "objective": "1.8",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ezra's company has exhausted its IPv4 allocation and is beginning an IPv6 rollout. During the multi-year transition, internal hosts must reach both IPv6-enabled services and legacy IPv4-only services natively, without translating every connection. Which approach should Ezra implement on the client network?",
+    "options": [
+      "IPv6-only addressing with all IPv4 traffic dropped at the edge",
+      "Carrier-grade NAT to share the remaining IPv4 addresses",
+      "6to4 tunneling as the permanent production design",
+      "Dual stack, running IPv4 and IPv6 simultaneously on each host"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Dual stack gives every host both an IPv4 and an IPv6 address, so it reaches IPv6 services natively over IPv6 and legacy services natively over IPv4 — the standard compatibility approach during a transition. IPv6-only addressing breaks access to the IPv4-only legacy services the requirement explicitly preserves. Carrier-grade NAT stretches IPv4 address space but does nothing to advance IPv6 adoption and adds translation, which the requirement avoids. Tunneling mechanisms like 6to4 encapsulate IPv6 inside IPv4 to cross non-IPv6 segments; they are transition aids for connectivity gaps, not a permanent design, and do not give hosts native access to both protocol families.",
+    "domain": "Networking Concepts",
+    "objective": "1.8",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Jolene, a network director, is consolidating vendors. Her remote workforce currently uses a VPN concentrator, a separate secure web gateway, a cloud access security broker, and SD-WAN appliances at branches — each managed separately. She wants networking and security functions delivered together as a unified cloud service enforced close to the user, wherever they work. Which framework matches this goal?",
+    "options": [
+      "Secure Access Service Edge (SASE)",
+      "Network functions virtualization (NFV) on branch servers",
+      "A three-tier hierarchical campus redesign",
+      "Per-application GRE tunnels to each cloud provider"
+    ],
+    "correctAnswer": 0,
+    "explanation": "SASE converges SD-WAN networking with cloud-delivered security services (secure web gateway, CASB, zero trust network access, firewall as a service) into a single cloud-based offering enforced near the user — exactly the consolidation described. NFV virtualizes network functions on generic hardware but does not unify them into a cloud-delivered service edge for a distributed workforce. A three-tier campus redesign addresses on-premises LAN hierarchy, not remote-user security service delivery. Per-application GRE tunnels would multiply management burden and provide no integrated security functions at all.",
+    "domain": "Networking Concepts",
+    "objective": "1.8",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  }
+]

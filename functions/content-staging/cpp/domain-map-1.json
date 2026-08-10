@@ -1,0 +1,1903 @@
+[
+  {
+    "_id": "07WkfUR0OqGUC4MPezsg",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.3.1",
+    "ksa": [
+      "K7301"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Payroll Journal Entry (K7301 ability to record payroll transactions)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as required under current federal payroll regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as required under current federal payroll regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "0DsJGaPVk8MiIi6liXtJ",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.4.2",
+    "ksa": [
+      "K7402"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Account Reconciliation (K7402 reconcile general ledger payroll-related accounts)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per the guidelines outlined in the applicable federal regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per the guidelines outlined in the applicable federal regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "0UuCmmsvpTPe3XNqD1g6",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.2.3",
+    "ksa": [
+      "K3203"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fringe Benefits (K3203 taxable and non-taxable income for fringe benefits - qualified transportation)",
+    "flags": []
+  },
+  {
+    "_id": "1PtDkk3Yr4KawJRJVrjG",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.5.1",
+    "ksa": [
+      "K1501"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Employee/Employer Forms (K1501 employee forms - Form W-4 series)",
+    "flags": [
+      {
+        "type": "superseded-terminology",
+        "severity": "blocker",
+        "detail": "Stem asks which form an employee completes 'to claim withholding allowances and filing status'. Withholding allowances were removed from Form W-4 for tax year 2020; the 2026 Form W-4 (Employee's Withholding Certificate) uses Steps 1-5 (filing status, multiple jobs, dependents/credits, other adjustments, signature) and has no allowance line. The item's own explanation already describes the post-2020 form ('filing status, dependents, and additional withholding amounts'), so stem and explanation contradict each other.",
+        "action": "REWRITE STEM to: 'Which federal form does an employee complete to report filing status, dependents, and other adjustments for federal income tax withholding?' Options, key (index 3, Form W-4) and explanation stand as written.",
+        "scope": "stem"
+      }
+    ]
+  },
+  {
+    "_id": "1RJ4H68qbtPh2Lk14D80",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.1",
+    "ksa": [
+      "K2201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2201 rules for processing wage attachments - CCPA Title III limits)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as required under current federal payroll regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as required under current federal payroll regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "2h8QVKDc3ofcJZOnoDSV",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.2.2",
+    "ksa": [
+      "K3202"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fringe Benefits (K3202 impacts and reporting requirements of third-party payments - third-party sick pay)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"which represents the primary compliance standard for this requirement\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "which represents the primary compliance standard for this requirement",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "2lNmqf9A15wQRU10z5rr",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.3.6",
+    "ksa": [
+      "K2306"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Reporting (K2306 knowledge of New Hire Reporting)",
+    "flags": []
+  },
+  {
+    "_id": "2m1bl3krsjyNoEgK7xoh",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.2.4",
+    "ksa": [
+      "K6204",
+      "K6201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Payroll System Controls (K6204 reconcile payroll input; K6201 period-over-period register reconciliation)",
+    "flags": []
+  },
+  {
+    "_id": "38KWfgcK0X7mpDnBpldm",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.4.3",
+    "ksa": [
+      "K1403"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Employee Benefits (K1403 imputing fringe benefits - IRC Sec. 79 GTL $50,000 threshold)",
+    "flags": []
+  },
+  {
+    "_id": "3EZ8GIZAW199Jzh8Gm9i",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.1",
+    "ksa": [
+      "K2201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2201 wage attachment processing - withholding order priority)",
+    "flags": [
+      {
+        "type": "wrong-regulatory-authority",
+        "severity": "blocker",
+        "detail": "Key ends '...per IRS regulatory guidance' on child support withholding priority. Garnishment priority and the withholding limits come from the CCPA (Title III, 15 USC 1673) and federal OCSE / state IWO rules, not the IRS. The key states the wrong regulatory authority as fact.",
+        "action": "Strike the tail, or replace with '...under the CCPA and applicable state income withholding order rules'.",
+        "scope": "key"
+      },
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "3KvY9o6QG7ElxOxDN6CG",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.2.5",
+    "ksa": [
+      "K3205"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fringe Benefits (K3205 IRS special accounting rule for fringe benefits)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"which represents the primary compliance standard for this requirement\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "which represents the primary compliance standard for this requirement",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "3bCYbPatTFaGdnPFuxU9",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.4.3",
+    "ksa": [
+      "K1403"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Employee Benefits (K1403 imputing fringe benefits - IRC Sec. 79 GTL $50,000 threshold)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 38KWfgcK0X7mpDnBpldm. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "38KWfgcK0X7mpDnBpldm"
+      }
+    ]
+  },
+  {
+    "_id": "3dcB0y6soEndPpQWT7lZ",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.1.5",
+    "ksa": [
+      "K3105"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Compensation/Benefits (K3105 ability to identify and calculate supplemental wages)",
+    "flags": []
+  },
+  {
+    "_id": "3ymmf6fv0gijqQ5Veioe",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.4.4",
+    "ksa": [
+      "K1404"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Employee Benefits (K1404 grossing-up taxable benefits)",
+    "flags": []
+  },
+  {
+    "_id": "4FOYJUYl38Qo1wsX8sg4",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.1.1",
+    "ksa": [
+      "K3101"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Compensation/Benefits (K3101 calculate FLSA overtime and regular rate of pay - shift differential)",
+    "flags": []
+  },
+  {
+    "_id": "4rbLCsaxGsM5SLQLNy8r",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.1.1",
+    "ksa": [
+      "K3101"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Compensation/Benefits (K3101 ability to calculate FLSA overtime and regular rate of pay)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"reflecting the standard established under federal payroll guidelines\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "reflecting the standard established under federal payroll guidelines",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "50JnNatA9g5c2KlCP4Ik",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.3.3",
+    "ksa": [
+      "K2303"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Reporting (K2303 annual forms completion and filing - Forms W-2/W-3 series)",
+    "flags": []
+  },
+  {
+    "_id": "5A2wkvueIpGrGpyY9ZMX",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Administration and Management",
+    "objective": "5.1.4",
+    "ksa": [
+      "K5104"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Policies and Procedures (K5104 knowledge of documentation processes)",
+    "flags": []
+  },
+  {
+    "_id": "5HZ2wLdZwrC4jhgvC3p4",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.3",
+    "ksa": [
+      "K2203"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2203 timing and methods of federal tax deposits)",
+    "flags": []
+  },
+  {
+    "_id": "6vFpzQ6xaPTdxU7nKoIu",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.2",
+    "ksa": [
+      "K6102"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6102 identify internal controls - identify fraudulent activity/ghost employees)",
+    "flags": []
+  },
+  {
+    "_id": "7WkThLmtQnMOdDski7Bw",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.3.1",
+    "ksa": [
+      "K7301"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Payroll Journal Entry (K7301 record payroll transactions - compound entries)",
+    "flags": []
+  },
+  {
+    "_id": "7X5yWXPREXFDjU7MRh3J",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.1.5",
+    "ksa": [
+      "K3105"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Compensation/Benefits (K3105 ability to identify and calculate supplemental wages)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 3dcB0y6soEndPpQWT7lZ. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "3dcB0y6soEndPpQWT7lZ"
+      }
+    ]
+  },
+  {
+    "_id": "7lqrD4OFKPc3bjTh8UWC",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.3.2",
+    "ksa": [
+      "K3302"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Involuntary Deductions/Taxes (K3302 FIT withholding methods - optional flat rate on supplemental wages)",
+    "flags": []
+  },
+  {
+    "_id": "7ttk6YQYIKXdHHksGnKs",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.1",
+    "ksa": [
+      "K2201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2201 rules for processing wage attachments - federal tax levy, Form 668-W, Pub. 1494 exempt amount)",
+    "flags": [
+      {
+        "type": "superseded-terminology",
+        "severity": "blocker",
+        "detail": "The KEYED option reads 'the employee's filing status and number of exemptions claimed on the levy form', and the explanation repeats 'number of exemptions claimed on Part 3'. Personal exemptions were zeroed by the TCJA; since 2018 Parts 3/4/5 of Form 668-W are the 'Statement of Dependents and Filing Status' and the Pub. 1494 exempt-amount tables key off filing status and number of DEPENDENTS. A repealed concept is sitting inside the answer the candidate is taught is correct.",
+        "action": "REWRITE KEY to: 'The employer must calculate the exempt amount using the employee's filing status and number of dependents claimed on the Statement of Dependents and Filing Status filed with the levy.' Update the explanation to match (Pub. 1494, filing status + dependents, Parts 3-5).",
+        "scope": "key+explanation"
+      },
+      {
+        "type": "domain-move-reverted",
+        "severity": "minor",
+        "detail": "The rejected build moved this item to Calculation of the Paycheck / C (K3306, 3.3.6), which buries a repealed-terminology defect inside a calculation objective. The stem asks 'Which statement about processing this levy is correct?' and three of four options test processing rules (attachment to earned-but-unpaid wages, waiting period, percentage cap), not arithmetic.",
+        "action": "Reverted to Compliance/Research and Resources, B / 2.2.1 (K2201, rules for processing wage attachments incl. tax levies). If the rewrite turns the item into an exempt-amount computation, re-route to 3.3.6 (K3306) at that time.",
+        "alternativeObjective": "3.3.6"
+      }
+    ]
+  },
+  {
+    "_id": "8IHjoyTzHKN5mDyH60ot",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.5.1",
+    "ksa": [
+      "K2501"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Penalties (K2501 knowledge of IRS penalties - Trust Fund Recovery Penalty)",
+    "flags": []
+  },
+  {
+    "_id": "8p7B662tuGWvN5sYCC7h",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "4.4.5",
+    "ksa": [
+      "K4405"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Upgrade/Implementation Knowledge (K4405 purpose of testing - user acceptance testing)",
+    "flags": []
+  },
+  {
+    "_id": "901vi2fFbDDJy6N2guzm",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.2.6",
+    "ksa": [
+      "K1206",
+      "K1201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fair Labor Standards Act (K1206 tipped employee requirements; K1201 tip credit)",
+    "flags": []
+  },
+  {
+    "_id": "96LczlXzcXu8D0Eno7FJ",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.2",
+    "ksa": [
+      "K6102"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6102 identify internal controls - segregate job duties)",
+    "flags": []
+  },
+  {
+    "_id": "9EWg8eod8zGaAnxVE6Je",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.6.1",
+    "ksa": [
+      "K3601"
+    ],
+    "domainLetter": "F",
+    "topic": "F. Total Payroll (K3601 ability to calculate net pay)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "9f8BAUfKFAbmyhGT8hQN",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.7.1",
+    "ksa": [
+      "K2701"
+    ],
+    "domainLetter": null,
+    "letterMappingInferred": true,
+    "topic": "2.7 Complex taxation and reporting requirements (K2701 employee tips regulations and reporting - Forms W-2/8027, allocated tips)",
+    "flags": [
+      {
+        "type": "objective-letter-unsupported",
+        "severity": "major",
+        "detail": "The rejected build labelled this 'G. Multi-state Taxation / Reporting'. The KSA code is right (2.7.1 / K2701) but the letter is a positional guess: subsection 2.7 is titled 'Understand complex taxation and reporting requirements to maintain compliance' and enumerates tips, merger/acquisition, multiple worksite reports, common paymaster and common pay agent -- nothing multi-state. (Multi-state taxation rules are K1304, in Domain I.) The assumption that the seven Compliance letters run 1:1 against 2.1-2.7 is disproved by the same document in Domain IV, where letter A 'Maintain Master File Components' has no matching subsection and B-G shift onto 4.1-4.6. A tips item tagged 'Multi-state Taxation / Reporting' reads as a mis-tag to downstream QA.",
+        "action": "Primary citation is now the KSA subsection id 2.7.1 / K2701; the percentage-page letter is left unassigned and marked inferred. If a letter is required by the consumer, route to C. Reporting (tips reporting on Forms W-2/8027), not G."
+      }
+    ]
+  },
+  {
+    "_id": "9n40iimfMu3oetBh0EmL",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "4.4.3",
+    "ksa": [
+      "K4403"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Upgrade/Implementation Knowledge (K4403 mapping, converting, and reconciling data)",
+    "flags": []
+  },
+  {
+    "_id": "A9C6EDgEDF8Ji2Ps9Lh1",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Administration and Management",
+    "objective": "5.2.4",
+    "ksa": [
+      "K5204"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Management Skills and Practices (K5204 benchmarking, reporting, and analytics)",
+    "flags": []
+  },
+  {
+    "_id": "AJcqVAgZkAEQ97Kjz6mh",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.3.5",
+    "ksa": [
+      "K2305"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Reporting (K2305 knowledge of FMLA regulation and requirements)",
+    "flags": [
+      {
+        "type": "wrong-regulatory-authority",
+        "severity": "blocker",
+        "detail": "Key ends '...in accordance with applicable IRS guidelines and requirements'. FMLA entitlement is administered by the DOL Wage and Hour Division under 29 CFR Part 825; the IRS has no role in FMLA leave entitlement. The key states the wrong regulatory authority as fact.",
+        "action": "Strike the tail, or replace with '...under the FMLA regulations at 29 CFR Part 825'.",
+        "scope": "key"
+      },
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"in accordance with applicable IRS guidelines\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "in accordance with applicable IRS guidelines",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "B9W8JT6dr3raS37J5I1v",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.3",
+    "ksa": [
+      "K2203"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2203 timing and methods of federal tax deposits - EFTPS)",
+    "flags": []
+  },
+  {
+    "_id": "BhpeWoIadQ94GylkkZfy",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.2",
+    "ksa": [
+      "K6102"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6102 identify internal controls - validate accumulators)",
+    "flags": []
+  },
+  {
+    "_id": "C2jfIKp3W6jCNqjc322U",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.3.2",
+    "ksa": [
+      "K3302"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Involuntary Deductions/Taxes (K3302 FIT withholding methods - optional flat rate on supplemental wages)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 7lqrD4OFKPc3bjTh8UWC. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "7lqrD4OFKPc3bjTh8UWC"
+      }
+    ]
+  },
+  {
+    "_id": "CtprEKVB4BJiu17WfFwa",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.2.1",
+    "ksa": [
+      "K6201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Payroll System Controls (K6201 reconcile payroll output reports to internal sources - Form 941)",
+    "flags": []
+  },
+  {
+    "_id": "DAFT3fPIAxFfcaL2YFQO",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.3",
+    "ksa": [
+      "K2203"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2203 timing and methods of federal tax deposits)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 5HZ2wLdZwrC4jhgvC3p4. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "5HZ2wLdZwrC4jhgvC3p4"
+      }
+    ]
+  },
+  {
+    "_id": "DLyz9bWCunEC9bPe4hGS",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.2.1",
+    "ksa": [
+      "K6201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Payroll System Controls (K6201 reconcile payroll output reports to internal sources - Form 941)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id CtprEKVB4BJiu17WfFwa. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "CtprEKVB4BJiu17WfFwa"
+      }
+    ]
+  },
+  {
+    "_id": "Db5cirLKkNOItFajcc4I",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.2.4",
+    "ksa": [
+      "K3204"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fringe Benefits (K3204 accountable and non-accountable plans)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per the guidelines outlined in the applicable federal regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per the guidelines outlined in the applicable federal regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "ENHshzTXGFIt8ir7N0RS",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.1.3",
+    "ksa": [
+      "K7103"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Accounting Principles (K7103 knowledge of accruals and reversals)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "EPNZrOrQTch7BaKFEWVy",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.1.2",
+    "ksa": [
+      "K1102"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Worker Status (K1102 worker status and employer obligations - IRC Sec. 3509 reduced rates)",
+    "flags": []
+  },
+  {
+    "_id": "EqCEcnD06FQaISGKZ9St",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Administration and Management",
+    "objective": "5.2.4",
+    "ksa": [
+      "K5204"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Management Skills and Practices (K5204 benchmarking, reporting, and analytics)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id A9C6EDgEDF8Ji2Ps9Lh1. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "A9C6EDgEDF8Ji2Ps9Lh1"
+      }
+    ]
+  },
+  {
+    "_id": "Exp5zMXHPYl0vxD7lKBw",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "4.4.5",
+    "ksa": [
+      "K4405"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Upgrade/Implementation Knowledge (K4405 purpose of testing - user acceptance testing)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 8p7B662tuGWvN5sYCC7h. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "8p7B662tuGWvN5sYCC7h"
+      }
+    ]
+  },
+  {
+    "_id": "F1GaKA4dwhgzpxDrkqsG",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.3.4",
+    "ksa": [
+      "K3304"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Involuntary Deductions/Taxes (K3304 ability to calculate disposable earnings)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"which represents the primary compliance standard for this requirement\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "which represents the primary compliance standard for this requirement",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "F2NfC6qqz9dYtkBMl0q5",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "4.4.5",
+    "ksa": [
+      "K4405"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Upgrade/Implementation Knowledge (K4405 purpose of testing - parallel testing)",
+    "flags": []
+  },
+  {
+    "_id": "FMZqJS8TKmemArFY5Zkt",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.1.4",
+    "ksa": [
+      "K7104"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Financial Reporting (K7104 impact of asset, liability, and expense accounts on financial statements)",
+    "flags": []
+  },
+  {
+    "_id": "FdQull5koVjbRSNhPPRd",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": null,
+    "ksa": [],
+    "domainLetter": null,
+    "topic": "UNMAPPED - USERRA reemployment timing has no supporting KSA in the 2026 CPP outline",
+    "flags": [
+      {
+        "type": "out-of-blueprint-2026",
+        "severity": "blocker",
+        "detail": "The rejected build cited 'B. Legislative and Regulatory Requirements (K2206 federal agency regulations impacting payroll - USERRA/DOL)'. K2206's enumerated scope in the 2026 document is 'IRS, SSA, DOL, USCIS, third-party sick pay, E-Verify' -- USERRA is not in it. USERRA appears exactly once in the entire 2026 KSA set, at 3.4.1 / K3401 'Ability to calculate deferred compensation contributions (e.g., IRC Sec.401(k), 403(b), 457(b), USERRA)', i.e. Calculation of the Paycheck / D. Voluntary Deductions -- which covers make-up deferrals for returning service members, not reemployment deadlines. Nothing in the 2026 outline supports a USERRA reemployment-timing item.",
+        "action": "RETIRE or REPLACE. If USERRA coverage is wanted for the Sep-2026 form, author a new item against 3.4.1 / K3401 testing make-up deferred-compensation contributions for a returning service member. Do not re-map this item to K2206.",
+        "onlyUserraKsaIn2026": "3.4.1 / K3401"
+      },
+      {
+        "type": "key-explanation-contradiction",
+        "severity": "blocker",
+        "detail": "The key reads 'Promptly, generally within two weeks for service lasting 31-180 days', which collapses the employee's 14-day APPLICATION deadline into an employer reemployment deadline. The item's own explanation states the two correctly and separately ('the employee must apply within 14 days and be promptly reemployed'), so the explanation disagrees with the key it is defending. USERRA sets no fixed reemployment clock -- the standard is 'promptly', generally within two weeks of application absent unusual circumstances.",
+        "action": "If the item is replaced rather than retired, the application deadline and the promptness standard must be separated in both stem and key.",
+        "scope": "key+explanation"
+      }
+    ]
+  },
+  {
+    "_id": "Fk1eWuioclNixbcn8pUr",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.2",
+    "ksa": [
+      "K6102"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6102 identify internal controls - validate accumulators)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id BhpeWoIadQ94GylkkZfy. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "BhpeWoIadQ94GylkkZfy"
+      }
+    ]
+  },
+  {
+    "_id": "Fo0qw2pJ4AoJ5O6qdc1Y",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.1.1",
+    "ksa": [
+      "K3101"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Compensation/Benefits (K3101 calculate FLSA overtime and regular rate of pay - shift differential)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 4FOYJUYl38Qo1wsX8sg4. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "4FOYJUYl38Qo1wsX8sg4"
+      }
+    ]
+  },
+  {
+    "_id": "GEdcW8XVAwaaJ7jA12bB",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.7.1",
+    "ksa": [
+      "K1701"
+    ],
+    "domainLetter": "G",
+    "topic": "G. Methods and Timing of Pay (K1701 constructive receipt)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as required under current federal payroll regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as required under current federal payroll regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "GaKfSZUaRacCUystzBsH",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.1.5",
+    "ksa": [
+      "K7105"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Financial Reporting (K7105 components of financial statements - income statement)",
+    "flags": []
+  },
+  {
+    "_id": "GcA4Ktm3jrCKhLhyJ1QH",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.2.3",
+    "ksa": [
+      "K1203"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fair Labor Standards Act (K1203 compensable time - engaged to wait)",
+    "flags": []
+  },
+  {
+    "_id": "GkIvYrgUxatYvLQtS8hO",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.6.2",
+    "ksa": [
+      "K2602",
+      "K2606"
+    ],
+    "domainLetter": "F",
+    "topic": "F. Global (K2602 nonresident alien taxation and processing; K2606 tax treaty benefits)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as established by the relevant federal regulatory framework\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as established by the relevant federal regulatory framework",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "Gs6EmEieHGbNsjOQp10O",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.2.3",
+    "ksa": [
+      "K3203"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fringe Benefits (K3203 taxable and non-taxable fringe benefits - de minimis, IRC Sec. 132(a)(4))",
+    "flags": []
+  },
+  {
+    "_id": "HuCRJy7yll59qYtiPhcz",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Administration and Management",
+    "objective": "5.1.4",
+    "ksa": [
+      "K5104"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Policies and Procedures (K5104 knowledge of documentation processes)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 5A2wkvueIpGrGpyY9ZMX. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "5A2wkvueIpGrGpyY9ZMX"
+      }
+    ]
+  },
+  {
+    "_id": "IUwLmHLH1uDFEwMQFFor",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.4.1",
+    "ksa": [
+      "K3401"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Voluntary Deductions (K3401 deferred compensation contributions - IRC Sec. 401(k) pre-tax treatment)",
+    "flags": []
+  },
+  {
+    "_id": "IZbOrk9BR7LIntCpvmsR",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.7.7",
+    "ksa": [
+      "K1707"
+    ],
+    "domainLetter": "G",
+    "topic": "G. Methods and Timing of Pay (K1707 payment by check - positive pay)",
+    "flags": []
+  },
+  {
+    "_id": "IsKYjdFG2sub10mB0vTU",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.3",
+    "ksa": [
+      "K6103"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6103 testing and implementation of internal controls - system audit trail)",
+    "flags": []
+  },
+  {
+    "_id": "JFoE9VKc1DCevqes2EPZ",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "4.3.4",
+    "ksa": [
+      "K4304"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Technology Evaluation (K4304 Request for Proposal (RFP) and Request for Information (RFI))",
+    "flags": []
+  },
+  {
+    "_id": "JSr3BqfvF8xx8i9EpOXK",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "4.4.3",
+    "ksa": [
+      "K4403"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Upgrade/Implementation Knowledge (K4403 mapping, converting, and reconciling data)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 9n40iimfMu3oetBh0EmL. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "9n40iimfMu3oetBh0EmL"
+      }
+    ]
+  },
+  {
+    "_id": "K1nbBVuFn2Ox6FPyOxIa",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.2",
+    "ksa": [
+      "K6102"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6102 identify internal controls - segregate job duties)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 96LczlXzcXu8D0Eno7FJ. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "96LczlXzcXu8D0Eno7FJ"
+      }
+    ]
+  },
+  {
+    "_id": "K9y2pdpDYQXr34gMEivb",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.9",
+    "ksa": [
+      "K2209"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2209 COBRA requirements)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "KJce4EWHDcAjobOggyN5",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.2.4",
+    "ksa": [
+      "K6204",
+      "K6201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Payroll System Controls (K6204 reconcile payroll input; K6201 period-over-period register reconciliation)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 2m1bl3krsjyNoEgK7xoh. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "2m1bl3krsjyNoEgK7xoh"
+      }
+    ]
+  },
+  {
+    "_id": "KNEodMSYcTd0vRYdIjxa",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.1.2",
+    "ksa": [
+      "K7102"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Accounting Principles (K7102 accounting principles - matching)",
+    "flags": []
+  },
+  {
+    "_id": "KaMC6HPMBYfDTgzh3UFN",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.4.1",
+    "ksa": [
+      "K3401"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Voluntary Deductions (K3401 deferred compensation contributions - Roth vs. traditional 401(k))",
+    "flags": []
+  },
+  {
+    "_id": "KhqaYFNtKQJLgp9q1Zuo",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.4.6",
+    "ksa": [
+      "K3406"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Voluntary Deductions (K3406 IRC Sec. 129 Dependent Care Assistance Plans - per-period calculation)",
+    "flags": []
+  },
+  {
+    "_id": "KtjpyoBbVOp2tlZh2zL8",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Administration and Management",
+    "objective": "5.3.2",
+    "ksa": [
+      "K5302"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Customer Service and Communication (K5302 identify and apply customer service principles)",
+    "flags": []
+  },
+  {
+    "_id": "L7CwasESH7RtNI0hUwcQ",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.6.10",
+    "ksa": [
+      "K2610"
+    ],
+    "domainLetter": "F",
+    "topic": "F. Global (K2610 tax equalization and hypothetical tax)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "LdLNMCxqVuvTcpgmpfNv",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.5.2",
+    "ksa": [
+      "K1502"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Employee/Employer Forms (K1502 quarterly forms - Form 941 series)",
+    "flags": []
+  },
+  {
+    "_id": "LgDbKhtokoqfOsdQShQO",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.1.1",
+    "ksa": [
+      "K2101"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Escheatment (K2101 knowledge of escheat laws)",
+    "flags": []
+  },
+  {
+    "_id": "LpKeRyst07sCv2q45WVw",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.7.1",
+    "ksa": [
+      "K1701"
+    ],
+    "domainLetter": "G",
+    "topic": "G. Methods and Timing of Pay (K1701 constructive receipt)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as required under current federal payroll regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as required under current federal payroll regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      },
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id GEdcW8XVAwaaJ7jA12bB. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "GEdcW8XVAwaaJ7jA12bB"
+      }
+    ]
+  },
+  {
+    "_id": "LuKjXxe2bNLiIb3ARknW",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.3.4",
+    "ksa": [
+      "K7304"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Payroll Journal Entry (K7304 accounting for repayment of wages)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "M8Q5GaYinP2D0LwyZoKh",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Administration and Management",
+    "objective": "5.4.1",
+    "ksa": [
+      "K5401"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Staffing, Employee Development, and Core Competencies (K5401 ability to delegate appropriately)",
+    "flags": [
+      {
+        "type": "wrong-regulatory-authority",
+        "severity": "blocker",
+        "detail": "Key ends '...per IRS regulatory guidance' on an item about effective delegation in the payroll department. Delegation is a management practice; the IRS issues no guidance on it. The key attaches a regulatory authority to a non-regulatory concept.",
+        "action": "Strike the tail; the key stands on its own without it.",
+        "scope": "key"
+      },
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "MAdPCRDBqKU7yWVRRlDG",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.1",
+    "ksa": [
+      "K2201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2201 wage attachments - CCPA Title III discharge protection)",
+    "flags": []
+  },
+  {
+    "_id": "MmyL42t8leRpUeg8BIH1",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.2.3",
+    "ksa": [
+      "K1203"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fair Labor Standards Act (K1203 compensable time - engaged to wait)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id GcA4Ktm3jrCKhLhyJ1QH. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "GcA4Ktm3jrCKhLhyJ1QH"
+      }
+    ]
+  },
+  {
+    "_id": "MpTR0hqGGGWstcbMmWZc",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.4.5",
+    "ksa": [
+      "K3405"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Voluntary Deductions (K3405 allowable employer deductions under FLSA - overpayments, repayments)",
+    "flags": []
+  },
+  {
+    "_id": "N91cGv9dHvP6ZD8Q4IeV",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.5.2",
+    "ksa": [
+      "K1502"
+    ],
+    "domainLetter": "E",
+    "topic": "E. Employee/Employer Forms (K1502 quarterly forms - Form 941 series)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id LdLNMCxqVuvTcpgmpfNv. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "LdLNMCxqVuvTcpgmpfNv"
+      }
+    ]
+  },
+  {
+    "_id": "NntXdUjZhM4yH921KVPn",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.6.10",
+    "ksa": [
+      "K2610"
+    ],
+    "domainLetter": "F",
+    "topic": "F. Global (K2610 tax equalization and hypothetical tax)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      },
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id L7CwasESH7RtNI0hUwcQ. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "L7CwasESH7RtNI0hUwcQ"
+      }
+    ]
+  },
+  {
+    "_id": "NzjOlmoCXrjr8gFYKNkq",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.7.7",
+    "ksa": [
+      "K1707"
+    ],
+    "domainLetter": "G",
+    "topic": "G. Methods and Timing of Pay (K1707 payment by check - positive pay)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id IZbOrk9BR7LIntCpvmsR. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "IZbOrk9BR7LIntCpvmsR"
+      }
+    ]
+  },
+  {
+    "_id": "P8CAyjgVyWkf6QRU3I8h",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.4.2",
+    "ksa": [
+      "K1402"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Employee Benefits (K1402 qualified and nonqualified plans - IRC Sec. 125 cafeteria plan)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"reflecting the standard established under federal payroll guidelines\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "reflecting the standard established under federal payroll guidelines",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "PAs8CCcrbWVjOFDvmrUC",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.1.4",
+    "ksa": [
+      "K1104"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Worker Status (K1104 knowledge of Common Law Test)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as required under current federal guidelines\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as required under current federal guidelines",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "PSFCm977xwO2XfFUZ00c",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Compliance/Research and Resources",
+    "newDomain": "Compliance/Research and Resources",
+    "objective": "2.2.9",
+    "ksa": [
+      "K2209"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Legislative and Regulatory Requirements (K2209 COBRA requirements)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      },
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id K9y2pdpDYQXr34gMEivb. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "K9y2pdpDYQXr34gMEivb"
+      }
+    ]
+  },
+  {
+    "_id": "Ps0gJPlR3TYdYZbb9ul5",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.2.8",
+    "ksa": [
+      "K1208"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fair Labor Standards Act (K1208 child labor regulations)",
+    "flags": []
+  },
+  {
+    "_id": "Pukc6afah6eb6kWpYDzX",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.1.1",
+    "ksa": [
+      "K3101"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Compensation/Benefits (K3101 regular rate of pay including nondiscretionary bonus)",
+    "flags": [
+      {
+        "type": "explanation-defect",
+        "severity": "blocker",
+        "detail": "Key text shows '$12.22 ($500 + $100 = $600 / 45 hours)'. Both numbers in the shown work are wrong: straight time is $10 x 45 = $450, not $500, and $450 + $100 = $550, not $600. The stated result ($12.22) is correct only for $550/45. The explanation also contains visible model self-talk -- 'Total earnings: ($10 x 45 = $450 straight time) + $100 bonus = $550... wait. Actually:' -- shipped to candidates.",
+        "action": "REWRITE key parenthetical to '($450 + $100 = $550 / 45 hours)' and rewrite the explanation cleanly, removing the self-talk and the $500/$600 figures.",
+        "scope": "key+explanation"
+      }
+    ]
+  },
+  {
+    "_id": "PwY4Z1sbbP4BZNmm0fId",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.3.4",
+    "ksa": [
+      "K3304"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Involuntary Deductions/Taxes (K3304 ability to calculate disposable earnings)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"which represents the primary compliance standard for this requirement\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "which represents the primary compliance standard for this requirement",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      },
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id F1GaKA4dwhgzpxDrkqsG. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "F1GaKA4dwhgzpxDrkqsG"
+      }
+    ]
+  },
+  {
+    "_id": "Pz8V1Xfu0zcj6tTlviuq",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.2.2",
+    "ksa": [
+      "K6202"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Payroll System Controls (K6202 reconcile payroll output reports to external sources - 401(k)/FSA vendors)",
+    "flags": []
+  },
+  {
+    "_id": "QDvJug2AO0pThWSjidcA",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.3",
+    "ksa": [
+      "K6103"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6103 testing and implementation of internal controls - system audit trail)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id IsKYjdFG2sub10mB0vTU. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "IsKYjdFG2sub10mB0vTU"
+      }
+    ]
+  },
+  {
+    "_id": "Ql1ChkuW3uXYFAHFPQw9",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.1.1",
+    "ksa": [
+      "K3101"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Compensation/Benefits (K3101 FLSA overtime - fluctuating workweek half-time premium)",
+    "flags": [
+      {
+        "type": "wrong-regulatory-authority",
+        "severity": "blocker",
+        "detail": "Key ends '...as outlined in the applicable section of the Internal Revenue Code'. The fluctuating workweek method is an FLSA overtime rule at 29 CFR 778.114; it is not an IRC provision. The key states the wrong regulatory authority as fact.",
+        "action": "Strike the tail, or replace with '...under 29 CFR 778.114'.",
+        "scope": "key"
+      },
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as outlined in the applicable section of the Internal Revenue Code\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as outlined in the applicable section of the Internal Revenue Code",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "QvcF8oHHkobnkWd8kiqt",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.3.3",
+    "ksa": [
+      "K3303"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Involuntary Deductions/Taxes (K3303 withholding for wages paid after death)",
+    "flags": []
+  },
+  {
+    "_id": "RFCs9H48Wo6PM9jbJymr",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Calculation of the Paycheck",
+    "newDomain": "Calculation of the Paycheck",
+    "objective": "3.2.6",
+    "ksa": [
+      "K3206"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Fringe Benefits (K3206 impact and reporting requirements for stock awards and purchases)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"as required under current federal payroll regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "as required under current federal payroll regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "SUXLb7Pgt1eWhKN7Cd7R",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.1.3",
+    "ksa": [
+      "K7103"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Accounting Principles (K7103 knowledge of accruals and reversals)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per IRS regulatory guidance\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per IRS regulatory guidance",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      },
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id ENHshzTXGFIt8ir7N0RS. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "ENHshzTXGFIt8ir7N0RS"
+      }
+    ]
+  },
+  {
+    "_id": "SVEy4zWfFbpQWGedGQYR",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.3.3",
+    "ksa": [
+      "K1303"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Employment Taxes (K1303 backup withholding requirements)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"which represents the primary compliance standard for this requirement\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "which represents the primary compliance standard for this requirement",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "TPhKplu0mdsFHHtU9c9T",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Process and Supporting Systems and Administration",
+    "objective": "4.1.4",
+    "ksa": [
+      "K4104"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Concepts and Functionalities (K4104 employee and/or manager self-service functionality)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per the guidelines outlined in the applicable federal regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per the guidelines outlined in the applicable federal regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "TZy91qIoWrUxQEz8LwrI",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Audits",
+    "objective": "6.1.4",
+    "ksa": [
+      "K6104"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Internal Controls (K6104 Sarbanes-Oxley compliance and controls)",
+    "flags": [
+      {
+        "type": "answer-key-tell",
+        "severity": "blocker",
+        "detail": "BANK-WIDE DEFECT (30 of the 100 items in this slice). This item's KEYED option carries a boilerplate regulatory hedging tail (\"per the guidelines outlined in the applicable federal regulations\"). Across the 100 items these six-plus tail variants appear on the KEY 30 times and on a DISTRACTOR 0 times. A candidate with no payroll knowledge who simply picks the option with a regulatory-appeal tail scores 30/100 -- the tail is a perfect answer-key marker and the single largest integrity defect in the slice.",
+        "action": "DE-TAIL: strike the hedging clause from the keyed option. Where the tail also names the wrong authority (see wrong-regulatory-authority flags), strike or correct it. Separately, the rewrite pass must add comparable-register tails to some distractors or remove them everywhere, so key length/register no longer separates key from distractors.",
+        "scope": "key",
+        "tail": "per the guidelines outlined in the applicable federal regulations",
+        "bankWideAffected": 30,
+        "bankWideDistractorHits": 0
+      }
+    ]
+  },
+  {
+    "_id": "UWDPEURpRZxpskiG7Opi",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.7.4",
+    "ksa": [
+      "K1704"
+    ],
+    "domainLetter": "G",
+    "topic": "G. Methods and Timing of Pay (K1704 ACH process and components)",
+    "flags": []
+  },
+  {
+    "_id": "UY8eXEDiwUf02IQ7lmmt",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.4.4",
+    "ksa": [
+      "K1404"
+    ],
+    "domainLetter": "D",
+    "topic": "D. Employee Benefits (K1404 grossing-up taxable benefits)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id 3ymmf6fv0gijqQ5Veioe. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "3ymmf6fv0gijqQ5Veioe"
+      }
+    ]
+  },
+  {
+    "_id": "UfPXpbi1pU5drcarZO99",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Payroll Administration and Management",
+    "objective": "5.2.1",
+    "ksa": [
+      "K5201"
+    ],
+    "domainLetter": "B",
+    "topic": "B. Management Skills and Practices (K5201 knowledge of service level agreements)",
+    "flags": []
+  },
+  {
+    "_id": "UiBxUGX7Rp7nEI5mvGPg",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Administration/Process/Management/Audits/Accounting",
+    "newDomain": "Accounting",
+    "objective": "7.1.4",
+    "ksa": [
+      "K7104"
+    ],
+    "domainLetter": "A",
+    "topic": "A. Financial Reporting (K7104 impact of asset, liability, and expense accounts on financial statements)",
+    "flags": [
+      {
+        "type": "duplicate-stem",
+        "severity": "major",
+        "detail": "Verbatim duplicate of the stem used by _id FMZqJS8TKmemArFY5Zkt. The 100-item slice contains 76 distinct stems and 24 redundant copies. Classification is identical across each pair, which is correct, but the effective distinct-item count is 76.",
+        "action": "De-duplicate before publish: retire this copy or re-author it into a distinct item under the same objective.",
+        "duplicateOf": "FMZqJS8TKmemArFY5Zkt"
+      }
+    ]
+  },
+  {
+    "_id": "VRHDMrTq80gZtn1oVgur",
+    "source": "authored-2026-08-eco-refresh",
+    "oldDomain": "Core Payroll Concepts",
+    "newDomain": "Core Payroll Concepts",
+    "objective": "1.3.1",
+    "ksa": [
+      "K1301"
+    ],
+    "domainLetter": "C",
+    "topic": "C. Employment Taxes (K1301 federal employment tax requirements - Additional Medicare Tax)",
+    "flags": []
+  }
+]

@@ -1,0 +1,377 @@
+[
+  {
+    "stem": "Beatriz, a network technician, picks up a ticket that says only \"nobody at the Cedar branch can get to the internet.\" She has no other details. Before she forms any theory about the cause, which action best fits the first step of the CompTIA troubleshooting methodology?",
+    "options": [
+      "Reboot the branch router and the firewall, since a whole-site outage usually clears with a restart",
+      "Question the branch staff about what fails, when it began, and what changed over the weekend",
+      "Open a priority ticket with the circuit provider, since a whole-site failure points at the WAN",
+      "Write up the outage and the remediation steps she intends to take before touching anything"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Step one is Identify the problem: gather information, question users, identify symptoms, determine if anything has changed, and duplicate the problem if possible. Interviewing the staff is how Beatriz turns a vague report into actual symptoms and surfaces a recent change. Rebooting devices is implementing a solution before any theory exists, and it destroys the volatile evidence (interface counters, log buffers, ARP and MAC tables) she needs. Calling the ISP is escalation, which belongs to the test-the-theory step and presumes a WAN cause she has not established. Writing up the outage is documentation of findings, actions, and outcomes, which is the final step of the methodology and premature when no findings exist yet.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Nikolai theorizes that a flapping switch port is caused by a failing patch cable. He replaces the cable with a known-good one and the port continues to flap every few minutes. According to the troubleshooting methodology, what should Nikolai do next?",
+    "options": [
+      "Proceed to establish a plan of action based on the original theory, since the cable is the only replaceable component",
+      "Replace the entire switch, because the next most likely faulty component is the switch port itself",
+      "Verify full system functionality and document the cable replacement as the resolution",
+      "Establish a new theory of probable cause, or escalate if he has exhausted what he can test"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The methodology is explicit: when testing the theory does not confirm it, establish a new theory or escalate. The cable test disproved the theory, so Nikolai returns to the theory step with new information (the fault survives a cable swap, so it likely lies in a failing transceiver, the far-end device, a marginal punch-down on the patch-panel run, or errdisable flap detection acting on the port). Building a plan of action on a disproved theory guarantees the fix fails. Swapping the switch is implementing a solution with no theory behind it and is an expensive shotgun move. Verifying and documenting is the closing sequence and cannot apply because the symptom is still present.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A user tells Camila that the ERP client will not connect. Camila confirms the port has a link light, the workstation holds a valid DHCP address, mask, and gateway, and it can ping both the default gateway and an internet host by IP address. Which approach should Camila take, and where should she begin?",
+    "options": [
+      "Work top-to-bottom from the Application layer, because the successful pings already validate Layers 1 through 3",
+      "Work bottom-to-top starting with the patch cable and the switch port, since that is where most faults originate",
+      "Replace the workstation NIC, because a partially failed NIC can pass ICMP while silently dropping TCP",
+      "Escalate to the circuit provider, because reaching an external address proves the fault is upstream"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Choosing between bottom-to-top, top-to-bottom, and divide-and-conquer is driven by what the evidence already rules out. Link, addressing, and successful ICMP to on-net and off-net destinations confirm the physical, data link, and network layers, so the productive starting point is above them: the transport and application layers (service listening, port reachable, client configuration, name resolution, credentials). Bottom-to-top would re-test three layers already proven good and waste the outage window. Replacing the NIC is implementing a fix with no theory, and NICs do not selectively discard TCP while forwarding ICMP in the manner described. Escalating to the provider contradicts the evidence, since internet reachability succeeded and the carrier has no visibility into an internal application.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ruben has tested and confirmed his theory: an access control list on a distribution switch is blocking the newly built 10.50.20.0/24 subnet. He wants to fix it right now by removing the ACL from the interface in the middle of the business day. What is the appropriate next step in the methodology?",
+    "options": [
+      "Duplicate the problem from a second workstation on the new subnet to be sure the ACL is the cause",
+      "Close the ticket and document the outage as resolved once he has removed the ACL",
+      "Plan the change, identify what else that ACL filters, and route it through change management",
+      "Remove the ACL now, because a confirmed theory justifies acting without further analysis"
+    ],
+    "correctAnswer": 2,
+    "explanation": "After the theory is confirmed, the next step is to establish a plan of action to resolve the problem and identify potential effects. Stripping an entire ACL is far broader than the fix requires and may silently expose everything else that ACL was written to block, so the plan should be a targeted permit entry, applied in an approved window, with a rollback. Duplicating the problem belongs to step one and is redundant once the theory is confirmed. Closing and documenting the outage as resolved inverts the sequence: documentation runs throughout, but declaring resolution is the closing action and it cannot precede verifying that service actually returned. Acting immediately is precisely the skipped-step error that turns a confirmed fix into a second, larger outage.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.1",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Odette replaced a failed eight-port midspan PoE injector that fed a conference room's IP phone, two ceiling speakers, and a wall-mounted room controller. The phone now powers up and registers with the call server. What should Odette do before she closes the ticket?",
+    "options": [
+      "Close the ticket and document the injector replacement, since the reported symptom is already gone",
+      "Confirm two-way audio on a live call and check the other loads the midspan carried, before labeling it",
+      "Establish a new theory of probable cause in case the midspan was not the true root cause",
+      "Open a retroactive change request so that the hardware swap is formally approved after the fact"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The step after implementing a solution is to verify full system functionality and implement preventive measures if applicable. Successful registration proves signaling only, not media, so Odette must place and receive a call to confirm two-way audio, and the midspan feeds three other powered devices whose state she has not checked. Labeling the replacement and adding it to the monitored inventory is the preventive measure. Closing on the reported symptom skips verification, which is how partially fixed tickets get reopened, and documentation follows verification rather than replacing it. Establishing a new theory applies only when a theory is disproved, which is not the case here. A retroactive change request may satisfy process, but it verifies nothing about restored service.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Otto terminates a new 60-meter multimode fiber pair between two switches using LC connectors. Both switch ports report a status of down/down rather than administratively down. The transceivers at each end are the same model and the correct type, and a visual fault locator shows visible light emerging at the far end on both strands. What is the most likely cause?",
+    "options": [
+      "The run exceeds the distance limit of the transceivers, so the signal arrives below the receive threshold",
+      "One end holds a single-mode transceiver and the other a multimode one, so the optical modes differ",
+      "The transmit and receive strands are transposed, so each transmitter lands on the far transmitter",
+      "Both switch ports were left administratively shut down when the new link was patched in"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The visual fault locator proves optical continuity on both strands, and the transceivers are matched, so the remaining variable is polarity: a duplex fiber pair only links when TX at one end lands on RX at the other. Reversing one LC connector at a single end corrects it. Distance is not the issue because 60 meters is far inside multimode reach and light was confirmed reaching the far end, which rules out attenuation. A single-mode/multimode transceiver mismatch is a genuine cause of a dark link, but the stem states both ends use the same model. An administratively shut port reports an explicit administratively down state, and both of these ports report down/down, so neither end was left disabled.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Delia investigates a shop-floor camera whose video stutters. The UTP run to it certified as passing Cat 6 at install eighteen months ago, and the camera streamed cleanly until a 480-volt motor feeder was pulled into the same cable tray last month. On the switch, show interface reports the port up at 1 Gbps full duplex with zero runts and zero giants, and the CRC and input error counters step up in bursts each time the motor cycles. What is the cause and the correct fix?",
+    "options": [
+      "Interference from the adjacent power feeder is corrupting frames; reroute the run or use shielded cable",
+      "The run exceeds the 100-meter channel limit, so attenuation is corrupting frames; shorten the run",
+      "A duplex mismatch is generating the errors; disable autonegotiation and hard-code both ends",
+      "The pairs were untwisted more than half an inch at the jack; re-terminate maintaining twist to the contact"
+    ],
+    "correctAnswer": 0,
+    "explanation": "CRC and input errors on a stable full-duplex gigabit link mean bits are being corrupted on the medium, and errors that arrive in bursts timed to the motor cycling point at induced noise on the unshielded pairs running alongside a high-current conductor. Separation or shielded cable with a bonded ground path resolves it. Attenuation is a real degradation mode, but nothing indicates an over-length run, and attenuation typically shows as link instability or a lower negotiated speed rather than clean gigabit with rising CRCs. A duplex mismatch requires one end running half duplex, which announces itself with runts and fragments on that side; this port reports full duplex and zero runts, and hard-coding both ends changes nothing about bits being corrupted on the medium while removing the negotiation that 1000BASE-T depends on. Improper termination with excess untwist is a genuine cause of near-end crosstalk and the remedy given for it is the correct one, but a punch-down defect is present from the moment the jack is terminated, and this run certified as passing Cat 6 at install and carried clean video for eighteen months; a termination fault would also produce a steady error rate rather than counters that step in bursts synchronized with the motor.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Mateo troubleshoots a workstation whose link comes up at only 100 Mbps and drops several times a day. The horizontal run from the IDF patch panel to the wall jack measures 130 meters before patch cords, and a certification-grade cable tester reports excessive insertion loss. What is the problem and the proper remedy?",
+    "options": [
+      "The installer used unshielded rather than shielded cable, so the link cannot sustain gigabit; recable with STP",
+      "The NIC negotiated 100 Mbps in error, so it should be hard-coded to 1000 Mbps full duplex at both ends",
+      "The cable is non-plenum and is degrading in the air-handling space, so it must be replaced with plenum",
+      "The run exceeds the 100-meter channel limit, so attenuation degrades it; add an IDF or move to fiber"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Balanced twisted-pair Ethernet is specified to a 100-meter channel, roughly 90 meters of permanent link plus patch cords. At 130 meters plus cords the signal arrives too weak and distorted to sustain gigabit, which is exactly what the tester means by excessive insertion loss, the measured form of attenuation. Shortening the electrical distance with an intermediate switch, or converting to fiber, is the only real fix. Shielding addresses electromagnetic interference, not distance, and UTP carries 1000BASE-T fine within spec. Hard-coding 1000 Mbps forces a speed the physical channel cannot support and adds negotiation failures on top of the existing problem. Plenum rating is a fire-code requirement about smoke and flame spread; non-plenum cable in a plenum space is a code violation but it does not attenuate any faster.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Simone installs six outdoor access points, each rated for 802.3bt Type 3 and drawing roughly 45 watts. She connects them to a 24-port switch that supplies 802.3af only, with a 370-watt total PoE budget; these are the only powered ports. Each AP lights up, gets partway through its boot sequence, and restarts, cycling continuously. On the switch, show power inline lists all six ports as powered and capped at 15.4 watts, with 92.4 watts consumed against the 370-watt budget. What is the cause?",
+    "options": [
+      "The switch total PoE power budget is exhausted, so the APs must be spread across more switches",
+      "The switch supplies only 802.3af, capping every port at 15.4 watts, far short of what the APs need",
+      "The APs are drawing power over the wrong pairs, so the runs must be replaced with four-pair Cat 6a",
+      "A 45-watt draw sits above the ceiling a Type 3 powered device may take, so any PSE would deny it"
+    ],
+    "correctAnswer": 1,
+    "explanation": "This is a PoE standard mismatch, not a budget problem. An 802.3af PSE sources at most 15.4 watts per port, which is exactly what show power inline reports, so each AP draws enough to begin booting, exceeds the cap as its radios initialize, browns out, and restarts, which is the cycling Simone sees. Only bt-capable ports or bt midspan injectors will carry these APs. Budget exhaustion is a real PoE failure mode and the reason show power inline exists, but the switch reports 92.4 watts consumed against a 370-watt budget, leaving roughly 278 watts unused, so spreading the APs across more switches changes nothing while every port remains af. Pair usage is a property of the class rather than something the AP chooses; a 45-watt Class 5 device requires all four pairs, so category-compliant four-pair cabling does matter, but recabling cannot make an af switch deliver bt power. The Type 3 ceiling argument inverts the actual limits: Type 3 allows up to 60 watts at the sourcing equipment and 51 watts at the powered device, so a 45-watt draw is comfortably legal for a Type 3 PD and would be granted by any bt-capable PSE. The failure is that this PSE speaks af only.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.2",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Port Gi1/0/14 on Kwame's access switch is configured with port security permitting a single MAC address. A user plugged an unmanaged five-port switch into that jack and connected three devices to it. The port now shows a status of err-disabled and the link light is dark. What has happened, and what is the correct response?",
+    "options": [
+      "Another administrator issued shutdown on the port, so it needs only a no shutdown command to recover",
+      "The VLAN assigned to the port was suspended in the VLAN database, which took the port out of service",
+      "A port security violation disabled the port; remove the extra MAC addresses, then clear the error state",
+      "BPDU guard tripped because the unmanaged switch forwarded BPDUs into a PortFast-enabled access port"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Err-disabled is a state the switch enters on its own when a protection feature trips, and a port secured to one MAC that suddenly sees several is a textbook violation. The fix has two halves: remove the cause, then clear the error state or let errdisable recovery restore the port, because re-enabling it with the rogue switch still attached simply trips it again. Administratively down is a different, explicitly reported state produced by the shutdown command; issuing no shutdown alone would not survive the next frame from a second MAC. A suspended VLAN is a real VLAN-database condition that removes member ports from service, but it reports as suspended and nothing suspended this VLAN. BPDU guard is the other common err-disable trigger and is the strongest competitor here, since an unexpected switch did appear on an access port, but the stem gives no indication that PortFast or BPDU guard is configured anywhere on this port, while it does state that port security permits exactly one MAC address and that three devices are now sending through the jack, which is a guaranteed violation. It is also worth noting that not every unmanaged switch emits BPDUs, so BPDU guard is not even certain to see one, whereas the second and third MAC addresses are certain to arrive.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "After moving desks, a user reports she can browse the internet but cannot reach any file servers on 10.10.20.0/24. Anya finds the workstation holds 10.30.7.44/24, an address that belongs to the building guest scope. What is the most likely cause?",
+    "options": [
+      "The workstation has a duplicate IP address that conflicts with another device on the guest network",
+      "The DHCP scope that serves the user's normal corporate subnet has run out of available addresses",
+      "The workstation subnet mask is incorrect for the network segment the new jack is patched into",
+      "The new jack's switch port carries the guest VLAN, so the PC leased from the guest scope"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The address a client receives identifies the broadcast domain its port belongs to, and a guest-scope address on a corporate PC means the access port carries the wrong VLAN. Confirming with show vlan and reassigning the port to the corporate VLAN resolves it. A duplicate address causes intermittent reachability and conflicting ARP entries within the correct subnet, not a wholesale move to a different one. Pool exhaustion leaves a client with an APIPA 169.254 address or no address at all, never a valid lease from a different scope. A wrong subnet mask would break some destinations while the host address itself remained inside the correct network; here the entire address is from the wrong network.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.3",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Sanjay configures a workstation statically as 172.16.5.40 with mask 255.255.0.0 and gateway 172.16.5.1. The LAN is actually 172.16.5.0/24, and other internal subnets such as 172.16.9.0/24 are reachable through the router. The PC reaches local hosts and the internet normally, but cannot reach the application server at 172.16.9.10; a capture shows the PC broadcasting ARP requests for 172.16.9.10. What is wrong?",
+    "options": [
+      "The mask is too broad, so the PC treats 172.16.9.10 as local and ARPs for it instead of routing",
+      "The configured default gateway address is wrong, which is why every off-subnet destination fails",
+      "The application server holds a duplicate IP address, so its ARP replies are inconsistent",
+      "DNS is resolving the application server name to a stale address on a decommissioned subnet"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A host applies its mask to decide whether a destination is local or remote. A 255.255.0.0 mask makes every 172.16.x.x address look local, so the PC broadcasts an ARP that no one on the segment can answer and the packet is never routed. Correcting the mask to 255.255.255.0 sends the traffic to the gateway. The gateway is not wrong: internet destinations lie outside 172.16.0.0/16, the PC classifies them as remote, forwards them to 172.16.5.1, and they work, which proves the gateway entry is valid. A duplicate address produces competing ARP replies rather than no reply at all, and it would not fail selectively for every destination inside 172.16.0.0/16. DNS is irrelevant because the capture shows the PC already holds the correct address and is failing at Layer 2 resolution.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Yolanda supports a training center whose visitor floor uses scope 192.168.50.0/24 with a range of .100 through .199 and an eight-day lease. Most attendees visit for a single day. By mid-afternoon, new devices self-assign 169.254 addresses and the DHCP server logs report that no addresses are available. What should Yolanda do?",
+    "options": [
+      "Increase the lease duration so that addresses are held reliably for attendees who return later",
+      "Widen the scope range and shorten the lease, since departed guests still hold the addresses",
+      "Configure a DHCP relay or IP helper address on the floor gateway so requests reach the server",
+      "Enable DHCP snooping on the access switches so that a rogue server stops consuming the pool"
+    ],
+    "correctAnswer": 1,
+    "explanation": "One hundred usable addresses combined with an eight-day lease means a device that attends once holds an address for more than a week, so daily churn exhausts the pool by afternoon. Enlarging the range and cutting the lease to a few hours matches lease length to actual dwell time and is the standard fix for transient populations. Increasing the lease makes the exhaustion worse and faster. A relay is the correct answer when clients get no response at all because the server sits on another subnet, but here the server is clearly reachable and is explicitly reporting exhaustion. DHCP snooping is a security control that blocks rogue servers on untrusted ports; it reclaims no leases, and nothing in the scenario points to a rogue server.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Users report the print server is reachable one minute and gone the next. It is configured with a static address of 10.20.4.60. On the gateway, show arp displays 10.20.4.60 alternating between two different MAC addresses, and one of them belongs to a corporate laptop that recently received a DHCP lease. The scope covers 10.20.4.1 through .254 with no exclusions configured. What is the cause and the correct fix for Bilal?",
+    "options": [
+      "A switching loop is causing the print server address to flap between two different switch ports",
+      "An attacker is running ARP spoofing against the print server in order to intercept queued jobs",
+      "The print server's static address sits inside the DHCP range; exclude it or make it a reservation",
+      "The gateway ARP cache timeout is too long and is retaining a stale entry for the print server"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Two hosts answering for one address is a duplicate IP, and the ARP entry follows whichever replied most recently, which is why sessions land on the wrong device intermittently. The root cause is the print server's static assignment sitting inside a dynamic range with no exclusion, so excluding the static block or converting the print server to a reservation prevents recurrence, and the conflicting lease must then be released. A switching loop causes one MAC to appear on multiple ports, the inverse signature of one IP mapping to two MACs. ARP spoofing produces a very similar ARP-table symptom, which is what makes it tempting, but the second claimant here is a legitimately leased corporate laptop rather than an attacker impersonating a gateway or server. A long ARP timeout would preserve a single stale mapping; it cannot manufacture two competing owners of the same address.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Freya is sent to a workstation that reaches every host on its own 10.14.6.0/24 subnet, including the local file server, but cannot reach any other subnet or the internet. ipconfig reports 10.14.6.77, mask 255.255.255.0, gateway 10.14.6.254. The ARP cache resolves 10.14.6.254 to a MAC address, but tracert to an off-net destination times out at hop 1 and never advances. Freya then checks the switch: the routed interface for this VLAN is 10.14.6.1, and 10.14.6.254 is the address of a multifunction printer. What is wrong?",
+    "options": [
+      "The subnet mask is wrong, so the workstation misclassifies remote destinations as local ones",
+      "The default gateway points at a printer instead of the router, so off-net packets go nowhere",
+      "The access port carries the wrong VLAN, so the workstation sits in the wrong broadcast domain",
+      "An ACL on the distribution switch is filtering this workstation's traffic toward other subnets"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Clean on-subnet reachability proves the link, the address, and the mask are all consistent with the segment, and the failure begins precisely where a packet must be routed. The host ARPs for the address configured as its gateway, a printer answers because that address really is in use, and the printer silently discards frames destined elsewhere because it does not forward, so the trace never gets a reply from hop 1. Correcting the gateway to 10.14.6.1, or fixing DHCP option 3 if it is handed out, restores off-net traffic. The mask is not wrong: a /24 matches the real subnet, and a too-broad mask would make the PC ARP for remote hosts while a too-narrow one would break part of its own subnet, neither of which is happening. A wrong VLAN would break local reachability as well and would normally yield an address from a different scope entirely. An ACL is a real 5.3 fault, but the filtering router would still answer as hop 1 in the trace, and the diagnostic detail that settles it is that the configured gateway is not a router at all.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Hollis receives complaints that calls on the VoIP system sound choppy and robotic, with syllables clipped out. A continuous ping to the call server reports 0 percent loss, with round-trip times bouncing between 12 ms and 95 ms. Data applications on the same circuit perform normally. What is happening?",
+    "options": [
+      "Excessive latency on the network path between the phones and the call server",
+      "Packet loss somewhere on the WAN circuit that carries the voice traffic",
+      "Attenuation on the copper runs between the phones and the access switch",
+      "Jitter, variation in packet delay the codec buffer cannot absorb"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Voice depends on packets arriving at a steady interval. When inter-packet delay swings widely, the jitter buffer runs dry or overflows and the decoder produces the clipped, robotic artifact described; marking and queuing voice ahead of bulk traffic with QoS stabilizes the delay. Latency is absolute delay: a consistently high round-trip time would make conversation feel like a satellite call rather than break up words, and the measurements here swing rather than sit high. Packet loss is a genuine cause of voice dropouts, but the ping explicitly reports 0 percent loss. Attenuation on the phone cabling would show up as interface errors and link instability affecting all traffic on that port, not as delay variation on a circuit where data applications run cleanly.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.4",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Zora is asked why file copies between a workstation and a file server never exceed about 11.8 MB/s even though both hosts have idle gigabit NICs. Tracing the path, she finds the traffic crosses a legacy media converter, and show interface on that closet uplink reports 100 Mbps full duplex with no errors. What is the correct conclusion?",
+    "options": [
+      "The disk subsystem on the file server is the limiting factor rather than the network path",
+      "The 100 Mbps segment is the bottleneck, since 11.8 MB/s is roughly 94 Mbps of payload",
+      "Campus latency is limiting the TCP window and therefore the achievable throughput",
+      "Packet loss on the closet uplink is triggering repeated TCP retransmissions and backoff"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Converting the observed rate gives 11.8 times 8, or about 94 Mbps, which is 100BASE-TX line rate less Ethernet framing, preamble, interframe gap, and TCP/IP header overhead. A ceiling that lands on a link speed identifies a capacity limit rather than a host or protocol problem, and end-to-end throughput can never exceed the slowest link in the path, so replacing the media converter and uplink with gigabit is the fix. A disk bottleneck is plausible in general but would not pin throughput precisely at Fast Ethernet line rate, and both endpoints are otherwise idle. Latency does constrain throughput on long, high-bandwidth paths through the bandwidth-delay product, but campus round-trip times are well under a millisecond and the measured ceiling matches a link rate rather than a window calculation. Loss would produce erratic, sawtoothed throughput rather than a flat ceiling, and the interface counters report no errors.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Investigating reports that a SaaS application is slow, Ivan runs a traceroute and sees hop 4 reporting 40 percent loss and elevated response times, while hops 5 through 9 and the destination all report 0 percent loss and normal times. A continuous ping to the destination shows 0 percent loss. How should Ivan interpret this?",
+    "options": [
+      "Hop 4 is dropping user traffic, so the carrier should be asked to replace that router",
+      "The loss at hop 4 is real but is being masked by the destination firewall",
+      "Hop 4 is rate-limiting the ICMP replies that it generates, so the forwarding path is fine",
+      "The trace proves asymmetric routing, so every hop after 4 reports invalid figures"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Time-exceeded messages are generated by a router control plane, which is routinely rate-limited or deprioritized relative to forwarded traffic. That inflates apparent loss at the hop that generates them while saying nothing about the forwarding path, so Ivan should keep looking, at the application, the last mile, or the provider side. The decisive logic is that packets must have traversed hop 4 to elicit replies from hops 5 through 9, so loss that does not carry forward is an artifact. Escalating to the carrier on that reading is the classic misdiagnosis and burns an outage window on the wrong device. A destination firewall cannot conceal loss occurring mid-path, and the destination is answering pings cleanly. Asymmetric return paths genuinely distort per-hop round-trip times and are worth remembering, but they do not invalidate later hops' reachability, and nothing in the output indicates asymmetry.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.4",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Handheld scanners used at the far rack aisles of a warehouse report -82 dBm, negotiate very low data rates, and disconnect frequently. All access points are mounted over the office area at the front of the building. A Wi-Fi analyzer taken to the rack aisles shows a single audible AP on a clean channel with no competing networks. What should Nia do?",
+    "options": [
+      "Deploy additional access points or directional antennas to extend coverage into the aisles",
+      "Change the channel on the nearest access point to eliminate co-channel interference",
+      "Reissue the WPA3 passphrase to the scanners, since the disconnects are authentication failures",
+      "Raise the transmit power of the office access points to the regulatory maximum for the band"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A signal of -82 dBm with only one AP audible and no competing networks describes a coverage hole, and the only durable fix is putting radios closer to the clients, whether through more APs or antennas that shape the pattern down the aisles. Co-channel interference requires competing transmitters on the same channel, and the analyzer shows none, so changing channels moves a problem that does not exist. A wrong passphrase prevents association entirely rather than allowing a weak, degrading connection that varies with distance. Cranking AP transmit power is the tempting shortcut and actively harmful: the AP is heard farther away, but the battery-powered scanner radio is unchanged, so the client still cannot be heard back, and that asymmetric link makes coverage maps look better while connectivity gets worse.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Padma administers a hospital wireless network where clinicians roll workstations on wheels between units. The tablets on those carts stay associated with the access point they joined in the previous ward, holding on down to -85 dBm while passing directly beneath APs the same tablets measure at -55 dBm, until the EHR session times out and staff toggle the radio off and on. Every AP is joined to one controller, advertises the same SSID and security settings, and uses a non-overlapping channel plan. What is the appropriate action?",
+    "options": [
+      "Configure a unique SSID on each access point so clinicians can pick the strongest one manually",
+      "Disable the 2.4 GHz radios so that every cart is forced onto the 5 GHz band as it moves",
+      "Add access points along the connecting corridors, since the carts are crossing a coverage hole",
+      "Tune the controller's minimum-RSSI and roaming thresholds to release the sticky clients"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Roaming decisions are made by the client, but the infrastructure sets the conditions. A minimum-RSSI or basic-rate floor causes the AP to stop serving a client below a threshold, which forces the sticky tablet to re-scan and associate with a nearer AP; enabling 802.11k/v assisted roaming on the controller helps the client pick that neighbor faster. Per-AP SSIDs destroy the extended service set that makes seamless roaming possible and push the burden onto clinicians mid-shift. Forcing 5 GHz is a legitimate band-selection tactic but addresses band choice rather than a client clinging to a distant AP, and any 2.4 GHz-only medical device on the cart would lose service outright. Adding corridor APs is the right answer when clients are starved for signal, and it is the trap in this item: the tablets are measuring -55 dBm from an AP directly overhead, so signal is abundant and more radios would only add another cell for the client to ignore.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.4",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Ingrid needs to determine which of 96 unlabeled ports on an IDF patch panel serves the wall jack in room 214. Nothing is currently patched to a switch, so the run is dead. Which tool should she use?",
+    "options": [
+      "A protocol analyzer connected to the switch uplink that serves the room",
+      "A visual fault locator inserted into the wall jack in room 214",
+      "A tone generator at the wall jack with an inductive probe at the panel",
+      "A speed tester run from a laptop plugged into the room 214 jack"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A tone generator injects an audio signal onto the pair at the known end while the inductive probe locates that signal at the unknown end, which is exactly the problem of finding one run among 96. A protocol analyzer inspects captured traffic, and with nothing patched there is no traffic to capture, nor can it map a physical panel position. A visual fault locator injects visible light into fiber to reveal breaks and connector faults, so it is useless on a copper run. A speed tester measures throughput across a working circuit, which is the very thing Ingrid does not have yet. A cable tester would be the right follow-up to certify wiremap and continuity once both ends are known, but it cannot identify the unknown end.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.5",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "DHCP server logs give Hector the MAC address of an unknown device that appeared on the network overnight. He needs to determine which access switch port that device is plugged into so it can be physically located. Which command gives him that information?",
+    "options": [
+      "show mac-address-table on the access switch",
+      "show arp on the gateway router for that subnet",
+      "show route on the distribution layer switch",
+      "show vlan on the access switch in that closet"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The MAC address table is the switch record of which source MAC addresses have been learned on which physical ports and in which VLAN, so looking up the MAC returns the port directly. show arp maps IP addresses to MAC addresses, which is how Hector would obtain the MAC if he started from an IP, but it stops at the MAC and never identifies a switch port. show route lists destination networks and next hops, which is Layer 3 forwarding information about networks rather than devices. show vlan lists configured VLANs and their assigned member ports, which tells him which ports belong to a VLAN but not which host is on any given port.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.5",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Esme migrated the company web server to a new IP address and updated the zone. Some users reach the new server while others still land on the decommissioned one. Which action best isolates the cause?",
+    "options": [
+      "Ping the site name from several affected workstations and record the addresses returned",
+      "Query the zone's authoritative server with dig and compare it to the client answer",
+      "Run traceroute to the new server address to confirm the path to it is reachable",
+      "Check netstat on the new web server for established sessions from affected users"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Split behavior between users points at resolution rather than reachability, so the diagnostic question is what authority publishes versus what each client is being told. Querying the authoritative name server directly, for example dig @ns1.example.com www.example.com, bypasses every cache and proves the record was published correctly, and comparing it with the affected client resolver answer localizes the stale cache and exposes the remaining TTL that governs how long it persists. Pinging the name does return an address, but through the client normal resolution path, so it cannot distinguish an authoritative answer from a cached or forwarded one. Traceroute validates the path to an address Esme already knows is correct, testing routing when the fault is in name resolution. Session counts on the new server merely confirm that some users arrived, which she already knows, and say nothing about why the rest do not.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.5",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Colm is connected over SSH to a switch in an unlabeled IDF at a site 200 miles away. The site diagrams are years out of date, and he needs to know which neighboring switch the uplink terminates on and which port on that neighbor it uses, without dispatching a technician. What should he use?",
+    "options": [
+      "An nmap sweep of the management subnet to enumerate the other switches on site",
+      "A traceroute from the switch toward the core to reveal the intermediate device",
+      "show mac-address-table on the uplink port to identify the neighboring switch",
+      "The LLDP or CDP neighbor table, which names the adjacent device and its port"
+    ],
+    "correctAnswer": 3,
+    "explanation": "LLDP and its Cisco equivalent CDP advertise system name, port identifier, platform, and capabilities to directly connected neighbors, which is exactly the link-level adjacency data missing from the documentation and is readable remotely. An nmap sweep enumerates hosts that respond on the management subnet but reveals nothing about physical adjacency or which port connects to which. Traceroute exposes Layer 3 hops, and a switch-to-switch uplink is a Layer 2 adjacency with no routed hop to display. The MAC address table on the uplink lists every MAC address reachable through that link, which identifies hosts somewhere beyond it rather than the neighbor device identity and its port.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.5",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Clients cannot reach a newly deployed application on TCP 8443 and receive connection refused immediately. Talia confirms the server answers pings, the host firewall is disabled, and an nmap scan from a client reports 8443 closed. What should she do next?",
+    "options": [
+      "Run netstat or ss on the server to see which address and port the service is really bound to",
+      "Run nmap again from a different subnet to confirm that the port is genuinely closed",
+      "Capture traffic on the client with a protocol analyzer to observe the server's response",
+      "Review the switch and router ACLs, since a refusal indicates filtering along the path"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Connection refused means the server returned a TCP reset, which proves the packets reached the host and the host TCP stack answered, so the path, routing, and filtering are all working. The only remaining question is whether anything is listening on that socket, and netstat or ss shows the listening address and port, immediately exposing a service bound to 127.0.0.1 or to the wrong interface, which accepts local connections and refuses everything arriving from the network. Rescanning from another subnet re-establishes a fact already known and tests the network again rather than the host. A client-side capture would show the reset arriving, which the refusal already implies, and it cannot reveal the server socket binding. An ACL drop produces a timeout or an ICMP administratively-prohibited message rather than a reset originated by the destination, so the symptom itself rules filtering out.",
+    "domain": "Network Troubleshooting",
+    "objective": "5.5",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  }
+]

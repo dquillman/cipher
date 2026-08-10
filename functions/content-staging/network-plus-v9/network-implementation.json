@@ -1,0 +1,317 @@
+[
+ {
+  "stem": "Priya, a network engineer, notices her core router has learned two routes to 172.16.40.0/24: one via EIGRP with a metric of 30720 and one via OSPF with a cost of 20. Only one route appears in the routing table. Which route was installed, and why?",
+  "options": [
+   "The OSPF route, because its metric of 20 is lower than the EIGRP metric of 30720",
+   "Both routes, because the router load-balances across routing protocols by default",
+   "The EIGRP route, because EIGRP's administrative distance of 90 is lower than OSPF's 110",
+   "The OSPF route, because link-state protocols are always preferred over distance-vector protocols"
+  ],
+  "correctAnswer": 2,
+  "explanation": "When two different routing protocols offer routes to the same prefix, the router compares administrative distance (AD) first, not metric. Internal EIGRP's AD of 90 beats OSPF's 110, so the EIGRP route wins. Comparing the metrics directly (option A) is invalid because metrics from different protocols are calculated differently and are not comparable. Routers do not load-balance across different protocols for the same prefix (option B) — equal-cost load balancing happens only within a single protocol. There is no blanket rule preferring link-state over distance-vector protocols (option D); preference is determined entirely by AD.",
+  "domain": "Network Implementation",
+  "objective": "2.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Marcus configures a static route to 10.20.30.0/24 pointing at a backup firewall, while OSPF is advertising 10.20.0.0/16 through the primary path. A packet arrives destined for 10.20.30.77. The static route has administrative distance 1 and the OSPF route has administrative distance 110. Which path does the packet take, and why?",
+  "options": [
+   "The static route, because the router matches the longest prefix (/24) before administrative distance is ever considered",
+   "The OSPF route, because dynamic routes are refreshed continuously and are therefore more trustworthy",
+   "The static route, but only because its administrative distance of 1 beats OSPF's 110",
+   "The router drops the packet because the two routes conflict and cannot coexist in the routing table"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Route selection evaluates prefix length first: the /24 is a more specific match for 10.20.30.77 than the /16, so the static route is chosen on specificity alone. Administrative distance (option C) only breaks ties between routes to the *identical* prefix — it never overrides a longer match, so citing AD as the deciding factor here is the classic trap. Dynamic routes are not inherently more trustworthy than static ones (option B); AD actually ranks static routes above OSPF. The routes do not conflict (option D) — both coexist in the table, covering different address scopes.",
+  "domain": "Network Implementation",
+  "objective": "2.1",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A small accounting firm has 45 workstations but its ISP provides only a single public IPv4 address. Dana, the office's IT consultant, needs every workstation to reach the internet simultaneously. Which technology should she configure on the edge router?",
+  "options": [
+   "Static one-to-one NAT mapping each workstation to the public address in sequence",
+   "Port address translation (PAT), translating all internal hosts to the single public IP using unique source ports",
+   "A first hop redundancy protocol so all workstations share the router's virtual IP",
+   "Dynamic routing so the ISP learns the private addresses and routes them directly"
+  ],
+  "correctAnswer": 1,
+  "explanation": "PAT (NAT overload) is the many-to-one form of address translation: it multiplexes all 45 internal hosts onto one public IP by tracking each session with a unique source port, which is exactly the single-public-IP scenario. Static one-to-one NAT (option A) requires one public address per internal host, so 45 hosts cannot share one address simultaneously that way. FHRP (option C) provides gateway redundancy between routers — its virtual IP is for failover, not address translation. Private RFC 1918 addresses are not routable on the internet, so no routing protocol can make the ISP deliver traffic to them directly (option D).",
+  "domain": "Network Implementation",
+  "objective": "2.1",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "After a core router failure took the whole branch office offline for an hour, network engineer Tomás is told to make the default gateway survive a single router outage without any reconfiguration on client machines. He installs a second router. What should he configure next?",
+  "options": [
+   "A second DHCP scope handing out the backup router's address as an alternate gateway",
+   "Static routes on every workstation pointing to both routers",
+   "BGP between the two routers so they exchange default routes",
+   "An FHRP so both routers share one virtual IP that clients use as their gateway"
+  ],
+  "correctAnswer": 3,
+  "explanation": "A first hop redundancy protocol (such as HSRP or VRRP) lets two physical routers present a single shared virtual IP; clients keep that one gateway address, and if the active router fails the standby takes over the VIP transparently — no client-side changes needed. A second DHCP scope (option A) cannot help clients that already hold a lease, and hosts do not automatically fail over to an 'alternate' gateway. Per-workstation static routes (option B) require exactly the client reconfiguration the requirement forbids and don't fail over cleanly. BGP (option C) exchanges routes between autonomous systems — it does nothing to make two routers answer for one gateway address on a LAN.",
+  "domain": "Network Implementation",
+  "objective": "2.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Renata's company is adding a second ISP for redundancy and wants to influence which provider inbound traffic uses to reach the company's public prefix. Which routing protocol is designed for this multi-ISP, inter-autonomous-system scenario?",
+  "options": [
+   "BGP, because it exchanges routes between autonomous systems and supports path-manipulation attributes",
+   "OSPF, because its link-state database converges faster than any exterior protocol",
+   "EIGRP, because its composite metric can weigh bandwidth toward the preferred ISP",
+   "Static default routes to both ISPs with equal administrative distances"
+  ],
+  "correctAnswer": 0,
+  "explanation": "BGP is the exterior gateway protocol of the internet: it peers with each ISP across autonomous system boundaries and offers attributes (like AS-path prepending) specifically for influencing inbound path selection. OSPF (option B) and EIGRP (option C) are interior gateway protocols — fast convergence and flexible metrics are real strengths, but they operate within a single autonomous system and cannot advertise your prefix to two different providers' networks. Dual static defaults (option D) only influence *outbound* traffic from your edge; they give you zero control over how the internet reaches you inbound.",
+  "domain": "Network Implementation",
+  "objective": "2.1",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Owen has one router with a single physical Ethernet interface and a switch carrying three VLANs (10, 20, 30) that must route between each other. The router does not have enough interfaces for one link per VLAN. How can Owen provide inter-VLAN routing over the single physical link?",
+  "options": [
+   "Configure the switch port as an access port in each VLAN, rotating every few seconds",
+   "Enable NAT on the router so each VLAN is translated into the others' address space",
+   "Create 802.1Q subinterfaces on the router interface, one per VLAN, and trunk the switch link",
+   "Assign all three VLANs the same subnet so no routing is required"
+  ],
+  "correctAnswer": 2,
+  "explanation": "This is the router-on-a-stick design: the single physical interface is divided into logical subinterfaces, each tagged for one VLAN with 802.1Q and given that VLAN's gateway address, while the switch side is configured as a trunk carrying all three VLANs. An access port belongs to exactly one VLAN at a time and cannot 'rotate' (option A) — that is not a real capability. NAT (option B) translates addresses at network boundaries; it is not a substitute for routing between internal VLANs and would break end-to-end addressing. Putting all VLANs in one subnet (option D) defeats the purpose of VLAN segmentation and breaks ARP/gateway behavior, since VLANs are separate broadcast domains.",
+  "domain": "Network Implementation",
+  "objective": "2.1",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "After connecting a new trunk between two switches, Amara sees log messages warning of a native VLAN mismatch, and some untagged traffic is leaking into the wrong VLAN. One switch has native VLAN 1 on the trunk; the other has native VLAN 99. What should she do?",
+  "options": [
+   "Disable 802.1Q tagging on the trunk so all traffic passes untagged",
+   "Convert the trunk to an access port in VLAN 99 on both ends",
+   "Set the native VLAN to the same value on both ends of the trunk",
+   "Increase the MTU on the trunk to accommodate the extra VLAN tag"
+  ],
+  "correctAnswer": 2,
+  "explanation": "The native VLAN is the one VLAN whose frames cross an 802.1Q trunk untagged; if the two ends disagree, untagged frames sent as VLAN 1 on one side are absorbed into VLAN 99 on the other, silently bridging two VLANs. Matching the native VLAN on both ends (ideally an unused VLAN rather than VLAN 1) resolves the mismatch. Disabling tagging entirely (option A) destroys the trunk — only one VLAN could cross the link. Converting to an access port (option B) also limits the link to a single VLAN, breaking connectivity for every other VLAN the trunk carries. MTU (option D) governs frame size; the 4-byte 802.1Q tag is handled by baby-giant support and has nothing to do with a native VLAN mismatch.",
+  "domain": "Network Implementation",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A company is deploying VoIP phones that each have a built-in switch port, so the user's PC plugs into the phone and the phone plugs into the wall. Network technician Jae wants the phone's traffic separated from the PC's traffic for QoS, using a single switch port per desk. What should he configure on each access port?",
+  "options": [
+   "A dedicated trunk port carrying every VLAN in the campus to each desk",
+   "Two physical switch ports per desk, one for the phone and one for the PC",
+   "Link aggregation bundling the phone and PC into one logical link",
+   "A voice VLAN on the access port, so the phone tags its traffic while the PC's traffic stays untagged"
+  ],
+  "correctAnswer": 3,
+  "explanation": "A voice VLAN is purpose-built for this: the access port carries the PC's data untagged in the data VLAN while the phone tags its frames into the auxiliary voice VLAN, keeping voice traffic separated and eligible for QoS — all on one port. A full trunk to every desk (option A) works mechanically but is poor practice: it exposes all VLANs at the user edge and is exactly what the voice VLAN feature exists to avoid. Two physical ports per desk (option B) doubles cabling and switch-port cost, ignoring the phone's built-in pass-through design. Link aggregation (option C) bundles parallel links between two devices for bandwidth/redundancy — the phone and PC are different devices, so there is nothing to aggregate.",
+  "domain": "Network Implementation",
+  "objective": "2.2",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "The uplink between an access switch and the distribution switch is saturating at peak hours, and management also wants the uplink to survive a single cable failure. Engineer Lucia has two spare fiber pairs between the closets. What should she configure?",
+  "options": [
+   "Link aggregation (LACP) bundling both fiber links into one logical uplink",
+   "Spanning tree with one link forwarding and the second link blocking as a backup",
+   "Jumbo frames on the existing uplink to increase its effective throughput",
+   "A second native VLAN on the uplink to split the traffic load"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Link aggregation with LACP combines multiple physical links into one logical channel, adding their bandwidth AND providing seamless failover if one member fails — it satisfies both requirements at once. Letting spanning tree block the second link (option B) gives redundancy but zero extra bandwidth, since the backup link sits idle until a failure. Jumbo frames (option C) reduce per-frame overhead slightly but do not add capacity and require end-to-end MTU support; they are not a congestion fix. A trunk has exactly one native VLAN by definition (option D) — 'a second native VLAN' is not a valid configuration and VLAN assignment does not add physical bandwidth.",
+  "domain": "Network Implementation",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Users on one switch port complain of terrible file-transfer performance, and the switch counters show runts and FCS errors climbing on that port, while the workstation logs late collisions. Technician Rob finds the switch port hardcoded to 100/full while the workstation NIC is set to autonegotiate. What is happening?",
+  "options": [
+   "The cable exceeds maximum length, so autonegotiation cannot complete on either end",
+   "A duplex mismatch: the NIC's autonegotiation fell back to half duplex because the hardcoded port sends no negotiation signals, and he should set both ends consistently",
+   "The port's VLAN assignment is wrong, causing tagged frames to be counted as errors",
+   "The workstation NIC is failing and must be replaced before performance will recover"
+  ],
+  "correctAnswer": 1,
+  "explanation": "When one side is hardcoded, it stops participating in autonegotiation; the autonegotiating side can still detect speed electrically but cannot learn duplex, so it falls back to half duplex per the standard. A half/full mismatch produces exactly this signature — late collisions and CRC/FCS errors under load. The fix is consistent configuration on both ends (preferably auto/auto). Excessive cable length (option A) causes attenuation-related problems but would not be triggered by the port's hardcoded setting described here. A VLAN misassignment (option C) causes reachability problems, not collision counters — VLAN tags don't register as FCS errors on an access port. A failing NIC (option D) is possible in general but ignores the definitive configuration evidence in front of him; hardware replacement before fixing a known mismatch is troubleshooting out of order.",
+  "domain": "Network Implementation",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "During a maintenance window, engineer Sofia adds a second cable between two access switches for redundancy. Minutes later the network grinds to a halt: switch CPUs spike, the same broadcast frames circulate endlessly, and MAC address tables flap between ports. Sofia discovers spanning tree was administratively disabled on both switches. What did the redundant link create, and what would have prevented it?",
+  "options": [
+   "A routing loop, which a lower administrative distance on one link would have prevented",
+   "A switching loop and broadcast storm, which spanning tree would have prevented by blocking the redundant path",
+   "A duplex mismatch, which autonegotiation on both new ports would have prevented",
+   "A native VLAN mismatch, which matching trunk configuration would have prevented"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Ethernet frames carry no TTL, so two active paths between switches let broadcasts circulate forever — a broadcast storm — while the looping frames cause MAC tables to flap as the same source address appears on multiple ports. Spanning tree exists precisely to detect physical loops and place redundant ports in a blocking state until they're needed. A routing loop (option A) happens at Layer 3 between routers; administrative distance is a router concept irrelevant to two Layer 2 switches. A duplex mismatch (option C) degrades one link with collisions and errors but cannot make frames circulate network-wide. A native VLAN mismatch (option D) leaks untagged traffic between VLANs — a security/segmentation issue, not a self-amplifying storm.",
+  "domain": "Network Implementation",
+  "objective": "2.2",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A storage team asks network engineer Malik to enable jumbo frames for the iSCSI VLAN to cut per-packet overhead between servers and the SAN. Malik enables a 9000-byte MTU on the SAN's switch ports, but performance gets worse and packet captures show fragmentation and drops. What did Malik most likely overlook?",
+  "options": [
+   "Jumbo frames are only supported on fiber links, not copper",
+   "iSCSI traffic cannot use frames larger than 1500 bytes by design",
+   "The SAN requires spanning tree to be disabled before jumbo frames can pass",
+   "Every device in the end-to-end path — server NICs, all intermediate switches, and the SAN — must be configured for the larger MTU consistently"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Jumbo frames only work when the entire Layer 2 path agrees on the larger MTU. If any intermediate switch or NIC in the path still expects 1500 bytes, oversized frames get dropped or force fragmentation, which is exactly the degradation Malik observed after configuring only some ports. Jumbo frame support is a device/ASIC capability, not a copper-versus-fiber distinction (option A) — modern copper switch ports support them fine. iSCSI is a common *beneficiary* of jumbo frames, not incompatible with them (option B). Spanning tree (option C) manages loop prevention and has no interaction with MTU settings.",
+  "domain": "Network Implementation",
+  "objective": "2.2",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Nadia is deploying three access points on the 2.4GHz band in a small office and wants to minimize co-channel and adjacent-channel interference between them. Which channel plan should she use?",
+  "options": [
+   "Channels 1, 6, and 11, because they are the non-overlapping 2.4GHz channels",
+   "Channels 1, 2, and 3, keeping the APs as close together in frequency as possible",
+   "The same channel on all three APs so clients can roam without renegotiating",
+   "Channels 36, 40, and 44 to take advantage of wider spacing"
+  ],
+  "correctAnswer": 0,
+  "explanation": "In the 2.4GHz band, each channel is 20+ MHz wide but channel centers sit only 5 MHz apart, so most channels overlap their neighbors; 1, 6, and 11 are the classic set spaced far enough apart not to overlap. Channels 1, 2, and 3 (option B) overlap heavily — adjacent-channel interference is worse than co-channel because radios can't even coordinate airtime. Same-channel-everywhere (option C) forces the three APs to share one channel's airtime and maximizes co-channel contention; roaming does not require a common channel. Channels 36/40/44 (option D) are 5GHz channels and do not exist in the 2.4GHz band she is designing for.",
+  "domain": "Network Implementation",
+  "objective": "2.3",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "In a new office, most laptops support both 2.4GHz and 5GHz, yet the controller dashboard shows 80% of clients associated to the congested 2.4GHz radios while the 5GHz radios sit nearly idle. Wireless engineer Theo wants capable clients moved to 5GHz automatically. Which feature addresses this?",
+  "options": [
+   "A captive portal that redirects 2.4GHz clients to a different SSID",
+   "Band steering, which encourages dual-band clients toward the 5GHz (or 6GHz) radios",
+   "Increasing the 2.4GHz channel width to 40MHz to relieve the congestion",
+   "Switching the WLAN from infrastructure mode to mesh mode"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Band steering is the AP-side feature for exactly this problem: by delaying or suppressing probe/association responses on 2.4GHz for clients it knows are dual-band capable, it nudges them onto the less-congested, higher-capacity 5GHz band. A captive portal (option A) is a web authentication gate for guest access — it has no influence on which radio band a client picks. Widening the 2.4GHz channel to 40MHz (option C) makes things worse: the 2.4GHz band barely fits three non-overlapping 20MHz channels, so 40MHz channels guarantee overlap and more interference. Mesh mode (option D) changes how APs backhaul to each other, not how clients choose bands.",
+  "domain": "Network Implementation",
+  "objective": "2.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A 300-employee firm currently uses one WPA2 passphrase for its main Wi-Fi. When an employee left last month, IT had to change the passphrase and re-enroll every device. Security lead Imani wants each user to authenticate with individual credentials that can be revoked centrally. What should she deploy?",
+  "options": [
+   "WPA3-Personal with a longer, more complex shared passphrase rotated quarterly",
+   "A hidden SSID so departed employees cannot find the network to reconnect",
+   "WPA2/WPA3-Enterprise, authenticating users individually against a central server via 802.1X",
+   "MAC address filtering listing every authorized corporate device"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Enterprise mode replaces the shared secret with 802.1X authentication against a central authority (RADIUS), so each user presents individual credentials or certificates that can be revoked the moment they leave — no fleet-wide re-enrollment. WPA3-Personal (option A) improves the handshake's resistance to offline cracking but is still one shared secret with the same all-or-nothing revocation problem. Hiding the SSID (option B) is obscurity, not authentication — the network name is trivially recoverable from probe traffic, and ex-employees already know it. MAC filtering (option D) is easily defeated by MAC spoofing and identifies devices, not people; it also becomes an administrative burden at 300 users.",
+  "domain": "Network Implementation",
+  "objective": "2.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A hotel wants visitors on its guest Wi-Fi to accept an acceptable-use policy and enter their room number before getting internet access, without installing anything on guest devices. Which mechanism should consultant Felix recommend for the guest network?",
+  "options": [
+   "802.1X with client certificates pushed to each guest device",
+   "A pre-shared key printed at the front desk and changed daily",
+   "Band steering so guests are isolated on the 6GHz band",
+   "A captive portal that intercepts the first web request and presents the policy page"
+  ],
+  "correctAnswer": 3,
+  "explanation": "A captive portal is the standard guest-network pattern: the network intercepts the client's initial traffic and redirects it to a web page where the guest accepts terms and supplies information, after which access is granted — no client-side software or configuration needed. 802.1X with certificates (option A) requires provisioning on every device, which is unworkable for transient hotel guests. A rotating PSK (option B) controls association but cannot present a policy page or collect the room number, and daily redistribution is operational overhead without meeting the requirement. Band steering (option C) is a radio-utilization feature; it neither authenticates guests nor displays terms.",
+  "domain": "Network Implementation",
+  "objective": "2.3",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A retailer is rolling out 60 access points across 12 stores and wants centralized configuration, coordinated channel/power management, and seamless roaming, with all AP policy managed from headquarters. Which architecture should network architect Grace choose?",
+  "options": [
+   "Lightweight access points managed by a wireless LAN controller",
+   "Autonomous access points, each configured individually through its own interface",
+   "Ad hoc mode, letting client devices relay traffic between stores",
+   "A single high-power AP per store with an omnidirectional antenna to cover the whole floor"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Lightweight APs offload their control plane to a wireless LAN controller, which centrally pushes configuration, coordinates channel and power assignments across neighboring APs, and manages roaming — exactly what a 60-AP, multi-site fleet needs. Autonomous APs (option B) each carry a full standalone configuration; at 60 units this means 60 separately-managed devices with no coordinated RF management. Ad hoc mode (option C) is peer-to-peer networking between client devices with no APs at all — it's a network *type*, not a management architecture, and cannot span stores. One high-power AP per store (option D) trades coverage quality for a single point of failure and does nothing for the centralized-management requirement.",
+  "domain": "Network Implementation",
+  "objective": "2.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Two office buildings 400 meters apart need a wireless link between their networks; trenching fiber is not an option. Engineer Sam will mount an AP on each roof, aimed at the other building. Which antenna type should he use, and why?",
+  "options": [
+   "Omnidirectional antennas, to guarantee alignment regardless of mounting angle",
+   "Omnidirectional antennas, because they provide higher gain in all directions simultaneously",
+   "Directional antennas on both ends, concentrating the signal into a focused beam between the two rooftops",
+   "One directional antenna transmitting and one omnidirectional antenna receiving"
+  ],
+  "correctAnswer": 2,
+  "explanation": "A building-to-building point-to-point bridge is the textbook case for directional antennas: focusing radiated energy into a narrow beam yields much higher effective gain along the link path, extending range and rejecting off-axis interference. Omnidirectional antennas (options A and B) spread energy 360 degrees horizontally — option B is self-contradictory, since gain in all directions simultaneously is exactly what antennas cannot do; gain comes *from* focusing. Mixing types (option D) wastes the link budget: the omnidirectional end would both transmit and receive weakly along the path, and wireless links are bidirectional, so both ends need the focused pattern.",
+  "domain": "Network Implementation",
+  "objective": "2.3",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "Networking equipment for a new four-story office is being planned. The building's internet handoff and core switching will live in a ground-floor room, and each upper floor needs its own wiring closet feeding that floor's access switches back to the core. In standard structured-cabling terms, what are these rooms called?",
+  "options": [
+   "The ground-floor room is the IDF; each floor closet is an MDF",
+   "The ground-floor room is the MDF (main distribution frame); each floor closet is an IDF (intermediate distribution frame)",
+   "All five rooms are MDFs because each contains active switching equipment",
+   "The ground-floor room is a patch panel; the floor closets are fiber distribution panels"
+  ],
+  "correctAnswer": 1,
+  "explanation": "The MDF is the building's main distribution point — where the outside carrier handoff terminates and the core equipment lives — while IDFs are the intermediate closets on each floor that aggregate local access-layer cabling and uplink to the MDF. Option A reverses the two terms. Option C ignores the hierarchy: containing active equipment doesn't make a room 'main'; there is one MDF and multiple subordinate IDFs. Option D confuses rooms with components — patch panels and fiber distribution panels are termination hardware *inside* MDFs and IDFs, not names for the rooms themselves.",
+  "domain": "Network Implementation",
+  "objective": "2.4",
+  "difficulty": "easy",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A branch office suffers brief power blips several times a month, and each one reboots the rack of switches and the firewall, dropping the site offline for minutes. Facilities lead Carla wants the equipment to ride through short outages and shut down gracefully during long ones. The rack currently feeds all equipment from a basic power strip. What should she install?",
+  "options": [
+   "An uninterruptible power supply (UPS), providing battery-backed power conditioning and runtime for graceful shutdown",
+   "A power distribution unit (PDU), which will distribute the incoming power more evenly across the devices",
+   "A second power strip on the same circuit to split the connected load",
+   "Higher-voltage feeds to each device so brief sags stay above operating thresholds"
+  ],
+  "correctAnswer": 0,
+  "explanation": "A UPS contains batteries that carry the load through short outages instantly and provide enough runtime to shut equipment down cleanly in an extended outage — precisely both requirements. A PDU (option B) is often confused with a UPS but is fundamentally just intelligent power *distribution*: it has no battery, so every blip still reboots the rack. A second strip on the same circuit (option C) changes nothing about outage behavior — the upstream power still disappears. Feeding devices higher voltage (option D) is not how sag tolerance works and risks damaging equipment rated for the standard voltage; supply voltage must match equipment specifications.",
+  "domain": "Network Implementation",
+  "objective": "2.4",
+  "difficulty": "medium",
+  "source": "authored-2026-08-eco-refresh"
+ },
+ {
+  "stem": "A data center uses hot aisle/cold aisle containment. After a switch refresh, several new top-of-rack switches begin overheating even though the room temperature is normal. Technician Devon notices the new switches' fans pull air in from the port side, and the ports face the hot aisle. What is the problem?",
+  "options": [
+   "The switches exceed the rack's weight rating, blocking the airflow channels beneath them",
+   "The room's humidity is too low, reducing the air's capacity to absorb heat",
+   "The fire suppression system's pre-action pipes are radiating heat into the racks",
+   "The switches' airflow direction is reversed relative to the containment design: they ingest hot-aisle air, so units matching the port-side intake/exhaust orientation to the aisles are required"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Airflow orientation must match the containment layout: these switches are port-side intake, and with ports facing the hot aisle they are drinking already-heated exhaust air instead of cold-aisle supply air, so they overheat regardless of room temperature. Vendors sell both port-side intake and port-side exhaust models (or reversible fan trays) so airflow can be matched to which aisle the ports face. Weight rating (option A) concerns structural loading, not airflow, and racks don't cool via channels beneath equipment. Low humidity (option B) raises electrostatic discharge risk — its practical danger is ESD, not a meaningful loss of cooling capacity. Pre-action fire suppression pipes (option C) are dry until triggered and are not a heat source.",
+  "domain": "Network Implementation",
+  "objective": "2.4",
+  "difficulty": "hard",
+  "source": "authored-2026-08-eco-refresh"
+ }
+]

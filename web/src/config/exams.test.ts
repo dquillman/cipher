@@ -148,6 +148,26 @@ describe('exam currency', () => {
         }
     });
 
+    it('points every retired CompTIA bank at its re-authored successor', () => {
+        // The rule this enforces: a superseded bank is replaced by a NEW bank
+        // with its own id, never renamed in place. Renaming would relabel stale
+        // content as current — the exact defect the 2026-08 audit found — and it
+        // would strand pass holders, since entitlements match on examId.
+        const succession = {
+            gp6QwBz0FXFIntLSQSYr: 'N5mrEby0gKLFs1y88DpM',   // Network+ N10-008 -> N10-009
+            cxBsVz8AVaocdEYbgSMA: '12396VsKMFLnPMXivHKQ',   // A+ Core 2 220-1102 -> 220-1202
+            [PMP_EXAM_ID]: PMP_2026_EXAM_ID,                // PMP 2021 ECO -> July 2026 ECO
+        };
+        for (const [oldId, newId] of Object.entries(succession)) {
+            expect(EXAMS[oldId].supersededBy, `${EXAMS[oldId].name} should point at its successor`).toBe(newId);
+            expect(EXAMS[newId], `successor ${newId} must exist`).toBeDefined();
+            expect(EXAMS[newId].retired, `${EXAMS[newId].name} is current, not retired`).toBeFalsy();
+            expect(isSellableExam(newId), `${EXAMS[newId].name} should be sellable`).toBe(true);
+            // A pass bought on the retired bank must still open the new one.
+            expect(examLineage(newId)).toContain(oldId);
+        }
+    });
+
     it('keeps banks for retired exam codes off sale', () => {
         // Network+ N10-008 (retired Dec 2024) and A+ Core 2 220-1102 (retired
         // 25 Sep 2025) are prep for exams nobody can sit.

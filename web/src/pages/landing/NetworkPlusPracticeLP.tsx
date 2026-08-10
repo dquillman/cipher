@@ -7,7 +7,7 @@ import SeoHead from "../../components/SeoHead";
 import { SEO } from "../../config/seo";
 
 /**
- * /lp/network-plus — Tier 1 ad landing page for CompTIA Network+ (N10-008) candidates.
+ * /lp/network-plus — Tier 1 ad landing page for CompTIA Network+ (N10-009) candidates.
  * Copy source: cipher-marketing/04-multi-exam-landing-pages.md.
  * Voice: product voice ("we"). No founder narrative — that lives at /story.
  * Compliance: testimonialBadge="none"; NO TestimonialsSection, NO LeadMagnetCapture.
@@ -22,7 +22,7 @@ export default function NetworkPlusPracticeLP() {
       <Hero
         eyebrow="Network+ · CipherExam"
         h1="Troubleshoot Network+ one layer at a time."
-        sub="CipherExam explains every CompTIA Network+ (N10-008) answer through the Exam Lens — what OSI layer is this, and what is the systematic fix? — and runs Performance-Based Questions natively. Knowing the protocols isn't enough. Locating the symptom on the OSI model is."
+        sub="CipherExam explains every CompTIA Network+ (N10-009) answer through the Exam Lens — what OSI layer is this, and what is the systematic fix? — and runs Performance-Based Questions natively. Knowing the protocols isn't enough. Locating the symptom on the OSI model is."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         testimonialBadge="none"
@@ -32,7 +32,7 @@ export default function NetworkPlusPracticeLP() {
         <p>
           Most Network+ candidates memorize ports, protocols, and topologies and still freeze
           on the troubleshooting items. The reason isn't a knowledge gap — it's a frame gap.
-          N10-008 grades whether you can locate a fault on the OSI model and pick the
+          N10-009 grades whether you can locate a fault on the OSI model and pick the
           systematic next step, not whether you can recite a definition. Question banks that
           just drill facts can't close that gap.
         </p>
@@ -48,7 +48,7 @@ export default function NetworkPlusPracticeLP() {
           <li>
             <strong>Exam Lens explanations.</strong> Every right and wrong answer is walked
             through the same lens — <em>what OSI layer is this, and what is the systematic fix?</em> —
-            built against the OSI model and CompTIA's published N10-008 objectives, so you
+            built against the OSI model and CompTIA's published N10-009 objectives, so you
             internalize layer-by-layer troubleshooting instead of guessing.
           </li>
           <li>
@@ -75,7 +75,7 @@ export default function NetworkPlusPracticeLP() {
           { letter: "D", text: "Layer 7 (application) — restart DHCP and DNS services" },
         ]}
         correctLetter="B"
-        reasoning="Apply the Exam Lens: name the layer first. Hosts can ping the switch's management IP, so connectivity up to the switch — physical link and basic data-link — is already working. That rules out a Layer 1 cable fault (A) and a host-to-switch problem. The break is reaching the gateway through this switch, which on the OSI model points to Layer 2: a wrong VLAN assignment or a misconfigured trunk/tag isolates the access ports from the path to the gateway. Per CompTIA N10-008's systematic, layer-by-layer troubleshooting, you verify VLAN and trunking before jumping to Layer 3 (C) or Layer 7 (D) — the symptom hasn't reached those layers yet."
+        reasoning="Apply the Exam Lens: name the layer first. Hosts can ping the switch's management IP, so connectivity up to the switch — physical link and basic data-link — is already working. That rules out a Layer 1 cable fault (A) and a host-to-switch problem. The break is reaching the gateway through this switch, which on the OSI model points to Layer 2: a wrong VLAN assignment or a misconfigured trunk/tag isolates the access ports from the path to the gateway. Per CompTIA N10-009's systematic, layer-by-layer troubleshooting, you verify VLAN and trunking before jumping to Layer 3 (C) or Layer 7 (D) — the symptom hasn't reached those layers yet."
         bloomsLevel="Analyze"
       />
 
@@ -96,8 +96,8 @@ export default function NetworkPlusPracticeLP() {
       <SectionBlock title="Frequently asked">
         <dl className="space-y-6">
           <div>
-            <dt className="font-semibold text-slate-100">Is this current for N10-008?</dt>
-            <dd className="mt-1">Yes — the question library is built against CompTIA's published N10-008 exam objectives.</dd>
+            <dt className="font-semibold text-slate-100">Is this current for N10-009?</dt>
+            <dd className="mt-1">Yes — the question library is built against CompTIA's published N10-009 exam objectives.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do PBQs actually work in the simulator?</dt>

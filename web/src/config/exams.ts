@@ -120,26 +120,43 @@ export const EXAMS: Record<string, ExamConfig> = {
         name: "CompTIA Security+ (SY0-701)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
     },
-    // RETIRED: this bank is written against N10-008, which CompTIA replaced with
-    // N10-009 on 20 June 2024 and stopped administering in December 2024. It is
-    // prep for an exam nobody can sit. Flagged retired rather than relabelled —
-    // renaming it "N10-009" without re-authoring the content against the V9
-    // objectives would turn a stale bank into a false claim. No `supersededBy`
-    // until an N10-009 bank exists to point at.
+    // LIVE: 106 questions authored against the N10-009 objectives and weighted to
+    // them (Concepts 23 / Implementation 20 / Operations 19 / Security 14 /
+    // Troubleshooting 24, each within a point). Not a rename of the bank below —
+    // a separate, re-authored bank with its own id, so retired-bank pass holders
+    // carry forward through `supersededBy` rather than losing access.
+    "N5mrEby0gKLFs1y88DpM": {
+        id: "N5mrEby0gKLFs1y88DpM",
+        name: "CompTIA Network+ (N10-009)",
+        fullMock: { questionCount: 90, durationMinutes: 90 },
+    },
+    // RETIRED: written against N10-008, which CompTIA replaced with N10-009 on
+    // 20 June 2024 and stopped administering in December 2024. Retained so
+    // existing selections, past attempts and live pass entitlements keep
+    // resolving; superseded by the re-authored bank above.
     "gp6QwBz0FXFIntLSQSYr": {
         id: "gp6QwBz0FXFIntLSQSYr",
         name: "CompTIA Network+ (N10-008)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
         retired: true,
+        supersededBy: "N5mrEby0gKLFs1y88DpM",
+    },
+    // LIVE: 161 questions authored against the 220-1202 (Core 2 V15) objectives.
+    // Same pattern as Network+ — re-authored bank, new id, not a relabel.
+    "12396VsKMFLnPMXivHKQ": {
+        id: "12396VsKMFLnPMXivHKQ",
+        name: "CompTIA A+ Core 2 (220-1202)",
+        fullMock: { questionCount: 90, durationMinutes: 90 },
     },
     // RETIRED: written against 220-1102 (Core 2 V14). CompTIA launched V15
     // (220-1202) on 25 March 2025 and stopped administering 220-1102 on
-    // 25 September 2025. Same reasoning as Network+ above.
+    // 25 September 2025.
     "cxBsVz8AVaocdEYbgSMA": {
         id: "cxBsVz8AVaocdEYbgSMA",
         name: "CompTIA A+ Core 2 (220-1102)",
         fullMock: { questionCount: 90, durationMinutes: 90 },
         retired: true,
+        supersededBy: "12396VsKMFLnPMXivHKQ",
     },
     "bF7IQUrKjbP2KLwiSNqt": {
         id: "bF7IQUrKjbP2KLwiSNqt",
@@ -161,7 +178,9 @@ export const EXAM_LENS: Record<string, { lensName: string; framework: string }> 
     "6FKeXlV2dzv4I03tewcU": { lensName: "Service Value Lens",             framework: "How does this serve the ITIL service value chain?" },
     "79cuGMNydTwDMhyiDjry": { lensName: "Security Triad Lens",            framework: "CIA triad — which principle is being protected?" },
     "gp6QwBz0FXFIntLSQSYr": { lensName: "OSI Troubleshooting Lens",       framework: "What layer is this, and what's the systematic fix?" },
+    "N5mrEby0gKLFs1y88DpM": { lensName: "OSI Troubleshooting Lens",       framework: "What layer is this, and what's the systematic fix?" },
     "cxBsVz8AVaocdEYbgSMA": { lensName: "Troubleshooting Methodology Lens", framework: "What step of the CompTIA troubleshooting model?" },
+    "12396VsKMFLnPMXivHKQ": { lensName: "Troubleshooting Methodology Lens", framework: "What step of the CompTIA troubleshooting model?" },
     "bF7IQUrKjbP2KLwiSNqt": { lensName: "Program Governance Lens",          framework: "How does this serve the program's strategic objectives and benefits realization?" },
 };
 

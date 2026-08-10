@@ -1,0 +1,302 @@
+[
+  {
+    "stem": "Maria, a network technician, is dispatched to trace a suspected damaged copper run between the main distribution frame and a workgroup switch in an adjacent building. Which type of documentation will be MOST useful for locating the exact cable path and termination points?",
+    "options": [
+      "The Layer 3 network diagram showing routing between subnets",
+      "The wireless survey heat map for both buildings",
+      "The physical Layer 1 diagram and cable map",
+      "The software asset inventory with licensing details"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A physical (Layer 1) diagram and cable map documents actual cable runs, patch panel ports, and termination points, which is exactly what Maria needs to physically trace a damaged run. A Layer 3 diagram shows logical routing and IP subnets, not where cables physically go. A wireless heat map documents RF coverage, which is irrelevant to a copper fault. An asset inventory tracks hardware, software, licensing, and warranty status but says nothing about cable paths.",
+    "domain": "Network Operations",
+    "objective": "3.1",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Devon administers addressing for a growing company using a shared spreadsheet. Last week two administrators, each working from a stale copy, assigned the same static IP address to two different servers, causing an outage. Which solution BEST prevents this class of problem long term?",
+    "options": [
+      "Deploy an IP address management (IPAM) system as the authoritative record for all assignments",
+      "Enable spanning tree protocol on the core switches to block the duplicate addresses",
+      "Shorten the DHCP lease time on all scopes so conflicts age out faster",
+      "Add the server addresses to the Layer 2 network diagram and require admins to check it"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An IPAM system provides a single authoritative, real-time database of address assignments, with conflict detection and tracking of which addresses are in use, eliminating the stale-copy problem inherent to spreadsheets. Spanning tree operates at Layer 2 to prevent switching loops and does nothing about duplicate IP addresses. Shortening DHCP leases is irrelevant because these were static assignments outside DHCP's control. Moving the data to a diagram is still manual documentation, which recreates the same drift and stale-copy failure mode as the spreadsheet.",
+    "domain": "Network Operations",
+    "objective": "3.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Priya learns that the vendor of her organization's core switches has announced an end-of-support (EOS) date eighteen months out, after which no software patches or technical support will be available. The switches are currently stable and performing well. What is the MOST appropriate response?",
+    "options": [
+      "Keep the switches in service indefinitely since they are functioning without issues",
+      "Downgrade to an older, well-tested firmware release before support ends",
+      "Purchase a third-party hardware warranty to keep receiving vendor software patches",
+      "Begin lifecycle planning and budgeting now to replace the switches before the EOS date"
+    ],
+    "correctAnswer": 3,
+    "explanation": "EOS means the vendor will stop producing patches, including security fixes, so the correct lifecycle-management response is to plan, budget, and schedule replacement or decommissioning before that date arrives. Running unsupported gear indefinitely leaves known-but-unpatchable vulnerabilities in the core of the network. Downgrading firmware does not change the support status and may reintroduce fixed bugs. Third-party warranties can cover hardware failures, but they cannot produce vendor software patches, which is what EOS actually takes away.",
+    "domain": "Network Operations",
+    "objective": "3.1",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "During an audit, Marcus is asked how his team detects unauthorized changes to router configurations. The team already takes nightly configuration backups and uses a ticketing system for change requests. Which addition would BEST let the team detect configuration drift?",
+    "options": [
+      "Increase configuration backups from nightly to hourly",
+      "Automatically compare each device's running configuration against its approved baseline (golden) configuration",
+      "Restore the previous night's backup configuration to every device each morning",
+      "Have engineers manually re-read closed change tickets each week"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A baseline or golden configuration is the approved reference state; automatically diffing running configurations against it surfaces any unauthorized or undocumented change, which is the definition of drift detection. More frequent backups capture more history but never flag that anything changed. Blindly restoring last night's backup would wipe out legitimate approved changes along with unauthorized ones and could cause outages. Manually reviewing tickets only shows what was supposed to happen, not what actually changed on the devices.",
+    "domain": "Network Operations",
+    "objective": "3.1",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Aisha notices that when a switch's CPU utilization crosses 90 percent, the switch immediately sends an unsolicited alert message to the network management station without being polled. Which SNMP mechanism is in use?",
+    "options": [
+      "A management information base (MIB) walk",
+      "A community string exchange",
+      "A scheduled GET request from the manager",
+      "An SNMP trap sent by the agent"
+    ],
+    "correctAnswer": 3,
+    "explanation": "An SNMP trap is an unsolicited notification the agent pushes to the management station when a defined event or threshold occurs, exactly matching this behavior. A MIB walk is a manager-initiated series of requests that enumerates the MIB tree, so it is polled, not pushed. Community strings are the credential used in SNMPv1/v2c, not a notification mechanism. A scheduled GET is polling, which is the opposite of the device initiating the message on its own.",
+    "domain": "Network Operations",
+    "objective": "3.2",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A security review finds that Tomas's monitoring platform polls devices using SNMPv2c with the community string 'public', sent in cleartext. Policy now requires both authentication of the poller and encryption of monitoring traffic. What should Tomas implement?",
+    "options": [
+      "Migrate the devices and the poller to SNMPv3 with authentication and privacy enabled",
+      "Change the SNMPv2c community string to a long random value",
+      "Move all SNMP polling to a dedicated VLAN and keep v2c",
+      "Replace SNMP polling entirely with syslog forwarding"
+    ],
+    "correctAnswer": 0,
+    "explanation": "SNMPv3 is the only SNMP version that provides user-based authentication and encryption (the authPriv security level), directly satisfying both policy requirements. A stronger community string is still transmitted in cleartext and provides no encryption, so a capture still exposes it. Segmenting polling onto a VLAN reduces exposure but the traffic remains unauthenticated and unencrypted for anyone on that path. Syslog is a log-forwarding mechanism, not a polling/management protocol, and plain syslog is also unencrypted, so it does not replace what SNMP polling provides.",
+    "domain": "Network Operations",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Lena needs to capture all packets flowing to and from a database server connected to a production switch so an analyst can inspect them. She cannot take the server offline or insert an inline tap. What should she configure?",
+    "options": [
+      "An SNMP trap on the server's switch port",
+      "NetFlow export on the core router",
+      "Port mirroring (SPAN) on the switch, copying the server port's traffic to an analysis port",
+      "A DHCP reservation for the analyst's workstation"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Port mirroring (often called SPAN) copies frames from a source port to a destination port where a capture device listens, providing full packet visibility with no downtime and no inline hardware. SNMP traps only send event notifications, not copies of traffic. NetFlow exports summarized flow records (who talked to whom, how much), not full packets, so the analyst could not inspect payloads. A DHCP reservation just fixes the analyst's IP address and has nothing to do with capturing traffic.",
+    "domain": "Network Operations",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Omar's WAN link to a branch office saturates every afternoon. Management wants weeks of historical data identifying top talkers, applications, and protocol mix on the link, but storing continuous full packet captures is not feasible. Which monitoring method BEST fits?",
+    "options": [
+      "Continuous packet capture with a rolling 24-hour buffer",
+      "Flow data export (e.g., NetFlow/IPFIX) from the WAN router to a collector",
+      "SNMP polling of the interface utilization counters",
+      "Aggregating the router's syslog messages into a SIEM"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Flow data summarizes conversations (source, destination, ports, protocol, byte counts) at a tiny fraction of full-capture storage cost, making weeks of top-talker and application-mix history practical — exactly the requirement. Packet capture provides payload-level detail but the storage constraint rules it out, and a 24-hour buffer cannot answer questions about weeks of history. SNMP interface counters show that the link is saturated and when, but not who or what is consuming it. Syslog carries event and status messages, not per-conversation traffic accounting.",
+    "domain": "Network Operations",
+    "objective": "3.2",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Rachel manages 40 network devices that each store logs locally. During a recent incident, correlating events across devices took hours, and several device logs had already rolled over. Which solution BEST addresses both problems?",
+    "options": [
+      "Forward all device logs to a central syslog collector feeding a SIEM for retention and correlation",
+      "Enable SNMPv3 polling of each device's CPU and memory",
+      "Increase the local log buffer size on every device",
+      "Run a scheduled network discovery to inventory the devices"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Centralized log aggregation via a syslog collector solves the retention problem (logs survive local rollover) and a SIEM solves the correlation problem by normalizing and cross-referencing events from all 40 devices in one place, with alerting on suspicious patterns. SNMP polling gathers performance metrics, not log events, so it cannot reconstruct an incident timeline. Larger local buffers delay rollover but still leave logs scattered across 40 devices with no correlation. Network discovery builds an inventory of what exists on the network; it does not collect or analyze logs.",
+    "domain": "Network Operations",
+    "objective": "3.2",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "During disaster recovery planning, the finance director tells Sam that the order-processing database can lose no more than 15 minutes of committed transactions in a disaster. Which DR metric does this requirement define, and what does it drive?",
+    "options": [
+      "MTBF — it drives how often replacement hardware is purchased",
+      "RTO — it drives how quickly systems must be restored to service",
+      "MTTR — it drives staffing levels for the repair team",
+      "RPO — it drives how frequently data must be replicated or backed up"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The recovery point objective (RPO) defines the maximum acceptable data loss measured in time, so a 15-minute RPO forces replication or backup intervals of 15 minutes or less. RTO is about how long restoration of service may take, not how much data may be lost — a system could meet a 4-hour RTO and still lose a full day of data. MTTR measures average time to repair a failed component and MTBF measures average time between failures; both describe operational reliability, not tolerable data loss in a disaster.",
+    "domain": "Network Operations",
+    "objective": "3.3",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Nadia's company wants a disaster recovery site with power, cooling, network connectivity, and server hardware already installed, but with data to be restored from recent backups after a disaster is declared. The budget will not support real-time replication. Which DR site type matches?",
+    "options": [
+      "Cold site",
+      "Warm site",
+      "Hot site",
+      "Active-active data center"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A warm site has facilities and hardware in place but requires data restoration and final configuration at declaration time, trading a recovery delay of hours-to-a-day for much lower cost — exactly this scenario. A cold site is essentially empty space with power and cooling but no installed hardware, making recovery far slower. A hot site maintains near-real-time replicated data and can take over almost immediately, which requires the continuous replication the budget rules out. Active-active is a high-availability architecture where both sites serve production simultaneously, an even more expensive posture than a hot site.",
+    "domain": "Network Operations",
+    "objective": "3.3",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Victor is designing high availability for a customer-facing web platform across two data centers. Requirements: both data centers must serve live traffic simultaneously to use purchased capacity, and the loss of either site must not require a failover event to keep the service online. Which approach satisfies this?",
+    "options": [
+      "Active-passive, with the standby site kept synchronized",
+      "A warm site brought online when the primary fails",
+      "Active-active, with load balancing distributing traffic across both sites",
+      "A hot site with automated failover orchestration"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Active-active runs live workloads in both locations at once, so all capacity is utilized and losing one site simply leaves the survivor carrying the load — no failover transition is needed, which meets both stated requirements. Active-passive leaves the standby idle (wasting capacity) and requires a failover event when the active site fails. A warm site requires restoration work before it can serve traffic, failing both requirements. A hot site with automated failover still involves a failover event and does not serve production traffic during normal operation.",
+    "domain": "Network Operations",
+    "objective": "3.3",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Elena manages a fleet of network printers that must always receive the same IP addresses so print queues do not break, but she wants the addresses centrally managed through DHCP rather than configured on each printer. What should she configure?",
+    "options": [
+      "DHCP reservations mapping each printer's MAC address to a fixed IP",
+      "A shorter lease time on the printer scope",
+      "An exclusion range covering the printer addresses",
+      "SLAAC on the printer VLAN"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A DHCP reservation binds a specific IP to a device's MAC address, so the printer always receives the same address while remaining under central DHCP management — the exact requirement. A shorter lease time makes addresses recycle faster and increases the chance an address changes. An exclusion range prevents the server from handing out those addresses at all, which would force static configuration on each printer, defeating the goal of central management. SLAAC is IPv6 stateless autoconfiguration, which is not centrally managed by a DHCP server and does not guarantee stable IPv4 assignments.",
+    "domain": "Network Operations",
+    "objective": "3.4",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "After Jamal creates a new VLAN for a call center, clients on it fail to obtain IP addresses even though the DHCP server, located in the data center on a different subnet, has a scope configured for the new VLAN. Wired connectivity checks out. What is the MOST likely fix?",
+    "options": [
+      "Expand the scope's address pool on the DHCP server",
+      "Reduce the lease time for the new scope",
+      "Configure a DHCP relay (IP helper address) on the new VLAN's router interface",
+      "Add an exclusion range to the new scope"
+    ],
+    "correctAnswer": 2,
+    "explanation": "DHCP discovery messages are broadcasts, and routers do not forward broadcasts between subnets, so clients on the new VLAN can never reach the remote DHCP server without help. A DHCP relay (IP helper) on the VLAN's gateway interface converts the broadcast into a unicast aimed at the server, which is the standard fix. The scope exists and is presumably unexhausted, so expanding the pool changes nothing. Lease time affects renewal frequency, not initial reachability. An exclusion range would remove addresses from the pool, which makes the problem worse, not better.",
+    "domain": "Network Operations",
+    "objective": "3.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A security appliance managed by Rosa logs only IP addresses, and she needs the appliance to resolve those IPs back to hostnames for readable reports. Which DNS record type, hosted in a reverse lookup zone, makes this possible?",
+    "options": [
+      "CNAME",
+      "MX",
+      "AAAA",
+      "PTR"
+    ],
+    "correctAnswer": 3,
+    "explanation": "PTR (pointer) records live in reverse lookup zones and map an IP address back to a hostname, which is exactly what IP-to-name resolution requires. A CNAME is an alias mapping one name to another name — forward resolution only. MX records identify the mail servers responsible for a domain and have nothing to do with reverse lookup. AAAA records map a hostname to an IPv6 address, which is the forward direction, the opposite of what Rosa needs.",
+    "domain": "Network Operations",
+    "objective": "3.4",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A new privacy policy requires that DNS queries from Hannah's corporate laptops be encrypted in transit so an on-path observer cannot read which domains users look up. Hannah's colleague suggests enabling DNSSEC on the company's zones. Why is that suggestion insufficient, and what should Hannah deploy?",
+    "options": [
+      "DNSSEC only works for IPv6; she should deploy dual-stack resolvers",
+      "DNSSEC provides integrity and authenticity of responses, not confidentiality; she should deploy DNS over TLS (DoT) or DNS over HTTPS (DoH)",
+      "DNSSEC only signs reverse zones; she should sign the forward zones as well",
+      "DNSSEC encrypts only the root zone; she should host an internal root server"
+    ],
+    "correctAnswer": 1,
+    "explanation": "DNSSEC cryptographically signs DNS data so resolvers can verify responses were not forged or tampered with — but queries and responses still travel in cleartext, so an observer can read every lookup. Encrypting the transport requires DoT or DoH, which wrap DNS traffic in TLS/HTTPS. DNSSEC is unrelated to IPv4 versus IPv6, applies to both forward and reverse zones, and does not perform encryption at any level of the hierarchy, so the other three statements each misstate what DNSSEC does.",
+    "domain": "Network Operations",
+    "objective": "3.4",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "While investigating an incident, Andre finds that timestamps in the firewall, switch, and server logs disagree by several minutes, making it impossible to build an accurate event timeline. Which network service should he configure across all devices to prevent this?",
+    "options": [
+      "NTP synchronization against a common time source",
+      "DHCP with shorter lease times",
+      "A syslog collector with local timestamps",
+      "DNS with PTR records for every device"
+    ],
+    "correctAnswer": 0,
+    "explanation": "NTP synchronizes device clocks against a common reference, so every log entry carries a consistent timestamp and events can be correlated across systems — the core operational reason NTP matters. DHCP assigns addresses and has no effect on clocks. A syslog collector centralizes logs, but if the sending devices' clocks disagree, the timestamps inside the messages are still wrong. PTR records make IPs resolvable to names, which improves readability but does nothing about time skew.",
+    "domain": "Network Operations",
+    "objective": "3.4",
+    "difficulty": "easy",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Since moving all 300 remote employees to a full-tunnel VPN, Priya's headquarters internet circuit is saturated, largely by remote users' video streaming and general web browsing. Security only requires that traffic destined for internal corporate resources traverse the VPN. What should Priya implement?",
+    "options": [
+      "A second full-tunnel VPN concentrator to share the load",
+      "Split-tunnel VPN, sending only corporate-bound traffic through the tunnel",
+      "A clientless VPN portal for all applications",
+      "Site-to-site VPN between each employee's home and headquarters"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Split tunneling routes only traffic destined for corporate networks through the VPN while general internet traffic exits the user's local connection, which removes streaming and browsing load from the headquarters circuit and still satisfies the stated security requirement. A second concentrator adds capacity but still hauls all personal traffic through headquarters, treating the symptom. A clientless VPN provides browser-based access to specific applications and does not change where general traffic egresses. Site-to-site VPNs connect fixed networks, not individual roaming employees, and would still be full corporate transit.",
+    "domain": "Network Operations",
+    "objective": "3.5",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "A misapplied ACL on a core switch cut off all in-band management access to Carlos's network devices, and the switch is in a data center 200 miles away. Which capability, had it been in place, would let Carlos reach the switch's CLI even while the production network is unreachable?",
+    "options": [
+      "A second in-band management VLAN on the same switch",
+      "An API integration with the monitoring platform",
+      "Out-of-band management via a console server on a separate connection path",
+      "SSH access through the production interface with a stronger cipher"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Out-of-band management uses a dedicated path — such as a console server reachable over a separate circuit or cellular link — that does not depend on the production network, so it survives exactly this failure mode. A second management VLAN is still in-band: it rides the same switch fabric that the bad ACL just broke. API integrations reach devices over the same production network and fail with it. Stronger SSH ciphers change the security of the session, not its reachability; if the network path is down, no in-band SSH works regardless of cipher.",
+    "domain": "Network Operations",
+    "objective": "3.5",
+    "difficulty": "medium",
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "stem": "Auditors require that all administrative SSH sessions into Dana's secure server segment originate from a single hardened, centrally logged host protected by multifactor authentication, rather than from individual administrator workstations scattered across the LAN. Which design satisfies this requirement?",
+    "options": [
+      "Issue each administrator a full-tunnel VPN client for direct server access",
+      "Allow direct SSH from admin workstations but enforce long passwords",
+      "Mirror all administrative traffic to a SIEM for after-the-fact review",
+      "Deploy a jump box in front of the segment as the sole permitted SSH source"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A jump box (jump host) is a hardened intermediary that administrators must log into — with MFA and full session logging — before connecting onward, and firewall rules restrict SSH into the segment to the jump box alone, exactly matching the audit requirement of a single controlled origin. Full-tunnel VPNs still let each workstation connect directly, leaving many origins to secure and audit. Direct SSH with long passwords fails the single-hardened-origin and MFA requirements outright. Mirroring traffic to a SIEM is detection after the fact; it neither restricts where sessions originate nor enforces authentication controls.",
+    "domain": "Network Operations",
+    "objective": "3.5",
+    "difficulty": "hard",
+    "source": "authored-2026-08-eco-refresh"
+  }
+]

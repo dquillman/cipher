@@ -1,0 +1,306 @@
+[
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "Yara is the HR project lead for a nine-month rollout of employee self-service in the company's HRIS. The go-live date is fixed by the payroll vendor's contract. Four months in, IT reassigns two of the three analysts on the project to a security incident with no return date. What should Yara do?",
+    "options": [
+      "Hold the original scope and cover the shortfall with overtime from the one remaining analyst until the two reassigned staff return",
+      "Escalate to the CHRO to have the two analysts returned, and keep the project plan unchanged pending that decision",
+      "Rescope the release to what the remaining resource can deliver by the fixed date, and sequence the rest into phase two",
+      "Move the go-live date out until the project is fully staffed again, then resume the original plan and milestones"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Managing HR Initiatives asks all HR professionals to identify when resource allocation is inconsistent with project needs and make adjustments as necessary, and to demonstrate agility and adaptability when project requirements, goals or constraints change (p. 15). Two of three analysts are gone and the date cannot move, so scope is the only variable Yara controls; rescoping to a deliverable first phase protects the contractual date and keeps the remaining milestones honest. Absorbing the gap with overtime treats a two-thirds resource loss as a scheduling inconvenience, exhausts the single analyst Yara still has, and leaves the same shortfall in place if the reassignment runs long. Escalating to the CHRO is a reasonable parallel step, but on the BASK's own tiering, collaborating with leadership to remove obstacles is printed under FOR ADVANCED HR PROFESSIONALS on the same page; more to the point, holding the plan unchanged spends the remaining schedule waiting on a decision Yara does not control. Moving go-live contradicts the stated constraint, since the date is set by a vendor contract and delay is not Yara's to grant.",
+    "objective": "Behavioral Competencies > Leadership Cluster > Leadership & Navigation > Managing HR Initiatives (2026 BASK, p. 15)",
+    "difficulty": "medium",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.9,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "A department head asks Imani, an HR manager, to run the free-text responses from the company's anonymous engagement survey through an AI writing-analysis tool that would identify which employees most likely wrote the harshest comments. Imani confirms the tool would probably work. She should:",
+    "options": [
+      "Run the analysis but report only aggregated themes, withholding from the department head every individual attribution the tool produces",
+      "Run the analysis, then notify employees that free-text responses in this and any future engagement survey may be individually attributable",
+      "Decline unless the department head first obtains written approval from both the executive team and the organization's outside counsel",
+      "Decline the request, explain that de-anonymizing a survey promised as anonymous breaks a commitment to employees, and offer thematic analysis"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Ethical Practice key concepts name anonymity and confidentiality among privacy principles and policies, and protection of employee confidentiality among internal ethics controls (p. 17). The Professional Integrity indicators for all HR professionals require HR to use discretion when communicating sensitive information, to inform stakeholders of the limits of confidentiality and privacy, and to apply and challenge the organization's ethics and integrity policies when necessary (p. 19); the Ethical Agent indicators for all HR professionals add identifying, evaluating and communicating potential ethical risks to leadership (p. 20). The promise of anonymity is the commitment at stake, so the request is refused, the risk is named, and a legitimate alternative is offered. Running the analysis and filtering the output still performs the de-anonymization, creates the capability and leaves a record of who said what, whatever the report shows. Retroactive notice does not repair a broken promise and guarantees the next survey collects nothing candid, which forfeits the data source the organization was trying to use. Escalating for written approval is a genuine ethical-agent move aimed at the wrong problem: authorization from above does not convert a breach of an anonymity promise into an ethical act, and seeking it signals that the answer depends on who signs.",
+    "objective": "Behavioral Competencies > Leadership Cluster > Ethical Practice > Ethical Agent; Professional Integrity (2026 BASK, p. 17, 19-20)",
+    "difficulty": "medium",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "A pay equity audit at Wren Manufacturing finds that, controlling for role, tenure and performance rating, women in two job families earn about 4% less than men. Renata, an HR generalist, confirms the gap is not explained by any legitimate factor. Consistent with Ensuring Impartiality & Fairness, what should Renata do first?",
+    "options": [
+      "Publish the audit results company-wide immediately, since pay transparency is a recognized technique for measuring and increasing equity",
+      "Bring the confirmed finding to the compensation decision-makers with a recommendation to correct current pay in the two job families",
+      "Reset the starting salary bands for future hires into those job families so that the measured gap stops widening over time",
+      "Add the finding to the annual I&D metrics report and revisit it during the next scheduled compensation planning cycle"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Ensuring Impartiality & Fairness asks all HR professionals to ensure that HR programs, practices and policies are applied consistently and respectfully for all, and to use the organization's I&D policies and philosophy to inform business decisions and the implementation of HR programs, practices and policies (p. 24). A confirmed, unexplained gap is evidence that pay practices were not applied consistently, and the action available at this tier is to put that evidence in front of the people who own pay decisions together with a recommendation to correct it. Note where the tier line falls: 'Plans interventions to resolve identified inequities' is printed under FOR ADVANCED HR PROFESSIONALS on the same page, so designing and executing a remediation program is not what this sub-competency asks of an HR professional who does not hold the compensation budget. Pay transparency is genuinely listed among the techniques to measure and increase equity (p. 21), but publishing raw findings before the pay is corrected changes nothing for the underpaid employees and puts an unremediated admission on the record. Resetting future starting bands is a real corrective control that reaches only new hires and leaves every currently underpaid employee exactly where she is. Logging the finding as a metric treats measurement as the endpoint when the audit has already finished measuring.",
+    "objective": "Behavioral Competencies > Leadership Cluster > Inclusive Mindset > Ensuring Impartiality & Fairness (2026 BASK, p. 24)",
+    "difficulty": "hard",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.8,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "Callum is overseeing the launch of a redesigned intranet and benefits portal at a professional services firm. Separately, an employee with ADHD, an employee who uses a screen reader and a Deaf employee have each requested accommodations relating to the rollout. Which action best reflects Building the Infrastructure for an Inclusive and Diverse Culture?",
+    "options": [
+      "Build digital accessibility and neurodiversity requirements into the portal's design standards while the accommodation process runs",
+      "Route each of the three employees through the individual accommodation process and make no further change to the portal design",
+      "Deliver unconscious bias training to the IT team that built the portal so that future digital projects start out more inclusive",
+      "Stand up a disability employee resource group and ask its members to review the portal and flag accessibility defects before launch"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The indicators for all HR professionals under this sub-competency require HR to recognize, support and advocate on behalf of an inclusive workforce across abilities, including invisible abilities and digital accessibility, and neurodiversity such as ADHD, autism and dyslexia, and to identify opportunities to enhance the equity of organizational policies and procedures for all employees (p. 23). Writing accessibility and neurodiversity into the design standard is the infrastructure move, and it leaves the individual accommodation process running alongside, which is precisely what the second option strips out. Handling the three requests individually is not wrong; it is incomplete. The interactive accommodation process is mandatory once an employer is on notice, so Callum owes it to all three regardless of what design standards exist, but resolving the cases as one-off exceptions and stopping there leaves the portal defective for the next employee and for everyone who never asks. Unconscious bias training is a listed approach to developing an inclusive workplace (p. 21), but it targets attitudes rather than the technical standard that produced an inaccessible product. Inclusive employee resource groups are listed on the same page, yet assigning affected employees the unpaid work of finding the defects is cultural taxation, another barrier named on p. 21, and it still produces no standard.",
+    "objective": "Behavioral Competencies > Leadership Cluster > Inclusive Mindset > Building the Infrastructure for an Inclusive and Diverse Culture (2026 BASK, p. 23)",
+    "difficulty": "medium",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "At a mid-sized nonprofit, the three Latina employees on staff are routinely asked to serve on hiring committees, speak at the Hispanic Heritage Month event and mentor incoming Latino hires, all on top of their regular workloads and with no adjustment to their goals. Noor, the HR manager, wants to name the pattern accurately. This is best described as:",
+    "options": [
+      "Cultural taxation, the extra uncompensated diversity-related labor disproportionately assigned to employees from underrepresented groups",
+      "Identity covering, the downplaying or masking of a stigmatized aspect of one's own identity to fit the dominant workplace culture",
+      "Ingroup/outgroup bias, the tendency to extend trust and opportunity preferentially to people perceived as members of one's own group",
+      "Social comparison bias, the tendency to withhold support from someone whose strengths are perceived as a threat to one's own standing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Inclusive Mindset key concepts list barriers to success involving conscious and unconscious bias, and cultural taxation appears in that list alongside all three distractors (p. 21). The BASK prints these as bare terms rather than defining them, so what the item tests is whether the candidate can match the printed term to a fact pattern. Cultural taxation is the extra representational labor loaded onto underrepresented employees without compensation or workload relief, which is exactly what the three employees are carrying. Identity covering, printed on the same page under personal barriers, describes concealing an aspect of identity in order to fit in, which is the opposite of being repeatedly recruited because of it. Ingroup/outgroup bias concerns who receives trust and opportunity, and nothing here says these employees are excluded from opportunity; they are over-included in unpaid work. Social comparison bias describes threat-driven withholding of support, which requires a rater who feels threatened and has no counterpart in these facts.",
+    "objective": "Behavioral Competencies > Leadership Cluster > Inclusive Mindset > Key Concepts: Barriers to success involving conscious and unconscious bias (2026 BASK, p. 21)",
+    "difficulty": "easy",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.95,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "Soren, an HR business partner, is pulled into a three-month-old dispute between the Finance and Field Operations department heads over expense approval turnaround. The email thread has become personal, and one of the two now refuses to sit in a joint meeting with the other. Both want Soren to settle it. What should Soren do first?",
+    "options": [
+      "Have each department head submit their position in writing and issue an HR decision on which account of the delays is correct",
+      "Meet the two department heads separately to re-anchor the dispute on approval turnaround, then convene a facilitated joint session",
+      "Reroute the expense workflow so the two teams no longer hand off directly, removing the point at which the conflict keeps recurring",
+      "Refer the matter to the two department heads' vice presidents, since the dispute has already escalated beyond what HR can resolve"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Conflict Management asks all HR professionals to identify and address the underlying causes of conflict, to facilitate difficult interactions among employees to achieve optimal outcomes, and to resolve or mediate conflicts in a respectful, appropriate and impartial manner, referring them to a higher level only when warranted (p. 33). The dispute began as task conflict over turnaround time and has drifted into relationship conflict, a distinction the Relationship Management key concepts draw explicitly (p. 28). The refusal is the reason the separate meetings come first: a joint session cannot be convened over one party's objection, and the private conversations are what make it possible, because re-anchoring each head on the approval-turnaround process restores the task frame and lowers the personal stakes enough for the two to sit down. That sequence reaches the underlying cause rather than the symptoms, and it keeps the facilitated session the indicator describes on the table instead of abandoning it. Adjudicating written positions is competition, one of the listed conflict resolution strategies, and it makes HR the judge rather than the impartial mediator the indicator describes, so whoever loses carries the grievance forward; it is also the option the refusal makes most tempting, since settling it on paper is what both heads are asking Soren to do. Rerouting the workflow to eliminate contact is avoidance, also a listed strategy, and it buys quiet by breaking a handoff the business presumably needs while the turnaround problem goes unfixed. Referral upward is a step the indicator expressly permits, but only when warranted, and Soren has not yet attempted the mediation he is qualified to run.",
+    "objective": "Behavioral Competencies > Interpersonal Cluster > Relationship Management > Conflict Management (2026 BASK, p. 28, 33)",
+    "difficulty": "medium",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "The VP of a 300-person engineering division tells Dmitri, the division's HR business partner, to build a leadership training program, citing exit interviews that mention poor management. Dmitri's own data shows voluntary turnover concentrated in one of six teams, whose manager carries roughly twice the division's average span of control and has had two roles unfilled for seven months. What should Dmitri do?",
+    "options": [
+      "Deliver the leadership program the VP requested, since the client defines the need and HR's role is responsive service delivery",
+      "Tell the VP the problem is staffing rather than management capability, and decline to build the program he has asked for",
+      "Treat the request as a symptom, finish discovery on where turnover concentrates, and bring the VP those findings",
+      "Run the leadership program and add stay interviews, so that both the requested solution and the likely actual cause are covered"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Evaluating Business Challenges asks all HR professionals to partner with stakeholders to understand the organization's HR challenges and identify needs and opportunities for improvement, and to advise stakeholders on existing programs, practices and policies that impede or support business success (p. 44). The Consultation key concepts name discovery as the first stage of the consulting process and list avoiding overpromising among effective consulting techniques (p. 43). Dmitri holds a signal the VP does not, so the move is to finish discovery and put the evidence in front of the client before any solution is committed. Building the program as ordered skips discovery entirely and spends the division's budget on a remedy aimed at the wrong cause; service excellence means serving the business need, not transcribing the request. Telling the VP he is wrong and refusing reaches the probable right diagnosis through the wrong behavior: it asserts a conclusion Dmitri has not yet validated, and the indicator says partner and advise rather than overrule. Doing both hedges by committing resources to an unvalidated solution, which is what overpromising looks like in practice, and it lets the training program collect credit if turnover falls for staffing reasons.",
+    "objective": "Behavioral Competencies > Business Cluster > Consultation > Evaluating Business Challenges (2026 BASK, p. 43-44)",
+    "difficulty": "medium",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "Six months after a redesigned performance-management process went live, Halle finds that roughly 40% of managers are still running reviews on the old spreadsheet. The design tested well in a three-month pilot, where participating managers rated it clearer and faster than the process it replaced. What should Halle do?",
+    "options": [
+      "Redesign the process, since 40% non-adoption after six months is evidence that the design does not fit how managers actually work",
+      "Ask the CHRO to mandate compliance and have IT disable access to the old performance spreadsheet at the end of the quarter",
+      "Extend the transition window by two more quarters so the remaining managers can adopt the new process at their own pace",
+      "Work with the managers who have not adopted to identify what is blocking implementation, and remove those specific obstacles"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Advising on HR Solutions asks all HR professionals to work with business partners to overcome obstacles to implementation of HR solutions, to provide follow-up and ongoing support so solutions remain effective, and to ensure that implementation adheres to defined goals and outcomes (p. 46). The pilot evidence separates the two possible failures: managers who actually used the design preferred it, so the defect sits in implementation rather than design, and the obstacle is the thing Halle does not yet know. Redesigning discards a solution the organization already validated and restarts a change cycle that will run into the same unexamined obstacle; it also reads the adoption number as a verdict on the design when the pilot says otherwise. Mandating compliance and disabling the spreadsheet is a real implementation lever and may well be part of the eventual answer, but applied before the obstacle is known it converts non-adoption into resentful minimum compliance and substitutes authority for the partnering the indicator describes. Extending the window is not an intervention at all: time has been the treatment for six months already, the defined goals slip further, and the organization runs two review cycles on two different systems.",
+    "objective": "Behavioral Competencies > Business Cluster > Consultation > Advising on HR Solutions (2026 BASK, p. 46)",
+    "difficulty": "hard",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "Behavioral Competencies",
+    "stem": "Quentin, an HR analyst, builds a predictive model that scores employees on their likelihood of resigning within six months. It performs well on its historical data, but it was trained on a period when the company operated from a single office; two-thirds of the workforce is now remote. Before leadership uses the scores to allocate the retention budget, Quentin should:",
+    "options": [
+      "Establish whether the training data still represents the current workforce, and revalidate or retrain the model before the scores are used",
+      "Report the scores with confidence intervals, so that leadership can judge for itself how much weight to give each individual score",
+      "Restrict the scores to department-level planning, since aggregating across many employees cancels out the effect of unrepresentative training data",
+      "Back-test the model against last year's actual turnover and proceed if the correlation between prediction and outcome is strong"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Data and algorithm quality is named among the data analysis techniques and methods in the Analytical Aptitude key concepts, alongside predictive analysis (p. 49), and the Data Analysis indicators for all HR professionals require HR to identify potentially misleading or flawed data, results, tools or systems and to identify gaps in data and seek the data that is missing (p. 52). A workforce that has shifted from co-located to two-thirds remote is a different population from the one the model learned, so representativeness is the prior question and everything downstream depends on the answer. Confidence intervals are a real technique, but they quantify sampling uncertainty within the training population and are silent about a population that changed underneath the model; a tight interval around a wrong estimate is still wrong. Restricting to department-level planning averages biased estimates rather than correcting them, and produces department scores that are wrong in the same direction as the individual ones. Back-testing against last year confirms fit to the same era the model was trained on, which assumes exactly what is in doubt; the informative test would use data from the remote-majority period.",
+    "objective": "Behavioral Competencies > Business Cluster > Analytical Aptitude > Data Analysis (2026 BASK, p. 49, 52)",
+    "difficulty": "medium",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.8,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "HR Knowledge Domains",
+    "stem": "Employees at Halcyon Health have begun pasting patient case notes into a public generative AI chatbot to draft summaries faster. Ingrid, the HR director, finds that the organization has a bring-your-own-device policy and an internet-use policy, but nothing addressing AI. What should Ingrid prioritize?",
+    "options": [
+      "Block generative AI sites on the corporate network and treat any use as a violation of the existing internet-use policy",
+      "Stop the exposure now, then develop an AI-use policy addressing utilization, transparency, fairness and data privacy, with training",
+      "Require managers to review any AI-drafted document before it leaves the department, so that errors are caught before they circulate",
+      "Amend the bring-your-own-device policy to make employees personally responsible for anything they enter into third-party tools"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Standards and policies for technology use is a Technology Management key concept, and the 2026 BASK names AI-related policies and considerations to address utilization, transparency, fairness and data privacy within it (p. 73). The indicators for all HR professionals require HR to provide guidance to stakeholders on effective standards and policies for use of technologies in the workplace and to use technologies in a manner that protects workforce data (p. 74). Protected patient information is leaving the organization every day this runs, so the disclosure has to be halted first — by an interim directive, a network control, or both — and the halt has to be followed by the standard that governs sanctioned use, since a policy-development cycle alone would let the exposure continue for its full length. Blocking and nothing else is the near miss: containment is genuinely part of the answer, which is why the option is attractive, but as the whole response it leaves the organization with no position on a technology staff have already adopted, rests enforcement on an internet-use policy written for something else, and pushes the same drafting onto personal devices where HR has no visibility. Manager review addresses drafting errors after the fact and does nothing about the exposure, which is complete the moment protected data leaves the organization; the defect here is disclosure, not accuracy. Shifting liability onto employees through the BYOD policy protects neither the data nor the organization, which keeps its own confidentiality obligations no matter what an employee has agreed to.",
+    "objective": "HR Expertise > Organization Knowledge Domain > Technology Management > Standards and policies for technology use (2026 BASK, p. 73-74)",
+    "difficulty": "easy",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.9,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "HR Knowledge Domains",
+    "stem": "An HRIS vendor pitches Malik on an AI-driven add-on that recommends internal candidates for open roles. Asked how the vendor addresses bias, the vendor replies that the model never receives name, gender, age or race. Malik's best assessment is that the safeguard is:",
+    "options": [
+      "Sufficient, because a model that never receives protected characteristics as inputs has no basis on which to act on them",
+      "Beside the point, because hiring managers make the final internal mobility decisions rather than the recommendation engine itself",
+      "Incomplete, because prior job title, tenure gaps and work location proxy for the protected characteristics the labels no longer carry",
+      "Backwards, because supplying the model with demographic data would let it balance the representation of the slates it produces"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Technology Management lists AI input and output bias concerns awareness under data and information management, and the phrasing covers both sides deliberately (p. 73); the indicators for all HR professionals include coordinating and managing vendors implementing HR technology solutions, which is where a vendor claim like this gets tested (p. 74). Withholding protected attributes does not stop a model from reconstructing them from correlated features: an eight-month tenure gap tracks parental leave, a work location tracks the demographics of a neighborhood, and a prior job title tracks whatever occupational segregation already exists in the organization. Anonymization is a genuine technique with a genuine limit, which is why the first option is the most attractive wrong answer; its error is treating the absence of a label as the absence of the information. Final decision-making by managers is a real mitigation, but the engine decides which candidates a manager ever sees, so a skewed slate constrains the human decision before it is made. Feeding demographics back in so the model can balance its output is a recognized fairness-constraint approach in the abstract, but applied to individual U.S. employment decisions it creates its own legal exposure, and it leaves the proxy features still doing their work on the underlying ranking.",
+    "objective": "HR Expertise > Organization Knowledge Domain > Technology Management > Data and information management (2026 BASK, p. 73-74)",
+    "difficulty": "hard",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.9,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "HR Knowledge Domains",
+    "stem": "Farrah's company wants to extend its U.S. inclusion dashboard, which tracks race and ethnicity representation, to its subsidiaries in France and Germany. Local HR leads report that collecting employee race and ethnicity data in those jurisdictions is restricted. What should Farrah recommend?",
+    "options": [
+      "Collect the data under the U.S. parent's policy anyway, since the dashboard is only comparable if every location reports the same fields",
+      "Suspend inclusion measurement in those two countries, since the representation dimensions the dashboard is built on cannot lawfully be captured",
+      "Ask employees in those countries to share the information voluntarily and informally, so that responses are never held in an official HR system",
+      "Keep the equity-measurement objective and localize the measures to lawful dimensions such as gender, disability and inclusion survey results"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Managing a Global Workforce asks all HR professionals to balance the organization's desire for standardization of cross-border HR programs, practices and policies with local needs, and to maintain current knowledge of the political, economic, social, technological, legal and environmental factors influencing the workforce (p. 77). Holding the objective constant while changing the instrument is that balance, and the Inclusive Mindset key concepts supply the lawful substitutes directly: employee surveys are listed among the techniques to measure and increase equity, and gender diversity among the I&D metrics (p. 21). Imposing the U.S. field set is unlawful in those jurisdictions and elevates dashboard consistency above a legal constraint Farrah has already been told about. Suspending measurement surrenders the objective while lawful instruments remain available, and leaves two subsidiaries with no equity signal at all. Informal voluntary collection is the most tempting wrong answer and the worst outcome: the organization is still processing personal data about racial or ethnic origin, keeping it outside the HR system evades the safeguards rather than the obligation, and it strips employees of the confidentiality protections a formal system would provide.",
+    "objective": "HR Expertise > Workplace Knowledge Domain > Managing a Global Workforce > Balancing standardization of cross-border practices with local needs (2026 BASK, p. 77)",
+    "difficulty": "medium",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "HR Knowledge Domains",
+    "stem": "Six months after moving from an all-generalist HR team to a shared-services centre plus HR business partners, Josiah is hearing that benefits questions bounce between the service centre and the business partner, and that two terminations went out without the legal review the old process included. What should Josiah do?",
+    "options": [
+      "Return to the all-generalist structure, since six months in the new model is delivering worse service than the one it replaced",
+      "Define which requests route to the service centre and which to the business partner, and close the handoff gap on termination reviews",
+      "Direct managers to contact their HR business partner first for every request, so that the division has a single point of contact",
+      "Add a customer-satisfaction survey at the service centre so that the handoff problem shows up in the HR-function metrics next quarter"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Shared services and business partners are both listed among the approaches to HR structural models (p. 66), and the indicators for all HR professionals require HR to coordinate with other HR functions to ensure timely and consistent delivery of services to stakeholders, to ensure that outsourced and automated functions are integrated with other HR activities, and to adapt work style to fit the organization's service model (p. 67). Both symptoms are handoff failures inside a model that was never fully specified, so defining the routing and closing the gap is the coordination those indicators describe, and the missed legal review is a compliance exposure that will not wait. Reverting the structure is both the wrong tier and the wrong diagnosis: designing, implementing and adjusting the HR service model is printed under FOR ADVANCED HR PROFESSIONALS on the same page, and six months of implementation defects is not evidence that the model itself is unworkable. Funnelling everything through the business partner does create a single contact, and acting as HR point-of-service contact for a division is a listed indicator, but routing every benefits question there rebuilds the generalist workload the service centre exists to absorb. Adding a satisfaction survey measures a defect Josiah has already identified; HR-function metrics are a listed key concept (p. 66), but their job is detecting problems, not substituting for fixing one.",
+    "objective": "HR Expertise > Organization Knowledge Domain > Structure of the HR Function > Approaches to HR structural models (2026 BASK, p. 66-67)",
+    "difficulty": "easy",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "HR Knowledge Domains",
+    "stem": "Odalys uses a generative AI tool to produce a structured interview guide for a customer success manager opening. The draft asks candidates about their long-term family plans, states a preference for 15 or more years of industry experience, and probes comfort working with a young, high-energy team. Before the guide is used, Odalys should:",
+    "options": [
+      "Adopt the guide as generated, since asking every candidate the same AI-produced questions standardizes the process and reduces interviewer subjectivity",
+      "Keep the questions but instruct interviewers to disregard any answers that touch on a protected characteristic",
+      "Review the guide against the job analysis, striking questions the job requirements do not support and those that invite discrimination",
+      "Return the guide to the AI tool with instructions to rewrite it, and use whatever the second pass produces"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The BASK lists manually- or AI-generated interview guides among the methods for selection assessment and pairs them with job analysis and identification of job requirements (p. 57); the indicators for all HR professionals require HR to comply with laws governing talent acquisition, explicitly including avoiding illegal interview questions, and to evaluate candidates against job requirements (p. 58). The tool is endorsed, but review against the job analysis is not optional. Two of the three defects are protected-characteristic problems: family plans implicate sex and pregnancy, and framing the team as young and high-energy signals an age preference against the very workers the ADEA protects, meaning those aged 40 and over. The 15-year floor is a different defect, and mislabelling it teaches the wrong rule. It disadvantages younger candidates, and the ADEA does not run in that direction: Gen. Dynamics Land Systems, Inc. v. Cline holds that the statute gives no claim to a younger worker disfavoured relative to an older one. What is actually wrong with the 15-year floor is that it is an over-specified requirement no job analysis has supported, so it screens out qualified candidates on a number the tool invented. Standardization is a genuine benefit of structured interviewing, but asking every candidate the same unlawful question is uniformly unlawful. Instructing interviewers to ignore the answers does not help, because asking is itself evidence that the characteristic was put in issue and cannot be unasked. Re-prompting is reasonable practice, but accepting a second machine output without review repeats the original failure, and accountability for the guide stays with Odalys either way.",
+    "objective": "HR Expertise > People Knowledge Domain > Talent Acquisition > Job analysis and identification of job requirements; Methods for selection assessment (2026 BASK, p. 57-58)",
+    "difficulty": "hard",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "HR Knowledge Domains",
+    "stem": "Kwame's company deploys an AI digital assistant that answers candidate and new-hire questions about application status, benefits and start-date logistics around the clock. Six weeks in, candidate satisfaction scores have risen, but the assistant has begun giving confident, incorrect answers about relocation reimbursement. What is the appropriate response?",
+    "options": [
+      "Withdraw the assistant, since inaccuracy in candidate-facing communication poses an unacceptable risk to the employment brand and to offer acceptance",
+      "Leave the assistant as is and correct individual candidates whenever one raises a discrepancy or a recruiter happens to notice the error",
+      "Assign a recruiting coordinator to review every response the assistant generates before it is delivered to a candidate or new hire",
+      "Keep the assistant for high-volume routine questions, correct the content source it draws on, and route relocation questions to a recruiter"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Digital assistants appear twice in the Talent Acquisition key concepts, among talent acquisition technologies and among the approaches to employee onboarding, and frequent communication is listed among the methods for supporting a positive candidate experience (p. 57). The indicators for all HR professionals ask HR to use technology to support effective and efficient approaches to sourcing, recruiting and onboarding, and to implement effective and personalized onboarding and orientation programs (p. 58). The answer keeps the tool where it is working, repairs the defective content source that is generating the wrong answers, and reserves a consequential policy-specific question for a human. Withdrawing the assistant discards a measured gain in candidate experience over a content problem with a known fix. Correcting candidates only when someone notices is reactive by design and leaves misinformation shaping relocation decisions that candidates make long before a recruiter catches it. Reviewing every response is a real control applied at the wrong scale: it removes the around-the-clock throughput that is the reason to run an assistant, and it stations a coordinator in front of thousands of routine status questions to catch a fault confined to a single policy topic.",
+    "objective": "HR Expertise > People Knowledge Domain > Talent Acquisition > Talent acquisition technologies; Approaches to employee onboarding (2026 BASK, p. 57-58)",
+    "difficulty": "easy",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.9,
+    "source": "authored-2026-08-eco-refresh"
+  },
+  {
+    "examId": "bpfawZDj3qalhoU4mdd3",
+    "type": "mcq",
+    "domain": "HR Knowledge Domains",
+    "stem": "Lena runs onboarding for a 900-store retailer. A needs analysis has already located the gap: new store managers can recite inventory policy accurately but cannot apply it to ambiguous cases, and most fail their first inventory audit. The current program is a six-hour e-learning module. Which change is most likely to close the identified gap?",
+    "options": [
+      "Use generative AI to produce branching practice scenarios from each manager's own store profile on an adaptive learning platform",
+      "Extend the e-learning module from six hours to ten so that the inventory content is covered in more depth before managers take the audit",
+      "Have subject-matter experts review the existing module line by line to confirm that every policy statement in it is accurate and current",
+      "Add a 360-degree assessment ninety days after hire so that the size of the applied-judgment gap is measured for each new manager"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Learning & Development key concepts name generative AI and other technological tools under both program design and implementation and learning and development technologies, and list content generation and adaptive learning platform alongside them; experiential learning appears among the listed approaches and simulations among the developmental assessments (p. 61). The needs analysis has already placed the gap in applied judgment rather than knowledge, so what closes it is practice on realistic, varied cases, which generated branching scenarios on an adaptive platform can deliver at 900-store scale. Lengthening the module adds more of the modality that already failed: recall is not the deficit, and four more hours of the same content will not produce judgment. A line-by-line accuracy review is sound quality assurance and would be the right answer if managers were reciting policy incorrectly, but the stem says they recite it correctly, so verifying the content leaves the gap precisely where it is. A 360-degree assessment is a listed developmental assessment, but it measures the gap rather than closing it, and it reports ninety days after hire, which is after the audit the program exists to prepare managers to pass.",
+    "objective": "HR Expertise > People Knowledge Domain > Learning & Development > Learning and development technologies (2026 BASK, p. 61)",
+    "difficulty": "medium",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.85,
+    "source": "authored-2026-08-eco-refresh"
+  }
+]
