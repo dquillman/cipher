@@ -10,7 +10,21 @@ set -e
 TARGET=${1:-both}
 
 echo "Building web app..."
-cd web && npx vite build && cd ..
+# `npm run build`, NOT `vite build`. The full build is
+#   generate-sitemap -> tsc -b -> vite build -> prerender
+# and prerender.mjs is the only thing that writes dist/_catchall.html, which is
+# the rewrite destination for "**" on every hosting target. vite build alone,
+# with emptyOutDir, deletes the previous _catchall.html and every prerendered
+# route directory — so the deploy succeeds and every URL except / returns
+# Firebase's 404. Running vite build here was doing exactly that.
+npm --prefix web run build
+
+# Fail loudly rather than shipping a dist that would 404 the whole site.
+if [ ! -f web/dist/_catchall.html ]; then
+  echo "ABORT: web/dist/_catchall.html is missing — prerender did not run." >&2
+  echo "Every route except / would 404. Not deploying." >&2
+  exit 1
+fi
 
 if [ "$TARGET" = "staging" ]; then
   echo "Deploying to STAGING (hosting only — rules owned by Admin-Core)..."

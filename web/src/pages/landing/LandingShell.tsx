@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useRef } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { trackCtaClick } from "../../lib/ga4";
