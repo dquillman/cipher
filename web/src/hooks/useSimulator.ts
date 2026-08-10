@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { auth } from '../firebase';
 import { SmartQuizService } from '../services/smartQuiz';
@@ -41,6 +41,11 @@ export const useSimulator = () => {
     const [timeLeft, setTimeLeft] = useState(3600); // Default 60 mins
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [currentExamId, setCurrentExamId] = useState<string>(selectedExamId);
+
+    // Always points at the current render's submitExam, so the expiry effect
+    // below grades the answers the candidate actually gave. See the comment on
+    // the countdown effect for what happens without it.
+    const submitExamRef = useRef<(autoSubmit?: boolean) => void>(() => {});
 
     useEffect(() => {
         const loadExam = async () => {
@@ -123,23 +128,33 @@ export const useSimulator = () => {
         loadExam();
     }, [navigate]);
 
+    // The countdown only decrements. Calling submitExam from inside the
+    // setTimeLeft updater made the updater impure, and — because this effect's
+    // deps never change after loading flips false — it called whichever
+    // submitExam was captured on that first render. On that render `answers`
+    // was still {}, and the binding never updated, so letting the clock run out
+    // on a finished 180-question mock graded an empty answer map and scored 0%.
+    // The expiry now lives in its own effect and reads state through a ref.
     useEffect(() => {
         if (loading || isSubmitting) return;
-
         const timer = setInterval(() => {
-            setTimeLeft((prev) => {
-                if (prev <= 1) {
-                    clearInterval(timer);
-                    submitExam(true);
-                    return 0;
-                }
-                return prev - 1;
-            });
+            setTimeLeft((prev) => (prev <= 0 ? 0 : prev - 1));
         }, 1000);
-
         return () => clearInterval(timer);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loading, isSubmitting]);
+
+    // Declared BEFORE the expiry effect on purpose: effects run in declaration
+    // order after commit, so the ref has to be re-pointed at this render's
+    // closure before the expiry effect reads it. No dependency array — it must
+    // refresh on every render, including the one where timeLeft reaches 0.
+    useEffect(() => {
+        submitExamRef.current = submitExam;
+    });
+
+    useEffect(() => {
+        if (loading || isSubmitting || timeLeft > 0) return;
+        submitExamRef.current(true);
+    }, [timeLeft, loading, isSubmitting]);
 
     const handleAnswer = useCallback((optionIndex: number) => {
         setAnswers(prev => ({ ...prev, [currentIndex]: optionIndex }));
