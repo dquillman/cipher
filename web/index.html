@@ -51,14 +51,53 @@
     }
     </script>
 
-    <!-- Google Analytics 4 (already async) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HY0QBN84Y6"></script>
+    <!-- Google Analytics 4.
+
+         Loaded ONLY on the production hostnames, and never under automation.
+         Before this gate, 930 of 1084 "direct" sessions in a 90-day window were
+         Playwright e2e runs against http://localhost:5173 on GitHub Actions:
+         every test got a fresh browser context, so GA4 counted it as a brand-new
+         user with one pageview and exactly zero engagement. Daily session counts
+         landed on exact multiples of 7 — the size of the e2e suite. Real cold
+         traffic was ~3% of what the property reported.
+
+         GA4's own bot filter cannot catch this: Playwright's Desktop Chrome
+         device sends an ordinary Chrome/Windows user-agent with no automation
+         marker. It has to be gated here.
+
+         This also keeps those fake pageloads out of Google Ads (AW-926344271),
+         where they would corrupt bid optimisation the moment paid traffic runs.
+
+         To measure deliberately on localhost or staging, run
+         localStorage.setItem('ec_ga_debug','1') in the console and reload. -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HY0QBN84Y6');
-      gtag('config', 'AW-926344271');
+      (function () {
+        var nav = window.navigator || {};
+        if (nav.webdriver === true || /HeadlessChrome|Puppeteer|Playwright/i.test(nav.userAgent || '')) return;
+
+        var host = location.hostname;
+        var isProd = host === 'cipherexam.com' || host === 'www.cipherexam.com';
+        var forced = false;
+        try { forced = localStorage.getItem('ec_ga_debug') === '1'; } catch (e) { /* private mode */ }
+        if (!isProd && !forced) return;
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        // send_page_view is deliberately left ON. This fires from <head> before
+        // the bundle parses; a React-fired equivalent would sit behind
+        // VersionGate's Firestore round-trip and AuthProvider, which is exactly
+        // what made landing_page_view under-count page_view ~3x. RouteAnalytics
+        // adds page_views for SPA navigations only — see src/lib/RouteAnalytics.tsx.
+        gtag('config', 'G-HY0QBN84Y6');
+        gtag('config', 'AW-926344271');
+
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HY0QBN84Y6';
+        document.head.appendChild(s);
+      })();
     </script>
   </head>
   <body style="background: #020617 !important;">
@@ -90,6 +129,16 @@
         var nav = window.navigator || {};
         // Playwright/Puppeteer Chromium: navigator.webdriver === true, UA contains HeadlessChrome.
         if (nav.webdriver === true || /HeadlessChrome|Puppeteer|Playwright/i.test(nav.userAgent || '')) return;
+        // Production hostnames only — same reason as the GA4 gate in <head>. The
+        // automation check above misses a developer running the dev server by
+        // hand, and every such pageload was reaching Meta, LinkedIn and Clarity
+        // as if it were a real visitor.
+        var pixelHost = location.hostname;
+        if (pixelHost !== 'cipherexam.com' && pixelHost !== 'www.cipherexam.com') {
+          var pixelForced = false;
+          try { pixelForced = localStorage.getItem('ec_ga_debug') === '1'; } catch (e) { /* private mode */ }
+          if (!pixelForced) return;
+        }
         if (window.__cipherPixelsLoaded) return;
         window.__cipherPixelsLoaded = true;
 

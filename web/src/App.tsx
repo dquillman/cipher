@@ -6,6 +6,8 @@ import { auth, db } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { APP_VERSION } from "./version";
 import { isValidVersion, evaluateVersion } from "./utils/versionCheck";
+// Not lazy: this must mount before the gates below it, so it cannot wait on a chunk.
+import RouteAnalytics from "./lib/RouteAnalytics";
 // Pages (lazy-loaded for code splitting)
 const Landing = lazy(() => import("./pages/Landing"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -432,6 +434,10 @@ function App() {
 
   return (
     <AppErrorBoundary>
+    {/* Above VersionGate and AuthProvider on purpose — both block rendering on a
+        network round-trip, and analytics mounted below them only reaches GA4 for
+        visitors who wait that out. See src/lib/RouteAnalytics.tsx. */}
+    <RouteAnalytics />
     <VersionGate>
     <AuthProvider>
       <SidebarProvider>

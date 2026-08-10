@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { SUPPORT_EMAIL } from '../config/support';
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../App";
-import { trackLandingPageView, trackCtaClick, trackPricingView, captureUtmParams } from "../lib/ga4";
+import { trackCtaClick, trackPricingView } from "../lib/ga4";
 import InteractiveDemo from "../components/InteractiveDemo";
 import BloomsPrimer from "../components/BloomsPrimer";
 import HeroBackground from "../components/landing/HeroBackground";
@@ -134,8 +134,8 @@ export default function Landing() {
     return () => { cancelled = true; disposers.forEach((d) => d()); };
   }, []);
 
-  // GA4: Track landing page view + capture UTM params from ad clicks
-  useEffect(() => { captureUtmParams(); trackLandingPageView(); }, []);
+  // GA4: landing_page_view and captureUtmParams now fire from <RouteAnalytics/>
+  // in App.tsx, above VersionGate and AuthProvider — see RouteAnalytics.tsx.
 
   // Scroll to hash target when arriving from another page (e.g. /#testimonial from PublicNav)
   useEffect(() => {

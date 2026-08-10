@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef } from "react";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { captureUtmParams, trackLandingPageView, trackCtaClick } from "../../lib/ga4";
+import { trackCtaClick } from "../../lib/ga4";
 import HeroBackground from "../../components/landing/HeroBackground";
 import { useHeroMotion } from "../../components/landing/useHeroMotion";
 import { DISPLAY_VERSION } from "../../version";
@@ -37,15 +37,12 @@ export interface LandingShellProps {
 }
 
 export default function LandingShell({ exam, examShortName, pageId, children }: LandingShellProps) {
-  // GA4: capture UTM params from the ad click + record the LP view
-  // tagged with this specific LP's pageId so we can attribute by cluster.
-  useEffect(() => {
-    captureUtmParams();
-    trackLandingPageView();
-    // Note: a richer "lp_view" event with examId could be added to lib/ga4
-    // once the analytics team confirms the event schema. For now,
-    // pageId rides in trackCtaClick so cluster attribution works on conversion.
-  }, []);
+  // GA4: landing_page_view and captureUtmParams now fire from <RouteAnalytics/>
+  // in App.tsx, which mounts above VersionGate and AuthProvider. Firing them
+  // here meant they only reached GA4 after two blocking network round-trips, so
+  // roughly two thirds of ad traffic bounced first — 253 page_views against 90
+  // landing_page_view users. pageId still rides in trackCtaClick below, so
+  // cluster attribution on conversion is unchanged.
 
   const signupHref = `/login?exam=${exam}&utm_lp=${pageId}`;
   const handleCta = (loc: string) => trackCtaClick(`${pageId}-${loc}`);

@@ -22,6 +22,7 @@
         {
             "target": "web",
             "public": "web/dist",
+            "trailingSlash": false,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -77,6 +78,7 @@
         {
             "target": "staging",
             "public": "web/dist",
+            "trailingSlash": false,
             "ignore": [
                 "firebase.json",
                 "**/.*",
@@ -132,6 +134,7 @@
         {
             "target": "production",
             "public": "web/dist",
+            "trailingSlash": false,
             "ignore": [
                 "firebase.json",
                 "**/.*",

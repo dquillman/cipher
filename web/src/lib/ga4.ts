@@ -84,8 +84,27 @@ export function captureUtmParams() {
 
 /* ── funnel events ───────────────────────────────────────────────────────── */
 
-export function trackLandingPageView() {
-  sendEvent('landing_page_view');
+/**
+ * Explicit page_view for SPA navigations. The entry pageview still comes from
+ * gtag('config') in index.html, which fires before the bundle parses — see
+ * RouteAnalytics for why that split matters.
+ *
+ * send_to pins this to the GA4 property. Without it the event would also fire
+ * against the AW-926344271 Ads destination, since a bare gtag('event') goes to
+ * every configured target.
+ */
+export function trackPageView(pagePath: string) {
+  sendEvent('page_view', {
+    page_path: pagePath,
+    page_location: window.location.origin + pagePath,
+    page_title: document.title,
+    send_to: 'G-HY0QBN84Y6',
+  });
+}
+
+/** pagePath is optional so any remaining zero-arg caller still compiles. */
+export function trackLandingPageView(pagePath?: string) {
+  sendEvent('landing_page_view', pagePath ? { page_path: pagePath } : undefined);
 }
 
 export function trackPricingView() {
