@@ -13,9 +13,11 @@ export interface EntitlementRecord {
   testerExpiresAt?: unknown;
   role?: unknown;
   subscriptionStatus?: unknown;
+  /** 90-day Exam Pass, written by examPass.ts on Stripe fulfilment. */
+  entitlement?: unknown;
 }
 
-export type ProAccessReason = 'paid' | 'comped' | 'trial' | 'tester' | null;
+export type ProAccessReason = 'paid' | 'comped' | 'trial' | 'tester' | 'exam-pass' | null;
 
 function asDate(value: unknown): Date | null {
   if (value instanceof Date) return Number.isNaN(value.getTime()) ? null : value;
@@ -53,7 +55,40 @@ export function resolveProAccess(
     userData.plan === 'trial';
   if (isTrial && trialEndsAt && trialEndsAt > now) return 'trial';
 
+  if (hasActiveExamPass(userData, now)) return 'exam-pass';
+
   return null;
+}
+
+/**
+ * True when the user holds an unexpired 90-day Exam Pass.
+ *
+ * examPass.ts writes ONLY the `entitlement` field on fulfilment — no isPro, no
+ * plan, no accessLevel. Nothing on the server read it, so every server gate
+ * treated a $59 pass buyer as free tier: validateQuizStart dropped them into
+ * the free daily cap and told them to upgrade, and requirePro rejected every AI
+ * Coach breakdown and end-of-quiz review. The client's own passEntitlement.ts
+ * said they had access, so the app showed the features and the server refused
+ * them.
+ *
+ * Deliberately NOT scoped to a particular exam here. validateQuizStart and
+ * requirePro never receive an examId, and taking one from the client would let
+ * a caller name any exam they liked. Exam scoping still happens on the five
+ * client gates via isPassActiveFor(). The over-grant is bounded and small — a
+ * pass is $59 for 90 days against $19/month for Pro, so it is roughly
+ * price-neutral — and it is strictly better than denying a paying customer.
+ * When validateQuizStart learns the examId, scope this the way the client does,
+ * by lineage rather than strict id equality.
+ */
+function hasActiveExamPass(userData: EntitlementRecord, now: Date): boolean {
+  const raw = userData.entitlement;
+  if (!raw || typeof raw !== 'object') return false;
+
+  const pass = raw as Record<string, unknown>;
+  if (pass.type !== 'exam-pass') return false;
+
+  const expiresAt = asDate(pass.expiresAt);
+  return expiresAt !== null && expiresAt > now;
 }
 
 export function hasProAccess(
