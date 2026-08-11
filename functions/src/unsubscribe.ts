@@ -22,7 +22,15 @@ import {
  * unsubscribed". Telling a visitor "that address isn't in our system" would
  * turn this endpoint into a membership oracle.
  */
-export const unsubscribe = functions.https.onRequest(async (req, res) => {
+export const unsubscribe = functions
+  // Public by necessity, and declared in code so a redeploy cannot quietly
+  // revoke it. New HTTP functions deploy PRIVATE by default — the first deploy
+  // of this one returned 403, which would have meant every unsubscribe link in
+  // every sent email was dead while the emails still went out. That is a worse
+  // failure than not sending at all, because the recipient has already been
+  // mailed and now cannot stop it.
+  .runWith({ invoker: "public" })
+  .https.onRequest(async (req, res) => {
   const email = normalizeEmail(String(req.query.e || ""));
   const token = String(req.query.t || "");
 
