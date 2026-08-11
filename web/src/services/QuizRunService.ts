@@ -182,6 +182,27 @@ export const QuizRunService = {
     },
 
     /**
+     * Replaces the entire answers array in one write.
+     *
+     * saveProgress appends one answer at a time, which fits the Quiz flow where
+     * each question is answered in turn. The simulator collects every answer
+     * locally and submits them together, so it needs a single overwrite rather
+     * than N appends. completeRun reads this array as the authoritative record,
+     * so it must land before completeRun is called.
+     */
+    overwriteAnswers: async (
+        userId: string,
+        runId: string,
+        answers: { questionId: string; selectedOption: number; selectedOptions?: number[]; isCorrect: boolean; domain?: string }[]
+    ) => {
+        const runRef = doc(db, 'quizRuns', userId, 'runs', runId);
+        await updateDoc(runRef, {
+            answers,
+            updatedAt: serverTimestamp()
+        } as any);
+    },
+
+    /**
      * Completes the run.
      */
     completeRun: async (userId: string, runId: string, results: any) => {

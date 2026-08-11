@@ -7,6 +7,7 @@ import { XPService } from '../services/xpService';
 import { useExam } from '../contexts/ExamContext';
 import { EXAMS, isExam, type QuestionType } from '../config/exams';
 import { filterToSingleIndexGraded } from '../utils/scoring';
+import { QuizRunService } from '../services/QuizRunService';
 import type { BloomLevel } from '../types/Bloom';
 
 export interface Question {
@@ -46,6 +47,13 @@ export const useSimulator = () => {
     // below grades the answers the candidate actually gave. See the comment on
     // the countdown effect for what happens without it.
     const submitExamRef = useRef<(autoSubmit?: boolean) => void>(() => {});
+
+    // The persisted run id for this sitting. The simulator used to create no
+    // run at all — results lived only in router state, so a refresh on the
+    // results page lost the attempt permanently and "Previous Attempts" (which
+    // queries runs where mode === 'simulation') could never populate for
+    // anyone. Created on load, completed on submit.
+    const [runId, setRunId] = useState<string | null>(null);
 
     useEffect(() => {
         const loadExam = async () => {
@@ -115,6 +123,24 @@ export const useSimulator = () => {
                     );
                 }
                 setQuestions(gradable);
+
+                // Persist the run so the attempt survives a refresh and shows
+                // up under Previous Attempts. mode 'simulation' is what
+                // SimulatorIntro queries on. A failure here must not block the
+                // exam — the candidate can still sit it, they just lose history
+                // for this one attempt, so it is caught and logged, not thrown.
+                try {
+                    const id = await QuizRunService.createRun(
+                        user.uid,
+                        selectedExamId,
+                        'simulation',
+                        'simulation',
+                        gradable.map((q) => q.id),
+                    );
+                    setRunId(id);
+                } catch (runErr) {
+                    console.error('[useSimulator] could not create run — attempt will not be saved:', runErr);
+                }
 
             } catch (error) {
                 console.error("Error loading exam:", error);
@@ -192,28 +218,51 @@ export const useSimulator = () => {
 
         const timeSpent = (questions.length * 72) - timeLeft; // Crude calc based on initial time
 
-        try {
-            await XPService.awardXP(questions.length * 5 + score * 10, "Completed Exam Simulator", currentExamId);
+        const resultState = {
+            score,
+            total: questions.length,
+            timeSpent,
+            questions,
+            answers_map: answers,
+            flagged,
+            examId: currentExamId,
+            runId,
+        };
 
-            navigate('/app/simulator/results', {
-                state: {
+        // Persist the completed run BEFORE navigating, so the attempt is durable
+        // the moment the results page opens. completeRun re-derives score and
+        // domainResults from the persisted answers, so it is authoritative even
+        // if the details below drift. answers is Record<index, optionIndex>;
+        // build the answer records completeRun expects from it.
+        if (runId) {
+            const answerRecords = questions.map((q, index) => ({
+                questionId: q.id,
+                selectedOption: answers[index],
+                isCorrect: answers[index] === q.correctAnswer,
+                domain: q.domain,
+            })).filter((a) => a.selectedOption !== undefined);
+
+            try {
+                await QuizRunService.overwriteAnswers(user.uid, runId, answerRecords);
+                await QuizRunService.completeRun(user.uid, runId, {
                     score,
                     total: questions.length,
                     timeSpent,
-                    questions,
-                    answers_map: answers,
-                    flagged,
-                    examId: currentExamId
-                }
-            });
-
-        } catch (error) {
-            console.error("Error saving exam:", error);
-            // Fallback navigation
-            navigate('/app/simulator/results', {
-                state: { score, total: questions.length, timeSpent, questions, answers_map: answers, flagged, examId: currentExamId }
-            });
+                    examId: currentExamId,
+                    mode: 'simulation',
+                });
+            } catch (err) {
+                console.error('[useSimulator] completeRun failed — attempt may not appear in history:', err);
+            }
         }
+
+        try {
+            await XPService.awardXP(questions.length * 5 + score * 10, "Completed Exam Simulator", currentExamId);
+        } catch (error) {
+            console.error("Error awarding XP:", error);
+        }
+
+        navigate('/app/simulator/results', { state: resultState });
     };
 
     return {

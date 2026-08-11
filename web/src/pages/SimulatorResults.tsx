@@ -4,6 +4,8 @@ import { CheckCircle, XCircle, RotateCcw, LayoutDashboard, Clock, Info, Brain } 
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase';
 import { useExam } from '../contexts/ExamContext';
+import { QuizRunService } from '../services/QuizRunService';
+import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import { PredictionEngine, type DomainReadiness } from '../services/PredictionEngine';
 import { BLOOM_LEVELS, BLOOM_DESCRIPTIONS, type BloomLevel } from '../types/Bloom';
 import confetti from 'canvas-confetti';
@@ -19,7 +21,56 @@ interface BloomStat {
 export default function SimulatorResults() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { score, total, timeSpent, questions, answers_map, flagged = {} } = location.state || {}; // answers_map is index->optionIndex
+
+    // On a fresh submit these arrive in router state. On a refresh or a
+    // back/forward, router state is gone — the page used to navigate away to a
+    // dead route in that case, losing the attempt. When state is absent but a
+    // runId is present (in state or the URL), rebuild from the persisted run so
+    // the results survive a reload and are reachable from Previous Attempts.
+    const stateData = location.state || {};
+    const [loaded, setLoaded] = useState<any>(stateData.questions ? stateData : null);
+    const [loadFailed, setLoadFailed] = useState(false);
+
+    const runIdFromUrl = new URLSearchParams(location.search).get('run');
+    const runId = stateData.runId || runIdFromUrl;
+
+    useEffect(() => {
+        if (loaded || !runId) return;
+        let cancelled = false;
+        (async () => {
+            const user = auth.currentUser;
+            if (!user) { setLoadFailed(true); return; }
+            const run = await QuizRunService.getRunById(user.uid, runId);
+            if (!run || cancelled) { if (!cancelled) setLoadFailed(true); return; }
+
+            const ids = run.snapshot?.questionIds || [];
+            const qs = await fetchQuestionDocsByIds<any>(ids);
+            // Rebuild answers_map (index -> optionIndex) from the persisted
+            // per-question answer records.
+            const byId: Record<string, any> = {};
+            (run.answers || []).forEach((a: any) => { byId[a.questionId] = a; });
+            const answersMap: Record<number, number> = {};
+            qs.forEach((q, i) => {
+                const a = byId[q.id];
+                if (a && a.selectedOption !== undefined) answersMap[i] = a.selectedOption;
+            });
+            const r = run.results || {};
+            if (!cancelled) {
+                setLoaded({
+                    score: r.score ?? (run.answers || []).filter((a: any) => a.isCorrect).length,
+                    total: r.total ?? qs.length,
+                    timeSpent: r.timeSpent ?? 0,
+                    questions: qs,
+                    answers_map: answersMap,
+                    flagged: {},
+                    examId: run.examId,
+                });
+            }
+        })().catch(() => { if (!cancelled) setLoadFailed(true); });
+        return () => { cancelled = true; };
+    }, [loaded, runId]);
+
+    const { score, total, timeSpent, questions, answers_map, flagged = {} } = loaded || {}; // answers_map is index->optionIndex
 
     const { selectedExamId, examDomains } = useExam();
     const [domainStats, setDomainStats] = useState<any[]>([]);
@@ -31,9 +82,13 @@ export default function SimulatorResults() {
     const [filter, setFilter] = useState<'all' | 'correct' | 'wrong' | 'flagged' | 'unanswered'>('all');
 
     useEffect(() => {
+        // No data and nothing to load it from, or the load failed: send the
+        // user back to the simulator start — /app/simulator, the real route.
+        // The old code navigated to /simulator, which matches nothing and falls
+        // to the NotFound page.
         if (!questions) {
-            navigate('/simulator');
-            return;
+            if (loadFailed || !runId) navigate('/app/simulator');
+            return; // otherwise the loader effect above is still fetching
         }
 
         // Calculate Domain Performance
@@ -512,7 +567,7 @@ export default function SimulatorResults() {
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 pb-12">
                     <button
-                        onClick={() => navigate('/simulator')}
+                        onClick={() => navigate('/app/simulator')}
                         className="flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-slate-800 text-white font-bold hover:bg-slate-700 transition-colors w-full sm:w-auto"
                     >
                         <RotateCcw className="w-5 h-5" />
