@@ -45,15 +45,29 @@ const db = admin.firestore();
 
 const norm = (s) => String(s || "").trim().toLowerCase().replace(/\s+/g, " ");
 
-/** Higher score = better copy to keep. */
+/**
+ * Higher score = better copy to keep.
+ *
+ * `type` and `bloomLevel` are metadata a backfill can add in a minute. The
+ * explanation is the part a human wrote and the part that teaches. Weighting
+ * the metadata at 12 combined meant a bare recall question with both fields set
+ * beat an authored scenario question that happened to be missing them — which
+ * is exactly the situation the 2026-08 top-up created: all 124 new questions
+ * shipped without bloomLevel, so on the next run this function would have
+ * deleted the good copy and kept the recall twin.
+ *
+ * The explanation now dominates, and metadata only breaks near-ties.
+ */
 function richness(q) {
     let s = 0;
-    if (q.type) s += 8;
-    if (q.bloomLevel) s += 4;
+    // Authored substance first — this is what cannot be regenerated.
+    s += Math.min(String(q.explanation || "").length / 100, 20);
     if (Array.isArray(q.options) && q.options.length === 4) s += 4;
     if (q.objective) s += 3;
+    // Metadata: cheap to backfill, so it must never outrank real content.
+    if (q.type) s += 2;
+    if (q.bloomLevel) s += 1;
     if (q.difficulty) s += 1;
-    s += Math.min(String(q.explanation || "").length / 200, 6);
     s += Object.keys(q).length * 0.1;
     return s;
 }

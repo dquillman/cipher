@@ -199,18 +199,39 @@ export const SmartQuizService = {
      * Fetches a broad set of questions and randomly selects 50.
      */
     generateSimulationExam: async (examId: string, size: number = 50): Promise<string[]> => {
-        console.log("Generatign Simulation Exam for", examId);
+        console.log("Generating Simulation Exam for", examId);
         try {
-            // 1. Fetch a large batch of question IDs (e.g. up to 150) to ensure randomness
-            // Note: In production with thousands of questions, this needs a better random index strategy.
+            // The cap was 200 with no orderBy, so Firestore returned the same
+            // first 200 docs by __name__ every time. CPP grew to 207 unique
+            // questions in the 2026-08 dedupe, which silently made its last 7
+            // documents unreachable in a full mock and cut the real anti-repeat
+            // headroom from the intended 17 down to 10.
+            //
+            // A bank that outgrows this cap does not fail loudly — it just
+            // quietly stops serving its newest questions, which are the ones
+            // most likely to have been authored to fix a gap.
+            const FETCH_CAP = 1000;
             const q = query(
                 collection(db, 'questions'),
                 where('examId', '==', examId),
-                limit(200)
+                limit(FETCH_CAP)
             );
 
             const snap = await getDocs(q);
             const allIds = snap.docs.map(doc => doc.id);
+
+            if (allIds.length >= FETCH_CAP) {
+                console.warn(
+                    `[simulator] ${examId} hit the ${FETCH_CAP}-question fetch cap — questions beyond it ` +
+                    "can never appear in a mock. Paginate this query before the bank grows further.",
+                );
+            }
+            if (allIds.length < size) {
+                console.warn(
+                    `[simulator] ${examId} has ${allIds.length} questions but the mock asks for ${size}. ` +
+                    "Every attempt will be the same bank reshuffled, so a repeat sitting measures recall, not readiness.",
+                );
+            }
 
             // 2. Shuffle and slice
             const shuffled = allIds.sort(() => 0.5 - Math.random());
