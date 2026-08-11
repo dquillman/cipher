@@ -41,6 +41,7 @@ const EXAM_IDS = {
     // runs or the bank is briefly too small to serve its own mock.
     "cpp-topup": "Vs3aNmifAJc9bYRFCxXc",
     "shrm-topup": "bpfawZDj3qalhoU4mdd3",
+    "cia-topup": "dtgTymjijqUr4NEIHbE1",
     // The two CompTIA refreshes create NEW banks rather than overwriting the
     // retired ones — the retired banks must survive so existing pass holders'
     // examIds keep resolving. See examLineage in web/src/config/exams.ts.
@@ -76,6 +77,25 @@ const EXAM_META = {
             { domain: "Network Troubleshooting", weight: 24 },
         ],
         reference: "CompTIA Network+ N10-009 Exam Objectives",
+    },
+    // The production CIA document carried FIVE domains that are not the IIA's:
+    // it invented "Ethics and Professionalism", split Governance from Risk
+    // Management and Control (the IIA combines them at 35%), and omitted
+    // Independence and Objectivity, Proficiency and Due Professional Care, and
+    // Quality Assurance and Improvement Program entirely — 40% of the exam. Its
+    // weights also summed to 95, not 100. Replaced with the published six.
+    "cia-topup": {
+        name: "Certified Internal Auditor (CIA) - Part 1",
+        description: "CIA Part 1 — Internal Audit Fundamentals, 2025 syllabus, aligned to the Global Internal Audit Standards effective January 2025. 125 questions in 150 minutes.",
+        blueprint: [
+            { domain: "Foundations of Internal Auditing", weight: 15 },
+            { domain: "Independence and Objectivity", weight: 15 },
+            { domain: "Proficiency and Due Professional Care", weight: 18 },
+            { domain: "Quality Assurance and Improvement Program", weight: 7 },
+            { domain: "Governance, Risk Management, and Control", weight: 35 },
+            { domain: "Fraud Risks", weight: 10 },
+        ],
+        reference: "IIA CIA Part 1 Exam Syllabus (2025)",
     },
     "a-plus-v15": {
         name: "CompTIA A+ Core 2 (220-1202)",
@@ -164,8 +184,12 @@ function validate(q, where) {
     const problems = [];
 
     for (const file of files) {
-        const raw = JSON.parse(fs.readFileSync(path.join(stageDir, file), "utf8"));
-        if (!Array.isArray(raw)) { problems.push(`${file}: not a JSON array`); continue; }
+        let raw = JSON.parse(fs.readFileSync(path.join(stageDir, file), "utf8"));
+        // A classification file may ship as a documented object with its records
+        // under `records` (carrying coverage analysis alongside), or as a bare
+        // array. Accept both — the analysis is for humans, the records are the work.
+        if (!Array.isArray(raw) && raw && Array.isArray(raw.records)) raw = raw.records;
+        if (!Array.isArray(raw)) { problems.push(`${file}: not a JSON array and has no .records array`); continue; }
 
         if (/^domain-map/.test(file)) {
             // Re-classification only — touches the domain field, nothing else.

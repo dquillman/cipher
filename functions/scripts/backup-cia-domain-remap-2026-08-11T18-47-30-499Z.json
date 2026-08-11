@@ -1,0 +1,756 @@
+{
+  "takenAt": "2026-08-11T18:47:30.499Z",
+  "examId": "dtgTymjijqUr4NEIHbE1",
+  "before": [
+    {
+      "id": "00IGCTTUUEjrbptlUDrk",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "07DgpbAXhtOrKbl4U4Xo",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "0P1O3ax163Q3gCmWdptw",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "0Szxfijejpzkn1q3JZXj",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "0gaBjZM2Y6FZJPS0UXaa",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "0ktSW3c7WmXHYUlKjQhd",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "0pW4nR8a9mIaxxaJ4KgC",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "0t5JHA4F9s09RfSFJsG3",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "0xVAcTYIKSaxhmkil2Ug",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "1IrQR83hXX3wBjTzlGKX",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "20vc0ogsXXwixGrwUyLC",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "2bHPJXKUgEaKX5sU9hGA",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "2eQMyUlYyd2W67f0Dhrj",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "314MzQFaeQFzP0U7JZ0R",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "3kNvO1Rmkq1XJyizt1nq",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "4YMXTTTMYXI6M0bu9FyB",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "4eeSEKpIVvxmOmSZfIEU",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "4mcE2pLbNYD0HNA6FqCF",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "59bL6SclhTcwkaZQv9ju",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "59ukB3NQ1HCZZ2M5zxc2",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "5CvI6Mc136xmHXmHxYsu",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "5Nf8QKp4dF5WeE2zXkTl",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "5ZctDn6xfsPzUvK7lEO1",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "5e6nTIWAW7XKod6gmaQ9",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "65EnhQG0S725BcLW1vkP",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "6LnkSXQ8crX2TogTV6Za",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "6QdMsSTP4jb6quymQkWp",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "6krd0KMpQEX9bSbv2SVV",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "6srla0GvzhIgvUZ6XmKc",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "6ykdxs8ZCKRTqmPOZEhj",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "7RQ60KVmaOh7182QAtFh",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "7szfDM4Zi99BC1UaPEQ1",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "8YNLztERkkgb0J6XRfGP",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "8aHTe41pUAB9W2LLYRUt",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "8z7pdlqKWt6hx7VRxmnZ",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "9USUUNyZF3xVVCZqqPbU",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "9nTF9nMhNs5YOuiqT4dz",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "9srsTghhRQyVBvtmgOIR",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "9tntTXojGEur8Dg9e6L6",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "AJobsgUKBRsAOAoM01Hi",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "BAbGfXsZ314XfzrczdHE",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "CGLIV4AxiNCIYsnfZbKG",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "CUG1RXZam0HdmEB00MRe",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "CvBXjHzTMsZOfBHfIHpb",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "CzIlcynz6N2PeHrXDZzL",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "DTSMbM0ZVWNegtNXhbS6",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "DWd2QatKIgUcRVw2lPLX",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "DXZ4iYdkfa3z2rMEaXHa",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "DgBpqEJSmrZuI1NIJMTI",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "EZ7Aeo4dzKMJIzBynymQ",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "EpfyD1GxzHm9R2UqwnoL",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "F6eELHis30Y48NgjPGcN",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "FG6AvOIINswSQBNCNih7",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "GdZVjThVvRTkHqHjAZoO",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "H9uxG8tIKou5xXnkdvRg",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "JFWVKCQMcoTHwendTxhH",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "JbHfbdyYXDykXrD9vXtg",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "JiJ67kyio0OVG51HSkBj",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "JlmvK7lETbUugybK5KOu",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "LGDf6ncDiWhwLlG5nvST",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "LVRDQCRxG0hh0oXuGOjF",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "MJm18pYt2br8Atueo1Tt",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "ML8Ybl1NgANT931RqvZ6",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "Mrva1VOI8ocUM8viluUQ",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "OkkFK8gnhzFMjqWKyo5o",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "OuupADBhbkNWDgqOk9tZ",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "QWLgY3aeJGmzQ4XsX2y1",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "R74SRMokMfqdeHOBrYvR",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "RyqMC42ED1FSw5nnZ9AO",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "SG7CFzF2r2u3S7BmlpuE",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "Sf5zOocbUtkGKxm5hSvp",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "UUyuzsw8J648nDStqDfw",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "V5MxXIffgedVn0T9UBCR",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "VAeixsapRIjWdf9aXPRj",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "Z56XXpZ01CeGLstZ9iTz",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "a8YYKDr5umoLhm92nKcf",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "aIPQ40OIJNjYVZQ8oKzd",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "aK9wtKkONDDVSi21OLnC",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "avgPaYsRfM3UTYqF2oSM",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "awqnMYirsb6WFgl7yVRf",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "bu1RGaB27UJd4MtLyQ4T",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "cmbvpYYsbY5MSsivHsBo",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "coWKHFFxgJJreFzN44G8",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "d7nRoYaN26bLBNtTuxKB",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "dCVbFFjzMoq0wVfVPuLy",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "dEAqcd9M9hDOtHqdtTHY",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "dYI5SR6LCjqldL9claLx",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "dZHax4sgitQlKneid5kw",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "dpL6mWrCzM0ztosmt0H1",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "dxD5CAPepa3jLGS6jhiB",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "dzOGKaMvZlmd6Jn0iCvz",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "fLziU9LJEVfi8e9sobJ6",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "fXBzJDnfzVeH6HuXQ1uS",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "gjmohAO5PC1HktMD7vFv",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "gz2ynzLTkIDKz175bwfP",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "h6OY1FXKUA946iR1UXmp",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "hIvp5gQbCubQ8vraidbq",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "hXHtOBgFxgsPb5KQsthV",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "hlQYDj1TxAlPHPZLCTGV",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "hlVYiLqNr6lgYHWG1cOh",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "iJimZR1OA3nZPZI9N5Ea",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "iLvV3YiqzyxpC4zp3kcl",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "iZmctPe91pqOGV9j2rBy",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "iyv9sj9ZXvYOl4XyyoiG",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "jqWgOjkBEVgwRrTiTwz4",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "ky2zTpGvAECjnXhBq2YY",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "l9aSiueBoOjhXNbWI4cz",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "mCW7EyYRBHjdEdy85wpS",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "nn6xErMxL49M3Kp6l2HZ",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "p7YUnlFhV2cF8kG4UFLM",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "pNmSrtP8dkmGPKGQ5cgc",
+      "domain": "Governance",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "pRgSolkvvTFL2670OrXW",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "qYJ7WvSJCZ1lhjbFCf2N",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "s2h8qZIRkmEpMwGVd6OY",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "s8jAsZ4yhVDvU9RtNWLZ",
+      "domain": "Fraud Risks",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "slTe86Hy0hXlg1zaOgQl",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "sszj0yQM50FcTRENZhKc",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "tu1u9GmgoBxKwGPnPwIW",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "tuYP0z7hAyegD4xLlYiy",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "vnJvHcLtRizLwrZOMf4N",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "vs2os0wLTt6Tuhb0URBt",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "xrwWGMs5qmYKkPrWha6B",
+      "domain": "Foundations of Internal Auditing",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "xxHruSeWoo2uYyf60SrK",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "y0gFOs0eimD1ktcJw18B",
+      "domain": "Risk Management and Control",
+      "objective": null,
+      "offBlueprint": null
+    },
+    {
+      "id": "y7eZpAlO4yPViXVITAGa",
+      "domain": "Ethics and Professionalism",
+      "objective": null,
+      "offBlueprint": null
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "takenAt": "2026-08-10T14-26-56-822Z",
+  "exam": "shrm-cp",
+  "examId": "bpfawZDj3qalhoU4mdd3",
+  "modified": [
+    {
+      "path": "questions/KnTWzF5bElz6BmtZnVPM",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "Behavioral Competencies",
+        "stem": "An HR professional is onboarding employees in a country where direct eye contact with authority figures is considered disrespectful. The most culturally competent approach is to:",
+        "options": [
+          "Adapt communication expectations to respect local cultural norms while ensuring core organizational values are still clearly communicated",
+          "Avoid onboarding employees in that country altogether because cultural differences make effective orientation programs impossible to deliver",
+          "Insist that local employees adopt the headquarters' cultural norms immediately upon hiring to promote a uniform corporate culture",
+          "Require all employees globally to maintain eye contact during conversations as part of a standardized professional behavior policy"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Cultural competence requires adapting communication approaches to respect local norms while maintaining consistent organizational values. Imposing headquarters' norms disregards cultural context and alienates employees. Avoiding countries with different cultures is impractical and ethnocentric. Effective global HR professionals distinguish between universal values and culturally specific behaviors. SHRM BASK emphasizes global mindset as a core behavioral competency.",
+        "difficulty": "Medium",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/aCS20Nqz1VX8aJcAVUDz",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "Behavioral Competencies",
+        "stem": "An HR professional is onboarding employees in a country where direct eye contact with authority figures is considered disrespectful. The most culturally competent approach is to:",
+        "options": [
+          "Adapt communication expectations to respect local cultural norms while ensuring core organizational values are still clearly communicated",
+          "Require all employees globally to maintain eye contact during conversations as part of a standardized professional behavior policy",
+          "Avoid onboarding employees in that country altogether because cultural differences make effective orientation programs impossible to deliver",
+          "Insist that local employees adopt the headquarters' cultural norms immediately upon hiring to promote a uniform corporate culture"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Cultural competence requires adapting communication approaches to respect local norms while maintaining consistent organizational values. Imposing headquarters' norms disregards cultural context and alienates employees. Avoiding countries with different cultures is impractical and ethnocentric. Effective global HR professionals distinguish between universal values and culturally specific behaviors. SHRM BASK emphasizes global mindset as a core behavioral competency.",
+        "difficulty": "Medium",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/PiNuVEpHjO92PUWZd7bO",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "Behavioral Competencies",
+        "stem": "Inclusive meeting practices that ensure equitable participation include:",
+        "options": [
+          "Allowing only senior leaders to speak during meetings and distributing notes to other attendees afterward for their information",
+          "Conducting meetings exclusively in the dominant language without providing translation resources for non-native speakers on the team",
+          "Distributing agendas in advance, using structured turn-taking, and actively soliciting input from quieter participants during discussions",
+          "Scheduling all meetings at times convenient for the majority without considering time zone differences for remote team members"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Inclusive meeting practices ensure all voices are heard. Advance agendas allow preparation. Structured turn-taking prevents dominant personalities from monopolizing discussion. Actively soliciting input from quieter participants surfaces diverse perspectives. Senior-only speaking excludes valuable input. Ignoring time zones disadvantages remote workers. Language exclusion creates barriers for non-native speakers. SHRM BASK emphasizes inclusive practices as a DEI competency.",
+        "difficulty": "Easy",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/ZlDFcD6P6yrqa7kHYdr8",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "Behavioral Competencies",
+        "stem": "Inclusive meeting practices that ensure equitable participation include:",
+        "options": [
+          "Scheduling all meetings at times convenient for the majority without considering time zone differences for remote team members",
+          "Conducting meetings exclusively in the dominant language without providing translation resources for non-native speakers on the team",
+          "Allowing only senior leaders to speak during meetings and distributing notes to other attendees afterward for their information",
+          "Distributing agendas in advance, using structured turn-taking, and actively soliciting input from quieter participants during discussions"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Inclusive meeting practices ensure all voices are heard. Advance agendas allow preparation. Structured turn-taking prevents dominant personalities from monopolizing discussion. Actively soliciting input from quieter participants surfaces diverse perspectives. Senior-only speaking excludes valuable input. Ignoring time zones disadvantages remote workers. Language exclusion creates barriers for non-native speakers. SHRM BASK emphasizes inclusive practices as a DEI competency.",
+        "difficulty": "Easy",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/PrOHZrkJVtvqGK5eoRDR",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "Behavioral Competencies",
+        "stem": "Intersectionality in the context of workplace DEI refers to:",
+        "options": [
+          "The physical layout of an open-plan office where different departments share common workspace and intersect throughout the day",
+          "The practice of assigning employees to cross-functional project teams to increase departmental collaboration and knowledge sharing",
+          "The recognition that individuals hold multiple identity dimensions that interact to shape unique experiences of privilege and disadvantage",
+          "A compensation methodology that calculates pay rates based on the intersection of job grade and geographic cost-of-living data"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Intersectionality, a concept introduced by Kimberle Crenshaw, recognizes that people hold overlapping identities (race, gender, disability, sexual orientation, etc.) that interact to create unique experiences of discrimination and privilege. A Black woman's experience differs from a white woman's or a Black man's. Cross-functional teams, compensation models, and office layouts are unrelated concepts. SHRM BASK incorporates intersectionality into DEI competency.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/anoMSzZ4xmXD62bfueAR",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "Behavioral Competencies",
+        "stem": "Intersectionality in the context of workplace DEI refers to:",
+        "options": [
+          "A compensation methodology that calculates pay rates based on the intersection of job grade and geographic cost-of-living data",
+          "The recognition that individuals hold multiple identity dimensions that interact to shape unique experiences of privilege and disadvantage",
+          "The physical layout of an open-plan office where different departments share common workspace and intersect throughout the day",
+          "The practice of assigning employees to cross-functional project teams to increase departmental collaboration and knowledge sharing"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Intersectionality, a concept introduced by Kimberle Crenshaw, recognizes that people hold overlapping identities (race, gender, disability, sexual orientation, etc.) that interact to create unique experiences of discrimination and privilege. A Black woman's experience differs from a white woman's or a Black man's. Cross-functional teams, compensation models, and office layouts are unrelated concepts. SHRM BASK incorporates intersectionality into DEI competency.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/prZyx96xWIn39wXfOK3N",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "HR Knowledge Domains",
+        "stem": "An organization wants to create employee resource groups (ERGs) to support diversity and inclusion. Which best practice should guide the program design?",
+        "options": [
+          "Open ERG membership to all interested employees while centering the experiences of the identity group the ERG serves",
+          "Restrict ERG membership exclusively to members of the identity group the ERG represents to maintain group authenticity and focus",
+          "Require every employee to join at least one ERG as a condition of employment to demonstrate organizational commitment to inclusion",
+          "Fund ERGs only through voluntary employee payroll deductions to ensure the groups are self-sustaining and employee-driven"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Best practice is to open ERGs to all employees as allies while centering the identity group's experiences. This promotes inclusion and cross-group understanding. Restricting membership can create exclusion and may raise legal concerns. Mandatory participation undermines authenticity. ERGs should receive organizational funding and executive sponsorship to signal institutional support. SHRM BASK recommends ERGs as a strategic D&I tool.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/y1cTx2hGVoDoedNP6C9P",
+      "before": {
+        "examId": "bpfawZDj3qalhoU4mdd3",
+        "type": "mcq",
+        "domain": "HR Knowledge Domains",
+        "stem": "An organization wants to create employee resource groups (ERGs) to support diversity and inclusion. Which best practice should guide the program design?",
+        "options": [
+          "Open ERG membership to all interested employees while centering the experiences of the identity group the ERG serves",
+          "Require every employee to join at least one ERG as a condition of employment to demonstrate organizational commitment to inclusion",
+          "Fund ERGs only through voluntary employee payroll deductions to ensure the groups are self-sustaining and employee-driven",
+          "Restrict ERG membership exclusively to members of the identity group the ERG represents to maintain group authenticity and focus"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Best practice is to open ERGs to all employees as allies while centering the identity group's experiences. This promotes inclusion and cross-group understanding. Restricting membership can create exclusion and may raise legal concerns. Mandatory participation undermines authenticity. ERGs should receive organizational funding and executive sponsorship to signal institutional support. SHRM BASK recommends ERGs as a strategic D&I tool.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.9
+      }
+    }
+  ]
+}
