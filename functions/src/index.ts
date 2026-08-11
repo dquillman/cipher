@@ -13,6 +13,9 @@ export { scheduleOnboardingDrip } from './onboardingDrip';
 export { sendExamCountdownEmails } from './examCountdown';
 // Lead-magnet welcome sequence (Day 0/2/5). Fires on leadCaptures/{id} create.
 export { sendLeadMagnetWelcome } from './leadMagnetWelcome';
+// CAN-SPAM one-click opt-out. Public GET, no auth by design — the link in the
+// email footer is the entire mechanism. Served at /api/unsubscribe.
+export { unsubscribe } from './unsubscribe';
 
 console.log("Global Index Execution Started");
 admin.initializeApp();
