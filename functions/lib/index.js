@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.captureLead = exports.startTrial = exports.validateQuizStart = exports.cleanupTimedOutSessions = exports.seedExamSources = exports.markSourceReviewed = exports.triggerExamUpdateCheck = exports.checkForExamUpdates = exports.getMarketingAnalytics = exports.generateMarketingCopyVariants = exports.generateMarketingCopy = exports.logVisitorEvent = exports.evaluateQuestionQuality = exports.analyzeExamHealth = exports.extendExamPass = exports.createPassCheckoutSession = exports.cancelSubscription = exports.getSubscriptionDetails = exports.stripeWebhook = exports.createPortalSession = exports.createCheckoutSession = exports.deleteUser = exports.resetExamProgress = exports.getGlobalStats = exports.getAdminUserList = exports.resetUserProgress = exports.deleteExamQuestions = exports.batchGenerateQuestions = exports.generateQuestions = exports.getAdaptiveQuestions = exports.createUserProfile = exports.unsubscribe = exports.sendLeadMagnetWelcome = exports.sendExamCountdownEmails = exports.scheduleOnboardingDrip = void 0;
+exports.captureLead = exports.startTrial = exports.trackAnswerUsage = exports.validateQuizStart = exports.cleanupTimedOutSessions = exports.seedExamSources = exports.markSourceReviewed = exports.triggerExamUpdateCheck = exports.checkForExamUpdates = exports.getMarketingAnalytics = exports.generateMarketingCopyVariants = exports.generateMarketingCopy = exports.logVisitorEvent = exports.evaluateQuestionQuality = exports.analyzeExamHealth = exports.extendExamPass = exports.createPassCheckoutSession = exports.cancelSubscription = exports.getSubscriptionDetails = exports.stripeWebhook = exports.createPortalSession = exports.createCheckoutSession = exports.deleteUser = exports.resetExamProgress = exports.getGlobalStats = exports.getAdminUserList = exports.resetUserProgress = exports.deleteExamQuestions = exports.batchGenerateQuestions = exports.generateQuestions = exports.getAdaptiveQuestions = exports.createUserProfile = exports.unsubscribe = exports.sendLeadMagnetWelcome = exports.sendExamCountdownEmails = exports.scheduleOnboardingDrip = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const openai_1 = require("openai");
@@ -1160,8 +1160,11 @@ exports.checkForExamUpdates = functions.pubsub.schedule('every sunday 00:00').on
     await (0, examWatch_1.performExamUpdateCheck)();
 });
 exports.triggerExamUpdateCheck = functions.https.onCall(async (data, context) => {
-    if (!context.auth)
-        throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // requireAdmin, not just "logged in". exam_update_sources is `allow read,
+    // write: if isAdmin()` in firestore.rules, and this callable writes to it
+    // with the Admin SDK — so a logged-in check made the callable a way around
+    // the rule. This one also drives unbounded outbound fetches on demand.
+    await requireAdmin(context);
     try {
         const results = await (0, examWatch_1.performExamUpdateCheck)();
         return { success: true, results };
@@ -1175,8 +1178,11 @@ exports.triggerExamUpdateCheck = functions.https.onCall(async (data, context) =>
 // detected the July 2026 PMP outline change and wrote it to a Firestore field
 // that nothing read, so nobody found out for four weeks. See that module.
 exports.markSourceReviewed = functions.https.onCall(async (data, context) => {
-    if (!context.auth)
-        throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // requireAdmin — this clears lastErrorCode/lastErrorMessage on the
+    // exam-currency watcher. A logged-in check meant any registered user could
+    // silence the alerting that exists because the July 2026 PMP outline change
+    // went unnoticed for four weeks.
+    await requireAdmin(context);
     if (!data.sourceId)
         throw new functions.https.HttpsError('invalid-argument', 'Missing sourceId');
     const status = data.status || 'reviewed_ok';
@@ -1198,8 +1204,10 @@ exports.markSourceReviewed = functions.https.onCall(async (data, context) => {
     }
 });
 exports.seedExamSources = functions.https.onCall(async (data, context) => {
-    if (!context.auth)
-        throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // requireAdmin — writes the watched-source list that the exam-currency
+    // monitor fetches. A logged-in check let any registered user rewrite which
+    // URLs the platform polls.
+    await requireAdmin(context);
     const sources = examWatch_1.EXAM_SOURCES;
     let created = 0;
     let updated = 0;
@@ -1276,6 +1284,10 @@ __exportStar(require("./diagnostics"), exports);
 __exportStar(require("./generateSmartQuizReview"), exports);
 var validateQuizStart_1 = require("./validateQuizStart");
 Object.defineProperty(exports, "validateQuizStart", { enumerable: true, get: function () { return validateQuizStart_1.validateQuizStart; } });
+// Server-written free-tier usage ledger. Trigger increments usageCounters on
+// every answer; validateQuizStart reads it. See usageLedger.ts.
+var usageLedger_1 = require("./usageLedger");
+Object.defineProperty(exports, "trackAnswerUsage", { enumerable: true, get: function () { return usageLedger_1.trackAnswerUsage; } });
 var startTrialCallable_1 = require("./startTrialCallable");
 Object.defineProperty(exports, "startTrial", { enumerable: true, get: function () { return startTrialCallable_1.startTrial; } });
 var captureLead_1 = require("./captureLead");

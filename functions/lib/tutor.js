@@ -6,8 +6,40 @@ const functions = require("firebase-functions");
 const openai_1 = require("openai");
 const crypto_1 = require("crypto");
 const guards_1 = require("./guards");
+const rateLimit_1 = require("./rateLimit");
 // Bump when the prompts or models below change — invalidates cached breakdowns.
 const TUTOR_PROMPT_VERSION = 'v2';
+/**
+ * Input ceilings for the client-supplied prompt fields.
+ *
+ * Every one of questionStem, options, correctRationale, lensName and
+ * lensFramework arrives from the browser and is interpolated into the prompt —
+ * lensName and lensFramework into the SYSTEM message. Uncapped, a caller with
+ * a free trial could paste arbitrary text of any length and bill a full gpt-4o
+ * completion per unique payload, since the content-hash cache only helps on
+ * repeats. These are generous against real questions (the longest live stem is
+ * well under 2,000 chars) and ruinous for prompt smuggling.
+ */
+const LIMITS = {
+    questionStem: 4000,
+    option: 1000,
+    optionCount: 8,
+    correctRationale: 4000,
+    lensName: 120,
+    lensFramework: 2000,
+    examDomain: 200,
+    examId: 128,
+};
+/** Rejects rather than silently truncating — a truncated stem produces a
+ *  confidently wrong explanation, which is worse than an error. */
+function assertWithin(value, max, field) {
+    if (value == null)
+        return;
+    const s = String(value);
+    if (s.length > max) {
+        throw new functions.https.HttpsError('invalid-argument', `${field} exceeds ${max} characters.`);
+    }
+}
 // Init Admin if not already
 if (!admin.apps.length) {
     admin.initializeApp();
@@ -24,17 +56,39 @@ const processPatternInteraction = async (userId, pattern, isCorrect, examId) => 
     const patternId = generatePatternId(pattern.name);
     const now = admin.firestore.Timestamp.now();
     const batch = db.batch();
-    // 1. Global Pattern (Upsert/Merge)
+    // 1. Global Pattern.
+    //
+    // `patterns` is shared across every user — the "weakest patterns" panel
+    // reads it. This object is MODEL OUTPUT produced from a prompt whose stem,
+    // options and rationale all came from the caller's browser, so an
+    // unconditional merge meant a crafted stem could steer the model to emit a
+    // known pattern name with an attacker-chosen core_rule and overwrite what
+    // every other user then reads.
+    //
+    // Create is allowed — that is how the library grows — but an EXISTING
+    // pattern is never overwritten from this path. It only gets its
+    // last_seen_at touched. Editing established pattern content is a curation
+    // decision, not something a question submission should be able to do.
     const patternRef = db.collection('patterns').doc(patternId);
-    batch.set(patternRef, {
-        pattern_id: patternId,
-        name: pattern.name,
-        core_rule: pattern.core_rule,
-        trap_signals: pattern.trap_signals,
-        five_second_heuristic: pattern.five_second_heuristic,
-        domain_tags: pattern.domain_tags,
-        updated_at: now
-    }, { merge: true });
+    const existing = await patternRef.get();
+    if (existing.exists) {
+        batch.set(patternRef, { updated_at: now }, { merge: true });
+    }
+    else {
+        batch.set(patternRef, {
+            pattern_id: patternId,
+            name: pattern.name,
+            core_rule: pattern.core_rule,
+            trap_signals: pattern.trap_signals,
+            five_second_heuristic: pattern.five_second_heuristic,
+            domain_tags: pattern.domain_tags,
+            created_at: now,
+            updated_at: now,
+            // Marks provenance so a curator can tell authored patterns from
+            // model-generated ones without guessing.
+            source: 'tutor-generated',
+        }, { merge: true });
+    }
     // 2. User Pattern Stats — always exam-scoped
     const statsRef = db.collection('users').doc(userId).collection('examStats').doc(examId).collection('traps').doc(patternId);
     const currentStatsSnap = await statsRef.get();
@@ -95,6 +149,24 @@ exports.generateTutorBreakdown = functions
         console.error("Invalid Tutor Payload:", { questionStem: !!questionStem, optionsLen: options === null || options === void 0 ? void 0 : options.length });
         throw new functions.https.HttpsError('invalid-argument', 'Missing required fields or invalid options format.');
     }
+    // 1a. Cost and abuse ceiling.
+    //
+    // This callable was an unmetered gpt-4o proxy: no rate limit, no length
+    // caps, no max_tokens, and every prompt field supplied by the caller. A
+    // signup plus "Start Free Trial" (no card) was enough to script it in a
+    // loop, and each unique payload missed the content-hash cache and billed a
+    // full completion.
+    await (0, rateLimit_1.enforceRateLimit)('generateTutorBreakdown', context, 300);
+    assertWithin(questionStem, LIMITS.questionStem, 'questionStem');
+    assertWithin(correctRationale, LIMITS.correctRationale, 'correctRationale');
+    assertWithin(lensName, LIMITS.lensName, 'lensName');
+    assertWithin(lensFramework, LIMITS.lensFramework, 'lensFramework');
+    assertWithin(examDomain, LIMITS.examDomain, 'examDomain');
+    assertWithin(examId, LIMITS.examId, 'examId');
+    if (options.length > LIMITS.optionCount) {
+        throw new functions.https.HttpsError('invalid-argument', `options may not exceed ${LIMITS.optionCount} entries.`);
+    }
+    options.forEach((o, i) => assertWithin(o, LIMITS.option, `options[${i}]`));
     // 2. Security / Config Check & Logging
     // Determine explicitly where the key is coming from
     const configKey = (_b = functions.config().openai) === null || _b === void 0 ? void 0 : _b.key;
@@ -159,6 +231,11 @@ exports.generateTutorBreakdown = functions
             // rationale — mini handles it at equal quality in a fraction of
             // the latency. Deep mode keeps the full model for reasoning.
             model: isDeep ? "gpt-4o" : "gpt-4o-mini",
+            // Caps the output side of the bill. The deep breakdown plus its
+            // pattern object runs well under this; the sibling call at the
+            // bottom of this file has always had a max_tokens and this one
+            // never did.
+            max_tokens: isDeep ? 1200 : 700,
             messages: [
                 {
                     role: "system",

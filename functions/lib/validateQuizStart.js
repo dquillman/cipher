@@ -5,6 +5,7 @@ const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const freeTier_1 = require("./freeTier");
 const entitlement_1 = require("./entitlement");
+const usageLedger_1 = require("./usageLedger");
 const db = admin.firestore();
 // minInstances: 1 keeps one warm instance — this callable gates EVERY quiz
 // start, so a cold start here adds 1-3s to question load for the first user
@@ -29,19 +30,12 @@ exports.validateQuizStart = functions
     const accountCreatedAt = (_c = (_b = (_a = userData === null || userData === void 0 ? void 0 : userData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a)) !== null && _c !== void 0 ? _c : null;
     const trialEndsAt = (_f = (_e = (_d = userData === null || userData === void 0 ? void 0 : userData.trialEndsAt) === null || _d === void 0 ? void 0 : _d.toDate) === null || _e === void 0 ? void 0 : _e.call(_d)) !== null && _f !== void 0 ? _f : null;
     const dailyLimit = (0, freeTier_1.getFreeTierDailyLimit)({ accountCreatedAt, trialEndsAt });
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const todayTimestamp = admin.firestore.Timestamp.fromDate(today);
-    const runsSnap = await db.collection('quizRuns').doc(uid).collection('runs')
-        .where('completedAt', '>=', todayTimestamp)
-        .get();
-    let totalAnswered = 0;
-    runsSnap.forEach(doc => {
-        const answers = doc.data().answers;
-        if (Array.isArray(answers)) {
-            totalAnswered += answers.filter(answer => (answer === null || answer === void 0 ? void 0 : answer.selectedOption) !== undefined).length;
-        }
-    });
+    // Read the count from the server-written ledger, NOT by scanning quizRuns.
+    // quizRuns is owned by this user, so the old scan (a) counted only runs with
+    // completedAt, letting "Quit & Save" hide answered questions forever, and
+    // (b) could be zeroed by deleting the runs. usageCounters is Admin-SDK-only
+    // and monotonic per day — see usageLedger.ts.
+    const totalAnswered = await (0, usageLedger_1.getAnsweredToday)(uid);
     if (totalAnswered >= dailyLimit) {
         return { allowed: false, reason: 'daily_limit', used: totalAnswered, limit: dailyLimit };
     }

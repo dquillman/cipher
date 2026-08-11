@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { getFreeTierDailyLimit } from './freeTier';
 import { resolveProAccess } from './entitlement';
+import { getAnsweredToday } from './usageLedger';
 
 const db = admin.firestore();
 
@@ -31,21 +32,12 @@ export const validateQuizStart = functions
     const trialEndsAt = userData?.trialEndsAt?.toDate?.() ?? null;
     const dailyLimit = getFreeTierDailyLimit({ accountCreatedAt, trialEndsAt });
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const todayTimestamp = admin.firestore.Timestamp.fromDate(today);
-
-    const runsSnap = await db.collection('quizRuns').doc(uid).collection('runs')
-        .where('completedAt', '>=', todayTimestamp)
-        .get();
-
-    let totalAnswered = 0;
-    runsSnap.forEach(doc => {
-        const answers = doc.data().answers;
-        if (Array.isArray(answers)) {
-            totalAnswered += answers.filter(answer => answer?.selectedOption !== undefined).length;
-        }
-    });
+    // Read the count from the server-written ledger, NOT by scanning quizRuns.
+    // quizRuns is owned by this user, so the old scan (a) counted only runs with
+    // completedAt, letting "Quit & Save" hide answered questions forever, and
+    // (b) could be zeroed by deleting the runs. usageCounters is Admin-SDK-only
+    // and monotonic per day — see usageLedger.ts.
+    const totalAnswered = await getAnsweredToday(uid);
 
     if (totalAnswered >= dailyLimit) {
         return { allowed: false, reason: 'daily_limit', used: totalAnswered, limit: dailyLimit };

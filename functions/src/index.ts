@@ -1463,5 +1463,8 @@ export * from './tutor';
 export * from './diagnostics';
 export * from './generateSmartQuizReview';
 export { validateQuizStart } from './validateQuizStart';
+// Server-written free-tier usage ledger. Trigger increments usageCounters on
+// every answer; validateQuizStart reads it. See usageLedger.ts.
+export { trackAnswerUsage } from './usageLedger';
 export { startTrial } from './startTrialCallable';
 export { captureLead } from './captureLead';
