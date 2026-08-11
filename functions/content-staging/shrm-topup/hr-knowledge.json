@@ -12,7 +12,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - People Knowledge Domain: HR Strategy (Key Concepts: strategic planning analysis frameworks, including PESTLE analysis, SWOT analysis, industry analysis and growth-share matrix)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Devon screens first-round applicants for a contact-center role using an asynchronous video platform whose AI scores each recorded answer on speech fluency, facial expression and word choice. An applicant discloses a speech impairment resulting from a stroke and asks whether there is another way to complete the screen. The vendor tells Devon the model was validated on a large applicant sample and is therefore fair to everyone. What should Devon do?",
@@ -27,7 +29,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - People Knowledge Domain: Talent Acquisition (Key Concepts: methods for selection assessment; talent acquisition technologies) with U.S. Employment Law & Regulations (ADA)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Claims processors on Marisol's team describe the work as monotonous: each person performs one step of a nine-step adjudication process. Marisol redesigns the role so that each processor owns a claim from intake through payment, holds signature authority to approve settlements up to $5,000 without supervisor review, and decides the order in which to work their own queue. Which job-design technique has Marisol applied?",
@@ -42,7 +46,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - People Knowledge Domain: Employee Engagement & Retention (Key Concepts: job-design principles and techniques)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Ade, an L&D specialist at a food-processing company, has six plant supervisor openings and 40 line technicians nominated by their plant managers on the strength of their technical output. The supervisor job is mostly resolving shift conflicts, deciding which line to hold when two orders compete, and coaching operators through errors; none of the nominees has performed any of that work. Ade has budget for one assessment. Which developmental assessment gives Ade the best evidence of who is ready for the supervisor role?",
@@ -57,7 +63,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - People Knowledge Domain: Learning & Development (Key Concepts: developmental assessments, including 360-degree assessments, simulations, high-potential assessments, personality assessments and skills assessments)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Over 18 months Tomas has hired six software engineers at prevailing market rates while the engineering market has moved roughly 9 percent per year. Merit budgets held at 3 percent and the salary structure midpoints have not been repriced since. Engineers with six to nine years of tenure and higher performance ratings now sit within $2,000 of brand-new hires, and two of them have resigned citing pay. Which condition is Tomas facing, and which action addresses its root cause?",
@@ -72,7 +80,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - People Knowledge Domain: Total Rewards (Key Concepts: pay practices and issues; compensation philosophies; compensation and labor market data analysis)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Nine months after acquiring a 300-person competitor, Ines finds the new organization chart and reporting lines fully implemented and staffed. Integration is still stalling: managers from the acquired firm route decisions through consensus rather than to the named owner, the sales incentive plan still pays on the legacy product line, and no one agrees on who may approve pricing exceptions. The CEO asks Ines for a diagnostic that explains why a correct structure is not producing the intended behavior. Which organizational analysis approach fits?",
@@ -87,7 +97,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - Organization Knowledge Domain: Organizational Effectiveness & Development (Key Concepts: organizational analysis; organizational design structures and approaches)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Imani, workforce planning lead at a logistics firm, is costing out the staffing effect of automated sortation equipment going into four hubs. Within 14 months the manual sorting work of about 60 employees disappears, and the firm will need roughly 25 automation technicians who can troubleshoot programmable logic controllers. The current sorters hold deep knowledge of the firm's exception-handling processes. The regional market for automation technicians is very tight, and Imani has been told the plan must retain institutional knowledge and avoid severance costs. Which workforce planning strategy best fits these constraints?",
@@ -102,7 +114,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - Organization Knowledge Domain: Workforce Management (Key Concepts: workforce planning approaches, techniques and analyses; build, buy, borrow and bridge strategies; upskilling and reskilling)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "At a unionized plant, HR manager Reggie calls a machinist into his office to question him about a damaged pallet load; the machinist may have caused it and discipline is a realistic outcome. The machinist says he wants his union steward present. No steward is on shift for another two hours. Under NLRB v. Weingarten, what are Reggie's options?",
@@ -117,7 +131,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - Organization Knowledge Domain: Employee & Labor Relations (Key Concepts: techniques for workplace investigations; progressive disciplinary procedures) with U.S. Employment Law & Regulations (NLRB v. Weingarten, 1975)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Yuki's company is preparing to deploy an AI productivity tool that joins internal meetings, transcribes them, generates a per-participant contribution score, and pushes those scores to managers as an input to performance ratings. IT has cleared security and data residency. Leadership wants to switch it on without announcing it, so employees do not game the score. Yuki is asked for HR's position before launch. Which objection is best supported on both governance and validity grounds?",
@@ -132,7 +148,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - Organization Knowledge Domain: Technology Management (Key Concepts: standards and policies for technology use, including AI-related policies addressing utilization, transparency, fairness and data privacy; data and information management)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Hana administers international assignments for a manufacturer. Of the eight employees who completed three-year assignments abroad in the past four years, five resigned within twelve months of coming home. Their exit interviews say much the same thing: they returned to vaguely defined roles, reported to managers who had never worked abroad, and found that nobody in the home organization valued or used what they had learned. Which element of the assignment program most directly failed?",
@@ -147,7 +165,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - Workplace Knowledge Domain: Managing a Global Workforce (Key Concepts: best practices for international assignments, including transition plans and repatriation)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Bertrand, risk manager for a firm that places nurses in client hospitals, has identified a low-probability, high-severity exposure: a malpractice claim arising from the conduct of a clinician the firm placed. He keeps the firm's licensure verification and credentialing controls in place and, in addition, buys professional liability coverage that shifts the financial consequence of such a claim to an insurer. Which risk treatment does Bertrand's insurance purchase represent?",
@@ -162,7 +182,9 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - Workplace Knowledge Domain: Risk Management (Key Concepts: enterprise risk management processes and best practices, and risk treatments: avoidance, reduction, sharing, retention)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "A footwear company's published CSR commitments include respect for human rights and fair labor standards throughout its operations. An investigative report alleges that a tier-2 subcontractor used by the company's largest tier-1 supplier employs underage workers. Legal points out that the company holds no contract with the tier-2 firm and imposes labor-standards clauses only on direct suppliers. The CHRO asks Sanjay, the CSR lead in HR, to recommend a response. Which recommendation best addresses the company's published human-rights commitment?",
@@ -177,6 +199,8 @@
     "domain": "HR Knowledge Domains",
     "objective": "HR Expertise - Workplace Knowledge Domain: Corporate Social Responsibility (Key Concepts: HR-related activities that support sustainability, including human rights, labor standards and supply chain management; steps to implement CSR strategy)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
   }
 ]

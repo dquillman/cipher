@@ -12,7 +12,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.1.1 K2101 Knowledge of escheat laws",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Roland is reconciling the payroll bank account and finds a net payroll check for $1,340 issued 18 months ago that was never cashed. The employee terminated and cannot be located; the applicable state's dormancy period for wages is one year. Federal and state taxes on those wages were withheld and deposited on time, and the wages appeared on the employee's Form W-2 for the year of payment. What is the correct handling?",
@@ -27,7 +29,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.1.2 K2102 Knowledge of escheatment procedures",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Priyanka is writing a records destruction schedule for her payroll department and wants to apply the shortest retention period the FLSA permits for each category of record. Which group of records may be destroyed after two years under the FLSA recordkeeping regulations?",
@@ -42,7 +46,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.4.2 K2402 Knowledge of FLSA requirements",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Remember",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Ibrahim administers FMLA leave inside the payroll department. His files for a recently returned employee include the leave request, the designation notice, the hours-of-service calculation supporting eligibility, and a Form WH-380-E certification from the employee's physician describing her serious health condition. A DOL investigator has asked how the company stores and retains these documents. Which practice satisfies the FMLA recordkeeping rules?",
@@ -57,7 +63,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.4.3 K2403 Knowledge of FMLA requirements",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "It is January 28 and Corinne's payroll team, which issues about 250 Forms W-2, has discovered that a year-end system conversion has left the W-2 file unbalanced. She will not be able to transmit Copy A and Form W-3 to the SSA by the filing deadline and asks whether an extension is available. What should Corinne be told?",
@@ -72,7 +80,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.3.3 K2303 Knowledge of annual forms completion and filing (Forms W-2/W-3 series); 2.5.1 K2501 Knowledge of IRS penalties",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Hector processes payroll for a distribution center. A newly hired forklift operator lives in a state that has a reciprocal income tax agreement with the state in which the distribution center — his only work location — is situated. The employee asks Hector to stop withholding work-state income tax. What is the correct treatment?",
@@ -87,7 +97,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.2 Legislative and regulatory requirements for compliant payroll processing (see also K1304 multi-state taxation rules)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Yolanda must assign a field service technician to a single state for state unemployment insurance purposes. The technician performs roughly equal amounts of work in States A, B, and D, so his service is not localized in any one of them. He reports each morning to a company branch in State A, where his truck, tools, and assignments originate and where a substantial portion of his work is performed. His supervisor and all dispatch authority sit at corporate headquarters in State B. He lives in State C and performs no services there. Under the standard four-factor test, to which state are his wages reported for SUI?",
@@ -102,7 +114,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.2 Legislative and regulatory requirements for compliant payroll processing (see also K1304 multi-state taxation rules, SUI)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Alonzo receives a creditor garnishment for an employee who works in a state whose garnishment statute caps withholding at a percentage of disposable earnings noticeably lower than the federal Consumer Credit Protection Act ceiling. The creditor's attorney writes to Alonzo insisting the federal limit applies because federal law governs wage garnishment. How should Alonzo respond?",
@@ -117,7 +131,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.2.1 K2201 Knowledge of rules for processing wage attachments",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Naomi's employer has 4,000 employees nationwide. A machine operator at a rural plant requests leave to care for a parent with a serious health condition. The operator has worked for the company for three years and logged 1,600 hours in the past 12 months. His plant employs 20 people, and the nearest other company facility is 120 miles away. Is he an eligible employee under the FMLA?",
@@ -132,7 +148,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.3.5 K2305 Knowledge of FMLA regulation and requirements",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "A software engineer returns to Fumiko's company after three years of qualifying uniformed service and is promptly reemployed. He wants to restore the 401(k) elective deferrals he could not make while deployed. Which statement correctly describes the employer's and employee's obligations under USERRA?",
@@ -147,7 +165,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.3 Legislative and regulatory requirements for compliant payroll reporting (see also K3401 USERRA contributions)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Teodoro runs payroll for a contractor that just won a $3 million federally funded highway building contract subject to the Davis-Bacon and Related Acts. The company currently pays all field employees biweekly and submits payroll documentation to the contracting agency with its monthly invoice. The cash and bona fide fringe portions of the prevailing wage rate are being paid correctly. Which change is required for compliance?",
@@ -162,7 +182,9 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.2 Legislative and regulatory requirements for compliant payroll processing (see also K1210 public service contract acts, Davis-Bacon)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Wanda's company hires employees in 14 states and wants to stop filing new hire reports state by state. She asks whether federal law permits the company to consolidate all new hire reporting into a single filing. What must the company do to use the consolidated option?",
@@ -177,6 +199,8 @@
     "domain": "Compliance/Research and Resources",
     "objective": "2.3.6 K2306 Knowledge of New Hire Reporting",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Remember",
+    "bloomConfidence": 0.6
   }
 ]

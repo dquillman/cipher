@@ -12,7 +12,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.2 / K3203 - Knowledge of taxable and non-taxable income for fringe benefits (relocation)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Darnell processes payroll for a restaurant that requires servers to buy a $45 branded uniform. One nonexempt server was paid $8.00 per hour for 40 hours in a workweek with no overtime, and the employer wants to recover the full uniform cost from that week's pay. Applying the federal minimum wage of $7.25 per hour, what is the maximum Darnell may deduct in that workweek?",
@@ -27,7 +29,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.4 / K3405 - Ability to identify and calculate allowable employer deductions under FLSA (uniforms)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Yolanda is computing 2026 federal unemployment tax for a single employee who will earn $52,000 in wages. The company pays its state unemployment contributions in full and on time in a state that is not subject to a credit reduction. What is the employer's FUTA liability for that employee?",
@@ -42,7 +46,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.5 / K3501 - Ability to calculate federal employer tax liabilities (FUTA)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Ravi is preparing a total payroll cost figure for a department's monthly budget review. For one employee the figures are: gross wages $10,000; employee deductions of $1,100 federal income tax, $765 employee FICA, $600 pre-tax 401(k) elective deferral, and $300 after-tax disability insurance premium. Employer amounts are $765 FICA match, $0 FUTA because this employee's year-to-date wages passed the FUTA wage base back in March, $170 SUTA, and a $300 employer 401(k) match. What is the total payroll cost for that employee?",
@@ -57,7 +63,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.6 / K3603 - Ability to calculate total payroll cost (gross pay, deductions, employer cost)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "A terminating participant asks Colette, the payroll manager who administers the company's qualified 401(k) plan, to cut him a check for his entire $40,000 vested balance rather than move it to an IRA. The distribution is an eligible rollover distribution. What federal income tax withholding applies?",
@@ -72,7 +80,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.3 / K3307 - Ability to calculate federal income tax withholding from qualified pension distributions",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Rosa pays a nonexempt assembler entirely on a piece-rate basis. In one workweek the assembler worked 46 hours and produced pieces worth $621.00 in piece-rate earnings. The employer has no agreement to use any alternative overtime method. What is the assembler's total FLSA-compliant pay for the week?",
@@ -87,7 +97,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.1 / K3101 - Ability to calculate FLSA overtime and regular rate of pay (piece rate)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Kofi's employee works two jobs for the same company in one workweek: 32 hours as a machine operator at $18.00 per hour and 16 hours as a crew lead at $21.00 per hour, for 48 hours total. There is no advance agreement under FLSA Section 7(g)(2) to use the rate in effect for the overtime work. What is the employee's total pay for that workweek?",
@@ -102,7 +114,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.1 / K3101 - Ability to calculate FLSA overtime and regular rate of pay (weighted average, two rates)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "In June 2026, Hakeem's company promises a departing consultant-turned-employee a spot award that must land in her bank account at exactly $3,000. The payment is supplemental, the optional flat rate is used, and her year-to-date wages are well below the Social Security wage base and below the Additional Medicare Tax threshold. Her state has no income tax. What gross amount must Hakeem process?",
@@ -117,7 +131,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.1 / K3104 - Ability to calculate employer paid taxes (gross-up)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "In July 2026, Beatriz discovers that an employee was overpaid $1,500.00 in gross wages on a March 2026 payroll. Withholding on that overpaid amount was $180.00 federal income tax, $93.00 Social Security, and $21.75 Medicare. The employee is still active and agrees to repay. What should Beatriz collect, and how should the wages be corrected?",
@@ -132,7 +148,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.1 / K3106 - Ability to identify and calculate overpayments",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Marcus values an employer-provided vehicle for calendar year 2026 using the Annual Lease Value method. The vehicle's Annual Lease Value from the IRS table is $6,850. The employee drove 18,000 total miles, of which 4,500 were personal, the employer paid for all fuel, and the employee reimbursed nothing. Using the 5.5 cents per mile fuel rate, what is the imputed income for the year?",
@@ -147,7 +165,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.2 / K3201 - Ability to calculate imputed income (personal use of company car, Annual Lease Value)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Under a written, nondiscriminatory qualified plan award program, Simone's employer presents an engraved watch worth $2,100 to an employee celebrating 25 years of service in 2026. It is the only award of any kind that employee received during the year. How much, if any, is taxable compensation?",
@@ -162,7 +182,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.2 / K3204 - Knowledge of accountable and non-accountable plans (awards and prizes)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "An employee received a $1,200 travel advance under Priyanka's accountable plan, substantiated $950 of business expenses with receipts, and never returned the $250 balance despite reminders well past the reasonable-period safe harbor. How should Priyanka treat the amounts?",
@@ -177,7 +199,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.2 / K3204 - Knowledge of accountable and non-accountable plans (travel advances)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Nia is processing a semimonthly payroll dated 15 November 2026. An employee's Social Security taxable wages before this check total $181,000, and the current check adds $8,000 of Social Security taxable wages. The 2026 Social Security wage base is $184,500. How much employee Social Security tax should Nia withhold from this check?",
@@ -192,7 +216,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.3 / K3301 - Ability to calculate federal tax (taxable wages, social security)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "An employee who will turn 61 during 2026 asks Ingrid, the payroll manager, for the largest amount she may defer into the company's 401(k) plan for that year. The plan document permits catch-up contributions, including the higher catch-up for participants aged 60 through 63. Ignoring any plan-imposed percentage cap, what maximum elective deferral should Ingrid quote for 2026?",
@@ -207,7 +233,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.4 / K3401 - Ability to calculate deferred compensation contributions (IRC Sec. 401(k))",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Remember",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "In 2026, Terrence's employer pays $10,000 of qualifying adoption expenses on behalf of an employee under a written adoption assistance program that satisfies IRC Section 137. The amount is below the annual exclusion limit and the employee's income is well under the phase-out. How must Terrence tax and report the $10,000?",
@@ -222,7 +250,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.2 / K3203 - Knowledge of taxable and non-taxable income for fringe benefits (adoption assistance)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Camille pays a tipped server the federal cash wage of $2.13 per hour and takes the maximum federal tip credit of $5.12 against the $7.25 federal minimum wage. In one workweek the server worked 46 hours and reported tips far exceeding the credit claimed. The server receives no other compensation. What cash wage must Camille pay for that workweek?",
@@ -237,7 +267,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.1 / K3103 - Ability to calculate gross pay for tipped employees (tip credit)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Alonzo is computing 2026 group-term life imputed income for an employee who is 47 years old on the last day of the year. The employer-provided coverage is $250,000 for the full twelve months, and the employee pays $8.00 per month after tax toward the coverage. The IRS Table I rate for the employee's age bracket is $0.15 per $1,000 of coverage per month. What is the imputed income for the year?",
@@ -252,7 +284,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.2 / K3201 - Ability to calculate imputed income (group-term life, Table I)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Gerald receives a creditor garnishment for an employee paid weekly. That week's gross pay is $420.00, with deductions of $38.00 federal income tax, $26.04 Social Security, $6.09 Medicare, a $45.00 after-tax voluntary life insurance premium, a $25.00 401(k) deferral, and $12.00 in union dues. Applying the federal Consumer Credit Protection Act limits and the $7.25 federal minimum wage, how much may Gerald withhold for the garnishment?",
@@ -267,7 +301,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.3 / K3304 - Ability to calculate disposable earnings",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Renée receives two child support income withholding orders for the same biweekly-paid employee, one for $400 and one for $300 per pay period, both for current support only. The employee is not supporting a second family and has no arrearage of twelve weeks or more, and biweekly disposable earnings are $1,000.00. The state's rule follows the common proration approach. How much should Renée withhold on each order?",
@@ -282,7 +318,9 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.3 / K3306 - Ability to identify and calculate involuntary deductions (child support)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "An employee of Wanda's company died in November 2025. In March 2026, after the estate paperwork cleared, Wanda pays the employee's $4,200 of accrued unused vacation to the estate. How should the March 2026 payment be taxed and reported?",
@@ -297,6 +335,8 @@
     "domain": "Calculation of the Paycheck",
     "objective": "3.3 / K3303 - Ability to identify and calculate withholding for wages paid after death",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   }
 ]

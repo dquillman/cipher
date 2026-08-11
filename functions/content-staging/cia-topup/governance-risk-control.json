@@ -1,0 +1,376 @@
+[
+  {
+    "stem": "Priya Raghavan is opening a governance review at a regional water utility. The board chair tells her, \"Governance here is really just our regulatory filings and our external audit — what more is there?\" Which response most accurately describes organizational governance?",
+    "options": [
+      "It is the set of transaction-level controls management operates so that revenue and expenditure are recorded accurately.",
+      "It is the portfolio of filings, licences, and disclosures the utility maintains to stay in standing with its regulator.",
+      "It is the combination of processes and structures the board uses to inform, direct, manage, and monitor its activities.",
+      "It is the assurance the external auditor provides to shareholders and creditors over the annual financial statements."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Governance is the combination of processes and structures implemented by the board to inform, direct, manage, and monitor the organization's activities toward achieving its objectives — a board-level construct, not a single process or output. Option A describes internal control at the process level, which governance oversees but is not synonymous with. Option B describes the compliance obligations governance monitors; meeting them is an outcome of governance, not its definition. Option D describes the external auditor's role, which is one source of information flowing into governance rather than governance itself.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.A",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Marcus Delacroix is assessing governance at a family-controlled manufacturer. The founder serves as both CEO and board chair, the other four directors are long-time business associates whom the founder personally nominates each year, and there is no lead independent director. Which condition should Marcus identify as the most significant governance concern?",
+    "options": [
+      "The concentrated family ownership, since a widely dispersed shareholder base is what enables a board to oversee well.",
+      "No director is positioned to challenge the founder, so the board's oversight of management is nominal in substance.",
+      "The combined founder chair and CEO roles, which should be separated first because one person controls the board agenda.",
+      "The lack of a standing audit committee, since forming one would supply the independent challenge the board now lacks."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Effective governance depends on the board's ability to direct and monitor management objectively; when every director owes their seat to the person being overseen, that independent challenge does not exist and oversight becomes nominal. Option A misapplies ownership structure — closely held companies can and do govern well, and dispersed ownership is not a precondition for oversight. Option C overstates a real issue: combining the chair and CEO roles is permitted in many jurisdictions and is commonly offset by a lead independent director, so it is a contributing factor here rather than the root concern. Option D misapplies a genuine governance construct by treating a committee's existence as sufficient for independent challenge; a committee drawn from the same four nominated directors would carry the same dependence into the committee room.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.A",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "While planning a revenue-cycle engagement, Ingrid Halvorsen learns that sales staff routinely obtain retroactive credit-limit approvals during the final week of each quarter, and that regional managers publicly praise representatives who \"find a way to book the deal.\" The written credit policy itself is well designed. How should this information affect Ingrid's engagement?",
+    "options": [
+      "It should not, because the credit policy is well designed and board-approved, and design is what the engagement assesses.",
+      "She should treat the pattern as a documentation gap in the credit files and recommend that the credit policy be rewritten.",
+      "She should treat the retroactive approvals as isolated exceptions and reduce sample sizes for the periods they occurred in.",
+      "She should raise the assessed risk of management override and concentrate her testing on quarter-end credit approvals."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Culture affects whether well-designed controls actually operate; incentives and tone that reward booking the deal signal that the credit control may be routinely overridden at period ends, so the auditor should raise assessed engagement risk and target testing where the pressure is greatest. Option A misapplies the design/operation distinction — an engagement must consider operating effectiveness, and a sound policy on paper proves nothing about behaviour. Option B is a real but misdirected response: it reads override evidence as a paperwork problem and prescribes a rewrite of a policy that already works, which leaves the behaviour driving the overrides untouched. Option C inverts the correct response — evidence of override is a reason to increase, not reduce, testing in the affected periods.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.B",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Tomás Ferreira wants evidence about the control environment at a subsidiary acquired 18 months ago, where his walkthroughs suggest staff treat documented procedures as optional. Which source would give him the most persuasive evidence of the subsidiary's actual culture?",
+    "options": [
+      "Trends in hotline reports, exit-interview themes, and how past policy breaches at the subsidiary were disciplined.",
+      "The subsidiary's signed code of conduct together with the parent's board-approved delegation of authority matrix.",
+      "The percentage of subsidiary staff who completed the parent's annual compliance training inside the required window.",
+      "Management's written representation that the subsidiary has adopted the parent company's ethical values and standards."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Culture is evidenced by what people actually do and what the organization actually tolerates; hotline patterns, why employees leave, and how breaches were disciplined are behavioural evidence that is difficult to stage. Option B is documentary evidence of intended culture — the same documents exist in organizations with weak environments, so they do not corroborate behaviour. Option C measures attendance, not absorption; completion rates say nothing about whether the training changed conduct. Option D is management's assertion about itself, the least persuasive form of evidence and precisely what the walkthroughs already call into question.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.B",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Naledi Mokoena is reviewing how allegations are handled. Over the past year the compliance function closed 41% of hotline allegations as \"unsubstantiated.\" Each closure appears as a one-line entry in the case log, with no record of what was examined, who performed the work, or who approved the conclusion. What is the most significant issue Naledi should report?",
+    "options": [
+      "Undocumented dispositions leave no basis to judge whether allegations were investigated adequately or resolved consistently.",
+      "The unsubstantiated rate is high, which shows the hotline is mostly drawing complaints that lack any factual basis.",
+      "Allegations should be investigated by internal audit rather than by compliance, which lacks investigative independence.",
+      "The compliance function should report allegation counts and case closure rates to the audit committee quarterly."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Interpreting alleged violations and their dispositions requires a documented trail; without evidence of the procedures performed and the review of conclusions, neither the auditor nor the board can tell whether cases were properly worked or whether similar allegations were treated alike. Option B draws an unsupported inference — an unsubstantiated rate cannot be judged high or low without knowing what was actually done, which is the very gap identified. Option C misapplies independence: compliance investigating allegations is normal and appropriate, and internal audit taking over routine investigations would create its own objectivity problem. Option D is a genuine good practice that is simply the wrong answer to this gap: counts and closure rates reported to the committee describe volume and throughput, and they would look unremarkable precisely because nothing behind each closure is documented.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.C",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Hana Kobayashi is evaluating an ethics and compliance program. She finds a board-approved code of conduct, 94% training completion, and hotline volume up 30% year over year. She also finds that in three comparable expense-fraud cases, two junior employees were dismissed while a regional director received an undocumented verbal warning. Which observation most strongly indicates the program is not operating effectively?",
+    "options": [
+      "The 94% training completion, because completion rates are the accepted measure of whether a code program is working.",
+      "The inconsistent discipline, because enforcement that varies by seniority signals the code does not apply equally.",
+      "The 30% rise in hotline volume, because more reports show that ethical conduct across the organization is worsening.",
+      "The board's approval of the code, because approving it makes the board responsible for enforcing it operationally."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Consistent enforcement is what gives a code force; when comparable misconduct draws dismissal at junior levels and a verbal warning for a director, employees reasonably conclude the code is discretionary, which undermines the entire control environment. Option A misapplies a real metric — training completion is an input measure that shows reach, not whether conduct changed, and a 94% rate is a follow-up item rather than the leading indicator of failure here. Option C misreads a common indicator — rising hotline volume more often reflects growing confidence in the channel than deteriorating conduct, and volume alone is ambiguous. Option D misassigns responsibility: the board approves and oversees the code while management enforces it day to day, so board approval is a strength, not a defect.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.C",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Diego Sandoval's company publishes an annual sustainability report. A director argues that labour conditions at the company's contract manufacturers fall outside corporate social responsibility, because those workers are employed by the suppliers rather than by the company. How should Diego describe the scope of corporate social responsibility?",
+    "options": [
+      "It covers the social and environmental impacts connected with the organization's decisions, including its supply chain.",
+      "It covers impacts the organization causes directly, so labour conditions at the suppliers belong to those suppliers.",
+      "It covers whichever topics the reporting standard the company selected requires, so anything that standard omits is out.",
+      "It covers environmental impacts, while labour conditions sit with the human resources and compliance functions instead."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Corporate social responsibility concerns the organization's accountability for the impacts of its decisions and activities on society and the environment, and those impacts include the ones arising through business relationships such as contract manufacturing, which is why supply-chain labour conditions are routinely within scope. Option B applies the legal notion of direct employment to a concept defined by impact rather than by employer of record. Option C confuses scope with disclosure: a reporting standard sets what must be published, not the boundary of the organization's responsibility. Option D narrows CSR to environmental matters and treats the social dimension as an internal HR issue, when the social dimension is part of the concept itself.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.D",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Before the board debates a new policy, a director asks Fiona Achebe to define corporate social responsibility in plain terms. Which description should Fiona give?",
+    "options": [
+      "The organization's charitable giving program, including matched employee donations and the annual volunteering days.",
+      "Compliance with the environmental, labour, and health-and-safety laws applicable in each country of operation.",
+      "Accountability for how the organization's decisions affect society and the environment, shown through ethical conduct.",
+      "The communications activity that protects the organization's reputation when adverse events attract media attention."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Corporate social responsibility is the organization's accountability for the impacts of its decisions and activities on society and the environment, expressed through transparent and ethical behaviour that considers stakeholder expectations and goes beyond the legal minimum. Option A reduces CSR to philanthropy, which is one possible expression of it rather than its scope. Option B confuses CSR with legal compliance — obeying the law is the floor, and CSR concerns what the organization does above that floor. Option D describes crisis communications and reputation management, which are downstream activities that may be informed by CSR but are not what the concept means.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.D",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Remember",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "At a risk workshop, the treasurer of a logistics group tells Rahul Menon that the group could absorb roughly $40 million of single-year losses before breaching its debt covenants, but that the board has stated it will not knowingly accept more than $10 million of loss exposure in any year. How should Rahul characterize the two figures?",
+    "options": [
+      "The $40 million is the group's risk appetite and the $10 million is the risk capacity the board has set within it.",
+      "The $40 million is the group's inherent risk and the $10 million is the residual risk left after its risk responses.",
+      "The $40 million is the group's risk capacity and the $10 million is the risk appetite the board has set within it.",
+      "The $40 million is the group's risk tolerance and the $10 million is the risk capacity the board has aggregated."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Risk capacity is the maximum risk an organization is able to absorb before its viability or key constraints are breached, while risk appetite is the amount of risk the board is willing to accept in pursuit of objectives; appetite is set at or below capacity. Option A reverses the two terms. Option B misuses inherent and residual risk, which describe exposure before and after risk responses to a specific risk, not organization-wide limits. Option D misuses tolerance, which expresses the acceptable variation around a specific objective rather than a covenant-driven absorption limit, and it also misplaces capacity onto the board's stated willingness.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.E",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Amara Nwosu's company has outsourced card-payment processing to a specialist provider. The process owner tells her the payment-security risk \"now belongs to the vendor\" and can be removed from the company's risk register. Which statement should Amara make?",
+    "options": [
+      "The process owner is correct: transferring the activity under contract transfers the associated risk to the provider.",
+      "The activity was transferred but accountability was not, so the company must still monitor the provider's controls.",
+      "The risk has been avoided, because the company no longer performs the processing that gave rise to the exposure.",
+      "The risk is now inherent to the provider, so it should come off the register once the contract has been signed."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Outsourcing an activity shares or shifts some consequences but leaves the organization accountable to its customers and regulators, so the risk stays on the register and management must obtain assurance over the provider's controls through contractual rights, service-organization reports, or its own monitoring. Option A misstates risk sharing as full transfer, which contracts do not achieve for regulatory and reputational consequences. Option C misapplies avoidance, which means ceasing the objective or exposure entirely; here the company still accepts card payments and simply uses an agent. Option D misuses inherent risk, which describes exposure before responses rather than a risk that has changed ownership, and would leave a live exposure invisible to the board.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.E",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Lars Bergstrom observes a divisional risk workshop. The facilitator opens by displaying last year's risk register and asking participants to re-score each existing entry; no other input is used. During the year the division launched two product lines and entered a new export market. What is the primary weakness in the workshop?",
+    "options": [
+      "The re-scoring should be done independently by the risk function rather than by the participants who own the risks.",
+      "The scores should be expressed in monetary terms rather than on a likelihood-and-impact scale so risks can be ranked.",
+      "The workshop should have started with the highest-rated existing risks so limited time goes where exposure is greatest.",
+      "Risks were not re-identified against current objectives, so exposures from the new products and market are missing."
+    ],
+    "correctAnswer": 3,
+    "explanation": "The risk management process begins with establishing objectives and identifying the risks to them; re-scoring a stale register skips identification entirely, so risks arising from the new product lines and the export market never enter the assessment regardless of how carefully the old entries are scored. Option A misapplies independence — risk owners are the right participants to assess their own risks, with the risk function facilitating and challenging. Option B treats quantification as mandatory; monetary expression can help but qualitative scales are widely accepted, and it would not surface the missing risks. Option C is a sequencing preference that leaves the same gap: starting with the highest-rated existing risks still never asks what is new.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.E",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "A newly hired risk manager tells Yuki Tanaka that the company should \"get certified to ISO 31000\" and retire its COSO-based control assessment as redundant. What should Yuki explain?",
+    "options": [
+      "ISO 31000 is guidance rather than a certification standard, and it does not replace an internal control framework.",
+      "ISO 31000 states requirements an organization can be certified against, in the way ISO 9001 covers quality systems.",
+      "The two overlap so heavily that keeping both duplicates effort, so the company should retire its COSO-based work.",
+      "ISO 31000 addresses financial risk only, so the company's operational and compliance risks would fall outside it."
+    ],
+    "correctAnswer": 0,
+    "explanation": "ISO 31000 provides principles and guidance for managing risk and expressly states it is not intended for certification purposes; it also addresses risk management rather than the design and evaluation of internal control, which is what the COSO internal control framework supports. Option B misapplies a real ISO construct: some ISO management-system standards, such as ISO 9001, set requirements that support third-party certification, but ISO 31000 is deliberately not written that way. Option C misapplies a legitimate concern about duplicated effort — the two address different subjects, so retiring the control assessment would leave the evaluation of internal control unaddressed. Option D misstates ISO 31000's scope, which is deliberately generic and applies to risk of any type in any organization.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.F",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Kwame Boateng is assessing his group's adoption of COSO's Enterprise Risk Management framework. The risk committee maintains a register of the top 25 risks and reviews it quarterly, but the executive team selects strategic options and sets annual objectives without any input from that process. Which conclusion best reflects the framework?",
+    "options": [
+      "The approach conforms, because the purpose of enterprise risk management is to keep a current inventory of the risks.",
+      "The approach falls short, because risk management should inform strategy and objective-setting, not only track risks.",
+      "The approach conforms once internal audit independently validates the completeness of the register once each year.",
+      "The approach falls short, because the risk committee should review the register monthly to keep pace with the business."
+    ],
+    "correctAnswer": 1,
+    "explanation": "COSO's ERM framework integrates risk with strategy and performance: risk should be considered when strategic alternatives are evaluated and objectives are set, including the risk that the chosen strategy does not align with mission and the implications of the strategy chosen. A quarterly register reviewed after decisions are made captures only the last of these. Option A reduces ERM to a risk list, which is the misconception the framework was revised to correct. Option C adds an internal audit validation that does not cure the underlying gap and would raise objectivity questions if audit were made responsible for register completeness. Option D misapplies a real design choice — review frequency is set to match the pace of change, and quarterly review is common — but faster review of the same register would still arrive after the strategic decisions, which is where the gap lies.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.F",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Elena Vasquez is evaluating whether risk management is operating effectively within the claims-handling function. Which observation would give her the strongest evidence of effectiveness?",
+    "options": [
+      "Each risk in the claims register carries a documented owner, a target rating, and a review date within the last year.",
+      "The claims risk heat map is taken to each quarterly meeting of the group risk committee and is formally noted there.",
+      "Claims staff can each name the function's three highest-rated risks when asked during walkthrough interviews.",
+      "Agreed risk responses were implemented on schedule and threshold breaches reached the accountable manager in time."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Risk management is effective when it changes behaviour: responses are actually executed and risk information reaches the person who can act while action is still possible. That combination is outcome evidence rather than process evidence. Option A shows the register is maintained but says nothing about whether anything was done in response. Option B shows reporting occurred, not that it drove decisions — heat maps are frequently presented and noted without consequence. Option C shows awareness, which is a useful indicator of risk culture but is compatible with risks that are well known and entirely unmitigated.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.G",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Nadia Farouk finds that the procurement risk register scores every risk before the effect of any controls and records no post-response ratings. The procurement director says the pre-control view is \"more prudent\" because it never understates exposure. What consequence should Nadia report?",
+    "options": [
+      "Pre-control scoring overstates exposure, so management will over-invest in controls for risks that are already small.",
+      "Without residual ratings, management has no view of which risks still sit outside appetite after existing responses.",
+      "Pre-control scoring is the more conservative basis, so the register can be used as it stands to direct audit coverage.",
+      "Pre-control scoring is acceptable, and the register needs only re-sorting so the highest inherent risks appear first."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Comparing risk against appetite is only meaningful after risk responses are taken into account; recording inherent ratings alone leaves management unable to see where residual exposure still exceeds appetite and therefore unable to prioritize further action. Option A assumes an outcome that does not follow — an inherent-only view can equally cause under-investment, because it hides which controls are load-bearing and which are redundant. Option C misapplies a real practice: inherent risk is a legitimate input to audit planning, but using it as the only view directs coverage toward risks that may already be well controlled and away from those where responses have failed. Option D leaves the defect untouched: re-sorting inherent scores still provides no view of post-response exposure.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.G",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "The CFO asks Owen Bradshaw's internal audit activity to facilitate the group's annual enterprise risk workshops because \"audit is the only team that sees everything.\" Under what condition may Owen accept the request?",
+    "options": [
+      "He may facilitate them as a consulting service if management owns the resulting risks and objectivity is safeguarded.",
+      "He may accept only if the audit committee first transfers ownership of the group risk register to internal audit.",
+      "He may accept without conditions, because facilitating workshops is assurance work with no objectivity implications.",
+      "He may accept provided that he also decides which risk responses the individual business units are to implement."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Facilitating risk identification and assessment is a legitimate consulting role for internal audit, but only where management retains ownership of the risks and the resulting decisions, and where the CAE addresses the objectivity implications of later providing assurance over the same process. Option B has internal audit take ownership of the register, a management responsibility that would impair independence. Option C misclassifies facilitation as assurance and dismisses an objectivity issue that has to be managed and disclosed. Option D goes further into management's role by having internal audit select risk responses, which safeguards do not cure because audit would then be assuring its own decisions.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.H",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Sofia Marchetti becomes chief audit executive at a company with no enterprise risk management process of any kind. Management tells her that no annual audit plan can be built until such a process exists and produces a risk profile. What should Sofia do?",
+    "options": [
+      "Adopt the external auditor's financial-reporting risk assessment as the enterprise risk assessment used for planning.",
+      "Design and operate an enterprise risk management process for the company, then use its output to build the plan.",
+      "Defer the annual plan and audit only those areas where management specifically requests coverage during the year.",
+      "Perform her own risk assessment to build the plan and report the absence of a risk management process to the board."
+    ],
+    "correctAnswer": 3,
+    "explanation": "The absence of enterprise risk management does not relieve the CAE of the requirement to base the plan on a documented risk assessment; she performs her own and, separately, reports the gap to the board because a missing risk management process is itself a governance matter senior management and the board must address. Option B has internal audit assume a management responsibility, impairing independence over a process it would later have to evaluate. Option C surrenders the CAE's responsibility for the plan to management's requests, which is precisely the interference the Standards guard against. Option A substitutes a narrow, financial-statement-oriented assessment for an enterprise view, leaving operational, compliance, and strategic risks unconsidered.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.H",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "At a 60-employee nonprofit, one accountant records receipts, prepares cheques, and reconciles the bank account. Because no additional finance staff can be funded, the board treasurer independently examines every bank statement and its supporting documents each month and signs the completed reconciliation. Idris Cole should describe the treasurer's review as:",
+    "options": [
+      "a preventive control, because it stops unauthorized disbursements before funds leave the nonprofit's bank account.",
+      "an entity-level control, which reduces the need to test the accountant's transaction processing in any real depth.",
+      "a directive control, because the treasurer's monthly involvement conveys the board's expectations to the finance staff.",
+      "a compensating control that mitigates, but does not eliminate, the segregation-of-duties limitation in the function."
+    ],
+    "correctAnswer": 3,
+    "explanation": "A compensating control is put in place to limit exposure that arises because a desired control is absent or infeasible; here segregation of duties cannot be achieved, so independent monthly review by someone outside the process reduces the residual risk without removing it, since detection occurs after the fact. Option A misclassifies timing — the review happens after payments clear, so it detects rather than prevents. Option B misuses the entity-level label and draws a conclusion that does not follow; entity-level controls inform the scope of process-level testing but do not displace it. Option C misapplies directive controls, which set expected conduct in advance through policies, training, or authority limits, rather than examining completed transactions.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.I",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "With limited engagement hours, Camille Roux must decide which of the several dozen documented controls in the payroll process are the key controls. Which basis most soundly distinguishes a key control from the others?",
+    "options": [
+      "Whether the control is automated, since automated controls carry more weight than manual ones in any given process.",
+      "Whether the control is performed by the most senior manager in the payroll department rather than by a payroll clerk.",
+      "Whether the failure of that control on its own would allow a material payroll error to occur and go undetected.",
+      "Whether management designated the control as a key control in its latest control self-assessment questionnaire."
+    ],
+    "correctAnswer": 2,
+    "explanation": "A key control is one on which achievement of the process objective depends — if it fails and no other control would catch the resulting error, the objective is at risk, which is what makes it worth scarce testing hours. Option A confuses reliability with significance; automated controls may operate consistently and still address a trivial risk, while a critical control may be manual. Option B substitutes the performer's seniority for the control's role, and seniority can actually raise override risk rather than importance. Option D is useful corroborating input, but adopting management's designation without independent assessment lets the auditee scope the engagement and would miss controls management has misjudged.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.I",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Bo Lindqvist is assessing internal control at a subsidiary against COSO's internal control framework. Sixteen of the seventeen principles are present and functioning; the principle covering identification and analysis of significant change is not. Management argues that sixteen of seventeen represents substantial conformity and the system should be reported as effective. What is the correct conclusion?",
+    "options": [
+      "The system is effective, because effectiveness is judged at the component level and only a single principle failed.",
+      "The system is effective if compensating controls elsewhere in the same component offset the failing principle.",
+      "The system cannot be concluded effective, because a major deficiency in a relevant principle impairs its component.",
+      "The system is effective for reporting objectives but must be separately re-evaluated for operations and compliance."
+    ],
+    "correctAnswer": 2,
+    "explanation": "The framework requires each of the seventeen principles to be present and functioning and the five components to operate together; a major deficiency in a relevant principle means the associated component cannot be concluded present and functioning, and therefore the system of internal control cannot be concluded effective. Option A misstates the standard — component-level judgment is made through the principles, so a failing principle is not absorbed by the others. Option B misapplies compensating controls, which can address a specific control gap but cannot substitute for a principle that is not functioning. Option D applies a legitimate idea in the wrong place: COSO does support concluding on internal control separately by objective category, but the change-analysis principle is relevant to all three categories, so the deficiency is not confined to reporting.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.J",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Grace Oyelaran finds that the ERP system automatically matches every vendor invoice to its purchase order and receiving report, and that a clerk then repeats the same match manually on 100% of invoices before payment is released. In two years the manual match has identified no exception the system missed. What should Grace conclude?",
+    "options": [
+      "The manual match is ineffective and should be reported as a control deficiency requiring prompt remediation.",
+      "The objective is being achieved but the effort is duplicated, so she should quantify what the clerk's step costs.",
+      "The manual match should be retained in full, because the redundancy strengthens control over cash disbursement.",
+      "The automated match should be switched off so that the clerk retains sole accountability for matching accuracy."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Internal audit examines both the effectiveness and the efficiency of controls; here the objective is being achieved, so the finding is not a control failure but a resource issue, and quantifying the cost of the duplicated effort gives management the basis to reduce or risk-target the manual match. Option A mislabels a redundant control as ineffective — it works, it simply adds nothing the system does not already provide. Option C accepts duplication as inherently protective and ignores the efficiency dimension the evidence points to. Option D degrades the stronger control in favour of the weaker one, increasing the risk of undetected mismatches.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.K",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Viktor Adamec tested 40 instances of a daily approval control and found two deviations. His junior auditor concludes the control is effective because a 5% deviation rate is low. What should Viktor do before any conclusion is reached?",
+    "options": [
+      "Investigate the cause of both deviations to establish whether they are systematic and what exposure they have created.",
+      "Expand the sample to 80 items, because doubling the sample will confirm whether the true deviation rate is acceptable.",
+      "Accept the junior's conclusion, since a 5% rate sits below the tolerable deviation rate normally used in planning.",
+      "Report the control as ineffective, because a deviation in a key control shows it did not operate as it was designed."
+    ],
+    "correctAnswer": 0,
+    "explanation": "A deviation rate is not self-interpreting; the auditor must understand why each deviation occurred, whether it points to a systematic breakdown such as an unavailable approver or a deliberate bypass, and what transactions were exposed as a result. Two deviations traced to the same root cause support a very different conclusion from two unrelated lapses. Option B expands the sample before the cause is understood, which spends hours refining a rate rather than explaining it. Option C invokes a real planning concept but treats it as a fixed benchmark: the tolerable rate is set for the specific test from the control's significance, no such rate is stated here, and a result inside it still does not excuse understanding the cause. Option D applies a zero-defect rule that would make most manual controls ineffective and ignores materiality and cause.",
+    "domain": "Governance, Risk Management, and Control",
+    "objective": "V.K",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  }
+]

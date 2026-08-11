@@ -12,7 +12,9 @@
     "domain": "Audits",
     "objective": "6.1.2 K6102 - Ability to identify internal controls (segregate job duties); 6.1.3 K6103",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "During SOX testing, an external auditor asks Marguerite, a payroll manager, for evidence supporting the key control 'the payroll manager reviews and approves the preliminary payroll register before the payroll is released.' Marguerite provides the written desk procedure describing the review and a screenshot of the approval field in the payroll system. The auditor issues a control deficiency anyway. What is the most likely reason?",
@@ -27,7 +29,9 @@
     "domain": "Audits",
     "objective": "6.1.4 K6104 - Knowledge of Sarbanes-Oxley compliance and controls; 6.1.3 K6103",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Renee, an internal auditor, is testing controls over pay rate changes at a company where supervisors submit rate changes to payroll by email. Her objective is to detect a rate increase that was entered without proper authorization. Which test best meets that objective?",
@@ -42,7 +46,9 @@
     "domain": "Audits",
     "objective": "6.2.3 K6203 - Ability to validate source data input/output; 6.1.2 K6102 (identify fraudulent activity)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Ivan is closing the year at a company whose short-term disability plan is insured by a third party and funded entirely with employer contributions. The insurer paid $86,400 in benefits to employees during the year, did not act as the employer's agent, and reported the payments on its own Forms W-2. The insurer timely notified the company of the payments and transferred the employer share of the FICA liability to the company. Ivan is designing the year-end reconciliation over this arrangement. What should it accomplish?",
@@ -57,7 +63,9 @@
     "domain": "Audits",
     "objective": "6.5.2 K6502 - Knowledge of payroll-related external agreements (third-party sick pay)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Nour receives agency correspondence stating that the Social Security wages reported on the company's four Forms 941 for the year are $48,000 lower than the Social Security wages shown on the Forms W-2 and W-3 transmitted for the same year. She traces the entire difference to a fourth-quarter bonus run that was included in the employees' Forms W-2 but was never picked up on the fourth-quarter Form 941. What is the correct corrective action?",
@@ -72,7 +80,9 @@
     "domain": "Audits",
     "objective": "6.3.1 K6301 - Ability to identify and correct amounts out of balance; 6.4.1 K6401 (identify and correct variances)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Pilar, a payroll manager at a construction company, learns that crew foremen hand out paper paychecks at each job site and keep any checks that go unclaimed in a desk drawer at the trailer until the employee shows up. Which change best addresses the control weakness this creates?",
@@ -87,7 +97,9 @@
     "domain": "Audits",
     "objective": "6.1.2 K6102 - Ability to identify internal controls (check processing and printing controls, physical payout)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Tomas's employer outsources payroll processing to a service bureau. The company's external auditor requests assurance over the controls at that bureau, and the bureau supplies a SOC 1 Type 2 report covering the full audit period. What does Tomas's company still need to do?",
@@ -102,7 +114,9 @@
     "domain": "Audits",
     "objective": "6.5.2 K6502 - Knowledge of payroll-related external agreements (outsourcing agreement); 6.1.5 K6105",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Alina's print vendor mailed the company's Forms W-2 in a run where the envelope inserter slipped by one position, so each employee received another employee's Form W-2 showing that person's name, address, Social Security number, and wages. The company has already begun notification. Alina must now report to management which control failure allowed the error to reach the mail. Which finding is best supported?",
@@ -117,7 +131,9 @@
     "domain": "Audits",
     "objective": "6.4.2 K6402 - Ability to apply regulations and controls to protect confidentiality; 6.1.2 K6102 (identify internal controls)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Odalys is recording a semimonthly payroll: gross wages $400,000, employee Social Security and Medicare withheld $30,600, federal income tax withheld $62,000, and employee 401(k) deferrals $18,000. No employee has reached the Social Security wage base. She has already posted the entry for the wages and the employee withholdings. Which entry records the employer's share of Social Security and Medicare for the same period?",
@@ -132,7 +148,9 @@
     "domain": "Accounting",
     "objective": "7.3.1 K7301 - Ability to record payroll transactions; 7.3.3 K7303 (impact of debits/credits)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Callum's pay period runs Monday, June 22 through Sunday, July 5 and is paid on July 10. The period contains 10 workdays, 7 of which fall in June, and total gross wages are $210,000, earned evenly across the workdays. Callum records a $147,000 wage accrual at June 30 but forgets to post the reversing entry on July 1, and the July 10 payroll is then recorded in full as wage expense in the normal way. What is the effect on the July financial statements?",
@@ -147,7 +165,9 @@
     "domain": "Accounting",
     "objective": "7.1.3 K7103 - Knowledge of accruals and reversals; 7.1.1 K7101 (accounting periods)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Hannah is reviewing the monthly trial balance after the payroll close. Gross wages were $500,000. Employees had $110,000 of federal income tax, $38,250 of Social Security and Medicare, and $25,000 of voluntary insurance premiums withheld. The employer's share of Social Security and Medicare was $38,250 and employer state unemployment tax was $4,000. What total payroll cost belongs in operating expense for the month?",
@@ -162,7 +182,9 @@
     "domain": "Accounting",
     "objective": "7.2.1 K7201 - Knowledge of account classifications and appropriate account balances; 7.1.4 K7104",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "In December 2026 the board approves a $1.2 million annual incentive bonus earned on 2026 performance. Individual amounts are determinable at December 31, 2026, the plan requires no further service, and the bonus will be paid on February 15, 2027. Anders, the payroll accountant, must decide how it appears in the 2026 financial statements.",
@@ -177,7 +199,9 @@
     "domain": "Accounting",
     "objective": "7.1.1 K7101 - Knowledge of accounting periods; 7.1.2 K7102 (matching)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Emeka reconciles the 401(k) Payable account at month end. The company runs two semimonthly payrolls, each generating about $46,200 of employee deferrals and employer match, and remits to the recordkeeper within a few business days of each payroll. The account shows a $46,200 credit balance at month end. What should Emeka conclude?",
@@ -192,7 +216,9 @@
     "domain": "Accounting",
     "objective": "7.4.2 K7402 - Ability to reconcile general ledger payroll-related accounts; 7.4.1 K7401",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Ada's employer grants paid time off that vests as it is earned and is paid out in cash at termination. At December 31 employees hold 14,300 unused hours and the average hourly rate is $32. The controller asks Ada when the cost of that unused time is recognized.",
@@ -207,7 +233,9 @@
     "domain": "Accounting",
     "objective": "7.1.4 K7104 - Knowledge of impact of asset, liability, and expense accounts on financial statements; 7.1.5 K7105",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "In February, Sonia's company overpaid an employee $3,000 in gross wages, of which $2,150 reached the employee as net pay after withholding. The error is discovered in September of the same calendar year, and the employee agrees to repay before year end. What is the correct treatment?",
@@ -222,7 +250,9 @@
     "domain": "Accounting",
     "objective": "7.3.4 K7304 - Knowledge of accounting for repayment of wages",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Midway through the fiscal year, Winifred's controller proposes changing the vacation accrual from an average-rate method to an individual-rate method, noting that the change would reduce the reported liability this quarter. Which accounting principle should Winifred raise, and what does it require?",
@@ -237,6 +267,8 @@
     "domain": "Accounting",
     "objective": "7.1.2 K7102 - Knowledge of accounting principles (matching, consistency, cost)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   }
 ]

@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": 2,
+  "artifact": "cia-topup/domain-map.json",
+  "purpose": "Remaps every question in the live CIA Part 1 bank from the incorrect production five-domain scheme onto the six official IIA CIA Part 1 (2025 syllabus) domains, and derives the authoring top-up specification from that remap. This file is the spec: any number quoted about the remap must be read from here, not restated from prose.",
+  "syllabus": "IIA CIA Part 1, 2025 syllabus (verified current as of Aug 2026). Six domains; 125 questions / 150 minutes.",
+  "writesToFirestore": false,
+  "coverage": {
+    "mappedQuestions": 125,
+    "note": "Covers the live bank exactly. The 2026-08-11 dedupe backup deleted 255 docs, 100 of which were the duplicate exam; none of those 100 appear here (225 - 100 = 125)."
+  },
+  "howToRead": {
+    "offBlueprint": "true means the question is real, well-written CIA content but is NOT reachable by any CIA Part 1 objective (it is Part 2 material). Its `objective` field records where it was previously parked and is NOT an assertion of blueprint fit. Off-blueprint records are excluded from every on-blueprint count and from all gap math. Do not serve them as domain drill items for the objective shown.",
+    "confidence": "high = unambiguous fit; medium = defensible but arguable, see `note`; low = parked / off-blueprint, see `note`.",
+    "previousObjective": "Present only where this pass corrected an objective code within an otherwise correct domain."
+  },
+  "distributionRaw": {
+    "basis": "All 125 mapped records, including off-blueprint items. Provided for reconciliation only. DO NOT drive authoring from this table.",
+    "total": 125,
+    "rows": [
+      {
+        "domain": "Foundations of Internal Auditing",
+        "blueprintWeightPct": 15,
+        "count": 23,
+        "sharePct": 18.4
+      },
+      {
+        "domain": "Independence and Objectivity",
+        "blueprintWeightPct": 15,
+        "count": 16,
+        "sharePct": 12.8
+      },
+      {
+        "domain": "Proficiency and Due Professional Care",
+        "blueprintWeightPct": 18,
+        "count": 16,
+        "sharePct": 12.8
+      },
+      {
+        "domain": "Quality Assurance and Improvement Program",
+        "blueprintWeightPct": 7,
+        "count": 4,
+        "sharePct": 3.2
+      },
+      {
+        "domain": "Governance, Risk Management, and Control",
+        "blueprintWeightPct": 35,
+        "count": 47,
+        "sharePct": 37.6
+      },
+      {
+        "domain": "Fraud Risks",
+        "blueprintWeightPct": 10,
+        "count": 19,
+        "sharePct": 15.2
+      }
+    ]
+  },
+  "distributionOnBlueprint": {
+    "basis": "The 125 records minus the 17 off-blueprint items. THIS is the real state of Part 1 coverage and the only table the top-up may be derived from.",
+    "total": 108,
+    "offBlueprintExcluded": 17,
+    "rows": [
+      {
+        "domain": "Foundations of Internal Auditing",
+        "blueprintWeightPct": 15,
+        "count": 15,
+        "sharePct": 13.9
+      },
+      {
+        "domain": "Independence and Objectivity",
+        "blueprintWeightPct": 15,
+        "count": 16,
+        "sharePct": 14.8
+      },
+      {
+        "domain": "Proficiency and Due Professional Care",
+        "blueprintWeightPct": 18,
+        "count": 7,
+        "sharePct": 6.5
+      },
+      {
+        "domain": "Quality Assurance and Improvement Program",
+        "blueprintWeightPct": 7,
+        "count": 4,
+        "sharePct": 3.7
+      },
+      {
+        "domain": "Governance, Risk Management, and Control",
+        "blueprintWeightPct": 35,
+        "count": 47,
+        "sharePct": 43.5
+      },
+      {
+        "domain": "Fraud Risks",
+        "blueprintWeightPct": 10,
+        "count": 19,
+        "sharePct": 17.6
+      }
+    ]
+  },
+  "topUp": {
+    "correction": "Any earlier claim that this bank is over-weighted on Foundations is BACKWARDS. On-blueprint Foundations is 15, at or below its 125-question target of 19. And Proficiency and Due Professional Care is not short by 7 — on-blueprint it holds only 7 of a 23-question target, roughly double the previously stated hole.",
+    "roundingNote": "Each targetCount is its blueprint percentage of the stated bank size, rounded independently, so the target column sums slightly above the bank size. Treat targets as +/-1.",
+    "atBankSize125": {
+      "bankSize": 125,
+      "targetSum": 127,
+      "rows": [
+        {
+          "domain": "Foundations of Internal Auditing",
+          "blueprintWeightPct": 15,
+          "onBlueprintCount": 15,
+          "targetCount": 19,
+          "gap": 4
+        },
+        {
+          "domain": "Independence and Objectivity",
+          "blueprintWeightPct": 15,
+          "onBlueprintCount": 16,
+          "targetCount": 19,
+          "gap": 3
+        },
+        {
+          "domain": "Proficiency and Due Professional Care",
+          "blueprintWeightPct": 18,
+          "onBlueprintCount": 7,
+          "targetCount": 23,
+          "gap": 16
+        },
+        {
+          "domain": "Quality Assurance and Improvement Program",
+          "blueprintWeightPct": 7,
+          "onBlueprintCount": 4,
+          "targetCount": 9,
+          "gap": 5
+        },
+        {
+          "domain": "Governance, Risk Management, and Control",
+          "blueprintWeightPct": 35,
+          "onBlueprintCount": 47,
+          "targetCount": 44,
+          "gap": -3
+        },
+        {
+          "domain": "Fraud Risks",
+          "blueprintWeightPct": 10,
+          "onBlueprintCount": 19,
+          "targetCount": 13,
+          "gap": -6
+        }
+      ]
+    },
+    "atBankSize150": {
+      "bankSize": 150,
+      "targetSum": 152,
+      "rows": [
+        {
+          "domain": "Foundations of Internal Auditing",
+          "blueprintWeightPct": 15,
+          "onBlueprintCount": 15,
+          "targetCount": 23,
+          "gap": 8
+        },
+        {
+          "domain": "Independence and Objectivity",
+          "blueprintWeightPct": 15,
+          "onBlueprintCount": 16,
+          "targetCount": 23,
+          "gap": 7
+        },
+        {
+          "domain": "Proficiency and Due Professional Care",
+          "blueprintWeightPct": 18,
+          "onBlueprintCount": 7,
+          "targetCount": 27,
+          "gap": 20
+        },
+        {
+          "domain": "Quality Assurance and Improvement Program",
+          "blueprintWeightPct": 7,
+          "onBlueprintCount": 4,
+          "targetCount": 11,
+          "gap": 7
+        },
+        {
+          "domain": "Governance, Risk Management, and Control",
+          "blueprintWeightPct": 35,
+          "onBlueprintCount": 47,
+          "targetCount": 53,
+          "gap": 6
+        },
+        {
+          "domain": "Fraud Risks",
+          "blueprintWeightPct": 10,
+          "onBlueprintCount": 19,
+          "targetCount": 15,
+          "gap": -4
+        }
+      ]
+    },
+    "negativeGapNote": "A negative gap means the domain already exceeds its blueprint share. Governance, Risk Management, and Control and Fraud Risks cannot be brought to weight by authoring; either accept the overage, grow the bank (see atBankSize150), or retire items. Author nothing new against a negative gap.",
+    "priorityOrder": [
+      "Proficiency and Due Professional Care - largest gap by far, and 9 of its 16 mapped items are parked Part 2 content, so the drillable pool is nearly empty.",
+      "Quality Assurance and Improvement Program - only 4 on-blueprint items against a 7% domain, and IV.B has zero.",
+      "Foundations of Internal Auditing - 8 of 23 mapped items are parked; the domain is NOT over-supplied.",
+      "Independence and Objectivity - modest gap, but II.D has zero coverage.",
+      "Governance, Risk Management, and Control - over weight overall, but V.D has zero coverage and must be authored regardless.",
+      "Fraud Risks - over weight; author nothing new."
+    ]
+  },
+  "objectiveCoverage": {
+    "basis": "Objective-level counts. Domain totals hide empty objectives, so this list, not the domain table, governs what must be authored.",
+    "emptyObjectives": [
+      "II.D (Policies that promote objectivity)",
+      "III.B (Individual technical and soft-skill competencies)",
+      "IV.B (Reporting QAIP results to the board)",
+      "V.D (Corporate social responsibility)"
+    ],
+    "rows": [
+      {
+        "objective": "I.A",
+        "domain": "Foundations of Internal Auditing",
+        "description": "IIA Mission, Definition of Internal Auditing, Core Principles; purpose, authority, responsibility",
+        "mappedCount": 13,
+        "onBlueprintCount": 5,
+        "status": "covered"
+      },
+      {
+        "objective": "I.B",
+        "domain": "Foundations of Internal Auditing",
+        "description": "Internal audit charter requirements",
+        "mappedCount": 1,
+        "onBlueprintCount": 1,
+        "status": "thin"
+      },
+      {
+        "objective": "I.C",
+        "domain": "Foundations of Internal Auditing",
+        "description": "Assurance vs consulting services",
+        "mappedCount": 2,
+        "onBlueprintCount": 2,
+        "status": "thin"
+      },
+      {
+        "objective": "I.D",
+        "domain": "Foundations of Internal Auditing",
+        "description": "Conformance with the IIA Code of Ethics",
+        "mappedCount": 7,
+        "onBlueprintCount": 7,
+        "status": "covered"
+      },
+      {
+        "objective": "II.A",
+        "domain": "Independence and Objectivity",
+        "description": "Organizational independence of the internal audit activity",
+        "mappedCount": 4,
+        "onBlueprintCount": 4,
+        "status": "covered"
+      },
+      {
+        "objective": "II.B",
+        "domain": "Independence and Objectivity",
+        "description": "Impairments to independence",
+        "mappedCount": 3,
+        "onBlueprintCount": 3,
+        "status": "covered"
+      },
+      {
+        "objective": "II.C",
+        "domain": "Independence and Objectivity",
+        "description": "Individual auditor objectivity and impairments",
+        "mappedCount": 9,
+        "onBlueprintCount": 9,
+        "status": "covered"
+      },
+      {
+        "objective": "II.D",
+        "domain": "Independence and Objectivity",
+        "description": "Policies that promote objectivity",
+        "mappedCount": 0,
+        "onBlueprintCount": 0,
+        "status": "EMPTY - no on-blueprint coverage"
+      },
+      {
+        "objective": "III.A",
+        "domain": "Proficiency and Due Professional Care",
+        "description": "Knowledge, skills, competencies required by the IAA (developed or procured)",
+        "mappedCount": 2,
+        "onBlueprintCount": 2,
+        "status": "thin"
+      },
+      {
+        "objective": "III.B",
+        "domain": "Proficiency and Due Professional Care",
+        "description": "Individual technical and soft-skill competencies",
+        "mappedCount": 0,
+        "onBlueprintCount": 0,
+        "status": "EMPTY - no on-blueprint coverage"
+      },
+      {
+        "objective": "III.C",
+        "domain": "Proficiency and Due Professional Care",
+        "description": "Due professional care",
+        "mappedCount": 13,
+        "onBlueprintCount": 4,
+        "status": "covered"
+      },
+      {
+        "objective": "III.D",
+        "domain": "Proficiency and Due Professional Care",
+        "description": "Competency through continuing professional development",
+        "mappedCount": 1,
+        "onBlueprintCount": 1,
+        "status": "thin"
+      },
+      {
+        "objective": "IV.A",
+        "domain": "Quality Assurance and Improvement Program",
+        "description": "Required elements of the QAIP (internal and external assessments)",
+        "mappedCount": 2,
+        "onBlueprintCount": 2,
+        "status": "thin"
+      },
+      {
+        "objective": "IV.B",
+        "domain": "Quality Assurance and Improvement Program",
+        "description": "Reporting QAIP results to the board",
+        "mappedCount": 0,
+        "onBlueprintCount": 0,
+        "status": "EMPTY - no on-blueprint coverage"
+      },
+      {
+        "objective": "IV.C",
+        "domain": "Quality Assurance and Improvement Program",
+        "description": "Disclosure of conformance vs nonconformance",
+        "mappedCount": 2,
+        "onBlueprintCount": 2,
+        "status": "thin"
+      },
+      {
+        "objective": "V.A",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Concept of organizational governance",
+        "mappedCount": 14,
+        "onBlueprintCount": 14,
+        "status": "covered"
+      },
+      {
+        "objective": "V.B",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Impact of organizational culture on the control environment",
+        "mappedCount": 1,
+        "onBlueprintCount": 1,
+        "status": "thin"
+      },
+      {
+        "objective": "V.C",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Ethics and compliance issues, alleged violations, dispositions",
+        "mappedCount": 3,
+        "onBlueprintCount": 3,
+        "status": "covered"
+      },
+      {
+        "objective": "V.D",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Corporate social responsibility",
+        "mappedCount": 0,
+        "onBlueprintCount": 0,
+        "status": "EMPTY - no on-blueprint coverage"
+      },
+      {
+        "objective": "V.E",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Fundamental concepts of risk and the risk management process",
+        "mappedCount": 7,
+        "onBlueprintCount": 7,
+        "status": "covered"
+      },
+      {
+        "objective": "V.F",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Risk management frameworks (COSO-ERM, ISO 31000)",
+        "mappedCount": 1,
+        "onBlueprintCount": 1,
+        "status": "thin"
+      },
+      {
+        "objective": "V.G",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Effectiveness of risk management within processes and functions",
+        "mappedCount": 2,
+        "onBlueprintCount": 2,
+        "status": "thin"
+      },
+      {
+        "objective": "V.H",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Appropriateness of internal audit's role in risk management",
+        "mappedCount": 2,
+        "onBlueprintCount": 2,
+        "status": "thin"
+      },
+      {
+        "objective": "V.I",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Internal control concepts and types of controls",
+        "mappedCount": 9,
+        "onBlueprintCount": 9,
+        "status": "covered"
+      },
+      {
+        "objective": "V.J",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Internal control frameworks (COSO, etc.)",
+        "mappedCount": 4,
+        "onBlueprintCount": 4,
+        "status": "covered"
+      },
+      {
+        "objective": "V.K",
+        "domain": "Governance, Risk Management, and Control",
+        "description": "Effectiveness and efficiency of internal controls",
+        "mappedCount": 4,
+        "onBlueprintCount": 4,
+        "status": "covered"
+      },
+      {
+        "objective": "VI.A",
+        "domain": "Fraud Risks",
+        "description": "Fraud risks and types of fraud",
+        "mappedCount": 10,
+        "onBlueprintCount": 10,
+        "status": "covered"
+      },
+      {
+        "objective": "VI.B",
+        "domain": "Fraud Risks",
+        "description": "Potential for occurrence of fraud; how the organization detects and manages fraud risk",
+        "mappedCount": 5,
+        "onBlueprintCount": 5,
+        "status": "covered"
+      },
+      {
+        "objective": "VI.C",
+        "domain": "Fraud Risks",
+        "description": "Controls and education to prevent and detect fraud",
+        "mappedCount": 3,
+        "onBlueprintCount": 3,
+        "status": "covered"
+      },
+      {
+        "objective": "VI.D",
+        "domain": "Fraud Risks",
+        "description": "Forensic auditing techniques and internal audit roles",
+        "mappedCount": 1,
+        "onBlueprintCount": 1,
+        "status": "thin"
+      }
+    ]
+  },
+  "records": [
+    {
+      "_id": "00IGCTTUUEjrbptlUDrk",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 engagement planning: establishing engagement objectives (Std 2210). Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "07DgpbAXhtOrKbl4U4Xo",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 Managing the IAA: risk-based basis of the annual audit plan (Std 2010). Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "0P1O3ax163Q3gCmWdptw",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "0Szxfijejpzkn1q3JZXj",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "0gaBjZM2Y6FZJPS0UXaa",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "0ktSW3c7WmXHYUlKjQhd",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.G",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "0pW4nR8a9mIaxxaJ4KgC",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "0t5JHA4F9s09RfSFJsG3",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "0xVAcTYIKSaxhmkil2Ug",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "medium",
+      "note": "Borderline. Outdated procedure manual framed as engagement criteria; mapped to V.I (control concepts) as the closest Part 1 objective."
+    },
+    {
+      "_id": "1IrQR83hXX3wBjTzlGKX",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "20vc0ogsXXwixGrwUyLC",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "2bHPJXKUgEaKX5sU9hGA",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Quality Assurance and Improvement Program",
+      "objective": "IV.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "2eQMyUlYyd2W67f0Dhrj",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 Managing the IAA: objective of a follow-up engagement (Std 2500). Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "314MzQFaeQFzP0U7JZ0R",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "3kNvO1Rmkq1XJyizt1nq",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.E",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "4YMXTTTMYXI6M0bu9FyB",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "4eeSEKpIVvxmOmSZfIEU",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "4mcE2pLbNYD0HNA6FqCF",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "59bL6SclhTcwkaZQv9ju",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "59ukB3NQ1HCZZ2M5zxc2",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "5CvI6Mc136xmHXmHxYsu",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 sampling theory: drivers of statistical sample size (confidence level, tolerable deviation rate). Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "5Nf8QKp4dF5WeE2zXkTl",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "5ZctDn6xfsPzUvK7lEO1",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "5e6nTIWAW7XKod6gmaQ9",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "65EnhQG0S725BcLW1vkP",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 communication: required contents of the engagement report (Std 2410). Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "6LnkSXQ8crX2TogTV6Za",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "6QdMsSTP4jb6quymQkWp",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "6krd0KMpQEX9bSbv2SVV",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 engagement conduct: purpose of workpapers (Std 2330). Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "6srla0GvzhIgvUZ6XmKc",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.H",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "6ykdxs8ZCKRTqmPOZEhj",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "7RQ60KVmaOh7182QAtFh",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "7szfDM4Zi99BC1UaPEQ1",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Quality Assurance and Improvement Program",
+      "objective": "IV.A",
+      "offBlueprint": false,
+      "confidence": "medium",
+      "note": "Borderline. Supervisory review of workpapers is Std 2340; mapped to IV.A as ongoing internal assessment/monitoring."
+    },
+    {
+      "_id": "8YNLztERkkgb0J6XRfGP",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.K",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "8aHTe41pUAB9W2LLYRUt",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 engagement planning: purpose of the engagement letter/announcement memo. Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "8z7pdlqKWt6hx7VRxmnZ",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.E",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "9USUUNyZF3xVVCZqqPbU",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "9nTF9nMhNs5YOuiqT4dz",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.E",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "9srsTghhRQyVBvtmgOIR",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.K",
+      "offBlueprint": false,
+      "confidence": "medium",
+      "note": "Borderline. Missing disaster recovery plan classified as a control deficiency; V.K is the closest fit but the stem is partly about report classification."
+    },
+    {
+      "_id": "9tntTXojGEur8Dg9e6L6",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "AJobsgUKBRsAOAoM01Hi",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 communication: to whom engagement results are communicated (Std 2440). Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "BAbGfXsZ314XfzrczdHE",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "CGLIV4AxiNCIYsnfZbKG",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 engagement planning: purpose of the engagement work program (Std 2240). Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "CUG1RXZam0HdmEB00MRe",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.E",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "CvBXjHzTMsZOfBHfIHpb",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "CzIlcynz6N2PeHrXDZzL",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "DTSMbM0ZVWNegtNXhbS6",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 engagement conduct: sufficiency of audit evidence (Std 2310). Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "DWd2QatKIgUcRVw2lPLX",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "DXZ4iYdkfa3z2rMEaXHa",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.E",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "DgBpqEJSmrZuI1NIJMTI",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "EZ7Aeo4dzKMJIzBynymQ",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.K",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "EpfyD1GxzHm9R2UqwnoL",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "F6eELHis30Y48NgjPGcN",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 Managing the IAA: updating the audit plan after a restructuring (Std 2010). Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "FG6AvOIINswSQBNCNih7",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "GdZVjThVvRTkHqHjAZoO",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "H9uxG8tIKou5xXnkdvRg",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.H",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "JFWVKCQMcoTHwendTxhH",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.K",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "JbHfbdyYXDykXrD9vXtg",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "JiJ67kyio0OVG51HSkBj",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.B",
+      "previousObjective": "VI.D",
+      "offBlueprint": false,
+      "confidence": "medium",
+      "note": "Benford's Law screening of vendor invoices is a fraud-detection technique — VI.B 'how the organization detects and manages fraud risks'. Was VI.D. Reassigned VI.D -> VI.B; the VI.B/VI.D boundary on this stem is arguable."
+    },
+    {
+      "_id": "JlmvK7lETbUugybK5KOu",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "LGDf6ncDiWhwLlG5nvST",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "LVRDQCRxG0hh0oXuGOjF",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "MJm18pYt2br8Atueo1Tt",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "ML8Ybl1NgANT931RqvZ6",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Quality Assurance and Improvement Program",
+      "objective": "IV.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "Mrva1VOI8ocUM8viluUQ",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.F",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "OkkFK8gnhzFMjqWKyo5o",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.J",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "OuupADBhbkNWDgqOk9tZ",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "QWLgY3aeJGmzQ4XsX2y1",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "R74SRMokMfqdeHOBrYvR",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "RyqMC42ED1FSw5nnZ9AO",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.E",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "SG7CFzF2r2u3S7BmlpuE",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 communication: how to word an engagement conclusion when a control lapsed mid-year. Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "Sf5zOocbUtkGKxm5hSvp",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "UUyuzsw8J648nDStqDfw",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "V5MxXIffgedVn0T9UBCR",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "VAeixsapRIjWdf9aXPRj",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 Managing the IAA: definition of the audit universe. Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "Z56XXpZ01CeGLstZ9iTz",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "a8YYKDr5umoLhm92nKcf",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "aIPQ40OIJNjYVZQ8oKzd",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "aK9wtKkONDDVSi21OLnC",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 Managing the IAA: monitoring the disposition of engagement results (Std 2500). Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "avgPaYsRfM3UTYqF2oSM",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "awqnMYirsb6WFgl7yVRf",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "bu1RGaB27UJd4MtLyQ4T",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.J",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "cmbvpYYsbY5MSsivHsBo",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "coWKHFFxgJJreFzN44G8",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "d7nRoYaN26bLBNtTuxKB",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "dCVbFFjzMoq0wVfVPuLy",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "dEAqcd9M9hDOtHqdtTHY",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "dYI5SR6LCjqldL9claLx",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "dZHax4sgitQlKneid5kw",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.J",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "dpL6mWrCzM0ztosmt0H1",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "dxD5CAPepa3jLGS6jhiB",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "dzOGKaMvZlmd6Jn0iCvz",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "fLziU9LJEVfi8e9sobJ6",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "fXBzJDnfzVeH6HuXQ1uS",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "gjmohAO5PC1HktMD7vFv",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "gz2ynzLTkIDKz175bwfP",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "h6OY1FXKUA946iR1UXmp",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "hIvp5gQbCubQ8vraidbq",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "hXHtOBgFxgsPb5KQsthV",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "hlQYDj1TxAlPHPZLCTGV",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "hlVYiLqNr6lgYHWG1cOh",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "iJimZR1OA3nZPZI9N5Ea",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.E",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "iLvV3YiqzyxpC4zp3kcl",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "iZmctPe91pqOGV9j2rBy",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "iyv9sj9ZXvYOl4XyyoiG",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "jqWgOjkBEVgwRrTiTwz4",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "ky2zTpGvAECjnXhBq2YY",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.A",
+      "offBlueprint": false,
+      "confidence": "medium",
+      "note": "Borderline. Resource limitation is Std 2020/2030 (Part 2), but III.A reaches resources \"whether developed or procured\", so it is retained here rather than parked."
+    },
+    {
+      "_id": "l9aSiueBoOjhXNbWI4cz",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "mCW7EyYRBHjdEdy85wpS",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 Managing the IAA: coordination with external audit (Std 2050). Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "nn6xErMxL49M3Kp6l2HZ",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "p7YUnlFhV2cF8kG4UFLM",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.G",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "pNmSrtP8dkmGPKGQ5cgc",
+      "oldDomain": "Governance",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "pRgSolkvvTFL2670OrXW",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.A",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Weak fit. Engagement types (operational vs financial vs compliance) are Part 2 content; Part 1 I.C covers only assurance vs consulting. Outside I.A scope. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-I drill item."
+    },
+    {
+      "_id": "qYJ7WvSJCZ1lhjbFCf2N",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "s2h8qZIRkmEpMwGVd6OY",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "s8jAsZ4yhVDvU9RtNWLZ",
+      "oldDomain": "Fraud Risks",
+      "newDomain": "Fraud Risks",
+      "objective": "VI.D",
+      "previousObjective": "VI.B",
+      "offBlueprint": false,
+      "confidence": "medium",
+      "note": "Auditor suspects fraud; correct action is to notify the CAE/management. This is an internal-audit-role/investigation item (VI.D 'internal audit roles related to forensic auditing'), not red-flag evaluation. Was VI.B. Reassigned VI.B -> VI.D; the VI.B/VI.D boundary on this stem is arguable."
+    },
+    {
+      "_id": "slTe86Hy0hXlg1zaOgQl",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Proficiency and Due Professional Care",
+      "objective": "III.C",
+      "offBlueprint": true,
+      "confidence": "low",
+      "note": "Part 2 engagement procedure selection: physical observation of inventory as evidence. Not due professional care. Parked: counts toward the raw distribution only, never toward on-blueprint coverage, and must not be used as a domain-III drill item."
+    },
+    {
+      "_id": "sszj0yQM50FcTRENZhKc",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Quality Assurance and Improvement Program",
+      "objective": "IV.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "tu1u9GmgoBxKwGPnPwIW",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "tuYP0z7hAyegD4xLlYiy",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "vnJvHcLtRizLwrZOMf4N",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.D",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "vs2os0wLTt6Tuhb0URBt",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Foundations of Internal Auditing",
+      "objective": "I.B",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "xrwWGMs5qmYKkPrWha6B",
+      "oldDomain": "Foundations of Internal Auditing",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.A",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "xxHruSeWoo2uYyf60SrK",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.I",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "y0gFOs0eimD1ktcJw18B",
+      "oldDomain": "Risk Management and Control",
+      "newDomain": "Governance, Risk Management, and Control",
+      "objective": "V.J",
+      "offBlueprint": false,
+      "confidence": "high"
+    },
+    {
+      "_id": "y7eZpAlO4yPViXVITAGa",
+      "oldDomain": "Ethics and Professionalism",
+      "newDomain": "Independence and Objectivity",
+      "objective": "II.C",
+      "offBlueprint": false,
+      "confidence": "high"
+    }
+  ]
+}

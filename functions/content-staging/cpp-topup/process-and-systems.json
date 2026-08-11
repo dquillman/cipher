@@ -12,7 +12,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.3 Identify stakeholders and analyze key components required to evaluate technology solutions — K4301 Knowledge of system selection process steps",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Devon has documented his employer's current-state payroll processes and a 140-line requirements list, and has just finished scripted demonstrations with two finalist vendors. His project sponsor asks him to complete the gap analysis before the finalist decision is made. Devon needs to be clear on what that deliverable actually is.",
@@ -27,7 +29,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.3 Identify stakeholders and analyze key components required to evaluate technology solutions — K4303 Knowledge of gap and needs analyses",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Priya is project lead for a combined payroll and time-and-attendance replacement. The team she inherited is two payroll analysts, one HRIS analyst, and the vendor's implementation consultant. The steering committee asks her to confirm the stakeholder list before the project charter is signed, for a system that will change how payroll data is created, funded, secured, and reported.",
@@ -42,7 +46,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.3 Identify stakeholders and analyze key components required to evaluate technology solutions — K4302 Ability to identify project stakeholders",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Terrence's payroll system implementation went live eleven weeks ago. Three consecutive pay cycles have processed with no material errors, a handful of reporting and interface issues remain open with no assigned owner, and the executive sponsor wants to release the project team back to their departments and close the project.",
@@ -57,7 +63,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.6 Manage tasks related to system implementations or upgrades in order to facilitate project completion — K4603 Ability to plan and conduct post project plan reviews",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Ravi is managing a payroll system implementation with a go-live fixed to the first pay date of the new fiscal year. Eight weeks out, HR asks to add a compensation planning module to the same project; the vendor estimates four additional weeks of configuration and $60,000. The approved budget carries a 10% contingency and the schedule has no float before the fixed date.",
@@ -72,7 +80,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.6 Manage tasks related to system implementations or upgrades in order to facilitate project completion — K4602 Ability to formulate and implement project plans (e.g., time management, budget)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Nadia receives an approved pay increase for Alonzo with an effective date falling on the first day of a pay period that closed and was paid two weeks ago. Her payroll system supports effective-dated master file records and automated retroactive calculation. She must decide how to record the change.",
@@ -87,7 +97,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.5 Understand steps required to maintain, back up, and update payroll-related systems to ensure compliance, data integrity, and efficiency — K4505 Knowledge of master file components",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Mikhail is documenting payroll's backup and retention arrangements for an internal control review. The hosted vendor takes nightly backups, keeps them for 30 days, and replicates them to a second region. The continuity plan states that payroll can afford to lose no more than one business day of data and must be able to produce a pay cycle within 24 hours of a declared outage. The reviewer asks whether the vendor's arrangement discharges the employer's obligations.",
@@ -102,7 +114,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.5 Understand steps required to maintain, back up, and update payroll-related systems to ensure compliance, data integrity, and efficiency — K4502 Knowledge of appropriate backup procedures",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Selina's employer processes payroll on a multi-tenant cloud service. The vendor applies quarterly releases on its own schedule, giving two weeks' notice, release notes, and a sandbox copy of the employer's configuration. The CFO argues that because the vendor regression tests every release across its entire client base, payroll's own verification work can be dropped from the quarterly routine.",
@@ -117,7 +131,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.5 Understand steps required to maintain, back up, and update payroll-related systems to ensure compliance, data integrity, and efficiency — K4501 Ability to verify system updates and enhancements; K4503 Knowledge of steps required to update system",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Hugo imports an interface file from the time and attendance system into payroll every Monday. This week the interface returned a 'completed' status with no error message, but total hours in the preliminary register are roughly 4% below a normal week for the same headcount. He has ninety minutes before the preliminary register is due to the operations managers.",
@@ -132,7 +148,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.1 Understand system functionality, automated processes, and system evaluation to enhance payroll processing efficiency — K4102 Knowledge of batch processing and totals; K4103 Knowledge of payroll system integrations and interfaces",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Ingrid is keying a one-time payment during a compressed close. The system displays a yellow message reading 'Amount exceeds three times the employee's average earnings' but permits her to save the entry. On the next employee, a red message stating that a required work-state code is missing prevents her from saving at all. Her new team member asks how the two messages differ.",
@@ -147,7 +165,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.1 Understand system functionality, automated processes, and system evaluation to enhance payroll processing efficiency — K4108 Knowledge of system data edits and impact",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Devraj manages a four-person payroll department. During a controls walkthrough, an auditor observes that one analyst's system role permits her to add a new employee to the master file, set that employee's pay rate and direct deposit account, and release the payroll for payment. The auditor asks Devraj how he will remediate the finding.",
@@ -162,7 +182,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.1 Understand system functionality, automated processes, and system evaluation to enhance payroll processing efficiency — K4105 Knowledge of system security (e.g., user access rules, multi factor authentication)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Camille's department produces four standard outputs each cycle: a payroll edit report, a new-hire and change audit report, a general ledger interface report, and a preliminary payroll register. A new analyst asks which of them she should review to confirm, before the payroll is released for payment, that this cycle's calculated gross-to-net results are what the department intends to pay.",
@@ -177,7 +199,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.1 Understand system functionality, automated processes, and system evaluation to enhance payroll processing efficiency — K4106 Knowledge of payroll system reports and schedules",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Antoine's company will go live on a new payroll system with its first pay date in July, under the same employer identification number. To compress the timeline, the implementation consultant proposes loading only demographic data and current deduction elections, leaving all year-to-date balances in the legacy system, and having the legacy system produce Forms W-2 covering January through June. Antoine must tell the sponsor which course the go-live should take.",
@@ -192,7 +216,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.4 Demonstrate knowledge of steps required to effectively upgrade or implement technology solutions — K4403 Knowledge of mapping, converting, and reconciling data",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Rosalyn is planning end-user training for a payroll and self-service go-live six weeks away. Three audiences are affected: six payroll processors who will run the cycle, 300 managers who will approve time and initiate transfers, and 4,000 employees who will use self-service. The vendor has offered a recorded overview of its standard product at no charge.",
@@ -207,7 +233,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.4 Demonstrate knowledge of steps required to effectively upgrade or implement technology solutions — K4404 Knowledge of planning, developing, and implementing user training",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Yusuf must transmit his ACH file by 9:00 a.m. to fund Friday's pay date. At 8:30 a.m. the hosted payroll application becomes unreachable, and the vendor reports a regional outage with no restoration estimate. Yusuf has the prior period's final results and payment register saved outside the application, and the company's continuity plan is current and names a pre-arranged alternate payment channel at the bank.",
@@ -222,7 +250,9 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.2 Apply the steps required to create and test a plan in order to support business continuity — K4202 Ability to develop procedures for a Business Continuity Plan",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Lorena's payroll continuity plan documents the alternate payment channel, the manual calculation steps, the retention of prior-period results, and a call tree the team confirmed as current last month. During a tabletop exercise built on a four-hour outage of the hosted application, the team reaches everyone quickly and then spends the first hour arguing about whether an outage of that length is severe enough to invoke the plan and about who is authorized to make that decision. The exercise has exposed a missing component.",
@@ -237,6 +267,8 @@
     "domain": "Payroll Process and Supporting Systems and Administration",
     "objective": "4.2 Apply the steps required to create and test a plan in order to support business continuity — K4201 Knowledge of Business Continuity Plans and their components",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   }
 ]

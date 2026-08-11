@@ -12,7 +12,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.1 Understand, document, and correctly apply payroll policies and procedures (K5101 Ability to apply departmental procedures)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Dana, a payroll supervisor, discovers that a configuration error caused 240 employees to be paid without their contractual shift differential in yesterday's payroll. The average shortfall is $86 per employee, and a correcting off-cycle payment is confirmed to fund the following Tuesday. Which communication approach best reflects sound payroll department communication practice?",
@@ -27,7 +29,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.3 Incorporate techniques to effectively facilitate customer service needs and payroll department communications (K5301 Ability to communicate effectively)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Talia manages a five-person payroll team; two members hold the CPP and one holds the FPC. She is building next year's development budget and wants staff to keep their credentials current while also staying ahead of legislative and regulatory change. Which approach best serves both goals?",
@@ -42,7 +46,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.4 Hire staff, develop employees, and manage performance (K5406 Knowledge of training resources)",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Gwen is filling a payroll specialist vacancy. The posted job description is six years old: it lists check-run duties the company no longer performs, omits the multi-state tax filing work the role absorbed after an acquisition, and says nothing about the year-end responsibilities the departing incumbent carried. Gwen wants both a defensible selection process and a fair first-year performance review for whoever is hired. What should she do before posting the opening?",
@@ -57,7 +63,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.4 Hire staff, develop employees, and manage performance (K5403 Ability to prepare job descriptions)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "A Federal Reserve banking holiday falls in Ahmed's 15 December processing week, moving the ACH funding cutoff for the 18 December pay date one business day earlier. The same week, the annual open-enrollment deduction file must be loaded before the first January payroll, which has a 2 January input cutoff, and the CFO has asked for an ad hoc labor-cost analysis with no stated due date. Ahmed cannot complete all three himself this week and must decide how to sequence them. Which approach reflects sound time-management practice for a payroll manager?",
@@ -72,7 +80,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5203 Knowledge of time management techniques)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "In Priyanka's eight-person department, one senior specialist is the only person who can run the multi-state tax filings and calculate complex garnishment orders. The specialist has deferred vacation for two years, and Priyanka recognizes the concentration as an operational risk. Which action best addresses it?",
@@ -87,7 +97,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.4 Hire staff, develop employees, and manage performance (K5405 Knowledge of payroll staff's skills and abilities)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Nikhil runs the payroll help desk for 6,000 employees. Inquiries arrive by phone, by email to three different addresses, and by employees stopping team members in the hallway. Employees complain that their questions \"disappear,\" and Nikhil cannot report how many inquiries the team receives or how long they take. Which improvement best applies customer service principles to this problem?",
@@ -102,7 +114,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.3 Incorporate techniques to effectively facilitate customer service needs and payroll department communications (K5302 Ability to identify and apply customer service principles)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Yolanda, a payroll manager, assigns the quarterly employment tax return reconciliation to a specialist who has not performed it before, telling him to complete the reconciliation and file the return. Two weeks later, with the filing deadline approaching, the specialist raises several unresolved questions about a variance. The CFO asks Yolanda who is answerable for the filing. Which statement about responsibility for this filing is correct?",
@@ -117,7 +131,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.4 Hire staff, develop employees, and manage performance (K5401 Ability to delegate appropriately)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Carlos manages a payroll specialist who has made three keying errors across the last two pay cycles, two of which reached employee paychecks. The specialist is engaged, has asked about advancement, and has had no prior accuracy problems. Carlos is preparing for a mid-year discussion. What is the most appropriate management action?",
@@ -132,7 +148,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.4 Hire staff, develop employees, and manage performance (K5404 Knowledge of employee performance evaluation and development plans)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Sasha is filling an open payroll tax analyst position. She has interviewed five candidates; each conversation went in a different direction, and with two candidates she spent much of the time discussing commute length and family obligations. Her director asks her to justify her recommendation. Which interviewing approach should Sasha adopt?",
@@ -147,7 +165,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.4 Hire staff, develop employees, and manage performance (K5407 Knowledge of effective job interview techniques)",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Elena's payroll department has a service level agreement with HR: payroll guarantees that new hires are paid on their first regular payday, provided complete new-hire records are entered by 5:00 p.m. two business days before input cutoff. Over the last quarter, HR entered 40 percent of new-hire records on the morning of cutoff, and eleven new hires missed their first payday. HR leadership has cited payroll's SLA miss in a steering committee report. What is Elena's most defensible response?",
@@ -162,7 +182,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5201 Knowledge of service level agreements)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "A benchmarking study reports Imani's payroll department at $9.40 cost per payslip against a peer-group median of $4.10, and the CFO has proposed cutting two positions to close the gap. Imani's department also administers time and attendance, calculates garnishments in house, and processes payroll in three countries; the study's peer group outsources garnishment administration and reports domestic payroll only. What should Imani do first?",
@@ -177,7 +199,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5204 Knowledge of benchmarking, reporting, and analytics)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "In March, Oscar's employer receives a revised state unemployment insurance rate notice assigning an experience rate of 4.2 percent in place of the 2.1 percent rate the payroll system has used since the first January payroll. The notice states that the assigned rate applies to all wages paid in the calendar year and allows 30 days from its date to protest the determination. Oscar believes benefit charges from one separated employee were assigned to the account in error, and first-quarter wages have already been paid. What are the implications Oscar must act on?",
@@ -192,7 +216,9 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.3 Incorporate techniques to effectively facilitate customer service needs and payroll department communications (K5303 Knowledge of implications of governmental notices)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Theo's employer has acquired three companies. Payroll now runs on four systems across five states, with a local payroll clerk at each site; error rates and cost per payslip vary widely by location. Executive leadership wants consistency and reliable consolidated reporting, while the business units insist on preserving local expertise in union contract terms and location-specific pay rules. Which service delivery model best fits these requirements?",
@@ -207,6 +233,8 @@
     "domain": "Payroll Administration and Management",
     "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5206 Knowledge of shared services environment)",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   }
 ]

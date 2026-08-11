@@ -12,7 +12,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Leadership Cluster — Leadership & Navigation — Sub-competency: Navigating the Organization",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Nadia is HR director at a contract manufacturer that just lost the customer accounting for 40 percent of its revenue. The executive team has announced a pivot away from high-volume custom work toward a smaller, higher-margin product line, and finance has begun costing the new operating model. Nadia's three-year HR plan was built entirely around scaling headcount to support the volume business. Leadership has not yet asked HR for anything. Which course of action best reflects the Vision sub-competency for an advanced HR professional?",
@@ -27,7 +29,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Leadership Cluster — Leadership & Navigation — Sub-competency: Vision",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Corinne requests a meeting with Dilip, an HR generalist, and opens with, \"Before I tell you anything, I need you to promise this stays between us.\" Dilip does not yet know what the subject is. Which response best reflects professional integrity?",
@@ -42,7 +46,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Leadership Cluster — Ethical Practice — Sub-competency: Professional Integrity",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Tobias, an HR director, reports that anonymous ethics-hotline submissions fell from 42 last year to 4 this year. The COO wants to cite the decline in the annual report, which goes to print next month, as evidence that the culture has improved. Reviewing the same period, Tobias finds that recurring exit-interview themes include \"nothing happens when you speak up.\" What should he do?",
@@ -57,7 +63,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Leadership Cluster — Ethical Practice — Sub-competency: Ethical Agent",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Fatima, an HR business partner at a consulting firm, is reviewing promotion recommendations. A practice lead wants to hold Thabo back, explaining that he \"doesn't command the room\" — he speaks after others have finished, rarely interrupts, and defers to the client's most senior person. Thabo's delivery quality scores and client-retention rate are the highest on the team. What is Fatima's best action?",
@@ -72,7 +80,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Leadership Cluster — Inclusive Mindset — Sub-competency: Cultivating an Inclusive and Diverse Culture",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Elias, HR manager at a 1,200-employee food processor, is reviewing the bereavement policy: three paid days for the death of a spouse, parent or child, one day for a sibling or grandparent, and nothing for any other relationship. In the past year employees have asked for time for the grandmother who raised one of them, an unmarried partner of eleven years, and an aunt who shared their household. Supervisors handled each request on their own and approvals varied widely by unit. Which action best reflects Building the Infrastructure for an Inclusive and Diverse Culture?",
@@ -87,7 +97,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Leadership Cluster — Inclusive Mindset — Sub-competency: Building the Infrastructure for an Inclusive and Diverse Culture",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Bettina is renegotiating the annual contract with the staffing supplier that fills her company's seasonal warehouse roles. The supplier opens by demanding a 12 percent increase in its markup, citing wage pressure. Bettina's approved ceiling is 5 percent. Through prior conversations she knows the supplier's more pressing problem is her company's 45-day payment terms, which strain its payroll float. Which approach best reflects interest-based bargaining?",
@@ -102,7 +114,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Interpersonal Cluster — Relationship Management — Sub-competency: Negotiation",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Omar has been an HR generalist for four months and interacts almost exclusively with the two department managers he supports. His director tells him that in about six months he will lead an HRIS data-cleanup project requiring sustained cooperation from IT, Payroll and Finance. Which action best reflects the Networking sub-competency?",
@@ -117,7 +131,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Interpersonal Cluster — Relationship Management — Sub-competency: Networking",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "A production manager asks Grace, an HR generalist, to come to his shift meeting and personally explain a new attendance-point practice, telling her \"they'll take it better coming from HR.\" The change affects only his team's scheduling and he will be the one applying it daily. What is Grace's best response?",
@@ -132,7 +148,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Interpersonal Cluster — Communication — Sub-competency: Exchanging Organizational Information",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Beatriz is HR director for a regional home-health agency. Over the past 18 months, state reimbursement rates have been frozen, the minimum wage in two of the three states it serves has begun a scheduled multi-year increase, a well-funded competitor has opened nearby offering sign-on bonuses, and a state licensure change has shortened the aide certification course from twelve weeks to six. Aide turnover is 62 percent, and the CEO asks Beatriz for a retention plan. Which analysis should anchor her work?",
@@ -147,7 +165,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Business Cluster — Business Acumen — Sub-competency: Business and Competitive Awareness",
     "difficulty": "medium",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "Meredith manages an HR shared-services team. Its dashboard shows tickets closed within the two-day service-level agreement 96 percent of the time, yet the internal satisfaction score sits at 3.1 out of 5 and managers increasingly bypass the ticket system to bring questions directly to individual HR business partners. What is Meredith's best first step?",
@@ -162,7 +182,9 @@
     "domain": "Behavioral Competencies",
     "objective": "Business Cluster — Consultation — Sub-competency: Service Excellence",
     "difficulty": "easy",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
   },
   {
     "stem": "A hiring manager asks Ivo, an HR analyst at a logistics company, to adopt a 10-item \"grit\" questionnaire he found online for screening dispatcher applicants. Ivo administers it to 60 current dispatchers: the scale's internal consistency is high (Cronbach's alpha = .91), but scores correlate at r = .08 with supervisor performance ratings. The manager argues the .91 proves the instrument is sound. What is Ivo's most defensible conclusion?",
@@ -177,6 +199,8 @@
     "domain": "Behavioral Competencies",
     "objective": "Business Cluster — Analytical Aptitude — Sub-competency: Data Analysis",
     "difficulty": "hard",
-    "source": "authored-2026-08-bank-topup"
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
   }
 ]
