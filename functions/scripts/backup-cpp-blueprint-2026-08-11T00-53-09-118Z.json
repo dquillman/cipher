@@ -1,0 +1,72 @@
+{
+  "takenAt": "2026-08-11T00-53-09-118Z",
+  "path": "exams/Vs3aNmifAJc9bYRFCxXc",
+  "before": {
+    "name": "Certified Payroll Professional (CPP) (APA)",
+    "description": "The CPP exam is a technical test of the knowledge required to ensure compliance with federal and state wage and tax laws. SMEs must focus on calculation accuracy (taxes, deductions, garnishments), knowledge of FLSA rules, and proper reporting/record-keeping procedures.",
+    "domains": [
+      "Core Payroll Concepts",
+      "Calculation of the Paycheck",
+      "Compliance/Research and Resources",
+      "Administration/Process/Management/Audits/Accounting"
+    ],
+    "createdAt": {
+      "_seconds": 1764996597,
+      "_nanoseconds": 932000000
+    },
+    "blueprint": [
+      {
+        "reference": "",
+        "questionType": "",
+        "difficulty": "",
+        "domain": "Core Payroll Concepts",
+        "keywords": "",
+        "subDomain": "Taxation; Gross-to-Net Calculations; Wage and Hour Law (FLSA).",
+        "weight": 24
+      },
+      {
+        "keywords": "",
+        "subDomain": "Taxable vs. Non-Taxable Compensation; Garnishments; Deduction Limits.",
+        "reference": "",
+        "difficulty": "",
+        "weight": 20,
+        "domain": "Calculation of the Paycheck",
+        "questionType": ""
+      },
+      {
+        "subDomain": "Record Retention; Tax Forms; Legal Research Methods.",
+        "reference": "",
+        "domain": "Compliance/Research and Resources",
+        "weight": 16,
+        "questionType": "",
+        "difficulty": "",
+        "keywords": ""
+      },
+      {
+        "questionType": "",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "subDomain": "Payroll Systems; Internal Controls; Audits; Accounting Principles (Journal entries).",
+        "weight": 40,
+        "difficulty": "",
+        "reference": "",
+        "keywords": ""
+      }
+    ],
+    "config": {
+      "totalQuestions": 100,
+      "hardPct": 45,
+      "mediumPct": 45,
+      "easyPct": 10
+    },
+    "updatedAt": {
+      "_seconds": 1765562680,
+      "_nanoseconds": 286000000
+    },
+    "isPublished": true,
+    "questionCount": 200,
+    "bankVersionUpdatedAt": {
+      "_seconds": 1786372920,
+      "_nanoseconds": 587000000
+    }
+  }
+}

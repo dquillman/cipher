@@ -4,6 +4,7 @@ exports.sendLeadMagnetWelcome = exports.LEAD_SEQUENCE = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const axios_1 = require("axios");
+const emailCompliance_1 = require("./emailCompliance");
 /**
  * Lead-magnet welcome sequence.
  *
@@ -51,7 +52,7 @@ function resolveKey() {
 function fromAddress() {
     return process.env.RESEND_FROM || "Dave at CipherExam <dave@cipherexam.com>";
 }
-function shell(inner, ctaUrl, ctaLabel) {
+function shell(inner, ctaUrl, ctaLabel, footer) {
     const cta = ctaLabel
         ? `<p style="margin-top:28px"><a href="${ctaUrl}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">${ctaLabel}</a></p>`
         : "";
@@ -59,6 +60,7 @@ function shell(inner, ctaUrl, ctaLabel) {
 ${inner}
 ${cta}
 <p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 7-day free trial. No credit card required. Cancel anytime.</p>
+${footer}
 </div>`;
 }
 const CLUSTERS = {
@@ -101,25 +103,25 @@ exports.LEAD_SEQUENCE = [
     {
         dayOffset: 0,
         subject: (c) => `${c.magnetTitle} — here it is`,
-        html: (c, downloadUrl) => shell(`<p>Thanks for grabbing this.</p>
+        html: (c, downloadUrl, _lpUrl, footer) => shell(`<p>Thanks for grabbing this.</p>
 <p><a href="${downloadUrl}">${c.magnetTitle}</a> — that link is permanent, so save it rather than re-requesting it.</p>
 <p>One suggestion on how to use it: don't read it front to back. Work a practice question first, get it wrong, <em>then</em> come back and find the section that explains why. It sticks better that way.</p>
-<p>I'll send you one more thing in a couple of days. If you'd rather I didn't, just reply and say so — I read every reply.</p>`, downloadUrl, null),
+<p>I'll send you one more thing in a couple of days. If you'd rather I didn't, just reply and say so — I read every reply.</p>`, downloadUrl, null, footer),
     },
     {
         dayOffset: 2,
         subject: (c) => `The ${c.examName} question everyone gets wrong`,
-        html: (c, downloadUrl, lpUrl) => shell(c.insightHtml +
+        html: (c, downloadUrl, lpUrl, footer) => shell(c.insightHtml +
             `<p>That's the reasoning pattern the whole cheat sheet is built on, and it's what CipherExam explains on every single question — not just which answer is right, but why the other three were built to look right.</p>
-<p><a href="${downloadUrl}">Your copy of ${c.magnetTitle}</a>, in case you need the link again.</p>`, lpUrl, "Start Free Trial"),
+<p><a href="${downloadUrl}">Your copy of ${c.magnetTitle}</a>, in case you need the link again.</p>`, lpUrl, "Start Free Trial", footer),
     },
     {
         dayOffset: 5,
         subject: (c) => `What a ${c.examName} retake actually costs`,
-        html: (c, _downloadUrl, lpUrl) => shell(`<p>The ${c.examName} exam fee is ${c.fee}. A retake means paying it again, plus several more weeks of study you'd already planned to be done with.</p>
+        html: (c, _downloadUrl, lpUrl, footer) => shell(`<p>The ${c.examName} exam fee is ${c.fee}. A retake means paying it again, plus several more weeks of study you'd already planned to be done with.</p>
 <p>That's the real argument for preparing differently rather than just preparing more. Most candidates who fail didn't skip the material — they studied to recall it, and the exam asked them to apply it.</p>
 <p>CipherExam is $19/month, or $189/year. The 7-day trial doesn't take a card, so you can see whether the explanations actually change how you read a question before deciding anything.</p>
-<p>Either way, the cheat sheet is yours. Good luck with the sit.</p>`, lpUrl, "Start Free Trial"),
+<p>Either way, the cheat sheet is yours. Good luck with the sit.</p>`, lpUrl, "Start Free Trial", footer),
     },
 ];
 function scheduledAtIso(base, dayOffset) {
@@ -176,6 +178,32 @@ exports.sendLeadMagnetWelcome = functions.firestore
             .catch(() => undefined);
         return;
     }
+    // CAN-SPAM gate. These three emails go to someone who downloaded a PDF —
+    // a cold lead, not a customer — so every one of them is a commercial
+    // message that needs a working opt-out and a postal address. Fails closed:
+    // no footer means no send, not a send without a footer.
+    const compliance = (0, emailCompliance_1.complianceStatus)();
+    if (!compliance.ok) {
+        await (0, emailCompliance_1.recordComplianceBlock)("sendLeadMagnetWelcome", compliance.missing);
+        await snap.ref
+            .set({ welcomeSequenceBlockedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true })
+            .catch(() => undefined);
+        return;
+    }
+    if (await (0, emailCompliance_1.isOptedOut)(email)) {
+        console.log(`[lead-welcome] ${captureId} skipped — ${email} has opted out.`);
+        await snap.ref
+            .set({ welcomeSequenceSuppressedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true })
+            .catch(() => undefined);
+        return;
+    }
+    const footer = (0, emailCompliance_1.complianceFooter)(email);
+    if (!footer) {
+        // complianceStatus() passed, so this is unreachable in practice — but a
+        // null footer must never silently become an empty string in the template.
+        await (0, emailCompliance_1.recordComplianceBlock)("sendLeadMagnetWelcome", ["footer could not be built"]);
+        return;
+    }
     const copy = CLUSTERS[cluster];
     const downloadUrl = `https://cipherexam.com${copy.magnetPath}`;
     const lpUrl = `https://cipherexam.com${copy.lp}?utm_source=email&utm_campaign=lead_magnet_welcome&utm_content=${cluster}`;
@@ -187,7 +215,7 @@ exports.sendLeadMagnetWelcome = functions.firestore
                 from: fromAddress(),
                 to: [email],
                 subject: mail.subject(copy),
-                html: mail.html(copy, downloadUrl, lpUrl),
+                html: mail.html(copy, downloadUrl, lpUrl, footer),
                 tags: [
                     { name: "campaign", value: "lead-magnet-welcome" },
                     { name: "day", value: String(mail.dayOffset) },

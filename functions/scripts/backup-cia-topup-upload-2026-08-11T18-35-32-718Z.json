@@ -1,0 +1,257 @@
+{
+  "takenAt": "2026-08-11T18:35:32.718Z",
+  "exam": "CIA Part 1",
+  "examId": "dtgTymjijqUr4NEIHbE1",
+  "added": [
+    {
+      "id": "QLhIHuR98gyuYVTkHar2",
+      "src": "governance-risk-control.json[0]",
+      "stem": "Priya Raghavan is opening a governance review at a regional water util"
+    },
+    {
+      "id": "5MpUHTa4RYy18C2mBFPS",
+      "src": "governance-risk-control.json[1]",
+      "stem": "Marcus Delacroix is assessing governance at a family-controlled manufa"
+    },
+    {
+      "id": "uf3kU7JiFxP1d0Iebdri",
+      "src": "governance-risk-control.json[2]",
+      "stem": "While planning a revenue-cycle engagement, Ingrid Halvorsen learns tha"
+    },
+    {
+      "id": "JuW2bZXLg9Oy02wL7Tke",
+      "src": "governance-risk-control.json[3]",
+      "stem": "Tomás Ferreira wants evidence about the control environment at a subsi"
+    },
+    {
+      "id": "sOmFf0UAk8GZixY7h0nB",
+      "src": "governance-risk-control.json[4]",
+      "stem": "Naledi Mokoena is reviewing how allegations are handled. Over the past"
+    },
+    {
+      "id": "hWyN9503NuCKPSIPsj0N",
+      "src": "governance-risk-control.json[5]",
+      "stem": "Hana Kobayashi is evaluating an ethics and compliance program. She fin"
+    },
+    {
+      "id": "CddhVfOUtYfD96L8LPAH",
+      "src": "governance-risk-control.json[6]",
+      "stem": "Diego Sandoval's company publishes an annual sustainability report. A "
+    },
+    {
+      "id": "3np7dN9U88RcQegNlgSp",
+      "src": "governance-risk-control.json[7]",
+      "stem": "Before the board debates a new policy, a director asks Fiona Achebe to"
+    },
+    {
+      "id": "K8TfwMItnUfiF7gvJh8h",
+      "src": "governance-risk-control.json[8]",
+      "stem": "At a risk workshop, the treasurer of a logistics group tells Rahul Men"
+    },
+    {
+      "id": "Lm5yten9qoFNorWEekRv",
+      "src": "governance-risk-control.json[9]",
+      "stem": "Amara Nwosu's company has outsourced card-payment processing to a spec"
+    },
+    {
+      "id": "26h0I1HDaR9fporW2jXH",
+      "src": "governance-risk-control.json[10]",
+      "stem": "Lars Bergstrom observes a divisional risk workshop. The facilitator op"
+    },
+    {
+      "id": "vw8fWsFfJB9uBBcD8EZx",
+      "src": "governance-risk-control.json[11]",
+      "stem": "A newly hired risk manager tells Yuki Tanaka that the company should \""
+    },
+    {
+      "id": "fU0Sp4CwtJ2oo0GBk1z4",
+      "src": "governance-risk-control.json[12]",
+      "stem": "Kwame Boateng is assessing his group's adoption of COSO's Enterprise R"
+    },
+    {
+      "id": "8rUkuUFzZl5PZX12buEj",
+      "src": "governance-risk-control.json[13]",
+      "stem": "Elena Vasquez is evaluating whether risk management is operating effec"
+    },
+    {
+      "id": "1wOzoLwSvk1tPQjKd5bQ",
+      "src": "governance-risk-control.json[14]",
+      "stem": "Nadia Farouk finds that the procurement risk register scores every ris"
+    },
+    {
+      "id": "u62p1X5JihQ9So6v93NS",
+      "src": "governance-risk-control.json[15]",
+      "stem": "The CFO asks Owen Bradshaw's internal audit activity to facilitate the"
+    },
+    {
+      "id": "3oaCkCzb5IagTzHiFo7A",
+      "src": "governance-risk-control.json[16]",
+      "stem": "Sofia Marchetti becomes chief audit executive at a company with no ent"
+    },
+    {
+      "id": "eyuY45bFPqTKsFhjYIrj",
+      "src": "governance-risk-control.json[17]",
+      "stem": "At a 60-employee nonprofit, one accountant records receipts, prepares "
+    },
+    {
+      "id": "SMt7yxjHML16iIbvdXUm",
+      "src": "governance-risk-control.json[18]",
+      "stem": "With limited engagement hours, Camille Roux must decide which of the s"
+    },
+    {
+      "id": "HBFrt9gHRPYkhr842B9o",
+      "src": "governance-risk-control.json[19]",
+      "stem": "Bo Lindqvist is assessing internal control at a subsidiary against COS"
+    },
+    {
+      "id": "3G5BvzkkhL3rEgMgnw6j",
+      "src": "governance-risk-control.json[20]",
+      "stem": "Grace Oyelaran finds that the ERP system automatically matches every v"
+    },
+    {
+      "id": "tzU4nxrVitqGxMQXMI0V",
+      "src": "governance-risk-control.json[21]",
+      "stem": "Viktor Adamec tested 40 instances of a daily approval control and foun"
+    },
+    {
+      "id": "qrgg4NdZvqDERxAiS93v",
+      "src": "proficiency-due-care.json[0]",
+      "stem": "During an audit of a manufacturer's procurement cycle, Marcus notices "
+    },
+    {
+      "id": "wW4jW1KjcR1PAu2kTodY",
+      "src": "proficiency-due-care.json[1]",
+      "stem": "A retail group's internal audit activity is planning its annual audit "
+    },
+    {
+      "id": "EoAPzv6CaYy2AYNweNPO",
+      "src": "proficiency-due-care.json[2]",
+      "stem": "The chief operating officer asks the internal audit activity to design"
+    },
+    {
+      "id": "QST3xODE9ev0K6pJ0EOt",
+      "src": "proficiency-due-care.json[3]",
+      "stem": "Reviewing his department's competency profile, CAE Tomas finds that no"
+    },
+    {
+      "id": "wBAZ5ysjXerSo7LSWVkC",
+      "src": "proficiency-due-care.json[4]",
+      "stem": "Nadia's testing establishes beyond dispute that the warehouse's cycle-"
+    },
+    {
+      "id": "HvO4XncO9dhzlj2kuTsG",
+      "src": "proficiency-due-care.json[5]",
+      "stem": "Testing payroll, Owen finds 34 employees paid during a month in which "
+    },
+    {
+      "id": "oRqRQd6yk2IFAsdXlLGN",
+      "src": "proficiency-due-care.json[6]",
+      "stem": "Auditor Lena has agreed with a business unit that a segregation-of-dut"
+    },
+    {
+      "id": "xkkwpK5xF3VDfvNZiT90",
+      "src": "proficiency-due-care.json[7]",
+      "stem": "Two weeks into an engagement on a bank's model risk governance, staff "
+    },
+    {
+      "id": "3amfqTScJEo992xMfvqF",
+      "src": "proficiency-due-care.json[8]",
+      "stem": "A newly appointed audit committee chair asks CAE Gemma to explain what"
+    },
+    {
+      "id": "ZaRTEHlElU8yMx4MxTP3",
+      "src": "proficiency-due-care.json[9]",
+      "stem": "CAE Hassan is scoping an assurance engagement over a vendor-master mai"
+    },
+    {
+      "id": "WyTFyxNbHqhrXVBEwSBI",
+      "src": "proficiency-due-care.json[10]",
+      "stem": "Eighteen months after an audit of expense reimbursements, a scheme is "
+    },
+    {
+      "id": "q2Pqp5MKqZi8Lq862mcG",
+      "src": "proficiency-due-care.json[11]",
+      "stem": "While auditing the accounts payable close, Bianca observes that the tr"
+    },
+    {
+      "id": "nJ9jTux49dg1LbiV0gqS",
+      "src": "proficiency-due-care.json[12]",
+      "stem": "An engagement covering 2.1 million retail refund transactions is plann"
+    },
+    {
+      "id": "NAv6KTBoTXGySYS7NweX",
+      "src": "proficiency-due-care.json[13]",
+      "stem": "The CFO asks internal audit for a consulting engagement to advise on r"
+    },
+    {
+      "id": "Jgbrkq3vfVhPA2atkcjt",
+      "src": "proficiency-due-care.json[14]",
+      "stem": "Three days before the report deadline, the divisional president asks i"
+    },
+    {
+      "id": "wxL1KxaMVkvJjmk57r7b",
+      "src": "proficiency-due-care.json[15]",
+      "stem": "An audit committee member asks why the internal audit department budge"
+    },
+    {
+      "id": "YaK1BAngNvSfKHGrFGNm",
+      "src": "proficiency-due-care.json[16]",
+      "stem": "Ayo has 40 hours of continuing professional development to complete th"
+    },
+    {
+      "id": "6kUW8PDHhX7uoeSzmyHD",
+      "src": "proficiency-due-care.json[17]",
+      "stem": "Elena, a senior auditor, has completed the 40 credit hours her certifi"
+    },
+    {
+      "id": "zkd8StvrqW6uRvvFmD1X",
+      "src": "qaip.json[0]",
+      "stem": "Marisol, the chief audit executive at a regional utility, has built qu"
+    },
+    {
+      "id": "Tgap0QAwg09PGiV87OEB",
+      "src": "qaip.json[1]",
+      "stem": "Devraj, a chief audit executive, is due for an external assessment. To"
+    },
+    {
+      "id": "73cnCoyb3tiC7aPlOeRm",
+      "src": "qaip.json[2]",
+      "stem": "Priya leads a three-person internal audit function at a nonprofit. The"
+    },
+    {
+      "id": "5NYWm46yjI2KhLcovbvJ",
+      "src": "qaip.json[3]",
+      "stem": "Owen, a newly appointed chief audit executive, inherits a quality assu"
+    },
+    {
+      "id": "QVINcUag2c4lyQwiOXeJ",
+      "src": "qaip.json[4]",
+      "stem": "Camille completes her internal audit activity's annual self-assessment"
+    },
+    {
+      "id": "wxgL1e6CLO0UvaCKvXuY",
+      "src": "qaip.json[5]",
+      "stem": "Hugo has led internal audit at a manufacturer for six years. He presen"
+    },
+    {
+      "id": "h6Str8kUDK3WcKHAPUxk",
+      "src": "qaip.json[6]",
+      "stem": "Ines presents the results of a just-completed external assessment to h"
+    },
+    {
+      "id": "PMfD27Neq9h9AUH0CuCr",
+      "src": "qaip.json[7]",
+      "stem": "Ravi took over an internal audit function four years ago; the function"
+    },
+    {
+      "id": "beYt3E0IncQRNXCLllM7",
+      "src": "qaip.json[8]",
+      "stem": "Yusuf's external assessment concludes that his internal audit activity"
+    },
+    {
+      "id": "SOG7iqw4Kntp3veE7VqK",
+      "src": "qaip.json[9]",
+      "stem": "A periodic self-assessment at Lena's internal audit activity finds tha"
+    }
+  ]
+}

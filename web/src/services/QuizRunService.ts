@@ -82,16 +82,23 @@ export const QuizRunService = {
         meta?: QuizRun['meta']
     ): Promise<string> => {
         try {
-            // Abandon any orphaned in_progress runs for THIS exam only
+            // Abandon orphaned in_progress runs for THIS exam AND THIS quizType.
+            // Scoping to quizType matters: a simulation (full mock) and a
+            // practice/smart/trap run are different activities that can legitimately
+            // be in progress at once. Abandoning across types meant merely opening
+            // the simulator silently killed a user's in-progress practice quiz and
+            // erased its resume banner. quizType is filtered client-side to avoid a
+            // new composite index on (examId, status, quizType).
             const orphanQ = query(
                 collection(db, 'quizRuns', userId, 'runs'),
                 where('examId', '==', examId),
                 where('status', '==', 'in_progress')
             );
             const orphans = await getDocs(orphanQ);
-            if (orphans.size > 0) {
-                console.log(`[createRun] Abandoning ${orphans.size} orphaned in_progress run(s) for exam ${examId}`);
-                await Promise.all(orphans.docs.map(d =>
+            const sameType = orphans.docs.filter(d => (d.data() as any).quizType === quizType);
+            if (sameType.length > 0) {
+                console.log(`[createRun] Abandoning ${sameType.length} orphaned in_progress ${quizType} run(s) for exam ${examId}`);
+                await Promise.all(sameType.map(d =>
                     updateDoc(d.ref, { status: 'abandoned', updatedAt: serverTimestamp() })
                 ));
             }
@@ -179,6 +186,27 @@ export const QuizRunService = {
         } catch (error) {
             console.error("Error saving quiz progress:", error);
         }
+    },
+
+    /**
+     * Replaces the entire answers array in one write.
+     *
+     * saveProgress appends one answer at a time, which fits the Quiz flow where
+     * each question is answered in turn. The simulator collects every answer
+     * locally and submits them together, so it needs a single overwrite rather
+     * than N appends. completeRun reads this array as the authoritative record,
+     * so it must land before completeRun is called.
+     */
+    overwriteAnswers: async (
+        userId: string,
+        runId: string,
+        answers: { questionId: string; selectedOption: number; selectedOptions?: number[]; isCorrect: boolean; domain?: string }[]
+    ) => {
+        const runRef = doc(db, 'quizRuns', userId, 'runs', runId);
+        await updateDoc(runRef, {
+            answers,
+            updatedAt: serverTimestamp()
+        } as any);
     },
 
     /**

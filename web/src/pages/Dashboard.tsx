@@ -285,6 +285,12 @@ export default function Dashboard() {
 
     const resumableRuns = activeRuns.filter((r: any) => {
         if (r.quizType === 'diagnostic') return false;
+        // A full mock is not a resumable practice quiz. The simulator now
+        // persists an in_progress run (so attempts survive a refresh and
+        // populate history), but resuming it through this practice-quiz banner
+        // reruns the mock untimed, with hints, and writes it back as a corrupt
+        // completed 'simulation' attempt. The simulator has its own resume path.
+        if (r.quizType === 'simulation') return false;
         if (r.examId !== selectedExamId) return false;
         // Only show banner if the run has unanswered questions and no completedAt
         const answered = (r.answers || []).filter((a: any) => a?.selectedOption !== undefined).length;

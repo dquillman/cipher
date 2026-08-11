@@ -1,0 +1,308 @@
+[
+  {
+    "stem": "During an audit of a manufacturer's procurement cycle, Marcus notices that a single buyer approved four purchase orders to a vendor whose registered address matches the buyer's home address. Marcus has no forensic accounting credential and has never conducted a fraud interview. Which statement best describes what is expected of him?",
+    "options": [
+      "Because he lacks a forensic credential, Marcus should finish the procurement testing as scoped and treat the address match as a matter outside his competence to evaluate or to raise",
+      "Marcus must on every engagement have sufficient knowledge to evaluate fraud risk and the way it is managed, though not the expertise of a fraud investigation specialist",
+      "Marcus is expected to possess the same investigative expertise as a certified fraud examiner, because evaluating fraud indicators is a core internal audit responsibility on every engagement",
+      "Marcus should interview the buyer immediately to obtain an explanation, before the individual has an opportunity to alter or destroy the supporting records"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Internal auditors must have sufficient knowledge to evaluate the risk of fraud and the manner in which it is managed by the organization, but they are not expected to have the expertise of a person whose primary responsibility is detecting and investigating fraud. Treating the indicator as outside his competence is wrong because recognizing and escalating a fraud red flag is precisely the level of knowledge expected of every internal auditor. Requiring certified-fraud-examiner expertise overstates the standard and would make the proficiency requirement unattainable for a general audit staff. Interviewing the buyer immediately is wrong because a suspected fraud is escalated so that a properly designed investigation can be planned; an untrained confrontation risks compromising evidence and is itself a failure of due professional care.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.A",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "A retail group's internal audit activity is planning its annual audit of the general IT control environment. Dahlia, the CAE, staffs the engagement with two generalist auditors and engages an external firm to test the configuration of the ERP identity and access management layer. A board member asks why the department does not simply employ dedicated IT auditors. Which response is most consistent with the proficiency requirement?",
+    "options": [
+      "The specialized expertise should reside in-house, because the external auditor's ability to place reliance on internal audit's work depends on internal audit having performed the IT testing itself",
+      "Because the department has engaged an external firm for this layer, its own auditors no longer need to understand the IT risks in the areas that the firm's testing covers",
+      "Generalist auditors satisfy the requirement so long as management formally represents that the IT general controls are designed and operating effectively",
+      "Internal auditors must have sufficient knowledge of key IT risks, controls, and audit techniques, though the specialized expertise this engagement needs may be procured rather than employed"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The requirement is that internal auditors possess sufficient knowledge of key information technology risks and controls and of available technology-based audit techniques; they are not all expected to have the expertise of an auditor whose primary responsibility is IT auditing, and the activity may procure that specialized expertise rather than employ it. Tying the staffing model to external audit reliance is wrong because reliance is the external auditor's judgment about competence and objectivity under their own standards, and procured specialist work performed under internal audit's direction is not excluded from it; that judgment does not set internal audit's competency requirement. The claim that engaging a firm relieves the auditors of understanding the IT risks is wrong because the internal audit activity remains responsible for scoping the work, evaluating the specialist's results, and reaching its own conclusion. Relying on management representations is wrong because a representation is not audit evidence about control operation and substitutes management's assertion for the auditor's own judgment.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.A",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "The chief operating officer asks the internal audit activity to design and implement a new sanctions-screening process for cross-border payments. Ines, the CAE, concludes that no one in her department has sanctions-compliance expertise, that no budget exists to engage an outside adviser for this request, and that the organization has no compliance or sanctions function from which assistance could be drawn. What is her appropriate course of action?",
+    "options": [
+      "Decline the consulting engagement, because on these facts the competent advice and assistance the work would require cannot be obtained",
+      "Accept the engagement and treat the resulting knowledge gap as a matter to be disclosed in the engagement report",
+      "Accept the engagement but reclassify it as an assurance engagement, because assurance work carries a lower competence threshold",
+      "Accept the engagement and rely on the COO's business specialists to make every technical judgment, limiting internal audit to project administration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "For a proposed consulting engagement, the chief audit executive must decline the engagement or obtain competent advice and assistance. The stem forecloses both routes to that assistance: there is no internal function to draw on and no budget for an external adviser, so declining is the required outcome. Accepting and disclosing the gap in the report is wrong because a disclosure at the end does not cure work that was performed without the necessary competence; the decision point is before acceptance. Reclassifying the work as assurance is wrong because assurance engagements carry the same competence requirement, and in any case designing and implementing a process is a consulting activity that would also impair objectivity over the resulting process. Retaining nominal involvement while the client makes the technical judgments is wrong because it does not supply the missing competence and leaves internal audit accountable for a deliverable it cannot evaluate.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.A",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Reviewing his department's competency profile, CAE Tomas finds that no single auditor is proficient across data analytics, treasury operations, and environmental reporting, though at least one auditor is proficient in each. A quality assessor asks whether the department meets the proficiency requirement. What is the correct evaluation?",
+    "options": [
+      "The requirement is not met, because each internal auditor must individually be proficient in every subject area that the approved audit plan covers during the year",
+      "The requirement is met only if the department collectively holds the needed competencies and each auditor's individual assignment matches his or her own competence",
+      "The requirement is met once each auditor has completed a self-assessment against the department's competency framework, since the framework is the measure of conformance",
+      "The requirement turns on Tomas's own competence rather than the staff's, because the chief audit executive is accountable for the conclusions the department issues"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Proficiency operates at two levels: the internal audit activity collectively must possess the knowledge, skills, and other competencies needed to perform its responsibilities, while each individual auditor must possess those needed for his or her own assigned responsibilities. A department whose competencies are distributed across staff and matched to assignments satisfies both. Requiring every auditor to be proficient in every subject is wrong because it confuses the collective standard with the individual one. Treating a competency framework self-assessment as the test is wrong because such a framework is a tool for identifying and developing competencies; completing the assessment evidences the gap analysis, not the possession of the competencies the responsibilities require. Locating the requirement in the chief audit executive's own competence is wrong because accountability for the activity's conclusions does not transfer the competency requirement to one person; the activity must collectively hold the competencies, and each auditor must hold those his or her assignment needs.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.A",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Nadia's testing establishes beyond dispute that the warehouse's cycle-count procedure has not been performed for eleven months. At the closing meeting she presents the exception, and the distribution director responds that the finding is 'an accounting technicality that has nothing to do with running a warehouse' and refuses to commit to an action plan. Nadia's evidence is sound. Which competency does this situation most directly call on her to apply?",
+    "options": [
+      "Technical proficiency in inventory auditing, by expanding her testing to a second distribution center so that the evidence supporting the exception is placed beyond challenge",
+      "Independence, by declining further discussion with the distribution director and escalating the unresolved exception directly to the audit committee",
+      "Objectivity, by reconsidering whether her conclusion was shaped by an unstated bias against warehouse operations before she presses the point any further",
+      "Communication and persuasion, by reframing the exception around the operational consequences the director is accountable for, such as stockouts and write-offs"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Internal auditors need interpersonal competencies alongside technical ones, including communication, persuasion, negotiation, and collaboration. Where the evidence is already sound and the obstacle is the client's failure to see relevance, the skill required is the ability to communicate the finding in terms of the outcomes the client owns. Expanding testing is wrong because the stem establishes the evidence is beyond dispute; more of it addresses a problem that does not exist. Escalating immediately is wrong because escalation is a later step after a genuine attempt to resolve the disagreement, and it is a reporting protocol rather than an independence issue. Reconsidering objectivity is wrong because nothing in the scenario suggests bias; a client's displeasure with a supported conclusion is not evidence that the auditor was partial.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.B",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Testing payroll, Owen finds 34 employees paid during a month in which their timekeeping records show no hours. The payroll manager explains that all 34 are salaried staff whose hours are not captured in the timekeeping system. The explanation is plausible and the manager is well regarded. What does the exercise of critical thinking most require of Owen?",
+    "options": [
+      "Corroborate the explanation against an independent source, such as the HR master file classification for the 34 employees",
+      "Accept the explanation, because the payroll manager has direct knowledge of the process and a sound record of dealing straightforwardly with internal audit",
+      "Reject the explanation and report the 34 payments as unsupported, since the timekeeping system is the organization's system of record for hours worked",
+      "Expand the sample to a full year of payroll runs so that the frequency and dollar value of the same pattern can be quantified before any conclusion is reached"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Critical thinking, exercised with due professional care, requires the auditor to treat a client explanation as a hypothesis to be tested rather than as evidence. Corroborating the salaried classification against an independent record either resolves the exception properly or exposes it. Accepting the explanation on the strength of the manager's role and reputation is wrong because the plausibility of an inquiry response and the standing of its source are not substitutes for evidence. Rejecting it outright is wrong because a legitimate explanation exists for the pattern and reporting unverified exceptions is as much a failure of care as clearing them unverified. Expanding the sample is wrong because sample size does not resolve the question at issue, which is whether these 34 individuals are salaried; a larger population of the same untested pattern adds volume, not evidence.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.B",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Auditor Lena has agreed with a business unit that a segregation-of-duties weakness will be remediated. The unit head proposes a 14-month timeline tied to an ERP upgrade; Lena's draft called for 90 days. Both parties want a workable outcome. Which approach best reflects the collaboration and negotiation competencies expected of an internal auditor?",
+    "options": [
+      "Hold to the 90-day date without modification, because the auditor determines remediation timing and conceding on the schedule would compromise her independence",
+      "Adopt the unit head's 14-month timeline, because management owns the risk and the auditor's responsibility ends once the weakness has been identified and formally reported",
+      "Agree on compensating controls that reduce the exposure while the structural fix proceeds with the upgrade, and report both the interim measure and the final date",
+      "Withdraw the finding from the report and reissue it after the ERP upgrade has been completed, when the condition can be retested in its final configured state"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Negotiation and collaboration mean seeking an outcome that genuinely addresses the risk while working within legitimate operational constraints, and then reporting transparently what was agreed. Interim compensating controls plus a dated structural fix does this. Insisting on the original date is wrong because remediation timing is management's decision within a risk it accepts, and treating a schedule discussion as an independence threat misapplies the concept. Simply adopting 14 months with nothing in the interim is wrong because it leaves the exposure unaddressed and abandons the auditor's responsibility to evaluate whether residual risk is acceptable. Withdrawing the finding is wrong because a condition that exists at the time of the engagement must be reported; deferring it conceals a known weakness from the board for over a year.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.B",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Two weeks into an engagement on a bank's model risk governance, staff auditor Ravi realizes the testing assigned to him requires an understanding of model validation statistics that he does not have. The in-charge auditor is under schedule pressure. What is Ravi's responsibility?",
+    "options": [
+      "Complete the assigned procedures as documented in the work program and note in the workpapers that he had limited familiarity with the subject",
+      "Promptly inform the in-charge auditor of the competency gap so the assignment can be reallocated or supplementary expertise obtained",
+      "Continue the work and rely on the model owner to explain each validation result as he encounters it, documenting the owner's explanations as the basis for his conclusion",
+      "Continue the work and defer the issue to the quality assurance and improvement program, which exists to detect deficiencies of this kind"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Each internal auditor must possess the knowledge, skills, and other competencies needed to perform his or her individual responsibilities, and raising a gap promptly is what allows the chief audit executive or in-charge to reallocate work or procure assistance. Executing the program with a disclaimer in the workpapers is wrong because a note does not make an unqualified conclusion supportable, and schedule pressure does not justify work the auditor cannot competently evaluate. Relying on the model owner to interpret the results is wrong because it makes the auditee the evaluator of its own model and leaves the auditor unable to challenge what he is told. Deferring to the quality assurance and improvement program is wrong because that program provides periodic and ongoing assessment of the activity; it is not a control that cures a known competency gap on an engagement in progress.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.B",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "A newly appointed audit committee chair asks CAE Gemma to explain what the profession means when it says internal auditors must be proficient. Which explanation is most accurate?",
+    "options": [
+      "Proficiency means holding a professional certification, since certification is the profession's formal and objective evidence that an auditor is competent",
+      "Proficiency means the auditor is able to perform assigned work to the required quality without supervision, review, or coaching from a more experienced auditor",
+      "Proficiency means holding the knowledge, skills, and other competencies an auditor's responsibilities require, technical and interpersonal alike",
+      "Proficiency means the auditor is expected to detect every material error, fraud, and instance of noncompliance within the areas covered by the engagement"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Proficiency is a collective term for the knowledge, skills, and other competencies required to carry out responsibilities, and it expressly encompasses interpersonal competencies such as communication, persuasion, critical thinking, and collaboration alongside technical ability. Equating proficiency with certification is wrong because certification is evidence that may support proficiency but is neither required for it nor sufficient on its own. Equating it with working unsupervised is wrong because engagements must be properly supervised regardless of how proficient the staff are. Equating it with guaranteed detection is wrong because it confuses proficiency with infallibility; even work performed with proficiency and due professional care cannot guarantee that all significant risks or irregularities will be identified.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.B",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "CAE Hassan is scoping an assurance engagement over a vendor-master maintenance process that handles roughly 300 changes a year, none individually large, in a control environment prior audits rated as strong. A proposal to re-perform every change would consume a third of the department's annual hours. In applying due professional care, which consideration most directly governs Hassan's scoping decision?",
+    "options": [
+      "The cost of assurance relative to the potential benefits, together with the significance of the matters and the probability of significant errors, fraud, or noncompliance",
+      "The preference of the process owner, who is best positioned to judge how much testing the vendor-master process warrants given how routine the changes are",
+      "The number of vendor-master changes processed during the year, because the extent of testing should scale with transaction volume rather than with the significance of the matters or the probability of error",
+      "The department's budgeted utilization rate, which governs how many chargeable hours may be assigned to any single engagement in the approved annual plan"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Due professional care requires the auditor to consider the extent of work needed to achieve objectives, the relative complexity, materiality, or significance of the matters, the adequacy and effectiveness of governance, risk management, and control processes, the probability of significant errors, fraud, or noncompliance, and the cost of assurance in relation to the potential benefits. Deferring to the process owner's preference is wrong because scope is the auditor's judgment; letting the auditee set it surrenders both objectivity and care. Scaling the work to transaction volume is wrong because volume is not itself a risk consideration; 300 immaterial changes in a strong control environment do not warrant more work than a handful of high-risk ones, and the standard directs the auditor to significance and probability of error instead. Budgeted utilization is wrong because an internal administrative target is not a risk consideration and cannot justify a scope that leaves a significant risk untested.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.C",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Eighteen months after an audit of expense reimbursements, a scheme is discovered in which a manager submitted altered third-party receipts totaling $240,000. The audit had used a risk-based sample, tested approvals, and applied analytics for duplicate and round-dollar claims; the altered receipts were forgeries of good quality that matched approved vendors. In evaluating whether the engagement met the due professional care requirement, which conclusion is best supported?",
+    "options": [
+      "Care was not exercised, because the loss materialized and the standard is judged by whether material fraud in the audited area was ultimately detected by the engagement",
+      "Care was not exercised, because a sample rather than the full population was tested, and sampling is never appropriate in an area where fraud is reasonably possible",
+      "Care may well have been exercised here, because the applicable standard is that of a reasonably prudent and competent internal auditor and does not imply infallibility",
+      "Care is irrelevant to this evaluation, because responsibility for preventing and detecting fraud rests with management rather than with the internal audit activity"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Due professional care is the care and skill expected of a reasonably prudent and competent internal auditor; it does not imply infallibility, and even work performed with due care may not detect every irregularity. The described procedures were risk-based and reasonable on their face, so the outcome alone does not establish a failure. Judging care by whether the fraud was ultimately detected is wrong because it substitutes hindsight for the prudent-auditor standard. Condemning the use of sampling is wrong because sampling is an accepted technique and nothing requires full-population testing whenever fraud is conceivable. Declaring care irrelevant is wrong because although management does own fraud prevention and detection, internal auditors are still required to exercise due professional care and to be alert to fraud risk in their work.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.C",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "While auditing the accounts payable close, Bianca observes that the treasury team appears to be releasing wire payments from a workstation whose approval token is shared among four staff. Wire release is outside her approved engagement scope. What does due professional care require?",
+    "options": [
+      "That she leave the matter to the treasury engagement's owner, since the observation belongs to whoever audits that function next and no action falls to her now",
+      "That she be alert in every engagement to significant risks affecting objectives, operations, or resources, and raise the observation so it can be addressed",
+      "That she immediately halt the accounts payable engagement and convert the remaining fieldwork into a full investigation of the treasury payment function",
+      "That she record the observation in her personal notes and raise it during the next annual risk assessment cycle, when the treasury function is scoped"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Due professional care requires internal auditors to be alert to the significant risks that might affect objectives, operations, or resources, including risks noticed outside the immediate scope of work. The appropriate response is to raise the observation so the chief audit executive can decide whether to extend the engagement, communicate it to management, or reflect it in the plan. Passing the matter to a future engagement's owner is wrong because alertness is an obligation of the auditor who observes the risk; a shared wire-release token is a significant risk, and there may be no treasury engagement for months. Halting and converting the engagement is wrong because that decision belongs to the chief audit executive, and a unilateral pivot abandons the approved engagement. Holding the observation in personal notes until the annual cycle is wrong because it delays a significant risk for up to a year and leaves no auditable record.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.C",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "An engagement covering 2.1 million retail refund transactions is planned around a judgmental sample of 40 items because the team has always done it that way, even though the refund data is fully extractable and the department licenses analytics software. Which statement best describes the due professional care implication?",
+    "options": [
+      "There is none, because sample size is purely a matter of professional judgment and any judgmental sample the in-charge auditor selects satisfies the requirement",
+      "Care is satisfied here, because a judgmental sample aimed at high-risk items is inherently more effective than analysis run across an entire transaction population",
+      "Care is breached only if the sample is later shown to have missed an error that a full-population test would have identified at the time of the engagement",
+      "Care always requires the auditor to consider technology-based audit and data analysis techniques where the population is extractable and the tooling is available"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Internal auditors must consider the use of technology-based audit and other data analysis techniques when exercising due professional care. With a 2.1 million item population, available data, and licensed tooling, defaulting to a 40-item sample out of habit means the required consideration was never made. Treating any judgmental sample as automatically acceptable is wrong because professional judgment must be exercised, not merely asserted, and habit is not judgment. Claiming judgmental sampling is inherently superior is wrong because it is a real technique misapplied here; targeted sampling is valuable for known high-risk attributes but cannot match full-population analysis for coverage of an extractable dataset. Making the breach contingent on a later missed error is wrong because due professional care is assessed on the reasonableness of the auditor's approach at the time, not by hindsight.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.C",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "The CFO asks internal audit for a consulting engagement to advise on redesigning the month-end close calendar. CAE Sofia is determining how to apply due professional care to this request, having last performed an assurance engagement over the close two years ago. Which set of considerations applies?",
+    "options": [
+      "Client needs and expectations including the nature, timing, and communication of results; the complexity and extent of work required; and cost against potential benefits",
+      "Exactly the same considerations that govern an assurance engagement, because due professional care is a single undifferentiated standard",
+      "The cost of the engagement relative to its benefits alone, because consulting work is discretionary and the client rather than the auditor bears the risk of the advice given",
+      "A reduced standard of care, because a consulting engagement produces advice rather than an opinion on which third parties outside the organization will place reliance"
+    ],
+    "correctAnswer": 0,
+    "explanation": "For consulting engagements, due professional care is applied with regard to the needs and expectations of clients including the nature, timing, and communication of results; the relative complexity and extent of work needed to achieve the engagement objectives; and the cost of the engagement in relation to its potential benefits. Asserting no differences is wrong because the assurance considerations, which include the probability of significant errors, fraud, or noncompliance and the adequacy of governance, risk management, and control processes, are framed for assurance work. Reducing the analysis to cost alone is wrong because it drops the client-needs and complexity considerations that define the engagement. A reduced standard of care is wrong because due professional care applies to consulting engagements too; only the specific considerations differ, not the auditor's obligation to exercise care.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.C",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Three days before the report deadline, the divisional president asks in-charge auditor Kofi to drop the remaining substantive testing over a newly implemented revenue-recognition control, arguing that the division is in the middle of a refinancing and a delayed report would be unhelpful. Kofi's testing to date has produced two unresolved exceptions. Which response best reflects due professional care?",
+    "options": [
+      "Drop the remaining testing and issue the report on the scheduled date, disclosing in a footnote that planned substantive testing over the control was left incomplete",
+      "Drop the remaining testing and re-scope the work as a consulting engagement, which relieves the team of the requirement to resolve the outstanding exceptions",
+      "Complete the work needed to resolve the exceptions and support a conclusion, and escalate the deadline conflict and any scope limitation to the CAE",
+      "Issue the report on time with the two exceptions stated as findings and no conclusion on the control, leaving their resolution to divisional management"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Due professional care requires the auditor to perform the extent of work needed to achieve the engagement objectives, and unresolved exceptions over a newly implemented control on a significant process go directly to whether a conclusion is supportable. Escalating the conflict lets the chief audit executive weigh the deadline against the scope and communicate any limitation to senior management and the board. Dropping the work with a footnote is wrong because a disclosure does not make an unsupported conclusion supportable and the decision is not the in-charge auditor's to make alone. Re-scoping as consulting is wrong because consulting engagements also require due professional care and re-labeling work to escape unwelcome findings is a misuse of the classification. Reporting the exceptions with no conclusion is wrong because it passes the auditor's unfinished analytical work to the reader and leaves the reader unable to judge whether the control functions.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.C",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "An audit committee member asks why the internal audit department budgets time and funds for continuing professional development when the staff are already qualified. Which explanation best states the purpose of the requirement?",
+    "options": [
+      "It exists primarily so that the department can advertise credentials that reassure external stakeholders and regulators about the quality of the work it performs",
+      "Auditors must enhance their knowledge, skills, and competencies so their competence keeps pace with changes in the profession, the organization, and its risks",
+      "It is an obligation of individually certified auditors to maintain their credentials, and it has no bearing on whether the audit activity conforms with the Standards",
+      "It is a recommended practice that departments may adopt at their own discretion once their staff have obtained a recognized professional certification"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Internal auditors are required to enhance their knowledge, skills, and other competencies through continuing professional development; competence is not a fixed attribute, and the requirement exists because the profession's standards, the organization's operations, and its risk profile all change. Framing it as a credential-marketing exercise is wrong because it substitutes an external signaling benefit for the substantive purpose. Confining it to certification maintenance is wrong because the requirement sits in the Standards and applies to internal auditors whether or not they hold a certification, so continuing professional development is squarely a matter of the activity's conformance. Calling it discretionary is wrong because continuing professional development is a requirement of the Standards, and holding a certification does not exempt an auditor from it.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.D",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Ayo has 40 hours of continuing professional development to complete this year. Next year he will be assigned to the department's first audits of the company's third-party cloud hosting arrangements and its ESG disclosures, both areas in which he has no background. His employer offers a subsidized advanced course in the financial-statement auditing he has performed for six years, which would efficiently close all 40 hours. What should he do?",
+    "options": [
+      "Take the subsidized course, because the requirement is expressed in hours and the most efficient available route to completing those hours satisfies it",
+      "Take the subsidized course, because deepening an existing strength contributes more to the department's overall capability than introductory knowledge in two unfamiliar areas",
+      "Defer his development on the cloud hosting arrangements and the ESG disclosures until that work is actually scheduled, so the knowledge is current when the fieldwork begins",
+      "Direct his development toward cloud third-party risk and ESG reporting, because CPD should build the competencies his responsibilities will actually require"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Continuing professional development demonstrates and maintains an individual auditor's competency, which means it should be directed at the knowledge and skills the auditor's responsibilities require rather than at whatever is easiest to accumulate. With two unfamiliar high-risk areas assigned, that is where his development belongs. Treating the requirement as a pure hours count is wrong because hours are the measure, not the purpose, and completing them in an area he has practiced for six years leaves him unprepared. Preferring to deepen an existing strength is wrong here because the department's stated need is coverage of areas no one has audited, so the marginal value lies in the new competencies. Deferring the relevant training until the engagements are scheduled is wrong because the competency has to be in place before the auditor is expected to perform proficiently; the currency gained by waiting is bought at the price of entering the fieldwork without the knowledge it requires, and this year's development would meanwhile be spent where it is not needed.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.D",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Elena, a senior auditor, has completed the 40 credit hours her certification body requires this year, all of them in the ethics and internal control refreshers her employer runs each quarter. The development plan she agreed with the CAE identifies data analytics as her competency gap for the two analytics-led engagements she leads next quarter, and that gap remains open. What does the continuing professional development requirement call for?",
+    "options": [
+      "She must continue developing until the analytics gap is closed, because the requirement is to maintain the competencies her responsibilities call for, not to accumulate hours",
+      "Nothing further this year, because the certification body's annual hour requirement has been met and that requirement is the measure of an auditor's continuing professional development",
+      "She should close the gap while performing the two engagements, since applying an analytics technique on live work develops the competency more effectively than training in advance",
+      "Nothing further, because two other auditors in the department are proficient in analytics, and the activity's collective competence covers the engagements she leads"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Continuing professional development exists to demonstrate and maintain an individual auditor's competency, so it is judged against the competencies the auditor's assigned responsibilities require. With analytics identified as an open gap for engagements she leads next quarter, hours completed elsewhere do not discharge the requirement. Treating the certification body's hour count as the measure is wrong because hours evidence effort, not competency, and an external body's credential rules do not define conformance with the Standards. Closing the gap during the engagements is wrong because it means acquiring the competency in the course of the very work that depends on it, which puts the quality of that work at risk; on-the-job experience supplements development, it does not substitute for it. Relying on the department's collective competence is wrong because it confuses the activity-level requirement with the individual one: each auditor must possess the competencies needed for his or her own responsibilities, and Elena is leading the engagements.",
+    "domain": "Proficiency and Due Professional Care",
+    "objective": "III.D",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  }
+]

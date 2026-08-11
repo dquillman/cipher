@@ -30,6 +30,10 @@
             ],
             "rewrites": [
                 {
+                    "source": "/api/unsubscribe",
+                    "function": "unsubscribe"
+                },
+                {
                     "source": "/app/**",
                     "destination": "/_catchall.html"
                 },
@@ -74,6 +78,10 @@
             ],
             "rewrites": [
                 {
+                    "source": "/api/unsubscribe",
+                    "function": "unsubscribe"
+                },
+                {
                     "source": "/app/**",
                     "destination": "/_catchall.html"
                 },
@@ -117,6 +125,10 @@
                 "**/node_modules/**"
             ],
             "rewrites": [
+                {
+                    "source": "/api/unsubscribe",
+                    "function": "unsubscribe"
+                },
                 {
                     "source": "/app/**",
                     "destination": "/_catchall.html"

@@ -1,0 +1,2551 @@
+{
+  "takenAt": "2026-08-10T14-41-59-883Z",
+  "exam": "cpp",
+  "examId": "Vs3aNmifAJc9bYRFCxXc",
+  "modified": [
+    {
+      "path": "questions/07WkfUR0OqGUC4MPezsg",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll journal entry for recording gross wages paid would include:",
+        "options": [
+          "Only a debit to cash for the net pay amount, since the net payment to employees is the only transaction that needs to be recorded in the general ledger for payroll",
+          "A debit to wages/salary expense and credits to various liability accounts (taxes payable, deductions payable) and cash/bank, as required under current federal payroll regulations",
+          "A credit to wages expense and a debit to cash, recording the payment as a reduction in expenses offset by an increase in the company's available cash balance",
+          "A debit to accounts receivable and credit to revenue, treating employee compensation as a receivable asset that generates revenue for the organization through labor services"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The payroll journal entry debits wage/salary expense (the total gross pay cost) and credits: tax liability accounts (FIT payable, FICA payable, state tax payable), deduction liability accounts (401(k) payable, benefits payable), and cash/bank (net pay). Debits increase expenses; credits increase liabilities. The entry must balance — total debits equal total credits.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/0DsJGaPVk8MiIi6liXtJ",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Reconciling the general ledger payroll accounts involves:",
+        "options": [
+          "Checking that all employees are listed in the GL, reviewing the general ledger for individual employee records to ensure complete representation of the workforce in financial accounts",
+          "Ensuring the GL uses the correct font and formatting, verifying that financial reports meet the organization's presentation standards for internal distribution and external filing purposes",
+          "Only verifying that the GL has been updated each pay period, confirming that journal entries were posted without examining the accuracy of the amounts or account classifications",
+          "Comparing GL account balances to payroll register totals, tax filings, and bank statements to identify and resolve differences, per the guidelines outlined in the applicable federal regulations"
+        ],
+        "correctAnswer": 3,
+        "explanation": "GL reconciliation is a critical control that compares payroll-related account balances (wages expense, tax liabilities, benefit liabilities, cash) to source documents: payroll registers, tax returns (941, 940), bank statements, and vendor reports. Discrepancies are investigated and resolved to ensure accurate financial reporting.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/2m1bl3krsjyNoEgK7xoh",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll reconciliation should compare:",
+        "options": [
+          "Only the bank statement to the payroll register, verifying",
+          "The current period's payroll register totals to the prior period and investigate significant variances",
+          "The payroll budget to the training budget, ensuring that compensation expenditures and professional development costs are properly allocated across departmental accounts",
+          "Employee names to the company directory, confirming that all individuals listed on the payroll register appear in the organization's official employee directory system"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Period-to-period reconciliation compares current payroll totals (gross pay, taxes, deductions, net pay, headcount) to the prior period and investigates significant variances. This catches errors, unauthorized changes, and anomalies. Bank reconciliation, employee verification, and budget comparison are separate but complementary controls.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/3dcB0y6soEndPpQWT7lZ",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "Supplemental wages include all of the following EXCEPT:",
+        "options": [
+          "Commissions earned by sales employees based on a percentage of revenue generated from their individual or team-based selling activities",
+          "Severance pay provided to employees upon involuntary termination",
+          "Bonuses paid to employees for meeting performance targets, achieving sales goals, or as discretionary year-end compensation awards from the employer",
+          "Regular hourly wages for hours worked during the standard workweek"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Supplemental wages are compensation paid in addition to regular wages — including bonuses, commissions, overtime, severance pay, back pay, and retroactive increases. Regular hourly wages for standard hours are not supplemental. Supplemental wages may be taxed using a flat rate method (22% federal) or the aggregate method.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/4rbLCsaxGsM5SLQLNy8r",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "An employee earns $600 per week and works 48 hours. Under the FLSA, the minimum overtime payment for the 8 overtime hours is:",
+        "options": [
+          "$150.00 (8 hours × $18.75 using an adjusted rate that factors in a weighted average of hourly compensation)",
+          "$180.00 (8 hours × $15.00 regular rate × 1.5), reflecting the standard established under federal payroll guidelines",
+          "$240.00 (8 hours × $30.00 calculated by doubling the base regular rate for all overtime hours in the workweek)",
+          "$120.00 (8 hours × $15.00 straight-time rate with no overtime premium applied to the additional hours worked)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The regular rate is $600 ÷ 40 hours = $15.00/hour. Overtime is 1.5× the regular rate: $15.00 × 1.5 = $22.50/hour. For 8 OT hours: 8 × $22.50 = $180.00. The total weekly pay would be $600 + $180 = $780. Always calculate the regular rate first, then apply the 1.5 multiplier.",
+        "difficulty": "Medium",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/5A2wkvueIpGrGpyY9ZMX",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Payroll department procedures documentation is important because it:",
+        "options": [
+          "Is only useful during the initial system implementation, after which the documented procedures become outdated and are superseded by the payroll team's institutional knowledge",
+          "Replaces the need for trained payroll staff, since comprehensive documentation allows any employee",
+          "Is required only for companies with over 10,000 employees, as smaller organizations are exempt",
+          "Ensures consistency, supports training, and provides a reference for audits and business continuity"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Documented procedures ensure consistent processing regardless of who performs the work, support training of new staff, provide evidence of controls for internal and external audits, and are critical for business continuity if key personnel are unavailable. Documentation is valuable for organizations of all sizes and must be maintained and updated regularly.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/5HZ2wLdZwrC4jhgvC3p4",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employer depositing over $100,000 in employment taxes on any day during the deposit period must deposit by:",
+        "correctAnswer": 1,
+        "explanation": "The $100,000 next-day deposit rule: if an employer accumulates $100,000 or more in employment taxes on any day during a deposit period, the taxes must be deposited by the next banking day. This overrides the employer's regular deposit schedule (monthly or semi-weekly). The employer also becomes a semi-weekly depositor for the remainder of the year and the following year.",
+        "difficulty": "Medium",
+        "options": [
+          "The following Friday",
+          "The next banking day",
+          "The 15th of next month",
+          "Within 3 business days"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/6vFpzQ6xaPTdxU7nKoIu",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A ghost employee fraud scheme is best detected by:",
+        "options": [
+          "Comparing the payroll register to the HR employee master file and verifying active status",
+          "Eliminating direct deposit and paying only by check, forcing all employees to physically present themselves to collect wages and thereby exposing any fictitious identities",
+          "Increasing all employee pay rates by the same percentage",
+          "Reducing the payroll processing frequency from biweekly to monthly"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Ghost employees are fictitious workers added to the payroll by someone with system access. Comparing the payroll register to the HR master file (and verifying employees are real and active) is the primary detection method. Additional controls include physical paycheck distribution, address analysis (multiple employees at same address), and random audits of new hires.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/7WkThLmtQnMOdDski7Bw",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A compound journal entry in payroll:",
+        "options": [
+          "Contains more than two line items — multiple debits and/or credits in a single entry",
+          "Records only employer taxes, not employee deductions, separating the employer's share of payroll tax obligations from the employee withholding amounts in distinct journal entries",
+          "Is an entry that has been posted twice by mistake, creating a duplicate transaction",
+          "Involves only one debit and one credit, representing a simple two-line transaction"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Payroll journal entries are almost always compound entries because they involve multiple debits (wage expense, employer tax expense) and multiple credits (various tax liabilities, deduction liabilities, cash). A simple entry has only one debit and one credit. Compound entries are standard in payroll accounting due to the many components involved.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/7X5yWXPREXFDjU7MRh3J",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "Supplemental wages include all of the following EXCEPT:",
+        "options": [
+          "Regular hourly wages for hours worked during the standard workweek",
+          "Bonuses paid to employees for meeting performance targets, achieving sales goals, or as discretionary year-end compensation awards from the employer",
+          "Commissions earned by sales employees based on a percentage of revenue generated from their individual or team-based selling activities",
+          "Severance pay provided to employees upon involuntary termination"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Supplemental wages are compensation paid in addition to regular wages — including bonuses, commissions, overtime, severance pay, back pay, and retroactive increases. Regular hourly wages for standard hours are not supplemental. Supplemental wages may be taxed using a flat rate method (22% federal) or the aggregate method.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/8p7B662tuGWvN5sYCC7h",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "User acceptance testing (UAT) in a payroll system implementation is performed by:",
+        "correctAnswer": 3,
+        "explanation": "UAT is the final testing phase performed by actual payroll users to validate that the system meets their business requirements and workflows. It occurs after the vendor's unit testing and IT's integration testing. Payroll staff test real-world scenarios — pay calculations, tax withholding, deductions, reporting — and confirm the system is ready for production.",
+        "difficulty": "Easy",
+        "options": [
+          "The IT department without payroll input, testing only technical infrastructure",
+          "External auditors who independently verify regulatory compliance of the system",
+          "The software vendor exclusively, as they are responsible for all testing",
+          "End users (payroll staff) to verify the system meets business requirements before go-live"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/96LczlXzcXu8D0Eno7FJ",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Segregation of duties in payroll means:",
+        "options": [
+          "Assigning all audit functions to the payroll department, since the team",
+          "Dividing payroll responsibilities so that no single person controls the entire process from input to payment",
+          "Separating payroll processing from the pay schedule by assigning different calendar dates for calculation and distribution to reduce the risk of timing-related errors",
+          "Having one person handle all payroll functions for efficiency, as consolidating responsibilities under a single processor eliminates handoff delays and communication gaps"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Segregation of duties is a key internal control: different people should handle payroll input (time entry), processing (calculations), approval (review), and payment (distribution). This prevents any single person from creating fictitious employees, altering pay rates, and issuing unauthorized payments undetected. It is a fundamental fraud prevention control.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/9f8BAUfKFAbmyhGT8hQN",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Allocated tips on Form W-2 apply when:",
+        "options": [
+          "Any employee receives cash tips over $20 per month, which triggers the employer's obligation to allocate and report the tip income on the employee's annual W-2 form",
+          "A large food or beverage establishment's employees report tips below 8% of the establishment's gross receipts",
+          "Tips are paid through credit card transactions only, as cash tips are not subject to allocation requirements",
+          "The employer provides a tip pool for all employees, distributing gratuities equally among front-of-house"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Tip allocation is required for large food or beverage establishments (those with more than 10 employees) when total tips reported by employees are less than 8% of the establishment's gross receipts. Allocated tips are reported in Box 8 of Form W-2 but are not subject to withholding. The $20/month threshold triggers regular tip reporting, not allocation.",
+        "difficulty": "Hard",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/9n40iimfMu3oetBh0EmL",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Data mapping during a payroll system conversion is necessary to:",
+        "options": [
+          "Delete all historical data before starting the new system, creating a clean database without any legacy records",
+          "Create new employee records from scratch, manually re-entering all demographic, tax, and compensation information rather than migrating existing data from the previous system",
+          "Ensure data fields from the old system correctly transfer to corresponding fields in the new system",
+          "Eliminate the need for data validation after conversion"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Data mapping defines how each data field in the old system corresponds to fields in the new system. Proper mapping ensures accurate transfer of employee records, pay history, tax data, and deductions. Historical data is typically preserved (not deleted). Existing records are migrated (not recreated). Data validation after conversion is still essential.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/A9C6EDgEDF8Ji2Ps9Lh1",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Benchmarking payroll operations involves:",
+        "correctAnswer": 1,
+        "explanation": "Benchmarking compares key payroll metrics (cost per payroll payment, error rates, time to process, staff-to-employee ratios) against industry standards, peer organizations, or best-practice targets. It identifies improvement opportunities and justifies resource requests. It is not about copying competitors' headcount, software, or budgets.",
+        "difficulty": "Medium",
+        "options": [
+          "Setting the department budget equal to last year’s spending without adjustments",
+          "Comparing the department's performance metrics against industry standards or best practices",
+          "Hiring the same number of staff as competitors in the same industry sector",
+          "Using the same payroll software platform as the largest company in the industry"
+        ],
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/BhpeWoIadQ94GylkkZfy",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Accumulator balancing involves:",
+        "options": [
+          "Comparing employee headcount across departments to identify discrepancies between divisional staffing levels and the organization's approved headcount allocation plan",
+          "Counting the number of employees on the payroll each pay period to confirm that headcount figures are consistent with the human resources department's active employee records",
+          "Balancing the payroll checking account by reconciling the bank statement with outstanding checks",
+          "Verifying that year-to-date and quarter-to-date totals match the sum of individual period amounts"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Accumulator balancing verifies that running totals (YTD gross pay, YTD taxes, QTD wages) equal the sum of all individual period amounts. Out-of-balance accumulators can cause incorrect W-2 reporting, tax deposit errors, and compliance issues. This should be done regularly (each pay period) and is especially critical before quarterly and annual filings.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/CtprEKVB4BJiu17WfFwa",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Quarterly reconciliation of Form 941 should verify that:",
+        "options": [
+          "Only the check numbers match the bank statement, confirming that each issued payroll check corresponds to a cleared transaction in the employer's payroll bank account",
+          "Total wages, tips, and taxes reported match the payroll register totals and tax deposits made",
+          "Employee vacation balances are accurate, ensuring that accrued paid time off is properly tracked and reported in accordance with the company's leave policy and state requirements",
+          "The general ledger reflects the correct fiscal year, verifying"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Form 941 reconciliation compares reported wages and tips to payroll register totals, verifies tax calculations (FIT, Social Security, Medicare), and confirms that deposits made via EFTPS match the liability. Discrepancies may indicate processing errors, missed adjustments, or unreported wages. This is a critical compliance control performed each quarter.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/DAFT3fPIAxFfcaL2YFQO",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employer depositing over $100,000 in employment taxes on any day during the deposit period must deposit by:",
+        "correctAnswer": 0,
+        "explanation": "The $100,000 next-day deposit rule: if an employer accumulates $100,000 or more in employment taxes on any day during a deposit period, the taxes must be deposited by the next banking day. This overrides the employer's regular deposit schedule (monthly or semi-weekly). The employer also becomes a semi-weekly depositor for the remainder of the year and the following year.",
+        "difficulty": "Medium",
+        "options": [
+          "The next banking day",
+          "The 15th of next month",
+          "Within 3 business days",
+          "The following Friday"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/DLyz9bWCunEC9bPe4hGS",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Quarterly reconciliation of Form 941 should verify that:",
+        "options": [
+          "Total wages, tips, and taxes reported match the payroll register totals and tax deposits made",
+          "Only the check numbers match the bank statement, confirming that each issued payroll check corresponds to a cleared transaction in the employer's payroll bank account",
+          "The general ledger reflects the correct fiscal year, verifying",
+          "Employee vacation balances are accurate, ensuring that accrued paid time off is properly tracked and reported in accordance with the company's leave policy and state requirements"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Form 941 reconciliation compares reported wages and tips to payroll register totals, verifies tax calculations (FIT, Social Security, Medicare), and confirms that deposits made via EFTPS match the liability. Discrepancies may indicate processing errors, missed adjustments, or unreported wages. This is a critical compliance control performed each quarter.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/Db5cirLKkNOItFajcc4I",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "An accountable plan for expense reimbursement must meet which conditions?",
+        "options": [
+          "Only that the employee submits receipts for all expenses incurred during the course of business travel or other employer-authorized activities",
+          "That the employer approves the expense after the fact, regardless of whether the employee provides substantiation or returns any excess reimbursement amounts",
+          "Only that expenses are under $500 per transaction, as the IRS considers amounts below this threshold to be de minimis and automatically qualifying",
+          "Business connection, adequate accounting, and return of excess amounts within a reasonable time, per the guidelines outlined in the applicable federal regulations"
+        ],
+        "correctAnswer": 3,
+        "explanation": "An accountable plan under IRS regulations requires three conditions: (1) business connection — expenses must have a business purpose; (2) adequate accounting — substantiation of expenses within a reasonable time; (3) return of excess — any excess reimbursement must be returned within a reasonable time. If these are not met, the plan is nonaccountable and reimbursements are taxable.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/ENHshzTXGFIt8ir7N0RS",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Payroll accruals are recorded to:",
+        "options": [
+          "Increase cash on the balance sheet by creating a corresponding asset entry that offsets the accrued wages liability and improves the company's reported liquidity position",
+          "Eliminate the need for year-end adjustments by pre-recording all anticipated payroll transactions",
+          "Reduce the company's tax liability by recording payroll expenses in advance of the actual payment date, thereby lowering taxable income for the current fiscal period",
+          "Recognize wages earned by employees but not yet paid as of the reporting period end date, per IRS regulatory guidance"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Under accrual accounting, wages earned but not yet paid must be recognized as an expense and a liability in the period they are earned — regardless of when payment occurs. For example, if the pay period crosses a month-end, the wages for days worked in the old month must be accrued. Accruals are typically reversed in the next period when payment is made.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.8
+      }
+    },
+    {
+      "path": "questions/EqCEcnD06FQaISGKZ9St",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Benchmarking payroll operations involves:",
+        "correctAnswer": 3,
+        "explanation": "Benchmarking compares key payroll metrics (cost per payroll payment, error rates, time to process, staff-to-employee ratios) against industry standards, peer organizations, or best-practice targets. It identifies improvement opportunities and justifies resource requests. It is not about copying competitors' headcount, software, or budgets.",
+        "difficulty": "Medium",
+        "options": [
+          "Hiring the same number of staff as competitors in the same industry sector",
+          "Setting the department budget equal to last year’s spending without adjustments",
+          "Using the same payroll software platform as the largest company in the industry",
+          "Comparing the department's performance metrics against industry standards or best practices"
+        ],
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/Exp5zMXHPYl0vxD7lKBw",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "User acceptance testing (UAT) in a payroll system implementation is performed by:",
+        "correctAnswer": 0,
+        "explanation": "UAT is the final testing phase performed by actual payroll users to validate that the system meets their business requirements and workflows. It occurs after the vendor's unit testing and IT's integration testing. Payroll staff test real-world scenarios — pay calculations, tax withholding, deductions, reporting — and confirm the system is ready for production.",
+        "difficulty": "Easy",
+        "options": [
+          "End users (payroll staff) to verify the system meets business requirements before go-live",
+          "External auditors who independently verify regulatory compliance of the system",
+          "The software vendor exclusively, as they are responsible for all testing",
+          "The IT department without payroll input, testing only technical infrastructure"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/F2NfC6qqz9dYtkBMl0q5",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Parallel testing during a payroll system implementation involves:",
+        "options": [
+          "Testing the new system in isolation without comparison to the existing system's output, relying solely on predefined test cases to validate payroll calculation accuracy",
+          "Having two different teams process payroll independently using the same system",
+          "Running the new system at double speed to test performance under heavy load conditions",
+          "Running both the old and new systems simultaneously to compare results and verify accuracy"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Parallel testing runs the existing and new payroll systems at the same time for one or more pay cycles, comparing results to ensure the new system produces accurate output. Discrepancies are investigated and resolved before the old system is decommissioned. This is the most thorough testing method but also the most resource-intensive.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/FMZqJS8TKmemArFY5Zkt",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "On the balance sheet, accrued payroll is classified as:",
+        "correctAnswer": 3,
+        "explanation": "Accrued payroll (wages earned but not yet paid) is a current liability — an obligation expected to be settled within one year (typically within the next pay period). Current liabilities include accrued wages, taxes payable, and benefits payable. Long-term liabilities are due beyond one year. Payroll is an expense, not an asset or equity item.",
+        "difficulty": "Easy",
+        "options": [
+          "An asset on the books",
+          "A long-term liability",
+          "Shareholders’ equity",
+          "A current liability"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/Fk1eWuioclNixbcn8pUr",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Accumulator balancing involves:",
+        "options": [
+          "Comparing employee headcount across departments to identify discrepancies between divisional staffing levels and the organization's approved headcount allocation plan",
+          "Verifying that year-to-date and quarter-to-date totals match the sum of individual period amounts",
+          "Balancing the payroll checking account by reconciling the bank statement with outstanding checks",
+          "Counting the number of employees on the payroll each pay period to confirm that headcount figures are consistent with the human resources department's active employee records"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Accumulator balancing verifies that running totals (YTD gross pay, YTD taxes, QTD wages) equal the sum of all individual period amounts. Out-of-balance accumulators can cause incorrect W-2 reporting, tax deposit errors, and compliance issues. This should be done regularly (each pay period) and is especially critical before quarterly and annual filings.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/GaKfSZUaRacCUystzBsH",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "The income statement reflects payroll costs as:",
+        "correctAnswer": 3,
+        "explanation": "Payroll costs (wages, employer taxes, benefits) appear on the income statement as operating expenses, directly reducing net income. Higher payroll costs lower profitability. On the balance sheet, any unpaid payroll obligations appear as current liabilities. Payroll is not an asset, cash inflow, or investment from an accounting perspective.",
+        "difficulty": "Easy",
+        "options": [
+          "Cash inflows from employee contributions recorded as revenue",
+          "Long-term investments in human capital on the balance sheet",
+          "Assets that increase the company’s net worth over time",
+          "Operating expenses that reduce net income for the period"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/Gs6EmEieHGbNsjOQp10O",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "A de minimis fringe benefit under IRC Section 132(a)(4) is excludable from an employee's income because:",
+        "options": [
+          "It is mandated by federal law as a required workplace benefit, and all legally required benefits are automatically excluded from taxable income",
+          "Its value is so small that accounting for it would be unreasonable or administratively impractical for the employer to track and report",
+          "It is provided equally to all employees regardless of position, meeting the nondiscrimination requirements that govern all employer-provided fringe benefits",
+          "It is funded entirely from the employee's after-tax payroll deductions, so the amount has already been included in the employee's gross taxable wages"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Under IRC Section 132(a)(4), a de minimis fringe benefit is any property or service whose value is so small that accounting for it would be unreasonable or administratively impractical. Examples include occasional personal use of a company copier, holiday gifts of low value, occasional meal money, and local telephone calls. Cash and cash equivalents (gift cards) generally cannot be de minimis regardless of amount.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/HuCRJy7yll59qYtiPhcz",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Payroll department procedures documentation is important because it:",
+        "options": [
+          "Replaces the need for trained payroll staff, since comprehensive documentation allows any employee",
+          "Ensures consistency, supports training, and provides a reference for audits and business continuity",
+          "Is required only for companies with over 10,000 employees, as smaller organizations are exempt",
+          "Is only useful during the initial system implementation, after which the documented procedures become outdated and are superseded by the payroll team's institutional knowledge"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Documented procedures ensure consistent processing regardless of who performs the work, support training of new staff, provide evidence of controls for internal and external audits, and are critical for business continuity if key personnel are unavailable. Documentation is valuable for organizations of all sizes and must be maintained and updated regularly.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/IZbOrk9BR7LIntCpvmsR",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Positive pay is a banking fraud prevention feature that:",
+        "options": [
+          "Guarantees all checks will clear regardless of account balance, providing overdraft protection that ensures employee payroll checks are never returned for insufficient funds",
+          "Prevents employees from cashing checks at non-partner banks, restricting negotiation of payroll checks to only those financial institutions approved by the employer",
+          "Automatically deposits funds into employee accounts using the ACH network",
+          "Matches issued check details against presented checks and rejects mismatches"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Positive pay is a fraud prevention service where the employer sends the bank a file of issued checks (check numbers, amounts, dates, payees). When checks are presented for payment, the bank matches them against the file. Mismatches (altered amounts, forged checks) are flagged for the employer to approve or reject, preventing fraudulent check cashing.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/IsKYjdFG2sub10mB0vTU",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "An audit trail in payroll systems tracks:",
+        "options": [
+          "Only unsuccessful login attempts, monitoring security events related",
+          "Who made changes, what was changed, when the change occurred, and the before/after values",
+          "Only the final payroll output, recording the completed pay register totals without capturing the individual data modifications",
+          "The physical location of paper checks, documenting where printed payroll checks are stored"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A comprehensive audit trail captures all changes to payroll data: the user who made the change, what field was modified, the date and time of the change, and the old and new values. This supports fraud detection, error investigation, and compliance audits. It covers data input, processing, and output — not just final results or security events.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/JFoE9VKc1DCevqes2EPZ",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "When selecting a new payroll system, a Request for Proposal (RFP) should include:",
+        "correctAnswer": 0,
+        "explanation": "An effective RFP clearly communicates the organization's needs to potential vendors: business requirements, current challenges, integration points (GL, HR, benefits), compliance needs, timeline, budget constraints, and evaluation criteria. This enables vendors to propose targeted solutions. Without detailed requirements, proposals cannot be meaningfully compared.",
+        "difficulty": "Medium",
+        "options": [
+          "Detailed business requirements, current pain points, integration needs, timeline, and evaluation criteria",
+          "The vendor’s proposed solution before requirements are defined, letting them shape the project scope",
+          "A request for the lowest price with no functional specifications or compliance evaluation",
+          "Only the company name and contact information, leaving vendors to assess needs independently"
+        ],
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/JSr3BqfvF8xx8i9EpOXK",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Data mapping during a payroll system conversion is necessary to:",
+        "options": [
+          "Delete all historical data before starting the new system, creating a clean database without any legacy records",
+          "Ensure data fields from the old system correctly transfer to corresponding fields in the new system",
+          "Create new employee records from scratch, manually re-entering all demographic, tax, and compensation information rather than migrating existing data from the previous system",
+          "Eliminate the need for data validation after conversion"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Data mapping defines how each data field in the old system corresponds to fields in the new system. Proper mapping ensures accurate transfer of employee records, pay history, tax data, and deductions. Historical data is typically preserved (not deleted). Existing records are migrated (not recreated). Data validation after conversion is still essential.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/K1nbBVuFn2Ox6FPyOxIa",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Segregation of duties in payroll means:",
+        "options": [
+          "Dividing payroll responsibilities so that no single person controls the entire process from input to payment",
+          "Separating payroll processing from the pay schedule by assigning different calendar dates for calculation and distribution to reduce the risk of timing-related errors",
+          "Having one person handle all payroll functions for efficiency, as consolidating responsibilities under a single processor eliminates handoff delays and communication gaps",
+          "Assigning all audit functions to the payroll department, since the team"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Segregation of duties is a key internal control: different people should handle payroll input (time entry), processing (calculations), approval (review), and payment (distribution). This prevents any single person from creating fictitious employees, altering pay rates, and issuing unauthorized payments undetected. It is a fundamental fraud prevention control.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/KJce4EWHDcAjobOggyN5",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll reconciliation should compare:",
+        "options": [
+          "Only the bank statement to the payroll register, verifying",
+          "The current period's payroll register totals to the prior period and investigate significant variances",
+          "Employee names to the company directory, confirming that all individuals listed on the payroll register appear in the organization's official employee directory system",
+          "The payroll budget to the training budget, ensuring that compensation expenditures and professional development costs are properly allocated across departmental accounts"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Period-to-period reconciliation compares current payroll totals (gross pay, taxes, deductions, net pay, headcount) to the prior period and investigates significant variances. This catches errors, unauthorized changes, and anomalies. Bank reconciliation, employee verification, and budget comparison are separate but complementary controls.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/KNEodMSYcTd0vRYdIjxa",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "The matching principle in accounting requires:",
+        "correctAnswer": 0,
+        "explanation": "The matching principle is a fundamental accounting concept: expenses (including wages) must be recognized in the same period as the revenues they help generate. This provides an accurate picture of profitability for each period. For payroll, this means accruing wages earned in December even if paid in January.",
+        "difficulty": "Easy",
+        "options": [
+          "Expenses to be recorded in the same period as the revenue they help generate",
+          "Debits to always equal credits within each individual account in the ledger",
+          "Employee pay rates to match industry averages for comparable positions",
+          "All payments to be made on the same day they are recorded in the books"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/KtjpyoBbVOp2tlZh2zL8",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Effective customer service in the payroll department includes:",
+        "options": [
+          "Responding only to written complaints submitted through formal channels",
+          "Sharing an employee's payroll details with their coworkers to resolve disputes faster, since transparency among team members accelerates the investigation and resolution process",
+          "Telling employees to figure out their pay stubs on their own, as self-reliance reduces the volume of inquiries and encourages workers to understand their own compensation details",
+          "Responding to employee inquiries accurately, promptly, and with empathy while maintaining confidentiality"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Payroll customer service requires accuracy (correct answers), timeliness (prompt response), empathy (understanding employee concerns about pay), and confidentiality (never sharing one employee's information with another). Payroll affects employees' livelihoods, making trust and responsiveness essential. Multiple channels (phone, email, self-service) should be available.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/LuKjXxe2bNLiIb3ARknW",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "When an employee repays an overpayment from a prior year, the accounting treatment is to:",
+        "options": [
+          "Simply reduce the employee's current gross pay by the net overpayment amount, offsetting the prior-year excess payment against current period compensation without adjusting taxes",
+          "Record the repayment based on the gross overpayment amount and adjust the appropriate tax liabilities, per IRS regulatory guidance",
+          "Ignore the repayment since it occurred in a prior year, as closed accounting periods cannot be modified",
+          "Record it as revenue in the current year, treating the recovered overpayment as miscellaneous income that increases the organization's total revenue for the current reporting period"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Prior-year overpayment recovery requires careful accounting: the gross amount must be recovered, and tax adjustments depend on the year. Social Security and Medicare taxes can be adjusted if repaid in the same year, but prior-year repayments may require the employee to claim a credit on their tax return. A corrected W-2c may be needed for the prior year.",
+        "difficulty": "Hard",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/M8Q5GaYinP2D0LwyZoKh",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Effective delegation in the payroll department requires:",
+        "options": [
+          "Assigning tasks without any instructions or follow-up, allowing the team member to independently determine the approach",
+          "Clear communication of expectations, authority to complete the task, and accountability for results, per IRS regulatory guidance",
+          "Only delegating routine tasks and never complex ones, as complicated payroll processes require manager-level expertise",
+          "Retaining all decision-making authority while assigning the work, ensuring that the manager maintains complete control over every aspect of the delegated task's execution and outcomes"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Effective delegation involves clearly communicating the task, expectations, and deadlines; granting the authority needed to complete the work; providing necessary resources and training; and holding the person accountable for results while providing support. Delegation without guidance sets people up to fail. Retaining all authority defeats the purpose.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/NzjOlmoCXrjr8gFYKNkq",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Positive pay is a banking fraud prevention feature that:",
+        "options": [
+          "Automatically deposits funds into employee accounts using the ACH network",
+          "Matches issued check details against presented checks and rejects mismatches",
+          "Prevents employees from cashing checks at non-partner banks, restricting negotiation of payroll checks to only those financial institutions approved by the employer",
+          "Guarantees all checks will clear regardless of account balance, providing overdraft protection that ensures employee payroll checks are never returned for insufficient funds"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Positive pay is a fraud prevention service where the employer sends the bank a file of issued checks (check numbers, amounts, dates, payees). When checks are presented for payment, the bank matches them against the file. Mismatches (altered amounts, forged checks) are flagged for the employer to approve or reject, preventing fraudulent check cashing.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/Pz8V1Xfu0zcj6tTlviuq",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Reconciling payroll output to external vendors (such as 401(k) providers) ensures:",
+        "correctAnswer": 3,
+        "explanation": "External vendor reconciliation verifies that the amounts deducted from employee paychecks for benefits (401(k), FSA, HSA, garnishments) match the amounts transmitted to and received by the vendors. Discrepancies can mean missed contributions, over-deductions, or transmission errors — all of which affect employees and compliance.",
+        "difficulty": "Medium",
+        "options": [
+          "All employees are enrolled in the same investment fund with uniform elections",
+          "The vendor’s investment returns match the employer’s payroll contribution projections",
+          "The vendor’s billing matches the payroll department’s allocated spending budget",
+          "Employee contribution amounts transmitted match the amounts deducted from paychecks"
+        ],
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.8
+      }
+    },
+    {
+      "path": "questions/QDvJug2AO0pThWSjidcA",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "An audit trail in payroll systems tracks:",
+        "options": [
+          "Only the final payroll output, recording the completed pay register totals without capturing the individual data modifications",
+          "Who made changes, what was changed, when the change occurred, and the before/after values",
+          "Only unsuccessful login attempts, monitoring security events related",
+          "The physical location of paper checks, documenting where printed payroll checks are stored"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A comprehensive audit trail captures all changes to payroll data: the user who made the change, what field was modified, the date and time of the change, and the old and new values. This supports fraud detection, error investigation, and compliance audits. It covers data input, processing, and output — not just final results or security events.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/SUXLb7Pgt1eWhKN7Cd7R",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Payroll accruals are recorded to:",
+        "options": [
+          "Reduce the company's tax liability by recording payroll expenses in advance of the actual payment date, thereby lowering taxable income for the current fiscal period",
+          "Eliminate the need for year-end adjustments by pre-recording all anticipated payroll transactions",
+          "Recognize wages earned by employees but not yet paid as of the reporting period end date, per IRS regulatory guidance",
+          "Increase cash on the balance sheet by creating a corresponding asset entry that offsets the accrued wages liability and improves the company's reported liquidity position"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Under accrual accounting, wages earned but not yet paid must be recognized as an expense and a liability in the period they are earned — regardless of when payment occurs. For example, if the pay period crosses a month-end, the wages for days worked in the old month must be accrued. Accruals are typically reversed in the next period when payment is made.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/TPhKplu0mdsFHHtU9c9T",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Employee self-service (ESS) portals benefit the payroll department by:",
+        "options": [
+          "Automatically calculating overtime without payroll review, using built-in algorithms that determine exempt and non-exempt status and apply the correct overtime rates",
+          "Reducing manual data entry by allowing employees to update personal information, view pay stubs, and access W-2s, per the guidelines outlined in the applicable federal regulations",
+          "Eliminating the need for payroll staff entirely, as the self-service platform automates all payroll processing functions without requiring any human oversight or intervention",
+          "Bypassing all internal controls on data changes, streamlining the update process by allowing employees to modify any payroll field without management approval workflows"
+        ],
+        "correctAnswer": 1,
+        "explanation": "ESS portals enable employees to update addresses, direct deposit, tax withholding, and view/print pay stubs and W-2s — reducing manual data entry, phone calls, and paperwork for payroll staff. They do not eliminate the need for payroll professionals, automatically calculate complex pay, or bypass controls. Proper ESS systems include audit trails and approval workflows.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/TZy91qIoWrUxQEz8LwrI",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Sarbanes-Oxley (SOX) compliance for payroll requires:",
+        "options": [
+          "External audit of every individual paycheck, with independent auditors reviewing each payment transaction to verify accuracy of gross pay, deductions, and net pay calculations",
+          "Government approval before each payroll run, requiring federal regulatory clearance before the employer can initiate payroll processing for any given pay period",
+          "Mandatory use of a specific payroll software vendor that has been certified by the SEC as compliant with all Sarbanes-Oxley financial reporting and internal control requirements",
+          "Documented internal controls over financial reporting, including payroll processes that affect financial statements, per the guidelines outlined in the applicable federal regulations"
+        ],
+        "correctAnswer": 3,
+        "explanation": "SOX Section 404 requires public companies to document and test internal controls over financial reporting. Payroll is a significant component of financial statements (wages, taxes, accruals). Controls must be documented, tested, and audited. SOX does not mandate specific software, government pre-approval, or individual check auditing.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/UfPXpbi1pU5drcarZO99",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A service level agreement (SLA) between the payroll department and other business units should define:",
+        "options": [
+          "The payroll department's annual budget, including headcount allocations, technology expenditures, and operating costs for all payroll processing activities and services",
+          "Individual employee performance ratings, documenting how each payroll staff member is evaluated against productivity metrics",
+          "Expected service standards, response times, responsibilities, and escalation procedures",
+          "Only the payroll processing schedule, listing the specific dates and times"
+        ],
+        "correctAnswer": 2,
+        "explanation": "An SLA formalizes the relationship between payroll and its internal customers — defining what services are provided, performance standards (accuracy, timeliness), response times for inquiries, mutual responsibilities (e.g., timely submission of time records), and escalation procedures when issues arise. It sets expectations and accountability for both parties.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/UiBxUGX7Rp7nEI5mvGPg",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "On the balance sheet, accrued payroll is classified as:",
+        "correctAnswer": 3,
+        "explanation": "Accrued payroll (wages earned but not yet paid) is a current liability — an obligation expected to be settled within one year (typically within the next pay period). Current liabilities include accrued wages, taxes payable, and benefits payable. Long-term liabilities are due beyond one year. Payroll is an expense, not an asset or equity item.",
+        "difficulty": "Easy",
+        "options": [
+          "A long-term liability",
+          "An asset on the books",
+          "Shareholders’ equity",
+          "A current liability"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/Vlikwifn0a0Nv24KCV89",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A compound journal entry in payroll:",
+        "options": [
+          "Contains more than two line items — multiple debits and/or credits in a single entry",
+          "Involves only one debit and one credit, representing a simple two-line transaction",
+          "Records only employer taxes, not employee deductions, separating the employer's share of payroll tax obligations from the employee withholding amounts in distinct journal entries",
+          "Is an entry that has been posted twice by mistake, creating a duplicate transaction"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Payroll journal entries are almost always compound entries because they involve multiple debits (wage expense, employer tax expense) and multiple credits (various tax liabilities, deduction liabilities, cash). A simple entry has only one debit and one credit. Compound entries are standard in payroll accounting due to the many components involved.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/VllRaQjTVxftnzBanPIv",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Compliance/Research and Resources",
+        "stem": "Federal tax deposits must be made electronically using:",
+        "correctAnswer": 3,
+        "explanation": "All federal tax deposits must be made electronically using EFTPS (Electronic Federal Tax Payment System). Employers must enroll in EFTPS and schedule deposits in advance. Paper checks, cash payments, and direct wire transfers are not accepted for employment tax deposits. Penalties apply for failure to deposit electronically.",
+        "difficulty": "Easy",
+        "options": [
+          "Wire transfer directly to the U.S. Treasury",
+          "Paper check mailed to the IRS processing center",
+          "Cash payment at a local authorized bank branch",
+          "EFTPS (Electronic Federal Tax Payment System)"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/W33visfrNWjIFl3qfx9D",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Parallel testing during a payroll system implementation involves:",
+        "options": [
+          "Having two different teams process payroll independently using the same system",
+          "Running the new system at double speed to test performance under heavy load conditions",
+          "Testing the new system in isolation without comparison to the existing system's output, relying solely on predefined test cases to validate payroll calculation accuracy",
+          "Running both the old and new systems simultaneously to compare results and verify accuracy"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Parallel testing runs the existing and new payroll systems at the same time for one or more pay cycles, comparing results to ensure the new system produces accurate output. Discrepancies are investigated and resolved before the old system is decommissioned. This is the most thorough testing method but also the most resource-intensive.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/WG4sTpO05cHtY2AIrzxz",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Allocated tips on Form W-2 apply when:",
+        "options": [
+          "A large food or beverage establishment's employees report tips below 8% of the establishment's gross receipts",
+          "Tips are paid through credit card transactions only, as cash tips are not subject to allocation requirements",
+          "Any employee receives cash tips over $20 per month, which triggers the employer's obligation to allocate and report the tip income on the employee's annual W-2 form",
+          "The employer provides a tip pool for all employees, distributing gratuities equally among front-of-house"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Tip allocation is required for large food or beverage establishments (those with more than 10 employees) when total tips reported by employees are less than 8% of the establishment's gross receipts. Allocated tips are reported in Box 8 of Form W-2 but are not subject to withholding. The $20/month threshold triggers regular tip reporting, not allocation.",
+        "difficulty": "Hard",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/WOCS2agbkixlr9avUu3h",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Compliance/Research and Resources",
+        "stem": "An employer receives a federal tax levy (IRS Form 668-W) for an employee. Which statement about processing this levy is correct?",
+        "options": [
+          "The employer withholds a flat 25% of disposable earnings, applying the same percentage limit that governs ordinary creditor garnishments under federal law",
+          "The employer must calculate the exempt amount using the employee's filing status and number of exemptions claimed on the levy form",
+          "The levy only applies to future wages and cannot attach to any wages already earned but not yet paid at the time the levy is received by the employer",
+          "The employer must wait 30 calendar days before beginning to withhold, providing the employee time to negotiate a payment arrangement with the IRS"
+        ],
+        "correctAnswer": 1,
+        "explanation": "When processing an IRS levy (Form 668-W), the employer uses Publication 1494 to determine the exempt amount based on the employee's filing status and number of exemptions claimed on Part 3 of the levy. All earnings above the exempt amount must be remitted to the IRS. The levy is continuous and attaches to wages already earned but not yet paid. There is no 30-day waiting period.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/XX5Z9AJWP8FnRcffsGUL",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll system interface with the general ledger ensures:",
+        "options": [
+          "Payroll transactions are automatically posted to the correct GL accounts for financial reporting",
+          "The GL system calculates payroll taxes, performing all federal, state, and local tax computations",
+          "Employee pay stubs are printed from the GL system, using the general ledger's reporting module to generate and distribute individual earnings statements each pay period",
+          "Time and attendance data is collected by the GL, with the general ledger system serving"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The payroll-to-GL interface automatically transfers payroll journal entries (wages, taxes, deductions, employer costs) to the appropriate general ledger accounts. This ensures accurate financial reporting without manual journal entry creation. The GL does not calculate taxes, print pay stubs, or collect time data — those are payroll system functions.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.8
+      }
+    },
+    {
+      "path": "questions/YHBKpOc4EnZI1j20hBmd",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "The income statement reflects payroll costs as:",
+        "correctAnswer": 3,
+        "explanation": "Payroll costs (wages, employer taxes, benefits) appear on the income statement as operating expenses, directly reducing net income. Higher payroll costs lower profitability. On the balance sheet, any unpaid payroll obligations appear as current liabilities. Payroll is not an asset, cash inflow, or investment from an accounting perspective.",
+        "difficulty": "Easy",
+        "options": [
+          "Long-term investments in human capital on the balance sheet",
+          "Assets that increase the company’s net worth over time",
+          "Cash inflows from employee contributions recorded as revenue",
+          "Operating expenses that reduce net income for the period"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/ZWRrJKN1GMP7fKiwkXct",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A ghost employee fraud scheme is best detected by:",
+        "options": [
+          "Eliminating direct deposit and paying only by check, forcing all employees to physically present themselves to collect wages and thereby exposing any fictitious identities",
+          "Increasing all employee pay rates by the same percentage",
+          "Comparing the payroll register to the HR employee master file and verifying active status",
+          "Reducing the payroll processing frequency from biweekly to monthly"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Ghost employees are fictitious workers added to the payroll by someone with system access. Comparing the payroll register to the HR master file (and verifying employees are real and active) is the primary detection method. Additional controls include physical paycheck distribution, address analysis (multiple employees at same address), and random audits of new hires.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/ZoyovLFFB3Enj0ffhrtd",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll skills assessment for staff development should evaluate:",
+        "options": [
+          "Only the number of years of payroll experience, since tenure is the most reliable indicator of an employee's capability and readiness for advanced payroll responsibilities",
+          "Only whether the employee has a CPP certification",
+          "Only the employee's typing speed, because data entry efficiency is the primary skill required for accurate and timely payroll processing across all organizational levels",
+          "Technical payroll knowledge, compliance awareness, system proficiency, and soft skills"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A comprehensive skills assessment evaluates multiple dimensions: technical knowledge (tax calculations, wage and hour law), compliance awareness (regulatory updates, filing requirements), system proficiency (payroll software, reporting tools), and soft skills (communication, problem-solving, customer service). Experience, certification, and technical skills are all factors but none alone is sufficient.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.8
+      }
+    },
+    {
+      "path": "questions/a659lT0zEq7wrQFuwQ3j",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Employer-provided educational assistance is tax-free up to:",
+        "correctAnswer": 0,
+        "explanation": "Under IRC Section 127, employers can provide up to $5,250 per calendar year in educational assistance benefits tax-free. This includes tuition, fees, books, and supplies. The assistance need not be job-related. Amounts exceeding $5,250 are taxable unless they qualify as a working condition fringe benefit (job-related education under Section 132).",
+        "difficulty": "Easy",
+        "options": [
+          "$5,250 per year under IRC Section 127",
+          "$10,000 per year under tuition plans",
+          "Any amount, no limit on eligible courses",
+          "$2,500 per semester for all coursework"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/cQ9hkl5b05636A6EcXIe",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Compliance/Research and Resources",
+        "stem": "A nonresident alien employee is generally subject to which federal income tax withholding rules?",
+        "options": [
+          "Special NRA withholding rules that may include additional withholding and treaty-based exemptions, as established by the relevant federal regulatory framework",
+          "The same rules as U.S. citizens with no differences in withholding calculations, Form W-4 completion requirements, or available filing status selections",
+          "A flat 50% withholding rate on all compensation earned within the United States, regardless of treaty provisions or the employee's country of residence",
+          "No federal income tax withholding of any kind, as nonresident aliens are completely exempt from U.S. federal tax obligations on wages earned domestically"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Nonresident aliens (NRAs) are subject to special withholding rules. They generally cannot claim \"married\" status or the standard deduction on Form W-4, and may have additional withholding requirements. However, tax treaty benefits may reduce or eliminate withholding on certain types of income. Form 8233 is used to claim treaty exemptions for NRA employees.",
+        "difficulty": "Hard",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/cokSHQE89j2GprowHFnW",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll shared services model centralizes payroll processing to:",
+        "options": [
+          "Eliminate all local compliance requirements, since centralized processing removes the obligation",
+          "Remove the need for payroll expertise, because centralized systems are fully automated",
+          "Reduce employee headcount by 90% immediately, as shared services automation replaces virtually all manual payroll processing functions previously performed",
+          "Achieve economies of scale, standardize processes, and improve consistency across business units"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Shared services centralizes repetitive payroll processing to gain efficiency, standardize procedures, leverage technology, and ensure consistent treatment across locations. Local compliance requirements still apply and must be managed within the shared service. While staffing may be optimized, drastic immediate reductions are unrealistic. Payroll expertise remains essential.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/d5pDjVEm1jeCcUH2sJM2",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll system's master file typically contains:",
+        "options": [
+          "Employee demographics, pay rates, tax withholding elections, deduction codes, and direct deposit information, consistent with the requirements of federal payroll law",
+          "Historical payroll data exclusively, serving as a long-term repository of past pay records without storing any current employee compensation or tax information",
+          "Only information needed for the current pay period, since historical data is archived separately and not maintained within the active payroll master file system",
+          "Only the employee's name and Social Security number, as these two fields are sufficient to identify the worker and link to all other payroll processing records"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The master file is the foundation of the payroll system, containing standing data used each pay cycle: employee demographics, tax elections (W-4 data), pay rates, benefit deductions, direct deposit routing, work location, job classifications, and more. It contains both current and historical data and is updated when employee information changes.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/dDNaAZzBQpWGLKpA2H8N",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Setting departmental objectives for the payroll department should align with:",
+        "correctAnswer": 3,
+        "explanation": "Departmental objectives should cascade from the organization's strategic goals. If the company prioritizes cost reduction, payroll objectives might focus on processing efficiency. If compliance is the focus, accuracy and audit readiness take priority. Objectives should be specific, measurable, and aligned with organizational direction — not based on personal preference or rote repetition.",
+        "difficulty": "Medium",
+        "options": [
+          "Whatever the previous year’s objectives were, unchanged for continuity",
+          "Only the payroll manager’s personal preferences for the department",
+          "Industry benchmarks without considering the organization’s specific needs",
+          "The organization's overall strategic goals and key performance indicators"
+        ],
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/dFkGwQfvCBqxQ3spLTu6",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Compliance/Research and Resources",
+        "stem": "Under federal wage garnishment provisions, the maximum amount that can be garnished from an employee's disposable earnings for ordinary creditor garnishments is:",
+        "options": [
+          "The lesser of 25% of disposable earnings or the amount by which disposable earnings exceed 30 times the federal minimum wage, as required under current federal payroll regulations",
+          "50% of gross earnings before any deductions, applied uniformly regardless of the employee's pay frequency or the federal minimum hourly wage rate",
+          "15% of disposable earnings with no minimum wage test applied, meaning the garnishment percentage is calculated solely on the net disposable amount",
+          "100% of earnings above the federal poverty line, allowing creditors to garnish all compensation that exceeds the government-established poverty threshold"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Title III of the Consumer Credit Protection Act (CCPA) limits ordinary creditor garnishments to the lesser of: 25% of disposable earnings, or the amount by which disposable earnings exceed 30× the federal minimum hourly wage per week. Disposable earnings are gross pay minus legally required deductions (taxes, Social Security). Different limits apply to child support and tax levies.",
+        "difficulty": "Hard",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/dVBUWBmirZ40LdnehZVg",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Batch processing in payroll refers to:",
+        "options": [
+          "Sending all employee paychecks in a single envelope to each department manager",
+          "Running payroll only once per year during the annual compensation cycle",
+          "Processing each payroll transaction individually in real time as it occurs",
+          "Collecting and processing all payroll transactions together at scheduled intervals"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Batch processing collects all payroll transactions (time records, deductions, adjustments) and processes them together as a group at scheduled times (e.g., each pay period). This is efficient for high-volume processing. Real-time processing handles transactions individually as they occur. Batch totals are used to verify accuracy of the processed group.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/dc2IyYdDvUanmBb2n5x1",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "The Affordable Care Act (ACA) employer shared responsibility provision applies to applicable large employers (ALEs) with at least:",
+        "correctAnswer": 3,
+        "explanation": "Under the ACA, an ALE is an employer with 50 or more full-time employees (including full-time equivalents) in the prior calendar year. ALEs must offer affordable, minimum value health coverage to full-time employees or potentially face penalties. Full-time is defined as averaging 30+ hours per week.",
+        "difficulty": "Easy",
+        "options": [
+          "100 full-time employees averaging 30+ hours per week",
+          "25 full-time employees under the ACA threshold",
+          "500 full-time employees in large corporations",
+          "50 full-time employees or full-time equivalents"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/e7Y0P9BlmGkoavGmCha0",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A business continuity plan (BCP) for payroll should include:",
+        "options": [
+          "Alternative processing methods, communication plans, data backup procedures, and recovery time objectives, which represents the primary compliance standard for this requirement",
+          "Only instructions for manual check writing, which serves as the sole contingency procedure when the automated payroll processing system becomes unavailable",
+          "Only a list of emergency phone numbers for key payroll personnel and IT support staff who can be contacted during a business disruption event",
+          "A plan to suspend all payroll operations until the emergency ends, since attempting to process payroll during a disruption creates unacceptable compliance and accuracy risks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "A comprehensive payroll BCP ensures employees are paid even during disruptions. It includes alternative processing methods (backup vendors, manual procedures), communication plans (notifying employees and banks), data backup and recovery procedures, recovery time objectives, and testing schedules. Suspending payroll is not an option — employees must be paid on time.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/fOl1qJm2rsYJUixNxqtW",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Compliance/Research and Resources",
+        "stem": "A child support income withholding order takes priority over which of the following?",
+        "options": [
+          "Only voluntary deductions such as 401(k) contributions, health insurance premiums, and flexible spending account elections, but not any court-ordered obligations",
+          "Federal tax levies in all cases without exception, as child support orders are given absolute priority over every other type of withholding obligation under federal law",
+          "Most other garnishments, including creditor garnishments, per IRS regulatory guidance",
+          "Nothing — it has the lowest priority among all garnishment types"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Child support withholding orders generally take priority over most other garnishments, including creditor garnishments. The priority between child support and federal tax levies depends on which was received first in most cases. Child support can garnish up to 50-65% of disposable earnings, far more than the 25% limit for ordinary creditors.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/fQakDLX3qJ11RBRVmrEz",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "System security for payroll data should include:",
+        "options": [
+          "Relying exclusively on the vendor's default security settings, since payroll software providers configure adequate protection during the initial system installation process",
+          "Storing data without encryption since it is internal, as payroll information maintained within the company's network does not require additional protection measures beyond firewalls",
+          "Role-based access controls, encryption, audit trails, and regular security assessments",
+          "Giving all employees full access to payroll data for transparency"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Payroll data contains sensitive PII (SSNs, bank accounts, salaries) requiring robust security: role-based access controls limit who sees what, encryption protects data in transit and at rest, audit trails track who accessed or changed data, and regular assessments identify vulnerabilities. Universal access violates confidentiality. Default settings may not meet organizational requirements.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/fYimnjtdaaQTe9SKdNMQ",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Effective customer service in the payroll department includes:",
+        "options": [
+          "Responding only to written complaints submitted through formal channels",
+          "Sharing an employee's payroll details with their coworkers to resolve disputes faster, since transparency among team members accelerates the investigation and resolution process",
+          "Responding to employee inquiries accurately, promptly, and with empathy while maintaining confidentiality",
+          "Telling employees to figure out their pay stubs on their own, as self-reliance reduces the volume of inquiries and encourages workers to understand their own compensation details"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Payroll customer service requires accuracy (correct answers), timeliness (prompt response), empathy (understanding employee concerns about pay), and confidentiality (never sharing one employee's information with another). Payroll affects employees' livelihoods, making trust and responsiveness essential. Multiple channels (phone, email, self-service) should be available.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/g16uKdhG6VXNKT081QqU",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Setting departmental objectives for the payroll department should align with:",
+        "correctAnswer": 2,
+        "explanation": "Departmental objectives should cascade from the organization's strategic goals. If the company prioritizes cost reduction, payroll objectives might focus on processing efficiency. If compliance is the focus, accuracy and audit readiness take priority. Objectives should be specific, measurable, and aligned with organizational direction — not based on personal preference or rote repetition.",
+        "difficulty": "Medium",
+        "options": [
+          "Only the payroll manager’s personal preferences for the department",
+          "Industry benchmarks without considering the organization’s specific needs",
+          "The organization's overall strategic goals and key performance indicators",
+          "Whatever the previous year’s objectives were, unchanged for continuity"
+        ],
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/gkh3zqSrsm1FbBI6mYwU",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Reconciling the general ledger payroll accounts involves:",
+        "options": [
+          "Comparing GL account balances to payroll register totals, tax filings, and bank statements to identify and resolve differences, per the guidelines outlined in the applicable federal regulations",
+          "Ensuring the GL uses the correct font and formatting, verifying that financial reports meet the organization's presentation standards for internal distribution and external filing purposes",
+          "Only verifying that the GL has been updated each pay period, confirming that journal entries were posted without examining the accuracy of the amounts or account classifications",
+          "Checking that all employees are listed in the GL, reviewing the general ledger for individual employee records to ensure complete representation of the workforce in financial accounts"
+        ],
+        "correctAnswer": 0,
+        "explanation": "GL reconciliation is a critical control that compares payroll-related account balances (wages expense, tax liabilities, benefit liabilities, cash) to source documents: payroll registers, tax returns (941, 940), bank statements, and vendor reports. Discrepancies are investigated and resolved to ensure accurate financial reporting.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/hpBUuSa4IcXNpLyS5Kya",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "When a payroll department receives a government agency notice regarding a discrepancy, the first step should be:",
+        "options": [
+          "Review the notice carefully, research the issue, and respond within the required timeframe",
+          "Pay any amount demanded immediately without verification, since prompt payment avoids additional penalties",
+          "Ignore the notice until a second notice is received, as initial government correspondence is typically informational",
+          "Forward the notice to the employee without review, allowing the individual worker"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Government notices require prompt, careful attention. The payroll professional should read the notice thoroughly, understand what is being requested, research the discrepancy (compare records, verify calculations), and respond within the stated deadline. Ignoring notices leads to penalties. Paying without verification may waste money. Forwarding to employees is not appropriate for employer obligations.",
+        "difficulty": "Easy",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/iH8w6XHlcpHzLNZvHM65",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "When selecting a new payroll system, a Request for Proposal (RFP) should include:",
+        "correctAnswer": 3,
+        "explanation": "An effective RFP clearly communicates the organization's needs to potential vendors: business requirements, current challenges, integration points (GL, HR, benefits), compliance needs, timeline, budget constraints, and evaluation criteria. This enables vendors to propose targeted solutions. Without detailed requirements, proposals cannot be meaningfully compared.",
+        "difficulty": "Medium",
+        "options": [
+          "The vendor’s proposed solution before requirements are defined, letting them shape the project scope",
+          "Only the company name and contact information, leaving vendors to assess needs independently",
+          "A request for the lowest price with no functional specifications or compliance evaluation",
+          "Detailed business requirements, current pain points, integration needs, timeline, and evaluation criteria"
+        ],
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/il2dZLb8D1U1VonW3o9v",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "When a payroll department receives a government agency notice regarding a discrepancy, the first step should be:",
+        "options": [
+          "Ignore the notice until a second notice is received, as initial government correspondence is typically informational",
+          "Pay any amount demanded immediately without verification, since prompt payment avoids additional penalties",
+          "Review the notice carefully, research the issue, and respond within the required timeframe",
+          "Forward the notice to the employee without review, allowing the individual worker"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Government notices require prompt, careful attention. The payroll professional should read the notice thoroughly, understand what is being requested, research the discrepancy (compare records, verify calculations), and respond within the stated deadline. Ignoring notices leads to penalties. Paying without verification may waste money. Forwarding to employees is not appropriate for employer obligations.",
+        "difficulty": "Easy",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/jiQztOQ3IdNb00rbRpuk",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll shared services model centralizes payroll processing to:",
+        "options": [
+          "Achieve economies of scale, standardize processes, and improve consistency across business units",
+          "Remove the need for payroll expertise, because centralized systems are fully automated",
+          "Eliminate all local compliance requirements, since centralized processing removes the obligation",
+          "Reduce employee headcount by 90% immediately, as shared services automation replaces virtually all manual payroll processing functions previously performed"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Shared services centralizes repetitive payroll processing to gain efficiency, standardize procedures, leverage technology, and ensure consistent treatment across locations. Local compliance requirements still apply and must be managed within the shared service. While staffing may be optimized, drastic immediate reductions are unrealistic. Payroll expertise remains essential.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/k2BzaIDE2ODH9IwKdbye",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "The Affordable Care Act (ACA) employer shared responsibility provision applies to applicable large employers (ALEs) with at least:",
+        "correctAnswer": 2,
+        "explanation": "Under the ACA, an ALE is an employer with 50 or more full-time employees (including full-time equivalents) in the prior calendar year. ALEs must offer affordable, minimum value health coverage to full-time employees or potentially face penalties. Full-time is defined as averaging 30+ hours per week.",
+        "difficulty": "Easy",
+        "options": [
+          "25 full-time employees under the ACA threshold",
+          "500 full-time employees in large corporations",
+          "50 full-time employees or full-time equivalents",
+          "100 full-time employees averaging 30+ hours per week"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/kDCVVRxTN4QOoVFV9Ucc",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "The matching principle in accounting requires:",
+        "correctAnswer": 2,
+        "explanation": "The matching principle is a fundamental accounting concept: expenses (including wages) must be recognized in the same period as the revenues they help generate. This provides an accurate picture of profitability for each period. For payroll, this means accruing wages earned in December even if paid in January.",
+        "difficulty": "Easy",
+        "options": [
+          "Debits to always equal credits within each individual account in the ledger",
+          "All payments to be made on the same day they are recorded in the books",
+          "Expenses to be recorded in the same period as the revenue they help generate",
+          "Employee pay rates to match industry averages for comparable positions"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/kcXJxNRMKJxr1gBueuxh",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Employer-provided educational assistance is tax-free up to:",
+        "correctAnswer": 3,
+        "explanation": "Under IRC Section 127, employers can provide up to $5,250 per calendar year in educational assistance benefits tax-free. This includes tuition, fees, books, and supplies. The assistance need not be job-related. Amounts exceeding $5,250 are taxable unless they qualify as a working condition fringe benefit (job-related education under Section 132).",
+        "difficulty": "Easy",
+        "options": [
+          "Any amount, no limit on eligible courses",
+          "$2,500 per semester for all coursework",
+          "$10,000 per year under tuition plans",
+          "$5,250 per year under IRC Section 127"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/lF7oTavrt1UlW7Fw4GSg",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "System security for payroll data should include:",
+        "options": [
+          "Giving all employees full access to payroll data for transparency",
+          "Relying exclusively on the vendor's default security settings, since payroll software providers configure adequate protection during the initial system installation process",
+          "Role-based access controls, encryption, audit trails, and regular security assessments",
+          "Storing data without encryption since it is internal, as payroll information maintained within the company's network does not require additional protection measures beyond firewalls"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Payroll data contains sensitive PII (SSNs, bank accounts, salaries) requiring robust security: role-based access controls limit who sees what, encryption protects data in transit and at rest, audit trails track who accessed or changed data, and regular assessments identify vulnerabilities. Universal access violates confidentiality. Default settings may not meet organizational requirements.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/lZCb6zsKJzkQ1Atxx6q6",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll system's master file typically contains:",
+        "options": [
+          "Only information needed for the current pay period, since historical data is archived separately and not maintained within the active payroll master file system",
+          "Historical payroll data exclusively, serving as a long-term repository of past pay records without storing any current employee compensation or tax information",
+          "Employee demographics, pay rates, tax withholding elections, deduction codes, and direct deposit information, consistent with the requirements of federal payroll law",
+          "Only the employee's name and Social Security number, as these two fields are sufficient to identify the worker and link to all other payroll processing records"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The master file is the foundation of the payroll system, containing standing data used each pay cycle: employee demographics, tax elections (W-4 data), pay rates, benefit deductions, direct deposit routing, work location, job classifications, and more. It contains both current and historical data and is updated when employee information changes.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/lbgFHFouT38IELqqE6h5",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Qualified transportation benefits under IRC Section 132(f) include:",
+        "options": [
+          "Personal vehicle gas reimbursements with no limit, covering all fuel costs incurred",
+          "Airline tickets for business travel, including flights to conferences, client meetings",
+          "Transit passes, vanpooling, and qualified parking up to monthly exclusion limits",
+          "Hotel accommodations for commuting employees who must travel long distances"
+        ],
+        "correctAnswer": 2,
+        "explanation": "IRC Section 132(f) allows employers to provide tax-free qualified transportation fringe benefits: transit passes, vanpool benefits, and qualified parking, each up to monthly exclusion limits set annually. Gas reimbursements for personal commuting, airline tickets, and hotel stays are not qualified transportation benefits under Section 132(f).",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/n8PzsSbmTkQHeLGohpUJ",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "An employee earns $600 per week and works 48 hours. Under the FLSA, the minimum overtime payment for the 8 overtime hours is:",
+        "options": [
+          "$240.00 (8 hours × $30.00 calculated by doubling the base regular rate for all overtime hours in the workweek)",
+          "$150.00 (8 hours × $18.75 using an adjusted rate that factors in a weighted average of hourly compensation)",
+          "$120.00 (8 hours × $15.00 straight-time rate with no overtime premium applied to the additional hours worked)",
+          "$180.00 (8 hours × $15.00 regular rate × 1.5), reflecting the standard established under federal payroll guidelines"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The regular rate is $600 ÷ 40 hours = $15.00/hour. Overtime is 1.5× the regular rate: $15.00 × 1.5 = $22.50/hour. For 8 OT hours: 8 × $22.50 = $180.00. The total weekly pay would be $600 + $180 = $780. Always calculate the regular rate first, then apply the 1.5 multiplier.",
+        "difficulty": "Medium",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/o43qqejrLINsKWScVjqg",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Effective delegation in the payroll department requires:",
+        "options": [
+          "Retaining all decision-making authority while assigning the work, ensuring that the manager maintains complete control over every aspect of the delegated task's execution and outcomes",
+          "Only delegating routine tasks and never complex ones, as complicated payroll processes require manager-level expertise",
+          "Clear communication of expectations, authority to complete the task, and accountability for results, per IRS regulatory guidance",
+          "Assigning tasks without any instructions or follow-up, allowing the team member to independently determine the approach"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Effective delegation involves clearly communicating the task, expectations, and deadlines; granting the authority needed to complete the work; providing necessary resources and training; and holding the person accountable for results while providing support. Delegation without guidance sets people up to fail. Retaining all authority defeats the purpose.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/p18tJzPBbdjsjO3hXR4B",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A business continuity plan (BCP) for payroll should include:",
+        "options": [
+          "Only a list of emergency phone numbers for key payroll personnel and IT support staff who can be contacted during a business disruption event",
+          "Alternative processing methods, communication plans, data backup procedures, and recovery time objectives, which represents the primary compliance standard for this requirement",
+          "A plan to suspend all payroll operations until the emergency ends, since attempting to process payroll during a disruption creates unacceptable compliance and accuracy risks",
+          "Only instructions for manual check writing, which serves as the sole contingency procedure when the automated payroll processing system becomes unavailable"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A comprehensive payroll BCP ensures employees are paid even during disruptions. It includes alternative processing methods (backup vendors, manual procedures), communication plans (notifying employees and banks), data backup and recovery procedures, recovery time objectives, and testing schedules. Suspending payroll is not an option — employees must be paid on time.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/pK9vGTVy9bJynuGollLi",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Batch processing in payroll refers to:",
+        "options": [
+          "Running payroll only once per year during the annual compensation cycle",
+          "Processing each payroll transaction individually in real time as it occurs",
+          "Collecting and processing all payroll transactions together at scheduled intervals",
+          "Sending all employee paychecks in a single envelope to each department manager"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Batch processing collects all payroll transactions (time records, deductions, adjustments) and processes them together as a group at scheduled times (e.g., each pay period). This is efficient for high-volume processing. Real-time processing handles transactions individually as they occur. Batch totals are used to verify accuracy of the processed group.",
+        "difficulty": "Easy",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/qiNbMn64zK6mVmGq8qzQ",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll skills assessment for staff development should evaluate:",
+        "options": [
+          "Technical payroll knowledge, compliance awareness, system proficiency, and soft skills",
+          "Only whether the employee has a CPP certification",
+          "Only the number of years of payroll experience, since tenure is the most reliable indicator of an employee's capability and readiness for advanced payroll responsibilities",
+          "Only the employee's typing speed, because data entry efficiency is the primary skill required for accurate and timely payroll processing across all organizational levels"
+        ],
+        "correctAnswer": 0,
+        "explanation": "A comprehensive skills assessment evaluates multiple dimensions: technical knowledge (tax calculations, wage and hour law), compliance awareness (regulatory updates, filing requirements), system proficiency (payroll software, reporting tools), and soft skills (communication, problem-solving, customer service). Experience, certification, and technical skills are all factors but none alone is sufficient.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.85
+      }
+    },
+    {
+      "path": "questions/sIUxoQKA94itQVRMnFQ8",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll system interface with the general ledger ensures:",
+        "options": [
+          "Payroll transactions are automatically posted to the correct GL accounts for financial reporting",
+          "Time and attendance data is collected by the GL, with the general ledger system serving",
+          "Employee pay stubs are printed from the GL system, using the general ledger's reporting module to generate and distribute individual earnings statements each pay period",
+          "The GL system calculates payroll taxes, performing all federal, state, and local tax computations"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The payroll-to-GL interface automatically transfers payroll journal entries (wages, taxes, deductions, employer costs) to the appropriate general ledger accounts. This ensures accurate financial reporting without manual journal entry creation. The GL does not calculate taxes, print pay stubs, or collect time data — those are payroll system functions.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.8
+      }
+    },
+    {
+      "path": "questions/thHxYX9ye8vHIlFPmTSR",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Employee self-service (ESS) portals benefit the payroll department by:",
+        "options": [
+          "Reducing manual data entry by allowing employees to update personal information, view pay stubs, and access W-2s, per the guidelines outlined in the applicable federal regulations",
+          "Eliminating the need for payroll staff entirely, as the self-service platform automates all payroll processing functions without requiring any human oversight or intervention",
+          "Automatically calculating overtime without payroll review, using built-in algorithms that determine exempt and non-exempt status and apply the correct overtime rates",
+          "Bypassing all internal controls on data changes, streamlining the update process by allowing employees to modify any payroll field without management approval workflows"
+        ],
+        "correctAnswer": 0,
+        "explanation": "ESS portals enable employees to update addresses, direct deposit, tax withholding, and view/print pay stubs and W-2s — reducing manual data entry, phone calls, and paperwork for payroll staff. They do not eliminate the need for payroll professionals, automatically calculate complex pay, or bypass controls. Proper ESS systems include audit trails and approval workflows.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.8
+      }
+    },
+    {
+      "path": "questions/tzIOYZp1Xg7QWCtGRLXu",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A service level agreement (SLA) between the payroll department and other business units should define:",
+        "options": [
+          "Only the payroll processing schedule, listing the specific dates and times",
+          "The payroll department's annual budget, including headcount allocations, technology expenditures, and operating costs for all payroll processing activities and services",
+          "Individual employee performance ratings, documenting how each payroll staff member is evaluated against productivity metrics",
+          "Expected service standards, response times, responsibilities, and escalation procedures"
+        ],
+        "correctAnswer": 3,
+        "explanation": "An SLA formalizes the relationship between payroll and its internal customers — defining what services are provided, performance standards (accuracy, timeliness), response times for inquiries, mutual responsibilities (e.g., timely submission of time records), and escalation procedures when issues arise. It sets expectations and accountability for both parties.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/ue5AxjyZZFQPVGcx1i43",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "When an employee repays an overpayment from a prior year, the accounting treatment is to:",
+        "options": [
+          "Simply reduce the employee's current gross pay by the net overpayment amount, offsetting the prior-year excess payment against current period compensation without adjusting taxes",
+          "Ignore the repayment since it occurred in a prior year, as closed accounting periods cannot be modified",
+          "Record the repayment based on the gross overpayment amount and adjust the appropriate tax liabilities, per IRS regulatory guidance",
+          "Record it as revenue in the current year, treating the recovered overpayment as miscellaneous income that increases the organization's total revenue for the current reporting period"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Prior-year overpayment recovery requires careful accounting: the gross amount must be recovered, and tax adjustments depend on the year. Social Security and Medicare taxes can be adjusted if repaid in the same year, but prior-year repayments may require the employee to claim a credit on their tax return. A corrected W-2c may be needed for the prior year.",
+        "difficulty": "Hard",
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/wbc5FHZQhsS30LY4GhCm",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Sarbanes-Oxley (SOX) compliance for payroll requires:",
+        "options": [
+          "Government approval before each payroll run, requiring federal regulatory clearance before the employer can initiate payroll processing for any given pay period",
+          "External audit of every individual paycheck, with independent auditors reviewing each payment transaction to verify accuracy of gross pay, deductions, and net pay calculations",
+          "Mandatory use of a specific payroll software vendor that has been certified by the SEC as compliant with all Sarbanes-Oxley financial reporting and internal control requirements",
+          "Documented internal controls over financial reporting, including payroll processes that affect financial statements, per the guidelines outlined in the applicable federal regulations"
+        ],
+        "correctAnswer": 3,
+        "explanation": "SOX Section 404 requires public companies to document and test internal controls over financial reporting. Payroll is a significant component of financial statements (wages, taxes, accruals). Controls must be documented, tested, and audited. SOX does not mandate specific software, government pre-approval, or individual check auditing.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/yWKFa4jCpCT8LZuvfHa4",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "A payroll journal entry for recording gross wages paid would include:",
+        "options": [
+          "A debit to accounts receivable and credit to revenue, treating employee compensation as a receivable asset that generates revenue for the organization through labor services",
+          "Only a debit to cash for the net pay amount, since the net payment to employees is the only transaction that needs to be recorded in the general ledger for payroll",
+          "A debit to wages/salary expense and credits to various liability accounts (taxes payable, deductions payable) and cash/bank, as required under current federal payroll regulations",
+          "A credit to wages expense and a debit to cash, recording the payment as a reduction in expenses offset by an increase in the company's available cash balance"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The payroll journal entry debits wage/salary expense (the total gross pay cost) and credits: tax liability accounts (FIT payable, FICA payable, state tax payable), deduction liability accounts (401(k) payable, benefits payable), and cash/bank (net pay). Debits increase expenses; credits increase liabilities. The entry must balance — total debits equal total credits.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/zMBflFSz0JW65ynJ9Zq2",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Administration/Process/Management/Audits/Accounting",
+        "stem": "Reconciling payroll output to external vendors (such as 401(k) providers) ensures:",
+        "correctAnswer": 1,
+        "explanation": "External vendor reconciliation verifies that the amounts deducted from employee paychecks for benefits (401(k), FSA, HSA, garnishments) match the amounts transmitted to and received by the vendors. Discrepancies can mean missed contributions, over-deductions, or transmission errors — all of which affect employees and compliance.",
+        "difficulty": "Medium",
+        "options": [
+          "The vendor’s investment returns match the employer’s payroll contribution projections",
+          "Employee contribution amounts transmitted match the amounts deducted from paychecks",
+          "All employees are enrolled in the same investment fund with uniform elections",
+          "The vendor’s billing matches the payroll department’s allocated spending budget"
+        ],
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.8
+      }
+    },
+    {
+      "path": "questions/KhqaYFNtKQJLgp9q1Zuo",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employee who is paid biweekly has a dependent care FSA election of $5,000 per year. What is the per-pay-period pre-tax deduction?",
+        "options": [
+          "$208.33 ($5,000 ÷ 24 pay periods), using the semimonthly pay frequency divisor to calculate each periodic deduction from the employee gross pay",
+          "$250.00 ($5,000 ÷ 20 pay periods), based on a custom pay schedule that excludes holiday weeks and other non-standard payroll processing periods",
+          "$192.31 ($5,000 ÷ 26 pay periods), reflecting the standard biweekly allocation for annual dependent care flexible spending account elections",
+          "$416.67 ($5,000 ÷ 12 pay periods), applying a monthly frequency divisor that distributes the annual election evenly across twelve calendar months"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Biweekly pay frequency means 26 pay periods per year (52 weeks ÷ 2). The dependent care FSA annual limit of $5,000 divided by 26 pay periods equals $192.31 per pay period. Common errors include using 24 (semimonthly) or 12 (monthly) as the divisor. The $5,000 limit applies per household regardless of pay frequency.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/b17KoYaFxq7rSSTA9NqW",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employee who is paid biweekly has a dependent care FSA election of $5,000 per year. What is the per-pay-period pre-tax deduction?",
+        "options": [
+          "$250.00 ($5,000 ÷ 20 pay periods), based on a custom pay schedule that excludes holiday weeks and other non-standard payroll processing periods",
+          "$208.33 ($5,000 ÷ 24 pay periods), using the semimonthly pay frequency divisor to calculate each periodic deduction from the employee gross pay",
+          "$416.67 ($5,000 ÷ 12 pay periods), applying a monthly frequency divisor that distributes the annual election evenly across twelve calendar months",
+          "$192.31 ($5,000 ÷ 26 pay periods), reflecting the standard biweekly allocation for annual dependent care flexible spending account elections"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Biweekly pay frequency means 26 pay periods per year (52 weeks ÷ 2). The dependent care FSA annual limit of $5,000 divided by 26 pay periods equals $192.31 per pay period. Common errors include using 24 (semimonthly) or 12 (monthly) as the divisor. The $5,000 limit applies per household regardless of pay frequency.",
+        "difficulty": "Easy",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/a659lT0zEq7wrQFuwQ3j",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Employer-provided educational assistance is tax-free up to:",
+        "correctAnswer": 0,
+        "explanation": "Under IRC Section 127, employers can provide up to $5,250 per calendar year in educational assistance benefits tax-free. This includes tuition, fees, books, and supplies. The assistance need not be job-related. Amounts exceeding $5,250 are taxable unless they qualify as a working condition fringe benefit (job-related education under Section 132).",
+        "difficulty": "Easy",
+        "options": [
+          "$5,250 per year under IRC Section 127",
+          "$10,000 per year under tuition plans",
+          "Any amount, no limit on eligible courses",
+          "$2,500 per semester for all coursework"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/kcXJxNRMKJxr1gBueuxh",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Employer-provided educational assistance is tax-free up to:",
+        "correctAnswer": 3,
+        "explanation": "Under IRC Section 127, employers can provide up to $5,250 per calendar year in educational assistance benefits tax-free. This includes tuition, fees, books, and supplies. The assistance need not be job-related. Amounts exceeding $5,250 are taxable unless they qualify as a working condition fringe benefit (job-related education under Section 132).",
+        "difficulty": "Easy",
+        "options": [
+          "Any amount, no limit on eligible courses",
+          "$2,500 per semester for all coursework",
+          "$10,000 per year under tuition plans",
+          "$5,250 per year under IRC Section 127"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 933000000
+        },
+        "bloomConfidence": 1
+      }
+    },
+    {
+      "path": "questions/7lqrD4OFKPc3bjTh8UWC",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employee receives a $5,000 bonus as supplemental wages. If the employer uses the flat rate method, federal income tax withholding is:",
+        "correctAnswer": 1,
+        "explanation": "The optional flat rate for supplemental wages is 22% (for supplemental wages up to $1 million in a calendar year). For $5,000: $5,000 × 0.22 = $1,100. If supplemental wages exceed $1 million, the excess is withheld at 37%. Alternatively, the employer may use the aggregate method, combining regular and supplemental wages.",
+        "difficulty": "Easy",
+        "options": [
+          "$1,200 (24% of $5,000)",
+          "$1,100 (22% of $5,000)",
+          "$500 (10% of $5,000)",
+          "$750 (15% of $5,000)"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/C2jfIKp3W6jCNqjc322U",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employee receives a $5,000 bonus as supplemental wages. If the employer uses the flat rate method, federal income tax withholding is:",
+        "correctAnswer": 2,
+        "explanation": "The optional flat rate for supplemental wages is 22% (for supplemental wages up to $1 million in a calendar year). For $5,000: $5,000 × 0.22 = $1,100. If supplemental wages exceed $1 million, the excess is withheld at 37%. Alternatively, the employer may use the aggregate method, combining regular and supplemental wages.",
+        "difficulty": "Easy",
+        "options": [
+          "$1,200 (24% of $5,000)",
+          "$750 (15% of $5,000)",
+          "$1,100 (22% of $5,000)",
+          "$500 (10% of $5,000)"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/VRHDMrTq80gZtn1oVgur",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "The Additional Medicare Tax of 0.9% applies to:",
+        "options": [
+          "Wages exceeding $200,000 for individual filers, withheld from the employee only",
+          "All wages regardless of amount, applied uniformly to every dollar of compensation earned",
+          "Wages exceeding the Social Security wage base, as the additional tax is triggered once an employee's earnings surpass the annual OASDI taxable limit",
+          "Both employer and employee equally, with each party contributing 0.45%"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The Additional Medicare Tax (0.9%) applies to wages exceeding $200,000 (single/$200,000 MFJ/$125,000 MFS). Employers must withhold the additional tax once wages exceed $200,000, regardless of filing status. There is no employer match for the Additional Medicare Tax — it is 100% employee-paid. The threshold is separate from the Social Security wage base.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/yzZvnBgsqkhcCIa5gMlA",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Core Payroll Concepts",
+        "stem": "The Additional Medicare Tax of 0.9% applies to:",
+        "options": [
+          "All wages regardless of amount, applied uniformly to every dollar of compensation earned",
+          "Wages exceeding the Social Security wage base, as the additional tax is triggered once an employee's earnings surpass the annual OASDI taxable limit",
+          "Wages exceeding $200,000 for individual filers, withheld from the employee only",
+          "Both employer and employee equally, with each party contributing 0.45%"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The Additional Medicare Tax (0.9%) applies to wages exceeding $200,000 (single/$200,000 MFJ/$125,000 MFS). Employers must withhold the additional tax once wages exceed $200,000, regardless of filing status. There is no employer match for the Additional Medicare Tax — it is 100% employee-paid. The threshold is separate from the Social Security wage base.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/aoLEqNJz2KeqpLa1ZrIR",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Personal use of a company vehicle is:",
+        "correctAnswer": 0,
+        "explanation": "Personal use of a company vehicle is a taxable fringe benefit. The value must be included in the employee's wages and is subject to income tax, Social Security, and Medicare. Employers can use several IRS valuation methods: Annual Lease Value, Cents-per-Mile, or the Commuting Rule. Only qualified nonpersonal use vehicles (police cars, ambulances) are exempt.",
+        "difficulty": "Easy",
+        "options": [
+          "A taxable fringe benefit that must be included in the employee's income",
+          "Deductible by the employee as an unreimbursed business expense on their return",
+          "Always tax-free regardless of usage as a working condition fringe benefit",
+          "Taxable only if the vehicle costs over $50,000 at the time of purchase"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/cEtQpYM7VdkN8LfKZa8a",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "Personal use of a company vehicle is:",
+        "correctAnswer": 0,
+        "explanation": "Personal use of a company vehicle is a taxable fringe benefit. The value must be included in the employee's wages and is subject to income tax, Social Security, and Medicare. Employers can use several IRS valuation methods: Annual Lease Value, Cents-per-Mile, or the Commuting Rule. Only qualified nonpersonal use vehicles (police cars, ambulances) are exempt.",
+        "difficulty": "Easy",
+        "options": [
+          "A taxable fringe benefit that must be included in the employee's income",
+          "Always tax-free regardless of usage as a working condition fringe benefit",
+          "Deductible by the employee as an unreimbursed business expense on their return",
+          "Taxable only if the vehicle costs over $50,000 at the time of purchase"
+        ],
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/7ttk6YQYIKXdHHksGnKs",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Compliance/Research and Resources",
+        "stem": "An employer receives a federal tax levy (IRS Form 668-W) for an employee. Which statement about processing this levy is correct?",
+        "options": [
+          "The levy only applies to future wages and cannot attach to any wages already earned but not yet paid at the time the levy is received by the employer",
+          "The employer must wait 30 calendar days before beginning to withhold, providing the employee time to negotiate a payment arrangement with the IRS",
+          "The employer withholds a flat 25% of disposable earnings, applying the same percentage limit that governs ordinary creditor garnishments under federal law",
+          "The employer must calculate the exempt amount using the employee's filing status and number of exemptions claimed on the levy form"
+        ],
+        "correctAnswer": 3,
+        "explanation": "When processing an IRS levy (Form 668-W), the employer uses Publication 1494 to determine the exempt amount based on the employee's filing status and number of exemptions claimed on Part 3 of the levy. All earnings above the exempt amount must be remitted to the IRS. The levy is continuous and attaches to wages already earned but not yet paid. There is no 30-day waiting period.",
+        "difficulty": "Medium",
+        "bloomLevel": "Understand",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481243,
+          "_nanoseconds": 818000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/WOCS2agbkixlr9avUu3h",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Compliance/Research and Resources",
+        "stem": "An employer receives a federal tax levy (IRS Form 668-W) for an employee. Which statement about processing this levy is correct?",
+        "options": [
+          "The employer withholds a flat 25% of disposable earnings, applying the same percentage limit that governs ordinary creditor garnishments under federal law",
+          "The employer must calculate the exempt amount using the employee's filing status and number of exemptions claimed on the levy form",
+          "The levy only applies to future wages and cannot attach to any wages already earned but not yet paid at the time the levy is received by the employer",
+          "The employer must wait 30 calendar days before beginning to withhold, providing the employee time to negotiate a payment arrangement with the IRS"
+        ],
+        "correctAnswer": 1,
+        "explanation": "When processing an IRS levy (Form 668-W), the employer uses Publication 1494 to determine the exempt amount based on the employee's filing status and number of exemptions claimed on Part 3 of the levy. All earnings above the exempt amount must be remitted to the IRS. The levy is continuous and attaches to wages already earned but not yet paid. There is no 30-day waiting period.",
+        "difficulty": "Medium",
+        "bloomLevel": "Remember",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481245,
+          "_nanoseconds": 215000000
+        },
+        "bloomConfidence": 0.9
+      }
+    },
+    {
+      "path": "questions/Pukc6afah6eb6kWpYDzX",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employee earns $10/hour and works 45 hours in a workweek. The employee also has a $100 nondiscretionary bonus for the week. What is the regular rate of pay?",
+        "correctAnswer": 0,
+        "explanation": "The regular rate includes all remuneration for hours worked — including nondiscretionary bonuses. Total earnings: ($10 × 45 = $450 straight time) + $100 bonus = $550... wait. Actually: $10 × 45 = $450 straight time plus $100 bonus = $550. But regular rate = total compensation ÷ total hours = ($450 + $100) / 45 = $12.22. The OT premium is half the regular rate × OT hours: $6.11 × 5 = $30.56.",
+        "difficulty": "Hard",
+        "options": [
+          "$12.22 ($500 + $100 = $600 ÷ 45 hours)",
+          "$10.00 (base hourly rate, bonus excluded)",
+          "$11.11 ($500 ÷ 45 hours, no bonus added)",
+          "$13.33 ($600 ÷ 45 hours, rounded up)"
+        ],
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481244,
+          "_nanoseconds": 468000000
+        },
+        "bloomConfidence": 0.95
+      }
+    },
+    {
+      "path": "questions/xJvdNZIpR1wssYSsXDq1",
+      "before": {
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "type": "mcq",
+        "domain": "Calculation of the Paycheck",
+        "stem": "An employee earns $10/hour and works 45 hours in a workweek. The employee also has a $100 nondiscretionary bonus for the week. What is the regular rate of pay?",
+        "correctAnswer": 2,
+        "explanation": "The regular rate includes all remuneration for hours worked — including nondiscretionary bonuses. Total earnings: ($10 × 45 = $450 straight time) + $100 bonus = $550... wait. Actually: $10 × 45 = $450 straight time plus $100 bonus = $550. But regular rate = total compensation ÷ total hours = ($450 + $100) / 45 = $12.22. The OT premium is half the regular rate × OT hours: $6.11 × 5 = $30.56.",
+        "difficulty": "Hard",
+        "options": [
+          "$10.00 (base hourly rate, bonus excluded)",
+          "$13.33 ($600 ÷ 45 hours, rounded up)",
+          "$12.22 ($500 + $100 = $600 ÷ 45 hours)",
+          "$11.11 ($500 ÷ 45 hours, no bonus added)"
+        ],
+        "bloomLevel": "Apply",
+        "bloomClassifiedAt": {
+          "_seconds": 1776481246,
+          "_nanoseconds": 485000000
+        },
+        "bloomConfidence": 0.95
+      }
+    }
+  ]
+}

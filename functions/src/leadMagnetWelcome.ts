@@ -1,6 +1,12 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import axios from "axios";
+import {
+  complianceFooter,
+  complianceStatus,
+  isOptedOut,
+  recordComplianceBlock,
+} from "./emailCompliance";
 
 /**
  * Lead-magnet welcome sequence.
@@ -57,7 +63,7 @@ function fromAddress(): string {
   return process.env.RESEND_FROM || "Dave at CipherExam <dave@cipherexam.com>";
 }
 
-function shell(inner: string, ctaUrl: string, ctaLabel: string | null): string {
+function shell(inner: string, ctaUrl: string, ctaLabel: string | null, footer: string): string {
   const cta = ctaLabel
     ? `<p style="margin-top:28px"><a href="${ctaUrl}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">${ctaLabel}</a></p>`
     : "";
@@ -65,6 +71,7 @@ function shell(inner: string, ctaUrl: string, ctaLabel: string | null): string {
 ${inner}
 ${cta}
 <p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 7-day free trial. No credit card required. Cancel anytime.</p>
+${footer}
 </div>`;
 }
 
@@ -115,7 +122,7 @@ const CLUSTERS: Record<Cluster, ClusterCopy> = {
 type LeadEmail = {
   dayOffset: number;
   subject: (c: ClusterCopy) => string;
-  html: (c: ClusterCopy, downloadUrl: string, lpUrl: string) => string;
+  html: (c: ClusterCopy, downloadUrl: string, lpUrl: string, footer: string) => string;
 };
 
 /**
@@ -126,7 +133,7 @@ export const LEAD_SEQUENCE: LeadEmail[] = [
   {
     dayOffset: 0,
     subject: (c) => `${c.magnetTitle} — here it is`,
-    html: (c, downloadUrl) =>
+    html: (c, downloadUrl, _lpUrl, footer) =>
       shell(
         `<p>Thanks for grabbing this.</p>
 <p><a href="${downloadUrl}">${c.magnetTitle}</a> — that link is permanent, so save it rather than re-requesting it.</p>
@@ -134,24 +141,26 @@ export const LEAD_SEQUENCE: LeadEmail[] = [
 <p>I'll send you one more thing in a couple of days. If you'd rather I didn't, just reply and say so — I read every reply.</p>`,
         downloadUrl,
         null,
+        footer,
       ),
   },
   {
     dayOffset: 2,
     subject: (c) => `The ${c.examName} question everyone gets wrong`,
-    html: (c, downloadUrl, lpUrl) =>
+    html: (c, downloadUrl, lpUrl, footer) =>
       shell(
         c.insightHtml +
           `<p>That's the reasoning pattern the whole cheat sheet is built on, and it's what CipherExam explains on every single question — not just which answer is right, but why the other three were built to look right.</p>
 <p><a href="${downloadUrl}">Your copy of ${c.magnetTitle}</a>, in case you need the link again.</p>`,
         lpUrl,
         "Start Free Trial",
+        footer,
       ),
   },
   {
     dayOffset: 5,
     subject: (c) => `What a ${c.examName} retake actually costs`,
-    html: (c, _downloadUrl, lpUrl) =>
+    html: (c, _downloadUrl, lpUrl, footer) =>
       shell(
         `<p>The ${c.examName} exam fee is ${c.fee}. A retake means paying it again, plus several more weeks of study you'd already planned to be done with.</p>
 <p>That's the real argument for preparing differently rather than just preparing more. Most candidates who fail didn't skip the material — they studied to recall it, and the exam asked them to apply it.</p>
@@ -159,6 +168,7 @@ export const LEAD_SEQUENCE: LeadEmail[] = [
 <p>Either way, the cheat sheet is yours. Good luck with the sit.</p>`,
         lpUrl,
         "Start Free Trial",
+        footer,
       ),
   },
 ];
@@ -229,6 +239,38 @@ export const sendLeadMagnetWelcome = functions.firestore
       return;
     }
 
+    // CAN-SPAM gate. These three emails go to someone who downloaded a PDF —
+    // a cold lead, not a customer — so every one of them is a commercial
+    // message that needs a working opt-out and a postal address. Fails closed:
+    // no footer means no send, not a send without a footer.
+    const compliance = complianceStatus();
+    if (!compliance.ok) {
+      await recordComplianceBlock("sendLeadMagnetWelcome", compliance.missing);
+      await snap.ref
+        .set(
+          { welcomeSequenceBlockedAt: admin.firestore.FieldValue.serverTimestamp() },
+          { merge: true },
+        )
+        .catch(() => undefined);
+      return;
+    }
+
+    if (await isOptedOut(email)) {
+      console.log(`[lead-welcome] ${captureId} skipped — ${email} has opted out.`);
+      await snap.ref
+        .set({ welcomeSequenceSuppressedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true })
+        .catch(() => undefined);
+      return;
+    }
+
+    const footer = complianceFooter(email);
+    if (!footer) {
+      // complianceStatus() passed, so this is unreachable in practice — but a
+      // null footer must never silently become an empty string in the template.
+      await recordComplianceBlock("sendLeadMagnetWelcome", ["footer could not be built"]);
+      return;
+    }
+
     const copy = CLUSTERS[cluster];
     const downloadUrl = `https://cipherexam.com${copy.magnetPath}`;
     const lpUrl = `https://cipherexam.com${copy.lp}?utm_source=email&utm_campaign=lead_magnet_welcome&utm_content=${cluster}`;
@@ -242,7 +284,7 @@ export const sendLeadMagnetWelcome = functions.firestore
           from: fromAddress(),
           to: [email],
           subject: mail.subject(copy),
-          html: mail.html(copy, downloadUrl, lpUrl),
+          html: mail.html(copy, downloadUrl, lpUrl, footer),
           tags: [
             { name: "campaign", value: "lead-magnet-welcome" },
             { name: "day", value: String(mail.dayOffset) },

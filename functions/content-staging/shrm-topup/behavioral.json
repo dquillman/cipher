@@ -1,0 +1,206 @@
+[
+  {
+    "stem": "Anneke, an HR manager at a 900-person industrial packaging company, has the CHRO's approval to launch a manager-certification program. The formal approval path runs through the Operations Steering Committee, which meets quarterly and approves nearly everything put in front of it. In practice, three long-tenured plant supervisors decide whether any operations program actually gets staffed with released time, and none of them sit on that committee. Anneke has one quarter to launch. What is her most effective first move?",
+    "options": [
+      "Present at the next Steering Committee meeting and rely on the CHRO's sponsorship, since a formal approval on the record is what commits the operation to release time",
+      "Ask the CHRO to issue a directive requiring supervisors to release staff, since sponsor authority is the fastest route through an entrenched informal block",
+      "Meet the three supervisors first, since released time is what decides whether the program runs, and take a jointly supported item to the committee after that",
+      "Pilot the program in a business unit with no comparable informal gatekeepers, then use its demonstrated results to bring the operations supervisors along"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Correct: Navigating the Organization requires using an understanding of both the formal structure and the informal political environment to implement HR initiatives. The committee holds the formal approval, but the supervisors control the released time that determines whether the program actually runs. Engaging them first converts the real constraint into design input and makes the committee vote meaningful. Option A works only the formal channel; an approval that does not produce released time is a rubber stamp on a program that will not staff. Option B substitutes positional authority for influence: a directive may produce attendance without commitment, damages Anneke's standing with the people she must work with continuously, and never surfaces the scheduling constraints that would break the rollout anyway. Option D is a legitimate piloting technique misapplied as avoidance — results from a unit with no capacity gatekeepers do not transfer as leverage over supervisors whose objection is capacity, and it defers the obstacle past her one-quarter window.",
+    "domain": "Behavioral Competencies",
+    "objective": "Leadership Cluster — Leadership & Navigation — Sub-competency: Navigating the Organization",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Nadia is HR director at a contract manufacturer that just lost the customer accounting for 40 percent of its revenue. The executive team has announced a pivot away from high-volume custom work toward a smaller, higher-margin product line, and finance has begun costing the new operating model. Nadia's three-year HR plan was built entirely around scaling headcount to support the volume business. Leadership has not yet asked HR for anything. Which course of action best reflects the Vision sub-competency for an advanced HR professional?",
+    "options": [
+      "Reassess the ideal future state of the HR function against the new business model now, since the pivot is the trigger, and take the resulting capability, structure and talent gaps to the executive team",
+      "Hold the revised HR direction until finance has costed the new operating model and leadership has funded it, so HR does not commit to capability targets the business may not be able to pay for",
+      "Rebuild the plan around the workforce cost line first, with a hiring freeze and a phased reduction schedule sized to the lost revenue, since the volume assumption underneath the current plan no longer holds",
+      "Ask the executive team which HR capabilities the new product line will require and construct the revised plan from their answers, since the business owns the strategy that HR exists to enable"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Correct: The Vision sub-competency calls for envisioning current and ideal future states to identify gaps, developing the long-term direction that closes them, and pivoting HR strategy in response to significant changes within and outside the organization. A 40 percent revenue loss and an announced pivot is exactly that trigger, and the gap analysis is what makes every later conversation — including the funding one — informed rather than reactive. Option B inverts the sequence: costing the operating model is precisely the exercise that needs HR's capability, structure and talent inputs, so waiting until it is finished means HR arrives after the decisions that set its own targets. The indicator directs advanced professionals to pivot in response to the change, not after the change has been priced. Option C is a real and possibly necessary tactic selected before the future state exists; sizing a reduction to lost revenue assumes the higher-margin line needs a proportionally smaller copy of the current workforce, which is the assumption the gap analysis is there to test rather than to presume. Option D treats the executive team as the source of HR strategy rather than as the stakeholder from whom an advanced professional solicits feedback on a direction HR has developed; leadership has asked for nothing, and answering only what is asked forfeits HR's influence over the pivot itself.",
+    "domain": "Behavioral Competencies",
+    "objective": "Leadership Cluster — Leadership & Navigation — Sub-competency: Vision",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Corinne requests a meeting with Dilip, an HR generalist, and opens with, \"Before I tell you anything, I need you to promise this stays between us.\" Dilip does not yet know what the subject is. Which response best reflects professional integrity?",
+    "options": [
+      "Agree to the request, since candor depends on trust, and raise the confidentiality question later only if the disclosure turns out to require action",
+      "Decline the meeting and direct Corinne to the anonymous ethics hotline, since that channel protects her identity better than any promise he could make",
+      "Agree to keep the conversation confidential while noting that he will take notes he may later need to share with counsel, so nothing is concealed from her",
+      "Tell her before she begins that he shares information on a need-to-know basis and that some matters carry a duty to act, so she can decide what to say"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Correct: Professional Integrity requires using discretion when handling sensitive information and informing stakeholders of the limits of confidentiality and privacy — stated before the disclosure, while the employee can still make an informed choice about what to say. Option A makes a promise Dilip may be legally or ethically required to break; a duty to act can attach the moment the subject is named, and retracting the promise afterward destroys his credibility and discourages future reporting. Option B misapplies a real channel: the hotline exists and does protect anonymity, but deflecting an employee who has come to HR in person abandons both the employee-advocacy role and HR's duty to receive concerns, and it does not answer the question she actually asked. Option C is internally incoherent — it grants confidentiality and simultaneously reserves the right to disclose, which is the same broken promise with a procedural veneer, and the disclosure it warns about would arrive after she has already spoken.",
+    "domain": "Behavioral Competencies",
+    "objective": "Leadership Cluster — Ethical Practice — Sub-competency: Professional Integrity",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Tobias, an HR director, reports that anonymous ethics-hotline submissions fell from 42 last year to 4 this year. The COO wants to cite the decline in the annual report, which goes to print next month, as evidence that the culture has improved. Reviewing the same period, Tobias finds that recurring exit-interview themes include \"nothing happens when you speak up.\" What should he do?",
+    "options": [
+      "Verify that the four cases submitted this year were investigated and properly closed, and if they were, advise the COO that the improvement claim is supported by the evidence on hand",
+      "Advise the COO that report volume cannot carry that claim, and measure the system itself: closure rates, time to closure, whether outcomes reach reporters, whether reporting feels safe",
+      "Give the executive team both the decline and the exit-interview theme without a recommendation, since deciding what culture data means for a public report is leadership's call rather than HR's",
+      "Field an anonymous speak-up and trust pulse survey this quarter, and ask the COO to hold the claim until those results either confirm or contradict the decline in reported cases"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Correct: The Ethical Agent sub-competency requires empowering employees to report unethical behavior without fear of reprisal and communicating ethical risks to leadership. A 90 percent drop is ambiguous between \"fewer problems exist\" and \"employees stopped believing reporting works,\" and the exit-interview evidence points to the second. Measuring whether cases are closed, closed promptly and answered back to the reporter — alongside whether employees believe reporting is safe — resolves the ambiguity before anything is published. Option A reasons from the four reports that were filed, but the population that matters is the reports that were not; four clean investigations say nothing about employees who concluded that speaking up changes nothing, and it endorses the claim on the strength of a sample the claim is not about. Option C invokes a real principle — leadership owns what the company publishes — to abdicate the advisory duty; Tobias holds evidence that one reading is unsupported, and passing both data points upward without that assessment lets a misleading public claim proceed with HR's silence behind it. Option D collects the right kind of evidence but only the perceptual half, and a quarter-long survey re-measures the belief the exit interviews already reported while leaving the mechanism — whether cases actually get worked and answered — unexamined, on a timeline that misses the print date.",
+    "domain": "Behavioral Competencies",
+    "objective": "Leadership Cluster — Ethical Practice — Sub-competency: Ethical Agent",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Fatima, an HR business partner at a consulting firm, is reviewing promotion recommendations. A practice lead wants to hold Thabo back, explaining that he \"doesn't command the room\" — he speaks after others have finished, rarely interrupts, and defers to the client's most senior person. Thabo's delivery quality scores and client-retention rate are the highest on the team. What is Fatima's best action?",
+    "options": [
+      "Support the practice lead, since client-facing consulting genuinely requires visible presence and delivery metrics do not capture how a room is handled",
+      "Recommend communication coaching so that Thabo develops a more assertive style, and revisit the promotion at the next cycle once it has taken hold",
+      "Ask the practice lead to specify the job-related behaviors the next-level role requires, then evaluate Thabo against those rather than against style",
+      "Refer the rating to the inclusion council as a probable discrimination complaint, and ask that the promotion cycle be paused until the review concludes"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Correct: The Cultivating an Inclusive and Diverse Culture sub-competency directs HR to guide managers in recognizing the behavioral distinction between a performance issue and a difference rooted in culture or style. Forcing the criterion back to specified, job-related behavior is the discipline that separates the two, it keeps a culturally shaped communication style from being scored as a deficiency, and it protects the decision whichever way it lands. Option A accepts an unvalidated trait criterion — \"commands the room\" maps to one dominant communication style rather than to a defined job requirement — and does so in direct contradiction of the objective outcome data already on the table. Option B is a real development tool applied in the wrong order: coaching Thabo to conform presumes the deficiency is his before anyone has established that the standard is job-related. Option D over-escalates a manager decision that is still coachable into a formal complaint the employee has not filed, and halting an entire cycle is disproportionate to a single unexamined rating rationale.",
+    "domain": "Behavioral Competencies",
+    "objective": "Leadership Cluster — Inclusive Mindset — Sub-competency: Cultivating an Inclusive and Diverse Culture",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Elias, HR manager at a 1,200-employee food processor, is reviewing the bereavement policy: three paid days for the death of a spouse, parent or child, one day for a sibling or grandparent, and nothing for any other relationship. In the past year employees have asked for time for the grandmother who raised one of them, an unmarried partner of eleven years, and an aunt who shared their household. Supervisors handled each request on their own and approvals varied widely by unit. Which action best reflects Building the Infrastructure for an Inclusive and Diverse Culture?",
+    "options": [
+      "Rewrite the policy so the entitlement attaches to the closeness of the relationship as the employee states it, rather than to a fixed list of family titles",
+      "Keep the current schedule and instruct supervisors to approve out-of-policy requests generously and consistently, with HR reviewing each denial before it is issued",
+      "Direct employees whose relationship falls outside the schedule to use accrued paid time off or unpaid leave, so that the bereavement benefit stays identical for everyone",
+      "Add a floating personal-observance day to the holiday schedule for all staff, so employees whose family structures the policy does not name still have time available"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Correct: Building the Infrastructure for an Inclusive and Diverse Culture calls for identifying opportunities to enhance the equity of organizational policies and procedures for all employees and for implementing HR programs that support the needs of a diverse workforce. A title-based list recognizes some employees' families and not others — the grandparent who raised a child, the unmarried partner, the multigenerational household — so the benefit is unequal at the point of design, and defining eligibility by the relationship rather than by the label makes one entitlement reach everyone. Option B improves the exception process but leaves the inequity untouched: the employee whose family the policy names receives the days as a right, while everyone else must disclose and justify a personal relationship to a supervisor and hope for a favorable reading. Option C is formal equality doing unequal work — one rule applied uniformly, with the cost of the policy's blind spot sent to the employees it fails, who spend their own accrued or unpaid time on a loss the company pays others to grieve. Option D is a genuine inclusion benefit aimed at the wrong need: a floating day is scheduled in advance for observances, so it neither arrives when a death occurs nor settles which losses the organization is prepared to recognize.",
+    "domain": "Behavioral Competencies",
+    "objective": "Leadership Cluster — Inclusive Mindset — Sub-competency: Building the Infrastructure for an Inclusive and Diverse Culture",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Bettina is renegotiating the annual contract with the staffing supplier that fills her company's seasonal warehouse roles. The supplier opens by demanding a 12 percent increase in its markup, citing wage pressure. Bettina's approved ceiling is 5 percent. Through prior conversations she knows the supplier's more pressing problem is her company's 45-day payment terms, which strain its payroll float. Which approach best reflects interest-based bargaining?",
+    "options": [
+      "Counter at a low opening figure and concede in small increments, since a wide anchor and slow movement pull the settlement toward her ceiling",
+      "Put payment terms on the table alongside markup, offering a move to 15-day terms in exchange for an increase within her 5 percent ceiling",
+      "Tell the supplier she will take the work to a competitive RFP unless it accepts 5 percent, since a credible alternative is the strongest available leverage",
+      "Accept 12 percent for this season to protect the relationship, and reopen the markup at the next renewal when higher seasonal volume improves her position"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Correct: Interest-based (principled) bargaining works from the parties' underlying needs rather than their stated positions and applies an understanding of the other side's issues and bargaining position. Payment terms address the supplier's actual problem — payroll float — at a cost structured differently from price, which turns one contested number into a trade where each side gives on the dimension it values less. Option A is position-based anchoring, a real tactic misapplied here: it treats markup as the only variable, leaves the cash-flow pressure driving the demand entirely unaddressed, and invites either impasse or a quietly degraded fill rate during the season she cannot afford to lose. Option C is a competing, distributive move; leverage from an alternative is genuine, but opening with it against a supplier whose seasonal cooperation she depends on converts a solvable problem into a threat exchange, and a new supplier cannot be qualified inside the season. Option D is accommodation — conceding the full position to preserve the relationship — which breaches the budget parameter she was given and teaches the supplier that an aggressive opening works.",
+    "domain": "Behavioral Competencies",
+    "objective": "Interpersonal Cluster — Relationship Management — Sub-competency: Negotiation",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Omar has been an HR generalist for four months and interacts almost exclusively with the two department managers he supports. His director tells him that in about six months he will lead an HRIS data-cleanup project requiring sustained cooperation from IT, Payroll and Finance. Which action best reflects the Networking sub-competency?",
+    "options": [
+      "Wait until the project is formally chartered, then send a kickoff invitation to the named contacts in each function, so the request arrives with clear authority behind it",
+      "Ask his director to introduce him to each function's leader by email, since a sponsored introduction opens doors faster than a cold approach from a four-month generalist",
+      "Build an external network of HRIS peers at other companies who have run comparable cleanups and can advise him on how the work is best staffed and sequenced",
+      "Start now on working relationships with his counterparts in IT, Payroll and Finance, since he will need their systems knowledge and calendars long before the charter"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Correct: Networking is described as developing, maintaining and leveraging a network of contacts within the organization, including peers in both HR and non-HR roles and stakeholders such as the IT department. The defining feature is that the network exists before the need arises. Option A is project communication rather than networking: a kickoff invitation asks for cooperation from people who have no relationship with Omar and no prior context, and a charter compels attendance rather than commitment. Option B borrows the director's authority instead of building Omar's own credibility, so the relationship remains the director's asset and evaporates the moment she is not in the room. Option C describes a genuine networking activity — maintaining colleagues in the HR community at large — but it answers a different need; external benchmarking will not secure the internal cooperation this project actually depends on.",
+    "domain": "Behavioral Competencies",
+    "objective": "Interpersonal Cluster — Relationship Management — Sub-competency: Networking",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "A production manager asks Grace, an HR generalist, to come to his shift meeting and personally explain a new attendance-point practice, telling her \"they'll take it better coming from HR.\" The change affects only his team's scheduling and he will be the one applying it daily. What is Grace's best response?",
+    "options": [
+      "Deliver the briefing herself, since HR owns the practice and is the authoritative source on how the points are counted and applied",
+      "Send the written practice and a detailed FAQ to the team distribution list instead, giving every employee identical wording to refer back to",
+      "Prepare the manager to deliver it himself, since the crew's response turns on his standing, and attend to field the policy detail he cannot answer",
+      "Ask the plant director to make the announcement, since a change to attendance rules lands better when senior leadership is visibly behind it"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Correct: The Exchanging Organizational Information sub-competency includes helping non-HR managers communicate HR issues and translating messages between organizational levels. The manager owns the practice change and his standing with the crew is the asset that makes it land; HR's role is to equip him and cover the technical detail, not to substitute for him. Option A lets the manager offload accountability for a rule he must enforce every shift, and it permanently frames the change as something HR imposed rather than something the operation adopted. Option B replaces a conversation with a document on a pay-adjacent scheduling change; a distributed FAQ cannot check for understanding or take questions in the moment, and it still leaves the manager out of the delivery. Option D escalates the messenger far above the level of the decision, which signals that the change is larger or more punitive than it is, and it bypasses the manager who has to apply it just as thoroughly as option A does.",
+    "domain": "Behavioral Competencies",
+    "objective": "Interpersonal Cluster — Communication — Sub-competency: Exchanging Organizational Information",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Beatriz is HR director for a regional home-health agency. Over the past 18 months, state reimbursement rates have been frozen, the minimum wage in two of the three states it serves has begun a scheduled multi-year increase, a well-funded competitor has opened nearby offering sign-on bonuses, and a state licensure change has shortened the aide certification course from twelve weeks to six. Aide turnover is 62 percent, and the CEO asks Beatriz for a retention plan. Which analysis should anchor her work?",
+    "options": [
+      "Map each external development to its effect on labor supply, wage position and cost structure, then build the plan on the levers frozen reimbursement still allows",
+      "Benchmark aide wages against the new competitor and match its sign-on bonus, since the outflow is immediate and pay is the reason departing aides give",
+      "Launch a stay-interview program to learn why current aides remain, and design the retention plan around the themes that emerge from the aides themselves",
+      "Model the full cost of 62 percent turnover and take it to the board as the business case for an across-the-board wage increase funded from reserves"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Correct: Business and Competitive Awareness calls for applying political, economic, social, technological, legal and environmental trends — and knowledge of the labor market — to inform HR solutions. Here the revenue ceiling is fixed by reimbursement while labor costs rise by statute and supply is reshaped by the licensure change, and those constraints determine which retention levers can actually be funded. Option B is a real competitive response applied without cost analysis: matching a bonus in a business with frozen revenue may be unfundable, and a sign-on bonus addresses attraction rather than the retention problem stated. Option C is a sound and valuable method that looks only inward; it will not surface the wage-ladder, competitor and certification-supply effects moving the market, so it belongs inside the plan rather than ahead of the environmental analysis. Option D correctly quantifies the cost of turnover but presumes the remedy is pay before establishing whether pay, scheduling or the changed supply of certified aides is the binding constraint, and reserves are a one-time source against a permanent cost.",
+    "domain": "Behavioral Competencies",
+    "objective": "Business Cluster — Business Acumen — Sub-competency: Business and Competitive Awareness",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Meredith manages an HR shared-services team. Its dashboard shows tickets closed within the two-day service-level agreement 96 percent of the time, yet the internal satisfaction score sits at 3.1 out of 5 and managers increasingly bypass the ticket system to bring questions directly to individual HR business partners. What is Meredith's best first step?",
+    "options": [
+      "Publicize the 96 percent SLA performance to managers, since the data shows the team is meeting the standard the business itself agreed to",
+      "Find out what closure misses — sample closed tickets and ask requesters whether the underlying need was resolved, not merely marked closed",
+      "Instruct the HR business partners to decline direct requests and route every question back through the ticket system, keeping the demand data complete",
+      "Tighten the SLA from two days to one, since satisfaction in shared-services benchmarks tracks most closely with how fast requesters get a response"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Correct: Service Excellence requires identifying and clarifying stakeholder needs and reporting on the status of services provided and the results achieved. A closure rate measures throughput; the satisfaction score and the bypass behavior are both telling Meredith that the metric and the outcome have decoupled, and the first task is to find out where. Option A promotes a number the customers are already contradicting with their behavior; publicity does not change the service experience, and it signals that the dashboard outranks the people it serves. Option C removes the workaround without removing its cause — managers go to business partners because that route resolves their problem — so the same demand returns as escalations and complaints. Option D optimizes a dimension already performing at 96 percent on the untested assumption that speed is the complaint; nothing in the data supports it, and a tighter clock creates pressure to close tickets faster rather than resolve needs better.",
+    "domain": "Behavioral Competencies",
+    "objective": "Business Cluster — Consultation — Sub-competency: Service Excellence",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "A hiring manager asks Ivo, an HR analyst at a logistics company, to adopt a 10-item \"grit\" questionnaire he found online for screening dispatcher applicants. Ivo administers it to 60 current dispatchers: the scale's internal consistency is high (Cronbach's alpha = .91), but scores correlate at r = .08 with supervisor performance ratings. The manager argues the .91 proves the instrument is sound. What is Ivo's most defensible conclusion?",
+    "options": [
+      "The instrument is sound, since .91 far exceeds the conventional reliability threshold, and the weak correlation reflects noisy supervisor ratings rather than any flaw in the questionnaire",
+      "The .91 establishes that the scale measures grit accurately, so the low correlation shows grit does not drive dispatcher performance and a different construct should be sourced instead",
+      "The questionnaire may be used for screening provided the cut score is set low enough to produce no adverse impact against any protected group in the applicant pool, which is the measurable exposure",
+      "A high alpha shows only that the items measure one construct consistently, not that the construct predicts dispatcher performance, and an r of .08 is no criterion evidence, so it should not screen"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Correct: Reliability is the consistency of measurement; validity is whether scores support the intended inference — here, predicting job performance. A scale can measure something very consistently and still measure the wrong thing, which is exactly the pattern of a high alpha alongside a near-zero criterion correlation, so there is no job-related basis for screening applicants on it. Option A mistakes reliability for validity and then explains away the only criterion evidence with an untested assumption about rating quality; unreliable criteria are a real phenomenon worth investigating, but that is a hypothesis to test, not a basis for deploying the instrument. Option B reads the alpha as evidence of what the scale measures and then draws a substantive conclusion from the low correlation; internal consistency shows only that the ten items behave as a single scale, never that the scale captures grit rather than, say, self-presentation, so the .08 cannot be interpreted as a finding about grit at work, and sourcing a replacement construct on that basis repeats the error. Option C treats adverse impact as the only exposure; a selection instrument with no demonstrated job-relatedness is indefensible regardless of the cut score, and lowering the cut merely makes it non-discriminating rather than valid.",
+    "domain": "Behavioral Competencies",
+    "objective": "Business Cluster — Analytical Aptitude — Sub-competency: Data Analysis",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  }
+]

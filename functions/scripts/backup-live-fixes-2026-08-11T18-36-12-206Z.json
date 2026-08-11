@@ -1,0 +1,187 @@
+{
+  "takenAt": "2026-08-11T18-36-12-206Z",
+  "documents": [
+    {
+      "path": "questions/8Gbz6ZIWc32z4Q6qKtwf",
+      "reason": "Explanation taught stale law: it called the IRC 132(g) qualified moving expense exclusion 'suspended' and named only the active-duty armed forces exception. P.L. 119-21 (OBBBA) permanently eliminated the exclusion, and TWO groups retain it - active-duty armed forces on a PCS move and intelligence community employees/appointees relocating on a change of assignment (verified against IRS Pub. 15-B for 2026). Key (option 2, fully taxable) is unchanged; the explanation now states the permanent elimination and both retained groups. The stem forecloses both retained groups on the individual rather than the employer ('The engineer is a civilian employee, not a member of the armed forces and not an employee or appointee of the intelligence community'), because the statutory exceptions attach to the person moving, not to the payer - a company-level disclaimer was a category error and could not have made the key correct.",
+      "before": {
+        "stem": "In February 2026, Tessa, a payroll specialist, reimburses a newly relocated engineer $9,400 for the cost of moving household goods and the family's travel to the new work location. The company has no armed-forces employees. How must Tessa treat the $9,400 for tax year 2026?",
+        "options": [
+          "As a nontaxable qualified moving expense reimbursement excluded from all wages and reported only in Box 12 with code P",
+          "As excludable from federal income tax withholding but subject to Social Security and Medicare taxes",
+          "As fully taxable wages subject to federal income tax withholding, Social Security, Medicare, and FUTA, reported in Boxes 1, 3, and 5 of Form W-2",
+          "As a working condition fringe benefit under IRC Section 132(d), excludable because the move was required by the employer"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The qualified moving expense exclusion under IRC Section 132(g) is suspended for all taxpayers other than active-duty members of the armed forces moving under military orders, and that suspension is in force for tax year 2026. Employer payment or reimbursement of moving costs is therefore ordinary taxable compensation: it enters Box 1, Box 3 (to the wage base), and Box 5, and it is FUTA wages. Treating the payment as a nontaxable qualified moving expense reported with Box 12 code P describes the pre-2018 treatment; code P now applies only to the armed-forces exception. The split treatment - exempt from income tax withholding but still FICA-taxable - belongs to a different category of benefit altogether, not to moving expenses, which get no income tax exclusion at all. Calling the payment a working condition fringe misapplies that rule, which covers only costs the employee could have deducted as a business expense under Section 162 or 167; personal moving costs are not deductible by the employee, so they fail the working condition test.",
+        "domain": "Calculation of the Paycheck",
+        "objective": "3.2 / K3203 - Knowledge of taxable and non-taxable income for fringe benefits (relocation)",
+        "difficulty": "easy",
+        "source": "authored-2026-08-bank-topup",
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "createdAt": {
+          "_seconds": 1786460542,
+          "_nanoseconds": 429000000
+        },
+        "bloomLevel": "Apply",
+        "bloomConfidence": 0.6
+      }
+    },
+    {
+      "path": "questions/i9H1uQ6XjJzR6PhSZ5gg",
+      "reason": "Explanation taught the CCPA creditor-garnishment ceiling as a bare 25% of disposable earnings and omitted the statute's second prong entirely. 15 U.S.C. 1673(a) protects the LESSER of 25% of disposable earnings or the amount by which disposable earnings exceed 30 times the federal minimum hourly wage - the omission is why candidates miss low-wage cases where nothing is garnishable at all. Key (option 3, apply the more protective state limit) is unchanged; the explanation now carries both prongs and the later reference to the 25% figure is corrected to describe it as one of two prongs. Because the shortened key ('withhold at the lower state cap') is only true when the 25% prong is the binding federal figure, the stem now fixes disposable earnings at $1,200 for the workweek - far above 30 times the federal minimum hourly wage - which forecloses the 30x prong and makes the state percentage the smaller garnishment on these facts. The explanation no longer asserts the conclusion mid-paragraph; it works the two-prong test on the stated wage and then reaches the state cap.",
+      "before": {
+        "stem": "Alonzo receives a creditor garnishment for an employee who works in a state whose garnishment statute caps withholding at a percentage of disposable earnings noticeably lower than the federal Consumer Credit Protection Act ceiling. The creditor's attorney writes to Alonzo insisting the federal limit applies because federal law governs wage garnishment. How should Alonzo respond?",
+        "options": [
+          "Apply the federal CCPA limit, because federal wage garnishment law preempts conflicting state garnishment statutes",
+          "Apply the state limit only if the employer is headquartered in that state; otherwise the federal limit governs",
+          "Disregard both limits and withhold the full judgment balance, because the CCPA restricts only child support and tax levy withholding",
+          "Withhold under whichever law produces the smaller garnishment — here the state limit — because the CCPA sets a ceiling and does not displace more protective state law"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The CCPA sets a maximum, not a mandate. Title III expressly provides that where a state law results in a smaller garnishment, the state law governs; the employer always applies the rule that leaves the employee with more take-home pay. The preemption argument is a real doctrine misapplied: the CCPA preempts state laws that would allow more to be taken, never those that allow less, and some states prohibit creditor garnishment of wages altogether. Tying the choice to the employer's headquarters is not a recognized rule — garnishment limits follow the applicable state law governing the employee's wages, not the location of the corporate office. The option that would have Alonzo disregard both limits inverts the statute: ordinary creditor garnishment is the CCPA's core case, the 25 percent figure is a ceiling for creditor garnishments, and child support and IRS levies operate under separate limits of their own. Alonzo should reply in writing, cite the state statute, and withhold at the lower state cap.",
+        "domain": "Compliance/Research and Resources",
+        "objective": "2.2.1 K2201 Knowledge of rules for processing wage attachments",
+        "difficulty": "medium",
+        "source": "authored-2026-08-bank-topup",
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "createdAt": {
+          "_seconds": 1786460542,
+          "_nanoseconds": 429000000
+        },
+        "bloomLevel": "Apply",
+        "bloomConfidence": 0.6
+      }
+    },
+    {
+      "path": "questions/oXwKAjHcY3SQjKvPnEDA",
+      "reason": "The stem's dates were calendrically impossible. The scenario's own facts place it in 2026, and the only Federal Reserve holiday in December is Christmas Day, which falls on Friday 25 December 2026 - no Fed holiday can fall in a 15 December processing week, and a 2 January 2027 input cutoff lands on a Saturday. Dates moved to a set that actually works: the 21 December 2026 processing week contains the Friday 25 December Fed holiday, which pulls the funding cutoff for the Monday 28 December pay date back to Thursday 24 December, and the first January payroll's input cutoff is Monday 4 January 2027 (1 January 2027 is itself a Friday holiday). Key, options, teaching, and difficulty are otherwise untouched; the explanation's float reference is restated to match the new interval, and corrected to 'two weeks out' - an earlier draft said 'in the following week', which is wrong because the week following the 21-25 December processing week is 28 December - 1 January and Monday 4 January 2027 begins the week after that.",
+      "before": {
+        "stem": "A Federal Reserve banking holiday falls in Ahmed's 15 December processing week, moving the ACH funding cutoff for the 18 December pay date one business day earlier. The same week, the annual open-enrollment deduction file must be loaded before the first January payroll, which has a 2 January input cutoff, and the CFO has asked for an ad hoc labor-cost analysis with no stated due date. Ahmed cannot complete all three himself this week and must decide how to sequence them. Which approach reflects sound time-management practice for a payroll manager?",
+        "options": [
+          "Work the three items in the order they arrived, so that no stakeholder's request is treated as lower priority than another's and Ahmed can point to a neutral rule if anyone objects.",
+          "Complete the CFO's analysis first and fit the payroll work around it, on the reasoning that the most senior stakeholder's request carries the greatest organizational consequence if it slips.",
+          "Rank the work by immovable deadline and consequence of failure, funding the 18 December payroll to the earlier cutoff, then loading the deduction file in the float before 2 January.",
+          "Ask the originating bank to hold the file and settle it on the holiday, so the department's normal schedule is preserved, then work the week in its usual order and escalate only if the bank declines."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Payroll time management is driven by which deadlines are immovable and what happens if one slips. Missing the accelerated ACH funding cutoff means employees are not paid on the 18 December payday, an unrecoverable failure, while the deduction file has real float running to the 2 January input cutoff more than two weeks later, and the analysis carries no deadline at all and is the item that can wait. Sequencing by immovable deadline and by the consequence of failure is the standard response to a compressed cycle. Option A fails because first-in-first-out ignores deadlines entirely and lets a request with no due date consume the hours the funding cutoff needs. Option B fails because requester seniority is not a deadline, and prioritizing by rank is how payrolls get missed. Option D fails because ACH settlement on a Federal Reserve holiday is not something the originating bank can waive, so the whole plan depends on relief that will not arrive.",
+        "domain": "Payroll Administration and Management",
+        "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5203 Knowledge of time management techniques)",
+        "difficulty": "medium",
+        "source": "authored-2026-08-bank-topup",
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "createdAt": {
+          "_seconds": 1786460542,
+          "_nanoseconds": 429000000
+        },
+        "bloomLevel": "Apply",
+        "bloomConfidence": 0.6
+      }
+    },
+    {
+      "path": "questions/EGGbXl0L4N50eXOrm1Tm",
+      "reason": "All four options named the same eight stakeholders and differed only in which ones were deferred to go-live, so the stem asked about membership while the answer turned on sequencing - and the key was the only option that deferred nobody, which a test-wise candidate picks blind. Rebuilt so membership genuinely differs: each distractor omits one real stakeholder and substitutes a plausible non-stakeholder, all four options carry eight named parties so the key is not the longest or the most inclusive, and the key moved off the last position. The teaching (stakeholders are identified by data flow and dependency; treasury/bank, IT security, and the tax filing vendor are all design-time stakeholders) is preserved.",
+      "before": {
+        "stem": "Priya is project lead for a combined payroll and time-and-attendance replacement. The team she inherited is two payroll analysts, one HRIS analyst, and the vendor's implementation consultant. The steering committee asks her to confirm the stakeholder list before the project charter is signed, for a system that will change how payroll data is created, funded, secured, and reported.",
+        "options": [
+          "HR, benefits, time and attendance, accounting, IT security, the tax filing vendor, and the sponsor, with treasury and the bank informed after go-live.",
+          "HR, benefits, time and attendance, accounting, treasury and the bank, the tax filing vendor, and the sponsor, with IT security engaged at go-live.",
+          "HR, benefits, time and attendance, accounting, IT security, treasury and the bank, and the sponsor, with the tax filing vendor engaged at go-live.",
+          "HR, benefits, time and attendance, accounting, IT security, treasury and the bank, the tax filing vendor, and the executive sponsor."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Stakeholders are identified by data flow and dependency: every function that feeds payroll, consumes payroll output, or controls a downstream obligation owns part of the design and must be engaged during requirements and testing, and that includes external parties whose file formats and cut-off times the system must satisfy. Deferring treasury and the bank until after go-live leaves the funding path unvalidated — ACH file format, prenote handling, transmission window, and settlement timing are design constraints, and discovering a rejected file on the first live pay date is discovering it too late. Engaging IT security only at go-live means role design, access rules, and authentication are built without the group that has to approve them, and security findings raised at go-live are the most expensive changes in the project. Engaging the tax filing vendor at go-live leaves the periodic and quarterly interface untested; the vendor's file layout, agency registrations, and reconciliation requirements shape the tax setup itself, not just the transmission at the end of it.",
+        "domain": "Payroll Process and Supporting Systems and Administration",
+        "objective": "4.3 Identify stakeholders and analyze key components required to evaluate technology solutions — K4302 Ability to identify project stakeholders",
+        "difficulty": "hard",
+        "source": "authored-2026-08-bank-topup",
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "createdAt": {
+          "_seconds": 1786460542,
+          "_nanoseconds": 429000000
+        },
+        "bloomLevel": "Apply",
+        "bloomConfidence": 0.6
+      }
+    },
+    {
+      "path": "questions/uYyBhO2Pgm8z4VPc9chD",
+      "reason": "Distractor at index 2 claimed parallel testing was 'the phase with the most float' while the stem states the schedule has no float before the fixed date - self-disproving from the stem alone, so a candidate could eliminate it without any payroll or project knowledge. Clause dropped; the distractor now proposes compressing parallel testing on its own merits and fails only on the payroll knowledge that parallel testing is the last verification before employees are paid. The explanation's corresponding sentence is restated so it no longer argues from the float wording. Key and the other three options are unchanged; the stem, which was declarative and left the options dangling, now ends 'How should Ravi respond?'.",
+      "before": {
+        "stem": "Ravi is managing a payroll system implementation with a go-live fixed to the first pay date of the new fiscal year. Eight weeks out, HR asks to add a compensation planning module to the same project; the vendor estimates four additional weeks of configuration and $60,000. The approved budget carries a 10% contingency and the schedule has no float before the fixed date.",
+        "options": [
+          "Take the request through change control, and let the sponsor decide on a repriced scope and schedule.",
+          "Absorb the module using the project contingency, which exists to fund additions the sponsor did not foresee.",
+          "Accept the module and protect the date by compressing parallel testing, the phase with the most float.",
+          "Add the module to the current plan and report the cost and schedule variance in the closeout review."
+        ],
+        "correctAnswer": 0,
+        "explanation": "A scope addition that consumes four weeks against a schedule with no float and a fixed regulatory-style date is a change request, not a task assignment: it is priced, its schedule impact is stated, and the sponsor who owns the budget and the date decides whether to fund it, defer it to a phase two, or move the date. Contingency is set aside for estimating variance and identified risk within the approved scope; spending it on new scope is how a project arrives at go-live with no reserve left for the problems it was reserved against. Compressing parallel testing to hold the date targets the one phase that proves the new system computes the same gross-to-net as the old one, and calling it float misreads the schedule — testing is the last defense before employees are paid from an unverified configuration. Absorbing the change silently and explaining the variance at closeout reverses the purpose of project control, which is to give the sponsor the decision before the money and the weeks are spent rather than a report after.",
+        "domain": "Payroll Process and Supporting Systems and Administration",
+        "objective": "4.6 Manage tasks related to system implementations or upgrades in order to facilitate project completion — K4602 Ability to formulate and implement project plans (e.g., time management, budget)",
+        "difficulty": "medium",
+        "source": "authored-2026-08-bank-topup",
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "createdAt": {
+          "_seconds": 1786460542,
+          "_nanoseconds": 429000000
+        },
+        "bloomLevel": "Apply",
+        "bloomConfidence": 0.6
+      }
+    },
+    {
+      "path": "questions/jBmvm7r6EODBVGqPi7Ts",
+      "reason": "Distractor at index 2 ('engaging a service provider moves responsibility for accurate deposits and filings to that provider') answered a different question than the stem asked - the stem asks whether payroll's own verification of each quarterly release can be dropped, and liability transfer is not a response to that - so it was eliminable without knowing anything about release testing. Replaced with a plausible wrong answer to the actual question: mistaking a clean sandbox apply for functional verification. The key was also trimmed so it is no longer the longest option. The employer-remains-liable teaching was removed here because it is off-question; it is carried elsewhere in the bank at administration-and-management idx 13 (Theo, multi-system consolidation) and audits-and-accounting idx 6 (Tomas, service bureau assurance) - both re-checked by opening the files, correcting an earlier draft of this note that cited process-and-systems idx 13 (which is Rosalyn, end-user training, and carries no liability teaching) and administration-and-management idx 12 (Oscar, SUI experience rate). A second pass fixed two further defects: three of the four options endorsed dropping the control and only the key rejected it, so the release-notes distractor was recast to assert that verification is required but scope it by the objects the notes name, forcing a configuration-versus-product coverage judgment instead of rewarding the conservative pick; and the declarative stem now ends in a question ('How should Selina respond to the CFO?'). The explanation's release-notes sentence was rewritten to answer the new distractor.",
+      "before": {
+        "stem": "Selina's employer processes payroll on a multi-tenant cloud service. The vendor applies quarterly releases on its own schedule, giving two weeks' notice, release notes, and a sandbox copy of the employer's configuration. The CFO argues that because the vendor regression tests every release across its entire client base, payroll's own verification work can be dropped from the quarterly routine.",
+        "options": [
+          "Vendor testing spans the client base, so it covers this employer's configuration and repeating it duplicates work.",
+          "Reviewing the release notes verifies the update, because the notes identify every object the release changes.",
+          "Engaging a service provider to process payroll moves responsibility for accurate deposits and filings to that provider.",
+          "Only the employer can test the release against its own earnings codes, interfaces, and reports, so it must verify each one."
+        ],
+        "correctAnswer": 3,
+        "explanation": "A multi-tenant release is tested by the vendor against the product; it cannot be tested against this employer's earnings and deduction codes, accumulators, custom reports, interface layouts, and configured rules, which is why the sandbox copy of the employer's configuration is provided and why verification of each release is a standing operational obligation rather than a one-time implementation task. The claim that vendor testing covers the employer's configuration mistakes coverage of the code base for coverage of the configuration built on top of it, and a release that is correct everywhere else can still break one employer's shift-differential rule. Reading the release notes is a necessary planning step and a poor verification step: notes describe intended changes, and the failures that matter are the unintended ones, which by definition are not listed. The claim that using a service provider transfers responsibility is the most costly error available here — the employer generally remains liable for its employment tax obligations regardless of who performs the work, so a vendor's mistake arrives as the employer's penalty and interest.",
+        "domain": "Payroll Process and Supporting Systems and Administration",
+        "objective": "4.5 Understand steps required to maintain, back up, and update payroll-related systems to ensure compliance, data integrity, and efficiency — K4501 Ability to verify system updates and enhancements; K4503 Knowledge of steps required to update system",
+        "difficulty": "hard",
+        "source": "authored-2026-08-bank-topup",
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "createdAt": {
+          "_seconds": 1786460542,
+          "_nanoseconds": 429000000
+        },
+        "bloomLevel": "Evaluate",
+        "bloomConfidence": 0.6
+      }
+    },
+    {
+      "path": "questions/6ymAcmE3WkLT4gf3FR33",
+      "reason": "Pure word-matching: the key repeated the stem's own phrasing ('calculated gross-to-net results', 'before payroll is released') almost verbatim, so a candidate could select it by lexical overlap without knowing what any of the four reports contains. The stem now asks the question in different terms (the report signed off as the final check that each employee will be paid correctly while the cycle can still be corrected), and the key option was rewritten to describe the register's contents in the same style as the other three rather than echoing the stem - which also stops it from being the longest option. Key, teaching, and difficulty unchanged.",
+      "before": {
+        "stem": "Camille's department produces four standard outputs each cycle: a payroll edit report, a new-hire and change audit report, a general ledger interface report, and a preliminary payroll register. A new analyst asks which of them she should review to confirm, before the payroll is released for payment, that this cycle's calculated gross-to-net results are what the department intends to pay.",
+        "options": [
+          "The payroll edit report, which lists the exceptions and warnings raised while the batch was validated.",
+          "The new-hire and change audit report, which lists every master file change keyed during the current cycle.",
+          "The general ledger interface report, which shows the debits and credits this cycle will post to accounting.",
+          "The preliminary payroll register, which shows calculated gross-to-net results before payroll is released."
+        ],
+        "correctAnswer": 3,
+        "explanation": "The preliminary register is the pre-release output that shows each employee's earnings, taxes, deductions, and net pay as the system has actually calculated them, which is why it is the report reviewed and approved before the payroll is finalized and funded — it answers the question 'is this what we are about to pay.' The payroll edit report is the closest competitor and a genuine pre-release control, but it reports only what the system flagged; a cycle can be free of exceptions and still be wrong, because a correctly keyed entry against the wrong employee or the wrong earnings code raises nothing. The new-hire and change audit report covers master file activity — who was added and what was changed — which is essential for the segregation-of-duties review and silent on computed results. The general ledger interface report expresses the cycle in accounting terms and is normally produced or validated after the results are accepted; balanced debits and credits confirm that the entry posts, not that the underlying gross-to-net calculation is correct.",
+        "domain": "Payroll Process and Supporting Systems and Administration",
+        "objective": "4.1 Understand system functionality, automated processes, and system evaluation to enhance payroll processing efficiency — K4106 Knowledge of payroll system reports and schedules",
+        "difficulty": "easy",
+        "source": "authored-2026-08-bank-topup",
+        "examId": "Vs3aNmifAJc9bYRFCxXc",
+        "createdAt": {
+          "_seconds": 1786460542,
+          "_nanoseconds": 429000000
+        },
+        "bloomLevel": "Understand",
+        "bloomConfidence": 0.6
+      }
+    }
+  ]
+}

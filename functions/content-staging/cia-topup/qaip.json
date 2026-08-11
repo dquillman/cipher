@@ -1,0 +1,172 @@
+[
+  {
+    "stem": "Marisol, the chief audit executive at a regional utility, has built quality checks into daily practice: every engagement uses a standard planning template, each workpaper is reviewed and signed off by a supervisor, and clients complete a satisfaction survey at closing. At an audit committee meeting, a director asks whether these routines fully satisfy the internal assessment component of the quality assurance and improvement program. What is Marisol's most accurate response?",
+    "options": [
+      "Yes, because supervisory review and sign-off on every engagement is what the Standards mean by an internal assessment of the activity",
+      "No, because internal assessments must be performed by an assessor from outside the organization who had no involvement in the work or in managing the activity under review",
+      "No, because these routines are ongoing monitoring; internal assessment also requires a periodic self-assessment or one by qualified others inside the organization",
+      "Yes, because closing surveys completed by engagement clients supply the independent validation the Standards require of an internal assessment"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Internal assessments have two components: ongoing monitoring built into the routine policies and practices used to manage the internal audit activity (supervision, templates, survey feedback), and periodic self-assessments — or assessments by other persons within the organization who have sufficient knowledge of internal audit practices. Marisol has the first but not the second, so the internal assessment component is incomplete. The first option is wrong because supervisory review is ongoing monitoring, a subset of internal assessment rather than the whole of it. The second option is wrong because internal assessments are by definition performed inside the organization; it is the external assessment that requires an assessor from outside. The fourth option is wrong because independent validation is a feature of an external assessment performed by a qualified outside party, and a client survey is neither independent nor an assessment against the Standards.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.A",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Devraj, a chief audit executive, is due for an external assessment. To save money, he proposes that the company's enterprise risk management director — a senior leader who reports to the chief financial officer, sits entirely outside the internal audit activity, and has never worked in internal audit — lead the review. How should Devraj evaluate this proposal against the Standards?",
+    "options": [
+      "It is acceptable, because the risk director is organizationally independent of the internal audit activity and reports through an entirely separate line",
+      "It is acceptable provided the audit committee approves the arrangement in advance and the assessment results are reported directly to the committee",
+      "It is unacceptable, because an external assessment requires a qualified and independent assessor drawn from outside the organization itself",
+      "It is unacceptable, but only because the risk director reports to the chief financial officer; an assessor from another function reporting to the chief executive would qualify"
+    ],
+    "correctAnswer": 2,
+    "explanation": "An external assessment must be conducted at least once every five years by a qualified, independent assessor or assessment team from outside the organization. The risk director fails on two counts: he is inside the organization, and he lacks the competency in internal audit practice and the Standards that a qualified assessor needs. The first option misapplies a real concept — independence from the internal audit activity is necessary but not sufficient; the assessor must also be external to the entity. The second option is wrong because board approval cannot cure a defect in who is eligible to perform the work, though the chief audit executive does have to discuss the assessor's qualifications, independence, and any potential conflict of interest with the board. The fourth option misapplies the same idea one step further: it treats the defect as a reporting-line problem curable by picking an insider who reports elsewhere, but no reporting line inside the entity makes an assessor external to it, and the competency failure would remain in any case.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.A",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Priya leads a three-person internal audit function at a nonprofit. The five-year mark for an external assessment has arrived, and the board will not fund a full external review by an outside firm this year. Priya wants an approach that still satisfies the external assessment requirement. Which option should she recommend to the board?",
+    "options": [
+      "A peer review in which the compliance department evaluates internal audit and internal audit evaluates compliance",
+      "A deferral of the external assessment until the function grows large enough to justify the cost",
+      "An expanded round of ongoing monitoring documented in a memo to the audit committee in place of the external assessment",
+      "A self-assessment performed by her team, validated by a qualified, independent reviewer from outside the organization"
+    ],
+    "correctAnswer": 3,
+    "explanation": "A self-assessment with independent external validation is an explicitly recognized form of external assessment: the internal audit activity performs the assessment work, and a qualified, independent outside reviewer validates the process and the conformance conclusion. That gives Priya a lower-cost path that still meets the requirement. A reciprocal review with the compliance department is a real practice but not an external assessment, because both parties are inside the organization and the arrangement creates a mutual conflict of interest. Deferring is not permitted; the Standards apply regardless of the size of the function, and small functions are expected to scale the approach, not skip it. Additional ongoing monitoring is part of internal assessment and can never substitute for the outside look that the external assessment provides.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.A",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Owen, a newly appointed chief audit executive, inherits a quality assurance and improvement program consisting solely of a checklist confirming that each engagement's workpapers were completed and archived on time. He wants to bring the program into conformance. Which change most directly addresses the deficiency?",
+    "options": [
+      "Test every engagement against a second checklist covering archival format and record retention as well as timeliness of completion",
+      "Broaden the program to cover all aspects of the internal audit activity, including ethics conformance and the activity's effectiveness",
+      "Move responsibility for the checklist from the audit managers who supervised the work to a quality officer located elsewhere in the organization",
+      "Add a requirement that the organization's external financial statement auditors review the archived internal audit workpapers each year"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A quality assurance and improvement program must cover all aspects of the internal audit activity — including the audit plan, engagement execution, communication, and follow-up — and must evaluate conformance with the Standards, including their ethics requirements, as well as the efficiency and effectiveness of the activity, while identifying opportunities for improvement. Owen's checklist tests only file completeness, so the defect is the range of what is examined, not the number of checklists or who runs them. Adding a second checklist about archival format and retention deepens the same narrow criterion and still leaves the program blind to planning quality, ethics conformance, and value delivered. Reassigning the checklist changes who performs a still-inadequate procedure. Involving the external financial auditors addresses a different objective entirely; their work is directed at the financial statements, not at conformance of the internal audit activity with the Standards.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.A",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Camille completes her internal audit activity's annual self-assessment and issues the results to the chief financial officer, to whom she reports administratively. She takes no further reporting action, reasoning that the chief financial officer will raise anything significant with the board. Which aspect of her reporting is deficient?",
+    "options": [
+      "The results should have gone to the external assessor rather than to management, since management is itself a subject of the assessment",
+      "The results should have been distributed to every engagement client whose work was sampled, so that each could respond to the findings",
+      "The results should have been withheld from management entirely, because sharing quality conclusions with auditees impairs the activity's objectivity",
+      "The results should have been given directly to the board as well as to senior management, rather than relayed through management"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The chief audit executive must communicate the results of the quality assurance and improvement program to both senior management and the board. Routing the report through the chief financial officer leaves the board dependent on a member of management to decide what it hears about the quality of the function that is supposed to provide the board independent assurance. Sending results only to the external assessor confuses the direction of the relationship; the assessor supplies input to the program, and is not the audience for its results. Distributing results to engagement clients is not required and does not satisfy the board reporting obligation. Withholding results from management is also wrong: senior management is a required recipient, alongside the board.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.B",
+    "difficulty": "easy",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Hugo has led internal audit at a manufacturer for six years. He presents quality assurance and improvement program results to the audit committee only in the year an external assessment is completed, most recently three years ago. In the intervening years he performs ongoing monitoring and an annual self-assessment but reports nothing on them to the committee. How should Hugo correct his reporting cadence?",
+    "options": [
+      "Continue the current reporting cadence, but shorten the interval between external assessments from five years to three to compensate for the intervening silence",
+      "Report ongoing monitoring results to senior management and the board at least annually, and the results of each periodic self-assessment and external assessment on completion",
+      "Report only in years when an assessment identifies a deficiency, since a clean quality result gives the audit committee nothing it needs to act on",
+      "Delegate the annual reporting to the audit committee chair, who can brief the full committee whenever he judges a quality result to be significant enough to warrant their attention"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Ongoing monitoring results should be reported to senior management and the board at least annually, and the results of each periodic self-assessment and each external assessment should be communicated upon completion; on Hugo's facts, where the self-assessment is annual, that produces a report every year. Hugo's three-year silence deprives the board of any current view of audit quality. Shortening the external cycle addresses frequency of the wrong activity and does not fill the annual gap, and five years remains the required maximum interval, not a target to beat. Exception-only reporting is wrong because the board needs the conclusion itself, including a clean one, to judge whether it can rely on the function. Delegating to the committee chair substitutes one member's judgment for the board's own access to the results and does not discharge the chief audit executive's communication responsibility.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.B",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Ines presents the results of a just-completed external assessment to her audit committee in a single sentence: \"The external assessment concluded that the internal audit activity generally conforms with the Standards.\" A director asks what else the committee should be receiving with that conclusion. Which addition is most consistent with the Standards?",
+    "options": [
+      "The full set of engagement workpapers the assessor sampled, so that the committee can re-perform the testing and reach its own conclusion on conformance",
+      "A benchmarking table comparing the internal audit activity's budget, headcount, and engagement hours against those of industry peer functions",
+      "The scope and frequency of the assessments, the assessor's qualifications and independence, the conclusions reached, and corrective action plans",
+      "A written representation from senior management concurring with the assessor's conclusion, obtained before the results are shared with the committee"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The communication of quality program results should give the board enough to evaluate the conclusion, not just the conclusion itself: the scope and frequency of internal and external assessments, the qualifications and independence of the assessors together with any potential conflict of interest, the assessors' conclusions, and management's or the chief audit executive's corrective action plans. Handing over the sampled workpapers pushes the committee into re-performing assurance work that is properly the assessor's, and does nothing to explain scope or assessor independence. Peer benchmarking of budget and headcount can be a useful input to the audit plan discussion but is not a conformance conclusion. Requiring management's concurrence before the board sees the results would let the subject of the assurance gate what the board learns, undermining the reporting line the Standards protect.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.B",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Ravi took over an internal audit function four years ago; the function itself was established eleven years ago. Since then he has embedded ongoing monitoring, completed three annual self-assessments with favorable results, and closed every improvement item. The activity has operated continuously for more than a decade and has never had an external assessment. Ravi wants his engagement reports to state that the activity conforms with the Global Internal Audit Standards. Is that statement appropriate?",
+    "options": [
+      "Yes, because three consecutive years of favorable internal assessment results provide ample support for a statement of conformance with the Standards",
+      "No, because the statement must be supported by quality program results that include an external assessment within the preceding five-year period",
+      "Yes, because the five-year interval for external assessments does not begin to run until the activity has completed its first external assessment",
+      "No, because a conformance statement may never appear in engagement reports and belongs only in the internal audit charter approved by the board"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Stating that the internal audit activity conforms with the Standards is appropriate only when supported by the results of the quality assurance and improvement program, and those results must include an external assessment completed at least once in the preceding five years along with ongoing monitoring and periodic self-assessments. Ravi has only the internal half of the evidence, so the statement is unsupported no matter how favorable his self-assessments were, which is why the first option fails. The third option invents a grace period; the requirement is an assessment at least every five years, not five years after the first one happens to occur. The fourth option is wrong because conformance statements are appropriately used in engagement reports and other communications once they are supported — the constraint is on the evidence, not on the location of the statement.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.C",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Yusuf's external assessment concludes that his internal audit activity does not conform with the Standards in one respect: management has restricted internal audit's access to the treasury function for two consecutive years, and as a result roughly a quarter of the risk-based audit plan has gone unexecuted. What must Yusuf do with this finding?",
+    "options": [
+      "Log the nonconformance in the quality program's improvement tracker and resolve it before the next external assessment, without escalating in the interim",
+      "Disclose the nonconformance in every engagement report issued during the period of the scope restriction, regardless of the engagement's subject",
+      "Disclose both the nonconformance and its effect on the coverage of the audit plan to senior management and the board",
+      "Withhold disclosure until management has been given a reasonable opportunity to remove the access restriction"
+    ],
+    "correctAnswer": 2,
+    "explanation": "When nonconformance with the Standards, including their ethics requirements, affects the overall scope or operation of the internal audit activity, the chief audit executive must disclose the nonconformance and its impact to senior management and the board. A restriction that leaves a quarter of the risk-based plan unexecuted plainly affects overall scope, so escalation is mandatory. Tracking it internally until the next assessment defers by as much as five years the very information the board needs to judge how much assurance it is actually receiving. Blanket disclosure in every engagement report is not the required remedy and misattributes an activity-level limitation to unrelated engagements. Waiting for management to fix the restriction first lets the party responsible for the limitation control the timing of the board's awareness of it — and the impaired scope is itself a matter the board should be weighing now.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.C",
+    "difficulty": "medium",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "A periodic self-assessment at Lena's internal audit activity finds that on one engagement out of thirty-two, the auditor in charge failed to document the rationale for a sampling decision, a departure from the activity's methodology and from the Standards' documentation requirements. Supervisory review caught nothing else, and the engagement conclusion was independently re-performed and held. Lena is deciding how to handle the departure in her reporting. What is the most appropriate treatment?",
+    "options": [
+      "Remediate it through the quality program and report it alongside the other self-assessment results, since it does not affect the activity's overall scope or operation",
+      "Issue a special communication to senior management and the board disclosing nonconformance and its impact, because any departure from the Standards triggers that requirement",
+      "Retract the engagement report and reissue it with a statement that the engagement in question did not conform with the Standards' documentation requirements",
+      "Omit the departure from quality program reporting, because independent re-performance confirmed that the engagement's conclusion was correct despite the gap"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Mandatory escalation of nonconformance is triggered by departures that affect the overall scope or operation of the internal audit activity. A single undocumented sampling rationale on one of thirty-two engagements, with the conclusion independently re-performed and sustained, is a quality issue to be remediated and reported through the normal quality program channel rather than a special disclosure of impaired scope. The second option applies a real rule at the wrong threshold, and treating every individual lapse as an activity-level disclosure would drain the escalation of meaning when a genuine scope limitation arises. Retracting the engagement report is disproportionate where the conclusion itself was validated, and confuses a documentation defect with an unsupported opinion. Omitting the item altogether is wrong because the quality program exists to surface and correct exactly these findings, and a correct outcome does not excuse an undocumented process.",
+    "domain": "Quality Assurance and Improvement Program",
+    "objective": "IV.C",
+    "difficulty": "hard",
+    "source": "authored-2026-08-cia-refresh",
+    "bloomLevel": "Evaluate",
+    "bloomConfidence": 0.6
+  }
+]

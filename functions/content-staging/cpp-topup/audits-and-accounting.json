@@ -1,0 +1,274 @@
+[
+  {
+    "stem": "Zainab's employer funds a separate payroll disbursement account before each pay date. The same staff accountant transmits the funding wire to the bank and prepares the monthly reconciliation of that disbursement account. Management is comfortable with the arrangement because the reconciliation is always prepared on time and always balances. What risk does this create?",
+    "options": [
+      "A disbursement the accountant originated can be concealed in the reconciliation, so a balanced account proves nothing about who authorized the cash.",
+      "The reconciliation cannot be finished before the bank's cutoff, so outstanding items will be carried at stale amounts and the account will not tie.",
+      "Funding a separate disbursement account is itself the weakness, because it moves payroll cash outside the operating account's existing controls.",
+      "The accountant may misclassify the funding wire between the wage and tax liability accounts, causing payroll expense in the general ledger to be misstated."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Preparing the bank reconciliation and originating disbursements from the same account are incompatible duties, because the reconciliation is the control that would otherwise detect an unauthorized payment. When the person who moved the cash also decides how the account is explained, an improper item can simply be described as a reconciling item, and the account still balances. That is why a reconciliation that always ties is not evidence of anything here; the fix is to have the reconciliation prepared or independently reviewed by someone with no disbursement authority. The cutoff option describes a timeliness problem, which affects the quality of the reconciliation but is not created by the duty overlap and does not depend on who prepares it. Using a separate imprest disbursement account is a recognized good practice that limits exposure of the operating account, so it is not the weakness. Misclassifying the wire between wage and tax liabilities is a real posting error, but it is a bookkeeping accuracy issue that an independent review would catch just as readily; it is not the fraud exposure created by combining custody of cash with the reconciliation.",
+    "domain": "Audits",
+    "objective": "6.1.2 K6102 - Ability to identify internal controls (segregate job duties); 6.1.3 K6103",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "During SOX testing, an external auditor asks Marguerite, a payroll manager, for evidence supporting the key control 'the payroll manager reviews and approves the preliminary payroll register before the payroll is released.' Marguerite provides the written desk procedure describing the review and a screenshot of the approval field in the payroll system. The auditor issues a control deficiency anyway. What is the most likely reason?",
+    "options": [
+      "Section 404 permits reliance only on automated application controls, so a manual management review cannot be designated a key control.",
+      "The reviewer reports to the same director as the payroll preparers, so the control fails the independence requirement for a key control.",
+      "The evidence shows the control was designed, not that it operated; dated approval evidence is needed for a sample of pay cycles.",
+      "The approval exists only in the company's own system, and operating effectiveness must be corroborated by evidence obtained outside the entity."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Control testing has two parts. Design effectiveness asks whether the control would catch the error if it were performed, and a desk procedure plus a screenshot of an approval field answers that. Operating effectiveness asks whether it actually was performed on each cycle throughout the period, and that requires the auditor to select a sample from the full population of pay cycles and see dated evidence of the review, along with evidence that anything the reviewer questioned was followed through to resolution. That second half is missing here, which is what makes it a deficiency. Section 404 does not restrict reliance to automated controls; manual management review controls are relied on routinely, though they demand more evidence precisely because they leave no automatic trail. The independence option applies a real concept to the wrong control type: a management review control is expected to be performed by the manager over the process, and reporting into the same director does not disqualify it, unlike the separation demanded of a reviewer of one's own work. The external-evidence option applies the evidence hierarchy from substantive testing, where third-party confirmations carry more weight; internal control testing is necessarily performed on the entity's own records, and there is no requirement to corroborate an internal approval from outside.",
+    "domain": "Audits",
+    "objective": "6.1.4 K6104 - Knowledge of Sarbanes-Oxley compliance and controls; 6.1.3 K6103",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Renee, an internal auditor, is testing controls over pay rate changes at a company where supervisors submit rate changes to payroll by email. Her objective is to detect a rate increase that was entered without proper authorization. Which test best meets that objective?",
+    "options": [
+      "Compare total payroll expense for the quarter with the prior quarter and investigate any variance over five percent.",
+      "Trace each change on the system-generated pay rate change report back to an approved personnel action form.",
+      "Recalculate gross pay for a sample of employees using the pay rate on file and the hours captured in the time system.",
+      "Agree the employee count on the payroll register to the headcount report maintained by human resources."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Testing authorization means starting from the population of changes the system actually recorded and tracing each one back to independent evidence that someone with authority approved it. The system-generated change report is that complete population, and the approved personnel action form is the authorizing source document, so an unauthorized change shows up as a recorded change with no supporting approval. A quarter-over-quarter variance threshold is a blunt analytical procedure; one employee's rate increase is immaterial against total payroll and would never break a five percent threshold. Recalculating gross pay validates the arithmetic and the time data, but it takes the rate already on file as its starting point, so an unauthorized rate recalculates perfectly and the test passes. Agreeing headcount to HR records is a legitimate control aimed at fictitious or terminated employees, not at the amount a legitimate, existing employee is paid.",
+    "domain": "Audits",
+    "objective": "6.2.3 K6203 - Ability to validate source data input/output; 6.1.2 K6102 (identify fraudulent activity)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Ivan is closing the year at a company whose short-term disability plan is insured by a third party and funded entirely with employer contributions. The insurer paid $86,400 in benefits to employees during the year, did not act as the employer's agent, and reported the payments on its own Forms W-2. The insurer timely notified the company of the payments and transferred the employer share of the FICA liability to the company. Ivan is designing the year-end reconciliation over this arrangement. What should it accomplish?",
+    "options": [
+      "Nothing needs reconciling to the wage reporting, because benefits under a plan funded entirely by employer contributions are not taxable.",
+      "The $86,400 should be excluded from the FUTA reconciliation, because payments made by a third party are never subject to FUTA tax.",
+      "The employer should issue Form 1099-MISC for the $86,400 and reconcile it to the insurer's statement, since the insurer paid the benefits.",
+      "Agree the insurer's year-end sick pay statement to the Forms W-2 and to the company's Forms 941, and confirm that Form 8922 is filed."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Third-party sick pay is one of the highest-risk year-end reconciliations because the wage data originates outside the payroll system. Because the insurer transferred the employer share of the FICA liability to the company, that liability runs through the company's own Forms 941, so the reconciliation ties the insurer's statement of benefits paid and taxes withheld both to the Forms W-2 and to the Forms 941. Form 8922, the Third-Party Sick Pay Recap, is required here because the W-2 reporting sits with the insurer while the tax liability sits with the employer; when one party carries both, no recap is filed. The first option inverts the funding rule: benefits attributable to employer contributions or to employee pre-tax contributions are taxable, and only benefits attributable to the employee's own after-tax contributions are excluded. The second option overstates a real but narrower rule; employer-funded sick pay is subject to FICA and FUTA, and the exemption applies only after the end of the sixth calendar month following the last month the employee worked. The third option applies the wrong reporting regime, since sick pay attributable to employer funding is wages reportable on Form W-2 rather than nonemployee compensation on an information return.",
+    "domain": "Audits",
+    "objective": "6.5.2 K6502 - Knowledge of payroll-related external agreements (third-party sick pay)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Nour receives agency correspondence stating that the Social Security wages reported on the company's four Forms 941 for the year are $48,000 lower than the Social Security wages shown on the Forms W-2 and W-3 transmitted for the same year. She traces the entire difference to a fourth-quarter bonus run that was included in the employees' Forms W-2 but was never picked up on the fourth-quarter Form 941. What is the correct corrective action?",
+    "options": [
+      "File a Form 941-X for the fourth quarter reporting the additional wages and taxes and pay the resulting balance due; the Forms W-2 are already correct and need no change.",
+      "File Forms W-2c and W-3c reducing Social Security wages by $48,000 so that the annual wage reporting agrees to the Forms 941 as originally filed.",
+      "Include the $48,000 on the first-quarter Form 941 of the following year, because employment tax corrections are reported in the quarter in which the error is discovered.",
+      "Take no action; the difference will clear on its own when the annual Form 940 is filed and the agencies complete their year-end matching."
+    ],
+    "correctAnswer": 0,
+    "explanation": "The reconciliation must be resolved toward the facts, not toward whichever return happens to be more convenient. The employees really were paid the bonus, so the Forms W-2 are right and the fourth-quarter Form 941 is understated; the fix is a Form 941-X for that quarter with payment of the additional tax. Filing Forms W-2c and W-3c to shrink the wage totals would make correct returns incorrect and would understate the employees' Social Security earnings record. Moving the wages to the following year's first quarter is wrong because Form 941-X corrects the quarter in which the wages were actually paid, which here is the fourth quarter. The discovery date matters for a different reason: it starts the interest-free adjustment period within which the Form 941-X must be filed, so discovery drives the deadline rather than the quarter being corrected. Doing nothing ignores the notice; Form 940 reports FUTA and has no bearing on a Social Security wage mismatch between the Forms 941 and the Form W-3, and unresolved discrepancies generate escalating correspondence and penalties.",
+    "domain": "Audits",
+    "objective": "6.3.1 K6301 - Ability to identify and correct amounts out of balance; 6.4.1 K6401 (identify and correct variances)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Pilar, a payroll manager at a construction company, learns that crew foremen hand out paper paychecks at each job site and keep any checks that go unclaimed in a desk drawer at the trailer until the employee shows up. Which change best addresses the control weakness this creates?",
+    "options": [
+      "Require each foreman to obtain a signed receipt from every employee at the moment the paycheck is handed over at the job site.",
+      "Move all field employees to pay cards so that no paper paychecks are printed for job site distribution in the first place.",
+      "Return unclaimed checks to treasury on a set schedule, log them on a register, and release them only against identification.",
+      "Have the payroll department reconcile the payroll check register to the general ledger cash disbursement account each month."
+    ],
+    "correctAnswer": 2,
+    "explanation": "The specific weakness is custody: the foreman who distributes the checks also keeps the ones nobody claimed, which is exactly the combination that lets an unclaimed check be endorsed and cashed by someone other than the payee. Returning unclaimed checks promptly to an independent group such as treasury, logging them on a controlled register, and releasing them afterward only on identification of the employee removes custody from the distributor and creates an audit trail. Signed receipts improve the evidence at the point of handoff but say nothing about the checks that were never handed off, so the drawer stays under the same person's control. Converting everyone to pay cards would eliminate the paper, but it is outside payroll's unilateral authority and most states require the employee to have a genuine no-cost alternative rather than a mandated card, so it is not the control response to this weakness. Reconciling the check register to the general ledger proves the disbursement account is in balance; a misappropriated check clears the bank for the exact amount issued, so the reconciliation ties perfectly while the fraud goes undetected.",
+    "domain": "Audits",
+    "objective": "6.1.2 K6102 - Ability to identify internal controls (check processing and printing controls, physical payout)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Tomas's employer outsources payroll processing to a service bureau. The company's external auditor requests assurance over the controls at that bureau, and the bureau supplies a SOC 1 Type 2 report covering the full audit period. What does Tomas's company still need to do?",
+    "options": [
+      "Nothing further, because a SOC 1 Type 2 report transfers responsibility for the outsourced control activities to the service bureau.",
+      "Identify the complementary user entity controls the report assumes the company performs, evidence them, and evaluate any testing exceptions.",
+      "Obtain a SOC 2 report instead, because a SOC 1 report addresses only security, availability, and confidentiality rather than financial processing.",
+      "Request a SOC 1 Type 1 report, which is the version that confirms the controls operated effectively across the entire audit period."
+    ],
+    "correctAnswer": 1,
+    "explanation": "A service organization report never covers the whole control environment. Every SOC 1 report lists complementary user entity controls, which are the activities the report's conclusions assume the customer performs on its own side, such as authorizing master file changes, reviewing output reports, and approving the funding file. The company must demonstrate those are in place and must read the testing section for any exceptions the service auditor noted, since an exception in a control the company relies on leaves a gap it has to address. Outsourcing the processing does not outsource the responsibility; the employer remains liable for its wages, deposits, and returns regardless of who runs the calculations. The SOC 1 and SOC 2 descriptions in the third option are reversed: SOC 1 addresses controls relevant to internal control over financial reporting, while SOC 2 addresses trust services criteria such as security and availability. The fourth option reverses the report types, since a Type 1 covers the design of controls at a point in time and only a Type 2 tests operating effectiveness over a period.",
+    "domain": "Audits",
+    "objective": "6.5.2 K6502 - Knowledge of payroll-related external agreements (outsourcing agreement); 6.1.5 K6105",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Alina's print vendor mailed the company's Forms W-2 in a run where the envelope inserter slipped by one position, so each employee received another employee's Form W-2 showing that person's name, address, Social Security number, and wages. The company has already begun notification. Alina must now report to management which control failure allowed the error to reach the mail. Which finding is best supported?",
+    "options": [
+      "The vendor contract lacked a confidentiality clause, so the vendor had no contractual duty to safeguard the employee data it processed.",
+      "The company should have delivered the forms through its electronic W-2 portal, which would have removed the postal exposure entirely.",
+      "The vendor's most recent SOC 1 report was not obtained before the print run, so its controls were unevaluated at the time of mailing.",
+      "No one performed the pre-mail proof, in which a sample of sealed packages is opened and agreed to the employee record before release."
+    ],
+    "correctAnswer": 3,
+    "explanation": "A one-position insertion offset is a mechanical failure that no contract term or vendor assessment can prevent; it is caught only by a detective control at the end of the process. The standard control is a pre-mail proof, in which the employer or the vendor pulls a sample of finished, sealed packages, opens them, and agrees the form inside to the addressee on the outside before the run is released to the postal stream. Its absence is the failure that let the offset reach the mail, and it is the finding management can act on. A confidentiality clause is a real contractual control and should exist, but it allocates liability after a disclosure rather than preventing a misinsertion, and the error here was mechanical rather than a misuse of data by the vendor. A SOC 1 report evaluates the vendor's control environment at a point in time or over a period, which is worth having, but obtaining it would not have detected this particular run, and a report showing effective controls would still not stop a jam or a feeder slip. Electronic delivery does avoid postal handling, but Forms W-2 may be furnished electronically only to employees who have affirmatively consented in the prescribed manner, so it is a delivery-channel choice rather than the control that failed.",
+    "domain": "Audits",
+    "objective": "6.4.2 K6402 - Ability to apply regulations and controls to protect confidentiality; 6.1.2 K6102 (identify internal controls)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Odalys is recording a semimonthly payroll: gross wages $400,000, employee Social Security and Medicare withheld $30,600, federal income tax withheld $62,000, and employee 401(k) deferrals $18,000. No employee has reached the Social Security wage base. She has already posted the entry for the wages and the employee withholdings. Which entry records the employer's share of Social Security and Medicare for the same period?",
+    "options": [
+      "Debit Salaries and Wages Expense $30,600; credit Cash $30,600.",
+      "Debit FICA Taxes Payable $30,600; credit Cash $30,600.",
+      "Debit Payroll Tax Expense $30,600; credit FICA Taxes Payable $30,600.",
+      "No entry is required, because the employer's matching share is already contained in the $30,600 withheld from employees."
+    ],
+    "correctAnswer": 2,
+    "explanation": "The employer's matching Social Security and Medicare is a cost of the employer, not a deduction from the employee, so it is recognized as Payroll Tax Expense with an offsetting liability until the deposit is made: debit Payroll Tax Expense $30,600, credit FICA Taxes Payable $30,600, which is 7.65 percent of the full $400,000 because pre-tax 401(k) deferrals reduce federal income tax wages but not Social Security and Medicare wages. Charging the amount to Salaries and Wages Expense misclassifies the cost, and crediting Cash assumes the deposit happens simultaneously with the payroll, which it does not. Debiting FICA Taxes Payable and crediting Cash is the later remittance entry that extinguishes the liability; recording it here would relieve a liability that was never set up and would leave the employer's expense unrecorded. The last option is the most common misconception: the $30,600 withheld represents the employees' half only, and the employer owes a separate, equal amount that must be recorded as its own expense and liability.",
+    "domain": "Accounting",
+    "objective": "7.3.1 K7301 - Ability to record payroll transactions; 7.3.3 K7303 (impact of debits/credits)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Callum's pay period runs Monday, June 22 through Sunday, July 5 and is paid on July 10. The period contains 10 workdays, 7 of which fall in June, and total gross wages are $210,000, earned evenly across the workdays. Callum records a $147,000 wage accrual at June 30 but forgets to post the reversing entry on July 1, and the July 10 payroll is then recorded in full as wage expense in the normal way. What is the effect on the July financial statements?",
+    "options": [
+      "July wage expense is overstated by $147,000 and the June accrued payroll liability remains on the balance sheet.",
+      "June wage expense is overstated by $147,000, and July is unaffected because the payroll entry stands on its own.",
+      "There is no effect, because posting the July 10 payroll automatically clears the June accrual from the balance sheet.",
+      "June wage expense is understated by $63,000 and July wage expense is overstated by the same $63,000 amount."
+    ],
+    "correctAnswer": 0,
+    "explanation": "The accrual correctly moved $147,000, being 7 of 10 workdays at $21,000 per day, of cost into June. The reversing entry exists so that when the full $210,000 payroll is expensed in July, the $147,000 already recognized is backed out and July absorbs only its own $63,000. Skipping the reversal means the same $147,000 sits in June expense and again in July expense, so July is overstated by $147,000, and because nothing was posted against the accrual, the June liability is never relieved and liabilities remain overstated on the July balance sheet. June itself was recorded correctly, so it is neither overstated nor understated. The payroll entry does not self-clear: it was posted entirely to wage expense rather than partly against the accrued liability, so nothing touches the June accrual. The last option reverses the direction of the error and applies the July-only portion, $63,000, to the wrong period.",
+    "domain": "Accounting",
+    "objective": "7.1.3 K7103 - Knowledge of accruals and reversals; 7.1.1 K7101 (accounting periods)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Hannah is reviewing the monthly trial balance after the payroll close. Gross wages were $500,000. Employees had $110,000 of federal income tax, $38,250 of Social Security and Medicare, and $25,000 of voluntary insurance premiums withheld. The employer's share of Social Security and Medicare was $38,250 and employer state unemployment tax was $4,000. What total payroll cost belongs in operating expense for the month?",
+    "options": [
+      "$500,000",
+      "$326,750",
+      "$715,500",
+      "$542,250"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Employer cost is gross wages plus the taxes the employer itself owes: $500,000 + $38,250 + $4,000 = $542,250. Employee withholdings are not an additional cost; they are portions of the $500,000 already recorded that the employer holds as a liability and remits on the employee's behalf. Reporting $500,000 captures the wages but omits the employer's own Social Security, Medicare, and unemployment taxes, which are real expenses of the period. Reporting $326,750 mistakes net pay for expense; net pay is only the cash paid to employees, and the withheld amounts were still earned by them and expensed by the company. Reporting $715,500 double counts, adding the employee withholdings on top of the gross wages that already contain them.",
+    "domain": "Accounting",
+    "objective": "7.2.1 K7201 - Knowledge of account classifications and appropriate account balances; 7.1.4 K7104",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "In December 2026 the board approves a $1.2 million annual incentive bonus earned on 2026 performance. Individual amounts are determinable at December 31, 2026, the plan requires no further service, and the bonus will be paid on February 15, 2027. Anders, the payroll accountant, must decide how it appears in the 2026 financial statements.",
+    "options": [
+      "Disclose the bonus in the notes to the 2026 statements but record no expense until it is paid on February 15, 2027.",
+      "Record $1.2 million of bonus expense and an accrued liability, plus the related employer payroll taxes, in December 2026.",
+      "Record the expense in 2026 and report the bonus on the employees' 2026 Forms W-2, since the amounts were fixed at December 31.",
+      "Split the $1.2 million evenly between 2026 and 2027, because the payment date falls within two and a half months after year end."
+    ],
+    "correctAnswer": 1,
+    "explanation": "The bonus was earned by services rendered in 2026 and the individual amounts are determinable at year end, so matching requires the expense and the liability in 2026, together with the employer payroll taxes the company expects to incur on the payout. Withholding and depositing are separate obligations keyed to the actual payment date, so those occur in February 2027 rather than in 2026. The first option applies cash-basis reasoning that accrual financial reporting rejects; a determinable obligation for services already received is a liability, not merely a note disclosure. The third option confuses book accrual with wage reporting: for Form W-2 purposes wages are reported when paid or constructively received, and an amount the employee cannot draw on until February 2027 is 2027 wage reporting. The fourth option misuses a real rule; the two-and-a-half-month rule governs whether an accrued compensation deduction is allowed in the earlier tax year, and it never authorizes splitting one earned obligation across two periods.",
+    "domain": "Accounting",
+    "objective": "7.1.1 K7101 - Knowledge of accounting periods; 7.1.2 K7102 (matching)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Emeka reconciles the 401(k) Payable account at month end. The company runs two semimonthly payrolls, each generating about $46,200 of employee deferrals and employer match, and remits to the recordkeeper within a few business days of each payroll. The account shows a $46,200 credit balance at month end. What should Emeka conclude?",
+    "options": [
+      "The balance is a normal timing item between the last payroll and the remittance date, so no further work is required at month end.",
+      "Only the employee deferral portion belongs in this account, because the employer match is a company contribution rather than a withholding.",
+      "The balance is most likely the final payroll's unremitted deferrals; agree it to that payroll and confirm the remittance cleared on time.",
+      "The reconciliation is complete once the balance is agreed to the recordkeeper's month-end contribution statement for the plan."
+    ],
+    "correctAnswer": 2,
+    "explanation": "A reconciliation is finished when the balance is supported by identified items and each item is validated, not when it is merely explained. Emeka ties the residual to that specific payroll's deferral and match totals, confirms the cash actually left in the following period, and checks the timing, because late transmittal of employee deferrals is a fiduciary failure under the Department of Labor deposit rules even when the general ledger balances perfectly. The first option reaches the right diagnosis and then stops: calling a balance a timing item without agreeing it to supporting detail is exactly how a stale or duplicated accrual survives a reconciliation, and it never tests the deposit timing. The second option applies a real distinction to the wrong conclusion; deferrals are withheld employee money and the match is a company contribution, but both are amounts owed to the plan and both belong in the payable until remitted, so stripping the match out would leave a genuine liability unrecorded. The third option is the subtlest error: the recordkeeper's statement reports contributions received, so an amount not yet remitted cannot appear on it, and agreeing to that statement would fail to explain the residual and might suggest the balance is unsupported when it is legitimate.",
+    "domain": "Accounting",
+    "objective": "7.4.2 K7402 - Ability to reconcile general ledger payroll-related accounts; 7.4.1 K7401",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Analyze",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Ada's employer grants paid time off that vests as it is earned and is paid out in cash at termination. At December 31 employees hold 14,300 unused hours and the average hourly rate is $32. The controller asks Ada when the cost of that unused time is recognized.",
+    "options": [
+      "Accrue roughly $457,600 plus the related employer payroll taxes at December 31, since the obligation is vested and estimable.",
+      "Record nothing until the employees actually take the time off, because no cash has been disbursed and no wages have been paid.",
+      "Accrue only for employees who have already given notice of termination, since those are the only payouts that are probable.",
+      "Record the $457,600 as a prepaid asset at December 31 and expense it as employees use the time during the following year."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Compensated absences are accrued when the obligation relates to services already performed, the rights vest or accumulate, payment is probable, and the amount can be reasonably estimated. All four conditions hold here, so a liability of 14,300 hours times $32, or $457,600, plus the employer payroll taxes that will be owed when it is paid out, belongs on the December 31 balance sheet. Waiting until the time is taken is cash-basis reasoning that understates both expense and liabilities, since the employees earned the benefit in the year just closed. Limiting the accrual to employees who have given notice misapplies the probability criterion: because the time vests and is paid out at termination, payment is probable for the entire population rather than only for known leavers. Recording a prepaid asset inverts the transaction; the company owes value to its employees, which is a liability, and nothing has been paid in advance that would create an asset.",
+    "domain": "Accounting",
+    "objective": "7.1.4 K7104 - Knowledge of impact of asset, liability, and expense accounts on financial statements; 7.1.5 K7105",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "In February, Sonia's company overpaid an employee $3,000 in gross wages, of which $2,150 reached the employee as net pay after withholding. The error is discovered in September of the same calendar year, and the employee agrees to repay before year end. What is the correct treatment?",
+    "options": [
+      "The employee must repay the full $3,000 gross; the company files Form 941-X to recover the employee share of FICA and issues a Form W-2c.",
+      "The company books a $3,000 receivable and reports the $850 it cannot collect from the employee as additional taxable wages on the Form W-2.",
+      "No adjustment to the employee's wage records is needed; the repayment is recorded as miscellaneous income when the cash is received.",
+      "The employee repays the $2,150 net amount; the company reduces year-to-date wages and taxes, files Form 941-X, and issues no Form W-2c."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Repayment within the same calendar year lets the employer unwind the whole transaction. The employee repays only the net actually received, because the employer can still recover the over-withheld income tax and the Social Security and Medicare it remitted, adjust the employee's year-to-date balances, and file Form 941-X for the quarter of the overpayment. Since the correction happens before the Form W-2 is produced, the original form simply reflects the corrected wages and no Form W-2c is required. The first option applies the prior-year rule, under which the employee must repay gross because the employer can no longer adjust income tax withheld once the year has closed, and where a Form W-2c is then required for the Social Security and Medicare wages. The second option misapplies a genuine concept: a forgiven overpayment does become taxable wages, but nothing is being forgiven here, and the arithmetic wrongly treats the withheld amounts as uncollectible when the employer recovers them from the agencies. The third option ignores the wage records entirely, leaving the employee's Form W-2, the company's Forms 941, and its wage expense all overstated.",
+    "domain": "Accounting",
+    "objective": "7.3.4 K7304 - Knowledge of accounting for repayment of wages",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Apply",
+    "bloomConfidence": 0.6
+  },
+  {
+    "stem": "Midway through the fiscal year, Winifred's controller proposes changing the vacation accrual from an average-rate method to an individual-rate method, noting that the change would reduce the reported liability this quarter. Which accounting principle should Winifred raise, and what does it require?",
+    "options": [
+      "The cost principle, which requires liabilities to be carried at their originally recorded amount and therefore bars any change in method.",
+      "The consistency principle, which requires the same method period to period; a change requires demonstrable preferability and disclosure.",
+      "The matching principle, which ties expense to the pay date and therefore makes the method in use at year end govern the whole year.",
+      "Conservatism, which directs the company to select whichever measurement method reports the lower liability at the reporting date."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Consistency is the principle at stake: applying the same measurement method period after period is what makes financial statements comparable, so a change is permitted only when the new method is demonstrably preferable, and its effect must be disclosed so users can still compare the periods. A change adopted because it flatters the current quarter is exactly what the principle exists to prevent. The cost principle concerns the measurement basis for recording transactions at their acquisition amount; it neither governs the estimate of an accrued liability nor bars methodology changes. The matching principle would actually support accruing the vacation liability as it is earned, but the description offered here is wrong on two counts: matching ties expense to the period in which the benefit is earned rather than to the pay date, and no principle lets a year-end method be applied retroactively to a whole year outside a proper change in estimate or method. Conservatism cautions against overstating assets and understating liabilities, so choosing the method that reports the smaller liability is the opposite of what it directs.",
+    "domain": "Accounting",
+    "objective": "7.1.2 K7102 - Knowledge of accounting principles (matching, consistency, cost)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup",
+    "bloomLevel": "Understand",
+    "bloomConfidence": 0.6
+  }
+]

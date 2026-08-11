@@ -1,0 +1,82 @@
+{
+  "takenAt": "2026-08-11T19-46-56-917Z",
+  "path": "exams/dtgTymjijqUr4NEIHbE1",
+  "before": {
+    "name": "Certified Internal Auditor (CIA) - Part 1 (IIA - 2025 Syllabus)",
+    "description": "Part 1 of the CIA exam tests the fundamentals of internal auditing, governance principles, and ethical conduct based on the Global Internal Audit Standards. Questions should test the candidate's knowledge of the IIA Code of Ethics, internal control frameworks, and the proper scope/role of the internal auditor.",
+    "createdAt": {
+      "_seconds": 1764996597,
+      "_nanoseconds": 794000000
+    },
+    "config": {
+      "totalQuestions": 100,
+      "hardPct": 45,
+      "mediumPct": 45,
+      "easyPct": 10
+    },
+    "domains": [
+      "Foundations of Internal Auditing",
+      "Ethics and Professionalism",
+      "Governance",
+      "Risk Management and Control",
+      "Fraud Risks"
+    ],
+    "updatedAt": {
+      "_seconds": 1765562730,
+      "_nanoseconds": 77000000
+    },
+    "isPublished": true,
+    "blueprint": [
+      {
+        "keywords": "",
+        "difficulty": "",
+        "reference": "",
+        "questionType": "",
+        "domain": "Foundations of Internal Auditing",
+        "subDomain": "Purpose of Internal Auditing; Internal Audit Mandate/Charter; Types of Internal Audit Engagements.",
+        "weight": 25
+      },
+      {
+        "domain": "Ethics and Professionalism",
+        "keywords": "",
+        "difficulty": "",
+        "questionType": "",
+        "subDomain": "IIA Code of Ethics; Integrity, Objectivity; Assessing Objectivity Impairments.",
+        "weight": 15,
+        "reference": ""
+      },
+      {
+        "domain": "Governance",
+        "questionType": "",
+        "subDomain": "Control Frameworks; Risk Management Processes; IT Governance.",
+        "difficulty": "",
+        "reference": "",
+        "weight": 25,
+        "keywords": ""
+      },
+      {
+        "questionType": "",
+        "weight": 15,
+        "subDomain": "Control Frameworks; Risk Management Processes; IT Governance.",
+        "reference": "",
+        "keywords": "",
+        "domain": "Risk Management and Control",
+        "difficulty": ""
+      },
+      {
+        "subDomain": "Fraud Types; Fraud Detection; Risk Assessment.",
+        "reference": "",
+        "weight": 15,
+        "keywords": "",
+        "domain": "Fraud Risks",
+        "difficulty": "",
+        "questionType": ""
+      }
+    ],
+    "questionCount": 125,
+    "bankVersionUpdatedAt": {
+      "_seconds": 1786460600,
+      "_nanoseconds": 379000000
+    }
+  }
+}
