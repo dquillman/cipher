@@ -4,6 +4,7 @@ exports.scheduleOnboardingDrip = exports.DRIP_SEQUENCE = void 0;
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const axios_1 = require("axios");
+const emailCompliance_1 = require("./emailCompliance");
 /**
  * Ticket 1.2 — Resend onboarding drip.
  *
@@ -37,11 +38,12 @@ function fromAddress() {
     return process.env.RESEND_FROM || "Dave at CipherExam <dave@cipherexam.com>";
 }
 const CTA = "https://cipherexam.com/app";
-function shell(inner) {
+function shell(inner, footer) {
     return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;max-width:560px">
 ${inner}
 <p style="margin-top:28px"><a href="${CTA}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">Start Free Trial</a></p>
 <p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 7-day free trial. No credit card required. Cancel anytime.</p>
+${footer}
 </div>`;
 }
 /**
@@ -53,33 +55,33 @@ exports.DRIP_SEQUENCE = [
         dayOffset: 4,
         theme: "loved-trap-framing",
         subject: "The wrong answers are the whole game",
-        html: ({ firstName }) => shell(`<p>Hi ${firstName},</p>
+        html: ({ firstName, footer }) => shell(`<p>Hi ${firstName},</p>
 <p>Most prep tools tell you the right answer. The exam already gave you four plausible ones — your problem is the three that <em>look</em> right.</p>
-<p>Every CipherExam explanation walks the traps: why each wrong option is tempting, and the frame the test-writer is actually grading. That's the part that makes the exam stop feeling like a trick.</p>`),
+<p>Every CipherExam explanation walks the traps: why each wrong option is tempting, and the frame the test-writer is actually grading. That's the part that makes the exam stop feeling like a trick.</p>`, footer),
     },
     {
         dayOffset: 5,
         theme: "skeptical-of-ai",
         subject: "Why our explanations aren't just ChatGPT",
-        html: ({ firstName }) => shell(`<p>Hi ${firstName},</p>
+        html: ({ firstName, footer }) => shell(`<p>Hi ${firstName},</p>
 <p>Fair question we hear a lot: isn't this just an LLM wrapper?</p>
-<p>No. Every question is Bloom's-classified and run through exam-specific trap detection, so the explanation targets the exact reasoning error the option was designed to catch — not a generic summary. It's the difference between "here's the answer" and "here's why you'd have missed it."</p>`),
+<p>No. Every question is Bloom's-classified and run through exam-specific trap detection, so the explanation targets the exact reasoning error the option was designed to catch — not a generic summary. It's the difference between "here's the answer" and "here's why you'd have missed it."</p>`, footer),
     },
     {
         dayOffset: 6,
         theme: "pricing-confusion",
         subject: "What a retake actually costs",
-        html: ({ firstName }) => shell(`<p>Hi ${firstName},</p>
+        html: ({ firstName, footer }) => shell(`<p>Hi ${firstName},</p>
 <p>Pricing is simple: $19/month, or $189/year (save 17%). The 7-day trial never charges a card.</p>
-<p>Worth the comparison: a single exam retake usually runs several hundred dollars and weeks of re-study. CipherExam is built to get you through on the first sit by fixing the reasoning gaps, not just the knowledge gaps.</p>`),
+<p>Worth the comparison: a single exam retake usually runs several hundred dollars and weeks of re-study. CipherExam is built to get you through on the first sit by fixing the reasoning gaps, not just the knowledge gaps.</p>`, footer),
     },
     {
         dayOffset: 7,
         theme: "credibility",
         subject: "Your trial ends tomorrow",
-        html: ({ firstName }) => shell(`<p>Hi ${firstName},</p>
+        html: ({ firstName, footer }) => shell(`<p>Hi ${firstName},</p>
 <p>Your free trial wraps tomorrow. If the adaptive routing has been sending you back to your weakest domain — that's the whole point; it's where the score actually moves.</p>
-<p>I read every reply to these emails personally. If anything's been confusing or missing, just hit reply and tell me.</p>`),
+<p>I read every reply to these emails personally. If anything's been confusing or missing, just hit reply and tell me.</p>`, footer),
     },
 ];
 function scheduledAtIso(base, dayOffset) {
@@ -134,6 +136,32 @@ exports.scheduleOnboardingDrip = functions.firestore
             .catch(() => undefined);
         return;
     }
+    // CAN-SPAM gate — same contract as sendLeadMagnetWelcome. These are
+    // commercial messages and need a working opt-out plus a postal address.
+    // Fails closed: no footer means no send.
+    const compliance = (0, emailCompliance_1.complianceStatus)();
+    if (!compliance.ok) {
+        await (0, emailCompliance_1.recordComplianceBlock)("scheduleOnboardingDrip", compliance.missing);
+        await snap.ref
+            .set({ onboardingDripBlockedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true })
+            .catch(() => undefined);
+        return;
+    }
+    // A signup can already be on the suppression list — someone who downloaded
+    // a magnet, unsubscribed, then started a trial later. Honouring the opt-out
+    // is the whole point of keeping it.
+    if (await (0, emailCompliance_1.isOptedOut)(email)) {
+        console.log(`[drip] ${uid} skipped — ${email} has opted out.`);
+        await snap.ref
+            .set({ onboardingDripSuppressedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true })
+            .catch(() => undefined);
+        return;
+    }
+    const footer = (0, emailCompliance_1.complianceFooter)(email);
+    if (!footer) {
+        await (0, emailCompliance_1.recordComplianceBlock)("scheduleOnboardingDrip", ["footer could not be built"]);
+        return;
+    }
     const base = new Date(); // signup time
     const results = [];
     for (const mail of exports.DRIP_SEQUENCE) {
@@ -142,7 +170,7 @@ exports.scheduleOnboardingDrip = functions.firestore
                 from: fromAddress(),
                 to: [email],
                 subject: mail.subject,
-                html: mail.html({ firstName }),
+                html: mail.html({ firstName, footer }),
                 scheduled_at: scheduledAtIso(base, mail.dayOffset),
                 tags: [
                     { name: "campaign", value: "onboarding-drip" },
