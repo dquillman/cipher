@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "Delia, a payroll manager at a company incorporated in Delaware with its corporate headquarters in Illinois, is preparing an unclaimed property report. One item is a payroll check issued to a former warehouse employee who performed all of his work in Ohio. The employee's last known address in the company's payroll master file is in Kentucky, and the check has now sat uncashed past the applicable dormancy period. To which state must Delia report and remit this unclaimed wage payment?",
+    "options": [
+      "Ohio, because unclaimed wages follow the state in which the services generating the wages were performed",
+      "Kentucky, because the primary rule assigns unclaimed property to the state of the owner's last known address in the holder's books and records",
+      "Delaware, because the holder's state of incorporation always has first claim to abandoned intangible property",
+      "Illinois, because the state where the holder maintains its principal place of business and issued the check has first claim"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Under the priority rules established in Texas v. New Jersey and followed by virtually every state unclaimed property act, the primary rule sends abandoned intangible property — including uncashed payroll checks — to the state of the owner's last known address as shown in the holder's records. Delia's payroll master file shows Kentucky, so Kentucky gets the property. Ohio is wrong because the place where services were performed governs income tax sourcing and state unemployment coverage, not escheat; the escheat statutes look at the owner's address, not the work site. Delaware is wrong because the holder's state of incorporation is only the secondary rule — it applies when the owner's address is unknown, or when the address state does not claim the property. Here an address exists, so the secondary rule is never reached. Illinois is wrong because neither the principal place of business nor the disbursing location is an escheat priority at all; the holder-side rules look to the state of incorporation, and they are reached only when no last known address exists.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.1.1 K2101 Knowledge of escheat laws",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Roland is reconciling the payroll bank account and finds a net payroll check for $1,340 issued 18 months ago that was never cashed. The employee terminated and cannot be located; the applicable state's dormancy period for wages is one year. Federal and state taxes on those wages were withheld and deposited on time, and the wages appeared on the employee's Form W-2 for the year of payment. What is the correct handling?",
+    "options": [
+      "Reverse the payroll transaction, back out the taxable wages and withholding, and issue a Form W-2c reducing the employee's reported wages for the year of payment",
+      "Void the check, credit the amount back to wage expense, and recognize the funds as miscellaneous income once the dormancy period has run",
+      "Send the statutorily required due diligence notice to the employee's last known address and, if there is no response, report and remit the $1,340 net amount to the state as unclaimed property",
+      "Remit the gross wage amount rather than the net check amount to the state, since the state's claim stands in the shoes of the employee's full wage entitlement"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The wages were constructively and actually paid when the check was issued, so the tax and reporting consequences are settled; what remains unclaimed is the net amount the employee never collected. Escheat procedure requires the holder to perform due diligence — written notice to the owner's last known address within the window the state prescribes — and then report and remit the net check amount on the state's reporting cycle. Reversing the payroll and issuing a W-2c misapplies the overpayment-correction rules; those apply when wages were paid in error, not when properly earned wages go uncollected, and the employee's right to the money still exists. Voiding the check and taking the money into income is the classic escheat violation: unclaimed wages never become the employer's property, and recognizing them as income exposes the company to interest, penalties, and audit assessment. Remitting gross is wrong because the withheld taxes were already deposited with the taxing agencies on the employee's behalf; sending them to the state as well would remit the same dollars twice.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.1.2 K2102 Knowledge of escheatment procedures",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Priyanka is writing a records destruction schedule for her payroll department and wants to apply the shortest retention period the FLSA permits for each category of record. Which group of records may be destroyed after two years under the FLSA recordkeeping regulations?",
+    "options": [
+      "Time cards, wage rate tables, work and time schedules, and the records of additions to or deductions from wages — the documents on which wage computations are based",
+      "The payroll register showing each employee's hours worked, straight-time earnings, overtime premium, and total wages per pay period",
+      "Collective bargaining agreements and any written employment contracts covering bargaining unit employees",
+      "Employee identifying data such as name, address, date of birth, occupation, and sex"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The FLSA regulations split retention into two buckets. The two-year bucket is the supplementary basic records on which wage computations are based: time cards and piecework tickets, wage rate tables, work and time schedules, and records explaining additions to or deductions from wages. The three-year bucket covers payroll records themselves, certificates, agreements, notices, collective bargaining agreements, and sales and purchase records. The payroll register is the core payroll record and is a three-year item, not two. Collective bargaining agreements and written employment contracts are named explicitly in the three-year group. Employee identifying data is part of the required payroll record content, so it also carries the three-year period. Note that the FLSA period is a floor only — IRS employment tax records run four years from the due date or payment date of the tax, so a destruction schedule built solely on FLSA minimums will destroy records the IRS can still demand.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.4.2 K2402 Knowledge of FLSA requirements",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Ibrahim administers FMLA leave inside the payroll department. His files for a recently returned employee include the leave request, the designation notice, the hours-of-service calculation supporting eligibility, and a Form WH-380-E certification from the employee's physician describing her serious health condition. A DOL investigator has asked how the company stores and retains these documents. Which practice satisfies the FMLA recordkeeping rules?",
+    "options": [
+      "Retain the entire file, including the medical certification, in the employee's regular personnel folder for three years",
+      "Retain the file for one year, consistent with the EEOC and ADEA recordkeeping period applicable to personnel actions",
+      "Retain the file for six years, consistent with the ERISA period applicable to employee benefit plan records",
+      "Retain the file for three years, keeping the medical certification and any related medical information in a separate confidential file with restricted access"
+    ],
+    "correctAnswer": 3,
+    "explanation": "FMLA requires covered employers to preserve leave records for three years, and it separately requires that medical certifications, recertifications, and medical histories be maintained in files separate from the usual personnel file and treated as confidential medical records, consistent with the ADA's confidentiality standard. Only the fourth option does both. Storing the certification in the general personnel folder gets the retention period right but violates the confidentiality requirement — this is the most common finding in a DOL FMLA audit. One year is the EEOC/ADEA period for personnel and employment records; it is a real rule applied to the wrong statute and would destroy FMLA records two years early. Six years is the ERISA period for plan records supporting the Form 5500; FMLA leave files are not ERISA plan records, and applying that period does not cure the confidentiality defect either.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.4.3 K2403 Knowledge of FMLA requirements",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "It is January 28 and Corinne's payroll team, which issues about 250 Forms W-2, has discovered that a year-end system conversion has left the W-2 file unbalanced. She will not be able to transmit Copy A and Form W-3 to the SSA by the filing deadline and asks whether an extension is available. What should Corinne be told?",
+    "options": [
+      "The SSA deadline for Copy A is the end of February for paper filers and the end of March for electronic filers, so she still has time and no extension is needed",
+      "Form 8809 provides an automatic 30-day extension for Forms W-2, the same as it does for most other information returns, and it also postpones the employee furnishing date",
+      "An extension of time to file Forms W-2 with the SSA is not automatic — it must be requested on a paper Form 8809 with a detailed explanation and is granted only in limited extraordinary circumstances, and it does not extend the date for furnishing copies to employees",
+      "No penalty applies as long as all federal employment tax deposits for the year were made on time, because the information return penalties are measured against unpaid tax"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Since the PATH Act accelerated the W-2 deadline, Copy A and Form W-3 are due to the SSA on January 31 regardless of filing medium, and the extension rules for Forms W-2 and 1099-NEC are deliberately narrower than for other information returns: the request must be made on a paper Form 8809 with a signed explanation, only one non-automatic 30-day extension may be granted, and it is reserved for extraordinary circumstances such as a catastrophic event, fire or casualty, the death or serious illness of the person responsible for filing, or a first-year business. An extension of time to furnish copies to employees is a separate request. The first option recites the pre-PATH Act February 28 / March 31 dates — a real rule that no longer applies to Forms W-2. The second option applies the automatic 30-day rule that does exist for most other information returns to the one form family Congress carved out of it. The fourth option confuses deposit compliance with filing compliance: the failure-to-file information return penalty runs per return on a tiered scale based on how late the return is, and intentional disregard carries a higher per-return amount with no annual maximum, entirely independent of whether the tax was deposited.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.3.3 K2303 Knowledge of annual forms completion and filing (Forms W-2/W-3 series); 2.5.1 K2501 Knowledge of IRS penalties",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Hector processes payroll for a distribution center. A newly hired forklift operator lives in a state that has a reciprocal income tax agreement with the state in which the distribution center — his only work location — is situated. The employee asks Hector to stop withholding work-state income tax. What is the correct treatment?",
+    "options": [
+      "Have the employee file the work state's certificate of nonresidence with the employer, then withhold only the residence state's income tax, while continuing to report state unemployment wages to the work state",
+      "Continue withholding work-state income tax and also begin withholding residence-state tax, letting the employee claim a credit for taxes paid to another state on his residence-state return",
+      "Stop all state income tax withholding, because a reciprocal agreement exempts the employee's wages from income tax in both states",
+      "Continue withholding work-state income tax only, because reciprocity is claimed by the employee on the annual return and has no effect on employer withholding"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A reciprocal agreement lets a resident of one state who works in the other be taxed only by the state of residence. The mechanism is an employee-filed certificate of nonresidence retained by the employer; once it is on file the employer stops work-state income tax withholding and withholds for the residence state instead. Reciprocity covers income tax only — state unemployment insurance is assigned by the localization-of-work rules, so SUI wages still go to the work state, which is why that clause belongs in the correct answer. The second option describes the correct handling when there is no reciprocal agreement: withhold for the work state and let the resident state credit mechanism resolve the overlap. The third option misreads reciprocity as an exemption; it reallocates the tax between two states, it does not eliminate it. The fourth option is wrong because reciprocity operates at the withholding level precisely so the employee does not have to file a nonresident return to recover the tax.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.2 Legislative and regulatory requirements for compliant payroll processing (see also K1304 multi-state taxation rules)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Yolanda must assign a field service technician to a single state for state unemployment insurance purposes. The technician performs roughly equal amounts of work in States A, B, and D, so his service is not localized in any one of them. He reports each morning to a company branch in State A, where his truck, tools, and assignments originate and where a substantial portion of his work is performed. His supervisor and all dispatch authority sit at corporate headquarters in State B. He lives in State C and performs no services there. Under the standard four-factor test, to which state are his wages reported for SUI?",
+    "options": [
+      "State C, because residence controls whenever an employee's service crosses state lines",
+      "State A, because when service is not localized the next factor is the employee's base of operations",
+      "State B, because the place from which direction and control are exercised governs multi-state service",
+      "Whichever of States A, B, and D he happened to log the most hours in during the quarter"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The four factors are applied in strict order: localization of service, then base of operations, then place from which direction or control is exercised, then the employee's state of residence. Each factor is reached only if the one before it fails to produce an answer. Here localization fails, so the test moves to base of operations — the fixed place the employee starts from and returns to, where equipment and assignments originate — which is State A. State B is the third factor and is never reached because the second factor resolved the question; direction and control matter only when there is no identifiable base of operations. State C is the fourth and last factor, a true tiebreaker, and it applies only when the employee actually performs some service in the state of residence and the earlier factors all fail. Counting hours is not one of the four factors at all; it is an intuitive proxy for localization, but localization requires that the out-of-state work be incidental or temporary, not merely a smaller share.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.2 Legislative and regulatory requirements for compliant payroll processing (see also K1304 multi-state taxation rules, SUI)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Alonzo receives a creditor garnishment for an employee who works in a state whose garnishment statute caps withholding at a percentage of disposable earnings noticeably lower than the federal Consumer Credit Protection Act ceiling. The creditor's attorney writes to Alonzo insisting the federal limit applies because federal law governs wage garnishment. How should Alonzo respond?",
+    "options": [
+      "Apply the federal CCPA limit, because federal wage garnishment law preempts conflicting state garnishment statutes",
+      "Apply the state limit only if the employer is headquartered in that state; otherwise the federal limit governs",
+      "Disregard both limits and withhold the full judgment balance, because the CCPA restricts only child support and tax levy withholding",
+      "Withhold under whichever law produces the smaller garnishment — here the state limit — because the CCPA sets a ceiling and does not displace more protective state law"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The CCPA sets a maximum, not a mandate. Title III expressly provides that where a state law results in a smaller garnishment, the state law governs; the employer always applies the rule that leaves the employee with more take-home pay. The preemption argument is a real doctrine misapplied: the CCPA preempts state laws that would allow more to be taken, never those that allow less, and some states prohibit creditor garnishment of wages altogether. Tying the choice to the employer's headquarters is not a recognized rule — garnishment limits follow the applicable state law governing the employee's wages, not the location of the corporate office. The option that would have Alonzo disregard both limits inverts the statute: ordinary creditor garnishment is the CCPA's core case, the 25 percent figure is a ceiling for creditor garnishments, and child support and IRS levies operate under separate limits of their own. Alonzo should reply in writing, cite the state statute, and withhold at the lower state cap.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.2.1 K2201 Knowledge of rules for processing wage attachments",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Naomi's employer has 4,000 employees nationwide. A machine operator at a rural plant requests leave to care for a parent with a serious health condition. The operator has worked for the company for three years and logged 1,600 hours in the past 12 months. His plant employs 20 people, and the nearest other company facility is 120 miles away. Is he an eligible employee under the FMLA?",
+    "options": [
+      "Yes — the company employs 4,000 people, which far exceeds the 50-employee coverage threshold",
+      "No — an employee must accumulate at least 1,000 hours of service in the preceding 12 months to be eligible",
+      "No — fewer than 50 employees are employed within 75 miles of his worksite, so he does not meet the eligibility test even though his employer is covered",
+      "Yes — three years of continuous service satisfies every FMLA eligibility requirement"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Employer coverage and employee eligibility are two separate tests, and this scenario is built to separate them. The company is a covered employer because it employed 50 or more employees in 20 or more workweeks. But an individual employee is eligible only if he has worked for the employer 12 months, has at least 1,250 hours of service in the 12 months immediately preceding the leave, and works at a site where the employer employs 50 or more employees within 75 miles. With 20 employees at the plant and the nearest facility 120 miles away, the third prong fails, so the leave is not FMLA-protected. The answer resting on the 4,000-employee headcount stops at employer coverage and never reaches the worksite test. The answer built on a 1,000-hour threshold applies ERISA's 1,000-hour service standard for plan eligibility to FMLA; FMLA requires 1,250 hours, which the operator's 1,600 clears, and hours were never the failing prong here. The answer resting on three years of service is right that three years satisfies the 12-month service prong, but length of service alone does not make an employee eligible.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.3.5 K2305 Knowledge of FMLA regulation and requirements",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "A software engineer returns to Fumiko's company after three years of qualifying uniformed service and is promptly reemployed. He wants to restore the 401(k) elective deferrals he could not make while deployed. Which statement correctly describes the employer's and employee's obligations under USERRA?",
+    "options": [
+      "He may make up the missed elective deferrals over a period of up to three times his length of service, capped at five years, the deferrals are attributed to the years of absence for contribution limit purposes, and the employer must fund any match those make-up deferrals would have earned",
+      "Make-up deferrals must be completed within 90 days of his reemployment date, matching the deadline for applying for reemployment after an extended period of service",
+      "The employer must credit the account with the investment earnings the missed deferrals would have generated during the deployment, in addition to the match",
+      "No make-up deferrals are permitted, because adding three years of deferrals on top of current-year deferrals would exceed the annual elective deferral limit"
+    ],
+    "correctAnswer": 0,
+    "explanation": "USERRA treats the service period as continuous service with the employer for vesting and accrual, and it gives the returning employee a make-up window equal to three times the period of service, not to exceed five years, beginning on the reemployment date. Make-up contributions are allocated to the plan years to which they relate, and the employer owes the matching or other employer contributions those deferrals would have generated, based on the compensation the employee would have received had he remained employed. The 90-day figure is the deadline for applying for reemployment after service of more than 180 days — a real USERRA deadline attached to the wrong obligation. Investment earnings are the well-known exception: the employer must restore contributions, but is not required to make up forfeitures or lost earnings. The last option is why the attribution rule exists — because make-up deferrals count against the limits for the years of absence rather than the current year, they do not collide with the current-year elective deferral limit.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.3 Legislative and regulatory requirements for compliant payroll reporting (see also K3401 USERRA contributions)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Teodoro runs payroll for a contractor that just won a $3 million federally funded highway building contract subject to the Davis-Bacon and Related Acts. The company currently pays all field employees biweekly and submits payroll documentation to the contracting agency with its monthly invoice. The cash and bona fide fringe portions of the prevailing wage rate are being paid correctly. Which change is required for compliance?",
+    "options": [
+      "Only the pay frequency needs to change; certified payrolls are keyed to the contractor's billing cycle, so submitting them with the monthly invoice is acceptable",
+      "Overtime need not be tracked on this project, because the prevailing wage rate already incorporates a premium for extended hours",
+      "Only the submission schedule needs to change; biweekly pay satisfies Davis-Bacon as long as each payment covers the full prevailing wage for both weeks in the period",
+      "Laborers and mechanics must be paid at least weekly, and a certified payroll with a signed statement of compliance must be submitted for each weekly payroll period"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Davis-Bacon requires that covered laborers and mechanics be paid the full prevailing wage at least once a week, and the Copeland Act requires a weekly certified payroll accompanied by a signed statement of compliance, submitted to the contracting agency for each week the contractor performs work — Form WH-347 is the standard vehicle. Biweekly pay and monthly submission each violate one half of that structure, and both must change. The answer that would keep the monthly submission treats certified payroll as an invoicing attachment; the submission obligation runs to each weekly payroll period the contractor performs covered work, independently of when the contractor bills. The answer that would keep biweekly pay borrows a rule that is true under most state wage payment laws — pay period timing is fine so long as the full amount owed is eventually paid — but Davis-Bacon fixes the frequency itself at not less than once a week, so paying the correct total two weeks late still breaches the act. The overtime answer misstates the Contract Work Hours and Safety Standards Act, which requires time and one-half for hours over 40 on covered contracts; nothing in the prevailing wage determination substitutes for it.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.2 Legislative and regulatory requirements for compliant payroll processing (see also K1210 public service contract acts, Davis-Bacon)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Wanda's company hires employees in 14 states and wants to stop filing new hire reports state by state. She asks whether federal law permits the company to consolidate all new hire reporting into a single filing. What must the company do to use the consolidated option?",
+    "options": [
+      "Nothing can be done — federal law requires every employer to report each new hire to the State Directory of New Hires in the state where that employee works, with no consolidation permitted",
+      "Designate one state in which it has employees as its reporting state, notify the U.S. Department of Health and Human Services of that designation in writing, and transmit its reports to that state electronically or magnetically",
+      "Designate the state of its corporate headquarters, whether or not it has employees working there, and file a copy of the designation with each of the other 13 state directories",
+      "Register with the Internal Revenue Service as a multistate filer, since new hire data is matched against federal wage records for tax enforcement"
+    ],
+    "correctAnswer": 1,
+    "explanation": "PRWORA gives a multistate employer the option to designate a single state for all new hire reporting, but attaches three conditions: the designated state must be one in which the employer actually has employees working, the employer must notify HHS of the designation in writing, and reports must be transmitted electronically or magnetically. The first option describes the default rule and wrongly treats it as the only rule; state-by-state reporting is what an employer does if it does not make the election. The third option gets the notification recipient wrong on both counts — the notice goes to HHS, not to the individual state directories — and permits designating a headquarters state where no employees work, which the statute does not allow. The fourth option misattributes the program: new hire data flows to the Office of Child Support Enforcement's National Directory of New Hires and is used primarily for child support order location and for detecting improper unemployment and workers' compensation claims, not for IRS registration. Whichever route is chosen, individual reports remain due within 20 days of hire, or twice monthly 12 to 16 days apart for electronic filers.",
+    "domain": "Compliance/Research and Resources",
+    "objective": "2.3.6 K2306 Knowledge of New Hire Reporting",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  }
+]

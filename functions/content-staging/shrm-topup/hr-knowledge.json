@@ -1,0 +1,182 @@
+[
+  {
+    "stem": "Priya, HR director at a regional medical-device manufacturer, is opening a three-year workforce plan. Before she sets any headcount target she wants one structured scan of the forces that could reshape her workforce, and her working list is mixed: a new state licensure rule for field service techs, an aging local labor pool, tariff exposure on imported components, rapid automation in precision machining, a national competitor opening a plant 40 miles away, and consolidation among the distributors that carry the product line. Which analysis framework is built to cover that whole list rather than one part of it?",
+    "options": [
+      "SWOT analysis",
+      "Industry analysis",
+      "PESTLE analysis",
+      "Growth-share matrix"
+    ],
+    "correctAnswer": 2,
+    "explanation": "PESTLE sorts the forces acting on an organization into political, economic, social, technological, legal and environmental categories, and every entry on Priya's list lands in one of them: the licensure rule is legal, the labor pool social, tariff exposure political and economic, precision-machining automation technological, and competitor entry and distributor consolidation economic. It is the only framework offered whose taxonomy is wide enough to hold all six, which is what Priya asked for. The industry analysis option is the strongest wrong answer and fails on coverage rather than on legitimacy: it is a real framework that genuinely handles part of the list, mapping rivalry, new entrants, substitutes, and supplier and buyer power, so it would capture the competitor's new plant and the distributor consolidation. But it has nowhere to put a licensure change, a demographic shift or tariff policy, so choosing it would leave four of Priya's six concerns unexamined. The SWOT option fails because SWOT is a summary format that pairs internal strengths and weaknesses against opportunities and threats; it presumes the outside forces have already been identified and supplies no taxonomy that would surface the ones Priya has not thought of yet, which is the entire purpose of a scan. The growth-share matrix option fails because it classifies business units or product lines by relative market share and market growth to guide portfolio investment; it is a capital-allocation tool and would not register a licensure change or a labor-pool shift at all.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - People Knowledge Domain: HR Strategy (Key Concepts: strategic planning analysis frameworks, including PESTLE analysis, SWOT analysis, industry analysis and growth-share matrix)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Devon screens first-round applicants for a contact-center role using an asynchronous video platform whose AI scores each recorded answer on speech fluency, facial expression and word choice. An applicant discloses a speech impairment resulting from a stroke and asks whether there is another way to complete the screen. The vendor tells Devon the model was validated on a large applicant sample and is therefore fair to everyone. What should Devon do?",
+    "options": [
+      "Offer an alternative assessment format as a reasonable accommodation and evaluate the applicant against the same job-related criteria used for other candidates.",
+      "Rely on the vendor's validation evidence and score the applicant with the standard model, since a validated instrument applied uniformly to all candidates satisfies the ADA.",
+      "Require medical documentation of the stroke and its effects before deciding whether the platform may be used for this applicant.",
+      "Remove AI scoring from this requisition for every applicant and have recruiters review all recordings manually, so the process stays identical for everyone."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Video interviewing and AI-based skill and competency matching are recognized talent acquisition technologies, and using them does not displace the employer's duty to comply with the laws governing selection. A model that scores speech fluency and facial expression can screen out an impairment rather than measure the job requirement, so the obligation here is an individualized accommodation: an alternative format that still assesses the same job-related criteria, which preserves comparability of the hiring decision while removing the barrier. The option that relies on the vendor's validation evidence fails because uniform application of a validated tool is not an ADA defense; population-level validity says nothing about whether the tool is measuring an impairment instead of ability in this particular individual, and the accommodation duty is individual by design. The option that demands medical documentation first fails because documentation may be requested only when the disability or the need for accommodation is not obvious, and it is not the opening move here; the barrier is apparent from the tool's own scoring criteria, and requiring records before engaging on an evident accommodation is itself an interactive-process failure. The option that strips AI scoring from the entire requisition fails because it overcorrects: the ADA does not require dismantling a lawful selection tool for every applicant, and doing so still leaves unanswered whether this applicant can demonstrate job-related ability.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - People Knowledge Domain: Talent Acquisition (Key Concepts: methods for selection assessment; talent acquisition technologies) with U.S. Employment Law & Regulations (ADA)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Claims processors on Marisol's team describe the work as monotonous: each person performs one step of a nine-step adjudication process. Marisol redesigns the role so that each processor owns a claim from intake through payment, holds signature authority to approve settlements up to $5,000 without supervisor review, and decides the order in which to work their own queue. Which job-design technique has Marisol applied?",
+    "options": [
+      "Job rotation",
+      "Job enlargement",
+      "Work simplification",
+      "Job enrichment"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Job enrichment adds depth to a role: autonomy, decision authority and ownership of a complete piece of work. Signature authority and control over one's own sequencing are increases in responsibility, not merely in task count, and that vertical addition of responsibility is the defining marker of enrichment. The job rotation option fails because rotation moves employees among different jobs on a planned cycle to broaden exposure; nobody in this scenario changed jobs. The job enlargement option fails because enlargement widens a job horizontally, adding more tasks at the same level of responsibility and discretion; if Marisol had assigned each processor three adjudication steps instead of one while leaving approval authority with the supervisor, that would be enlargement, and the presence of signature authority is exactly what rules it out. The work simplification option fails because simplification strips discretion and complexity out of a job to standardize and speed it, which is the condition the team was already suffering under and the opposite direction from the one Marisol moved in.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - People Knowledge Domain: Employee Engagement & Retention (Key Concepts: job-design principles and techniques)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Ade, an L&D specialist at a food-processing company, has six plant supervisor openings and 40 line technicians nominated by their plant managers on the strength of their technical output. The supervisor job is mostly resolving shift conflicts, deciding which line to hold when two orders compete, and coaching operators through errors; none of the nominees has performed any of that work. Ade has budget for one assessment. Which developmental assessment gives Ade the best evidence of who is ready for the supervisor role?",
+    "options": [
+      "A skills assessment covering equipment operation, sanitation and quality procedures, scored against the technician competency model.",
+      "A simulation built from the supervisor job itself: a shift-conflict roleplay, a competing-orders prioritization exercise and a coaching conversation, scored by trained assessors against defined behaviors.",
+      "A 360-degree assessment collecting feedback from each nominee's plant manager, technician peers and the operators on their line.",
+      "A personality assessment profiling each nominee's traits and work-style preferences against a profile of the company's current supervisors."
+    ],
+    "correctAnswer": 1,
+    "explanation": "A simulation puts candidates into the actual demands of the target job and scores observed behavior, which is the only one of these instruments that produces evidence about work none of the nominees has ever done. Because the exercises are drawn from the supervisor role and scored against defined behaviors, the results are job-related and comparable across all 40 nominees. The skills assessment option fails because it measures mastery of the technician role the nominees already hold, which is precisely the basis on which the plant managers nominated them; it adds no new information and reproduces the classic promotion error of treating strong technical output as evidence of supervisory readiness. The 360-degree assessment option fails on the same fault from a different direction: multi-rater feedback is a developmental tool that reports behavior the raters have observed, and every rater in this pool has only ever seen the nominee working as a technician, so the instrument cannot speak to the supervisory behaviors Ade needs to predict. The personality assessment option fails because trait and work-style profiles describe dispositions rather than demonstrated capability, they add little incremental prediction over a work sample, and benchmarking candidates against the profile of current supervisors selects for resemblance to incumbents rather than for the ability to do the job.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - People Knowledge Domain: Learning & Development (Key Concepts: developmental assessments, including 360-degree assessments, simulations, high-potential assessments, personality assessments and skills assessments)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Over 18 months Tomas has hired six software engineers at prevailing market rates while the engineering market has moved roughly 9 percent per year. Merit budgets held at 3 percent and the salary structure midpoints have not been repriced since. Engineers with six to nine years of tenure and higher performance ratings now sit within $2,000 of brand-new hires, and two of them have resigned citing pay. Which condition is Tomas facing, and which action addresses its root cause?",
+    "options": [
+      "Red-circling; freeze new-hire salaries until incumbent pay catches up through the normal merit cycle.",
+      "An Equal Pay Act violation; audit the affected roles by sex and equalize pay for employees performing substantially equal work.",
+      "A lead compensation philosophy that has gone too far; shift to a lag philosophy to bring starting salaries back down.",
+      "Pay compression; commission a market-based structure review and fund targeted equity adjustments for the affected incumbents."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Pay compression is the narrowing of pay differences between employees whose tenure, experience or performance ought to separate them, and its classic cause is exactly the pattern described: hiring into a rising market while internal structures and merit budgets stay flat. The remedy has to be structural, repricing the ranges and funding incumbent adjustments, because nothing else closes a gap that market movement created. The red-circling option fails on both halves: red-circling is the practice of holding the pay of an employee who already sits above the maximum of a range, not a freeze on new-hire salaries, and a freeze would simply stop hiring, since a 3 percent merit budget can never overtake a 9 percent market. The Equal Pay Act option fails because the EPA addresses pay differences based on sex for substantially equal work; nothing in the facts identifies sex as the variable, and an EPA audit would neither detect nor repair a tenure-based gap driven by market escalation. The lead-philosophy option fails because the company is paying at market rather than ahead of it, so there is no lead philosophy to unwind, and deliberately moving to a lag position would deepen the attraction and retention problem the company is already losing on.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - People Knowledge Domain: Total Rewards (Key Concepts: pay practices and issues; compensation philosophies; compensation and labor market data analysis)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Nine months after acquiring a 300-person competitor, Ines finds the new organization chart and reporting lines fully implemented and staffed. Integration is still stalling: managers from the acquired firm route decisions through consensus rather than to the named owner, the sales incentive plan still pays on the legacy product line, and no one agrees on who may approve pricing exceptions. The CEO asks Ines for a diagnostic that explains why a correct structure is not producing the intended behavior. Which organizational analysis approach fits?",
+    "options": [
+      "Performance analysis of each manager's individual KPIs",
+      "A balanced scorecard review of post-acquisition integration KPIs",
+      "McKinsey 7S model",
+      "Forming-storming-norming-performing stage analysis"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The 7S model examines strategy, structure, systems, shared values, style, staff and skills as an interdependent set, and its central claim is precisely that changing structure alone cannot deliver change while systems (the incentive plan, the decision-rights process) and the softer elements (shared values, management style) remain unaligned. That is Ines's symptom restated in the model's own terms, and it is the only option that explains a gap between structure and behavior. The individual performance analysis option fails because performance analysis isolates people problems, and the misalignment here is systemic: every acquired manager behaves the same way and the incentive plan is identical for all of them, so the cause cannot lie in individual capability or effort. The balanced scorecard option fails because a scorecard reports whether integration targets are being hit across financial, customer, process and learning perspectives; it is a measurement instrument that would confirm the stall Ines has already observed while explaining none of its causes. The forming-storming-norming-performing option fails because Tuckman's stages describe how a single work group develops over time and would be a reasonable lens for one newly merged team, but the model offers no account of incentive plans, decision rights or structural alignment across a 300-person integration.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - Organization Knowledge Domain: Organizational Effectiveness & Development (Key Concepts: organizational analysis; organizational design structures and approaches)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Imani, workforce planning lead at a logistics firm, is costing out the staffing effect of automated sortation equipment going into four hubs. Within 14 months the manual sorting work of about 60 employees disappears, and the firm will need roughly 25 automation technicians who can troubleshoot programmable logic controllers. The current sorters hold deep knowledge of the firm's exception-handling processes. The regional market for automation technicians is very tight, and Imani has been told the plan must retain institutional knowledge and avoid severance costs. Which workforce planning strategy best fits these constraints?",
+    "options": [
+      "Build: reskill current sorters into the technician role through a structured upskilling program timed to the installation schedule.",
+      "Buy: recruit experienced automation technicians externally, since PLC troubleshooting does not exist in the current workforce.",
+      "Bridge: outplace the sorters and backfill technician coverage through a temporary staffing agency.",
+      "Borrow: contract technicians from the equipment vendor for the operating life of the equipment."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Build, buy, borrow and bridge are the four workforce planning strategies, and build means developing the capability inside people the organization already employs, which is why upskilling and reskilling sit under the same heading. Every stated constraint points there: a 14-month runway long enough to train, a tight external market, exception-handling knowledge worth keeping, and an explicit instruction to avoid severance. The buy option fails because buying is the right call when the skill is genuinely unavailable internally and the market can supply it quickly; here the regional market is tight, and recruiting externally discards the exception-handling knowledge while still incurring the severance Imani has been told to avoid. The bridge option fails because bridging is the strategy for transitioning employees out of the organization when reskilling is not viable, and its own text makes that concrete by outplacing the sorters, which is precisely the outcome the constraints rule out. The borrow option fails because borrowing suits temporary, peak or specialized short-duration needs; making permanent daily operations dependent on a vendor's contractors creates a standing cost and leaves the firm without the internal capability it will need for the equipment's entire operating life.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - Organization Knowledge Domain: Workforce Management (Key Concepts: workforce planning approaches, techniques and analyses; build, buy, borrow and bridge strategies; upskilling and reskilling)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "At a unionized plant, HR manager Reggie calls a machinist into his office to question him about a damaged pallet load; the machinist may have caused it and discipline is a realistic outcome. The machinist says he wants his union steward present. No steward is on shift for another two hours. Under NLRB v. Weingarten, what are Reggie's options?",
+    "options": [
+      "He may proceed without a representative, because this is an investigatory interview rather than a disciplinary meeting.",
+      "He must furnish a representative at company expense, including an attorney if the employee prefers one.",
+      "He must abandon the investigation, because the employee's request ends the employer's right to look into the incident.",
+      "He may postpone the interview until a representative is available, or forgo the interview and pursue the investigation by other means."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Weingarten gives a represented employee the right to request union representation at an investigatory interview the employee reasonably believes may lead to discipline. The employer's lawful choices are to grant the request, to discontinue the interview, or to offer the employee the choice between continuing unrepresented and having no interview at all; what the employer may not do is compel the employee to answer alone. The option that treats an investigatory interview as outside the rule fails because the investigatory character of the meeting is the trigger for the right, not an exception to it; Weingarten exists for exactly this conversation. The option that requires the employer to furnish and pay for a representative fails because the right runs to a union representative the employee requests, and the employer has no duty to supply, select or pay for one, nor does the right extend to counsel of the employee's choosing. The option that requires abandoning the investigation fails because the request constrains the interview, not the inquiry: Reggie remains free to review equipment logs, camera footage and other witnesses and to impose discipline on that basis.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - Organization Knowledge Domain: Employee & Labor Relations (Key Concepts: techniques for workplace investigations; progressive disciplinary procedures) with U.S. Employment Law & Regulations (NLRB v. Weingarten, 1975)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Yuki's company is preparing to deploy an AI productivity tool that joins internal meetings, transcribes them, generates a per-participant contribution score, and pushes those scores to managers as an input to performance ratings. IT has cleared security and data residency. Leadership wants to switch it on without announcing it, so employees do not game the score. Yuki is asked for HR's position before launch. Which objection is best supported on both governance and validity grounds?",
+    "options": [
+      "Meeting transcription is impermissible anywhere employees have not each given written consent in advance.",
+      "Employees should be told the tool is running before it is switched on, and the contribution score should be shown to relate to job performance before any manager rates anyone on it.",
+      "AI may support HR administration but may never serve as an input to a performance decision.",
+      "Participation should be voluntary, so only employees who opt in are scored by the tool."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Two separate defects need to be raised, and only one option raises both. Deploying the tool silently means employees are monitored and rated on data they do not know exists, which no defensible technology-use policy permits; and a contribution score derived from talk time and word choice is an unvalidated proxy that has not been shown to measure the work anyone is paid to do, so feeding it into ratings is a job-relatedness failure. Both are cheaper to fix before launch than after. The written-consent option fails because it asserts a universal rule that does not exist; recording and notice obligations vary by jurisdiction, and staking HR's objection on a nonexistent blanket mandate invites leadership to dismiss the real governance problem along with the false one. The option barring AI from performance decisions entirely fails because it is overbroad: analytics are a normal input to performance management and AI that augments human judgment is expected to be assessed and implemented, so the professional standard is governance and demonstrated validity, not prohibition. The voluntary-participation option fails because scoring only the employees who opt in produces performance data on a self-selected subset while everyone else is rated without it, which makes evaluation across the population less consistent and therefore less fair, not more.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - Organization Knowledge Domain: Technology Management (Key Concepts: standards and policies for technology use, including AI-related policies addressing utilization, transparency, fairness and data privacy; data and information management)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Hana administers international assignments for a manufacturer. Of the eight employees who completed three-year assignments abroad in the past four years, five resigned within twelve months of coming home. Their exit interviews say much the same thing: they returned to vaguely defined roles, reported to managers who had never worked abroad, and found that nobody in the home organization valued or used what they had learned. Which element of the assignment program most directly failed?",
+    "options": [
+      "Repatriation planning",
+      "Pre-departure cultural and language training",
+      "Assessment of employee and family readiness",
+      "Host-country compensation adjustments and allowances"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Repatriation is the phase of an international assignment that manages the return: securing a defined role before the assignee lands, preserving career-path continuity, and deploying the capability the assignment built. Turnover clustered in the year after return, with role ambiguity and unused experience as the stated reasons, is the textbook repatriation failure. The pre-departure training option fails because cultural and language preparation shapes performance and adjustment while abroad; all eight assignees completed their full terms and every reported symptom appears only on the home side. The readiness assessment option fails because readiness screening predicts early assignment failure or curtailment, and each of these assignments ran the full three years, so the screen did its job. The host-country compensation option fails because allowances govern the economics of living abroad and normally end with the assignment; the exit interviews cite role definition and career use of the experience, not pay while overseas.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - Workplace Knowledge Domain: Managing a Global Workforce (Key Concepts: best practices for international assignments, including transition plans and repatriation)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Bertrand, risk manager for a firm that places nurses in client hospitals, has identified a low-probability, high-severity exposure: a malpractice claim arising from the conduct of a clinician the firm placed. He keeps the firm's licensure verification and credentialing controls in place and, in addition, buys professional liability coverage that shifts the financial consequence of such a claim to an insurer. Which risk treatment does Bertrand's insurance purchase represent?",
+    "options": [
+      "Avoidance",
+      "Reduction",
+      "Sharing",
+      "Retention"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Sharing, sometimes called transfer, moves some or all of the financial consequence of a risk to another party through mechanisms such as insurance or contractual indemnification, which is exactly what buying professional liability coverage does. Avoidance fails because it means declining to engage in the risk-bearing activity at all, which for this firm would mean exiting clinical placements; Bertrand's firm is continuing them. Reduction fails because it lowers the probability or the impact of the event through controls, which is the work the licensure verification and credentialing already do; the policy changes who pays when a claim lands, not how likely a claim is to occur. Retention fails because it means consciously accepting and self-funding the loss, for example through a reserve or a self-insured retention, which is precisely the position the firm has chosen to move away from by buying coverage.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - Workplace Knowledge Domain: Risk Management (Key Concepts: enterprise risk management processes and best practices, and risk treatments: avoidance, reduction, sharing, retention)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "A footwear company's published CSR commitments include respect for human rights and fair labor standards throughout its operations. An investigative report alleges that a tier-2 subcontractor used by the company's largest tier-1 supplier employs underage workers. Legal points out that the company holds no contract with the tier-2 firm and imposes labor-standards clauses only on direct suppliers. The CHRO asks Sanjay, the CSR lead in HR, to recommend a response. Which recommendation best addresses the company's published human-rights commitment?",
+    "options": [
+      "Issue a public statement clarifying that the company has no contractual relationship with the tier-2 subcontractor.",
+      "Work with procurement to extend labor-standards requirements, audit rights and remediation expectations beyond tier 1 into the lower tiers of the supply chain.",
+      "Terminate the tier-1 supplier immediately and publicize the termination as proof of the company's commitment.",
+      "Redirect this year's employee volunteering budget to a children's education charity operating in the region."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Human rights, labor standards and supply chain management are the HR-related activities through which a company's sustainability commitments are actually operationalized, and HR's role is to partner with the business on making those commitments real. Extending standards, audit rights and remediation obligations past tier 1 closes the structural gap that allowed the exposure to exist unseen and restores the company's ability to detect and correct the same problem elsewhere. The public-statement option fails because a declaration of contractual distance is legally accurate and substantively empty; it neither discharges the company's own published commitment, which is written to cover its operations rather than its contract list, nor does anything to find or stop child labor. The immediate-termination option fails because severing the relationship removes the company's visibility and leverage over the very subcontractor in question and can leave the affected workers worse off; responsible practice is to investigate, require remediation on a defined timeline, and exit only if remediation fails. The volunteering-budget option fails because philanthropy is a legitimate CSR activity but is not aligned to this issue: a donation does not stop underage labor inside the company's own supply chain, and substituting charitable giving for accountability is the pattern a CSR strategy exists to prevent.",
+    "domain": "HR Knowledge Domains",
+    "objective": "HR Expertise - Workplace Knowledge Domain: Corporate Social Responsibility (Key Concepts: HR-related activities that support sustainability, including human rights, labor standards and supply chain management; steps to implement CSR strategy)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  }
+]

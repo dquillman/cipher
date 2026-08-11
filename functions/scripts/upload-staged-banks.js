@@ -34,6 +34,13 @@ const EXAM = args.find((a) => !a.startsWith("--"));
 const EXAM_IDS = {
     "shrm-cp": "bpfawZDj3qalhoU4mdd3",
     "cpp": "Vs3aNmifAJc9bYRFCxXc",
+    // Top-up content, authored so a full mock can be drawn from unique questions
+    // once dedupe-question-banks.js removes the option-shuffled clones these
+    // banks were seeded with. Same exam ids as above — these are additions to an
+    // existing bank, not new banks, so they must be uploaded BEFORE the dedupe
+    // runs or the bank is briefly too small to serve its own mock.
+    "cpp-topup": "Vs3aNmifAJc9bYRFCxXc",
+    "shrm-topup": "bpfawZDj3qalhoU4mdd3",
     // The two CompTIA refreshes create NEW banks rather than overwriting the
     // retired ones — the retired banks must survive so existing pass holders'
     // examIds keep resolving. See examLineage in web/src/config/exams.ts.

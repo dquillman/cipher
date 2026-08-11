@@ -1,0 +1,302 @@
+[
+  {
+    "stem": "In February 2026, Tessa, a payroll specialist, reimburses a newly relocated engineer $9,400 for the cost of moving household goods and the family's travel to the new work location. The company has no armed-forces employees. How must Tessa treat the $9,400 for tax year 2026?",
+    "options": [
+      "As a nontaxable qualified moving expense reimbursement excluded from all wages and reported only in Box 12 with code P",
+      "As excludable from federal income tax withholding but subject to Social Security and Medicare taxes",
+      "As fully taxable wages subject to federal income tax withholding, Social Security, Medicare, and FUTA, reported in Boxes 1, 3, and 5 of Form W-2",
+      "As a working condition fringe benefit under IRC Section 132(d), excludable because the move was required by the employer"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The qualified moving expense exclusion under IRC Section 132(g) is suspended for all taxpayers other than active-duty members of the armed forces moving under military orders, and that suspension is in force for tax year 2026. Employer payment or reimbursement of moving costs is therefore ordinary taxable compensation: it enters Box 1, Box 3 (to the wage base), and Box 5, and it is FUTA wages. Treating the payment as a nontaxable qualified moving expense reported with Box 12 code P describes the pre-2018 treatment; code P now applies only to the armed-forces exception. The split treatment - exempt from income tax withholding but still FICA-taxable - belongs to a different category of benefit altogether, not to moving expenses, which get no income tax exclusion at all. Calling the payment a working condition fringe misapplies that rule, which covers only costs the employee could have deducted as a business expense under Section 162 or 167; personal moving costs are not deductible by the employee, so they fail the working condition test.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.2 / K3203 - Knowledge of taxable and non-taxable income for fringe benefits (relocation)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Darnell processes payroll for a restaurant that requires servers to buy a $45 branded uniform. One nonexempt server was paid $8.00 per hour for 40 hours in a workweek with no overtime, and the employer wants to recover the full uniform cost from that week's pay. Applying the federal minimum wage of $7.25 per hour, what is the maximum Darnell may deduct in that workweek?",
+    "options": [
+      "$30.00, because the deduction may not reduce the employee's pay below $290.00 for the 40 hours worked",
+      "$45.00, because the uniform is a required condition of employment and the full cost may be recovered when incurred",
+      "$15.00, because the $45.00 cost must be spread evenly over three workweeks so that no single week carries the full amount",
+      "$0.00, because the FLSA prohibits any deduction for uniforms required by the employer"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Under the FLSA, a deduction for an item that primarily benefits the employer - such as a required uniform - is permitted only to the extent it does not cut into the federal minimum wage or into overtime premium pay. The server's minimum wage floor for the week is 40 x $7.25 = $290.00. Gross pay is 40 x $8.00 = $320.00, so only $320.00 - $290.00 = $30.00 is available this week; the remaining $15.00 may be carried into later workweeks subject to the same test. Recovering the full $45.00 because the uniform is a condition of employment ignores the minimum wage floor entirely. Spreading the cost evenly over three workweeks to reach $15.00 misapplies a real rule: prorating a uniform cost across workweeks is genuinely permitted, but the amount available in any given week is set by that week's margin above the minimum wage floor, not by an arbitrary even split. Saying nothing may be deducted overstates the rule - uniform deductions are permitted, just bounded by the minimum wage and overtime floors.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.4 / K3405 - Ability to identify and calculate allowable employer deductions under FLSA (uniforms)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Yolanda is computing 2026 federal unemployment tax for a single employee who will earn $52,000 in wages. The company pays its state unemployment contributions in full and on time in a state that is not subject to a credit reduction. What is the employer's FUTA liability for that employee?",
+    "options": [
+      "$312.00",
+      "$378.00",
+      "$420.00",
+      "$42.00"
+    ],
+    "correctAnswer": 3,
+    "explanation": "FUTA is imposed at 6.0% on the first $7,000 of each employee's annual wages. An employer that pays state unemployment contributions timely in a non-credit-reduction state receives the maximum 5.4% credit, leaving a net rate of 0.6%. The liability is $7,000 x 0.006 = $42.00. The $312.00 figure applies the 0.6% net rate to the full $52,000, ignoring the $7,000 wage base. The $378.00 figure applies the 5.4% credit rate itself to the wage base ($7,000 x 0.054), which is the credit, not the tax. The $420.00 figure applies the 6.0% gross rate to the wage base without taking the state credit - correct only for an employer that failed to pay state contributions timely.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.5 / K3501 - Ability to calculate federal employer tax liabilities (FUTA)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Ravi is preparing a total payroll cost figure for a department's monthly budget review. For one employee the figures are: gross wages $10,000; employee deductions of $1,100 federal income tax, $765 employee FICA, $600 pre-tax 401(k) elective deferral, and $300 after-tax disability insurance premium. Employer amounts are $765 FICA match, $0 FUTA because this employee's year-to-date wages passed the FUTA wage base back in March, $170 SUTA, and a $300 employer 401(k) match. What is the total payroll cost for that employee?",
+    "options": [
+      "$10,935",
+      "$11,235",
+      "$10,765",
+      "$12,000"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Total payroll cost equals gross wages plus the amounts the employer bears on top of gross: $10,000 + $765 employer FICA + $0 FUTA + $170 SUTA + $300 employer match = $11,235. Employee deductions are not added, because they are already inside the $10,000 of gross wages - they change net pay, not employer cost. The figures are internally consistent: a pre-tax 401(k) elective deferral is exempt from federal income tax withholding but not from FICA, and the disability premium is taken after tax, so FICA wages remain the full $10,000 and employee FICA is $10,000 x 7.65% = $765. The $10,765 figure adds only the employer FICA match and forgets SUTA and the retirement match. The $10,935 figure captures the employer FICA match and SUTA but omits the $300 employer 401(k) match, which is just as much a cost of employing the person. The $12,000 figure double-counts the $765 employee FICA share on top of the correct $11,235, the classic error of treating the employee's withheld tax as an additional employer expense.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.6 / K3603 - Ability to calculate total payroll cost (gross pay, deductions, employer cost)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "A terminating participant asks Colette, the payroll manager who administers the company's qualified 401(k) plan, to cut him a check for his entire $40,000 vested balance rather than move it to an IRA. The distribution is an eligible rollover distribution. What federal income tax withholding applies?",
+    "options": [
+      "$8,000 must be withheld, because a mandatory 20% applies to an eligible rollover distribution paid directly to the participant",
+      "$4,000 must be withheld, because eligible rollover distributions are subject to a 10% default rate",
+      "Nothing must be withheld, because rollover-eligible amounts are always exempt from withholding",
+      "Nothing must be withheld if the participant files a Form W-4R electing out of withholding"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An eligible rollover distribution paid directly to the participant is subject to mandatory 20% federal income tax withholding under IRC Section 3405(c): $40,000 x 20% = $8,000. The participant cannot waive it. The 10% figure is the default rate that governs nonperiodic distributions that are not rollover-eligible; it does not reach a rollover-eligible payment. The blanket exemption answer describes the direct rollover (trustee-to-trustee) route, where withholding genuinely is zero - but that is not what the participant requested; he asked for the check. The Form W-4R answer misuses that form. W-4R covers nonperiodic payments and eligible rollover distributions (periodic payments use Form W-4P), and on an eligible rollover distribution it can only raise the rate above 20% - the 20% floor cannot be waived.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.3 / K3307 - Ability to calculate federal income tax withholding from qualified pension distributions",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Rosa pays a nonexempt assembler entirely on a piece-rate basis. In one workweek the assembler worked 46 hours and produced pieces worth $621.00 in piece-rate earnings. The employer has no agreement to use any alternative overtime method. What is the assembler's total FLSA-compliant pay for the week?",
+    "options": [
+      "$621.00",
+      "$702.00",
+      "$661.50",
+      "$742.50"
+    ],
+    "correctAnswer": 2,
+    "explanation": "For a pieceworker, the regular rate is total straight-time earnings divided by total hours worked: $621.00 / 46 = $13.50. Piece-rate earnings already compensate every hour at straight time, so the additional overtime obligation is a half-time premium on the 6 overtime hours: $13.50 x 0.5 x 6 = $40.50. Total pay is $621.00 + $40.50 = $661.50. Paying the $621.00 of piece earnings alone provides no overtime premium at all and violates Section 7(a). The $702.00 figure adds a full-time premium ($13.50 x 6 = $81.00), correct only where straight time for the overtime hours has not already been paid - here it has. The $742.50 figure adds a full time-and-one-half rate on top of the piece earnings ($621.00 + 6 x $20.25), paying the overtime hours their straight-time component twice.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.1 / K3101 - Ability to calculate FLSA overtime and regular rate of pay (piece rate)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Kofi's employee works two jobs for the same company in one workweek: 32 hours as a machine operator at $18.00 per hour and 16 hours as a crew lead at $21.00 per hour, for 48 hours total. There is no advance agreement under FLSA Section 7(g)(2) to use the rate in effect for the overtime work. What is the employee's total pay for that workweek?",
+    "options": [
+      "$912.00",
+      "$988.00",
+      "$996.00",
+      "$1,140.00"
+    ],
+    "correctAnswer": 1,
+    "explanation": "With two rates and no 7(g)(2) agreement, the regular rate is the weighted average of all straight-time earnings over all hours worked. Straight time is (32 x $18.00) + (16 x $21.00) = $576.00 + $336.00 = $912.00, and $912.00 / 48 = $19.00. All 48 hours are already paid at straight time, so the extra obligation is half-time on the 8 overtime hours: $19.00 x 0.5 x 8 = $76.00. Total pay is $912.00 + $76.00 = $988.00. The $912.00 figure is straight-time earnings with no overtime premium at all. The $996.00 figure computes the half-time premium on the $21.00 lead rate ($912.00 + 8 x $10.50), which is the FLSA Section 7(g)(2) rate-in-effect method - permissible only under a prior agreement or understanding with the employee, which the scenario says does not exist. The $1,140.00 figure adds a full time-and-one-half premium at the weighted average ($912.00 + 8 x $28.50) on hours whose straight-time component was already paid, double-paying the overtime hours.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.1 / K3101 - Ability to calculate FLSA overtime and regular rate of pay (weighted average, two rates)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "In June 2026, Hakeem's company promises a departing consultant-turned-employee a spot award that must land in her bank account at exactly $3,000. The payment is supplemental, the optional flat rate is used, and her year-to-date wages are well below the Social Security wage base and below the Additional Medicare Tax threshold. Her state has no income tax. What gross amount must Hakeem process?",
+    "options": [
+      "$3,229.50",
+      "$3,846.15",
+      "$3,000.00",
+      "$4,264.39"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Grossing up divides the desired net by one minus the sum of the applicable tax rates. Here the rates are the 22% optional flat rate on supplemental wages, 6.2% Social Security, and 1.45% Medicare, totaling 29.65%. The gross is $3,000 / (1 - 0.2965) = $3,000 / 0.7035 = $4,264.39. Proof: $4,264.39 x 29.65% = $1,264.39 of tax, leaving exactly $3,000.00. The $3,229.50 figure multiplies the net by the tax rate and adds it back ($3,000 x 1.0765), a common but wrong shortcut that leaves the employee short because the added gross is itself taxable. The $3,846.15 figure grosses up for the 22% income tax only ($3,000 / 0.78) and forgets FICA. The $3,000.00 figure is the net itself, treating the promise as if no taxes applied to it.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.1 / K3104 - Ability to calculate employer paid taxes (gross-up)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "In July 2026, Beatriz discovers that an employee was overpaid $1,500.00 in gross wages on a March 2026 payroll. Withholding on that overpaid amount was $180.00 federal income tax, $93.00 Social Security, and $21.75 Medicare. The employee is still active and agrees to repay. What should Beatriz collect, and how should the wages be corrected?",
+    "options": [
+      "Collect the full $1,500.00 gross and issue a Form W-2c that corrects Social Security and Medicare wages only, leaving Box 1 unchanged",
+      "Collect $1,205.25 but make no wage adjustment, because the employee constructively received the money in March",
+      "Collect $1,320.00, recovering the gross less only the federal income tax, because FICA over-collections can never be reversed by the employer",
+      "Collect $1,205.25 from the employee and reduce the employee's year-to-date taxable wages by $1,500.00, recovering the withheld income tax and FICA through the company's current federal tax deposits"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Because the repayment occurs in the same calendar year as the overpayment, the employer can unwind everything internally. The employee repays only what was actually received - the net of $1,500.00 - $180.00 - $93.00 - $21.75 = $1,205.25 - and the employer reduces year-to-date gross, income tax wages, and FICA wages by $1,500.00 and recoups the withheld taxes by reducing current-period deposits. The Form W-2 is then simply issued correct the first time. Collecting the full $1,500.00 gross with a Form W-2c is the prior-year rule: after year end the employee must repay gross, Box 1 wages cannot be reduced because the income tax was already reported on the employee's return, and a W-2c corrects only the Social Security and Medicare figures. Collecting the net but making no wage adjustment misapplies constructive receipt, which fixes when income is taxable, not whether a same-year correction is allowed. Collecting $1,320.00 - the gross less only the $180.00 of income tax - assumes over-collected employee FICA is permanently stuck with the employer; it is not, and IRC Section 6413 is precisely the mechanism for adjusting it within the year.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.1 / K3106 - Ability to identify and calculate overpayments",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Marcus values an employer-provided vehicle for calendar year 2026 using the Annual Lease Value method. The vehicle's Annual Lease Value from the IRS table is $6,850. The employee drove 18,000 total miles, of which 4,500 were personal, the employer paid for all fuel, and the employee reimbursed nothing. Using the 5.5 cents per mile fuel rate, what is the imputed income for the year?",
+    "options": [
+      "$1,712.50",
+      "$1,960.00",
+      "$6,850.00",
+      "$7,097.50"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Under the Annual Lease Value method the taxable amount is the ALV multiplied by the personal-use percentage, and employer-provided fuel is valued separately because the ALV table excludes fuel. Personal use is 4,500 / 18,000 = 25%, so the ALV portion is $6,850 x 25% = $1,712.50. Fuel is 4,500 personal miles x $0.055 = $247.50. Total imputed income is $1,960.00. The $1,712.50 figure stops at the ALV portion and forgets that employer-paid fuel must be added on top. The $6,850.00 figure treats the entire Annual Lease Value as taxable, which would be correct only if 100% of the use were personal. The $7,097.50 figure taxes the full Annual Lease Value without applying the 25% personal-use percentage, then correctly adds the $247.50 of personal-mile fuel - the personal-use proration is the step that was skipped.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.2 / K3201 - Ability to calculate imputed income (personal use of company car, Annual Lease Value)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Under a written, nondiscriminatory qualified plan award program, Simone's employer presents an engraved watch worth $2,100 to an employee celebrating 25 years of service in 2026. It is the only award of any kind that employee received during the year. How much, if any, is taxable compensation?",
+    "options": [
+      "$500",
+      "$0",
+      "$2,100",
+      "$1,700"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A length-of-service award of tangible personal property made under a qualified written plan is excludable under IRC Sections 74(c) and 274(j) up to $1,600 for all such awards to that employee in the year. The excess, $2,100 - $1,600 = $500, is taxable wages subject to income tax withholding and FICA. Answering $0 treats the whole award as excludable and ignores the dollar ceiling. The $1,700 figure applies the $400 limit, which governs awards made outside a qualified written plan; this employer has one. Taxing the full $2,100 would be right only if the award were cash, a gift card, or another cash equivalent - those never qualify regardless of the plan - but an engraved watch is tangible personal property.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.2 / K3204 - Knowledge of accountable and non-accountable plans (awards and prizes)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "An employee received a $1,200 travel advance under Priyanka's accountable plan, substantiated $950 of business expenses with receipts, and never returned the $250 balance despite reminders well past the reasonable-period safe harbor. How should Priyanka treat the amounts?",
+    "options": [
+      "Treat nothing as wages, because the employee substantiated a legitimate business trip",
+      "Treat the entire $1,200 as wages, because failure to return any excess disqualifies the whole reimbursement arrangement",
+      "Treat the $250 as wages subject to federal income tax withholding, Social Security, Medicare, and FUTA, and report it in Boxes 1, 3, and 5",
+      "Treat the $250 as nontaxable and report it in Box 12 with code L"
+    ],
+    "correctAnswer": 2,
+    "explanation": "An accountable plan requires a business connection, substantiation within a reasonable period, and return of amounts in excess of substantiated expenses. Only the failing piece falls out of the plan: the unreturned $250 becomes taxable wages in the period the reasonable period lapses, subject to income tax withholding and FICA and reported in Boxes 1, 3, and 5. Treating nothing as wages ignores the return-of-excess requirement, which is an independent condition and is not satisfied by good receipts on the rest. Treating the entire $1,200 as wages over-applies the failure - the substantiated $950 still meets all three tests and stays nontaxable; only an arrangement that routinely fails the requirements is treated as non-accountable in full. Reporting the $250 in Box 12 with code L inverts the treatment: code L is used for substantiated reimbursements that are excluded from wages, not for an unreturned excess that has become taxable.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.2 / K3204 - Knowledge of accountable and non-accountable plans (travel advances)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Nia is processing a semimonthly payroll dated 15 November 2026. An employee's Social Security taxable wages before this check total $181,000, and the current check adds $8,000 of Social Security taxable wages. The 2026 Social Security wage base is $184,500. How much employee Social Security tax should Nia withhold from this check?",
+    "options": [
+      "$496.00",
+      "$217.00",
+      "$267.75",
+      "$0.00"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Social Security tax applies only until year-to-date Social Security wages reach the wage base. Remaining taxable room is $184,500 - $181,000 = $3,500, so withholding is $3,500 x 6.2% = $217.00. The remaining $4,500 of the check is exempt from Social Security tax but still fully subject to Medicare, which has no wage base. The $496.00 figure taxes the entire $8,000 at 6.2% and ignores the base. The $267.75 figure applies the combined 7.65% FICA rate to the $3,500, folding the Medicare component into a Social Security-only calculation. Withholding $0.00 assumes the base was already exhausted; it is not reached until this very check.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.3 / K3301 - Ability to calculate federal tax (taxable wages, social security)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "An employee who will turn 61 during 2026 asks Ingrid, the payroll manager, for the largest amount she may defer into the company's 401(k) plan for that year. The plan document permits catch-up contributions, including the higher catch-up for participants aged 60 through 63. Ignoring any plan-imposed percentage cap, what maximum elective deferral should Ingrid quote for 2026?",
+    "options": [
+      "$24,500",
+      "$32,500",
+      "$43,750",
+      "$35,750"
+    ],
+    "correctAnswer": 3,
+    "explanation": "For 2026 the IRC Section 402(g) elective deferral limit is $24,500. SECURE 2.0 provides an enhanced catch-up of $11,250 for participants who attain age 60, 61, 62, or 63 during the year, and this participant turns 61 in 2026, so her maximum is $24,500 + $11,250 = $35,750. Quoting $24,500 omits the catch-up entirely, correct only for a participant under 50 or in a plan that does not permit catch-ups. The $32,500 figure adds the standard age-50 catch-up of $8,000, which the enhanced amount replaces rather than supplements for this age band. The $43,750 figure stacks both catch-ups ($24,500 + $8,000 + $11,250); a participant gets one catch-up amount, not both.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.4 / K3401 - Ability to calculate deferred compensation contributions (IRC Sec. 401(k))",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "In 2026, Terrence's employer pays $10,000 of qualifying adoption expenses on behalf of an employee under a written adoption assistance program that satisfies IRC Section 137. The amount is below the annual exclusion limit and the employee's income is well under the phase-out. How must Terrence tax and report the $10,000?",
+    "options": [
+      "Include it in federal income tax wages, Social Security wages, and Medicare wages, because only qualified retirement deferrals escape income tax",
+      "Exclude it from all federal wages and from all reporting, because it is a de minimis fringe benefit",
+      "Exclude it from federal income tax withholding and Box 1 wages, but include it in Social Security and Medicare wages and report the amount in Box 12 with code T",
+      "Exclude it from Social Security and Medicare wages but include it in Box 1, mirroring the treatment of a designated Roth contribution"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Employer-provided adoption assistance under a Section 137 program is one of the few benefits that splits the two tax bases: it is excluded from federal income tax withholding and from Box 1, but it remains subject to Social Security, Medicare, and FUTA, so it appears in Boxes 3 and 5, with the benefit amount shown in Box 12 code T. Taxing it in full ignores Section 137 altogether. Calling it a de minimis fringe misuses Section 132(a)(4), which covers benefits so small that accounting for them is impractical - $10,000 plainly is not that, and Box 12 code T reporting is required. Excluding it from FICA while including it in Box 1 exactly reverses the treatment, and the designated Roth comparison does not hold either: a Roth contribution is included in both income tax wages and FICA wages, so it is not a parallel to anything here.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.2 / K3203 - Knowledge of taxable and non-taxable income for fringe benefits (adoption assistance)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Camille pays a tipped server the federal cash wage of $2.13 per hour and takes the maximum federal tip credit of $5.12 against the $7.25 federal minimum wage. In one workweek the server worked 46 hours and reported tips far exceeding the credit claimed. The server receives no other compensation. What cash wage must Camille pay for that workweek?",
+    "options": [
+      "$119.73",
+      "$104.37",
+      "$333.50",
+      "$150.45"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The overtime regular rate for a tipped employee is the full minimum wage of $7.25, not the reduced cash wage. Overtime rate is $7.25 x 1.5 = $10.875, and the employer may still apply the same $5.12 tip credit to overtime hours, leaving cash of $5.755 per overtime hour. Cash due is (40 x $2.13) + (6 x $5.755) = $85.20 + $34.53 = $119.73. The $104.37 figure applies time and one-half to the $2.13 cash wage ($3.195 per overtime hour), the single most common tipped-overtime error, because the tip credit may not be inflated by the overtime multiplier. The $333.50 figure pays the full $7.25 for all 46 hours, abandoning the tip credit and the overtime premium at the same time. The $150.45 figure pays the full $10.875 overtime rate in cash, computing the overtime rate correctly but forgetting that the tip credit still offsets it.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.1 / K3103 - Ability to calculate gross pay for tipped employees (tip credit)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Alonzo is computing 2026 group-term life imputed income for an employee who is 47 years old on the last day of the year. The employer-provided coverage is $250,000 for the full twelve months, and the employee pays $8.00 per month after tax toward the coverage. The IRS Table I rate for the employee's age bracket is $0.15 per $1,000 of coverage per month. What is the imputed income for the year?",
+    "options": [
+      "$360.00",
+      "$354.00",
+      "$450.00",
+      "$264.00"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Only coverage above $50,000 is imputed, so the taxable coverage is $250,000 - $50,000 = $200,000, which is 200 thousand-dollar units. Monthly Table I cost is 200 x $0.15 = $30.00, or $360.00 for twelve months. After-tax employee contributions reduce the imputed amount dollar for dollar: $8.00 x 12 = $96.00, so imputed income is $360.00 - $96.00 = $264.00. That amount is subject to Social Security and Medicare but not to mandatory income tax withholding, and it is reported in Box 12 code C. The $360.00 figure correctly excludes the first $50,000 but forgets to subtract the employee's after-tax contributions. The $450.00 figure applies Table I to the full $250,000 and omits the $50,000 exclusion. The $354.00 figure makes that same $50,000 mistake and then subtracts the $96.00, arriving at the right adjustment on a wrong base.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.2 / K3201 - Ability to calculate imputed income (group-term life, Table I)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Gerald receives a creditor garnishment for an employee paid weekly. That week's gross pay is $420.00, with deductions of $38.00 federal income tax, $26.04 Social Security, $6.09 Medicare, a $45.00 after-tax voluntary life insurance premium, a $25.00 401(k) deferral, and $12.00 in union dues. Applying the federal Consumer Credit Protection Act limits and the $7.25 federal minimum wage, how much may Gerald withhold for the garnishment?",
+    "options": [
+      "$105.00",
+      "$87.47",
+      "$66.97",
+      "$132.37"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Disposable earnings are gross pay less deductions required by law - here income tax and FICA only: $420.00 - $38.00 - $26.04 - $6.09 = $349.87. The life insurance premium, the 401(k) deferral, and the union dues are voluntary, however routine they may be, and are not subtracted. The CCPA cap for an ordinary creditor garnishment is the lesser of 25% of disposable earnings ($349.87 x 25% = $87.47) or the amount by which disposable earnings exceed 30 times the federal minimum wage ($349.87 - $217.50 = $132.37). The lesser is $87.47. The $132.37 figure takes the 30-times-minimum-wage prong without comparing it to the 25% prong. The $66.97 figure wrongly strips the three voluntary deductions out of disposable earnings first ($349.87 - $82.00 = $267.87) before applying 25%. The $105.00 figure applies 25% to gross pay rather than to disposable earnings.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.3 / K3304 - Ability to calculate disposable earnings",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Renée receives two child support income withholding orders for the same biweekly-paid employee, one for $400 and one for $300 per pay period, both for current support only. The employee is not supporting a second family and has no arrearage of twelve weeks or more, and biweekly disposable earnings are $1,000.00. The state's rule follows the common proration approach. How much should Renée withhold on each order?",
+    "options": [
+      "$342.86 on the first order and $257.14 on the second, prorated in the ratio of the current support amounts",
+      "$400.00 on the first order received and $200.00 on the second, honoring the orders in the sequence they arrived",
+      "$400.00 and $300.00, because child support withholding is not subject to the CCPA withholding limits",
+      "$300.00 on each order, dividing the available amount equally between them"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An employee not supporting another family and not in arrears twelve weeks or more is subject to a 60% CCPA ceiling, so the maximum withholding is $1,000.00 x 60% = $600.00 against $700.00 of combined orders. When multiple current support orders exceed the ceiling, the widely followed rule is to prorate the available amount by each order's current support obligation: $400/$700 x $600.00 = $342.86 and $300/$700 x $600.00 = $257.14, which sum to exactly $600.00. Paying the first order in full and the second with what is left applies a first-in-time rule, which governs the priority of a child support order against other garnishment types, not the allocation among competing support orders. Withholding the full $400 and $300 rests on a genuine misconception: child support does have priority over other garnishments, but it is still bounded by the 50/55/60/65 percent CCPA ceilings. Splitting the $600.00 evenly at $300.00 each ignores the relative size of each obligation, which is the very basis of proration.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.3 / K3306 - Ability to identify and calculate involuntary deductions (child support)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "An employee of Wanda's company died in November 2025. In March 2026, after the estate paperwork cleared, Wanda pays the employee's $4,200 of accrued unused vacation to the estate. How should the March 2026 payment be taxed and reported?",
+    "options": [
+      "Subject to Social Security and Medicare and reported in Boxes 3 and 5 of a 2026 Form W-2 for the deceased employee, with no amount in Box 1",
+      "Subject to federal income tax withholding at the supplemental flat rate and reported in Box 1 of a 2026 Form W-2",
+      "Not subject to federal income tax withholding, Social Security, Medicare, or FUTA, and reported to the estate on Form 1099-MISC in Box 3",
+      "Reported on Form 1099-NEC in Box 1 as nonemployee compensation paid to the estate"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Timing controls, and the controlling date is the calendar year in which the payment is made relative to the year of death. This payment was made in 2026 for an employee who died in November 2025, so it falls outside FICA, FUTA, and federal income tax withholding entirely, and no Form W-2 is issued for it. The gross amount is reported to the estate on Form 1099-MISC, Box 3, Other income, using the estate's taxpayer identification number. The Boxes 3 and 5 answer applies the rule that governs payments made in the year of death; this payment was made in a later year, and the following-year rule is different. Withholding at the supplemental flat rate and reporting in Box 1 treats the payment as ordinary supplemental wages of a living employee. Form 1099-NEC Box 1 is the wrong information return: it reports nonemployee compensation for services performed, and the estate performed no services.",
+    "domain": "Calculation of the Paycheck",
+    "objective": "3.3 / K3303 - Ability to identify and calculate withholding for wages paid after death",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  }
+]

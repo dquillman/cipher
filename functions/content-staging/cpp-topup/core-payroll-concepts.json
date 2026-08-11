@@ -1,0 +1,332 @@
+[
+ {
+  "stem": "Terrence, a payroll manager, engaged a graphic designer as a 1099 contractor two years ago. The marketing director now sets the designer's daily schedule, supplies the equipment, and reviews work in progress. Terrence believes the worker is really an employee, but the marketing director disagrees, and Terrence wants an authoritative answer before the next quarter closes. What does filing Form SS-8 accomplish?",
+  "options": [
+   "It reports the designer's annual compensation to the IRS in place of Form 1099-NEC, using the firm's EIN and the worker's TIN.",
+   "It grants the employer retroactive relief from back employment taxes as long as it is filed before an IRS examination begins.",
+   "It asks the IRS to determine the worker's status for all federal employment tax and income tax withholding purposes.",
+   "It elects to treat the designer as a statutory employee, so that FICA is withheld on the payments but federal income tax is not."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Form SS-8, Determination of Worker Status for Purposes of Federal Employment Taxes and Income Tax Withholding, is a request for an IRS ruling based on the facts of the relationship. It may be filed by the firm or by the worker, and there is no filing deadline. Option 0 confuses SS-8 with the information return; Form 1099-NEC reports payments and SS-8 reports nothing. Option 1 describes Section 530 relief, which is a real safe harbor but is claimed during an examination and depends on reasonable basis plus substantive and reporting consistency, not on filing an SS-8. Option 3 misapplies the statutory employee category: statutory employee status is defined by IRC Sec. 3121(d)(3) for four specific occupational groups, it is not an election an employer makes on a form.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.1.3 K1103 - Knowledge of purpose of Form SS-8",
+  "difficulty": "easy",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Ines is preparing an employment tax audit defense for a courier company that has treated its drivers as independent contractors since it opened. Reviewing the records, she finds four facts about the same population of drivers. Which fact most seriously jeopardizes the company's ability to claim Section 530 relief?",
+  "options": [
+   "Two couriers performing substantially the same work were carried on the payroll as W-2 employees.",
+   "The company relied on a longstanding, recognized practice of a significant segment of the courier industry.",
+   "The company filed a Form 1099-NEC for every courier for every year of the relationship.",
+   "The couriers selected their own routes and supplied their own vehicles."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Section 530 relief requires all three of reasonable basis, substantive consistency, and reporting consistency. Treating some workers in substantially similar positions as employees destroys substantive consistency, and relief is lost even if the other two prongs are satisfied. Option 1 is one of the accepted reasonable-basis grounds, so it helps rather than hurts. Option 2 satisfies the reporting consistency prong, since required information returns were filed on a basis consistent with contractor treatment. Option 3 is evidence supporting contractor status under the common law test; it strengthens the underlying classification and is not a Section 530 disqualifier.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.1.5 K1105 - Knowledge of Reasonable Basis Test",
+  "difficulty": "hard",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Marcus's company signs a service agreement with a Certified Professional Employer Organization (CPEO). Under the contract, the CPEO pays the covered worksite employees under its own EIN and remits the federal employment taxes. Marcus is asked to explain to the CFO what the certification changes about the company's exposure. Which statement is correct?",
+  "options": [
+   "The customer and the CPEO remain jointly and severally liable for federal employment taxes on wages paid to the covered employees.",
+   "The CPEO is solely liable for federal employment taxes on the wages it pays to covered work site employees under its own EIN.",
+   "Certification automatically transfers the customer's state unemployment experience rating to the CPEO.",
+   "Certification relieves the customer of Form I-9 employment eligibility verification for the covered employees."
+  ],
+  "correctAnswer": 1,
+  "explanation": "IRC Sec. 3511(a) makes a CPEO certified under Sec. 7705 exclusively liable for federal employment taxes on remuneration it pays to covered work site employees, and it relieves the customer of that liability; that relief is the principal benefit the customer buys, and the stem stipulates work site employees. Note the limit: Sec. 3511(c) applies the same treatment to covered employees who are not work site employees but withholds the relief-of-customer prong, so for that population the customer is not let off. Option 0 describes the ordinary non-certified PEO arrangement, where the customer generally retains liability along with the PEO; that is a real concept, just not the certified one. Option 2 misapplies the rule to state unemployment insurance, which is governed by each state's law and experience-rating rules, not by federal CPEO certification. Option 3 confuses employment tax liability with immigration compliance; Form I-9 obligations follow the employment relationship and are not extinguished by the CPEO agreement.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.1.7 K1107 - Knowledge of Certified Professional Employer Organization (CPEO)",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Beatriz sets up payroll for a real estate brokerage. The licensed sales agents are paid substantially all of their compensation on the basis of sales output rather than hours worked, and each has signed a written agreement stating that the agent will not be treated as an employee for federal tax purposes. How should Beatriz handle these agents?",
+  "options": [
+   "Treat them as statutory employees: withhold FICA but not federal income tax, and report on Form W-2 with the statutory employee box checked.",
+   "Treat them as common law employees and withhold federal income tax and FICA in the normal manner.",
+   "Treat them as nonemployees for FICA but apply 24% backup withholding to their commissions.",
+   "Treat them as nonemployees: withhold no federal income tax or FICA, and report the commissions on Form 1099-NEC."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Licensed real estate agents are statutory nonemployees under IRC Sec. 3508 when substantially all compensation is tied to output rather than hours and a written agreement states the worker is not an employee for federal tax purposes. They are treated as self-employed for income tax and employment tax purposes. Option 0 applies the statutory employee category, a real but different classification covering groups such as full-time life insurance sales agents and certain drivers, where FICA is withheld and the W-2 box is checked. Option 1 ignores the specific statute, which overrides the common law analysis for this occupation. Option 2 misapplies backup withholding, which is triggered by a missing or incorrect TIN or IRS notification, not by nonemployee status itself.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.1.8 K1108 - Ability to determine worker status and employer obligations for statutory employee and statutory nonemployee",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Curtis's manufacturing plant brings in assemblers through a staffing agency. The agency recruits and screens the workers, pays them, and issues their Forms W-2. On the floor, the plant supervisor sets their schedules, assigns tasks, and approves their time. Which statement best describes the parties' obligations?",
+  "options": [
+   "The agency handles all withholding and Forms W-2 as the employer paying the wages, and the plant can still be a joint employer under the FLSA.",
+   "The plant must issue the Forms W-2 because it directs the workers' daily tasks and controls the means and methods of the work.",
+   "The plant must add the workers to its own FUTA wage base because it receives the benefit of the services they perform.",
+   "The plant must file Form SS-8 and obtain an IRS determination before the agency may treat the workers as its employees."
+  ],
+  "correctAnswer": 0,
+  "explanation": "In a staffing arrangement the agency that pays the wages generally handles withholding, deposits, and Forms W-2, while joint employment under the FLSA is analyzed separately, so the client can still be liable for minimum wage and overtime violations affecting those workers. Option 1 overreads the common law control factors; direction of daily work is relevant to status but does not shift the reporting obligation away from the entity paying the wages under its own EIN. Option 2 misapplies the FUTA wage base, which belongs to the employer that pays the remuneration, not to every entity benefiting from the labor. Option 3 misuses Form SS-8, which is an optional request for an IRS status determination and is never a prerequisite to establishing an employment relationship.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.1.2 K1102 - Ability to determine worker status and employer obligations (e.g., employee, independent contractor, temporary agency/leased employee)",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Hollis is writing the timekeeping policy for a nonexempt warehouse crew. The clock system can round punches to the nearest quarter hour, and the operations manager wants the rounding configured to keep labor cost predictable. Which configuration is defensible under the FLSA?",
+  "options": [
+   "Round every punch down to the nearest quarter hour, since increments that small are de minimis and need not be captured.",
+   "Round clock-ins forward to the next quarter hour and clock-outs back to the previous quarter hour, applied uniformly to the crew.",
+   "Round to the nearest quarter hour in both directions, so that over time employees are fully compensated for all time worked.",
+   "Round to the nearest quarter hour, but only in a workweek in which the employee's recorded total is at or above 40 hours."
+  ],
+  "correctAnswer": 2,
+  "explanation": "DOL regulations permit rounding to the nearest 5, 6, or 15 minutes provided the practice is neutral and does not, over time, fail to compensate employees for all time worked. Option 0 invokes the de minimis concept, which addresses insubstantial and administratively impractical increments of time, not a systematic rounding scheme that always favors the employer. Option 1 is neutral-sounding and uniformly applied, but it rounds in only one direction at each end, so it structurally underpays and is the classic violation. Option 3 misapplies the 40-hour overtime threshold to a timekeeping rule; the neutrality requirement governs how all hours are recorded in every workweek, and a policy switched on only once overtime is in play rounds asymmetrically across the year.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.2.5 K1205 - Knowledge of acceptable work time rounding practices",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Naomi is the payroll lead at a hospital that has a valid written 8/80 agreement with its nursing staff. In one 14-day work period a nurse works 10 hours on each of eight days and is off the remaining six days, for exactly 80 hours in the period. What overtime obligation does the hospital have?",
+  "options": [
+   "None, because the nurse worked exactly 80 hours in the 14-day period.",
+   "Overtime is owed only for hours worked beyond 40 in either of the two workweeks.",
+   "The hospital may pay the extra hours at straight time, because the 8/80 plan substitutes daily premiums for FLSA overtime.",
+   "Overtime is owed on 16 hours, the daily hours worked over 8, even though total hours equal 80."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Under the Sec. 7(j) 8/80 alternative available to hospitals and residential care establishments, overtime is due at one and one-half times the regular rate for hours over 8 in a day and for hours over 80 in the 14-day period, without double counting. Two overtime hours on each of eight days is 16 overtime hours. Option 0 applies only the 80-hour half of the test and ignores the daily trigger, which is the whole point of the alternative. Option 1 applies the ordinary Sec. 7(a) 40-hour workweek standard, which is what the 8/80 agreement replaces. Option 2 confuses a premium pay arrangement with the statutory overtime rate; 8/80 changes the threshold for overtime, never the one and one-half multiplier.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.2.2 K1202 - Knowledge of definition of the workweek (e.g. 8/80, fluctuating)",
+  "difficulty": "hard",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Delphine administers payroll for a county public works department. The finance director wants to hold down cash outlays by giving compensatory time off instead of paying overtime in cash, and asks Delphine what the FLSA allows. Which statement is correct?",
+  "options": [
+   "Compensatory time may be granted hour for hour under an agreement reached before the work is performed, capped at 240 hours for most employees and 480 hours for public safety employees.",
+   "Compensatory time may be granted at 1.5 hours per overtime hour under a prior agreement, subject to accrual caps of 240 and 480 hours depending on the work performed.",
+   "Compensatory time may be granted at 1.5 hours per overtime hour with no accrual cap, so long as the accrued balance is used within the same calendar year.",
+   "Compensatory time may be granted by public and private sector employers alike at 1.5 hours per overtime hour, provided the employees agree in writing beforehand."
+  ],
+  "correctAnswer": 1,
+  "explanation": "FLSA Sec. 7(o) permits state and local government employers to substitute compensatory time for cash overtime, accrued at not less than one and one-half hours per overtime hour, under an agreement or understanding reached before the work is performed. Accrual is capped at 240 hours generally and 480 hours for employees engaged in public safety, emergency response, or seasonal activities. Option 0 states the caps correctly but uses an hour-for-hour accrual rate, which would strip out the statutory overtime premium. Option 2 uses the correct rate but drops the caps; once an employee reaches the cap the employer must pay cash for further overtime, and there is no calendar-year use-it-or-lose-it substitute. Option 3 extends the provision to private employers, who may not substitute compensatory time for FLSA overtime even with written employee consent.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.2.9 K1209 - Knowledge of public sector FLSA requirements",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Yusuf reviews a pay register and finds that an exempt operations manager was docked four hours of salary for leaving early one afternoon to handle a personal errand. The company has a written safe harbor policy and a complaint procedure. How should Yusuf treat the deduction?",
+  "options": [
+   "Permissible, because the employer may deduct for any absence as long as the manager's remaining pay for the week still exceeds the salary threshold.",
+   "Permissible, because partial-day deductions are allowed whenever the employee's paid time off bank has been exhausted.",
+   "Not permissible: salary deductions for personal absences may be made only in full-day increments, and the employer should reimburse the amount deducted.",
+   "Not permissible, because an exempt employee's guaranteed salary may never be reduced for any absence, including a full-day absence taken for personal reasons."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Under the salary basis rule an exempt employee must receive the full predetermined salary for any week in which work is performed, subject to enumerated exceptions. Absences for personal reasons of one or more full days are an exception; a partial-day deduction is not, so the four-hour deduction is improper and should be reimbursed, which is also what the safe harbor requires to preserve the exemption for isolated inadvertent deductions. Option 0 misreads the salary threshold, which is a floor on the predetermined amount, not a running balance the employer may deduct down to. Option 1 confuses charging a PTO bank, which is generally permitted for partial days, with reducing the guaranteed salary, which is not. Option 3 overstates the rule; full-day personal absence deductions are expressly permitted.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.2.7 K1207 - Knowledge of employee classification (e.g., exempt/nonexempt, white collar exemption classifications, salary requirements)",
+  "difficulty": "hard",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Simone processes payroll at a private university. A degree-seeking undergraduate is enrolled full time and works about 15 hours a week in the campus library during the academic term. Simone must decide how the student's wages are taxed while classes are in session.",
+  "options": [
+   "The wages are exempt from Social Security and Medicare while the student is enrolled and attending classes, but federal income tax withholding still applies.",
+   "The wages are exempt from Social Security, Medicare, and federal income tax withholding for the entire academic term.",
+   "The exemption reaches any employee of the university who enrolls in at least one course during the term, including full-time career staff.",
+   "The exemption reaches only student employees who are under age 21 and work fewer than 20 hours in a week."
+  ],
+  "correctAnswer": 0,
+  "explanation": "IRC Sec. 3121(b)(10) excludes from FICA the wages of a student performing services for the school, college, or university at which the student is enrolled and regularly attending classes. The exclusion covers Social Security and Medicare only, so federal income tax withholding continues on the wages. Option 1 stretches a FICA exclusion into an income tax exclusion; the two systems are separate and no student exemption exists for FIT. Option 2 misapplies the rule to career employees who take a course, whose primary relationship with the institution is employment, not education. Option 3 imports an age limit and an hours cap; age limits appear in other Code provisions such as the family employment rules, and hours tests appear in the IRS safe harbor for identifying full-time employees, but neither is the statutory trigger for the student FICA exception.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.3.5 K1305 - Knowledge of FICA student exemption",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Roland handles payroll for a city that has no Section 218 agreement with the Social Security Administration. The employees in question were all hired after March 31, 1986 and participate in a qualifying public retirement system that meets the federal replacement plan standards. How are their wages treated for FICA?",
+  "options": [
+   "Subject to full FICA, because all state and local government employees were brought under Social Security in 1986.",
+   "Exempt from both Social Security and Medicare, because they participate in a qualifying public retirement system.",
+   "Subject to Social Security only; Medicare applies only to employees covered by a Section 218 agreement.",
+   "Subject to Medicare hospital insurance tax only; Social Security does not apply."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Public employees hired after March 31, 1986 are subject to mandatory Medicare even where no Section 218 agreement exists, while Social Security does not apply because participation in a qualifying public retirement system satisfies the replacement plan exception. Option 0 overstates the 1986 change, which extended Medicare, not Social Security, to newly hired public employees. Option 1 states the rule that applies to employees hired before April 1, 1986 in a qualifying retirement system, a real category but the wrong hire date. Option 2 inverts the two taxes; Medicare is the mandatory piece and Social Security is the one obtained through a Section 218 agreement or by lacking a qualifying plan.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.3.6 K1306 - Knowledge of FICA Public Sector requirements",
+  "difficulty": "hard",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Genevieve is finalizing the first payroll for a new hire who completed onboarding but never submitted a Form W-4. The first check must be produced today. How should she set up the federal income tax withholding?",
+  "options": [
+   "Withhold no federal income tax from the first check and true the withholding up once a signed Form W-4 is received.",
+   "Withhold as if the employee had checked Single or Married filing separately in Step 1(c) with no entries in Steps 2 through 4.",
+   "Apply the 22% optional flat rate used for supplemental wages until a completed Form W-4 arrives from the employee.",
+   "Carry forward the withholding the employee elected on the Form W-4 filed with the prior employer, as shown in the onboarding file."
+  ],
+  "correctAnswer": 1,
+  "explanation": "When an employee fails to furnish a Form W-4, the employer must withhold as if the employee were single with no other adjustments, which on the redesigned form means treating the employee as having checked Single or Married filing separately with nothing entered in the remaining steps. Option 0 is not an available choice; the employer's withholding duty exists independently of the employee's paperwork, and there is no retroactive true-up that cures a missed first check. Option 2 misapplies the supplemental wage flat rate, which is limited to supplemental payments identified as such, not to regular wages with a missing W-4. Option 3 misunderstands the form's scope; a Form W-4 is furnished to a specific employer and does not travel with the employee.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.3.2 K1302 - Knowledge of federal income tax withholding methods; 1.5.1 K1501 - Knowledge of employee forms",
+  "difficulty": "easy",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Ephraim receives a state withholding exemption certificate from an employee who is the spouse of an active duty servicemember. The servicemember is stationed in State B under military orders, the couple works and lives in State B, and both assert residency in State A, which the employee has elected. Which action is correct?",
+  "options": [
+   "Treat the spouse's wages as exempt from federal income tax as well as State B income tax.",
+   "Withhold State B income tax anyway, because the services are performed there and residency elections do not bind employers.",
+   "Treat the spouse's wages as exempt from Social Security and Medicare while the servicemember is on active duty.",
+   "Honor the certificate: stop State B withholding and withhold for the elected state of residence if that state taxes wages."
+  ],
+  "correctAnswer": 3,
+  "explanation": "The Military Spouses Residency Relief Act, as amended, lets a civilian spouse elect the servicemember's state of residence for state income tax purposes; when the employee furnishes a valid exemption certificate the employer stops withholding for the duty station state and withholds for the elected state if it imposes an income tax. Option 0 conflates state relief with federal tax; the spouse's wages remain subject to federal income tax withholding. Option 1 applies the general work-state sourcing rule, which is correct in ordinary multi-state situations but is preempted here by the federal statute. Option 2 misapplies the FICA rules, which contain no military spouse exemption; only the servicemember's own military pay has special treatment.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.3.4 K1304 - Knowledge of multi-state taxation rules (e.g., SIT, SUI, PFML, military spouse regulations)",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Aviva's employer runs a cafeteria plan under IRC Sec. 125. The annual nondiscrimination testing shows the plan fails because a disproportionate share of pre-tax benefits went to the company's highly compensated and key employees. The controller asks Aviva what the payroll consequence is.",
+  "options": [
+   "The plan must refund all salary reduction contributions and reopen enrollment for the remainder of the plan year.",
+   "All participants lose the pre-tax exclusion for the plan year and their elections must be re-run through payroll as after-tax deductions.",
+   "The employer owes a nondeductible excise tax, but employee elections and the taxability of the benefits are unaffected.",
+   "The benefit value becomes taxable to the highly compensated participants and key employees; other participants keep the exclusion."
+  ],
+  "correctAnswer": 3,
+  "explanation": "The Sec. 125 nondiscrimination rules protect rank-and-file employees, so the remedy for a failed eligibility, contributions and benefits, or key employee concentration test is inclusion of the benefit value in the gross income of the highly compensated participants or key employees, reported and taxed through payroll. Option 0 describes a correction method used for certain qualified plan testing failures, not the Sec. 125 remedy. Option 1 spreads the consequence to everyone, which would penalize the very group the rules exist to protect. Option 2 borrows the excise tax remedy that appears in other benefit contexts, but a failed Sec. 125 test produces taxable income to the favored group, not an employer excise tax.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.4.6 K1406 - Knowledge of nondiscrimination testing",
+  "difficulty": "hard",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Otto administers a nonqualified deferred compensation arrangement for several executives. Amounts credited in prior years become fully vested this year, but no payment will be made until each executive separates from service years from now. How should Otto handle the taxation of the vesting event?",
+  "options": [
+   "FICA applies now because the substantial risk of forfeiture has lapsed, while federal income tax is deferred until distribution.",
+   "Both federal income tax and FICA apply now, since the vested amounts are determinable and no longer forfeitable.",
+   "FICA applies when each deferral is credited to the executive's account, whether or not the amount is vested at that time.",
+   "Neither federal income tax nor FICA applies until distribution, since the executives have not yet received any payment."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Under the special timing rule of IRC Sec. 3121(v)(2), nonqualified deferred compensation is taken into account for Social Security and Medicare at the later of when services are performed or when the amount is no longer subject to a substantial risk of forfeiture, while income tax is generally deferred until the amount is actually or constructively received. The nonduplication rule then keeps later earnings on the taken-into-account amount out of FICA wages. Option 1 accelerates income tax withholding to vesting, which the constructive receipt and Sec. 409A rules do not require here. Option 2 uses the correct tax but the wrong trigger; crediting alone does not start FICA where a substantial risk of forfeiture remains. Option 3 applies the income tax timing to both taxes and forfeits the benefit of the special timing rule.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.4.2 K1402 - Knowledge of qualified and nonqualified plans (e.g. retirement plans, awards, IRC Sec. 125, moving, adoption)",
+  "difficulty": "hard",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Rosalind administers payroll for an employer whose written adoption assistance program reimbursed one employee $22,000 of qualified adoption expenses during tax year 2026 — more than the annual exclusion limit. The employee's modified adjusted gross income is below the phase-out range. How should Rosalind report the reimbursement on the employee's Form W-2?",
+  "options": [
+   "Report the full $22,000 in box 12 with code T, include the full amount in social security and Medicare wages, and leave it out of box 1 — the employee determines any taxable portion on Form 8839",
+   "Report only the amount above the annual exclusion limit in box 12 with code T, since the excluded portion is not a reportable benefit",
+   "Add the amount above the annual exclusion limit to box 1 wages and withhold federal income tax on that excess at the supplemental flat rate",
+   "Report the full $22,000 in box 12 with code T and exclude the entire amount from social security and Medicare wages, mirroring the box 1 treatment"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Adoption assistance paid under a written qualified program is exempt from federal income tax withholding but not from social security, Medicare or FUTA, so the whole $22,000 lands in the social security and Medicare wage boxes and none of it in box 1. The employer reports the total — not just the excludable part — in box 12 with code T, and the employee computes the excludable amount and any taxable remainder on Form 8839. Reporting only the excess in box 12 inverts the rule: code T is the total of benefits paid, and the employee cannot complete Form 8839 without it. Adding the excess to box 1 and withholding on it assumes the employer performs the exclusion calculation, which the phase-out makes impossible — the employer does not know the employee's modified adjusted gross income. Excluding the payment from social security and Medicare treats it like a pre-tax deferral; adoption assistance is exempt from income tax withholding only, which is exactly what makes its FICA treatment a common trap.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.4.2 K1402 - Knowledge of qualified and nonqualified plans (adoption assistance reporting)",
+  "difficulty": "hard",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Casey's company withheld backup withholding from payments to two vendors who failed to furnish TINs, and also withheld federal income tax from distributions out of the company's retirement plan. Neither amount relates to wages. How should Casey report and remit these withholdings?",
+  "options": [
+   "Report both on a single Form 945, the annual return for all nonpayroll withholding, due January 31 of the following year.",
+   "Report both on the Form 941 for each quarter in which the amounts were withheld, combined with the company's wage withholding.",
+   "Report the backup withholding on Form 945 and the retirement plan withholding on the quarterly Form 941.",
+   "Report both on Form 1096, the annual transmittal filed with the related paper information returns."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Form 945, Annual Return of Withheld Federal Income Tax, is the annual return for nonpayroll withholding, which includes backup withholding and withholding on pensions, annuities, gambling winnings, and certain other payments; it is due January 31 following the calendar year and must be kept separate from wage withholding. Option 1 puts nonpayroll amounts on the quarterly wage return, which the IRS instructions expressly prohibit and which breaks the reconciliation between Form 941 and Forms W-2. Option 2 splits the two categories, but retirement plan distributions are nonpayroll withholding just as backup withholding is, so both belong on Form 945. Option 3 confuses a transmittal with a tax return; Form 1096 summarizes paper information returns and does not report or remit a tax liability.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.5.3 K1503 - Knowledge of annual forms (Forms 940, 943, 944, 945, W-2 series, W-3 series, 1099 series, and 1096)",
+  "difficulty": "easy",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Malik joins a small employer whose total annual federal employment tax liability has been running around $900. A colleague tells him the company should simply start filing Form 944 once a year to save time. What is the correct filing position?",
+  "options": [
+   "File Form 944 for the year and also file Form 941 each quarter, so no filing requirement is missed.",
+   "Any employer whose annual liability is $1,000 or less may switch to Form 944 at any time by indicating the change on the next Form 941.",
+   "File Form 944 in place of Form 940, since the annual FUTA return is folded into the small employer return.",
+   "File Form 944 only for a year in which the IRS has notified the employer to do so; otherwise keep filing Form 941 quarterly."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Form 944 is available only to employers the IRS has notified in writing, and an eligible employer that wants to change filing status must request it and receive IRS approval; the small dollar threshold makes an employer eligible, it does not make the election self-executing. Option 0 would double-report the same liability and create balance-due notices on both returns. Option 1 correctly identifies the eligibility threshold but wrongly treats it as an employer election made on the return. Option 2 confuses the two annual returns; Form 940 reports FUTA and is unaffected by Form 944, which covers income tax withholding and FICA.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.5.3 K1503 - Knowledge of annual forms (Forms 940, 943, 944, 945, W-2 series, W-3 series, 1099 series, and 1096)",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Thandi, a payroll analyst, receives an email from a department manager in another division asking for a spreadsheet of current base pay rates for a group of employees who do not report to that manager. The manager explains it is for an informal internal benchmarking project. What is the appropriate professional response?",
+  "options": [
+   "Provide the list, because confidentiality obligations protect payroll data from outside parties, not from fellow managers.",
+   "Provide the list once the manager signs a confidentiality acknowledgment, since the signature establishes the manager's need to know.",
+   "Decline, and route the request to the authorized approver under the company's data access policy for a documented business need.",
+   "Forward the request to each affected employee and let them decide individually whether their own pay rate may be disclosed."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Payroll data is released on a documented need-to-know basis through the company's approval channel, and only to the extent an approved business need supports; a payroll professional's duty of confidentiality applies to internal requesters as much as external ones. Option 0 misstates the scope of the obligation, which is not limited to third parties. Option 1 confuses a downstream protection with an authorization; signing an acknowledgment governs how data is handled after release and does not by itself establish a legitimate business need. Option 3 outsources an access control decision to the data subjects and would still expose the analyst's employer, since the manager's entitlement to the data, not each employee's willingness, is the governing question.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.6.1 K1601 - Knowledge of necessity to maintain confidentiality of employer/employee data",
+  "difficulty": "easy",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Bram learns that a payroll clerk replied to an urgent email that appeared to come from the CFO and attached a file containing every employee's name, Social Security number, and Form W-2 wage data. The reply address turns out to be an outside domain that closely resembles the company's. What should Bram do?",
+  "options": [
+   "Treat it as an internal matter only, since the message appeared to come from an executive and no external release was approved.",
+   "Activate the incident response plan, report the loss to the IRS at dataloss@irs.gov and the affected state tax agencies, and notify employees.",
+   "Wait until an employee reports a fraudulently filed tax return before notifying the IRS or the states, so the company avoids a false alarm.",
+   "Take no notification action, because the attached file was password protected and encrypted data falls within the breach notice safe harbor."
+  ],
+  "correctAnswer": 1,
+  "explanation": "This is the classic W-2 business email compromise, and the recognized response is immediate escalation under the incident response plan, notification to the IRS through the dataloss mailbox and to state tax authorities, and notice to affected employees so they can protect themselves against fraudulent return filing. Option 0 misreads the facts; the lookalike outside domain means the data left the company, so this is an external disclosure regardless of who the message appeared to come from. Option 2 waits for realized harm, which defeats the purpose of the notification regime and can breach state notice deadlines. Option 3 invokes the encryption safe harbor that exists in some state breach notification statutes, but that safe harbor turns on strong encryption of data the recipient cannot read, not on a password-protected attachment, and it does not displace the IRS reporting practice for W-2 scams.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.6.3 K1603 - Ability to identify a breach of data or confidentiality; 1.6.4 K1604 - Knowledge of resources available to address a breach of data or confidentiality",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Federico is rolling out a payroll card program to reduce check printing at a company with many employees who have no bank account. Operations wants everyone moved to the card by the next quarter. What program design keeps the company compliant?",
+  "options": [
+   "Offer the card as one option, obtain voluntary written consent, give the Regulation E disclosures, and provide a no-cost way to draw full net wages.",
+   "Require the payroll card for all employees, since federal law permits an employer to designate a single financial institution for wage payment.",
+   "Treat payroll cards as outside Regulation E and its disclosure rules, because the employer loads the funds rather than the consumer depositing them.",
+   "Charge a per-transaction fee for every withdrawal and balance inquiry, since the employee's written consent to the card authorizes the fees."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Payroll cards are permissible as a payment method, but the Electronic Fund Transfer Act and Regulation E prohibit conditioning employment or wage payment on receipt at a single institution, require the payroll card disclosures, and contemplate that employees can access their full wages without cost; state wage payment laws layer additional consent and fee restrictions on top. Option 1 states the opposite of the compulsory use prohibition. Option 2 misreads Regulation E, which was amended specifically to cover payroll card accounts. Option 3 treats consent as a waiver of the fee-free access requirement, which it is not; consenting to the card does not authorize eroding the wages themselves.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.7.2 K1702 - Knowledge of allowed payment methods (e.g., cash, check, direct deposit, pay cards)",
+  "difficulty": "easy",
+  "source": "authored-2026-08-bank-topup"
+ },
+ {
+  "stem": "Sung-min's biweekly payday falls on a Monday that is a Federal Reserve banking holiday. Her normal practice is to transmit the direct deposit file to the originating bank one banking day before payday. What should she do for this cycle?",
+  "options": [
+   "Nothing; ACH entries settle on federal banking holidays, and only paper check clearing and cash letter presentment are delayed.",
+   "Originate the file on the morning of payday using same-day ACH, whose settlement windows operate on federal banking holidays.",
+   "Originate one banking day earlier than usual so the entries settle on the last banking day before the holiday and funds are available by payday.",
+   "Pay the employees on the next banking day, since a federal banking holiday excuses compliance with state pay-day requirements."
+  ],
+  "correctAnswer": 2,
+  "explanation": "The ACH network settles only on banking days, so no entry can carry an effective settlement date of the holiday itself. Building an extra banking day into the calendar moves settlement to the last banking day before the holiday, which means employees have access to their wages early rather than late, and no later than the scheduled payday. Option 0 is factually wrong about ACH, which does not settle on federal banking holidays. Option 1 misstates same-day ACH, which has faster processing windows but still operates only on banking days. Option 3 assumes a holiday excuses the pay date; state wage payment laws set the required payday and generally expect employers to pay on or before it, so the accepted practice is to accelerate origination rather than delay payment.",
+  "domain": "Core Payroll Concepts",
+  "objective": "1.7.5 K1705 - Knowledge of impact of federal banking holidays; 1.7.4 K1704 - Knowledge of ACH process and components",
+  "difficulty": "medium",
+  "source": "authored-2026-08-bank-topup"
+ }
+]

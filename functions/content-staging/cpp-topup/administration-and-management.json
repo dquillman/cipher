@@ -1,0 +1,212 @@
+[
+  {
+    "stem": "Marcus, a payroll manager, receives an email from a regional vice president asking payroll to cut a manual off-cycle check today for a bonus that missed the input deadline. The VP writes that the documented off-cycle request form and department-head approval can be skipped \"just this once.\" Payroll's written procedure requires a completed off-cycle request with an approval signature and a stated business reason before any manual payment is issued. What is Marcus's most appropriate action?",
+    "options": [
+      "Issue the check today, since the approval level named in the procedure was written for staff-level requesters and a vice president's email already carries more authority than the signature line is meant to evidence.",
+      "Decline the manual check and place the bonus in the next scheduled off-cycle run instead, since batching off-cycle payments into a fixed weekly window is the department's documented cost-control practice.",
+      "Issue the payment once the VP completes the documented off-cycle request with the required approval, then log the exception so the volume and cost of off-cycle work can be reviewed.",
+      "Issue the check now and afterward amend the written procedure to state that requests originating above the director level are exempt from the signature requirement, so later exceptions are covered in advance."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Departmental procedures make payroll consistent, auditable, and defensible, so a manager applies them uniformly regardless of who is asking, and logs the exception so recurring breakdowns can be measured and fixed upstream. Requiring the completed request preserves the approval control without refusing a legitimate business need. Option A fails because a procedure that bends for rank is not a control at all: it destroys the audit trail and creates exactly the management-override pattern auditors test for. Option B fails because the defect in the request is the missing approval, not the payment itself; batching off-cycles is a reasonable cost practice, but a cost preference does not authorize refusing a payment the procedure would allow once it is properly approved. Option D fails because rewriting a control after the fact to legitimize a bypass weakens the control environment and would be flagged in any internal-controls review.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.1 Understand, document, and correctly apply payroll policies and procedures (K5101 Ability to apply departmental procedures)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Dana, a payroll supervisor, discovers that a configuration error caused 240 employees to be paid without their contractual shift differential in yesterday's payroll. The average shortfall is $86 per employee, and a correcting off-cycle payment is confirmed to fund the following Tuesday. Which communication approach best reflects sound payroll department communication practice?",
+    "options": [
+      "Send one plain-language notice to the affected employees stating what happened, the approximate dollar impact, the date they will be made whole, and a single contact for questions.",
+      "Hold the notice until the correcting payment has funded, then send a short recap afterward, so employees are not alarmed about a shortfall that is already scheduled for correction on a confirmed date.",
+      "Send a company-wide message describing the configuration defect, the system limitation behind it, and the correction applied, so the whole organization can see why the error occurred and that it is resolved.",
+      "Brief each affected employee's manager and have them deliver the news verbally in their next one-on-one, so the message lands personally and payroll does not put a processing error in writing."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Effective payroll communication is prompt, targeted to the audience actually affected, written in language that audience can act on, and specific about remedy and timing, which is what the correct option provides while also creating a record that notification occurred. Option B fails because employees usually discover a pay shortfall before payroll's fix arrives; silence converts a processing error into a trust problem and floods the help desk in the meantime. Option C fails on audience and content: broadcasting technical detail to the entire employee population, most of whom are unaffected, over-discloses, generates needless inquiries, and still does not tell the affected employees what they need to know. Option D fails because an unscripted verbal relay produces inconsistent messages, leaves no record that notification happened, and pushes payroll's responsibility onto managers who cannot answer follow-up questions.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.3 Incorporate techniques to effectively facilitate customer service needs and payroll department communications (K5301 Ability to communicate effectively)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Talia manages a five-person payroll team; two members hold the CPP and one holds the FPC. She is building next year's development budget and wants staff to keep their credentials current while also staying ahead of legislative and regulatory change. Which approach best serves both goals?",
+    "options": [
+      "Reimburse the certification exam fee only after a staff member passes, hold the remaining development budget in reserve, and revisit it in a year when the department faces fewer competing priorities.",
+      "Adopt the payroll service provider's release notes and quarterly customer webinars as the team's standing continuing-education source, since they arrive on a predictable cadence and cost the department nothing.",
+      "Require one vendor product-training session per person each year, record attendance in the personnel file, and treat that record as the individual's development plan for the period.",
+      "Fund credit-bearing education such as association chapter meetings, courses, and the annual conference, and tie the funding to a written development plan for each staff member."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Certifications such as the CPP are maintained by accumulating recertification credit hours across the recertification cycle or by retaking the exam, and the same association education that generates those credits is where legislative and regulatory updates are delivered, so funding credit-bearing education serves both goals at once. Pairing the funding with an individual development plan is what turns attendance into measurable skill growth. Option A fails because pass-only reimbursement funds nothing that maintains an existing credential and leaves the team with no ongoing source of regulatory education. Option B fails because release notes and vendor webinars describe software behavior rather than the underlying law, cover only the systems that vendor sells, and carry no recertification credit. Option C fails because product training builds tool proficiency on one system; an attendance record is not a development plan, and neither addresses regulatory currency.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.4 Hire staff, develop employees, and manage performance (K5406 Knowledge of training resources)",
+    "difficulty": "easy",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Gwen is filling a payroll specialist vacancy. The posted job description is six years old: it lists check-run duties the company no longer performs, omits the multi-state tax filing work the role absorbed after an acquisition, and says nothing about the year-end responsibilities the departing incumbent carried. Gwen wants both a defensible selection process and a fair first-year performance review for whoever is hired. What should she do before posting the opening?",
+    "options": [
+      "Post the existing description unchanged to avoid delaying the opening, and have the hiring manager describe the duties as they stand today, in each interview, so candidates still learn what the job involves.",
+      "Rewrite the job description first so its essential functions match the work performed today, then build the posting, the screening criteria, and the first-year performance standards from that same document.",
+      "Write the description after the hire, treating the new specialist's first ninety days as an accurate record of what the role requires, and apply it beginning with the second review cycle.",
+      "Keep the description broad by listing general accountabilities, such as supporting payroll operations, so the role can absorb new duties as the work shifts, without a formal revision each time."
+    ],
+    "correctAnswer": 1,
+    "explanation": "The job description is the source document for a role's essential functions, and those functions are what drive the posting, the screening and interview criteria, and the standards the incumbent is later evaluated against; it therefore has to reflect current work before recruiting begins. Option A fails because a verbal account varies by interviewer and by candidate, leaves no documented basis for comparing applicants, and gives the person hired no written standard to be measured against at review time. Option C fails because it reverses the sequence: selection has already happened against outdated criteria, and duties observed in the first ninety days drift toward what that individual chose to do rather than what the role requires. Option D fails because generic accountabilities cannot identify essential functions, which undercuts the defensibility of both the selection decision and the performance rating and leaves no basis for setting minimum qualifications.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.4 Hire staff, develop employees, and manage performance (K5403 Ability to prepare job descriptions)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "A Federal Reserve banking holiday falls in Ahmed's 15 December processing week, moving the ACH funding cutoff for the 18 December pay date one business day earlier. The same week, the annual open-enrollment deduction file must be loaded before the first January payroll, which has a 2 January input cutoff, and the CFO has asked for an ad hoc labor-cost analysis with no stated due date. Ahmed cannot complete all three himself this week and must decide how to sequence them. Which approach reflects sound time-management practice for a payroll manager?",
+    "options": [
+      "Work the three items in the order they arrived, so that no stakeholder's request is treated as lower priority than another's and Ahmed can point to a neutral rule if anyone objects.",
+      "Complete the CFO's analysis first and fit the payroll work around it, on the reasoning that the most senior stakeholder's request carries the greatest organizational consequence if it slips.",
+      "Rank the work by immovable deadline and consequence of failure, funding the 18 December payroll to the earlier cutoff, then loading the deduction file in the float before 2 January.",
+      "Ask the originating bank to hold the file and settle it on the holiday, so the department's normal schedule is preserved, then work the week in its usual order and escalate only if the bank declines."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Payroll time management is driven by which deadlines are immovable and what happens if one slips. Missing the accelerated ACH funding cutoff means employees are not paid on the 18 December payday, an unrecoverable failure, while the deduction file has real float running to the 2 January input cutoff more than two weeks later, and the analysis carries no deadline at all and is the item that can wait. Sequencing by immovable deadline and by the consequence of failure is the standard response to a compressed cycle. Option A fails because first-in-first-out ignores deadlines entirely and lets a request with no due date consume the hours the funding cutoff needs. Option B fails because requester seniority is not a deadline, and prioritizing by rank is how payrolls get missed. Option D fails because ACH settlement on a Federal Reserve holiday is not something the originating bank can waive, so the whole plan depends on relief that will not arrive.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5203 Knowledge of time management techniques)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "In Priyanka's eight-person department, one senior specialist is the only person who can run the multi-state tax filings and calculate complex garnishment orders. The specialist has deferred vacation for two years, and Priyanka recognizes the concentration as an operational risk. Which action best addresses it?",
+    "options": [
+      "Assess each team member's skills against the department's critical tasks, then cross-train a second qualified person for every one while the specialist is still present to coach the backups.",
+      "Retain a payroll temporary agency and pre-arrange a contractor to cover the specialist's tasks whenever she is out, so the department preserves the deep specialization that makes her efficient.",
+      "Move the multi-state filings and the garnishment calculations to the payroll service provider under a statement of work, so an internal backup for either task is no longer necessary.",
+      "Reassign both tasks permanently to the team member carrying the lightest current workload, brief her across two cycles, and bring the specialist's own hours back to a sustainable level."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Managing a single point of failure starts with knowing what each person is actually qualified to do: assessing staff skills against the critical task list identifies where only one person is capable, and cross-training to a second qualified person for each task closes that gap while the current owner is still present to transfer knowledge. Option B fails because a contractor cannot absorb undocumented institutional knowledge on short notice, and multi-state filing and garnishment errors carry penalty and liability exposure a temporary resource is poorly positioned to own. Option C fails because moving a transaction to a provider does not move the employer's responsibility for accuracy and timeliness; someone in house still has to review the provider's output, which requires the very expertise that is missing. Option D fails because it relocates the concentration rather than removing it, and it selects the receiving employee on available capacity instead of on an assessment of her skills and abilities.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.4 Hire staff, develop employees, and manage performance (K5405 Knowledge of payroll staff's skills and abilities)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Nikhil runs the payroll help desk for 6,000 employees. Inquiries arrive by phone, by email to three different addresses, and by employees stopping team members in the hallway. Employees complain that their questions \"disappear,\" and Nikhil cannot report how many inquiries the team receives or how long they take. Which improvement best applies customer service principles to this problem?",
+    "options": [
+      "Publish a searchable FAQ and a self-service portal covering the twenty most common questions, retire the phone line, and consolidate the three mailboxes into one address so volume falls before any tracking is added.",
+      "Require every inquiry to be addressed to Nikhil, who reads each one and hands it to a team member, so nothing can be lost and he can see the full workload himself.",
+      "Commit publicly to answering every inquiry the same day it arrives, even where the answer must be preliminary, and measure the team against that single response standard.",
+      "Route all channels into one case-tracking queue with an owner per case, published response-time targets, and tiered escalation from routine items to a specialist."
+    ],
+    "correctAnswer": 3,
+    "explanation": "The failure here is intake and ownership rather than effort: consolidating every channel into one tracked queue gives each inquiry an owner and an audit trail, published targets set the service expectation, and tiering routes work to the right skill level while generating the volume and cycle-time data Nikhil currently cannot produce. Option A fails because self-service is a useful supplement rather than a replacement; retiring the phone channel abandons employees whose questions are individual, such as a garnishment or an agency notice, and the surviving email channel is still untracked, so cases keep disappearing. Option B fails because funneling every routine question through the manager creates a bottleneck, wastes the team's capacity, and is the opposite of tiered service design. Option C fails because a preliminary same-day answer on a complex pay issue generates rework and erodes credibility; the commitment should be to a defined response time with accurate resolution rather than to speed alone.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.3 Incorporate techniques to effectively facilitate customer service needs and payroll department communications (K5302 Ability to identify and apply customer service principles)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Yolanda, a payroll manager, assigns the quarterly employment tax return reconciliation to a specialist who has not performed it before, telling him to complete the reconciliation and file the return. Two weeks later, with the filing deadline approaching, the specialist raises several unresolved questions about a variance. The CFO asks Yolanda who is answerable for the filing. Which statement about responsibility for this filing is correct?",
+    "options": [
+      "Answerability for the filing moved with the assignment, so the CFO should now look to the specialist for its accuracy and timeliness, with Yolanda involved only if the specialist asks her for help.",
+      "Authority to perform the reconciliation and file the return transferred to the specialist, but answerability to the CFO for the filing itself remains Yolanda's throughout.",
+      "Because the specialist has raised questions he cannot resolve, the assignment has lapsed, and responsibility returns to Yolanda only if she takes the reconciliation back herself.",
+      "Responsibility is divided equally between Yolanda and the specialist from the moment of assignment, so a late or inaccurate filing is attributable to each of them in the same measure."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Delegation transfers the work and the authority to carry it out. What it does not transfer is the manager's answerability to her own leadership for the result: the specialist is accountable to Yolanda for performing the assignment as agreed, and Yolanda stays accountable to the CFO for the filing, so the two layers coexist rather than trade places. That retained answerability is why she should have defined the standard of completion, set interim checkpoints before the deadline, and remained available for questions. Option A fails because it treats answerability as something that moves with the task; a manager who believes that discovers problems only after the deadline has passed. Option C fails because an assignment does not lapse when the delegatee hits a question, and reclaiming the work at the first difficulty ends the development opportunity and rebuilds the single-person dependency. Option D fails because equal division leaves no one clearly answerable, which is the practical opposite of the clear ownership delegation is meant to establish.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.4 Hire staff, develop employees, and manage performance (K5401 Ability to delegate appropriately)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Carlos manages a payroll specialist who has made three keying errors across the last two pay cycles, two of which reached employee paychecks. The specialist is engaged, has asked about advancement, and has had no prior accuracy problems. Carlos is preparing for a mid-year discussion. What is the most appropriate management action?",
+    "options": [
+      "Hold the feedback until the annual performance review, so the specialist is not confronted mid-year, and keep a private note of each error so the eventual rating is fully supported when it lands.",
+      "Move the error-prone data entry to a more experienced team member, leave the specialist's other duties and rating unchanged, and revisit the assignment if workloads rebalance next year.",
+      "Document the specific errors and their impact, agree a written improvement plan with measurable accuracy targets and scheduled check-ins, then coach against the plan.",
+      "Issue a formal written warning now and place it in the personnel file, so the record will support termination if the keying errors continue into the next two cycles."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Performance management works best when feedback is timely, specific, documented, and paired with a development plan that names measurable targets, the support being provided, and the dates progress will be reviewed, which also builds the record needed if performance does not improve. Option A fails because holding feedback for the annual cycle lets the errors continue for months and makes the eventual rating a surprise, which is the opposite of a fair evaluation process. Option B fails because reassigning the task without feedback or a plan addresses neither the skill gap nor the specialist's stated interest in advancement, and leaving the rating unchanged keeps a known accuracy problem out of the performance record entirely. Option D fails because a formal warning skips the coaching and development step this situation calls for and treats a first-time, correctable skill gap in a motivated performer as a disciplinary matter.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.4 Hire staff, develop employees, and manage performance (K5404 Knowledge of employee performance evaluation and development plans)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Sasha is filling an open payroll tax analyst position. She has interviewed five candidates; each conversation went in a different direction, and with two candidates she spent much of the time discussing commute length and family obligations. Her director asks her to justify her recommendation. Which interviewing approach should Sasha adopt?",
+    "options": [
+      "Ask every candidate the same job-related, behavior-based questions, and score each answer against a defined rubric built from the role's documented essential functions.",
+      "Keep the interviews unstructured so candidates relax, letting their fit with the team emerge naturally, then compare impressions with a second interviewer afterward as a check on her own read.",
+      "Weight the decision mainly on how confident and composed each candidate stays under questioning, on the reasoning that technical payroll tax detail can be taught by the senior analyst after hire.",
+      "Ask each candidate directly about commute distance and family commitments, so Sasha can judge who will realistically absorb the quarter-end and year-end overtime the position requires."
+    ],
+    "correctAnswer": 0,
+    "explanation": "Structured, behavior-based interviewing asks every candidate the same job-related questions and scores the answers against criteria drawn from the role's essential functions, which improves predictive validity and produces the consistent, defensible documentation Sasha's director is asking for. Option B fails because unstructured interviews are among the weakest predictors of job performance, and a second interviewer's impressions of the same unstructured conversation reinforce rather than correct similarity bias dressed up as fit. Option C fails because composure under questioning measures interview skill rather than payroll tax competence, and treating a specialist's technical knowledge as trivially trainable misjudges what the role requires on day one. Option D fails because commute and family questions are not job related and are a well-known discrimination exposure; the legitimate concern behind them is addressed by stating the overtime expectation and asking whether the candidate can meet it.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.4 Hire staff, develop employees, and manage performance (K5407 Knowledge of effective job interview techniques)",
+    "difficulty": "medium",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Elena's payroll department has a service level agreement with HR: payroll guarantees that new hires are paid on their first regular payday, provided complete new-hire records are entered by 5:00 p.m. two business days before input cutoff. Over the last quarter, HR entered 40 percent of new-hire records on the morning of cutoff, and eleven new hires missed their first payday. HR leadership has cited payroll's SLA miss in a steering committee report. What is Elena's most defensible response?",
+    "options": [
+      "Restate payroll's commitment as a best-effort target rather than a guarantee, so the department is no longer measured against a first-payday standard it cannot meet on its own.",
+      "Escalate to HR leadership and ask that payroll's SLA be suspended until HR's entry timeliness improves, reinstating it once entry performance has held for a full quarter.",
+      "Absorb the late entries by issuing a manual off-cycle check for every new hire whose record arrives late, treating the added cost as the price of the customer service commitment.",
+      "Report performance against both parties' obligations, payroll's processing rate alongside HR's input timeliness, and use that data to renegotiate the deadline or add an exception path."
+    ],
+    "correctAnswer": 3,
+    "explanation": "A service level agreement is a two-sided document in which the provider's commitment is expressly conditioned on the customer's input obligations, so performance has to be reported against both sides. Showing that payroll met its step whenever the precondition was satisfied reframes the steering committee finding as a process dependency and gives both parties the data to move the deadline or agree a documented exception path for late hires. Option A fails because downgrading the commitment to best effort removes the department's own accountability along with the leverage a measured mutual obligation provides, and new hires still miss payday. Option B fails because suspending the agreement dismantles the framework in which the dependency can be measured and corrected, and it escalates before the supporting data has been presented. Option C fails because manual off-cycle checks are the most expensive and control-intensive way to pay someone; silently absorbing that cost hides the upstream defect and guarantees it recurs.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5201 Knowledge of service level agreements)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "A benchmarking study reports Imani's payroll department at $9.40 cost per payslip against a peer-group median of $4.10, and the CFO has proposed cutting two positions to close the gap. Imani's department also administers time and attendance, calculates garnishments in house, and processes payroll in three countries; the study's peer group outsources garnishment administration and reports domestic payroll only. What should Imani do first?",
+    "options": [
+      "Reduce headcount toward the peer median, since the study is an objective external standard and a gap of more than two to one calls for a visible response before the CFO acts on his own.",
+      "Normalize the comparison before drawing a conclusion, confirming how the study defines cost per payslip and restating Imani's figure on the same basis by isolating the scope her peers exclude.",
+      "Set the benchmark aside on the grounds that scope differences make external comparison unreliable here, and manage the department against its own year-over-year cost trend instead.",
+      "Report cost per payslip alongside accuracy and on-time payment rates so the CFO sees the service tradeoff, and act on the composite picture rather than on the single cost measure."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Benchmarking is valid only when the metric definition and the scope of work behind it match; a cost-per-payslip figure that silently carries time and attendance administration, in-house garnishment calculation, and multi-country processing is not comparable to a domestic, outsourced-garnishment peer set. Normalizing first tells Imani whether a real gap exists and where it sits. Option A fails because acting on an unnormalized number risks cutting the staff who perform the very work that explains the variance, converting a measurement artifact into a service and compliance failure. Option C fails because scope differences are a reason to adjust the comparison rather than abandon it, and an internal trend alone cannot tell the department whether its cost level is competitive. Option D fails not because a balanced set of measures is wrong, since cost, accuracy, and timeliness genuinely belong together, but because presenting the unadjusted $9.40 alongside other metrics still concedes a gap that may not exist; the number has to be made comparable before any composite built on it means anything.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5204 Knowledge of benchmarking, reporting, and analytics)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "In March, Oscar's employer receives a revised state unemployment insurance rate notice assigning an experience rate of 4.2 percent in place of the 2.1 percent rate the payroll system has used since the first January payroll. The notice states that the assigned rate applies to all wages paid in the calendar year and allows 30 days from its date to protest the determination. Oscar believes benefit charges from one separated employee were assigned to the account in error, and first-quarter wages have already been paid. What are the implications Oscar must act on?",
+    "options": [
+      "Protest inside the 30-day window, update the rate in the system immediately, and true up the year-to-date liability on wages already paid rather than applying the new rate only going forward.",
+      "Apply the 4.2 percent rate to wages paid from the notice date forward, and leave the wages already paid this quarter at the rate that was applied to them, since the state had assigned that rate at the time.",
+      "Keep depositing at 2.1 percent until the protest is decided, because raising the rate while the determination is being contested would concede the benefit charges the company intends to dispute.",
+      "Send the notice to the payroll service provider, and treat the rate on file there as controlling until the provider updates it, since the provider computes and remits the state unemployment tax."
+    ],
+    "correctAnswer": 0,
+    "explanation": "An experience rate notice is a determination with three consequences payroll has to act on at once: the assigned rate applies to wages paid across the rate year, so wages already paid at the lower rate carry an underpayment that must be identified and cleared; the protest right expires on a deadline running from the date on the notice rather than the date payroll opened it; and the assigned rate remains the rate the employer reports and pays unless and until a protest succeeds. Option B fails because it treats the determination as prospective when the notice says the rate applies to all wages paid in the year, and the first-quarter wages are precisely where the shortfall sits. Option C fails because filing a protest does not suspend the obligation to report and deposit at the assigned rate; deliberately under-depositing during the dispute adds interest and penalty exposure to a claim the company may lose. Option D fails because a provider computes tax from the rate the employer supplies to it, and the notice, the protest deadline, and the liability all remain the employer's, so waiting for the vendor to act forfeits both the correction and the protest window.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.3 Incorporate techniques to effectively facilitate customer service needs and payroll department communications (K5303 Knowledge of implications of governmental notices)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  },
+  {
+    "stem": "Theo's employer has acquired three companies. Payroll now runs on four systems across five states, with a local payroll clerk at each site; error rates and cost per payslip vary widely by location. Executive leadership wants consistency and reliable consolidated reporting, while the business units insist on preserving local expertise in union contract terms and location-specific pay rules. Which service delivery model best fits these requirements?",
+    "options": [
+      "Outsource all payroll processing to a single third-party provider, which standardizes the work on one platform and moves the employer's liability for employment tax deposits to the provider along with the processing.",
+      "Leave each acquired unit on its existing system with its own clerk, and address consistency by publishing a common processing calendar and a monthly reporting template that every site completes by hand.",
+      "Consolidate transactional processing into a shared services center on one system, retain a small center of excellence for union and location-specific rules, and define each unit's obligations in service level agreements.",
+      "Devolve payroll administration to each business unit's HR generalists, supported by a corporate policy manual and quarterly training, so employees get local answers while headquarters still sets the standards."
+    ],
+    "correctAnswer": 2,
+    "explanation": "A shared services model consolidates high-volume transactional work to gain standardization, consistent controls, scale economics, and single-source consolidated reporting, while a retained center of excellence preserves the union and multi-state expertise that cannot be commoditized, and service level agreements make each business unit's input obligations explicit. That combination is what Theo's competing requirements call for. Option A fails on a common misconception: an employer that engages an ordinary third-party payroll provider remains liable for its own employment tax deposits and returns, so liability does not travel with the processing work, and full outsourcing also discards the local expertise leadership wants preserved. Option B fails because the status quo is the source of the inconsistent error rates, the incompatible systems, and the consolidated reporting that cannot be produced; a manual template layered on four systems does not fix any of that. Option D fails because scattering payroll to generalists without payroll depth increases compliance risk and fragments processing further, worsening both consistency and reporting.",
+    "domain": "Payroll Administration and Management",
+    "objective": "5.2 Understand management skills required to develop and enforce intradepartmental agreements (K5206 Knowledge of shared services environment)",
+    "difficulty": "hard",
+    "source": "authored-2026-08-bank-topup"
+  }
+]
