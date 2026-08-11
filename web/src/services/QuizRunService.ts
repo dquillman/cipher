@@ -82,16 +82,23 @@ export const QuizRunService = {
         meta?: QuizRun['meta']
     ): Promise<string> => {
         try {
-            // Abandon any orphaned in_progress runs for THIS exam only
+            // Abandon orphaned in_progress runs for THIS exam AND THIS quizType.
+            // Scoping to quizType matters: a simulation (full mock) and a
+            // practice/smart/trap run are different activities that can legitimately
+            // be in progress at once. Abandoning across types meant merely opening
+            // the simulator silently killed a user's in-progress practice quiz and
+            // erased its resume banner. quizType is filtered client-side to avoid a
+            // new composite index on (examId, status, quizType).
             const orphanQ = query(
                 collection(db, 'quizRuns', userId, 'runs'),
                 where('examId', '==', examId),
                 where('status', '==', 'in_progress')
             );
             const orphans = await getDocs(orphanQ);
-            if (orphans.size > 0) {
-                console.log(`[createRun] Abandoning ${orphans.size} orphaned in_progress run(s) for exam ${examId}`);
-                await Promise.all(orphans.docs.map(d =>
+            const sameType = orphans.docs.filter(d => (d.data() as any).quizType === quizType);
+            if (sameType.length > 0) {
+                console.log(`[createRun] Abandoning ${sameType.length} orphaned in_progress ${quizType} run(s) for exam ${examId}`);
+                await Promise.all(sameType.map(d =>
                     updateDoc(d.ref, { status: 'abandoned', updatedAt: serverTimestamp() })
                 ));
             }
