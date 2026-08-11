@@ -306,6 +306,36 @@ export default function Quiz() {
                         if (run.snapshot.currentQuestionIndex !== undefined) {
                             setCurrentQuestionIndex(run.snapshot.currentQuestionIndex);
                         }
+
+                        // Restore the progress already earned in this run.
+                        //
+                        // Resume used to rehydrate only questions and position, leaving
+                        // score at 0, domainResults at {} and quizDetails at []. So a
+                        // 10-question run answered 6 correct, saved, resumed, then
+                        // finished 2-of-4 showed "2 / 10, 20%" on the completion
+                        // summary, credited XP for 2 instead of 8, and reported domain
+                        // results covering only the post-resume questions — while
+                        // completeRun derived 8 from the persisted answers and wrote
+                        // THAT to history. The dashboard and the summary the user had
+                        // just read disagreed, and the summary was the wrong one.
+                        //
+                        // run.answers is the authoritative record for every format;
+                        // isCorrect is already graded there (see QuizRunService).
+                        const priorAnswers = (run.answers || []).filter(
+                            (a: any) => a.selectedOption !== undefined
+                        );
+                        if (priorAnswers.length) {
+                            setScore(priorAnswers.filter((a: any) => a.isCorrect).length);
+                            setDomainResults(deriveDomainResultsFromAnswers(priorAnswers));
+                            setQuizDetails(priorAnswers.map((a: any) => ({
+                                questionId: a.questionId,
+                                selectedOption: a.selectedOption,
+                                selectedOptions: a.selectedOptions,
+                                isCorrect: a.isCorrect,
+                                domain: a.domain,
+                            })));
+                        }
+
                         setLoading(false);
                         return;
                     }
@@ -1045,8 +1075,14 @@ export default function Quiz() {
         const xpEarned = (questions.length * 10) + (score * 5);
         await XPService.awardXP(xpEarned, `Completed Quiz (${score}/${questions.length})`, activeExamId);
 
-        // Update Subscription Context optimistically
-        incrementDailyCount(quizDetails.length);
+        // Update Subscription Context optimistically.
+        //
+        // finalDetails, not quizDetails. quizDetails is React state and is one
+        // render behind at this point — the last answer is in explicitDetails,
+        // which is exactly why finalDetails exists above. Counting the stale
+        // array undercounted the daily quota by one question on every quiz, so
+        // a free user got a free extra question per session, compounding.
+        incrementDailyCount(finalDetails.length);
 
         // PERSISTENCE: Complete Diagnostic
         // PERSISTENCE: Complete Run
