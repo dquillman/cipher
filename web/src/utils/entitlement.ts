@@ -190,26 +190,30 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
         return firestoreEntitlement;
     }
 
-    // 3. OPTIMISTIC TRIAL OVERRIDE
-    // If we are here, Firestore didn't return a valid active trial OR an explicitly expired trial.
-    // It is either "Free", "Missing", or "Undefined".
-    // If the user is BRAND NEW, we FORCE the trial state.
-    if (isBrandNewUser) {
-        const trialDays = 14;
-        const trialEndsAt = new Date(now.getTime() + (trialDays * 24 * 60 * 60 * 1000));
-        return {
-            isFree: false,
-            isTrialActive: true,
-            isTrialExpired: false,
-            isPro: true,
-            daysRemaining: 14,
-            hoursRemaining: 0,
-            plan: 'trial', // Force trial
-            accessLevel: 'pro',
-            trialConsumed: true,
-            trialEndsAt
-        };
-    }
+    // 3. OPTIMISTIC TRIAL OVERRIDE — REMOVED 2026-08-11.
+    //
+    // This used to return a fabricated 14-day Pro trial whenever
+    // `creationTime === lastSignInTime`. That predicate does not mean "just
+    // signed up": lastSignInTime only advances on a NEW sign-in event, not on a
+    // token refresh, so a user who signs up and never signs out satisfies it for
+    // the entire life of their persisted session.
+    //
+    // The result was a user stuck between two truths. The client showed a Pro
+    // trial banner, unblurred the analytics and readiness panels, served
+    // 10-question sessions and allowed the mock exam — while Firestore still
+    // said plan: 'free', so requirePro rejected every AI Coach breakdown and
+    // validateQuizStart capped them. Pro chrome over Pro features that error.
+    //
+    // Worse, it was self-perpetuating. TrialModal only opens when
+    // plan === 'free' && !trialConsumed && !isPro, and this object reported
+    // plan: 'trial', trialConsumed: true, isPro: true — so the modal never
+    // appeared, startTrial was never called, and the user never received the
+    // real trial they were actually eligible for.
+    //
+    // The honest behaviour is to fall through to whatever Firestore says and
+    // let the UI gate on SubscriptionContext's `loading` flag while it arrives.
+    // A brief "loading" is correct; a fabricated entitlement is not.
+    void isBrandNewUser;
 
     // 4. Default Fallback
     // If Firestore returned something (e.g. valid free plan), return it.

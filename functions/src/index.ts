@@ -1325,7 +1325,11 @@ export const checkForExamUpdates = functions.pubsub.schedule('every sunday 00:00
 });
 
 export const triggerExamUpdateCheck = functions.https.onCall(async (data, context) => {
-    if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // requireAdmin, not just "logged in". exam_update_sources is `allow read,
+    // write: if isAdmin()` in firestore.rules, and this callable writes to it
+    // with the Admin SDK — so a logged-in check made the callable a way around
+    // the rule. This one also drives unbounded outbound fetches on demand.
+    await requireAdmin(context);
     try {
         const results = await performExamUpdateCheck();
         return { success: true, results };
@@ -1340,7 +1344,11 @@ export const triggerExamUpdateCheck = functions.https.onCall(async (data, contex
 // that nothing read, so nobody found out for four weeks. See that module.
 
 export const markSourceReviewed = functions.https.onCall(async (data: { sourceId: string, status: string, note?: string }, context) => {
-    if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // requireAdmin — this clears lastErrorCode/lastErrorMessage on the
+    // exam-currency watcher. A logged-in check meant any registered user could
+    // silence the alerting that exists because the July 2026 PMP outline change
+    // went unnoticed for four weeks.
+    await requireAdmin(context);
     if (!data.sourceId) throw new functions.https.HttpsError('invalid-argument', 'Missing sourceId');
 
     const status = data.status || 'reviewed_ok';
@@ -1363,7 +1371,10 @@ export const markSourceReviewed = functions.https.onCall(async (data: { sourceId
 });
 
 export const seedExamSources = functions.https.onCall(async (data, context) => {
-    if (!context.auth) throw new functions.https.HttpsError('unauthenticated', 'Must be logged in.');
+    // requireAdmin — writes the watched-source list that the exam-currency
+    // monitor fetches. A logged-in check let any registered user rewrite which
+    // URLs the platform polls.
+    await requireAdmin(context);
 
     const sources = EXAM_SOURCES;
 
