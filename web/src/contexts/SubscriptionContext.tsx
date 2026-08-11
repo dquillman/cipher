@@ -1,10 +1,9 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { useAuth } from '../App';
 import { db } from '../firebase';
-import { doc, onSnapshot, collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
+import { doc, onSnapshot, getDoc } from 'firebase/firestore';
 import { getUserEntitlement, type UserEntitlement } from '../utils/entitlement';
 import { parsePassEntitlement, isPassActiveFor, type PassEntitlement } from '../utils/passEntitlement';
-import { getAnsweredCount } from '../utils/questionMetrics';
 import { getFreeTierDailyLimit } from '../utils/freeTier';
 
 interface SubscriptionContextType {
@@ -103,26 +102,16 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
                 return;
             }
 
-            // Calculate start of today (Local Time)
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const todayTimestamp = Timestamp.fromDate(today);
-
+            // Read the same server-written ledger the cap is now enforced from
+            // (usageCounters/{uid}_{yyyy-mm-dd}), so the "x / N used today" banner
+            // matches what validateQuizStart will actually count. It used to scan
+            // completed quizRuns — the gameable query that let "Quit & Save" and
+            // run-deletion show 0 used. The doc id uses the UTC date to match the
+            // trackAnswerUsage trigger.
+            const day = new Date().toISOString().slice(0, 10);
             try {
-                // Query completed runs from today (quizRuns subcollection)
-                const q = query(
-                    collection(db, 'quizRuns', user.uid, 'runs'),
-                    where('completedAt', '>=', todayTimestamp)
-                );
-
-                const snapshot = await getDocs(q);
-                let total = 0;
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    total += getAnsweredCount(data);
-                });
-
-                setQuestionsAnsweredToday(total);
+                const snap = await getDoc(doc(db, 'usageCounters', `${user.uid}_${day}`));
+                setQuestionsAnsweredToday(snap.exists() ? Number(snap.data()?.answeredCount || 0) : 0);
             } catch (error) {
                 console.error("Error fetching daily usage:", error);
             }
