@@ -1,0 +1,170 @@
+[
+ {
+  "stem": "Nadia Osei, newly appointed chief audit executive of a manufacturing group, learns that for the past four years the internal audit charter and the annual audit plan have been reviewed and approved by the chief financial officer, with the audit committee receiving a copy afterward for information. What should Nadia conclude about this arrangement?",
+  "options": [
+   "It is acceptable so long as the audit committee receives the approved documents within a reasonable period.",
+   "It is acceptable because approval is an administrative matter, and the chief financial officer holds that reporting line.",
+   "The board must retain approval authority over both documents; the present practice erodes organizational independence.",
+   "Independence is preserved because no engagement in this year's plan covers an area the chief financial officer personally manages."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Approving the internal audit mandate and the risk-based plan is a functional responsibility of the board or its audit committee. When an executive who is himself subject to audit decides what internal audit is chartered to do and what it will examine, the function's scope is set by the party being examined, which is the definition of impaired organizational independence. Option A confuses notification with approval; sending a copy after the fact gives the board no ability to shape or protect coverage. Option B misapplies the functional/administrative split: administrative reporting covers budget administration, human resources support, and internal communications flow, not authority over the charter or the plan. Option D treats independence as a case-by-case conflict test; the defect here is structural and exists regardless of whether this particular year's plan touches the chief financial officer's own area.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.A",
+  "difficulty": "easy",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Evaluate",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Priya Ramanathan chairs the audit committee of a regional bank. The internal audit charter, the reporting lines, and the annual plan are all correctly established, and internal audit reports functionally to her committee. She asks the chief audit executive what internal audit itself must do, on an ongoing basis, to give the board assurance that the function has stayed organizationally independent. What should the chief audit executive tell her?",
+  "options": [
+   "The external quality assessment performed at least every five years is what evidences the function's organizational independence to the board over time",
+   "Reapproving the internal audit charter at every board meeting is the mechanism that keeps the function organizationally independent going forward",
+   "Once the charter and reporting lines are approved, organizational independence is settled and needs no further recurring report to the board",
+   "Confirm to the board, at least annually, that internal audit remains organizationally independent — a standing requirement, not a one-time setup"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Organizational independence is not established once and left alone. The chief audit executive must confirm to the board, at least annually, that the internal audit activity remains organizationally independent, so the board has ongoing assurance rather than a one-time setup. The five-year external quality assessment is a real requirement, but it evaluates conformance with the Standards and quality overall, not the standing confirmation of independence. Treating independence as fixed once the charter is approved is the error the requirement exists to prevent, because reporting lines and pressures drift over time. Reapproving the charter at every meeting is not a Standards requirement and would not, by itself, demonstrate that independence has been sustained.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.A",
+  "difficulty": "medium",
+  "source": "authored-2026-08-cia-refresh"
+ },
+ {
+  "stem": "Marcus Bell serves as chief audit executive and, at the board's request, was also appointed head of enterprise risk management eighteen months ago. He now owns the corporate risk register and presents the risk profile to the board each quarter. The board has just asked internal audit to provide assurance on the effectiveness of enterprise risk management. What should Marcus do?",
+  "options": [
+   "Accept the engagement but reduce the concern by having the audit manager report the results straight to Marcus rather than through the risk team.",
+   "Disclose the dual role to the board and arrange for the assurance engagement to be overseen by a party outside the internal audit activity.",
+   "Proceed as requested, since managing risk and auditing risk both sit in the third line under the three lines model and no conflict arises.",
+   "Decline all further involvement in risk management permanently and remove enterprise risk topics from the annual audit plan going forward."
+  ],
+  "correctAnswer": 1,
+  "explanation": "Marcus owns the process, so any assurance produced under his direction is a self-review of his own management responsibility, and that impairment sits at the level of the whole activity rather than one auditor. The required response is disclosure to the board plus oversight of the assurance engagement by a party outside the internal audit activity. Internal audit may still perform the work, so long as the oversight sits outside it; commissioning an external provider is one acceptable form of that oversight, not the only one. Option A changes the reporting path but leaves every reviewer accountable to the person who owns the process being assessed. Option C misstates the three lines model: risk management is a second-line responsibility and internal audit is the third line; conflating them is exactly what created the impairment. Option D overcorrects by abandoning legitimate audit coverage of enterprise risk, which the board still needs; the answer is to place the engagement under outside oversight, not to stop providing assurance.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.B",
+  "difficulty": "hard",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Apply",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Bruno Adeyemi is chief audit executive of a hospital network, reporting functionally to the audit committee and administratively to the chief financial officer. Two months after internal audit issued a critical report on the supply chain function, which the chief financial officer oversees, he withdraws the remainder of internal audit's co-sourcing and travel funding for the year, describing it as a routine cost measure. Four approved engagements can no longer be delivered. Which assessment is most accurate?",
+  "options": [
+   "Resourcing decisions belong to management, and the activity's independence is impaired only where internal audit is denied access to records, people, or property.",
+   "Approving internal audit's resources is a board responsibility; a reduction imposed by an executive under audit impairs independence.",
+   "The concern is due professional care, and it is answered by rescoping the plan to whatever the remaining funding will support.",
+   "Independence holds, because the functional reporting line to the audit committee is untouched and the charter has not been amended."
+  ],
+  "correctAnswer": 1,
+  "explanation": "Approval of the internal audit budget and resource plan sits with the board, alongside the charter and the risk-based plan, for exactly this reason: an executive who controls what internal audit can afford to examine controls its scope indirectly, while every reporting line stays intact on paper. The timing — funding withdrawn two months after a critical report on the withdrawing executive's own area — is what turns a resourcing decision into an independence matter, and Bruno must put the reduction and the coverage it removes in front of the board, which decides whether to accept the gap. Option A treats denial of access as the only route to impairment; starving the function of the means to do the work arrives at the same place more slowly. Option C is the trap for candidates who correctly know that an audit plan must be built around available resources: rescoping is the right response to a genuine constraint, but here it quietly absorbs a constraint the board never agreed to and never hears about. Option D mistakes structure for substance; a functional line on the organization chart does not protect a function whose means are set by the party it audits.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.B",
+  "difficulty": "medium",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Analyze",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Tomas Reiter has been assigned to the same treasury engagement for nine consecutive years. He describes the treasury staff as his closest colleagues in the company and sees several of them socially most weekends. A quality review of his last three files finds the testing complete, the sampling defensible, and no unsupported conclusion. How should the chief audit executive assess the situation?",
+  "options": [
+   "No issue arises, because the reviewed files show that the audit procedures were performed properly and produced supported conclusions.",
+   "This is an organizational independence question, since the treasury function reports upward through the finance line.",
+   "A familiarity threat exists despite the clean files, and a safeguard such as reassignment or added review is warranted.",
+   "Objectivity is threatened only once an auditor accepts something of value, so no action is needed unless a gift is offered."
+  ],
+  "correctAnswer": 2,
+  "explanation": "Objectivity is an unbiased mental attitude, and it is assessed on the threat rather than on proof that bias already changed an outcome. Nine years of exclusive assignment plus close personal ties creates a familiarity threat that a reasonable observer would recognize, so a safeguard is required now. Option A confuses technical quality with objectivity; well-executed procedures say nothing about which questions went unasked. Option B misplaces the level of the problem: the concern is one auditor's state of mind, not the function's reporting structure, which is unchanged. Option D narrows impairment to gifts alone; long association and personal relationships are separately recognized threats, and waiting for a gift ignores the risk that is already present.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.C",
+  "difficulty": "medium",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Evaluate",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Elena Duarte spent four months last year advising the procurement team on the design of its new vendor-onboarding workflow. The team has now requested a further consulting engagement to help refine that same workflow, and the chief audit executive is willing to let Elena take it. What must happen before she begins?",
+  "options": [
+   "Elena's impairment to objectivity must be disclosed to the engagement client before the engagement is accepted.",
+   "The impairment must be disclosed in writing to the board, which is the required recipient for consulting impairments as well as assurance impairments.",
+   "Nothing is required, because objectivity obligations apply to assurance engagements and not to consulting.",
+   "Elena must be replaced by an auditor with no prior involvement, since designing a process permanently bars any later work in that area."
+  ],
+  "correctAnswer": 0,
+  "explanation": "For consulting services, the Standards permit an internal auditor to serve in an area where objectivity may be impaired provided the impairment is disclosed to the engagement client before the engagement is accepted. Option B applies the assurance rule to a consulting engagement: disclosure to the board and the chief audit executive is the response for impaired independence or objectivity on assurance work, whereas the recipient for a consulting impairment is the engagement client. Option C is a common misreading; objectivity applies to all internal audit services, and only the required response differs between consulting and assurance. Option D applies the stricter assurance rule to consulting and states it as permanent, which is neither what the Standards require nor workable for a function that regularly advises on design.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.C",
+  "difficulty": "hard",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Apply",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Kwame Asante planned to test 40 change approvals for a billing application. The application owner, whom Kwame had not met before this engagement, told him the approvals were all in order and asked him to look at five instead so the team could get back to a release deadline. Kwame agreed, examined five, and reported no exceptions. Which assessment is most accurate?",
+  "options": [
+   "Objectivity is intact, because Kwame has no personal, financial, or prior working relationship with the application owner.",
+   "The issue is confined to due professional care; objectivity is untouched because Kwame held no bias toward the owner.",
+   "Reducing the sample was reasonable, since the process owner knows the process best and is well placed to judge where risk lies.",
+   "Kwame subordinated his judgment on a professional matter, which impairs objectivity regardless of any relationship."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Objectivity requires that internal auditors not subordinate their judgment on professional matters to others. Letting the auditee decide how much evidence is enough surrenders exactly that judgment, so the impairment is complete even though Kwame had no tie to the owner. Option A treats relationships as the only route to impairment, which is the trap the scenario is built on. Option B is closer but wrong on the point tested: this is not merely insufficient care, it is judgment handed to the party under review, and the Standards treat that as an objectivity matter. Option C accepts the auditee as the arbiter of audit scope; the process owner's knowledge is useful input, but it does not determine the extent of testing.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.C",
+  "difficulty": "medium",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Evaluate",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Ines Marchetti leads a five-person internal audit function. Each auditor covers the same portfolio year after year because no one else has the depth to run that portfolio end to end, and full rotation of assignments is not realistic at this headcount. Which policy would best mitigate the resulting familiarity threats?",
+  "options": [
+   "Have each auditor disclose any concerns about their own objectivity at the close of the engagement, when the relevant facts are fully known.",
+   "Have a different auditor supervise and challenge each engagement's conclusions, backed by periodic outside review.",
+   "Ask each process owner to confirm in writing that the assigned auditor treated the area fairly.",
+   "Accept that familiarity cannot be addressed at this headcount and disclose nonconformance with the Standards to the board each year."
+  ],
+  "correctAnswer": 1,
+  "explanation": "Where assignment rotation is infeasible, the recognized substitute is a second set of eyes: rotating who supervises and challenges each engagement, supplemented by periodic independent review, puts a person without the long relationship between the auditor and the conclusion. Note that this is not blocked by the constraint that blocks rotation — testing a documented conclusion against the evidence cited for it, and asking what was not examined, does not require the depth needed to run the portfolio end to end. Option A has the timing backwards; disclosure after the work is finished cannot influence how the work was scoped or judged. Option C uses auditee satisfaction as the measure of objectivity, which rewards the very comfort that familiarity produces. Option D declares nonconformance without first attempting available safeguards; disclosure of nonconformance is a last resort after mitigation has been considered, not an alternative to it.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.D",
+  "difficulty": "medium",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Analyze",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Rosa Kimani, chief audit executive of a logistics group, finds that conflicts are being identified too late, because staff declare potential conflicts only once a year at the time of the annual ethics sign-off. Which policy best addresses this?",
+  "options": [
+   "Require every auditor to complete refreshed conflicts training before each quarter begins.",
+   "Ask human resources to notify internal audit whenever a relative of an audit staff member is hired anywhere in the group.",
+   "Require auditors to raise a conflict only when they judge that it would change the conclusions they reach.",
+   "Require a written conflict declaration at the start of every engagement, in addition to the annual one."
+  ],
+  "correctAnswer": 3,
+  "explanation": "Tying the declaration to the assignment is what makes it effective: the auditor is asked about a specific area, specific people, and specific systems at the moment the engagement is allocated, which is when a conflict can still be resolved by reassignment. Option A is the closest competitor and fails on a different point — training is not declaration. Quarterly refreshers improve an auditor's ability to recognize a conflict but never ask anyone to state one, and a calendar-driven cycle can still leave a conflict undeclared for most of an engagement that began the week after the session. Option B captures one narrow category of conflict, misses financial interests, prior roles, and gifts, and depends on another function noticing the link. Option C leaves the test to the person with the conflict and sets the bar at actual effect on conclusions, whereas the standard is a reasonable perception of impairment.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.D",
+  "difficulty": "easy",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Analyze",
+  "bloomConfidence": 0.6
+ },
+ {
+  "stem": "Human resources at Calder Foods has designed a new scorecard under which internal audit staff receive a bonus calculated from the dollar value of cost savings that management realizes from recommendations the auditors made. The chief audit executive, Adaeze Nwosu, is asked for her view. What is the most significant objection?",
+  "options": [
+   "It gives auditors a financial stake in the very outcomes and recommendations they are meant to assess objectively.",
+   "It fails to recognize the technical difficulty of the engagements each auditor was assigned during the year.",
+   "It duplicates the quality assurance and improvement program, which already measures the performance of the audit function.",
+   "It is workable only if the audit committee reviews each payment before the amounts are released."
+  ],
+  "correctAnswer": 0,
+  "explanation": "Paying auditors out of the savings from their own recommendations gives them a financial interest in which findings get raised, how they are framed, and whether management adopts them, which is a direct threat to the unbiased mental attitude objectivity requires; it also pushes staff toward negotiating for adoption rather than reporting what the evidence shows. Option B is a fairness complaint about the metric, not an independence problem, and would apply to any incentive design. Option C misapplies the quality assurance and improvement program, which evaluates conformance and effectiveness of the activity and is not a compensation scheme. Option D offers oversight of the payments while leaving the incentive itself in place; approving a conflicted arrangement does not remove the conflict.",
+  "domain": "Independence and Objectivity",
+  "objective": "II.D",
+  "difficulty": "medium",
+  "source": "authored-2026-08-cia-refresh",
+  "bloomLevel": "Evaluate",
+  "bloomConfidence": 0.6
+ }
+]
