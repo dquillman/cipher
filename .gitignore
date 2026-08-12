@@ -9,7 +9,14 @@ functions/.env
 # --- Local tooling & debug artifacts ---
 *.bak
 *.bak.*
+# One-off debug/patch scripts stay ignored by default — this repo accumulates
+# them fast (50+ as of 2026-08). The handful that are actual reusable ops
+# tooling, not incident scratch, are tracked explicitly below.
 *.ps1
+!deploy.ps1
+!deploy-functions.ps1
+!bump-version.ps1
+!check-firebase-project.ps1
 .claude/
 admin/_force_admin_backup/
 admin/_gate_backup/
