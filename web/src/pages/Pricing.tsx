@@ -156,8 +156,17 @@ export default function Pricing() {
                             </li>
                         ))}
                     </ul>
+                    {/* This label used to check only isPro, so a $59 Exam Pass holder
+                        (paid, but not on the Pro subscription) saw "Current Plan" here
+                        at the same time the Exam Pass card above said ACTIVE — two
+                        cards both claiming to be the real plan. hasActivePass covers
+                        that third state: paid access, just not via Pro. */}
                     <button
-                        className={`mt-8 w-full py-4 rounded-xl font-bold transition-colors cursor-not-allowed ${!isPro ? 'bg-slate-700 text-slate-300' : 'bg-transparent text-slate-500 border border-slate-700 hover:border-slate-600 hover:text-slate-400 cursor-pointer'
+                        className={`mt-8 w-full py-4 rounded-xl font-bold transition-colors ${isPro
+                                ? 'cursor-pointer bg-transparent text-slate-500 border border-slate-700 hover:border-slate-600 hover:text-slate-400'
+                                : hasActivePass
+                                    ? 'cursor-not-allowed bg-transparent text-slate-500 border border-slate-700'
+                                    : 'cursor-not-allowed bg-slate-700 text-slate-300'
                             }`}
                         disabled={!isPro}
                         onClick={() => {
@@ -166,7 +175,7 @@ export default function Pricing() {
                             }
                         }}
                     >
-                        {!isPro ? 'Current Plan' : 'Manage Subscription'}
+                        {isPro ? 'Manage Subscription' : hasActivePass ? 'Included in Your Plan' : 'Current Plan'}
                     </button>
                 </div>
 
