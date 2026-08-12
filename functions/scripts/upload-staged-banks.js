@@ -42,6 +42,11 @@ const EXAM_IDS = {
     "cpp-topup": "Vs3aNmifAJc9bYRFCxXc",
     "shrm-topup": "bpfawZDj3qalhoU4mdd3",
     "cia-topup": "dtgTymjijqUr4NEIHbE1",
+    // Independence and Objectivity ran at the 15% floor with 16 items against the
+    // ~19 a 125-item mock needs, so a retake redrew the same set. Additions to the
+    // same CIA bank; no EXAM_META entry — exams/dtgTymjijqUr4NEIHbE1 already
+    // carries the six-domain blueprint written by the cia-topup upload.
+    "cia-independence": "dtgTymjijqUr4NEIHbE1",
     // The two CompTIA refreshes create NEW banks rather than overwriting the
     // retired ones — the retired banks must survive so existing pass holders'
     // examIds keep resolving. See examLineage in web/src/config/exams.ts.
