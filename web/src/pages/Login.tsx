@@ -51,6 +51,12 @@ export default function Login() {
     const [searchParams] = useSearchParams();
     const mode = searchParams.get('mode');
     const examSlug = searchParams.get('exam');
+    // Set by PricingCard/PublicPricing's Exam Pass CTA (`&intent=exam-pass`) so
+    // that click is distinguishable from "Start Free Trial" / "Get Started
+    // Free" by the time auth completes — all three used to land everyone on
+    // the same /app dashboard with no signal of which button was clicked.
+    const intent = searchParams.get('intent');
+    const postAuthDest = intent === 'exam-pass' ? '/app/pricing?intent=exam-pass' : '/app';
 
     // Pre-select cert when arriving from a /lp/* ad landing page.
     // Writes the matching Firestore exam ID into localStorage so the
@@ -97,7 +103,7 @@ export default function Login() {
                 trackTrialStart();
             }
 
-            window.location.href = '/app';
+            window.location.href = postAuthDest;
         } catch (err) {
             setError((err as Error).message);
         }
@@ -109,7 +115,7 @@ export default function Login() {
         try {
             if (isLogin) {
                 await signInWithEmailAndPassword(auth, email, password);
-                window.location.href = '/app';
+                window.location.href = postAuthDest;
             } else {
                 // Sign up - create new account
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -117,7 +123,7 @@ export default function Login() {
                 // The Auth onCreate trigger owns all trial and entitlement fields.
                 trackSignupComplete('email', userCredential.user.uid);
                 trackTrialStart();
-                window.location.href = '/app';
+                window.location.href = postAuthDest;
             }
         } catch (err: any) {
             console.error("Login Error:", err);

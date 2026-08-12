@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 // Removed unused doc, onSnapshot, auth, db (except if needed for redirect, but window.location used here)
 import { Check, ArrowLeft, Ticket } from 'lucide-react';
@@ -43,6 +43,22 @@ export default function Pricing() {
             trackPricingView();
         }
     }, [isPro]);
+
+    // Login.tsx redirects here with ?intent=exam-pass after signup/signin for
+    // anyone who clicked "Get the Exam Pass" on an LP — that click used to be
+    // indistinguishable from "Start Free Trial" by the time auth completed, so
+    // it landed everyone on the generic dashboard and the Pass intent was lost.
+    // Auto-opening the confirm step (and scrolling to it) finishes the click
+    // they already made instead of asking them to find the card and click twice.
+    const [searchParams] = useSearchParams();
+    const examPassCardRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (searchParams.get('intent') !== 'exam-pass') return;
+        if (hasActivePass || isPro) return;
+        setConfirmingPass(true);
+        examPassCardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchParams, hasActivePass, isPro]);
 
     const navigate = useNavigate();
     const functions = getFunctions();
@@ -125,8 +141,8 @@ export default function Pricing() {
             </div>
 
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
-                {/* Free Tier */}
-                <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
+                {/* Free Tier — the free floor, sorts last */}
+                <div className="order-3 bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
                     <h3 className="text-2xl font-bold text-white">Starter</h3>
                     <div className="mt-4 flex items-baseline">
                         <span className="text-4xl font-bold tracking-tight text-white">$0</span>
@@ -154,19 +170,21 @@ export default function Pricing() {
                     </button>
                 </div>
 
-                {/* Pro Tier */}
-                <div className={`bg-gradient-to-br from-blue-900/40 to-purple-900/40 rounded-3xl p-8 border ${isPro ? 'border-green-500/50 ring-2 ring-green-500/20' : 'border-blue-500/30'} flex flex-col relative overflow-hidden group`}>
+                {/* Pro Tier — subscription option, second per the pricing decision
+                    (cipher-marketing/19-revenue-plan-2026-08.md §3: "the $59 Exam
+                    Pass is the primary offer... Pro is the visible second option").
+                    Demoted from its former emphasized/POPULAR treatment, which
+                    contradicted that decision. */}
+                <div className={`order-2 rounded-3xl p-8 border ${isPro ? 'bg-gradient-to-br from-blue-900/40 to-purple-900/40 border-green-500/50 ring-2 ring-green-500/20' : 'bg-slate-800/50 border-slate-700'} flex flex-col relative overflow-hidden group`}>
                     <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
 
                     <div className="relative">
                         <div className="flex justify-between items-center">
                             <h3 className="text-2xl font-bold text-white">Pro Membership</h3>
-                            {isPro ? (
+                            {isPro && (
                                 <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                                     <Check className="w-3 h-3" /> ACTIVE
                                 </span>
-                            ) : (
-                                <span className="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
                             )}
                         </div>
                         <div className="mt-4 flex items-baseline">
@@ -214,8 +232,14 @@ export default function Pricing() {
                     </div>
                 </div>
 
-                {/* 90-Day Exam Pass */}
-                <div className={`bg-slate-800/50 rounded-3xl p-8 border ${hasActivePass ? 'border-green-500/50 ring-2 ring-green-500/20' : 'border-amber-500/30'} flex flex-col relative overflow-hidden`}>
+                {/* 90-Day Exam Pass — primary offer, first per the pricing decision.
+                    examPassCardRef is the scroll target when someone arrives via
+                    ?intent=exam-pass (LP "Get the Exam Pass" click, threaded
+                    through Login.tsx). */}
+                <div
+                    ref={examPassCardRef}
+                    className={`order-1 rounded-3xl p-8 border-2 flex flex-col relative overflow-hidden ${hasActivePass ? 'bg-slate-800/50 border-green-500/50 ring-2 ring-green-500/20' : 'bg-gradient-to-br from-amber-900/20 to-slate-900 border-amber-500/60 shadow-2xl shadow-amber-900/20'}`}
+                >
                     <div className="flex justify-between items-center">
                         <h3 className="text-2xl font-bold text-white flex items-center gap-2">
                             <Ticket className="w-6 h-6 text-amber-400" />
@@ -226,7 +250,7 @@ export default function Pricing() {
                                 <Check className="w-3 h-3" /> ACTIVE
                             </span>
                         ) : (
-                            <span className="bg-amber-500/20 text-amber-400 text-xs font-bold px-3 py-1 rounded-full">NO SUBSCRIPTION</span>
+                            <span className="bg-amber-500 text-slate-950 text-xs font-bold px-3 py-1 rounded-full">RECOMMENDED</span>
                         )}
                     </div>
                     <div className="mt-4 flex items-baseline">

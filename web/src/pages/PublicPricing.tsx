@@ -14,9 +14,13 @@ export default function PublicPricing() {
 
     useEffect(() => { trackPricingView(); }, []);
 
-    const handleCta = () => {
+    // intent is optional: only the Exam Pass button passes 'exam-pass', which
+    // Login.tsx reads to redirect straight into the pass-checkout flow on
+    // /app/pricing instead of the generic dashboard. Starter/Pro don't need
+    // it — the free tier and the trial both land correctly on /app already.
+    const handleCta = (intent?: string) => {
         trackCtaClick('pricing');
-        navigate('/login?mode=signup');
+        navigate(`/login?mode=signup${intent ? `&intent=${intent}` : ''}`);
     };
 
     return (
@@ -56,7 +60,7 @@ export default function PublicPricing() {
                             ))}
                         </ul>
                         <button
-                            onClick={handleCta}
+                            onClick={() => handleCta()}
                             className="mt-8 w-full py-4 rounded-xl font-bold transition-colors bg-slate-700 text-white hover:bg-slate-600"
                         >
                             Get Started Free
@@ -109,7 +113,7 @@ export default function PublicPricing() {
                             </ul>
 
                             <button
-                                onClick={handleCta}
+                                onClick={() => handleCta('exam-pass')}
                                 className="w-full py-4 rounded-xl font-bold transition-all shadow-lg bg-gradient-to-r from-brand-500 to-purple-600 text-white hover:from-brand-400 hover:to-purple-500 hover:shadow-brand-500/25"
                             >
                                 Get the Exam Pass
@@ -148,7 +152,7 @@ export default function PublicPricing() {
                         </ul>
 
                         <button
-                            onClick={handleCta}
+                            onClick={() => handleCta()}
                             className="w-full py-4 rounded-xl font-bold transition-colors bg-slate-700 text-white hover:bg-slate-600"
                         >
                             Start Free Trial
