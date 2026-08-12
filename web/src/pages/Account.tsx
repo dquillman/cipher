@@ -148,6 +148,18 @@ export default function Account() {
             : 'Trial active. No card on file yet.';
     }
 
+    // This card and the Exam Pass card below it render independently — a
+    // trial-ending date sitting right above a Pass-expiry date with nothing
+    // linking them reads as "your access ends on the earlier one," which is
+    // wrong: resolveProAccess (functions/src/entitlement.ts) checks paid,
+    // then comped, then trial, then exam-pass last — so full access keeps
+    // running on the Pass after the trial lapses, no re-purchase needed.
+    // Only worth saying when the primary plan above isn't itself a durable
+    // paid subscription; a real Pro subscriber doesn't need this caveat.
+    if (hasActivePass && !details) {
+        planNote += ` Your ${passExamName} Exam Pass keeps full access through ${passEntitlement!.expiresAt.toLocaleDateString()} either way.`;
+    }
+
     return (
         <div className="max-w-3xl mx-auto space-y-6">
             <div>
