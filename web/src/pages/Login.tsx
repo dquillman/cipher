@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail, getAdditionalUserInfo } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, sendPasswordResetEmail, getAdditionalUserInfo, updateProfile } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -86,6 +86,7 @@ export default function Login() {
     // Default to signup if mode=signup in URL, otherwise login.
     // Arrival with ?exam= is also signup-intent (LP traffic is acquisition).
     const [isLogin, setIsLogin] = useState(mode !== 'signup' && !examSlug);
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -119,6 +120,16 @@ export default function Login() {
             } else {
                 // Sign up - create new account
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+                // Set the display name so the account is identifiable in
+                // Admin-Core's user list (email signups used to arrive
+                // nameless; Google sign-ins already carry one). Best-effort:
+                // the account exists by now, so a profile failure must not
+                // abort the signup flow.
+                if (name.trim()) {
+                    try { await updateProfile(userCredential.user, { displayName: name.trim() }); }
+                    catch (profileErr) { console.warn('displayName not set:', profileErr); }
+                }
 
                 // The Auth onCreate trigger owns all trial and entitlement fields.
                 trackSignupComplete('email', userCredential.user.uid);
@@ -208,6 +219,20 @@ export default function Login() {
 
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                     <div className="space-y-4">
+                        {!isLogin && (
+                            <div>
+                                <label className="block text-sm font-medium text-slate-300 mb-1">Name</label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="block w-full rounded-lg border border-slate-600 bg-slate-900/50 px-3 py-2 text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-brand-500 sm:text-sm"
+                                    placeholder="Your name"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    autoComplete="name"
+                                />
+                            </div>
+                        )}
                         <div>
                             <label className="block text-sm font-medium text-slate-300 mb-1">Email address</label>
                             <input
