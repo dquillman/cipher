@@ -1033,6 +1033,17 @@ export default function Quiz() {
 
         setLoadingBreakdown(true);
         lastBreakdownRef.current = { question, selectedOptIdx };
+
+        // Stopwatch on the coach call. This sits directly on the post-answer
+        // path, so its latency IS the "answer speed" a learner feels. The
+        // callable is warm (minInstances:1) and reads a shared tutor_cache
+        // first, but that cache held 86 entries against a key space of roughly
+        // 17,000 (question x picked option x mode), so a miss — a full OpenAI
+        // call — is the normal case. Recorded per answer so the hit/miss split
+        // and the real spread are visible instead of assumed.
+        const coachStart = Date.now();
+        let coachOutcome: 'ok' | 'error' = 'ok';
+
         try {
             const examLensConfig = EXAM_LENS[activeExamId] || null;
             const generateFn = httpsCallable(functions, 'generateTutorBreakdown');
@@ -1070,6 +1081,7 @@ export default function Quiz() {
                 });
             }
         } catch (err) {
+            coachOutcome = 'error';
             console.error("Failed to generate tutor breakdown:", err);
             // Fallback: Create a simple breakdown from the existing explanation
             setTutorBreakdown({
@@ -1083,6 +1095,23 @@ export default function Quiz() {
             });
         } finally {
             setLoadingBreakdown(false);
+
+            const uid = auth.currentUser?.uid;
+            if (uid) {
+                FrictionEventService.emit(uid, 'coach_timing', {
+                    page: 'quiz',
+                    examId: activeExamId,
+                    coachMode: mode,
+                    questionType: question.type,
+                    outcome: coachOutcome,
+                    // A cache hit is a single Firestore read inside the
+                    // callable and lands well under a second; a miss is a full
+                    // OpenAI completion. There is no flag on the response, so
+                    // the duration is the only way to tell them apart — the
+                    // split should be obvious once there are samples.
+                    coachMs: Date.now() - coachStart,
+                });
+            }
         }
     };
 

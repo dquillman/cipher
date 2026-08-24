@@ -25,11 +25,16 @@ interface ExplanationPanelProps {
 //
 // Panel behavior is intentionally simple: the moment a breakdown is requested
 // (on submit, or a Quick/Deep switch) it is `loadingBreakdown`, so the coach
-// card renders with its own skeleton and swaps to content in place — the
-// Quick/Deep toggle stays put the whole time. No standard-explanation detour
-// and no "view it" gate: the coach is what the learner wants, so it just
-// appears. The standard explanation shows ONLY in the manual entry / fallback
-// state (breakdown neither present nor loading).
+// card renders and swaps to content in place — the Quick/Deep toggle stays put
+// the whole time. No "view it" gate: the coach is what the learner wants, so
+// it just appears.
+//
+// While the coach is still generating, that card shows the question's own
+// written explanation rather than a skeleton (see placeholderExplanation in
+// TutorBreakdown). The coach is an OpenAI call and a cache miss costs 2-6s,
+// which is far too long to give someone nothing to read when the explanation
+// is already sitting in memory. It still shows in the manual entry / fallback
+// state too (breakdown neither present nor loading).
 export default function ExplanationPanel({
     question,
     activeExamId,
@@ -81,6 +86,7 @@ export default function ExplanationPanel({
                         coachMode={coachMode}
                         onCoachModeChange={onCoachModeChange}
                         correctAnswerIndex={question.correctAnswer}
+                        placeholderExplanation={question.explanation}
                     />
                 ) : (
                     <div className="text-center p-4">

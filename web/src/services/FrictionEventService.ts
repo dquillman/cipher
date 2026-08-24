@@ -11,6 +11,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 export type FrictionEventType =
     | 'slow_load'           // Page or quiz took > 5s to load
     | 'quiz_load_timing'    // Per-phase breakdown of a quiz load (emitted every load)
+    | 'coach_timing'        // How long generateTutorBreakdown took (emitted every answer)
     | 'quiz_abandon'        // User quit a quiz mid-way
     | 'error_shown'         // An error message was displayed to the user
     | 'paywall_hit'         // User hit a subscription gate
@@ -40,6 +41,9 @@ interface FrictionMeta {
 const DEFAULT_MAX_PER_SESSION = 5;
 const MAX_PER_SESSION: Partial<Record<FrictionEventType, number>> = {
     quiz_load_timing: 40,
+    // One per answered question. A 10-question session is 10 of these, and the
+    // whole point is to see the spread across a real session.
+    coach_timing: 40,
 };
 
 export const FrictionEventService = {

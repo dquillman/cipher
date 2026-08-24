@@ -24,9 +24,16 @@ interface TutorBreakdownProps {
     coachMode: CoachMode;
     onCoachModeChange: (mode: CoachMode) => void;
     correctAnswerIndex?: number;
+    /**
+     * The question's own written explanation, rendered while the coach is
+     * still being generated. Every question already carries this and it is
+     * already in memory by the time the learner answers, so there is no reason
+     * to show them a skeleton instead of it.
+     */
+    placeholderExplanation?: string;
 }
 
-export default function TutorBreakdown({ breakdown, loading, onExpandDepth, depthContent, depthLoading, coachMode, onCoachModeChange, correctAnswerIndex }: TutorBreakdownProps) {
+export default function TutorBreakdown({ breakdown, loading, onExpandDepth, depthContent, depthLoading, coachMode, onCoachModeChange, correctAnswerIndex, placeholderExplanation }: TutorBreakdownProps) {
     const [isMuted, setIsMuted] = useState(true);
     const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -150,16 +157,40 @@ export default function TutorBreakdown({ breakdown, loading, onExpandDepth, dept
         return (
             <div className="mt-6 bg-slate-800/80 backdrop-blur-sm rounded-xl border border-indigo-500/30 overflow-hidden">
                 {header}
-                <div className="p-6 animate-pulse">
-                    <div className="h-3 bg-slate-700 rounded w-1/4 mb-3"></div>
-                    <div className="h-16 bg-slate-700 rounded mb-5"></div>
-                    <div className="h-3 bg-slate-700 rounded w-1/4 mb-3"></div>
-                    <div className="space-y-2">
-                        <div className="h-3 bg-slate-700 rounded w-3/4"></div>
-                        <div className="h-3 bg-slate-700 rounded w-5/6"></div>
-                        <div className="h-3 bg-slate-700 rounded w-2/3"></div>
+                {placeholderExplanation ? (
+                    // Read something real instead of watching a skeleton.
+                    //
+                    // The coach is an OpenAI call on the post-answer path — the
+                    // callable's own note puts a cache miss at 2-6s, and the
+                    // shared tutor_cache holds 86 entries against a key space of
+                    // roughly 17,000 (question x picked option x mode), so a miss
+                    // is the normal case, not the edge case. The learner used to
+                    // spend those seconds looking at grey bars while the
+                    // question's written explanation sat unused in memory.
+                    //
+                    // The header renders above either branch, so the Quick/Deep
+                    // toggle does not move when the coach swaps in.
+                    <div className="p-6">
+                        <div className="flex items-center gap-2 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                            <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                            Coach is writing — here is the standard explanation meanwhile
+                        </div>
+                        <div className="text-left leading-relaxed text-base md:text-lg text-slate-200">
+                            <StructuredExplanation explanation={placeholderExplanation} title="Standard Explanation" />
+                        </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="p-6 animate-pulse">
+                        <div className="h-3 bg-slate-700 rounded w-1/4 mb-3"></div>
+                        <div className="h-16 bg-slate-700 rounded mb-5"></div>
+                        <div className="h-3 bg-slate-700 rounded w-1/4 mb-3"></div>
+                        <div className="space-y-2">
+                            <div className="h-3 bg-slate-700 rounded w-3/4"></div>
+                            <div className="h-3 bg-slate-700 rounded w-5/6"></div>
+                            <div className="h-3 bg-slate-700 rounded w-2/3"></div>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
