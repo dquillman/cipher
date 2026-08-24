@@ -170,83 +170,36 @@ const processPatternInteraction = async (userId: string, pattern: PatternData, i
 // minInstances: 1 — this call sits directly on the post-answer path; a cold
 // start added 1-3s before any logic ran. ~$10/mo at 512MB; drop to 0 if cost
 // ever outweighs the latency.
-export const generateTutorBreakdown = functions
-    .runWith({ memory: '512MB', timeoutSeconds: 60, minInstances: 1 })
-    .https.onCall(async (data: TutorPayload, context) => {
-    if (!context.auth) {
-        throw new functions.https.HttpsError('unauthenticated', 'Must be authenticated');
-    }
 
-    // Pro gate, started now and awaited alongside the cache read below —
-    // its user-doc lookup runs in parallel instead of adding a serial
-    // round-trip. The rejection is captured (never floating) and re-thrown
-    // before any data is returned.
-    const proCheck: Promise<unknown> = requirePro(context).then(() => null, (e: unknown) => e);
+/**
+ * Inputs that determine a breakdown. The user is deliberately not among them:
+ * a breakdown depends only on the question, which option was picked, the mode
+ * and the lens, which is what makes the cache shareable across users.
+ */
+export interface TutorBreakdownInputs {
+    questionStem: string;
+    options: string[];
+    correctAnswerIndex: number;
+    userSelectedOptionIndex: number;
+    correctRationale?: string;
+    examDomain?: string;
+    isDeep: boolean;
+    lensName?: string;
+    lensFramework?: string;
+}
 
-    // 0. Force Debug / Entry Logging
-    console.log("generateTutorBreakdown invoked", {
-        uid: context.auth.uid,
-        data: data ? { ...data, questionStem: data.questionStem?.substring(0, 50) + "..." } : "MISSING"
-    });
-
-    const { questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, examId, coachMode, lensName, lensFramework } = data;
-    const userId = context.auth.uid;
-    const isCorrect = userSelectedOptionIndex === correctAnswerIndex;
-    const isDeep = coachMode === 'deep';
-
-    // 1. Validation
-    if (!questionStem || !options || !Array.isArray(options) || correctAnswerIndex === undefined || userSelectedOptionIndex === undefined) {
-        console.error("Invalid Tutor Payload:", { questionStem: !!questionStem, optionsLen: options?.length });
-        throw new functions.https.HttpsError('invalid-argument', 'Missing required fields or invalid options format.');
-    }
-
-    // 1a. Cost and abuse ceiling.
-    //
-    // This callable was an unmetered gpt-4o proxy: no rate limit, no length
-    // caps, no max_tokens, and every prompt field supplied by the caller. A
-    // signup plus "Start Free Trial" (no card) was enough to script it in a
-    // loop, and each unique payload missed the content-hash cache and billed a
-    // full completion.
-    await enforceRateLimit('generateTutorBreakdown', context, 300);
-
-    assertWithin(questionStem, LIMITS.questionStem, 'questionStem');
-    assertWithin(correctRationale, LIMITS.correctRationale, 'correctRationale');
-    assertWithin(lensName, LIMITS.lensName, 'lensName');
-    assertWithin(lensFramework, LIMITS.lensFramework, 'lensFramework');
-    assertWithin(examDomain, LIMITS.examDomain, 'examDomain');
-    assertWithin(examId, LIMITS.examId, 'examId');
-    if (options.length > LIMITS.optionCount) {
-        throw new functions.https.HttpsError('invalid-argument', `options may not exceed ${LIMITS.optionCount} entries.`);
-    }
-    options.forEach((o, i) => assertWithin(o, LIMITS.option, `options[${i}]`));
-
-    // 2. Security / Config Check & Logging
-    // Determine explicitly where the key is coming from
-    const configKey = functions.config().openai?.key;
-    const envKey = process.env.OPENAI_API_KEY;
-    const apiKey = configKey || envKey;
-
-    console.log("OpenAI Key Status:", {
-        present: !!apiKey,
-        source: configKey ? "functions.config" : (envKey ? "process.env" : "MISSING")
-    });
-
-    if (!apiKey || apiKey === 'dummy-key-for-build' || apiKey === 'dummy-key-for-deploy') {
-        console.error("Missing OPENAI configuration.");
-        throw new functions.https.HttpsError(
-            'failed-precondition',
-            'Tutor Service is not configured (Missing API Key).'
-        );
-    }
-
-    const client = new OpenAI({ apiKey });
-
-    // Shared cross-user cache. A breakdown depends only on the question
-    // content, the picked option, the coach mode, and the lens — not the user
-    // — and the question bank is fixed. First request pays the OpenAI call
-    // (~2-6s); every later request by ANY user is a single Firestore read.
-    // Content-hash key: the payload carries no questionId.
-    const cacheKey = createHash('sha256')
+/**
+ * The tutor_cache document id for a given breakdown.
+ *
+ * Exported so a batch pre-warmer can tell what is already cached without
+ * calling anything. Field ORDER is load-bearing — this hashes
+ * JSON.stringify of an object literal, not a sorted one, so reordering these
+ * lines changes every key and orphans the entire cache.
+ */
+export function buildTutorCacheKey(
+    { questionStem, options, userSelectedOptionIndex, isDeep, lensName, lensFramework }: TutorBreakdownInputs,
+): string {
+    return createHash('sha256')
         .update(JSON.stringify({
             v: TUTOR_PROMPT_VERSION,
             questionStem,
@@ -257,37 +210,27 @@ export const generateTutorBreakdown = functions
             lensFramework: lensFramework || null,
         }))
         .digest('hex');
-    const cacheRef = admin.firestore().collection('tutor_cache').doc(cacheKey);
+}
 
-    const [proError, cachedSnap] = await Promise.all([
-        proCheck,
-        cacheRef.get().catch((err) => {
-            console.warn("tutor_cache read failed, generating fresh:", err);
-            return null;
-        }),
-    ]);
-    if (proError) throw proError;
-
-    try {
-        const cached = cachedSnap;
-        if (cached && cached.exists) {
-            const result = cached.data()?.result as TutorResponse | undefined;
-            if (result?.verdict) {
-                // Per-user pattern stats must still update on cache hits.
-                if (result.pattern) {
-                    processPatternInteraction(userId, result.pattern, isCorrect, examId).catch(err => {
-                        console.error("Failed to process pattern:", err);
-                    });
-                }
-                return result;
-            }
-        }
-    } catch (err) {
-        console.warn("tutor_cache read failed, generating fresh:", err);
-    }
-
-    try {
-        const response = await client.chat.completions.create({
+/**
+ * The exact OpenAI request this callable sends.
+ *
+ * Exported so scripts/prewarm-tutor-cache.mjs generates with the SAME prompt
+ * rather than a copy of it. A pre-warmer with its own copy would drift the
+ * moment either side changed and would quietly fill the cache with entries
+ * keyed off a prompt the live path never asks for — paid for, never read.
+ *
+ * Bumping TUTOR_PROMPT_VERSION whenever anything in here changes is what keeps
+ * old entries from being served against a new prompt.
+ */
+export function buildTutorRequest(
+    { questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, isDeep, lensName, lensFramework }: TutorBreakdownInputs,
+): OpenAI.Chat.Completions.ChatCompletionCreateParamsNonStreaming {
+    // Explicit return type, not inference: inline at the call site the literal
+    // got its contextual typing from create(), so `role: "system"` narrowed to
+    // the union member. Returned from a function it would widen to `string`
+    // and no longer satisfy ChatCompletionMessageParam.
+    return {
             // Quick mode is a tightly constrained rewrite of the provided
             // rationale — mini handles it at equal quality in a fraction of
             // the latency. Deep mode keeps the full model for reasoning.
@@ -386,7 +329,117 @@ IMPORTANT: Return valid JSON.
             ],
             response_format: { type: "json_object" },
             temperature: 0.3, // Low temperature for factual consistency
-        });
+        };
+}
+
+export const generateTutorBreakdown = functions
+    .runWith({ memory: '512MB', timeoutSeconds: 60, minInstances: 1 })
+    .https.onCall(async (data: TutorPayload, context) => {
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'Must be authenticated');
+    }
+
+    // Pro gate, started now and awaited alongside the cache read below —
+    // its user-doc lookup runs in parallel instead of adding a serial
+    // round-trip. The rejection is captured (never floating) and re-thrown
+    // before any data is returned.
+    const proCheck: Promise<unknown> = requirePro(context).then(() => null, (e: unknown) => e);
+
+    // 0. Force Debug / Entry Logging
+    console.log("generateTutorBreakdown invoked", {
+        uid: context.auth.uid,
+        data: data ? { ...data, questionStem: data.questionStem?.substring(0, 50) + "..." } : "MISSING"
+    });
+
+    const { questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, examId, coachMode, lensName, lensFramework } = data;
+    const userId = context.auth.uid;
+    const isCorrect = userSelectedOptionIndex === correctAnswerIndex;
+    const isDeep = coachMode === 'deep';
+
+    // 1. Validation
+    if (!questionStem || !options || !Array.isArray(options) || correctAnswerIndex === undefined || userSelectedOptionIndex === undefined) {
+        console.error("Invalid Tutor Payload:", { questionStem: !!questionStem, optionsLen: options?.length });
+        throw new functions.https.HttpsError('invalid-argument', 'Missing required fields or invalid options format.');
+    }
+
+    // 1a. Cost and abuse ceiling.
+    //
+    // This callable was an unmetered gpt-4o proxy: no rate limit, no length
+    // caps, no max_tokens, and every prompt field supplied by the caller. A
+    // signup plus "Start Free Trial" (no card) was enough to script it in a
+    // loop, and each unique payload missed the content-hash cache and billed a
+    // full completion.
+    await enforceRateLimit('generateTutorBreakdown', context, 300);
+
+    assertWithin(questionStem, LIMITS.questionStem, 'questionStem');
+    assertWithin(correctRationale, LIMITS.correctRationale, 'correctRationale');
+    assertWithin(lensName, LIMITS.lensName, 'lensName');
+    assertWithin(lensFramework, LIMITS.lensFramework, 'lensFramework');
+    assertWithin(examDomain, LIMITS.examDomain, 'examDomain');
+    assertWithin(examId, LIMITS.examId, 'examId');
+    if (options.length > LIMITS.optionCount) {
+        throw new functions.https.HttpsError('invalid-argument', `options may not exceed ${LIMITS.optionCount} entries.`);
+    }
+    options.forEach((o, i) => assertWithin(o, LIMITS.option, `options[${i}]`));
+
+    // 2. Security / Config Check & Logging
+    // Determine explicitly where the key is coming from
+    const configKey = functions.config().openai?.key;
+    const envKey = process.env.OPENAI_API_KEY;
+    const apiKey = configKey || envKey;
+
+    console.log("OpenAI Key Status:", {
+        present: !!apiKey,
+        source: configKey ? "functions.config" : (envKey ? "process.env" : "MISSING")
+    });
+
+    if (!apiKey || apiKey === 'dummy-key-for-build' || apiKey === 'dummy-key-for-deploy') {
+        console.error("Missing OPENAI configuration.");
+        throw new functions.https.HttpsError(
+            'failed-precondition',
+            'Tutor Service is not configured (Missing API Key).'
+        );
+    }
+
+    const client = new OpenAI({ apiKey });
+
+    // Shared cross-user cache. A breakdown depends only on the question
+    // content, the picked option, the coach mode, and the lens — not the user
+    // — and the question bank is fixed. First request pays the OpenAI call
+    // (~2-6s); every later request by ANY user is a single Firestore read.
+    // Content-hash key: the payload carries no questionId.
+    const cacheKey = buildTutorCacheKey({ questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, isDeep, lensName, lensFramework });
+    const cacheRef = admin.firestore().collection('tutor_cache').doc(cacheKey);
+
+    const [proError, cachedSnap] = await Promise.all([
+        proCheck,
+        cacheRef.get().catch((err) => {
+            console.warn("tutor_cache read failed, generating fresh:", err);
+            return null;
+        }),
+    ]);
+    if (proError) throw proError;
+
+    try {
+        const cached = cachedSnap;
+        if (cached && cached.exists) {
+            const result = cached.data()?.result as TutorResponse | undefined;
+            if (result?.verdict) {
+                // Per-user pattern stats must still update on cache hits.
+                if (result.pattern) {
+                    processPatternInteraction(userId, result.pattern, isCorrect, examId).catch(err => {
+                        console.error("Failed to process pattern:", err);
+                    });
+                }
+                return result;
+            }
+        }
+    } catch (err) {
+        console.warn("tutor_cache read failed, generating fresh:", err);
+    }
+
+    try {
+        const response = await client.chat.completions.create(buildTutorRequest({ questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, isDeep, lensName, lensFramework }));
 
 
 
