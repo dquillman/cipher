@@ -10,6 +10,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 export type FrictionEventType =
     | 'slow_load'           // Page or quiz took > 5s to load
+    | 'quiz_load_timing'    // Per-phase breakdown of a quiz load (emitted every load)
     | 'quiz_abandon'        // User quit a quiz mid-way
     | 'error_shown'         // An error message was displayed to the user
     | 'paywall_hit'         // User hit a subscription gate
@@ -29,12 +30,24 @@ interface FrictionMeta {
     [key: string]: unknown;
 }
 
+// Per-session emit cap. 5 is the right ceiling for genuine friction — the
+// point is to know it happened, not to count every occurrence.
+//
+// quiz_load_timing is different: it is diagnostic instrumentation, it fires
+// twice on a normal load (loader finished, then first question painted), and a
+// session where someone starts several quizzes is exactly the session worth
+// measuring. At 5 the useful samples would be gone after two loads.
+const DEFAULT_MAX_PER_SESSION = 5;
+const MAX_PER_SESSION: Partial<Record<FrictionEventType, number>> = {
+    quiz_load_timing: 40,
+};
+
 export const FrictionEventService = {
     emit(userId: string, eventType: FrictionEventType, meta?: FrictionMeta) {
         // Session-level dedup: avoid spamming the same event type
         const dedupKey = `ec_friction_${eventType}`;
         const count = parseInt(sessionStorage.getItem(dedupKey) || '0', 10);
-        if (count >= 5) return; // Max 5 per event type per session
+        if (count >= (MAX_PER_SESSION[eventType] ?? DEFAULT_MAX_PER_SESSION)) return;
 
         sessionStorage.setItem(dedupKey, String(count + 1));
 

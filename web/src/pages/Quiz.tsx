@@ -183,11 +183,34 @@ export default function Quiz() {
     }, [paramExamId, selectedExamId]);
 
     useEffect(() => {
+        // Per-phase stopwatch for the quiz load.
+        //
+        // v1.25.5 shipped a Firestore persistence change on the theory that
+        // re-downloading the exam bank was the cost. It was not: getDocs is
+        // server-first, so a warm cache changes nothing for this path, and the
+        // load still measured 10-17s on production. Rather than guess a second
+        // time, record where the time actually goes and read it back from
+        // friction_events.
+        //
+        // Every mark is relative to component mount (loadStartRef), so the
+        // numbers line up with the loadTimeMs already on slow_load. `waited`
+        // is the gap since the previous mark — the per-step cost.
+        const marks: Array<{ phase: string; at: number; waited: number; n?: number }> = [];
+        const mark = (phase: string, n?: number) => {
+            const at = Date.now() - loadStartRef.current;
+            const waited = at - (marks.length ? marks[marks.length - 1].at : 0);
+            marks.push(n === undefined ? { phase, at, waited } : { phase, at, waited, n });
+        };
+
         const fetchSmartQuestions = async () => {
             // Wait for ExamContext to finish resolving before creating diagnostic runs.
             // This ensures activeExamId is the fully-resolved exam ID and examDomains
             // are populated for domain-balanced question selection.
             if (!activeExamId || examContextLoading) return;
+
+            // First mark: how long the effect sat blocked on ExamContext before
+            // it was allowed to do anything at all.
+            mark('examContextReady');
 
             try {
                 const user = auth.currentUser;
@@ -199,6 +222,7 @@ export default function Quiz() {
                     const validateQuizStartFn = httpsCallable(functions, 'validateQuizStart');
                     const validationResult = await validateQuizStartFn({});
                     validationData = validationResult.data as { allowed: boolean; reason?: string };
+                    mark('validateQuizStart');
                 } catch (err) {
                     console.error('Server-side quiz validation failed:', err);
                     setValidationError('Unable to verify usage limits. Please try again.');
@@ -427,6 +451,7 @@ export default function Quiz() {
                 let q = query(questionsRef, ...constraints);
 
                 let questionsSnap = await getDocs(q);
+                mark('questionBankFetched', questionsSnap.size);
                 let allQuestions = questionsSnap.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
@@ -478,6 +503,7 @@ export default function Quiz() {
 
                 // 2. Collect the user's progress (read started in parallel above)
                 const progressSnap = await progressPromise;
+                mark('progressFetched', progressSnap.size);
                 const progressMap = new Map();
                 progressSnap.forEach(doc => {
                     progressMap.set(doc.id, doc.data());
@@ -515,6 +541,7 @@ export default function Quiz() {
                     // Resilient: a failed mastery read (rules hiccup, offline)
                     // must degrade to "no mastery data", never kill the loader.
                     const mData = await masteryPromise;
+                    mark('masteryFetched');
 
                     // Rank domains weakest → strongest
                     const ranked = examDomains
@@ -671,6 +698,7 @@ export default function Quiz() {
 
                 selected = selected.sort(() => 0.5 - Math.random());
                 console.log("Selected Smart Questions:", selected.length, selected.map(q => q.domain));
+                mark('selectionComputed', selected.length);
                 setQuestions(selected);
 
                 // UNIFIED PERSISTENCE: Create Run for Smart/Weakest Modes if not resuming
@@ -695,6 +723,7 @@ export default function Quiz() {
                         );
                         setActiveRunId(newRunId);
                         setQuizType(type);
+                        mark('runCreated');
                     } catch (e) {
                         console.error("Failed to create start run persistence", e);
                     }
@@ -709,16 +738,73 @@ export default function Quiz() {
                 setValidationError('Could not load your questions. Please retry.');
             } finally {
                 setLoading(false);
-                // EC-130: Log slow loads (> 5s)
+                mark('loaderDone');
                 const loadMs = Date.now() - loadStartRef.current;
+
+                // EC-130: Log slow loads (> 5s). Threshold unchanged so the
+                // count stays comparable with the 87 events logged before this.
                 if (loadMs > 5000 && auth.currentUser) {
                     FrictionEventService.emit(auth.currentUser.uid, 'slow_load', { page: 'quiz', examId: activeExamId, loadTimeMs: loadMs });
+                }
+
+                // Phase breakdown on EVERY load, fast or slow — a fast load is
+                // just as informative here, and slow_load alone never said
+                // which step was the expensive one.
+                //
+                // `slowestPhase` is precomputed rather than derived at read
+                // time so a glance at the raw document answers the question.
+                if (auth.currentUser) {
+                    const slowest = marks.reduce(
+                        (a, b) => (b.waited > a.waited ? b : a),
+                        { phase: 'none', at: 0, waited: -1 }
+                    );
+                    FrictionEventService.emit(auth.currentUser.uid, 'quiz_load_timing', {
+                        page: 'quiz',
+                        examId: activeExamId,
+                        loadTimeMs: loadMs,
+                        mode: location.state?.mode || 'smart',
+                        phases: marks,
+                        slowestPhase: slowest.phase,
+                        slowestPhaseMs: slowest.waited,
+                        // Time from browser navigation to loader finish. When
+                        // this is much larger than loadTimeMs, the cost is
+                        // before Quiz ever mounts (bundle, auth, ExamContext)
+                        // and no amount of tuning in here will touch it.
+                        sinceNavigationMs: Math.round(performance.now()),
+                    });
                 }
             }
         };
 
         fetchSmartQuestions();
     }, [activeExamId, examContextLoading, retryCount]);
+
+    // Time to the first question actually being on screen.
+    //
+    // The loader's own loadTimeMs stops when the data is ready, but a hand-timed
+    // run on production measured 10-17s from navigation to a visible question
+    // while that metric read 5.9s. Something after the fetch is costing seconds,
+    // and nothing recorded it. This does — one event per mount, on the frame
+    // after React commits the first question.
+    const paintReportedRef = useRef(false);
+    useEffect(() => {
+        if (paintReportedRef.current) return;
+        if (loading || questions.length === 0) return;
+        paintReportedRef.current = true;
+
+        requestAnimationFrame(() => {
+            const uid = auth.currentUser?.uid;
+            if (!uid) return;
+            FrictionEventService.emit(uid, 'quiz_load_timing', {
+                page: 'quiz',
+                examId: activeExamId,
+                phase: 'firstQuestionPainted',
+                sinceMountMs: Date.now() - loadStartRef.current,
+                sinceNavigationMs: Math.round(performance.now()),
+                questionCount: questions.length,
+            });
+        });
+    }, [loading, questions, activeExamId]);
 
     // EC-119: Initialize matching question state when question changes
     useEffect(() => {
