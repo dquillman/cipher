@@ -348,6 +348,14 @@ export default function Quiz() {
                     // Domain-balanced diagnostic: 3 questions per domain
                     const diagIds = await SmartQuizService.generateDiagnosticExam(activeExamId, examDomains);
 
+                    // Fetch the question bodies WHILE the run is being written.
+                    // The two are independent — createRun only needs the ids —
+                    // but this path used to await them back to back, so the
+                    // very first screen a new user ever sees paid for both.
+                    // This is the diagnostic, i.e. the new-signup path.
+                    const diagQuestionsPromise = fetchQuestionDocsByIds<Question>(diagIds);
+                    diagQuestionsPromise.catch(() => { });
+
                     // PERSISTENCE: Create Run
                     try {
                         const runId = await QuizRunService.createRun(
@@ -364,7 +372,7 @@ export default function Quiz() {
                         console.error("Failed to persist diagnostic start", e);
                     }
 
-                    const fetchedQs = await fetchQuestionDocsByIds<Question>(diagIds);
+                    const fetchedQs = await diagQuestionsPromise;
                     setQuestions(fetchedQs);
                     setLoading(false);
                     return;
@@ -379,6 +387,24 @@ export default function Quiz() {
                     setLoading(false);
                     return;
                 }
+
+                // Kick off the two reads that do NOT depend on the question
+                // query before issuing it, so all three fly in parallel
+                // instead of costing three sequential round-trips. Both are
+                // awaited further down, at the point they are actually needed.
+                //
+                // The bare .catch() on progressPromise only suppresses the
+                // unhandled-rejection warning for the window before we await
+                // it — the await below still throws and still lands in the
+                // outer catch, so error handling is unchanged.
+                const progressPromise = getDocs(
+                    collection(db, 'users', user.uid, 'questionProgress')
+                );
+                progressPromise.catch(() => { });
+
+                const masteryPromise = getDoc(doc(db, 'userMastery', `${user.uid}_${activeExamId}`))
+                    .then(s => (s.exists() ? s.data()?.masteryData || {} : {}))
+                    .catch(err => { console.warn('userMastery read failed, continuing without it:', err); return {}; });
 
                 // 1. Fetch questions (optionally filtered by domain and/or Bloom level)
                 const questionsRef = collection(db, 'questions');
@@ -450,9 +476,8 @@ export default function Quiz() {
                     return;
                 }
 
-                // 2. Fetch User's Progress for these questions
-                const progressRef = collection(db, 'users', user.uid, 'questionProgress');
-                const progressSnap = await getDocs(progressRef);
+                // 2. Collect the user's progress (read started in parallel above)
+                const progressSnap = await progressPromise;
                 const progressMap = new Map();
                 progressSnap.forEach(doc => {
                     progressMap.set(doc.id, doc.data());
@@ -489,9 +514,7 @@ export default function Quiz() {
                     // --- Adaptive multi-domain distribution ---
                     // Resilient: a failed mastery read (rules hiccup, offline)
                     // must degrade to "no mastery data", never kill the loader.
-                    const mData = await getDoc(doc(db, 'userMastery', `${user.uid}_${activeExamId}`))
-                        .then(s => (s.exists() ? s.data()?.masteryData || {} : {}))
-                        .catch(err => { console.warn('userMastery read failed, continuing without it:', err); return {}; });
+                    const mData = await masteryPromise;
 
                     // Rank domains weakest → strongest
                     const ranked = examDomains
