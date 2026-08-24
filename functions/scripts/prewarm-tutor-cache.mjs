@@ -123,8 +123,9 @@ const CONCURRENCY = Math.max(1, parseInt(val('--concurrency', '4'), 10));
 const DRY_RUN = has('--dry-run');
 const VERIFY_ONLY = has('--verify');
 const PRUNE = has('--prune');
+const ALL = has('--all');
 
-if (!EXAM_ID && !PRUNE) {
+if (!EXAM_ID && !PRUNE && !ALL) {
     console.error('ERROR: --exam <examId> is required.');
     console.error('  PMP v2026        6kECziMtR1BS3MpABLW5');
     console.error('  Security+        79cuGMNydTwDMhyiDjry');
@@ -188,8 +189,8 @@ function inputsFor(q, optionIndex, examId) {
     };
 }
 
-async function buildWorkList() {
-    const snap = await db.collection('questions').where('examId', '==', EXAM_ID).get();
+async function buildWorkList(examId) {
+    const snap = await db.collection('questions').where('examId', '==', examId).get();
     const jobs = [];
     let skippedFormat = 0;
     for (const doc of snap.docs) {
@@ -197,7 +198,7 @@ async function buildWorkList() {
         const options = q.options || [];
         if (!COACHABLE_TYPES.has(q.type) || !options.length) { skippedFormat++; continue; }
         for (let i = 0; i < options.length; i++) {
-            const inputs = inputsFor(q, i, EXAM_ID);
+            const inputs = inputsFor(q, i, examId);
             jobs.push({ questionId: doc.id, optionIndex: i, inputs, key: buildTutorCacheKey(inputs) });
         }
     }
@@ -356,40 +357,29 @@ async function generate(client, job) {
 
 // --- main -------------------------------------------------------------------
 
-(async () => {
-    if (PRUNE) { await prune(); return; }
+/** Warm one exam. Returns a tally so --all can total them up. */
+async function warmExam(examId, client) {
+    const { jobs, questionCount, skippedFormat } = await buildWorkList(examId);
+    if (!jobs.length) {
+        console.log(`${examId}  — no coachable questions, skipping`);
+        return { generated: 0, failed: 0, total: 0, cached: 0 };
+    }
 
-    const { jobs, questionCount, skippedFormat } = await buildWorkList();
     const cached = await findCached(jobs.map((j) => j.key));
     const todo = jobs.filter((j) => !cached.has(j.key));
 
-    console.log(`exam            ${EXAM_ID}`);
-    console.log(`mode            ${MODE}`);
+    console.log(`\n=== ${examId} ===`);
     console.log(`questions       ${questionCount} (${skippedFormat} skipped: no options or a format the coach cannot serve)`);
     console.log(`combinations    ${jobs.length}  (question x picked option)`);
     console.log(`already cached  ${cached.size}`);
-    console.log(`to generate     ${todo.length}\n`);
+    console.log(`to generate     ${todo.length}`);
 
-    await assertKeysAgreeWithProduction();
-
-    if (VERIFY_ONLY) return;
-    if (!todo.length) { console.log('\nNothing to do — this exam and mode are fully warm.'); return; }
+    if (!todo.length) { console.log('already fully warm'); return { generated: 0, failed: 0, total: jobs.length, cached: cached.size }; }
 
     const batch = todo.slice(0, LIMIT);
-    if (DRY_RUN) { console.log(`\nDRY RUN — would generate ${batch.length} breakdown(s).`); return; }
+    if (DRY_RUN) { console.log(`DRY RUN — would generate ${batch.length}`); return { generated: 0, failed: 0, total: jobs.length, cached: cached.size }; }
 
-    const apiKey = resolveOpenAIKey();
-    if (!apiKey) {
-        console.error('\nERROR: no OpenAI key. Set OPENAI_API_KEY, or make sure the Firebase CLI is');
-        console.error('logged in so the key can be read from the project Functions config.');
-        process.exit(1);
-    }
-    const client = new OpenAI({ apiKey });
-
-    console.log(`\nGenerating ${batch.length} with concurrency ${CONCURRENCY}...\n`);
-
-    let done = 0, failed = 0, aborted = false;
-    let next = 0;
+    let done = 0, failed = 0, aborted = false, next = 0;
     await Promise.all(Array.from({ length: CONCURRENCY }, async () => {
         while (!aborted) {
             const i = next++;
@@ -402,15 +392,69 @@ async function generate(client, job) {
                 console.warn(`  ${batch[i].questionId} option ${batch[i].optionIndex}: ${err.message}`);
                 // A handful of bad questions is normal; a wall of failures means
                 // the key, the prompt or the account is wrong. Stop paying.
-                if (failed >= 10) { aborted = true; console.error('\nABORT: 10 failures. Fix the cause before spending more.'); return; }
+                if (failed >= 10) { aborted = true; console.error('ABORT: 10 failures. Fix the cause before spending more.'); return; }
             }
-            if ((done + failed) % 50 === 0) console.log(`  ${done + failed}/${batch.length}  (${done} cached, ${failed} failed)`);
+            if ((done + failed) % 50 === 0) console.log(`  ${done + failed}/${batch.length}  (${done} ok, ${failed} failed)`);
         }
     }));
 
     const nowCached = (await findCached(jobs.map((j) => j.key))).size;
-    console.log(`\ngenerated       ${done}`);
-    console.log(`failed          ${failed}`);
-    console.log(`cached now      ${nowCached} / ${jobs.length}`);
-    if (nowCached < jobs.length) console.log(`remaining       ${jobs.length - nowCached}  — re-run to continue`);
-})().catch((e) => { console.error(e); process.exit(1); });
+    console.log(`generated ${done}, failed ${failed}, cached ${nowCached}/${jobs.length}`);
+    if (aborted) throw new Error(`aborted on ${examId} after 10 failures`);
+    return { generated: done, failed, total: jobs.length, cached: nowCached };
+}
+
+/** Every examId that actually has questions, largest bank first. */
+async function allExamIds() {
+    const snap = await db.collection('questions').get();
+    const counts = new Map();
+    snap.docs.forEach((d) => {
+        const e = d.data().examId;
+        if (e) counts.set(e, (counts.get(e) || 0) + 1);
+    });
+    return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([id]) => id);
+}
+
+(async () => {
+    if (PRUNE) { await prune(); return; }
+
+    // Prove the key derivation before anything is bought — once, up front,
+    // rather than per exam.
+    await assertKeysAgreeWithProduction();
+    if (VERIFY_ONLY) {
+        const ids = ALL ? await allExamIds() : [EXAM_ID];
+        for (const id of ids) {
+            const { jobs } = await buildWorkList(id);
+            const cached = await findCached(jobs.map((j) => j.key));
+            console.log(`${id}  ${cached.size}/${jobs.length} warm`);
+        }
+        return;
+    }
+
+    let client = null;
+    if (!DRY_RUN) {
+        const apiKey = resolveOpenAIKey();
+        if (!apiKey) {
+            console.error('\nERROR: no OpenAI key. Set OPENAI_API_KEY, or make sure the Firebase CLI is');
+            console.error('logged in so the key can be read from the project Functions config.');
+            process.exit(1);
+        }
+        client = new OpenAI({ apiKey });
+    }
+
+    const examIds = ALL ? await allExamIds() : [EXAM_ID];
+    if (ALL) console.log(`Warming ${examIds.length} exam(s), mode ${MODE}, concurrency ${CONCURRENCY}`);
+
+    const totals = { generated: 0, failed: 0, total: 0, cached: 0 };
+    for (const id of examIds) {
+        const r = await warmExam(id, client);
+        for (const k of Object.keys(totals)) totals[k] += r[k];
+    }
+
+    if (examIds.length > 1) {
+        console.log('\n=== TOTAL ===');
+        console.log(`generated       ${totals.generated}`);
+        console.log(`failed          ${totals.failed}`);
+        console.log(`cached          ${totals.cached} / ${totals.total}`);
+    }
+})().catch((e) => { console.error(e.message || e); process.exit(1); });
