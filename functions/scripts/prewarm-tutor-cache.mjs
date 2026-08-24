@@ -215,6 +215,67 @@ async function findCached(keys) {
     return cached;
 }
 
+// --- reachable keys ---------------------------------------------------------
+
+/**
+ * Every cache key the app could ask for: each question, each option, BOTH
+ * coach modes, across ALL exams.
+ *
+ * Deliberately corpus-wide rather than per-exam. It backs two things:
+ *  - the preflight, which needs a key set that overlaps whatever the live app
+ *    has already written, wherever that happened to be;
+ *  - --prune, where anything outside this set is by definition unreachable.
+ */
+async function reachableKeys() {
+    const snap = await db.collection('questions').get();
+    const keys = new Set();
+    for (const doc of snap.docs) {
+        const q = doc.data();
+        if (!(q.options || []).length) continue;
+        for (let i = 0; i < q.options.length; i++) {
+            for (const isDeep of [false, true]) {
+                keys.add(buildTutorCacheKey({ ...inputsFor(q, i, q.examId), isDeep }));
+            }
+        }
+    }
+    return { keys, questionCount: snap.size };
+}
+
+/**
+ * Confirm this script derives keys the same way the deployed function does,
+ * BEFORE any money is spent.
+ *
+ * The live cache holds entries the callable wrote, so a correct derivation
+ * must recognise them. Matching zero means the hash drifted — a wrong lens
+ * string, a bumped TUTOR_PROMPT_VERSION, a stale lib/ build — and every
+ * completion bought would land on a key no learner looks up.
+ *
+ * This checks against the WHOLE corpus, not the exam being warmed. An earlier
+ * version compared only against entries for that one exam, which made it fire
+ * on any exam nobody had used the coach on yet: zero prior entries is the
+ * normal state of a cold exam, not evidence of a broken key. Security+ tripped
+ * it on the first run.
+ */
+async function assertKeysAgreeWithProduction() {
+    const liveTotal = (await db.collection('tutor_cache').count().get()).data().count;
+    if (liveTotal === 0) {
+        console.log('key check       cache is empty — nothing to check against, proceeding');
+        return;
+    }
+    const { keys } = await reachableKeys();
+    const cacheSnap = await db.collection('tutor_cache').get();
+    const matched = cacheSnap.docs.filter((d) => keys.has(d.id)).length;
+
+    if (matched === 0) {
+        console.error(`\nABORT: 0 of ${liveTotal} live tutor_cache entries match any key this script derives.`);
+        console.error('The cache key here does not agree with the deployed function.');
+        console.error('Check TUTOR_PROMPT_VERSION, the EXAM_LENS strings, and that lib/ is freshly built.');
+        console.error('Not spending money on entries nothing would read.');
+        process.exit(1);
+    }
+    console.log(`key check       ${matched} of ${liveTotal} live entries match a derived key — agrees with production`);
+}
+
 // --- prune ------------------------------------------------------------------
 
 /**
@@ -231,17 +292,8 @@ async function findCached(keys) {
  * success. Hence the two guards below.
  */
 async function prune() {
-    const snap = await db.collection('questions').get();
-    const valid = new Set();
-    for (const doc of snap.docs) {
-        const q = doc.data();
-        if (!(q.options || []).length) continue;
-        for (let i = 0; i < q.options.length; i++) {
-            for (const isDeep of [false, true]) {
-                valid.add(buildTutorCacheKey({ ...inputsFor(q, i, q.examId), isDeep }));
-            }
-        }
-    }
+    const { keys: valid, questionCount } = await reachableKeys();
+    const snap = { size: questionCount };
 
     const cacheSnap = await db.collection('tutor_cache').get();
     const orphans = cacheSnap.docs.filter((d) => !valid.has(d.id));
@@ -318,22 +370,7 @@ async function generate(client, job) {
     console.log(`already cached  ${cached.size}`);
     console.log(`to generate     ${todo.length}\n`);
 
-    // Preflight the key logic before spending anything.
-    //
-    // The cache already holds entries written by the live app, so a correct
-    // derivation MUST match some of them. Matching zero means the hash drifted —
-    // a wrong lens string, a bumped TUTOR_PROMPT_VERSION, a stale lib/ build —
-    // and every completion bought would land on a key no learner looks up.
-    // That is the expensive silent failure, so refuse to spend rather than warn.
-    const liveTotal = (await db.collection('tutor_cache').count().get()).data().count;
-    if (cached.size === 0 && liveTotal > 0) {
-        console.error(`ABORT: matched 0 of ${liveTotal} live tutor_cache entries.`);
-        console.error('The cache key derived here does not agree with the deployed function.');
-        console.error('Check TUTOR_PROMPT_VERSION, the EXAM_LENS strings, and that lib/ is freshly built.');
-        console.error('Not spending money on entries nothing would read.');
-        process.exit(1);
-    }
-    console.log(`key check       matched ${cached.size} existing entries (of ${liveTotal} in tutor_cache) — key logic agrees with production`);
+    await assertKeysAgreeWithProduction();
 
     if (VERIFY_ONLY) return;
     if (!todo.length) { console.log('\nNothing to do — this exam and mode are fully warm.'); return; }
