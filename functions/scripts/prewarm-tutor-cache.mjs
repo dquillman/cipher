@@ -33,6 +33,25 @@
  *   node scripts/prewarm-tutor-cache.mjs --exam <examId> --dry-run
  *   node scripts/prewarm-tutor-cache.mjs --exam <examId> --limit 250
  *   node scripts/prewarm-tutor-cache.mjs --verify --exam <examId>
+ *   node scripts/prewarm-tutor-cache.mjs --prune --dry-run
+ *
+ * RE-RUN THIS AFTER ANY QUESTION EDIT
+ * -----------------------------------
+ * The cache key is a hash of the question stem and its options, so editing a
+ * question — even one typo — changes the hash. Correctness is self-healing:
+ * the edited question misses and regenerates against the current rationale, so
+ * nobody is ever served a breakdown written for the old wording.
+ *
+ * Speed is NOT self-healing. Those questions silently fall back to a full
+ * OpenAI call, and the old entries become orphans that are never read and
+ * never collected. Nothing links a question document to the entries derived
+ * from it, so nothing notices. There is no error and no log — just a slow
+ * answer for whoever hits that question next.
+ *
+ * So: after any question edit, bulk upload, blueprint remap, or a bump of
+ * TUTOR_PROMPT_VERSION (which invalidates everything at once), re-run this.
+ * Already-warm combinations are skipped, so only what actually changed costs
+ * anything. --prune clears the orphans left behind.
  *
  * Requires GOOGLE_APPLICATION_CREDENTIALS (service account) and, for real runs,
  * a Pro/admin uid to authenticate as (--uid, defaults to the owner account).
@@ -109,9 +128,10 @@ const MODE = val('--mode', 'quick');
 const LIMIT = parseInt(val('--limit', String(DAILY_RATE_LIMIT)), 10);
 const DRY_RUN = has('--dry-run');
 const VERIFY_ONLY = has('--verify');
+const PRUNE = has('--prune');
 const UID = val('--uid', DEFAULT_UID);
 
-if (!EXAM_ID) {
+if (!EXAM_ID && !PRUNE) {
     console.error('ERROR: --exam <examId> is required.');
     console.error('  PMP v2026        6kECziMtR1BS3MpABLW5');
     console.error('  Security+        79cuGMNydTwDMhyiDjry');
@@ -236,9 +256,96 @@ async function findCached(keys) {
     return cached;
 }
 
+// --- prune ------------------------------------------------------------------
+
+/**
+ * Delete cache entries no live question can produce any more.
+ *
+ * These are the orphans left by question edits: the edited question hashes to
+ * a new key and regenerates, and the entry written for the old wording sits
+ * there permanently, unreadable and uncollected.
+ *
+ * Deciding what is garbage means enumerating every key the app could ask for —
+ * every question, every option, BOTH coach modes, across ALL exams. Anything
+ * outside that set is unreachable. Scoping this to one exam would classify
+ * every other exam's entries as orphans, so --prune deliberately ignores
+ * --exam.
+ *
+ * The failure mode is severe and quiet: if the key derivation here is wrong,
+ * the valid set is wrong, and this deletes the entire working cache while
+ * reporting success. Hence the guards below — a matched-key preflight, and a
+ * refusal to delete a majority of the cache without being told to.
+ */
+async function prune() {
+    const snap = await db.collection('questions').get();
+    const valid = new Set();
+    for (const doc of snap.docs) {
+        const q = doc.data();
+        const options = q.options || [];
+        if (!options.length) continue;
+        const lens = EXAM_LENS[q.examId] || null;
+        for (let i = 0; i < options.length; i++) {
+            for (const isDeep of [false, true]) {
+                valid.add(cacheKey({
+                    questionStem: q.stem,
+                    options,
+                    userSelectedOptionIndex: i,
+                    isDeep,
+                    lensName: lens?.lensName,
+                    lensFramework: lens?.framework,
+                }));
+            }
+        }
+    }
+
+    const cacheSnap = await db.collection('tutor_cache').get();
+    const orphans = cacheSnap.docs.filter((d) => !valid.has(d.id));
+    const live = cacheSnap.size - orphans.length;
+
+    console.log(`questions scanned   ${snap.size} (all exams)`);
+    console.log(`reachable keys      ${valid.size}  (question x option x both modes)`);
+    console.log(`tutor_cache docs    ${cacheSnap.size}`);
+    console.log(`still reachable     ${live}`);
+    console.log(`orphaned            ${orphans.length}`);
+    console.log('');
+
+    // Same preflight as the warm path: the cache holds entries the live app
+    // wrote, so a correct derivation must recognise some of them.
+    if (live === 0 && cacheSnap.size > 0) {
+        console.error(`ABORT: 0 of ${cacheSnap.size} entries matched a reachable key.`);
+        console.error('That means the key derivation is wrong, not that the whole cache is garbage.');
+        console.error('Check TUTOR_PROMPT_VERSION and the EXAM_LENS strings before pruning anything.');
+        process.exit(1);
+    }
+    if (!orphans.length) { console.log('Nothing to prune.'); return; }
+
+    // A prompt-version bump legitimately orphans everything, but so does a bug
+    // here — and they look identical from inside this script. Make the caller
+    // say out loud that a mass deletion is intended.
+    if (orphans.length > cacheSnap.size / 2 && !has('--yes-delete-most')) {
+        console.error(`ABORT: this would delete ${orphans.length} of ${cacheSnap.size} entries (over half).`);
+        console.error('That is expected right after a TUTOR_PROMPT_VERSION bump, and is also what a');
+        console.error('broken key derivation looks like. If you meant it, re-run with --yes-delete-most.');
+        process.exit(1);
+    }
+
+    if (DRY_RUN) { console.log(`DRY RUN — would delete ${orphans.length} orphaned entr(ies).`); return; }
+
+    let deleted = 0;
+    for (let i = 0; i < orphans.length; i += 400) {
+        const batch = db.batch();
+        orphans.slice(i, i + 400).forEach((d) => batch.delete(d.ref));
+        await batch.commit();
+        deleted += Math.min(400, orphans.length - i);
+    }
+    console.log(`deleted             ${deleted}`);
+}
+
 // --- main -------------------------------------------------------------------
 
 (async () => {
+    if (PRUNE) { await prune(); return; }
+
     const { jobs, questionCount, skippedFormat } = await buildWorkList();
     const cached = await findCached(jobs.map((j) => j.key));
     const todo = jobs.filter((j) => !cached.has(j.key));
