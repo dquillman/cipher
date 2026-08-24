@@ -200,11 +200,23 @@ function VersionGate({ children }: { children: ReactNode }) {
 
   switch (status) {
     case 'loading':
-      return (
-        <div className="flex h-screen items-center justify-center bg-slate-900 text-white">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
-        </div>
-      );
+      // Render the app while the version check is still in flight, rather than
+      // holding a spinner in front of everything.
+      //
+      // This gate sits outermost, and nothing below it — AuthProvider,
+      // ExamProvider, SubscriptionProvider, the route itself — could even begin
+      // its own round trip until this one came back. v1.25.6 instrumentation
+      // measured the result: of a 4.3-7.5s wait to see a quiz question, only
+      // 1.2-1.7s was the quiz loading its data. The other 2.7-6.2s (62-83%) was
+      // this serial chain of gates, and this is the first link in it.
+      //
+      // Blocking bought very little in the first place: every failure path here
+      // already falls through to 'ok', so a user whose check errors or times
+      // out has always been let straight in. The only behaviour given up is
+      // that someone on a below-minimum version now sees the app for the few
+      // hundred ms before 'block' lands, instead of a spinner. 'block' still
+      // takes over the whole screen the moment it resolves.
+      return <>{children}</>;
     case 'block':
       return (
         <div className="flex min-h-screen items-center justify-center bg-slate-900 text-white">
