@@ -78,6 +78,16 @@
           "type": 302
         },
         {
+          "source": "/go/pmp-exam-changed",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=the-exam-changed",
+          "type": 302
+        },
+        {
+          "source": "/go/pmp-experience-trap",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=experience-trap",
+          "type": 302
+        },
+        {
           "source": "/go/pmp-frame-a",
           "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-a",
           "type": 302
@@ -95,6 +105,11 @@
         {
           "source": "/go/pmp-fri-domains",
           "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=fri_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/pmp-llm-compare",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=llm-compare",
           "type": 302
         },
         {
@@ -288,6 +303,16 @@
           "type": 302
         },
         {
+          "source": "/go/pmp-exam-changed",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=the-exam-changed",
+          "type": 302
+        },
+        {
+          "source": "/go/pmp-experience-trap",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=experience-trap",
+          "type": 302
+        },
+        {
           "source": "/go/pmp-frame-a",
           "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-a",
           "type": 302
@@ -305,6 +330,11 @@
         {
           "source": "/go/pmp-fri-domains",
           "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=fri_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/pmp-llm-compare",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=llm-compare",
           "type": 302
         },
         {
@@ -498,6 +528,16 @@
           "type": 302
         },
         {
+          "source": "/go/pmp-exam-changed",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=the-exam-changed",
+          "type": 302
+        },
+        {
+          "source": "/go/pmp-experience-trap",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=experience-trap",
+          "type": 302
+        },
+        {
           "source": "/go/pmp-frame-a",
           "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-a",
           "type": 302
@@ -515,6 +555,11 @@
         {
           "source": "/go/pmp-fri-domains",
           "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=fri_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/pmp-llm-compare",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=llm-compare",
           "type": 302
         },
         {
