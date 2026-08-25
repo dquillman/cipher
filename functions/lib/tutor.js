@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWeakestPatterns = exports.generateTutorDeepDive = exports.generateTutorBreakdown = void 0;
+exports.getWeakestPatterns = exports.generateTutorDeepDive = exports.generateTutorBreakdown = exports.buildTutorRequest = exports.buildTutorCacheKey = void 0;
 const admin = require("firebase-admin");
 const functions = require("firebase-functions");
 const openai_1 = require("openai");
@@ -120,9 +120,146 @@ const processPatternInteraction = async (userId, pattern, isCorrect, examId) => 
     await batch.commit();
     console.log(`Pattern processed: ${patternId} for user ${userId}`);
 };
-// minInstances: 1 — this call sits directly on the post-answer path; a cold
-// start added 1-3s before any logic ran. ~$10/mo at 512MB; drop to 0 if cost
-// ever outweighs the latency.
+/**
+ * The tutor_cache document id for a given breakdown.
+ *
+ * Exported so a batch pre-warmer can tell what is already cached without
+ * calling anything. Field ORDER is load-bearing — this hashes
+ * JSON.stringify of an object literal, not a sorted one, so reordering these
+ * lines changes every key and orphans the entire cache.
+ */
+function buildTutorCacheKey({ questionStem, options, userSelectedOptionIndex, isDeep, lensName, lensFramework }) {
+    return (0, crypto_1.createHash)('sha256')
+        .update(JSON.stringify({
+        v: TUTOR_PROMPT_VERSION,
+        questionStem,
+        options,
+        userSelectedOptionIndex,
+        coachMode: isDeep ? 'deep' : 'quick',
+        lensName: lensName || null,
+        lensFramework: lensFramework || null,
+    }))
+        .digest('hex');
+}
+exports.buildTutorCacheKey = buildTutorCacheKey;
+/**
+ * The exact OpenAI request this callable sends.
+ *
+ * Exported so scripts/prewarm-tutor-cache.mjs generates with the SAME prompt
+ * rather than a copy of it. A pre-warmer with its own copy would drift the
+ * moment either side changed and would quietly fill the cache with entries
+ * keyed off a prompt the live path never asks for — paid for, never read.
+ *
+ * Bumping TUTOR_PROMPT_VERSION whenever anything in here changes is what keeps
+ * old entries from being served against a new prompt.
+ */
+function buildTutorRequest({ questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, isDeep, lensName, lensFramework }) {
+    // Explicit return type, not inference: inline at the call site the literal
+    // got its contextual typing from create(), so `role: "system"` narrowed to
+    // the union member. Returned from a function it would widen to `string`
+    // and no longer satisfy ChatCompletionMessageParam.
+    return {
+        // Quick mode is a tightly constrained rewrite of the provided
+        // rationale — mini handles it at equal quality in a fraction of
+        // the latency. Deep mode keeps the full model for reasoning.
+        model: isDeep ? "gpt-4o" : "gpt-4o-mini",
+        // Caps the output side of the bill. The deep breakdown plus its
+        // pattern object runs well under this; the sibling call at the
+        // bottom of this file has always had a max_tokens and this one
+        // never did.
+        max_tokens: isDeep ? 1200 : 700,
+        messages: [
+            {
+                role: "system",
+                content: isDeep
+                    ? `You are a veteran CIPHER tutor.
+You know exactly what matters and skip the rest.
+Tone: Calm, Direct, Supportive.
+
+GOAL:
+1. Validate the user's logic briefly (e.g., "In the real world, you'd do X...").
+2. Pivot to the "Exam Reality" immediately.
+3. State the ONE key insight.
+4. Provide a structured breakdown with the exam-specific lens.
+
+CONSTRAINTS:
+- No filler words ("It is important to note...", "Let me explain...").
+- No textbook definitions.
+
+OUTPUT FORMAT:
+{
+  "verdict": "string (The coaching response. Validation -> Pivot -> Insight.)",
+  "comparison": [
+    { "optionIndex": 0, "text": "Option text", "explanation": "Targeted 1-liner." }
+  ],
+  "examLens": "string — MUST use this EXACT structure with these section prefixes separated by double newlines:\\n\\n${lensName || 'Exam Lens'}: [1-2 sentence core insight framed by: ${lensFramework || 'the exam framework'}]\\n\\nWhy this conflicts: [Explain why the wrong answer seems right but violates the framework]\\n\\nPattern: [A reusable pattern or mental rule to remember]\\n\\nNote: [Optional extra context or edge case]",
+  "pattern": {
+      "name": "string (Short canonical name)",
+      "core_rule": "string (1-sentence immutable rule)",
+      "trap_signals": ["string"],
+      "five_second_heuristic": "string (Fast elimination rule)",
+      "domain_tags": ["string"]
+  }
+}
+
+Use ONLY the provided rationale as the source of truth.
+
+IMPORTANT: Return valid JSON. The examLens field must contain the section prefixes (${lensName || 'Exam Lens'}:, Why this conflicts:, Pattern:, Note:) separated by double newlines.
+`
+                    : `You are a veteran CIPHER tutor.
+You know exactly what matters and skip the rest.
+Tone: Calm, Direct, Supportive.
+
+GOAL:
+1. Validate the user's logic briefly (e.g., "In the real world, you'd do X...").
+2. Pivot to the "Exam Reality" immediately.
+3. State the ONE key insight.
+4. End with a reusable "Mental Rule".
+
+CONSTRAINTS:
+- Be extremely concise.
+- No filler words ("It is important to note...", "Let me explain...").
+- No textbook definitions.
+- Under 50 words for the main explanation if possible.
+
+OUTPUT FORMAT:
+{
+  "verdict": "string (The coaching response. Validation -> Pivot -> Insight.)",
+  "comparison": [
+    { "optionIndex": 0, "text": "Option text", "explanation": "Targeted 1-liner." }
+  ],
+  "examLens": "string (The 'Mental Rule'. Short & punchy. e.g. 'Paperwork first, people second.')",
+  "pattern": {
+      "name": "string (Short canonical name)",
+      "core_rule": "string (1-sentence immutable rule)",
+      "trap_signals": ["string"],
+      "five_second_heuristic": "string (Fast elimination rule)",
+      "domain_tags": ["string"]
+  }
+}
+
+Use ONLY the provided rationale as the source of truth.
+
+IMPORTANT: Return valid JSON.
+`
+            },
+            {
+                role: "user",
+                content: JSON.stringify({
+                    question: questionStem,
+                    options: options,
+                    correctAnswer: options[correctAnswerIndex],
+                    userSelection: options[userSelectedOptionIndex],
+                    domain: examDomain,
+                    rationale: correctRationale
+                })
+            }
+        ],
+        response_format: { type: "json_object" },
+        temperature: 0.3, // Low temperature for factual consistency
+    };
+}
+exports.buildTutorRequest = buildTutorRequest;
 exports.generateTutorBreakdown = functions
     .runWith({ memory: '512MB', timeoutSeconds: 60, minInstances: 1 })
     .https.onCall(async (data, context) => {
@@ -186,17 +323,7 @@ exports.generateTutorBreakdown = functions
     // — and the question bank is fixed. First request pays the OpenAI call
     // (~2-6s); every later request by ANY user is a single Firestore read.
     // Content-hash key: the payload carries no questionId.
-    const cacheKey = (0, crypto_1.createHash)('sha256')
-        .update(JSON.stringify({
-        v: TUTOR_PROMPT_VERSION,
-        questionStem,
-        options,
-        userSelectedOptionIndex,
-        coachMode: isDeep ? 'deep' : 'quick',
-        lensName: lensName || null,
-        lensFramework: lensFramework || null,
-    }))
-        .digest('hex');
+    const cacheKey = buildTutorCacheKey({ questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, isDeep, lensName, lensFramework });
     const cacheRef = admin.firestore().collection('tutor_cache').doc(cacheKey);
     const [proError, cachedSnap] = await Promise.all([
         proCheck,
@@ -226,106 +353,7 @@ exports.generateTutorBreakdown = functions
         console.warn("tutor_cache read failed, generating fresh:", err);
     }
     try {
-        const response = await client.chat.completions.create({
-            // Quick mode is a tightly constrained rewrite of the provided
-            // rationale — mini handles it at equal quality in a fraction of
-            // the latency. Deep mode keeps the full model for reasoning.
-            model: isDeep ? "gpt-4o" : "gpt-4o-mini",
-            // Caps the output side of the bill. The deep breakdown plus its
-            // pattern object runs well under this; the sibling call at the
-            // bottom of this file has always had a max_tokens and this one
-            // never did.
-            max_tokens: isDeep ? 1200 : 700,
-            messages: [
-                {
-                    role: "system",
-                    content: isDeep
-                        ? `You are a veteran CIPHER tutor.
-You know exactly what matters and skip the rest.
-Tone: Calm, Direct, Supportive.
-
-GOAL:
-1. Validate the user's logic briefly (e.g., "In the real world, you'd do X...").
-2. Pivot to the "Exam Reality" immediately.
-3. State the ONE key insight.
-4. Provide a structured breakdown with the exam-specific lens.
-
-CONSTRAINTS:
-- No filler words ("It is important to note...", "Let me explain...").
-- No textbook definitions.
-
-OUTPUT FORMAT:
-{
-  "verdict": "string (The coaching response. Validation -> Pivot -> Insight.)",
-  "comparison": [
-    { "optionIndex": 0, "text": "Option text", "explanation": "Targeted 1-liner." }
-  ],
-  "examLens": "string — MUST use this EXACT structure with these section prefixes separated by double newlines:\\n\\n${lensName || 'Exam Lens'}: [1-2 sentence core insight framed by: ${lensFramework || 'the exam framework'}]\\n\\nWhy this conflicts: [Explain why the wrong answer seems right but violates the framework]\\n\\nPattern: [A reusable pattern or mental rule to remember]\\n\\nNote: [Optional extra context or edge case]",
-  "pattern": {
-      "name": "string (Short canonical name)",
-      "core_rule": "string (1-sentence immutable rule)",
-      "trap_signals": ["string"],
-      "five_second_heuristic": "string (Fast elimination rule)",
-      "domain_tags": ["string"]
-  }
-}
-
-Use ONLY the provided rationale as the source of truth.
-
-IMPORTANT: Return valid JSON. The examLens field must contain the section prefixes (${lensName || 'Exam Lens'}:, Why this conflicts:, Pattern:, Note:) separated by double newlines.
-`
-                        : `You are a veteran CIPHER tutor.
-You know exactly what matters and skip the rest.
-Tone: Calm, Direct, Supportive.
-
-GOAL:
-1. Validate the user's logic briefly (e.g., "In the real world, you'd do X...").
-2. Pivot to the "Exam Reality" immediately.
-3. State the ONE key insight.
-4. End with a reusable "Mental Rule".
-
-CONSTRAINTS:
-- Be extremely concise.
-- No filler words ("It is important to note...", "Let me explain...").
-- No textbook definitions.
-- Under 50 words for the main explanation if possible.
-
-OUTPUT FORMAT:
-{
-  "verdict": "string (The coaching response. Validation -> Pivot -> Insight.)",
-  "comparison": [
-    { "optionIndex": 0, "text": "Option text", "explanation": "Targeted 1-liner." }
-  ],
-  "examLens": "string (The 'Mental Rule'. Short & punchy. e.g. 'Paperwork first, people second.')",
-  "pattern": {
-      "name": "string (Short canonical name)",
-      "core_rule": "string (1-sentence immutable rule)",
-      "trap_signals": ["string"],
-      "five_second_heuristic": "string (Fast elimination rule)",
-      "domain_tags": ["string"]
-  }
-}
-
-Use ONLY the provided rationale as the source of truth.
-
-IMPORTANT: Return valid JSON.
-`
-                },
-                {
-                    role: "user",
-                    content: JSON.stringify({
-                        question: questionStem,
-                        options: options,
-                        correctAnswer: options[correctAnswerIndex],
-                        userSelection: options[userSelectedOptionIndex],
-                        domain: examDomain,
-                        rationale: correctRationale
-                    })
-                }
-            ],
-            response_format: { type: "json_object" },
-            temperature: 0.3, // Low temperature for factual consistency
-        });
+        const response = await client.chat.completions.create(buildTutorRequest({ questionStem, options, correctAnswerIndex, userSelectedOptionIndex, correctRationale, examDomain, isDeep, lensName, lensFramework }));
         const content = response.choices[0].message.content;
         if (!content) {
             throw new functions.https.HttpsError('internal', 'AI returned empty response');
