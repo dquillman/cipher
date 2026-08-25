@@ -1,178 +1,664 @@
 {
-    "storage": {
-        "rules": "storage.rules"
-    },
-    "functions": [
-        {
-            "source": "functions",
-            "codebase": "default",
-            "ignore": [
-                "node_modules",
-                ".git",
-                "firebase-debug.log",
-                "firebase-debug.*.log"
-            ],
-            "predeploy": [
-                "npm --prefix \"$RESOURCE_DIR\" run build",
-                "npm --prefix \"$RESOURCE_DIR\" run check:email"
-            ]
-        }
-    ],
-    "hosting": [
-        {
-            "target": "web",
-            "public": "web/dist",
-            "trailingSlash": false,
-            "ignore": [
-                "firebase.json",
-                "**/.*",
-                "**/node_modules/**"
-            ],
-            "rewrites": [
-                {
-                    "source": "/api/unsubscribe",
-                    "function": "unsubscribe"
-                },
-                {
-                    "source": "/app/**",
-                    "destination": "/_catchall.html"
-                },
-                {
-                    "source": "**",
-                    "destination": "/_catchall.html"
-                }
-            ],
-            "headers": [
-                {
-                    "source": "**",
-                    "headers": [
-                        {
-                            "key": "Cache-Control",
-                            "value": "public, max-age=0, must-revalidate"
-                        },
-                        {
-                            "key": "Cross-Origin-Opener-Policy",
-                            "value": "same-origin-allow-popups"
-                        }
-                    ]
-                },
-                {
-                    "source": "**/*.@(js|css|jpg|jpeg|png|webp|svg|gif|woff|woff2)",
-                    "headers": [
-                        {
-                            "key": "Cache-Control",
-                            "value": "max-age=31536000"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "target": "staging",
-            "public": "web/dist",
-            "trailingSlash": false,
-            "ignore": [
-                "firebase.json",
-                "**/.*",
-                "**/node_modules/**"
-            ],
-            "rewrites": [
-                {
-                    "source": "/api/unsubscribe",
-                    "function": "unsubscribe"
-                },
-                {
-                    "source": "/app/**",
-                    "destination": "/_catchall.html"
-                },
-                {
-                    "source": "**",
-                    "destination": "/_catchall.html"
-                }
-            ],
-            "headers": [
-                {
-                    "source": "**",
-                    "headers": [
-                        {
-                            "key": "Cache-Control",
-                            "value": "public, max-age=0, must-revalidate"
-                        },
-                        {
-                            "key": "Cross-Origin-Opener-Policy",
-                            "value": "same-origin-allow-popups"
-                        }
-                    ]
-                },
-                {
-                    "source": "**/*.@(js|css|jpg|jpeg|png|webp|svg|gif|woff|woff2)",
-                    "headers": [
-                        {
-                            "key": "Cache-Control",
-                            "value": "max-age=31536000"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "target": "production",
-            "public": "web/dist",
-            "trailingSlash": false,
-            "ignore": [
-                "firebase.json",
-                "**/.*",
-                "**/node_modules/**"
-            ],
-            "rewrites": [
-                {
-                    "source": "/api/unsubscribe",
-                    "function": "unsubscribe"
-                },
-                {
-                    "source": "/app/**",
-                    "destination": "/_catchall.html"
-                },
-                {
-                    "source": "**",
-                    "destination": "/_catchall.html"
-                }
-            ],
-            "headers": [
-                {
-                    "source": "**",
-                    "headers": [
-                        {
-                            "key": "Cache-Control",
-                            "value": "public, max-age=0, must-revalidate"
-                        },
-                        {
-                            "key": "Cross-Origin-Opener-Policy",
-                            "value": "same-origin-allow-popups"
-                        }
-                    ]
-                },
-                {
-                    "source": "**/*.@(js|css|jpg|jpeg|png|webp|svg|gif|woff|woff2)",
-                    "headers": [
-                        {
-                            "key": "Cache-Control",
-                            "value": "max-age=31536000"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "emulators": {
-        "auth": {
-            "port": 9099
-        },
-        "functions": {
-            "port": 5001
-        },
-        "ui": {
-            "enabled": true
-        }
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run build",
+        "npm --prefix \"$RESOURCE_DIR\" run check:email"
+      ]
     }
+  ],
+  "hosting": [
+    {
+      "target": "web",
+      "public": "web/dist",
+      "trailingSlash": false,
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "/api/unsubscribe",
+          "function": "unsubscribe"
+        },
+        {
+          "source": "/app/**",
+          "destination": "/_catchall.html"
+        },
+        {
+          "source": "**",
+          "destination": "/_catchall.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin-allow-popups"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css|jpg|jpeg|png|webp|svg|gif|woff|woff2)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=31536000"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/go/bizenv-8-to-26",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=bizenv-8-to-26",
+          "type": 302
+        },
+        {
+          "source": "/go/decision-pattern",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=decision-pattern-followup",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-a",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-a",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-b",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-b",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-c",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-c",
+          "type": 302
+        },
+        {
+          "source": "/go/fri-domains",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=fri_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/fri-scenario",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=fri_scenario",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-01",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-pmp-0812&utm_content=magnet-01",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-02",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-secplus-0821&utm_content=magnet-02",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-03",
+          "destination": "https://cipherexam.com/lp/shrm-cp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-shrmcp-0828&utm_content=magnet-03",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-04-rerun",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-pmp-0904&utm_content=magnet-04-rerun",
+          "type": 302
+        },
+        {
+          "source": "/go/mon-domains",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=mon_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/mon-launch",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=mon_launch",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0817",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0817",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0824",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0824",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0831",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0831",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0907",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0907",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0914",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0914",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0921",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0921",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-03-0814",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-03-0814",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-04-0819",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-04-0819",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-05-0826",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-05-0826",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-06-0902",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-06-0902",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-07-0909",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-07-0909",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-08-0911",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-08-0911",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-09-0916",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-09-0916",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-10-0918",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-10-0918",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-11-0923",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-11-0923",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-12-0925",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-12-0925",
+          "type": 302
+        },
+        {
+          "source": "/go/sponsor-scenario",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=sponsor-scenario",
+          "type": 302
+        },
+        {
+          "source": "/go/wed-bridge",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=wed_bridge",
+          "type": 302
+        },
+        {
+          "source": "/go/wed-tutor",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=wed_tutor",
+          "type": 302
+        }
+      ]
+    },
+    {
+      "target": "staging",
+      "public": "web/dist",
+      "trailingSlash": false,
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "/api/unsubscribe",
+          "function": "unsubscribe"
+        },
+        {
+          "source": "/app/**",
+          "destination": "/_catchall.html"
+        },
+        {
+          "source": "**",
+          "destination": "/_catchall.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin-allow-popups"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css|jpg|jpeg|png|webp|svg|gif|woff|woff2)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=31536000"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/go/bizenv-8-to-26",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=bizenv-8-to-26",
+          "type": 302
+        },
+        {
+          "source": "/go/decision-pattern",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=decision-pattern-followup",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-a",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-a",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-b",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-b",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-c",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-c",
+          "type": 302
+        },
+        {
+          "source": "/go/fri-domains",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=fri_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/fri-scenario",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=fri_scenario",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-01",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-pmp-0812&utm_content=magnet-01",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-02",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-secplus-0821&utm_content=magnet-02",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-03",
+          "destination": "https://cipherexam.com/lp/shrm-cp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-shrmcp-0828&utm_content=magnet-03",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-04-rerun",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-pmp-0904&utm_content=magnet-04-rerun",
+          "type": 302
+        },
+        {
+          "source": "/go/mon-domains",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=mon_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/mon-launch",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=mon_launch",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0817",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0817",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0824",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0824",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0831",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0831",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0907",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0907",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0914",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0914",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0921",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0921",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-03-0814",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-03-0814",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-04-0819",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-04-0819",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-05-0826",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-05-0826",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-06-0902",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-06-0902",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-07-0909",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-07-0909",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-08-0911",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-08-0911",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-09-0916",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-09-0916",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-10-0918",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-10-0918",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-11-0923",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-11-0923",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-12-0925",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-12-0925",
+          "type": 302
+        },
+        {
+          "source": "/go/sponsor-scenario",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=sponsor-scenario",
+          "type": 302
+        },
+        {
+          "source": "/go/wed-bridge",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=wed_bridge",
+          "type": 302
+        },
+        {
+          "source": "/go/wed-tutor",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=wed_tutor",
+          "type": 302
+        }
+      ]
+    },
+    {
+      "target": "production",
+      "public": "web/dist",
+      "trailingSlash": false,
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "/api/unsubscribe",
+          "function": "unsubscribe"
+        },
+        {
+          "source": "/app/**",
+          "destination": "/_catchall.html"
+        },
+        {
+          "source": "**",
+          "destination": "/_catchall.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin-allow-popups"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css|jpg|jpeg|png|webp|svg|gif|woff|woff2)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=31536000"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/go/bizenv-8-to-26",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=bizenv-8-to-26",
+          "type": 302
+        },
+        {
+          "source": "/go/decision-pattern",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=decision-pattern-followup",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-a",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-a",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-b",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-b",
+          "type": 302
+        },
+        {
+          "source": "/go/frame-c",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=frame-test&utm_content=frame-c",
+          "type": 302
+        },
+        {
+          "source": "/go/fri-domains",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=fri_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/fri-scenario",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=fri_scenario",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-01",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-pmp-0812&utm_content=magnet-01",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-02",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-secplus-0821&utm_content=magnet-02",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-03",
+          "destination": "https://cipherexam.com/lp/shrm-cp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-shrmcp-0828&utm_content=magnet-03",
+          "type": 302
+        },
+        {
+          "source": "/go/magnet-04-rerun",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=li-magnet-pmp-0904&utm_content=magnet-04-rerun",
+          "type": 302
+        },
+        {
+          "source": "/go/mon-domains",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=mon_domains",
+          "type": 302
+        },
+        {
+          "source": "/go/mon-launch",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=mon_launch",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0817",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0817",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0824",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0824",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0831",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0831",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0907",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0907",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0914",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0914",
+          "type": 302
+        },
+        {
+          "source": "/go/scoreboard-0921",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=scoreboard-0921",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-03-0814",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-03-0814",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-04-0819",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-04-0819",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-05-0826",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-05-0826",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-06-0902",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-06-0902",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-07-0909",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-07-0909",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-08-0911",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-08-0911",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-09-0916",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-09-0916",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-10-0918",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-10-0918",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-11-0923",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-11-0923",
+          "type": 302
+        },
+        {
+          "source": "/go/sme-12-0925",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_medium=social&utm_campaign=pmp_judgment_2026&utm_content=sme-12-0925",
+          "type": 302
+        },
+        {
+          "source": "/go/sponsor-scenario",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=pmp_judgment_2026&utm_content=sponsor-scenario",
+          "type": 302
+        },
+        {
+          "source": "/go/wed-bridge",
+          "destination": "https://cipherexam.com/lp/security-plus?utm_source=linkedin&utm_campaign=launch_week2&utm_content=wed_bridge",
+          "type": 302
+        },
+        {
+          "source": "/go/wed-tutor",
+          "destination": "https://cipherexam.com/lp/pmp?utm_source=linkedin&utm_campaign=launch_week1&utm_content=wed_tutor",
+          "type": 302
+        }
+      ]
+    }
+  ],
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 5001
+    },
+    "ui": {
+      "enabled": true
+    }
+  }
 }
