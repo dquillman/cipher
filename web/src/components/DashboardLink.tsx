@@ -6,7 +6,7 @@ export default function DashboardLink() {
         <div className="mb-6">
             <Link
                 to="/app"
-                className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors min-h-[44px] pr-3"
             >
                 <ChevronLeft className="w-4 h-4" />
                 Back to Dashboard

@@ -23,8 +23,13 @@ export default function SmartQuizReviewModal({ open, onClose, reviewText, loadin
     const paragraphs = reviewText ? reviewText.split(/\n\s*\n/) : [];
 
     return (
-        <div className="decoder fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-            <div className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800/95 border border-slate-700/60 rounded-2xl shadow-2xl shadow-black/50 max-w-2xl w-full mx-4 overflow-hidden">
+        /* One scroll region, not two. The overlay itself scrolls on a phone and
+           the panel takes its natural height; from sm: up the panel is centred
+           and the body scrolls inside it as before. items-start on mobile
+           matters — a flex child taller than a scrolling container gets its top
+           clipped under items-center, with no way to scroll back up to it. */
+        <div className="decoder fixed inset-0 z-50 flex items-start sm:items-center justify-center overflow-y-auto overscroll-contain py-6 sm:py-0 bg-black/60 backdrop-blur-sm">
+            <div className="bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800/95 border border-slate-700/60 rounded-2xl shadow-2xl shadow-black/50 max-w-2xl w-full mx-4 my-auto overflow-hidden">
                 {/* Header */}
                 <div className="px-7 pt-6 pb-4 border-b border-slate-800/80">
                     <div className="flex items-center gap-3 mb-1">

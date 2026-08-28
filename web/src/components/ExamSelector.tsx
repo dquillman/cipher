@@ -36,7 +36,7 @@ export default function ExamSelector() {
         <div className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl text-sm md:text-base text-white font-medium transition-all"
+                className="flex items-center gap-2 min-h-[44px] px-3 py-1.5 md:px-4 md:py-2 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 rounded-xl text-sm md:text-base text-white font-medium transition-all"
             >
                 <span className="truncate max-w-[120px] sm:max-w-none">{currentExamName || 'Select Exam'}</span>
                 <svg

@@ -98,7 +98,7 @@ export default function PublicNav({ children }: PublicNavProps) {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
+            className="md:hidden flex flex-col justify-center gap-1.5 min-h-[44px] min-w-[44px] items-center p-2 -mr-2"
             aria-label="Toggle menu"
           >
             <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
