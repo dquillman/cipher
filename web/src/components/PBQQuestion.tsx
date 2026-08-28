@@ -201,7 +201,7 @@ function DragDropPBQ({ config, state, locked, onChange }: {
                             <button
                                 key={item.id}
                                 onClick={() => setDragging(dragging === item.id ? null : item.id)}
-                                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                                className={`px-3 py-2 min-h-[44px] rounded-lg text-sm font-medium transition-all ${
                                     dragging === item.id
                                         ? 'bg-brand-500/20 border-brand-500 text-brand-300 ring-2 ring-brand-500/40'
                                         : 'bg-slate-700/60 border-slate-600 text-slate-300 hover:border-brand-400'
@@ -247,7 +247,7 @@ function DragDropPBQ({ config, state, locked, onChange }: {
                                         <span
                                             key={item.id}
                                             onClick={(e) => { e.stopPropagation(); handleRemove(item.id); }}
-                                            className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-sm font-medium ${
+                                            className={`inline-flex items-center gap-1 px-2.5 py-1.5 min-h-[44px] rounded-lg text-sm font-medium ${
                                                 isCorrect ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/40' :
                                                 isWrong ? 'bg-red-500/10 text-red-300 border border-red-500/40' :
                                                 'bg-slate-700/60 text-slate-200 border border-slate-600 hover:border-red-400 cursor-pointer'
@@ -331,16 +331,16 @@ function FillTablePBQ({ config, state, locked, onChange }: {
                 <table className="w-full text-sm">
                     <thead>
                         <tr className="bg-slate-800/80">
-                            <th className="text-left px-4 py-3 text-slate-400 font-medium border-b border-slate-700">Setting</th>
+                            <th className="text-left px-3 sm:px-4 py-3 text-slate-400 font-medium border-b border-slate-700">Setting</th>
                             {config.columns.map((col, ci) => (
-                                <th key={ci} className="text-left px-4 py-3 text-slate-400 font-medium border-b border-slate-700">{col}</th>
+                                <th key={ci} className="text-left px-3 sm:px-4 py-3 text-slate-400 font-medium border-b border-slate-700">{col}</th>
                             ))}
                         </tr>
                     </thead>
                     <tbody>
                         {config.rows.map((row, ri) => (
                             <tr key={ri} className="border-b border-slate-700/50 last:border-0">
-                                <td className="px-4 py-3 text-slate-300 font-medium">{row.label}</td>
+                                <td className="px-3 sm:px-4 py-3 text-slate-300 font-medium">{row.label}</td>
                                 {row.fields.map((field, ci) => {
                                     const val = values[ri]?.[ci] || '';
                                     const isCorrect = locked && val.toLowerCase().trim() === field.correctValue.toLowerCase().trim();
@@ -348,13 +348,13 @@ function FillTablePBQ({ config, state, locked, onChange }: {
                                     const isEmpty = locked && val === '';
 
                                     return (
-                                        <td key={ci} className="px-4 py-3">
+                                        <td key={ci} className="px-3 sm:px-4 py-3">
                                             {field.options ? (
                                                 <select
                                                     value={val}
                                                     onChange={(e) => handleChange(ri, ci, e.target.value)}
                                                     disabled={locked}
-                                                    className={`w-full px-3 py-2 rounded-lg border text-sm bg-slate-800 transition-colors ${
+                                                    className={`w-full px-3 py-2 min-h-[44px] rounded-lg border text-base sm:text-sm bg-slate-800 transition-colors ${
                                                         isCorrect ? 'border-emerald-500/60 text-emerald-300' :
                                                         isWrong || isEmpty ? 'border-red-500/40 text-red-300' :
                                                         'border-slate-600 text-slate-200 hover:border-brand-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30'
@@ -372,7 +372,7 @@ function FillTablePBQ({ config, state, locked, onChange }: {
                                                     onChange={(e) => handleChange(ri, ci, e.target.value)}
                                                     disabled={locked}
                                                     placeholder="Enter value..."
-                                                    className={`w-full px-3 py-2 rounded-lg border text-sm bg-slate-800 transition-colors ${
+                                                    className={`w-full px-3 py-2 min-h-[44px] rounded-lg border text-base sm:text-sm bg-slate-800 transition-colors ${
                                                         isCorrect ? 'border-emerald-500/60 text-emerald-300' :
                                                         isWrong || isEmpty ? 'border-red-500/40 text-red-300' :
                                                         'border-slate-600 text-slate-200 placeholder:text-slate-600 hover:border-brand-400 focus:border-brand-500 focus:ring-1 focus:ring-brand-500/30'
@@ -482,18 +482,23 @@ function OrderStepsPBQ({ config, state, locked, onChange }: {
                             {locked && isWrongPos && <X className="w-4 h-4 text-red-400 flex-shrink-0" />}
 
                             {!locked && (
-                                <div className="flex flex-col gap-0.5 flex-shrink-0">
+                                /* These were p-0.5 around a 14px icon — roughly 18px of
+                                   tappable area, and on touch they are the only way to
+                                   reorder at all. 44px each. */
+                                <div className="flex flex-col gap-1 flex-shrink-0">
                                     <button
                                         onClick={(e) => { e.stopPropagation(); handleMoveUp(pos); }}
                                         disabled={pos === 0}
-                                        className="p-0.5 rounded hover:bg-slate-700 disabled:opacity-20 transition-colors"
+                                        aria-label="Move step up"
+                                        className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded hover:bg-slate-700 disabled:opacity-20 transition-colors"
                                     >
                                         <ArrowUp className="w-3.5 h-3.5 text-slate-400" />
                                     </button>
                                     <button
                                         onClick={(e) => { e.stopPropagation(); handleMoveDown(pos); }}
                                         disabled={pos === order.length - 1}
-                                        className="p-0.5 rounded hover:bg-slate-700 disabled:opacity-20 transition-colors"
+                                        aria-label="Move step down"
+                                        className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded hover:bg-slate-700 disabled:opacity-20 transition-colors"
                                     >
                                         <ArrowDown className="w-3.5 h-3.5 text-slate-400" />
                                     </button>
@@ -581,7 +586,7 @@ function CommandPBQ({ config, state, locked, onChange }: {
                     <Terminal className="w-4 h-4 text-green-400" />
                     <span className="text-xs text-slate-400">Terminal</span>
                     {!locked && history.length > 0 && (
-                        <button onClick={handleClear} className="ml-auto text-xs text-slate-500 hover:text-red-400 transition-colors">
+                        <button onClick={handleClear} className="ml-auto inline-flex items-center min-h-[44px] px-2 text-xs text-slate-500 hover:text-red-400 transition-colors">
                             Clear
                         </button>
                     )}
@@ -607,8 +612,16 @@ function CommandPBQ({ config, state, locked, onChange }: {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={handleKeyDown}
-                                autoFocus
-                                className="flex-1 bg-transparent text-slate-200 outline-none caret-green-400"
+                                // No autoFocus on touch: it throws the software keyboard
+                                // up over half the screen before the scenario has been
+                                // read. The three off switches matter more — an Android
+                                // keyboard will otherwise capitalise and autocorrect
+                                // shell commands, so "ls -la" arrives as "Ls -la".
+                                autoCapitalize="none"
+                                autoCorrect="off"
+                                autoComplete="off"
+                                spellCheck={false}
+                                className="flex-1 bg-transparent text-slate-200 outline-none caret-green-400 text-base sm:text-sm min-h-[44px]"
                                 placeholder="Type a command..."
                             />
                         </div>

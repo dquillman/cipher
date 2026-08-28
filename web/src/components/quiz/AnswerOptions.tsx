@@ -92,7 +92,7 @@ export default function AnswerOptions({
                         aria-checked={multi ? isSelected(i) : undefined}
                         onClick={() => onSelect(i)}
                         disabled={showExplanation}
-                        className={`w-full text-left p-4 rounded-xl border-2 transition-colors duration-500 ease-in-out flex items-center gap-4 group motion-reduce:transition-none ${borderClass} ${showExplanation && isKey(i) ? 'correct-pop' : ''}`}
+                        className={`w-full text-left p-3 gap-3 sm:p-4 sm:gap-4 min-h-[44px] rounded-xl border-2 transition-colors duration-500 ease-in-out flex items-center group motion-reduce:transition-none ${borderClass} ${showExplanation && isKey(i) ? 'correct-pop' : ''}`}
                     >
                         <div className={`w-6 h-6 ${shapeClass} border-2 flex items-center justify-center flex-shrink-0 transition-colors duration-500 ease-in-out ${dotClass}`}>
                             {showExplanation && resultIcon ? (
@@ -105,7 +105,7 @@ export default function AnswerOptions({
                                 )
                             )}
                         </div>
-                        <span className={`text-base transition-colors duration-500 ease-in-out ${textClass}`}>
+                        <span className={`text-[15px] sm:text-base leading-snug sm:leading-normal transition-colors duration-500 ease-in-out ${textClass}`}>
                             {opt}
                         </span>
                     </button>

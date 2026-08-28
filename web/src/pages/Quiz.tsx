@@ -1601,7 +1601,7 @@ export default function Quiz() {
             </div>
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col items-center justify-center p-4">
+            <main className="flex-1 flex flex-col items-center justify-center p-2 sm:p-4">
                 {/* Mode Info Header */}
                 <QuizModeBanner quizType={quizType} />
 
@@ -1641,11 +1641,11 @@ export default function Quiz() {
                             </div>
                         )}
 
-                        <div className="p-4 sm:p-6 md:p-10">
+                        <div className="px-3 py-4 sm:p-6 md:p-10">
                             {questionProgressMap.has(currentQuestion.id) && (
                                 <p className="text-xs text-slate-500 mb-2 tracking-wide uppercase">Mastery check</p>
                             )}
-                            <h2 className="text-xl md:text-2xl font-medium text-white leading-relaxed mb-8 font-display">
+                            <h2 className="text-lg leading-snug mb-5 sm:text-xl sm:leading-relaxed sm:mb-8 md:text-2xl font-medium text-white font-display">
                                 {currentQuestion.stem}
                             </h2>
 
