@@ -115,7 +115,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
   if (!auth && !loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-900 text-white">
+      <div className="flex min-h-dvh items-center justify-center bg-slate-900 text-white">
         <div className="text-center p-8 bg-slate-800 rounded-xl border border-red-500/30">
           <h1 className="text-2xl font-bold text-red-500 mb-2">Configuration Error</h1>
           <p className="text-slate-300">Firebase failed to initialize. Please check your network connection or configuration.</p>
@@ -126,7 +126,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-slate-900 text-white">
+      <div className="flex h-dvh items-center justify-center bg-slate-900 text-white">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
       </div>
     );
@@ -219,7 +219,7 @@ function VersionGate({ children }: { children: ReactNode }) {
       return <>{children}</>;
     case 'block':
       return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-900 text-white">
+        <div className="flex min-h-dvh items-center justify-center bg-slate-900 text-white">
           <div className="text-center p-8 bg-slate-800 rounded-2xl border border-slate-700 max-w-md shadow-xl">
             <h1 className="text-2xl font-bold text-white mb-3">Update required</h1>
             <p className="text-slate-400 mb-6 leading-relaxed">
@@ -322,11 +322,17 @@ function FreePlanBanner() {
 function AppLayout() {
   const { isCollapsed } = useSidebar();
   return (
-    <div className="decoder min-h-screen bg-slate-900 text-slate-100 flex relative overflow-x-hidden">
+    <div className="decoder min-h-dvh bg-slate-900 text-slate-100 flex relative overflow-x-hidden">
       <TrialModal />
       <Sidebar />
       <MobileNav />
-      <div className={`flex-1 ml-0 ${isCollapsed ? 'md:ml-20' : 'md:ml-64'} flex flex-col pb-20 md:pb-0 transition-all duration-300`}>
+      {/* min-w-0: a flex child defaults to min-width:auto, so it refuses to
+          shrink below its content's min-content width. One non-wrapping row
+          inside the quiz explanation was enough to push this column to 507px
+          inside a 393px phone viewport — and because .decoder clips overflow-x,
+          the header (exam name, Q/N counter, theme toggle) was simply gone,
+          with no scroll to reach it. */}
+      <div className={`flex-1 min-w-0 ml-0 ${isCollapsed ? 'md:ml-20' : 'md:ml-64'} flex flex-col pb-20 md:pb-0 transition-all duration-300`}>
         <AppHeader />
         <FreePlanBanner />
         <div className="p-4 md:p-8">
@@ -403,7 +409,7 @@ class AppErrorBoundary extends React.Component<{ children: ReactNode }, { error:
       // this is the fallback if the reload cooldown is still active.)
       if (isDeployChunkError(this.state.error)) {
         return (
-          <div className="flex min-h-screen items-center justify-center bg-slate-900 text-white p-8">
+          <div className="flex min-h-dvh items-center justify-center bg-slate-900 text-white p-8">
             <div className="max-w-md text-center">
               <h1 className="text-2xl font-bold text-white mb-3 font-display">A new version is available</h1>
               <p className="text-slate-400 mb-6">CipherExam was just updated. Reload to get the latest — your progress is saved.</p>
@@ -413,7 +419,7 @@ class AppErrorBoundary extends React.Component<{ children: ReactNode }, { error:
         );
       }
       return (
-        <div className="flex min-h-screen items-center justify-center bg-slate-900 text-white p-8">
+        <div className="flex min-h-dvh items-center justify-center bg-slate-900 text-white p-8">
           <div className="max-w-lg text-center">
             <h1 className="text-2xl font-bold text-red-400 mb-4">Something went wrong</h1>
             <pre className="text-left text-sm text-slate-300 bg-slate-800 p-4 rounded-lg overflow-auto max-h-64 whitespace-pre-wrap">{this.state.error.message}{'\n'}{this.state.error.stack}</pre>
@@ -457,7 +463,7 @@ function App() {
           <SubscriptionProvider>
             <SmartQuizReviewProvider>
             <Suspense fallback={
-              <div className="flex h-screen items-center justify-center bg-slate-900 text-white">
+              <div className="flex h-dvh items-center justify-center bg-slate-900 text-white">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
               </div>
             }>

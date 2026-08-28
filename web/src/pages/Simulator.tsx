@@ -25,7 +25,7 @@ export default function Simulator() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white">
+            <div className="min-h-dvh bg-slate-900 flex items-center justify-center text-white">
                 <div className="text-center">
                     <div className="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
                     <p className="font-display font-medium text-lg">Preparing Exam Environment...</p>
@@ -39,7 +39,7 @@ export default function Simulator() {
     const currentQ = questions[currentIndex];
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col md:flex-row h-screen overflow-hidden">
+        <div className="min-h-dvh bg-slate-900 text-slate-100 flex flex-col md:flex-row h-dvh overflow-hidden">
             {/* Left Sidebar - Navigator */}
             <div className="hidden md:block">
                 <QuestionNavigator onQuit={() => {}}

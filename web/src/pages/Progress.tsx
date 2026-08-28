@@ -54,7 +54,7 @@ export default function Progress() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
+            <div className="min-h-dvh flex items-center justify-center bg-slate-900 text-white">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
             </div>
         );
@@ -63,7 +63,7 @@ export default function Progress() {
     const masteryPercentage = stats.total > 0 ? Math.round((stats.mastered / stats.total) * 100) : 0;
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-200 font-sans p-8">
+        <div className="min-h-dvh bg-slate-900 text-slate-200 font-sans p-8">
             <div className="max-w-4xl mx-auto space-y-8">
                 <div className="flex items-center gap-4">
                     <Link to="/" className="p-2 rounded-xl hover:bg-white/5 text-slate-400 hover:text-white transition-colors">

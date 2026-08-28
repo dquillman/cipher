@@ -171,7 +171,7 @@ export default function Login() {
     };
 
     return (
-        <div className="decoder min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#020617" }}>
+        <div className="decoder min-h-dvh bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden" style={{ background: "#020617" }}>
             {/* Atmospheric background */}
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-brand-600/15 blur-[120px]" />
             <div className="absolute bottom-0 right-0 h-[300px] w-[300px] rounded-full bg-blue-600/10 blur-[100px]" />

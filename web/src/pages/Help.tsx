@@ -21,7 +21,7 @@ export default function Help() {
     const [isReportModalOpen, setIsReportModalOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-brand-500/30">
+        <div className="min-h-dvh bg-slate-900 text-slate-100 font-sans selection:bg-brand-500/30">
             {/* Header */}
             <header className="bg-slate-800/50 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
                 <div className="mx-auto max-w-5xl px-6 h-20 flex items-center justify-between">

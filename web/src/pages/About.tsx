@@ -6,7 +6,7 @@ import { Mic, Brain, Crosshair, BarChart3, Flame, Timer } from 'lucide-react';
 
 export default function About() {
     return (
-        <div className="decoder min-h-screen flex flex-col bg-slate-900 text-slate-200">
+        <div className="decoder min-h-dvh flex flex-col bg-slate-900 text-slate-200">
             <SeoHead {...SEO.about} />
             <PublicNav />
 

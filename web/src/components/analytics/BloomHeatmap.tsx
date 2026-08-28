@@ -102,7 +102,7 @@ export default function BloomHeatmap({ examId, examDomains = [] }: Props) {
                             onClick={() => setShowPrimerModal(true)}
                             onMouseEnter={() => setShowTooltip(true)}
                             onMouseLeave={() => setShowTooltip(false)}
-                            className="text-slate-500 hover:text-indigo-300 transition-colors"
+                            className="text-slate-500 hover:text-indigo-300 transition-colors inline-flex items-center justify-center w-11 h-11 -m-3.5"
                             aria-label="What is Bloom's Taxonomy?"
                         >
                             <Info className="w-4 h-4" />

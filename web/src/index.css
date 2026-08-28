@@ -31,7 +31,11 @@
 
     body {
         margin: 0;
+        /* 100vh on Android Chrome is the URL-bar-hidden height, so a 100vh
+           shell overflows by the bar's height whenever it is visible. dvh
+           tracks the actual viewport; the vh line stays as the fallback. */
         min-height: 100vh;
+        min-height: 100dvh;
         width: 100%;
         overflow-x: hidden;
         background-color: transparent;

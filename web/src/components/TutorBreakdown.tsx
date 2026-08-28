@@ -93,7 +93,11 @@ export default function TutorBreakdown({ breakdown, loading, onExpandDepth, dept
     // while loading (prevents a second in-flight request racing the first);
     // audio controls render only once there's a verdict to read.
     const header = (
-        <div className="bg-indigo-900/30 px-6 py-3 border-b border-indigo-500/20 flex items-center justify-between">
+        // flex-wrap + a narrower phone gutter: title, Quick/Deep toggle and the
+        // audio controls used to sit on one unbreakable line, giving this row a
+        // min-content width of 360px against 251px of available space. That is
+        // what pushed the whole app shell wider than the viewport on a phone.
+        <div className="bg-indigo-900/30 px-3 sm:px-6 py-3 border-b border-indigo-500/20 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
             <div className="flex items-center gap-2">
                 <span className="text-xl">👨‍🏫</span>
                 <h3 className="text-indigo-200 font-bold font-display">Coach Breakdown</h3>

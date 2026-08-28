@@ -24,7 +24,7 @@ export default function PublicPricing() {
     };
 
     return (
-        <div className="decoder bg-slate-900 min-h-screen font-sans selection:bg-brand-500/30 text-slate-200">
+        <div className="decoder bg-slate-900 min-h-dvh font-sans selection:bg-brand-500/30 text-slate-200">
             <SeoHead {...SEO.pricing} />
             <PublicNav />
 

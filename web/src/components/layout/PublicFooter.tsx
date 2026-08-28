@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom';
 import { SUPPORT_EMAIL } from '../../config/support';
 
 const columnHeaderClass = 'text-sm font-bold text-slate-300 uppercase tracking-wider mb-4';
-const footerLinkClass = 'text-sm text-slate-500 hover:text-white transition-colors';
+// inline-flex + min-h-[44px] gives each link a real touch target; the 25px
+// line box these had was well under the 44px minimum on a phone.
+const footerLinkClass = 'text-sm text-slate-500 hover:text-white transition-colors inline-flex items-center min-h-[44px]';
 
 export default function PublicFooter() {
   return (
@@ -27,7 +29,7 @@ export default function PublicFooter() {
           {/* Product */}
           <div>
             <h4 className={columnHeaderClass}>Product</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-1 sm:space-y-3">
               <li><a href="/#features" className={footerLinkClass}>Features</a></li>
               <li><Link to="/pricing" className={footerLinkClass}>Pricing</Link></li>
               <li><a href="/#exams" className={footerLinkClass}>Exams</a></li>
@@ -37,7 +39,7 @@ export default function PublicFooter() {
           {/* Company */}
           <div>
             <h4 className={columnHeaderClass}>Company</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-1 sm:space-y-3">
               <li><Link to="/story" className={footerLinkClass}>Our Story</Link></li>
               <li><Link to="/blog" className={footerLinkClass}>Blog</Link></li>
             </ul>
@@ -46,7 +48,7 @@ export default function PublicFooter() {
           {/* Legal */}
           <div>
             <h4 className={columnHeaderClass}>Legal</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-1 sm:space-y-3">
               <li><Link to="/terms" className={footerLinkClass}>Terms</Link></li>
               <li><Link to="/privacy" className={footerLinkClass}>Privacy</Link></li>
             </ul>

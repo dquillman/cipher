@@ -96,7 +96,7 @@ export default function ReadinessReportPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+            <div className="min-h-dvh bg-slate-900 flex items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
             </div>
         );
@@ -104,7 +104,7 @@ export default function ReadinessReportPage() {
 
     if (!report || report.totalQuestionsAnswered === 0) {
         return (
-            <div className="min-h-screen bg-slate-900 p-8 flex flex-col items-center justify-center text-center">
+            <div className="min-h-dvh bg-slate-900 p-8 flex flex-col items-center justify-center text-center">
                 <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 max-w-md">
                     <BarChart2 className="w-16 h-16 text-slate-500 mx-auto mb-4" />
                     <h2 className="text-2xl font-bold text-white mb-2">Not Enough Data</h2>
@@ -149,7 +149,7 @@ export default function ReadinessReportPage() {
     const offset = circumference - ((displayedScore ?? 0) / 100) * circumference;
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 pb-24">
+        <div className="min-h-dvh bg-slate-900 text-slate-100 p-4 md:p-8 pb-24">
             <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
                 <DashboardLink />
 

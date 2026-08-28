@@ -85,7 +85,7 @@ export default function SetupPlanner() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-100 flex items-center justify-center p-4">
+        <div className="min-h-dvh bg-slate-900 text-slate-100 flex items-center justify-center p-4">
             <div className="max-w-md w-full bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl">
                 {/* Flexible Practice Microcopy - shown when user doesn't have a plan yet */}
                 {!editMode && !fromDiagnostic && (

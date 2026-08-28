@@ -38,7 +38,7 @@ export default function Success() {
     }, [navigate]);
 
     return (
-        <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4">
+        <div className="min-h-dvh bg-slate-900 flex flex-col items-center justify-center p-4">
             <div className="bg-slate-800 p-8 rounded-3xl border border-green-500/30 max-w-md w-full text-center space-y-6 shadow-2xl shadow-green-500/20">
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 ring-4 ring-green-500/10">
                     <Check className="w-10 h-10 text-green-400" />

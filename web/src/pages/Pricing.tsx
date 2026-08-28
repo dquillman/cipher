@@ -116,7 +116,7 @@ export default function Pricing() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center py-20 px-4">
+        <div className="min-h-dvh bg-slate-900 text-white flex flex-col items-center py-20 px-4">
             <div className="max-w-4xl w-full text-center space-y-6">
                 <h1 className="text-4xl md:text-5xl font-bold text-white font-display">
                     {copy.pro_value_primary}

@@ -45,7 +45,7 @@ function EmptyChartState({ message, minHeight = 160 }: { message: string; minHei
         <div className="flex flex-col items-center justify-center py-8 text-center bg-slate-800/30 rounded-xl border border-slate-700/50" style={{ minHeight }}>
             <BarChart2 className="w-8 h-8 text-slate-600 mb-3" />
             <p className="text-sm text-slate-500 mb-2">{message}</p>
-            <Link to="/app/quiz" className="text-xs text-brand-400 hover:text-brand-300 font-medium transition-colors">
+            <Link to="/app/quiz" className="text-xs text-brand-400 hover:text-brand-300 font-medium transition-colors inline-flex items-center min-h-[44px] px-3">
                 Start practicing &rarr;
             </Link>
         </div>
@@ -239,7 +239,7 @@ export default function Stats() {
                                             <div className="flex flex-col items-center justify-center py-8 text-center bg-slate-800/30 rounded-xl border border-slate-700/50" style={{ minHeight: 160 }}>
                                                 <BarChart2 className="w-8 h-8 text-slate-600 mb-3" />
                                                 <p className="text-sm text-slate-500 mb-2">{emptyMsg}</p>
-                                                <Link to="/app/quiz" className="text-xs text-brand-400 hover:text-brand-300 font-medium transition-colors">
+                                                <Link to="/app/quiz" className="text-xs text-brand-400 hover:text-brand-300 font-medium transition-colors inline-flex items-center min-h-[44px] px-3">
                                                     Start practicing &rarr;
                                                 </Link>
                                             </div>

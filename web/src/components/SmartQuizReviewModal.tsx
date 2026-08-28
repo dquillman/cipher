@@ -41,9 +41,14 @@ export default function SmartQuizReviewModal({ open, onClose, reviewText, loadin
                 </div>
 
                 {/* Body */}
-                <div className="px-7 py-6">
+                <div className="px-4 sm:px-7 py-6">
                     {isPro ? (
-                        <div className="max-h-[30rem] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+                        /* No inner scroller on a phone. A fixed 480px window over
+                           ~3,200px of coaching text, nested inside a page that also
+                           scrolls, traps touch momentum and hides which surface is
+                           moving. Let it flow on mobile; keep the contained box from
+                           sm: up, where a second scroll region reads correctly. */
+                        <div className="max-h-none sm:max-h-[30rem] overflow-visible sm:overflow-y-auto sm:pr-2 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
                             <div className="space-y-5">
                                 {loading ? (
                                     <div className="flex items-center gap-3 py-10 justify-center">

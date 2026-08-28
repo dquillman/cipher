@@ -1419,12 +1419,12 @@ export default function Quiz() {
     }, [loading, quizCompleted, currentQuestionIndex, quizType, activeExamId, questions]);
 
     if (loading) {
-        return <div className="min-h-screen flex items-center justify-center">Loading quiz...</div>;
+        return <div className="min-h-dvh flex items-center justify-center">Loading quiz...</div>;
     }
 
     if (validationError) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="min-h-dvh flex items-center justify-center">
                 <div className="bg-slate-900/50 backdrop-blur-md p-4 sm:p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700">
                     <p className="text-slate-300 text-base sm:text-lg mb-4">{validationError}</p>
                     <button
@@ -1443,7 +1443,7 @@ export default function Quiz() {
         // back to the full bank when a filter matches nothing). Give the learner
         // a way out instead of an admin-facing dead end.
         return (
-            <div className="min-h-screen flex items-center justify-center p-4">
+            <div className="min-h-dvh flex items-center justify-center p-4">
                 <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl border border-slate-700 text-center max-w-md w-full">
                     <p className="text-slate-200 text-lg font-semibold mb-2">No questions available for this exam yet.</p>
                     <p className="text-slate-400 text-sm mb-6">We’re still building this question bank. Try another exam in the meantime.</p>
@@ -1474,8 +1474,35 @@ export default function Quiz() {
 
     const currentQuestion = questions[currentQuestionIndex];
 
+    // One definition, two mounts: inline at the foot of the card on desktop,
+    // and in a fixed bottom bar on phones (see the note at the card footer).
+    const quizActions = !showExplanation ? (
+        <button
+            onClick={handleSubmit}
+            disabled={currentQuestion.type === 'pbq' ? !pbqState : currentQuestion.type === 'matching' ? !matchingState : currentQuestion.type === 'multi-response' ? !canSubmitMultiResponse(multiSelected) : selectedOption === null}
+            className="w-full sm:w-auto bg-brand-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-brand-500/30 hover:bg-brand-500 hover:shadow-brand-500/40 transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        >
+            {currentQuestion.type === 'pbq' ? 'Submit PBQ' : currentQuestion.type === 'matching' ? 'Check Matches' : currentQuestion.type === 'multi-response' ? 'Submit Answers' : 'Submit Answer'}
+        </button>
+    ) : (
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
+            <button
+                onClick={() => setExplanationExpanded(!explanationExpanded)}
+                className="w-full sm:w-auto bg-blue-600/20 text-blue-300 border border-blue-500/30 px-6 py-3 rounded-xl font-medium hover:bg-blue-600/30 transition-all"
+            >
+                {explanationExpanded ? 'Hide Explanation' : 'Show Explanation'}
+            </button>
+            <button
+                onClick={handleNext}
+                className="w-full sm:w-auto bg-brand-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-brand-500/30 hover:bg-brand-500 hover:shadow-brand-500/40 transition-all transform hover:-translate-y-0.5"
+            >
+                {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
+            </button>
+        </div>
+    );
+
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-dvh flex flex-col pb-24 sm:pb-0">
             {/* Header */}
             <header className="bg-slate-800/50 backdrop-blur-md border-b border-slate-700 px-4 py-4 sticky top-0 z-50">
                 <div className="mx-auto max-w-4xl flex justify-between items-center">
@@ -1672,31 +1699,15 @@ export default function Quiz() {
                             )}
                         </div>
 
-                        <div className="bg-slate-900/30 px-4 sm:px-8 py-4 border-t border-slate-700/50 flex justify-end">
-                            {!showExplanation ? (
-                                <button
-                                    onClick={handleSubmit}
-                                    disabled={currentQuestion.type === 'pbq' ? !pbqState : currentQuestion.type === 'matching' ? !matchingState : currentQuestion.type === 'multi-response' ? !canSubmitMultiResponse(multiSelected) : selectedOption === null}
-                                    className="w-full sm:w-auto bg-brand-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-brand-500/30 hover:bg-brand-500 hover:shadow-brand-500/40 transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                                >
-                                    {currentQuestion.type === 'pbq' ? 'Submit PBQ' : currentQuestion.type === 'matching' ? 'Check Matches' : currentQuestion.type === 'multi-response' ? 'Submit Answers' : 'Submit Answer'}
-                                </button>
-                            ) : (
-                                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
-                                    <button
-                                        onClick={() => setExplanationExpanded(!explanationExpanded)}
-                                        className="w-full sm:w-auto bg-blue-600/20 text-blue-300 border border-blue-500/30 px-6 py-3 rounded-xl font-medium hover:bg-blue-600/30 transition-all"
-                                    >
-                                        {explanationExpanded ? 'Hide Explanation' : 'Show Explanation'}
-                                    </button>
-                                    <button
-                                        onClick={handleNext}
-                                        className="w-full sm:w-auto bg-brand-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-brand-500/30 hover:bg-brand-500 hover:shadow-brand-500/40 transition-all transform hover:-translate-y-0.5"
-                                    >
-                                        {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
-                                    </button>
-                                </div>
-                            )}
+                        {/* Desktop keeps the action row at the foot of the card. On a
+                            phone the card runs 2,400-4,000px tall, so this row sat two
+                            screens below the fold and every question cost a long scroll
+                            just to submit — the same buttons are pinned to the bottom of
+                            the viewport under sm: instead. The card sets overflow-hidden
+                            for its rounded corners, which kills position:sticky inside
+                            it, so the mobile bar is fixed and rendered outside. */}
+                        <div className="bg-slate-900/30 px-4 sm:px-8 py-4 border-t border-slate-700/50 hidden sm:flex justify-end">
+                            {quizActions}
                         </div>
                     </div>
                 </div>
@@ -1704,6 +1715,12 @@ export default function Quiz() {
             <footer className="py-6 text-center text-xs text-slate-600">
                 {examName} Bank v{bankVersion}
             </footer>
+
+            {/* Phone action bar. MobileNav bails out on /quiz routes, so the
+                bottom of the viewport is free and nothing collides here. */}
+            <div className="sm:hidden fixed inset-x-0 bottom-0 z-40 bg-slate-950/95 backdrop-blur-md border-t border-slate-700/50 px-4 py-3 safe-area-bottom">
+                {quizActions}
+            </div>
 
             <SubscriptionUpsellModal
                 isOpen={showUpsell}

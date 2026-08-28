@@ -33,7 +33,7 @@ export default function DaylightPreview() {
     const [showExplanation, setShowExplanation] = useState(false);
 
     return (
-        <div className="min-h-screen flex flex-col bg-slate-900 text-slate-100">
+        <div className="min-h-dvh flex flex-col bg-slate-900 text-slate-100">
             {/* Header — mirrors Quiz.tsx */}
             <header className="bg-slate-800/50 backdrop-blur-md border-b border-slate-700 px-4 py-4 sticky top-0 z-50">
                 <div className="mx-auto max-w-4xl flex justify-between items-center">

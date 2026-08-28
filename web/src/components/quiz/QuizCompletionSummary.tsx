@@ -49,7 +49,7 @@ export default function QuizCompletionSummary({
         }
 
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-950">
+            <div className="min-h-dvh flex items-center justify-center bg-slate-950">
                 <div className="bg-slate-900/50 backdrop-blur-md p-4 sm:p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700 animate-in fade-in zoom-in duration-500 max-h-[90vh] overflow-y-auto">
 
                     <div className="mb-6">
@@ -164,7 +164,7 @@ export default function QuizCompletionSummary({
         const trapName = location.state.patternName || "Thinking Trap";
 
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-950">
+            <div className="min-h-dvh flex items-center justify-center bg-slate-950">
                 <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700">
                     <div className="w-16 h-16 bg-brand-500/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-500/20 text-brand-400">
                         {accuracy >= 70 ? <Crosshair className="h-7 w-7" strokeWidth={1.75} /> : <Wrench className="h-7 w-7" strokeWidth={1.75} />}
@@ -225,7 +225,7 @@ export default function QuizCompletionSummary({
         const trapName = location.state.patternName || "Thinking Trap";
 
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-950">
+            <div className="min-h-dvh flex items-center justify-center bg-slate-950">
                 <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700">
                     {/* Reinforcement Memory Generation */}
                     {(() => {
@@ -298,7 +298,7 @@ export default function QuizCompletionSummary({
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-dvh flex items-center justify-center">
             <div className="bg-slate-800/50 backdrop-blur-md p-4 sm:p-8 rounded-2xl shadow-2xl shadow-black/20 text-center max-w-md w-full border border-slate-700 max-h-[90vh] overflow-y-auto">
                 <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-display">Quiz Completed!</h2>
                 <p className="text-lg sm:text-xl text-slate-300 mb-6">You scored <span className="font-bold text-brand-400">{score} / {totalQuestions}</span></p>

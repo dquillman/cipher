@@ -350,7 +350,7 @@ export default function VerbalMode() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white flex flex-col items-center justify-between p-8 relative overflow-hidden">
+        <div className="min-h-dvh bg-black text-white flex flex-col items-center justify-between p-8 relative overflow-hidden">
             {/* Back to Dashboard */}
             <div className="w-full z-10">
                 <DashboardLink />

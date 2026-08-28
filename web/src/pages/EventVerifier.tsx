@@ -106,7 +106,7 @@ export default function EventVerifier() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-200 p-6">
+    <div className="min-h-dvh bg-slate-900 text-slate-200 p-6">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-4">

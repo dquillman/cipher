@@ -89,7 +89,7 @@ export default function Sidebar() {
     const menuItems = allMenuItems;
 
     return (
-        <aside className={`fixed left-0 top-0 z-40 h-screen hidden md:flex ${isCollapsed ? 'w-20' : 'w-64'} bg-slate-950 border-r border-slate-800 flex-col transition-all duration-300`}>
+        <aside className={`fixed left-0 top-0 z-40 h-dvh hidden md:flex ${isCollapsed ? 'w-20' : 'w-64'} bg-slate-950 border-r border-slate-800 flex-col transition-all duration-300`}>
             {/* Brand */}
             <div className={`flex px-6 py-6 items-center gap-2 border-b border-slate-900 ${isCollapsed ? 'justify-center' : ''} relative`}>
                 <img src="/favicon.png" alt="CipherExam" className="h-8 w-8 min-w-8 rounded-lg object-contain" />

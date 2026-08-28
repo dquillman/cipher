@@ -182,7 +182,7 @@ export default function SimulatorResults() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
+        <div className="min-h-dvh bg-slate-900 text-slate-100 p-4 md:p-8 font-sans">
             <div className="max-w-5xl mx-auto w-full">
 
                 {/* Header */}

@@ -210,7 +210,7 @@ export default function Faq() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-100 pb-24">
+        <div className="min-h-dvh bg-slate-900 text-slate-100 pb-24">
             <div className="max-w-3xl mx-auto px-6 py-12">
                 <DashboardLink />
 

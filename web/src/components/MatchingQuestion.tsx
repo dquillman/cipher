@@ -109,7 +109,17 @@ export default function MatchingQuestion({
                         {/* Right: Definition (tappable) */}
                         <div
                             onClick={() => handleTap(i)}
-                            className={`flex-1 p-3 sm:p-4 rounded-xl border-2 transition-all duration-200 flex items-center gap-3 select-none ${
+                            onKeyDown={(e) => {
+                                if (locked) return;
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleTap(i);
+                                }
+                            }}
+                            role={locked ? undefined : 'button'}
+                            tabIndex={locked ? undefined : 0}
+                            aria-pressed={locked ? undefined : isSelected}
+                            className={`flex-1 p-3 sm:p-4 rounded-xl border-2 transition-all duration-200 flex items-center gap-3 select-none min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 ${
                                 locked ? '' : 'cursor-pointer'
                             } ${rightBorder} ${rightBg} ${ringClass}`}
                         >
