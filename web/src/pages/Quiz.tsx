@@ -1102,7 +1102,10 @@ export default function Quiz() {
                     page: 'quiz',
                     examId: activeExamId,
                     coachMode: mode,
-                    questionType: question.type,
+                    // type is optional on Question and absent on ordinary
+                    // multiple-choice items. Name the default rather than
+                    // sending undefined, so the analytics split is readable.
+                    questionType: question.type ?? 'standard',
                     outcome: coachOutcome,
                     // A cache hit is a single Firestore read inside the
                     // callable and lands well under a second; a miss is a full

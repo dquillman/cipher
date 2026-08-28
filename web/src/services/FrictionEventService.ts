@@ -55,12 +55,27 @@ export const FrictionEventService = {
 
         sessionStorage.setItem(dedupKey, String(count + 1));
 
-        addDoc(collection(db, 'friction_events'), {
-            userId,
-            eventType,
-            meta: meta || {},
-            url: window.location.pathname,
-            timestamp: serverTimestamp(),
-        }).catch(() => {}); // Silent fail — never block UI
+        // Firestore rejects any document containing an undefined value, and it
+        // throws synchronously from addDoc() — before the promise exists — so a
+        // trailing .catch() never sees it. An optional field that happens to be
+        // absent (question.type on an ordinary multiple-choice item) was enough
+        // to make every write fail. Drop undefined keys before we hand it over.
+        const cleanMeta: Record<string, unknown> = {};
+        for (const [k, v] of Object.entries(meta ?? {})) {
+            if (v !== undefined) cleanMeta[k] = v;
+        }
+
+        try {
+            addDoc(collection(db, 'friction_events'), {
+                userId,
+                eventType,
+                meta: cleanMeta,
+                url: window.location.pathname,
+                timestamp: serverTimestamp(),
+            }).catch(() => {}); // Silent fail — never block UI
+        } catch {
+            // addDoc can also throw synchronously on malformed data. Telemetry
+            // must never take the UI down with it.
+        }
     },
 };
