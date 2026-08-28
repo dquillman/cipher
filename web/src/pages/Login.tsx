@@ -181,7 +181,7 @@ export default function Login() {
                 <div className="text-left -mt-2 mb-4">
                     <button
                         onClick={() => navigate('/')}
-                        className="flex items-center gap-2 text-sm text-slate-400 hover:text-brand-400 transition-colors mb-4 group"
+                        className="flex items-center gap-2 min-h-[44px] pr-3 text-sm text-slate-400 hover:text-brand-400 transition-colors mb-2 group"
                         type="button"
                     >
                         <span className="group-hover:-translate-x-1 transition-transform">← </span> Back to Home
@@ -225,7 +225,7 @@ export default function Login() {
                                 <input
                                     type="text"
                                     required
-                                    className="block w-full rounded-lg border border-slate-600 bg-slate-900/50 px-3 py-2 text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-brand-500 sm:text-sm"
+                                    className="block w-full min-h-[44px] rounded-lg border border-slate-600 bg-slate-900/50 px-3 py-2 text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-brand-500 sm:text-sm"
                                     placeholder="Your name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
@@ -238,7 +238,7 @@ export default function Login() {
                             <input
                                 type="email"
                                 required
-                                className="block w-full rounded-lg border border-slate-600 bg-slate-900/50 px-3 py-2 text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-brand-500 sm:text-sm"
+                                className="block w-full min-h-[44px] rounded-lg border border-slate-600 bg-slate-900/50 px-3 py-2 text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-brand-500 sm:text-sm"
                                 placeholder="you@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -251,16 +251,19 @@ export default function Login() {
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     required
-                                    className="block w-full rounded-lg border border-slate-600 bg-slate-900/50 px-3 py-2 pr-10 text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-brand-500 sm:text-sm"
+                                    className="block w-full min-h-[44px] rounded-lg border border-slate-600 bg-slate-900/50 px-3 py-2 pr-12 text-white placeholder-slate-500 focus:border-brand-500 focus:outline-none focus:ring-brand-500 sm:text-sm"
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    autoComplete="current-password"
+                                    // On signup this must be new-password: with current-password a
+                                    // password manager offers the account's existing password and the
+                                    // browser will not offer to generate a strong one.
+                                    autoComplete={isLogin ? "current-password" : "new-password"}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-200 transition-colors"
+                                    className="absolute inset-y-0 right-0 flex items-center justify-center min-w-[44px] text-slate-400 hover:text-slate-200 transition-colors"
                                     aria-label={showPassword ? 'Hide password' : 'Show password'}
                                 >
                                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -271,7 +274,7 @@ export default function Login() {
                                     <button
                                         type="button"
                                         onClick={handleForgotPassword}
-                                        className="text-xs text-brand-400 hover:text-brand-300 transition-colors"
+                                        className="inline-flex items-center min-h-[44px] text-xs text-brand-400 hover:text-brand-300 transition-colors"
                                     >
                                         Forgot password?
                                     </button>
@@ -297,7 +300,7 @@ export default function Login() {
                 </form>
                 <div className="text-center">
                     <button
-                        className="text-sm font-medium text-brand-400 hover:text-brand-300"
+                        className="inline-flex items-center justify-center min-h-[44px] px-3 text-sm font-medium text-brand-400 hover:text-brand-300"
                         onClick={() => setIsLogin(!isLogin)}
                     >
                         {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
