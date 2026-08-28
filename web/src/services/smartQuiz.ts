@@ -1,5 +1,6 @@
 import { db } from '../firebase';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { excludeQuarantined } from '../utils/questionStatus';
 
 
 
@@ -277,7 +278,7 @@ export const SmartQuizService = {
                 );
 
                 const snap = await getDocs(q);
-                pool = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                pool = excludeQuarantined(snap.docs.map(d => ({ id: d.id, ...d.data() })) as Array<{ id: string; status?: string }>);
             } catch (error) {
                 console.error("Error fetching trap questions:", error);
             }

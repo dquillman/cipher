@@ -31,6 +31,7 @@ import AnswerOptions from '../components/quiz/AnswerOptions';
 import ExplanationPanel from '../components/quiz/ExplanationPanel';
 import StudyThemeToggle from '../components/quiz/StudyThemeToggle';
 import { useStudyTheme } from '../hooks/useStudyTheme';
+import { excludeQuarantined } from '../utils/questionStatus';
 
 /** Persisted `selectedOption` for a format that has no single chosen index
  *  (matching, pbq, multi-response). Never a real option index — consumers only
@@ -452,10 +453,10 @@ export default function Quiz() {
 
                 let questionsSnap = await getDocs(q);
                 mark('questionBankFetched', questionsSnap.size);
-                let allQuestions = questionsSnap.docs.map(doc => ({
+                let allQuestions = excludeQuarantined(questionsSnap.docs.map(doc => ({
                     id: doc.id,
                     ...doc.data()
-                })) as Question[];
+                })) as Question[]);
 
                 // Empty-result fallback: if bloom filter returned nothing, drop it and keep domain filter.
                 // This avoids stranding users on an empty quiz when a domain/Bloom cell has no questions.
@@ -465,10 +466,10 @@ export default function Quiz() {
                     const fallbackConstraints = constraints.filter(c => c !== bloomConstraint);
                     q = query(questionsRef, ...fallbackConstraints);
                     questionsSnap = await getDocs(q);
-                    allQuestions = questionsSnap.docs.map(doc => ({
+                    allQuestions = excludeQuarantined(questionsSnap.docs.map(doc => ({
                         id: doc.id,
                         ...doc.data()
-                    })) as Question[];
+                    })) as Question[]);
                     bloomFallbackApplied = true;
                 }
 
@@ -483,7 +484,7 @@ export default function Quiz() {
                 if (allQuestions.length === 0 && (filterDomain || filterBloomLevel)) {
                     console.warn(`No questions for examId=${activeExamId} with domain=${filterDomain ?? 'any'}/bloom=${filterBloomLevel ?? 'any'}. Falling back to the full exam bank.`);
                     questionsSnap = await getDocs(query(questionsRef, where('examId', '==', activeExamId)));
-                    allQuestions = questionsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Question[];
+                    allQuestions = excludeQuarantined(questionsSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Question[]);
                     filterFellBackToAll = true;
                 }
 

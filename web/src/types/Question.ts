@@ -1,3 +1,4 @@
+import type { QuestionStatus } from '../utils/questionStatus';
 import type { PBQConfig } from '../components/PBQQuestion';
 import type { BloomLevel } from './Bloom';
 import type { QuestionType } from '../config/exams';
@@ -41,6 +42,13 @@ export interface Question {
     bloomLevel?: BloomLevel; // Bloom's Taxonomy cognitive level
     /** Question format. Union lives in config/exams.ts — single source of truth. */
     type?: QuestionType;
+    /** Which generator or authoring pass produced this item. Absent on older
+     *  documents. Worth keeping — it is how the AI-AutoLeveler quality problem
+     *  was isolated. */
+    source?: string;
+    /** Absent means active. 'quarantined' takes the question out of circulation
+     *  without deleting it — see utils/questionStatus.ts. */
+    status?: QuestionStatus;
     scenarios?: {
         label: string;
         probability: number;
