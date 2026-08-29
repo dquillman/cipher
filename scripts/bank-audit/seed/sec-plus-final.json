@@ -1,0 +1,61 @@
+[
+{"objective":"2.3","domain":"Threats, Vulnerabilities, and Mitigations","difficulty":"medium",
+"stem":"A user reports their workstation is slow. Analysis finds a browser extension, installed from an official store, that reads page content on every site and posts it to an external endpoint. The extension has 400,000 users and a five-star rating. What best describes this?",
+"options":["A trusted-channel compromise where legitimate distribution and reputation mask malicious functionality","A zero-day exploit in the browser's extension sandbox","A drive-by download that installed without user interaction","A rootkit operating below the browser at kernel level"],
+"correctAnswer":0,
+"explanation":"Official store distribution, a large install base, and strong ratings are the trust signals users and many controls rely on, and none of them speak to what the code actually does with its granted permissions. Extensions are frequently sold or updated into surveillance after building reputation. No sandbox flaw is involved — the extension is using permissions it was legitimately granted. A drive-by download requires no user action, but the stem states it was installed from a store. A rootkit operates at the operating system level, not as a browser extension."},
+
+{"objective":"2.5","domain":"Threats, Vulnerabilities, and Mitigations","difficulty":"medium",
+"stem":"A penetration tester obtains a low-privilege shell and finds a scheduled task running as SYSTEM that executes C:\\Program Files\\App\\service.exe, written without surrounding quotation marks. Which weakness does this create?",
+"options":["An unquoted service path allowing execution of C:\\Program.exe if the tester can write to the drive root","A buffer overflow in the service executable's argument parsing","A DLL side-loading opportunity in the application directory","A symbolic link race condition during service startup"],
+"correctAnswer":0,
+"explanation":"Windows resolves an unquoted path by trying each space-delimited prefix in turn, so it attempts C:\\Program.exe before the intended target. If the low-privilege account can write to the drive root, planting that file yields SYSTEM execution. The flaw is in how the path was registered, not in the executable's parsing, so no overflow is involved. DLL side-loading is a real but different technique requiring a missing or hijackable library rather than a path resolution quirk. A symlink race involves timing between check and use, which is not what the missing quotes create."},
+
+{"objective":"1.3","domain":"General Security Concepts","difficulty":"medium",
+"stem":"An organization maintains a documented list of every approved software package, and endpoints refuse to execute anything not on that list. A new finance tool cannot run until it is added. Which control model is in force?",
+"options":["Application allow-listing operating on a default-deny basis","Antivirus scanning using heuristic detection","Least privilege enforced through user account control","Sandboxing of untrusted applications at runtime"],
+"correctAnswer":0,
+"explanation":"Execution is denied unless explicitly permitted, which is allow-listing built on default deny — strong against unknown and fileless threats, at the cost of operational overhead exactly as the finance tool illustrates. Antivirus is deny-listing: it blocks what it recognizes as bad and permits everything else, so a new tool would simply run. Least privilege limits what an account may do once code executes; it does not decide which binaries may start. Sandboxing isolates an application's effects rather than preventing it from launching."},
+
+{"objective":"1.4","domain":"General Security Concepts","difficulty":"medium",
+"stem":"A certificate authority must publish the status of a certificate revoked this morning. Clients need to check status without downloading a large list on every connection. Which mechanism meets this requirement most efficiently?",
+"options":["OCSP stapling, where the server presents a recent signed status response during the handshake","Distributing an updated certificate revocation list to every client hourly","Shortening all certificate lifetimes to one hour so revocation is unnecessary","Pinning the certificate in each client so revoked certificates are rejected automatically"],
+"correctAnswer":0,
+"explanation":"OCSP stapling has the server fetch a signed status response and include it in the TLS handshake, so the client gets fresh revocation data with no extra round trip and no privacy leak to the CA. A CRL is the large list the requirement rules out, and hourly distribution to every client multiplies the problem. One-hour certificate lifetimes are an interesting direction but impose enormous issuance load and are not a revocation mechanism. Pinning binds a client to a specific certificate and actually makes rotation harder; it carries no revocation status."},
+
+{"objective":"1.2","domain":"General Security Concepts","difficulty":"hard",
+"stem":"A federated login flow returns an assertion containing the user's identity and group memberships, signed by the identity provider and consumed by a service provider that grants access accordingly. The service provider does not hold the user's password. Which statement correctly separates the two functions involved?",
+"options":["The identity provider performs authentication; the service provider performs authorization using the asserted attributes","The identity provider performs authorization; the service provider performs authentication against the assertion","Both authentication and authorization occur at the identity provider before the assertion is issued","Both occur at the service provider, with the identity provider acting only as a directory"],
+"correctAnswer":0,
+"explanation":"Federation splits the two deliberately: the identity provider proves who the user is and attests to attributes, while the service provider decides what that identity may do with its own resources — which is why it never needs the password. Reversing the roles misstates both. Placing authorization at the identity provider would require it to know every service provider's resource model, which defeats the purpose of federation. Treating the identity provider as a passive directory ignores that it performs the authentication and signs the assertion."},
+
+{"objective":"4.1","domain":"Security Operations","difficulty":"medium",
+"stem":"Log retention is set to 30 days. An investigation of a breach discovered on day 45 finds that initial access occurred approximately 60 days ago. What should the post-incident review recommend?",
+"options":["Extend retention for authentication and network flow logs to exceed the organization's mean dwell time","Increase log verbosity across all sources to capture more detail going forward","Move all logging to the SIEM's real-time alerting tier and drop archival storage","Reduce retention further to cut storage cost, since the logs were not useful"],
+"correctAnswer":0,
+"explanation":"Retention has to outlast the time an intruder typically remains undetected, or investigations begin after the evidence has already aged out — which is exactly what happened. Sizing retention against measured or industry dwell time is the direct fix, and prioritizing authentication and flow logs keeps the cost bounded. More verbosity fills the same 30-day window faster and worsens the problem. Real-time alerting without archive removes the historical record entirely. Cutting retention because the logs were absent when needed inverts the lesson."},
+
+{"objective":"4.5","domain":"Security Operations","difficulty":"medium",
+"stem":"An automation playbook is proposed that, on a malware alert, automatically disables the associated user account and isolates the endpoint. The security lead asks what safeguard should accompany it. What is the most important addition?",
+"options":["An exclusion list for critical accounts and systems, plus a rapid human-reviewed rollback path","A requirement that the playbook run only during business hours","Encryption of the playbook's configuration file at rest","A monthly report summarizing how many times the playbook executed"],
+"correctAnswer":0,
+"explanation":"Automated containment is valuable precisely because it acts faster than a human, which is also its risk: a false positive on a domain controller or a shared service account can cause an outage larger than the incident. Exclusions for critical assets plus a fast, human-reviewed reversal keeps the speed while bounding the blast radius. Restricting to business hours forfeits the benefit overnight, when response is slowest. Encrypting the configuration protects the playbook's contents, not the organization from a bad action. A monthly report is useful oversight but arrives far too late to prevent harm."},
+
+{"objective":"4.2","domain":"Security Operations","difficulty":"medium",
+"stem":"An analyst must choose a data source to determine which internal hosts communicated with a known malicious IP address over the past week, on a network with no full packet capture. Which source is most appropriate?",
+"options":["NetFlow or firewall connection logs showing source, destination, port, and byte counts","Endpoint antivirus scan results from the affected subnet","Windows Security event logs for account logon events","DNS server cache contents on the internal resolvers"],
+"correctAnswer":0,
+"explanation":"Flow records answer exactly this question — which internal address talked to which external address, when, and how much — across the whole network and for the retention period, without the storage cost of full capture. Antivirus results report detections on hosts, not communication with a specific address. Logon events describe authentication, not outbound network destinations. A DNS cache holds recently resolved names, is volatile, and would miss any connection made directly to an IP address without a lookup."},
+
+{"objective":"4.4","domain":"Security Operations","difficulty":"easy",
+"stem":"During an incident, an analyst copies a suspect disk and records a SHA-256 hash of both the original and the copy, then documents each person who handles the drive with dates and signatures. What is being established?",
+"options":["Chain of custody and evidence integrity","Non-repudiation of the attacker's actions","Legal hold across the organization's mailboxes","Root cause of the incident"],
+"correctAnswer":0,
+"explanation":"Matching hashes demonstrate the copy is identical to the original and unaltered since acquisition, while the signed handling record shows who possessed the evidence at every point — together, evidence integrity and chain of custody, which is what makes the material defensible later. Non-repudiation concerns preventing the attacker from denying their own actions, a different objective. Legal hold is a preservation instruction covering data such as mailboxes, not the handling of a physical drive. Root cause emerges from analysis, not from acquisition procedure."},
+
+{"objective":"1.1","domain":"General Security Concepts","difficulty":"medium",
+"stem":"A database stores order records with a cryptographic hash computed over each row and verified on read. An administrator with write access alters a price field directly and the application flags a mismatch on the next read. Which control objective did the hash serve?",
+"options":["Integrity, by detecting unauthorized modification of stored data","Confidentiality, by preventing the administrator from reading the price field","Availability, by ensuring the record could still be retrieved","Authentication, by proving the administrator's identity"],
+"correctAnswer":0,
+"explanation":"The hash does not prevent the change — the administrator had write access — but it makes the change detectable, which is the integrity objective: data is what it is supposed to be, and tampering does not go unnoticed. Confidentiality was never engaged; a hash conceals nothing and the administrator could read the field regardless. Availability concerns whether the record can be retrieved, which was unaffected. Authentication establishes who someone is, and the hash covers row contents rather than identity."}
+]

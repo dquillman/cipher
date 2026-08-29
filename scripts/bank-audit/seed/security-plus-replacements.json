@@ -1,0 +1,709 @@
+{
+ "examId": "79cuGMNydTwDMhyiDjry",
+ "examName": "CompTIA Security+ (SY0-701)",
+ "source": "authored-2026-08-secplus-rebuild",
+ "authored": "2026-08-29",
+ "note": "50 replacement questions written against the SY0-701 objectives to restock the bank after quarantining 50 off-topic items. Weighted to close the domain gaps left by the quarantine.",
+ "questions": [
+  {
+   "objective": "5.1",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A security steering committee has approved an acceptable use policy, but eight months later an audit finds three business units still running their own conflicting versions. The committee meets quarterly and has no standing agenda item for policy status. Which governance element is missing?",
+   "options": [
+    "A defined policy review and exception process with named owners",
+    "A more detailed acceptable use policy with additional prohibited activities",
+    "Mandatory annual security awareness training for all three business units",
+    "A centralized SIEM to detect violations of the acceptable use policy"
+   ],
+   "correctAnswer": 0,
+   "explanation": "Governance fails here at the maintenance layer, not the authoring layer. A policy needs an owner, a review cadence, and a documented exception path; without those, local variants appear and nobody is accountable for reconciling them. Adding more prohibited activities makes a longer document that is still unmaintained. Awareness training tells staff what the policy says but does not resolve three competing authoritative versions. A SIEM detects technical violations after the fact and has no visibility into which written policy a unit believes it is following."
+  },
+  {
+   "objective": "5.2",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A risk register lists a legacy application with an annualized loss expectancy of $180,000. A proposed replacement costs $450,000 up front and reduces the ALE to $15,000. Leadership must justify the spend over a three-year horizon. What is the most defensible analysis?",
+   "options": [
+    "Accept the risk, because the replacement cost exceeds the single-year annualized loss expectancy",
+    "Compare $495,000 in three-year residual loss plus project cost against $540,000 in retained risk",
+    "Transfer the risk to a cyber insurance policy, since the premium will be lower than $450,000",
+    "Apply compensating controls only, because any quantitative estimate of ALE is inherently unreliable"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Quantitative risk decisions compare total cost of the treatment against total retained risk over the same period. Three years of the current ALE is $540,000; the replacement costs $450,000 plus $45,000 of residual loss, so $495,000 — the treatment is justified. Comparing a capital cost to a single year's ALE is the classic error and would reject nearly every multi-year control. Insurance transfers financial impact but not the operational or regulatory consequences, and the premium is not the only cost. Dismissing ALE because it is an estimate discards the only common unit leadership and security share."
+  },
+  {
+   "objective": "5.3",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A payroll processor will receive employee bank details and tax identifiers. Procurement has a signed master services agreement and a current SOC 2 Type II report. The security team is asked what else is required before data flows. What is the most important remaining item?",
+   "options": [
+    "A penetration test of the vendor's production environment performed by your own red team",
+    "A copy of the vendor's cyber insurance certificate naming your organization",
+    "A data processing agreement defining permitted use, breach notification timelines, and return or destruction at termination",
+    "Evidence that the vendor encrypts data at rest using AES-256 specifically"
+   ],
+   "correctAnswer": 2,
+   "explanation": "A SOC 2 Type II attests that controls operated effectively during a window; it does not constrain what the vendor may do with your data, when they must tell you about a breach, or what happens at exit. Those obligations live in a data processing agreement, and without one you have assurance about their controls but no rights over your data. Your own red team testing a third party's production environment is rarely contractually permitted and duplicates the audit. An insurance certificate addresses recovery of loss, not prevention or notification. A specific cipher is a control detail the SOC 2 scope already covers."
+  },
+  {
+   "objective": "5.4",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "hard",
+   "stem": "An organization operates in the EU and California. A customer submits a request to delete all personal data. Marketing objects that the record is needed to suppress future mailings to that person. How should the compliance requirement be satisfied?",
+   "options": [
+    "Deny the deletion request, because a suppression list is a legitimate business interest",
+    "Delete every record including the suppression entry, then rely on the customer to re-opt out",
+    "Anonymize the entire customer record and retain it in full for marketing analytics",
+    "Retain a minimal suppression record under the legal obligation basis and delete all other personal data"
+   ],
+   "correctAnswer": 3,
+   "explanation": "Both GDPR and CCPA allow retaining the minimum data needed to honor the request itself — a suppression or do-not-contact entry — while erasing everything else. That is data minimization applied to the exception, not an exception to it. Denying the request outright misstates legitimate interest, which does not override an erasure right for marketing data. Deleting the suppression entry means the person starts receiving mail again, converting a satisfied request into a fresh violation. Retaining a full record and calling it anonymized fails, because data that can still be linked to an individual is pseudonymized, not anonymous."
+  },
+  {
+   "objective": "5.5",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "An internal audit and an external penetration test are both scheduled for the same quarter on the same payment application. A manager proposes cancelling one to save budget. What distinction should the security lead present?",
+   "options": [
+    "The audit verifies whether controls exist and operate as documented; the test verifies whether they can be defeated",
+    "The audit is required by regulation while the penetration test is a discretionary best practice",
+    "The audit examines technical configuration while the penetration test reviews policy and procedure",
+    "The audit is performed by an independent party while the penetration test is performed internally"
+   ],
+   "correctAnswer": 0,
+   "explanation": "They answer different questions and neither substitutes for the other. An audit samples evidence to confirm a control is designed and operating as written; a penetration test attempts to defeat controls in practice and regularly finds gaps that pass audit — a documented, operating patch process that still leaves an unauthenticated remote code execution exposed. Regulatory obligation varies by framework and often covers both. The option assigning technical configuration to the audit and policy review to the test inverts their scopes. Independence is a property either engagement can have; audits are frequently internal and penetration tests frequently external."
+  },
+  {
+   "objective": "5.6",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "Simulated phishing click rates dropped from 18% to 4% over a year, but the reporting rate stayed flat at 6% and the mean time to report is 90 minutes. What does this pattern most likely indicate about the awareness program?",
+   "options": [
+    "The simulation difficulty has been set too low and no longer reflects real phishing",
+    "Users are avoiding the lure but have not been taught that reporting is the expected action",
+    "Technical email filtering improved, so the awareness program had no measurable effect",
+    "Users are reporting to their managers instead of to the security team, so the metric is wrong"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Not clicking and reporting are separate behaviors requiring separate reinforcement. A falling click rate with a flat reporting rate is the signature of a program that trained avoidance but never made reporting easy, expected, or rewarded — and the 90-minute mean time confirms it is not reflexive. Undetected campaigns are exactly the ones where a fast report is the only early signal. Lower simulation difficulty would depress click rates but would not hold reporting flat. Filtering improvements do not reach simulations, which are injected past the gateway. Manager-relay is possible but would still eventually surface, not flatline for a year."
+  },
+  {
+   "objective": "5.2",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "During a risk assessment, a business owner states that a control gap is acceptable because the affected system will be decommissioned in eighteen months. What is the correct treatment of this decision?",
+   "options": [
+    "Close the finding, since a planned decommission removes the risk from the register",
+    "Escalate immediately to the board, because risk acceptance is never delegable to a business owner",
+    "Record a formal risk acceptance with an owner, expiry date, and review trigger if the timeline slips",
+    "Reclassify the risk as transferred, since the decommission project now owns the outcome"
+   ],
+   "correctAnswer": 2,
+   "explanation": "Risk acceptance is a legitimate treatment, but it is only defensible when documented with a named accountable owner, an explicit expiry, and a trigger to revisit if the assumption changes. Decommission dates slip constantly, and an undated acceptance quietly becomes permanent. Closing the finding erases the exposure that still exists for eighteen months. Board escalation depends on whether the residual risk exceeds the defined tolerance; routing every acceptance upward destroys the point of a tolerance threshold. Transfer means shifting financial or legal impact to another party, such as insurance, not reassigning it to an internal project."
+  },
+  {
+   "objective": "5.1",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "easy",
+   "stem": "An organization is drafting documentation that states all remote access must use multifactor authentication, without specifying products or configuration steps. Which document type is being written?",
+   "options": [
+    "A procedure",
+    "A standard",
+    "A guideline",
+    "A policy"
+   ],
+   "correctAnswer": 3,
+   "explanation": "A policy states mandatory intent at a high level — what must be true — without binding the organization to a specific implementation. A standard would name the accepted technology or configuration, such as which authenticator types are approved. A procedure would give the ordered steps an administrator follows to enrol a user. A guideline is advisory rather than mandatory, and the word 'must' rules it out. Keeping these separate is what lets you change vendors without reopening the policy."
+  },
+  {
+   "objective": "5.3",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "hard",
+   "stem": "A software supplier is acquired by a company headquartered in a jurisdiction subject to export restrictions relevant to your industry. The contract has two years remaining and the software is embedded in a production line. What should happen first?",
+   "options": [
+    "Re-run third-party due diligence against the new ownership and assess the change-of-control terms",
+    "Invoke the termination clause immediately to eliminate the jurisdictional exposure",
+    "Continue as normal, because the contract was signed with the original entity and remains binding",
+    "Replace the software with an in-house build before the next release cycle"
+   ],
+   "correctAnswer": 0,
+   "explanation": "Change of ownership resets the risk profile — jurisdiction, sub-processors, data location, and support obligations can all move — so the first step is to reassess against the new owner and read what the change-of-control clause actually entitles you to. Terminating immediately without that assessment risks halting a production line over an exposure that may be manageable, and may not even be contractually available. Assuming the original contract insulates you misunderstands acquisition: obligations transfer to the acquirer along with the risk. Building a replacement is a possible outcome of the assessment, not a first move."
+  },
+  {
+   "objective": "5.4",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A quarterly compliance report shows 100% of servers passing the hardening baseline. A security engineer notes the scan only covers systems registered in the configuration management database, and roughly 15% of production hosts were built by a team that does not register them. How should the reported metric be characterized?",
+   "options": [
+    "The metric is accurate, since unregistered hosts fall outside the defined compliance scope",
+    "The metric measures compliance of known assets and overstates coverage because asset inventory is incomplete",
+    "The metric is invalid and should be replaced with a count of vulnerabilities found",
+    "The metric is acceptable if the 15% are non-production or low-criticality systems"
+   ],
+   "correctAnswer": 1,
+   "explanation": "A compliance percentage is only as trustworthy as the denominator. Reporting 100% while 15% of production is invisible to the scanner presents an assurance level the organization does not have, and asset inventory is the control that fails first. Declaring unregistered hosts out of scope makes the metric true by definition and useless in practice — it rewards not registering. Swapping in a vulnerability count measures something different and inherits the same blind spot. The stem states these are production hosts, so the criticality escape does not apply."
+  },
+  {
+   "objective": "5.2",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A risk register entry reads: 'Ransomware — High.' The CISO asks for it to be rewritten so the board can act on it. Which rewrite is most useful?",
+   "options": [
+    "Ransomware — High likelihood, High impact, owner: IT Security, status: open",
+    "Ransomware attacks have increased 40% across the insurance sector this year",
+    "Ransomware encrypting the claims database via an unpatched VPN appliance; likely within 12 months; $2.1M outage and notification cost",
+    "Ransomware — mitigated by endpoint detection, offline backups, and user awareness training"
+   ],
+   "correctAnswer": 2,
+   "explanation": "A board can only act on a risk statement that names the asset, the threat, the path in, a timeframe, and a consequence in money. A statement naming the asset, the entry path, a timeframe and a dollar consequence supports a decision — patch the appliance, or fund something else. A likelihood/impact pair with an owner is a tracking record, not a decision input; 'High/High' tells the board nothing about what to buy. Sector statistics are threat intelligence, not your risk. Listing controls without stating the residual exposure that remains after them omits the number the board is being asked to accept."
+  },
+  {
+   "objective": "5.1",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "After a merger, two security organizations operate under different frameworks — one aligned to ISO 27001, the other to NIST CSF. Leadership wants a single reporting view within one quarter without pausing either program. What is the most practical approach?",
+   "options": [
+    "Immediately migrate the NIST CSF program to ISO 27001 to match the certified entity",
+    "Report both frameworks separately to leadership until one program is retired",
+    "Adopt a third framework that neither organization currently uses as neutral ground",
+    "Build a control crosswalk between the two frameworks and report against the mapped common set"
+   ],
+   "correctAnswer": 3,
+   "explanation": "Frameworks overlap heavily, and a crosswalk gives a unified view in weeks without halting either program or invalidating an existing certification. Forcing a migration inside a quarter is unrealistic and puts the certified entity's audit cycle at risk. Reporting two separate views is what leadership explicitly asked to stop, and it hides where the merged organization is genuinely weak. Introducing a third framework maximizes retraining and tooling change at the worst possible moment and satisfies nobody's existing obligations."
+  },
+  {
+   "objective": "5.5",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A penetration test report lists a finding as 'Critical' based on CVSS base score alone. The affected host is an isolated lab system with no production data and no route to the corporate network. How should the finding be triaged?",
+   "options": [
+    "Adjust the rating using environmental metrics and document the justification in the remediation plan",
+    "Remediate at critical priority regardless, because CVSS base scores are authoritative",
+    "Reject the finding as a false positive, since the host has no production exposure",
+    "Escalate to the vendor who conducted the test and request the report be reissued"
+   ],
+   "correctAnswer": 0,
+   "explanation": "CVSS base scores describe a vulnerability's intrinsic properties in the abstract; environmental metrics exist precisely so an organization can adjust for its own asset value, exposure, and compensating controls. Downgrading with documented reasoning is the intended use, not a dodge. Treating base score as final wastes remediation capacity that a genuinely exposed system needs. The finding is not a false positive — the vulnerability is real, only the priority is contested. Asking the tester to reissue confuses their job, which is to report what exists, with yours, which is to prioritize it in context."
+  },
+  {
+   "objective": "5.6",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "easy",
+   "stem": "A finance clerk receives a call from someone claiming to be the CFO, demanding an urgent wire transfer and instructing the clerk not to discuss it with anyone. Which awareness topic most directly addresses this scenario?",
+   "options": [
+    "Creating strong, unique passwords for financial systems",
+    "Recognizing social engineering pressure tactics and following out-of-band verification",
+    "Identifying phishing links in email before clicking them",
+    "Reporting lost or stolen mobile devices promptly"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Urgency plus authority plus a secrecy instruction is the classic business email compromise pattern, delivered here by voice. The countermeasure is a verification step through a separate, known channel — calling the CFO back on a directory number — and training that treats a secrecy instruction as itself a red flag. Password hygiene does not apply; no credential is being requested. Phishing link training addresses a different delivery vector and the call contains no link. Device reporting is unrelated to an inbound fraud attempt."
+  },
+  {
+   "objective": "5.3",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A vendor questionnaire response states that the supplier 'follows industry best practices for encryption.' The assessor needs to convert this into something verifiable. What is the best follow-up?",
+   "options": [
+    "Accept the response, since best practice claims are standard in vendor questionnaires",
+    "Require the vendor to adopt your organization's internal encryption standard verbatim",
+    "Request the specific algorithms, key lengths, and key management process, plus evidence such as a configuration standard",
+    "Substitute the vendor's marketing security page as supporting evidence"
+   ],
+   "correctAnswer": 2,
+   "explanation": "Unfalsifiable claims are the most common weakness in questionnaire-based assessment, and the fix is to ask for specifics that can be checked against an artifact — named algorithms, key lengths, rotation and custody. Accepting the phrase leaves you asserting assurance you never obtained. Imposing your internal standard on a multi-tenant supplier is usually unachievable and not what the assessment is for; you are judging adequacy, not enforcing uniformity. A marketing page is written to persuade, carries no attestation, and is not evidence."
+  },
+  {
+   "objective": "5.4",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "hard",
+   "stem": "An organization processes cardholder data and is preparing for a PCI DSS assessment. An architect proposes storing the primary account number encrypted, alongside the decryption key, on the same database server for performance reasons. What is the compliance problem?",
+   "options": [
+    "Encrypted primary account numbers may not be stored under any circumstances",
+    "Performance optimization is prohibited within the cardholder data environment",
+    "Primary account numbers must be hashed rather than encrypted in all cases",
+    "Storing the key with the data it protects defeats the control, since compromise of the host yields both"
+   ],
+   "correctAnswer": 3,
+   "explanation": "Key management is the substance of the control. If the key sits on the same host as the ciphertext, a single compromise yields plaintext and the encryption has bought nothing — which is why separation of keys from encrypted data is required. Storing encrypted PANs is permitted; it is storing sensitive authentication data after authorization that is prohibited. Performance work is not banned, only performance work that dismantles a control. Hashing is one acceptable method of rendering a PAN unreadable, not the only one, and it would break the legitimate need to decrypt."
+  },
+  {
+   "objective": "5.2",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A business continuity plan sets a recovery time objective of four hours for an order system. The most recent failover exercise restored service in eleven hours, and the delay was traced to a manual DNS change requiring an approval that was unavailable overnight. What should change?",
+   "options": [
+    "Pre-authorize or automate the DNS cutover so recovery does not depend on business-hours approval",
+    "Extend the recovery time objective to twelve hours to match observed performance",
+    "Increase failover exercise frequency from annual to quarterly without other changes",
+    "Move the order system to a provider that guarantees a four-hour service level agreement"
+   ],
+   "correctAnswer": 0,
+   "explanation": "The exercise did its job: it found a dependency on a human decision that is not available during the window the plan implicitly assumes. Removing that dependency directly addresses the seven-hour gap. Relaxing the RTO to match the failure redefines the requirement instead of meeting it, and the four-hour target presumably came from a business impact analysis. More frequent exercises would keep rediscovering the same blocker. A provider SLA covers the provider's obligations and does not execute your DNS cutover or approve it at 3 a.m."
+  },
+  {
+   "objective": "5.1",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "A database administrator can create accounts, grant privileges, and delete audit logs on the same system. An assessor flags this. Which principle is violated and what is the most direct remedy?",
+   "options": [
+    "Least privilege; reduce the DBA to read-only access on the database",
+    "Separation of duties; move audit log administration to a role the DBA does not hold",
+    "Defense in depth; add a second firewall in front of the database server",
+    "Implicit deny; change the default database permission set to deny all"
+   ],
+   "correctAnswer": 1,
+   "explanation": "The specific problem is that one person can both perform an action and erase the record of it, which is a separation of duties failure. Splitting log administration into a separate role restores the ability to detect misuse. Least privilege is related but the remedy given is wrong — a DBA legitimately needs administrative rights to do the job, and read-only would prevent it. Defense in depth and a network control address a different threat entirely; the concern is an authorized insider, not perimeter access. Implicit deny is a default-posture principle that does not resolve the conflict of interest."
+  },
+  {
+   "objective": "5.5",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "easy",
+   "stem": "An assessment is conducted by a team with no reporting relationship to the department being reviewed, and the results go directly to the audit committee. Which characteristic does this arrangement establish?",
+   "options": [
+    "Attestation",
+    "Non-repudiation",
+    "Independence",
+    "Due diligence"
+   ],
+   "correctAnswer": 2,
+   "explanation": "Independence means the assessors have no stake in the outcome and no line of accountability to the people whose work they judge — reporting to the audit committee rather than to the department head is the structural expression of it. Attestation is a formal statement about the reliability of an assertion, typically the deliverable rather than the arrangement. Non-repudiation is a cryptographic property preventing denial of an action. Due diligence describes the investigative care taken, usually before entering a relationship."
+  },
+  {
+   "objective": "5.6",
+   "domain": "Security Program Management and Oversight",
+   "difficulty": "medium",
+   "stem": "An organization wants to reduce insider risk from departing employees. Exit procedures currently revoke building access on the last day. Analysis shows most data exfiltration occurs in the two weeks before resignation is announced. Which control best addresses the observed pattern?",
+   "options": [
+    "Revoking all system access at the moment resignation is submitted",
+    "Requiring a longer notice period so exit procedures have more time to run",
+    "Mandatory annual re-signing of the acceptable use policy by all staff",
+    "Behavioral monitoring for anomalous bulk data access, applied continuously rather than at exit"
+   ],
+   "correctAnswer": 3,
+   "explanation": "The evidence says the risk window opens before HR knows anything, so any control triggered by the resignation event is already too late. Continuous detection of unusual bulk access is the only listed option that operates during that window. Revoking access at submission is a reasonable practice but addresses the period after the announcement, which the data says is not where the loss occurs. A longer notice period extends the post-announcement window without touching the pre-announcement one. Policy re-signing sets expectations but detects nothing."
+  },
+  {
+   "objective": "2.4",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "A web application logs show repeated requests to /api/user?id=1001 through /api/user?id=1400 from a single authenticated session, each returning HTTP 200 with a different user's profile. What is occurring?",
+   "options": [
+    "Insecure direct object reference being enumerated for horizontal privilege escalation",
+    "A distributed denial of service attack against the user API endpoint",
+    "SQL injection extracting records from the user table",
+    "Session hijacking using stolen authentication cookies"
+   ],
+   "correctAnswer": 0,
+   "explanation": "The application authenticates the session but never checks whether that user is authorized for the requested id, so incrementing the parameter walks the whole user table — an insecure direct object reference, exploited horizontally against peer accounts. Volume from one session over 400 requests is not a denial of service and is not distributed. No SQL syntax appears; the parameter is used as intended and the flaw is missing authorization, not injection. The session is legitimately authenticated, so nothing has been hijacked."
+  },
+  {
+   "objective": "2.3",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "An analyst finds a scheduled task on a domain controller that runs a PowerShell command decoding a base64 string and invoking it in memory. No file is written to disk. Which characteristic makes this technique effective against traditional defenses?",
+   "options": [
+    "It uses encryption that endpoint agents are unable to decrypt in transit",
+    "It is fileless, so signature-based antivirus scanning of the file system finds nothing to match",
+    "It runs with lower privileges than a compiled executable would require",
+    "It cannot be recorded in Windows event logs under any configuration"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Living-off-the-land techniques execute entirely in memory using signed, trusted interpreters already present on the host, so a scanner looking for malicious files on disk has no artifact to inspect. The countermeasures are script block logging, AMSI, and behavioral detection rather than file signatures. Base64 is an encoding, not encryption, and is trivially reversible. Running on a domain controller under a scheduled task typically means high privilege, not low. PowerShell script block logging can and does capture the decoded content when enabled, which is exactly why enabling it matters."
+  },
+  {
+   "objective": "2.2",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "hard",
+   "stem": "A build pipeline pulls a widely used open source package. A new release of that package includes an installation script that contacts an external host and downloads a second payload. The maintainer's account was taken over two days earlier. Which threat category is this?",
+   "options": [
+    "Typosquatting of a package name similar to a legitimate one",
+    "Cross-site scripting introduced through a third-party script tag",
+    "Supply chain compromise through a trusted upstream dependency",
+    "A watering hole attack targeting the development team's browsers"
+   ],
+   "correctAnswer": 2,
+   "explanation": "The organization pulled the genuine package from the genuine source; the trust relationship with an upstream dependency was itself subverted. That is a supply chain compromise, and it defeats controls that validate the package name or registry because both are correct. Typosquatting relies on the victim fetching a deliberately misspelled name, which did not happen here. Cross-site scripting executes in a browser against application users, not in a build pipeline. A watering hole compromises a site the targets visit; the vector here is the dependency graph, not web browsing."
+  },
+  {
+   "objective": "2.5",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "A vulnerability scan reports a critical flaw in a library on 400 servers. Investigation shows the vulnerable function is never called by the application, and the library is statically linked with that code path unreachable. How should this be handled?",
+   "options": [
+    "Suppress the finding permanently, since unreachable code cannot be exploited",
+    "Patch all 400 servers as an emergency change within 24 hours",
+    "Remove the library entirely and refactor the application to avoid the dependency",
+    "Document it as not exploitable in this configuration, and still schedule the upgrade on the normal patch cycle"
+   ],
+   "correctAnswer": 3,
+   "explanation": "Reachability analysis legitimately lowers urgency — an unreachable code path cannot be triggered today — but it does not make the flaw disappear. A future release may call that function, so the correct posture is documented deprioritization plus normal-cycle remediation. Permanent suppression loses the record and the next developer wires up the vulnerable path unaware. A 24-hour emergency change consumes capacity that a genuinely exploitable finding needs and imposes change risk across 400 hosts for no reduction in exposure. Refactoring away a dependency is a large project justified by more than one finding."
+  },
+  {
+   "objective": "2.4",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "Users report that an internal web portal briefly displayed another user's dashboard before refreshing correctly. The portal sits behind a caching reverse proxy. What is the most likely cause?",
+   "options": [
+    "Web cache poisoning or misconfigured caching of authenticated, user-specific responses",
+    "A race condition in the database causing rows to be returned out of order",
+    "Cross-site request forgery submitting requests on behalf of other users",
+    "Insufficient TLS cipher strength allowing decryption of other sessions"
+   ],
+   "correctAnswer": 0,
+   "explanation": "A shared cache that stores a personalized, authenticated response and serves it to the next requester produces exactly this symptom — someone else's page appearing briefly, then correcting on refresh when the cache misses. The fix is cache-control directives marking authenticated responses private, and cache keys that include the session. A database ordering race would return wrong rows, not another user's fully rendered dashboard. CSRF causes actions to be performed, not content to be disclosed to the wrong viewer. Weak TLS would require an interception position and would not manifest as an intermittent wrong page."
+  },
+  {
+   "objective": "2.1",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "easy",
+   "stem": "An attacker registers a domain that differs from a well-known bank's domain by a single transposed character, then sends emails from it requesting credential updates. Which technique is being used?",
+   "options": [
+    "Domain hijacking of the bank's registered domain",
+    "Typosquatting combined with phishing",
+    "DNS cache poisoning against the recipients' resolvers",
+    "An on-path attack intercepting traffic to the bank"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Registering a visually similar domain the attacker legitimately controls, then using it to solicit credentials, is typosquatting used as the delivery mechanism for phishing. The bank's real domain is untouched, so nothing was hijacked. DNS cache poisoning would misdirect requests for the correct domain by corrupting resolver records, which is not described. An on-path attack requires a position in the traffic flow; here victims voluntarily connect to the attacker's own domain."
+  },
+  {
+   "objective": "2.3",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "hard",
+   "stem": "Endpoint telemetry shows a process reading its own memory, locating a specific API function's first bytes, and rewriting them before making a system call. Which defensive control is being targeted?",
+   "options": [
+    "Address space layout randomization protecting against memory corruption",
+    "Secure boot verification of the operating system loader",
+    "Userland API hooking used by endpoint detection agents to observe process behavior",
+    "Certificate pinning between the endpoint agent and its management console"
+   ],
+   "correctAnswer": 2,
+   "explanation": "Many endpoint agents insert hooks at the start of sensitive API functions to observe calls; overwriting those first bytes with the original instructions — unhooking — restores the clean function and blinds the sensor while the process continues normally. ASLR randomizes memory layout and is defeated by information leaks, not by patching function prologues. Secure boot validates code before the operating system runs and is unreachable from a running userland process. Certificate pinning protects the agent's network channel and has no presence in the target process's memory."
+  },
+  {
+   "objective": "2.5",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "A network segment hosting industrial controllers cannot be patched because the vendor certifies the firmware only at a fixed version. The controllers have known remote vulnerabilities. Which mitigation is most appropriate?",
+   "options": [
+    "Install endpoint detection agents directly on the controllers",
+    "Accept the risk and document it, since no technical mitigation is available",
+    "Expose the controllers through a VPN so remote access is encrypted",
+    "Network segmentation with strict allow-listed flows and monitoring at the boundary"
+   ],
+   "correctAnswer": 3,
+   "explanation": "When the asset cannot be changed, you change what can reach it. Segmentation with an explicit allow-list reduces the reachable attack surface to a small, monitored set of flows, which is the standard compensating control for unpatchable operational technology. Endpoint agents generally cannot be installed on embedded controllers and would void the vendor certification the constraint is built around. Declaring no mitigation available is false and skips the control that exists. A VPN encrypts the transport but still delivers an attacker to a vulnerable device once authenticated, addressing confidentiality in transit rather than exposure."
+  },
+  {
+   "objective": "2.2",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "Threat intelligence describes an actor that maintains access for months, uses legitimate credentials, moves laterally slowly, and exfiltrates small volumes to avoid detection thresholds. Which detection strategy is most likely to find them?",
+   "options": [
+    "Baselining normal account behavior and alerting on deviation, rather than on volume thresholds",
+    "Increasing the sensitivity of signature-based intrusion detection at the perimeter",
+    "Blocking all outbound traffic to countries associated with the threat actor",
+    "Requiring password rotation every 30 days for all user accounts"
+   ],
+   "correctAnswer": 0,
+   "explanation": "The described tradecraft is designed specifically to stay under static thresholds and to look like authorized use, so a control keyed to volume or signature will not fire. Behavioral baselining catches the deviation — an account touching systems it never touches, at hours it never works — which is the one thing the attacker cannot fully imitate. Perimeter signatures do not help against valid credentials and encrypted, low-volume traffic. Geographic blocking is trivially bypassed with infrastructure inside permitted regions. Frequent rotation pushes users toward predictable patterns and is bypassed by an actor with ongoing access who simply captures the new credential."
+  },
+  {
+   "objective": "2.4",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "An application accepts a filename parameter and returns file contents. A tester submits ....//....//etc/passwd and receives the file. What does the successful response reveal about the input handling?",
+   "options": [
+    "The application correctly blocked the traversal and returned a decoy file",
+    "A sanitizer strips ../ once without re-checking, so the doubled sequence collapses into a valid traversal",
+    "Input is being URL-decoded twice before the path is resolved",
+    "The web server is running with root privileges, which alone permits the traversal"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Single-pass replacement is the classic sanitization bug: removing the inner ../ from ....// leaves ../, so the filter constructs the traversal it was meant to prevent. Recursive sanitization or canonicalizing the path and checking it stays inside the allowed root is the correct fix. The file was returned, so nothing was blocked. Double URL decoding is a different bypass and would require encoded input, which is not present. Privilege level determines what a successful traversal can read, but it does not create the traversal — an unprivileged process would still have escaped the intended directory."
+  },
+  {
+   "objective": "1.2",
+   "domain": "General Security Concepts",
+   "difficulty": "medium",
+   "stem": "An organization deploys a system where every access request is evaluated against device posture, user identity, and resource sensitivity at the moment of the request, regardless of network location. A request from the corporate LAN receives no implicit trust. Which model is being implemented?",
+   "options": [
+    "Defense in depth using layered perimeter controls",
+    "Role-based access control with centrally managed group membership",
+    "Zero trust architecture with a policy decision point evaluating each request",
+    "Discretionary access control delegated to resource owners"
+   ],
+   "correctAnswer": 2,
+   "explanation": "The defining property is that network location confers no trust and each request is authorized dynamically against current signals — that is zero trust, mediated by a policy decision point. Defense in depth layers controls but still typically grants implicit trust once inside the perimeter, which the stem explicitly denies. RBAC assigns permissions by role but is usually evaluated at logon rather than continuously against device posture. DAC lets resource owners set permissions and involves no central, signal-driven evaluation."
+  },
+  {
+   "objective": "1.4",
+   "domain": "General Security Concepts",
+   "difficulty": "medium",
+   "stem": "A message is signed with the sender's private key. A recipient verifies it with the sender's public key. Which properties does this provide, and which does it not?",
+   "options": [
+    "Provides confidentiality and integrity; does not provide authenticity",
+    "Provides confidentiality and non-repudiation; does not provide integrity",
+    "Provides availability and authenticity; does not provide non-repudiation",
+    "Provides authenticity, integrity, and non-repudiation; does not provide confidentiality"
+   ],
+   "correctAnswer": 3,
+   "explanation": "A digital signature proves the holder of the private key produced it (authenticity), that the content has not changed since signing (integrity), and leaves the signer unable to credibly deny it (non-repudiation). It does nothing to hide the message — signed content travels in plaintext unless separately encrypted, which is why signing and encryption are distinct operations. Confidentiality would require encrypting to the recipient's public key. Availability is unrelated to either operation."
+  },
+  {
+   "objective": "1.2",
+   "domain": "General Security Concepts",
+   "difficulty": "easy",
+   "stem": "A user authenticates with a password and then approves a push notification on a registered phone. Which authentication factors are in use?",
+   "options": [
+    "Something you know and something you have",
+    "Something you know and something you are",
+    "Something you have and somewhere you are",
+    "Something you are and something you do"
+   ],
+   "correctAnswer": 0,
+   "explanation": "A password is knowledge and the registered phone is possession, so this is a genuine two-factor combination drawing on distinct categories. Inherence — something you are — would require a biometric such as a fingerprint or face scan, which a push approval does not involve. Location is a contextual attribute rather than one of the two factors described. Behavioral characteristics, something you do, are not present either."
+  },
+  {
+   "objective": "1.3",
+   "domain": "General Security Concepts",
+   "difficulty": "medium",
+   "stem": "A change advisory board reviews a firewall rule modification. The submitter has provided the technical detail and a rollback plan but no statement of what business service is affected if the change fails. Why does the board reject it?",
+   "options": [
+    "Rollback plans are not required for firewall changes and its inclusion is an error",
+    "Impact analysis is missing, so the board cannot weigh the risk of the change against its benefit",
+    "Firewall changes must always be performed as emergency changes",
+    "The submitter lacks authority to propose changes to production systems"
+   ],
+   "correctAnswer": 1,
+   "explanation": "A change record exists so a board can make an informed accept-or-defer decision, and that requires knowing what breaks and who notices if the change goes wrong. Technical steps and a rollback tell you how to undo it, not whether the risk is acceptable during the proposed window. Rollback plans are a standard and valuable component, not an error. Emergency change is a separate expedited path for urgent fixes, not a default for a category of device. Nothing in the stem suggests an authority problem."
+  },
+  {
+   "objective": "1.4",
+   "domain": "General Security Concepts",
+   "difficulty": "hard",
+   "stem": "A design requires that if a long-term private key is later compromised, previously recorded encrypted sessions remain unreadable. Which property must the key exchange provide?",
+   "options": [
+    "Longer key lengths to increase the cost of brute force against recorded traffic",
+    "Certificate pinning to prevent substitution of the server certificate",
+    "Perfect forward secrecy through ephemeral session keys not derivable from the long-term key",
+    "Hashing session keys before use so they cannot be reversed"
+   ],
+   "correctAnswer": 2,
+   "explanation": "Forward secrecy is exactly this requirement: each session negotiates an ephemeral key that is discarded afterward and cannot be reconstructed from the long-term private key, so a later key compromise does not retroactively decrypt captured traffic. Ephemeral Diffie-Hellman provides it. Longer keys raise brute-force cost but are irrelevant once the attacker simply holds the private key. Pinning defends against fraudulent certificates during the session, not against later compromise of a legitimate one. Hashing is one-way and cannot produce a key both parties can use to decrypt."
+  },
+  {
+   "objective": "1.1",
+   "domain": "General Security Concepts",
+   "difficulty": "easy",
+   "stem": "A hospital system is designed so patient records remain accessible during a regional power event, using redundant sites and generators. Which element of the CIA triad is the primary design driver?",
+   "options": [
+    "Confidentiality",
+    "Integrity",
+    "Non-repudiation",
+    "Availability"
+   ],
+   "correctAnswer": 3,
+   "explanation": "Redundancy and continuity of power address whether the data can be reached when needed, which is availability. Confidentiality concerns who may read the records and would be served by access control and encryption. Integrity concerns whether the records are accurate and unaltered, served by checksums, versioning, and audit trails. Non-repudiation is not part of the triad; it prevents denial of an action and is typically achieved with digital signatures."
+  },
+  {
+   "objective": "4.1",
+   "domain": "Security Operations",
+   "difficulty": "medium",
+   "stem": "A SIEM rule alerts on any authentication from an unusual country. It generates roughly 200 alerts per day, and analysts have begun closing them in bulk without investigation. What is the most effective first correction?",
+   "options": [
+    "Enrich the rule with context such as impossible travel and known VPN egress ranges to raise fidelity",
+    "Increase staffing so the current alert volume can be fully investigated",
+    "Disable the rule, since it is producing no actionable outcomes",
+    "Route the alerts to a lower-priority queue reviewed weekly"
+   ],
+   "correctAnswer": 0,
+   "explanation": "Bulk-closing is the visible symptom of alert fatigue, and the underlying defect is a low-fidelity rule that fires on a signal most employees generate legitimately. Adding context — velocity between logins, whether the source is a known corporate VPN egress — converts noise into a smaller set worth working. Adding analysts scales the cost of a bad rule. Disabling loses the detection entirely, including the true positives buried in the volume. Deferring to a weekly queue delays response on precisely the alerts where minutes matter."
+  },
+  {
+   "objective": "4.4",
+   "domain": "Security Operations",
+   "difficulty": "medium",
+   "stem": "During incident response on a compromised server, an analyst plans to collect evidence. Which order preserves the most volatile data first?",
+   "options": [
+    "Disk images first, then RAM, then network state, then CPU cache",
+    "CPU registers and cache, then RAM, then network state, then disk, then archived backups",
+    "Archived backups first, then disk, then RAM, then CPU registers",
+    "Network packet captures first, then disk, then CPU registers, then RAM"
+   ],
+   "correctAnswer": 1,
+   "explanation": "The order of volatility runs from data that disappears fastest to data that persists longest, because every action taken destroys some of the former. Registers and cache change continuously, RAM is lost on power-down, network connection state is transient, disk survives a reboot, and archived backups are the most stable of all. Taking a disk image first spends minutes during which memory-resident malware and live connections may vanish. The remaining orders invert volatility in the same way, discarding the most fragile evidence before capturing it."
+  },
+  {
+   "objective": "4.6",
+   "domain": "Security Operations",
+   "difficulty": "medium",
+   "stem": "An organization wants to reduce the time between a vulnerability disclosure and its remediation across 3,000 endpoints. Patch approval currently requires a weekly change board meeting for every patch. Which change most directly reduces mean time to remediate?",
+   "options": [
+    "Increase the change board meeting frequency from weekly to twice weekly",
+    "Deploy patches without testing to eliminate the validation delay",
+    "Define pre-approved standard changes for routine patches, reserving board review for exceptions",
+    "Purchase a faster patch distribution system with higher bandwidth"
+   ],
+   "correctAnswer": 2,
+   "explanation": "The bottleneck is a governance queue, not a technical one, so the fix is to remove routine, low-risk patches from that queue via a pre-approved standard change category while keeping board scrutiny for anything unusual. Meeting twice as often halves one component of the delay but preserves the structural problem. Skipping testing trades one risk for a larger one and causes outages that slow future patching through lost trust. Distribution bandwidth is not the constraint when patches are waiting days for a meeting."
+  },
+  {
+   "objective": "4.3",
+   "domain": "Security Operations",
+   "difficulty": "hard",
+   "stem": "An analyst must decide between containment options for ransomware detected encrypting a file server. Encryption is in progress and backups are confirmed current and offline. Which action best balances damage limitation against evidence preservation?",
+   "options": [
+    "Power off the server immediately to halt encryption",
+    "Disconnect storage while leaving the network connection active for monitoring",
+    "Allow encryption to complete so the full scope of affected files is known",
+    "Isolate the host from the network while leaving it powered on, then capture memory"
+   ],
+   "correctAnswer": 3,
+   "explanation": "Network isolation stops lateral spread and command-and-control while keeping the system running, which preserves memory-resident evidence including encryption keys that occasionally permit recovery. Powering off stops encryption but destroys RAM, and with current offline backups the marginal files saved rarely justify losing that evidence. Leaving the network active during an active infection permits exactly the spread containment is meant to prevent. Allowing encryption to complete maximizes damage to establish scope that logs and backup comparison can determine afterward."
+  },
+  {
+   "objective": "2.3",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "A user reports their workstation is slow. Analysis finds a browser extension, installed from an official store, that reads page content on every site and posts it to an external endpoint. The extension has 400,000 users and a five-star rating. What best describes this?",
+   "options": [
+    "A trusted-channel compromise where legitimate distribution and reputation mask malicious functionality",
+    "A zero-day exploit in the browser's extension sandbox",
+    "A drive-by download that installed without user interaction",
+    "A rootkit operating below the browser at kernel level"
+   ],
+   "correctAnswer": 0,
+   "explanation": "Official store distribution, a large install base, and strong ratings are the trust signals users and many controls rely on, and none of them speak to what the code actually does with its granted permissions. Extensions are frequently sold or updated into surveillance after building reputation. No sandbox flaw is involved — the extension is using permissions it was legitimately granted. A drive-by download requires no user action, but the stem states it was installed from a store. A rootkit operates at the operating system level, not as a browser extension."
+  },
+  {
+   "objective": "2.5",
+   "domain": "Threats, Vulnerabilities, and Mitigations",
+   "difficulty": "medium",
+   "stem": "A penetration tester obtains a low-privilege shell and finds a scheduled task running as SYSTEM that executes C:\\Program Files\\App\\service.exe, written without surrounding quotation marks. Which weakness does this create?",
+   "options": [
+    "A buffer overflow in the service executable's argument parsing",
+    "An unquoted service path allowing execution of C:\\Program.exe if the tester can write to the drive root",
+    "A DLL side-loading opportunity in the application directory",
+    "A symbolic link race condition during service startup"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Windows resolves an unquoted path by trying each space-delimited prefix in turn, so it attempts C:\\Program.exe before the intended target. If the low-privilege account can write to the drive root, planting that file yields SYSTEM execution. The flaw is in how the path was registered, not in the executable's parsing, so no overflow is involved. DLL side-loading is a real but different technique requiring a missing or hijackable library rather than a path resolution quirk. A symlink race involves timing between check and use, which is not what the missing quotes create."
+  },
+  {
+   "objective": "1.3",
+   "domain": "General Security Concepts",
+   "difficulty": "medium",
+   "stem": "An organization maintains a documented list of every approved software package, and endpoints refuse to execute anything not on that list. A new finance tool cannot run until it is added. Which control model is in force?",
+   "options": [
+    "Antivirus scanning using heuristic detection",
+    "Least privilege enforced through user account control",
+    "Application allow-listing operating on a default-deny basis",
+    "Sandboxing of untrusted applications at runtime"
+   ],
+   "correctAnswer": 2,
+   "explanation": "Execution is denied unless explicitly permitted, which is allow-listing built on default deny — strong against unknown and fileless threats, at the cost of operational overhead exactly as the finance tool illustrates. Antivirus is deny-listing: it blocks what it recognizes as bad and permits everything else, so a new tool would simply run. Least privilege limits what an account may do once code executes; it does not decide which binaries may start. Sandboxing isolates an application's effects rather than preventing it from launching."
+  },
+  {
+   "objective": "1.4",
+   "domain": "General Security Concepts",
+   "difficulty": "medium",
+   "stem": "A certificate authority must publish the status of a certificate revoked this morning. Clients need to check status without downloading a large list on every connection. Which mechanism meets this requirement most efficiently?",
+   "options": [
+    "Distributing an updated certificate revocation list to every client hourly",
+    "Shortening all certificate lifetimes to one hour so revocation is unnecessary",
+    "Pinning the certificate in each client so revoked certificates are rejected automatically",
+    "OCSP stapling, where the server presents a recent signed status response during the handshake"
+   ],
+   "correctAnswer": 3,
+   "explanation": "OCSP stapling has the server fetch a signed status response and include it in the TLS handshake, so the client gets fresh revocation data with no extra round trip and no privacy leak to the CA. A CRL is the large list the requirement rules out, and hourly distribution to every client multiplies the problem. One-hour certificate lifetimes are an interesting direction but impose enormous issuance load and are not a revocation mechanism. Pinning binds a client to a specific certificate and actually makes rotation harder; it carries no revocation status."
+  },
+  {
+   "objective": "1.2",
+   "domain": "General Security Concepts",
+   "difficulty": "hard",
+   "stem": "A federated login flow returns an assertion containing the user's identity and group memberships, signed by the identity provider and consumed by a service provider that grants access accordingly. The service provider does not hold the user's password. Which statement correctly separates the two functions involved?",
+   "options": [
+    "The identity provider performs authentication; the service provider performs authorization using the asserted attributes",
+    "The identity provider performs authorization; the service provider performs authentication against the assertion",
+    "Both authentication and authorization occur at the identity provider before the assertion is issued",
+    "Both occur at the service provider, with the identity provider acting only as a directory"
+   ],
+   "correctAnswer": 0,
+   "explanation": "Federation splits the two deliberately: the identity provider proves who the user is and attests to attributes, while the service provider decides what that identity may do with its own resources — which is why it never needs the password. Reversing the roles misstates both. Placing authorization at the identity provider would require it to know every service provider's resource model, which defeats the purpose of federation. Treating the identity provider as a passive directory ignores that it performs the authentication and signs the assertion."
+  },
+  {
+   "objective": "4.1",
+   "domain": "Security Operations",
+   "difficulty": "medium",
+   "stem": "Log retention is set to 30 days. An investigation of a breach discovered on day 45 finds that initial access occurred approximately 60 days ago. What should the post-incident review recommend?",
+   "options": [
+    "Increase log verbosity across all sources to capture more detail going forward",
+    "Extend retention for authentication and network flow logs to exceed the organization's mean dwell time",
+    "Move all logging to the SIEM's real-time alerting tier and drop archival storage",
+    "Reduce retention further to cut storage cost, since the logs were not useful"
+   ],
+   "correctAnswer": 1,
+   "explanation": "Retention has to outlast the time an intruder typically remains undetected, or investigations begin after the evidence has already aged out — which is exactly what happened. Sizing retention against measured or industry dwell time is the direct fix, and prioritizing authentication and flow logs keeps the cost bounded. More verbosity fills the same 30-day window faster and worsens the problem. Real-time alerting without archive removes the historical record entirely. Cutting retention because the logs were absent when needed inverts the lesson."
+  },
+  {
+   "objective": "4.5",
+   "domain": "Security Operations",
+   "difficulty": "medium",
+   "stem": "An automation playbook is proposed that, on a malware alert, automatically disables the associated user account and isolates the endpoint. The security lead asks what safeguard should accompany it. What is the most important addition?",
+   "options": [
+    "A requirement that the playbook run only during business hours",
+    "Encryption of the playbook's configuration file at rest",
+    "An exclusion list for critical accounts and systems, plus a rapid human-reviewed rollback path",
+    "A monthly report summarizing how many times the playbook executed"
+   ],
+   "correctAnswer": 2,
+   "explanation": "Automated containment is valuable precisely because it acts faster than a human, which is also its risk: a false positive on a domain controller or a shared service account can cause an outage larger than the incident. Exclusions for critical assets plus a fast, human-reviewed reversal keeps the speed while bounding the blast radius. Restricting to business hours forfeits the benefit overnight, when response is slowest. Encrypting the configuration protects the playbook's contents, not the organization from a bad action. A monthly report is useful oversight but arrives far too late to prevent harm."
+  },
+  {
+   "objective": "4.2",
+   "domain": "Security Operations",
+   "difficulty": "medium",
+   "stem": "An analyst must choose a data source to determine which internal hosts communicated with a known malicious IP address over the past week, on a network with no full packet capture. Which source is most appropriate?",
+   "options": [
+    "Endpoint antivirus scan results from the affected subnet",
+    "Windows Security event logs for account logon events",
+    "DNS server cache contents on the internal resolvers",
+    "NetFlow or firewall connection logs showing source, destination, port, and byte counts"
+   ],
+   "correctAnswer": 3,
+   "explanation": "Flow records answer exactly this question — which internal address talked to which external address, when, and how much — across the whole network and for the retention period, without the storage cost of full capture. Antivirus results report detections on hosts, not communication with a specific address. Logon events describe authentication, not outbound network destinations. A DNS cache holds recently resolved names, is volatile, and would miss any connection made directly to an IP address without a lookup."
+  },
+  {
+   "objective": "4.4",
+   "domain": "Security Operations",
+   "difficulty": "easy",
+   "stem": "During an incident, an analyst copies a suspect disk and records a SHA-256 hash of both the original and the copy, then documents each person who handles the drive with dates and signatures. What is being established?",
+   "options": [
+    "Chain of custody and evidence integrity",
+    "Non-repudiation of the attacker's actions",
+    "Legal hold across the organization's mailboxes",
+    "Root cause of the incident"
+   ],
+   "correctAnswer": 0,
+   "explanation": "Matching hashes demonstrate the copy is identical to the original and unaltered since acquisition, while the signed handling record shows who possessed the evidence at every point — together, evidence integrity and chain of custody, which is what makes the material defensible later. Non-repudiation concerns preventing the attacker from denying their own actions, a different objective. Legal hold is a preservation instruction covering data such as mailboxes, not the handling of a physical drive. Root cause emerges from analysis, not from acquisition procedure."
+  },
+  {
+   "objective": "1.1",
+   "domain": "General Security Concepts",
+   "difficulty": "medium",
+   "stem": "A database stores order records with a cryptographic hash computed over each row and verified on read. An administrator with write access alters a price field directly and the application flags a mismatch on the next read. Which control objective did the hash serve?",
+   "options": [
+    "Confidentiality, by preventing the administrator from reading the price field",
+    "Integrity, by detecting unauthorized modification of stored data",
+    "Availability, by ensuring the record could still be retrieved",
+    "Authentication, by proving the administrator's identity"
+   ],
+   "correctAnswer": 1,
+   "explanation": "The hash does not prevent the change — the administrator had write access — but it makes the change detectable, which is the integrity objective: data is what it is supposed to be, and tampering does not go unnoticed. Confidentiality was never engaged; a hash conceals nothing and the administrator could read the field regardless. Availability concerns whether the record can be retrieved, which was unaffected. Authentication establishes who someone is, and the hash covers row contents rather than identity."
+  }
+ ]
+}

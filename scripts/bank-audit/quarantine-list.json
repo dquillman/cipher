@@ -1,0 +1,20 @@
+{
+  "note": "Security+ (SY0-701) questions flagged as project-management-framed or physical-security. Produced 2026-08-29 by reading all 11 banks from the client Firestore cache and applying positive detection of the two known failure modes. 50 of 100 scored questions in this bank.",
+  "examId": "79cuGMNydTwDMhyiDjry",
+  "examName": "CompTIA Security+ (SY0-701)",
+  "ids": [
+    "08P5iH58hbuakFYk2K9K","23Qe3XDm2bbD8TUIihB2","2lIFuutDvxWDjcdVGc0j","4UQoJYmMlk2KnZuTZA2t",
+    "4imMGKcTWO5VBft3VQut","52ozFEbfnzY2VxXluFn5","5UbaOM4VNIPMPKpgoVpF","6UdUzH4kcgJ5smB4nZ6P",
+    "6lhASsjjL17dWzqT4Kuy","7vaz47Hk8TckvJYyIxPK","8vrv68MffS8OxAqx1JhE","ADAktElMS0jAkqHgdLqE",
+    "Am3kbIjiQTXKPWZAAPJd","D5nCY2XQRgnDYkbTsUM5","FC0f8l4tVFxfJu1Ni51U","IHMSzuLvBnKZGguPRo1H",
+    "IzOt42n6yVm1uwUfLq22","KyZNu7Ab88GQpLXbF50t","LVGV0IhFij6atW5Bx5ui","MIkOcaZDWHEErkrH94al",
+    "MLfdEYvfEKgo8VArhr9J","NdqlFSQCFU8hX7WOlPaI","No643Enlzjloak0rHHWw","QJz27mdnIpMQZDnJEGoU",
+    "Qa80z0C9TVKBCfEhdY6d","TedKGZCu6guCubshz4L8","U9Ttj9j7ajBSZdrC673U","UsCM16jfMw7T5eoZggja",
+    "XwhKiogl5gz1EnKqqAFr","bLztyEYWIEChzm1FrcgX","bxMDyJ1IncFD9RqvQnUE","byi8amyqKP6h8da8VJas",
+    "dv7R2OFsrIcnJJ6bgmH9","fvTKpz4LaerfpxqWTkwR","gmLvBZeAYirefZwvUDL0","gu9MkSrVjxHkBEl7kgr8",
+    "ieBrEQkTMuCpUxVsI8U4","jzG2oSAeG5RDMrWfZrw8","khekb5HuAUJgULP8ZtgW","l6Batso9NuJ9dlp6lTY6",
+    "lJxly94DUWBAjTnS8AzX","oHQ0aZNbYc6UqzIu5S8j","pb0oSDMwdmPt56WNpKCc","rTVTebEi0uBjnwRNDB1r",
+    "uwfwWUEsW9FK6p23sU7F","wSTEuEeZUhIn1zoTldwm","wUOEnUwtMaFU7rO8JTuq","xSTZGEvATAojD6KOqyAF",
+    "xscUNkd4bb24rXKCOhnP","yjVjxuR88q0mpShKWN3G"
+  ]
+}

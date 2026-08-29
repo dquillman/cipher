@@ -1,3 +1,7 @@
-*.json
-!package.json
+# Service account keys must never be committed. Everything else here is data
+# we want in version control.
+serviceAccount*.json
+*credentials*.json
+*-key.json
 node_modules/
+bank-audit-report.json

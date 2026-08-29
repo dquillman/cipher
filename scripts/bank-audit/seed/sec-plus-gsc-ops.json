@@ -1,0 +1,61 @@
+[
+{"objective":"1.2","domain":"General Security Concepts","difficulty":"medium",
+"stem":"An organization deploys a system where every access request is evaluated against device posture, user identity, and resource sensitivity at the moment of the request, regardless of network location. A request from the corporate LAN receives no implicit trust. Which model is being implemented?",
+"options":["Zero trust architecture with a policy decision point evaluating each request","Defense in depth using layered perimeter controls","Role-based access control with centrally managed group membership","Discretionary access control delegated to resource owners"],
+"correctAnswer":0,
+"explanation":"The defining property is that network location confers no trust and each request is authorized dynamically against current signals — that is zero trust, mediated by a policy decision point. Defense in depth layers controls but still typically grants implicit trust once inside the perimeter, which the stem explicitly denies. RBAC assigns permissions by role but is usually evaluated at logon rather than continuously against device posture. DAC lets resource owners set permissions and involves no central, signal-driven evaluation."},
+
+{"objective":"1.4","domain":"General Security Concepts","difficulty":"medium",
+"stem":"A message is signed with the sender's private key. A recipient verifies it with the sender's public key. Which properties does this provide, and which does it not?",
+"options":["Provides authenticity, integrity, and non-repudiation; does not provide confidentiality","Provides confidentiality and integrity; does not provide authenticity","Provides confidentiality and non-repudiation; does not provide integrity","Provides availability and authenticity; does not provide non-repudiation"],
+"correctAnswer":0,
+"explanation":"A digital signature proves the holder of the private key produced it (authenticity), that the content has not changed since signing (integrity), and leaves the signer unable to credibly deny it (non-repudiation). It does nothing to hide the message — signed content travels in plaintext unless separately encrypted, which is why signing and encryption are distinct operations. Confidentiality would require encrypting to the recipient's public key. Availability is unrelated to either operation."},
+
+{"objective":"1.2","domain":"General Security Concepts","difficulty":"easy",
+"stem":"A user authenticates with a password and then approves a push notification on a registered phone. Which authentication factors are in use?",
+"options":["Something you know and something you have","Something you know and something you are","Something you have and somewhere you are","Something you are and something you do"],
+"correctAnswer":0,
+"explanation":"A password is knowledge and the registered phone is possession, so this is a genuine two-factor combination drawing on distinct categories. Inherence — something you are — would require a biometric such as a fingerprint or face scan, which a push approval does not involve. Location is a contextual attribute rather than one of the two factors described. Behavioral characteristics, something you do, are not present either."},
+
+{"objective":"1.3","domain":"General Security Concepts","difficulty":"medium",
+"stem":"A change advisory board reviews a firewall rule modification. The submitter has provided the technical detail and a rollback plan but no statement of what business service is affected if the change fails. Why does the board reject it?",
+"options":["Impact analysis is missing, so the board cannot weigh the risk of the change against its benefit","Rollback plans are not required for firewall changes and its inclusion is an error","Firewall changes must always be performed as emergency changes","The submitter lacks authority to propose changes to production systems"],
+"correctAnswer":0,
+"explanation":"A change record exists so a board can make an informed accept-or-defer decision, and that requires knowing what breaks and who notices if the change goes wrong. Technical steps and a rollback tell you how to undo it, not whether the risk is acceptable during the proposed window. Rollback plans are a standard and valuable component, not an error. Emergency change is a separate expedited path for urgent fixes, not a default for a category of device. Nothing in the stem suggests an authority problem."},
+
+{"objective":"1.4","domain":"General Security Concepts","difficulty":"hard",
+"stem":"A design requires that if a long-term private key is later compromised, previously recorded encrypted sessions remain unreadable. Which property must the key exchange provide?",
+"options":["Perfect forward secrecy through ephemeral session keys not derivable from the long-term key","Longer key lengths to increase the cost of brute force against recorded traffic","Certificate pinning to prevent substitution of the server certificate","Hashing session keys before use so they cannot be reversed"],
+"correctAnswer":0,
+"explanation":"Forward secrecy is exactly this requirement: each session negotiates an ephemeral key that is discarded afterward and cannot be reconstructed from the long-term private key, so a later key compromise does not retroactively decrypt captured traffic. Ephemeral Diffie-Hellman provides it. Longer keys raise brute-force cost but are irrelevant once the attacker simply holds the private key. Pinning defends against fraudulent certificates during the session, not against later compromise of a legitimate one. Hashing is one-way and cannot produce a key both parties can use to decrypt."},
+
+{"objective":"1.1","domain":"General Security Concepts","difficulty":"easy",
+"stem":"A hospital system is designed so patient records remain accessible during a regional power event, using redundant sites and generators. Which element of the CIA triad is the primary design driver?",
+"options":["Availability","Confidentiality","Integrity","Non-repudiation"],
+"correctAnswer":0,
+"explanation":"Redundancy and continuity of power address whether the data can be reached when needed, which is availability. Confidentiality concerns who may read the records and would be served by access control and encryption. Integrity concerns whether the records are accurate and unaltered, served by checksums, versioning, and audit trails. Non-repudiation is not part of the triad; it prevents denial of an action and is typically achieved with digital signatures."},
+
+{"objective":"4.1","domain":"Security Operations","difficulty":"medium",
+"stem":"A SIEM rule alerts on any authentication from an unusual country. It generates roughly 200 alerts per day, and analysts have begun closing them in bulk without investigation. What is the most effective first correction?",
+"options":["Enrich the rule with context such as impossible travel and known VPN egress ranges to raise fidelity","Increase staffing so the current alert volume can be fully investigated","Disable the rule, since it is producing no actionable outcomes","Route the alerts to a lower-priority queue reviewed weekly"],
+"correctAnswer":0,
+"explanation":"Bulk-closing is the visible symptom of alert fatigue, and the underlying defect is a low-fidelity rule that fires on a signal most employees generate legitimately. Adding context — velocity between logins, whether the source is a known corporate VPN egress — converts noise into a smaller set worth working. Adding analysts scales the cost of a bad rule. Disabling loses the detection entirely, including the true positives buried in the volume. Deferring to a weekly queue delays response on precisely the alerts where minutes matter."},
+
+{"objective":"4.4","domain":"Security Operations","difficulty":"medium",
+"stem":"During incident response on a compromised server, an analyst plans to collect evidence. Which order preserves the most volatile data first?",
+"options":["CPU registers and cache, then RAM, then network state, then disk, then archived backups","Disk images first, then RAM, then network state, then CPU cache","Archived backups first, then disk, then RAM, then CPU registers","Network packet captures first, then disk, then CPU registers, then RAM"],
+"correctAnswer":0,
+"explanation":"The order of volatility runs from data that disappears fastest to data that persists longest, because every action taken destroys some of the former. Registers and cache change continuously, RAM is lost on power-down, network connection state is transient, disk survives a reboot, and archived backups are the most stable of all. Taking a disk image first spends minutes during which memory-resident malware and live connections may vanish. The remaining orders invert volatility in the same way, discarding the most fragile evidence before capturing it."},
+
+{"objective":"4.6","domain":"Security Operations","difficulty":"medium",
+"stem":"An organization wants to reduce the time between a vulnerability disclosure and its remediation across 3,000 endpoints. Patch approval currently requires a weekly change board meeting for every patch. Which change most directly reduces mean time to remediate?",
+"options":["Define pre-approved standard changes for routine patches, reserving board review for exceptions","Increase the change board meeting frequency from weekly to twice weekly","Deploy patches without testing to eliminate the validation delay","Purchase a faster patch distribution system with higher bandwidth"],
+"correctAnswer":0,
+"explanation":"The bottleneck is a governance queue, not a technical one, so the fix is to remove routine, low-risk patches from that queue via a pre-approved standard change category while keeping board scrutiny for anything unusual. Meeting twice as often halves one component of the delay but preserves the structural problem. Skipping testing trades one risk for a larger one and causes outages that slow future patching through lost trust. Distribution bandwidth is not the constraint when patches are waiting days for a meeting."},
+
+{"objective":"4.3","domain":"Security Operations","difficulty":"hard",
+"stem":"An analyst must decide between containment options for ransomware detected encrypting a file server. Encryption is in progress and backups are confirmed current and offline. Which action best balances damage limitation against evidence preservation?",
+"options":["Isolate the host from the network while leaving it powered on, then capture memory","Power off the server immediately to halt encryption","Disconnect storage while leaving the network connection active for monitoring","Allow encryption to complete so the full scope of affected files is known"],
+"correctAnswer":0,
+"explanation":"Network isolation stops lateral spread and command-and-control while keeping the system running, which preserves memory-resident evidence including encryption keys that occasionally permit recovery. Powering off stops encryption but destroys RAM, and with current offline backups the marginal files saved rarely justify losing that evidence. Leaving the network active during an active infection permits exactly the spread containment is meant to prevent. Allowing encryption to complete maximizes damage to establish scope that logs and backup comparison can determine afterward."}
+]
