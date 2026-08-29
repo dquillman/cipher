@@ -1,0 +1,409 @@
+<title>CIPHER Mobile Exam Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#F2F4F7;
+  --panel:#E8ECF2;
+  --recess:#DDE3EB;
+  --line:#C6CFDA;
+  --line-soft:#D7DEE7;
+  --ink:#141A21;
+  --ink-2:#3D4854;
+  --muted-solid:#5E6B7A;
+  --accent:#0E7C93;
+  --accent-dim:#0E7C9322;
+  --crit:#B32D22;
+  --high:#8A5A06;
+  --med:#0E5F82;
+  --ok:#1B6B47;
+  --crit-bg:#B32D2218;
+  --high-bg:#8A5A0618;
+  --med-bg:#0E5F8218;
+  --ok-bg:#1B6B4718;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1117;
+    --panel:#161C24;
+    --recess:#11161D;
+    --line:#28313D;
+    --line-soft:#1E2630;
+    --ink:#DCE4EE;
+    --ink-2:#AEBAC8;
+    --muted-solid:#7C8B9C;
+    --accent:#4CC9E8;
+    --accent-dim:#4CC9E822;
+    --crit:#FF7A6B;
+    --high:#F0AE4E;
+    --med:#5CC8E8;
+    --ok:#57D6A0;
+    --crit-bg:#FF7A6B1A;
+    --high-bg:#F0AE4E1A;
+    --med-bg:#5CC8E81A;
+    --ok-bg:#57D6A01A;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1117;
+  --panel:#161C24;
+  --recess:#11161D;
+  --line:#28313D;
+  --line-soft:#1E2630;
+  --ink:#DCE4EE;
+  --ink-2:#AEBAC8;
+  --muted-solid:#7C8B9C;
+  --accent:#4CC9E8;
+  --accent-dim:#4CC9E822;
+  --crit:#FF7A6B;
+  --high:#F0AE4E;
+  --med:#5CC8E8;
+  --ok:#57D6A0;
+  --crit-bg:#FF7A6B1A;
+  --high-bg:#F0AE4E1A;
+  --med-bg:#5CC8E81A;
+  --ok-bg:#57D6A01A;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:56px 24px 96px}
+
+/* ---------- masthead ---------- */
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;font-weight:500;letter-spacing:.20em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 14px;
+}
+h1{
+  font-family:Archivo,"Segoe UI",system-ui,sans-serif;
+  font-weight:700;font-size:clamp(32px,5.4vw,46px);line-height:1.06;
+  letter-spacing:-.022em;margin:0 0 14px;text-wrap:balance;color:var(--ink);
+}
+.standfirst{font-size:19px;color:var(--ink-2);margin:0 0 34px;max-width:62ch}
+
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);
+  margin:0 0 44px;
+}
+.meta div{background:var(--ground);padding:12px 14px}
+.meta dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted-solid);margin:0 0 5px;
+}
+.meta dd{
+  margin:0;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:13.5px;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+
+/* ---------- verdict ---------- */
+.verdict{
+  border-left:2px solid var(--accent);
+  padding:2px 0 2px 20px;margin:0 0 52px;
+}
+.verdict p{margin:0 0 12px;max-width:66ch}
+.verdict p:last-child{margin-bottom:0}
+
+/* ---------- sections ---------- */
+h2{
+  font-family:Archivo,sans-serif;font-weight:600;
+  font-size:13px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted-solid);margin:0 0 4px;
+  padding-bottom:10px;border-bottom:1px solid var(--line);
+}
+section{margin:0 0 56px}
+.sec-note{font-size:15px;color:var(--muted-solid);margin:14px 0 0}
+
+/* ---------- findings ---------- */
+.finding{padding:26px 0;border-bottom:1px solid var(--line-soft)}
+.finding:last-child{border-bottom:0}
+.fhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:9px}
+.chip{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border:1px solid currentColor;white-space:nowrap;
+}
+.c-crit{color:var(--crit);background:var(--crit-bg)}
+.c-high{color:var(--high);background:var(--high-bg)}
+.c-med{color:var(--med);background:var(--med-bg)}
+.c-ok{color:var(--ok);background:var(--ok-bg)}
+.scope{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-solid);
+}
+h3{
+  font-family:Archivo,sans-serif;font-weight:600;font-size:22px;line-height:1.25;
+  letter-spacing:-.012em;margin:0 0 10px;width:100%;text-wrap:balance;color:var(--ink);
+}
+.finding p{margin:0 0 12px;max-width:68ch}
+.finding p:last-child{margin-bottom:0}
+
+.ev{
+  background:var(--recess);border:1px solid var(--line-soft);
+  padding:13px 15px;margin:14px 0;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12.5px;line-height:1.75;color:var(--ink-2);
+  overflow-x:auto;white-space:pre;
+}
+.ev b{color:var(--ink);font-weight:600}
+.ev .bad{color:var(--crit)}
+.ev .good{color:var(--ok)}
+
+.fix{
+  display:grid;grid-template-columns:auto 1fr;gap:0 14px;
+  align-items:baseline;margin-top:14px;
+  padding-top:14px;border-top:1px dashed var(--line);
+}
+.fix span{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+}
+.fix div{margin:0;max-width:66ch}
+code{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.88em;background:var(--accent-dim);padding:1px 5px;color:var(--ink);
+  border-radius:2px;
+}
+
+/* ---------- scroll-cost bars ---------- */
+.bars{margin:20px 0 0;display:grid;gap:9px}
+.bar{display:grid;grid-template-columns:130px 1fr 58px;gap:12px;align-items:center;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px}
+.bar .lbl{color:var(--ink-2)}
+.bar .track{height:9px;background:var(--recess);border:1px solid var(--line-soft)}
+.bar .fill{height:100%;background:var(--accent);display:block}
+.bar .fill.warn{background:var(--high)}
+.bar .fill.bad{background:var(--crit)}
+.bar .num{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ---------- simple lists ---------- */
+ul.plain{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:11px}
+ul.plain li{padding-left:22px;position:relative;max-width:70ch;color:var(--ink-2)}
+ul.plain li::before{
+  content:"";position:absolute;left:0;top:.62em;width:9px;height:1px;background:var(--accent);
+}
+ul.plain li b{color:var(--ink);font-weight:600}
+
+a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-dim)}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+footer{
+  margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;letter-spacing:.06em;color:var(--muted-solid);
+}
+@media (max-width:560px){
+  .bar{grid-template-columns:96px 1fr 52px;font-size:11px}
+  .fix{grid-template-columns:1fr;gap:6px}
+}
+</style>
+
+<div class="wrap">
+
+<p class="eyebrow">Mobile QA · Pixel-class 393&times;851</p>
+<h1>CIPHER Mobile Exam Audit</h1>
+<p class="standfirst">Full exam session driven end-to-end on an Android-class viewport against production <a href="https://cipherexam.com" target="cipher">cipherexam.com</a>. Six defects, one of them losing data on desktop too.</p>
+
+<dl class="meta">
+  <div><dt>Date</dt><dd>2026-08-28</dd></div>
+  <div><dt>Viewport</dt><dd>393 &times; 851</dd></div>
+  <div><dt>Method</dt><dd>Chrome emulation</dd></div>
+  <div><dt>Session</dt><dd>Your live account</dd></div>
+  <div><dt>Exam</dt><dd>Security+ SY0-701</dd></div>
+  <div><dt>Questions</dt><dd>20 answered</dd></div>
+</dl>
+
+<div class="verdict">
+  <p>The app is <b>fundamentally sound on mobile</b>. Correct viewport meta, a real bottom tab bar, generous 314&times;60 menu rows, no horizontal page scroll on the landing page, pricing, dashboard, exams, stats or results. The matching question uses tap-to-swap rather than drag-and-drop, which is the right call for touch and it works.</p>
+  <p>Two things are genuinely broken. The exam header is clipped off-screen after <b>every single answer</b> &mdash; 10 out of 10 questions, no exceptions. And every friction-telemetry write to Firestore has been failing since the <code>coach_timing</code> event shipped, which is why your Thinking Traps panel is empty. That second one is not a mobile bug; it is losing data everywhere.</p>
+</div>
+
+<section>
+<h2>Findings</h2>
+
+<article class="finding">
+  <div class="fhead">
+    <span class="chip c-crit">Critical</span>
+    <span class="scope">All platforms &middot; silent data loss</span>
+    <h3>Every friction event is rejected by Firestore</h3>
+  </div>
+  <p><code>question.type</code> is optional and is <code>undefined</code> for ordinary multiple-choice questions. It gets passed straight into the event payload, and Firestore refuses documents containing undefined values. One 10-question session produced 11 consecutive rejections.</p>
+  <div class="ev"><span class="bad">FirebaseError:</span> Function addDoc() called with invalid data.
+  Unsupported field value: undefined
+  (found in field <b>meta.questionType</b>)
+  &times; 11 &mdash; one per answered question</div>
+  <p>The <code>.catch(() =&gt; {})</code> in the service was meant to make this fire-and-forget. It doesn't help: the writes still fail, the errors still surface as uncaught rejections, and you get no telemetry at all. This is the reason your dashboard says &ldquo;No thinking traps detected yet.&rdquo;</p>
+  <div class="fix">
+    <span>Fix</span>
+    <div><code>web/src/pages/Quiz.tsx:1105</code> &rarr; <code>question.type ?? 'standard'</code>. Better, do it once for everything: strip undefined keys from <code>meta</code> inside <code>FrictionEventService.emit</code> (<code>services/FrictionEventService.ts:58</code>) so no future caller can poison a write.</div>
+  </div>
+</article>
+
+<article class="finding">
+  <div class="fhead">
+    <span class="chip c-crit">Critical</span>
+    <span class="scope">Mobile only &middot; 10 / 10 reproduction</span>
+    <h3>Exam header is clipped off-screen after every answer</h3>
+  </div>
+  <p>Submitting an answer loads the Coach Breakdown, which forces the app shell to <b>507px inside a 393px viewport</b>. The parent has <code>overflow-x: hidden</code>, so there is no horizontal scroll &mdash; the extra 114px is simply unreachable. What disappears: the exam-name selector, the Q&nbsp;/&nbsp;10 progress counter, and the theme toggle. The user loses their place in the exam.</p>
+  <div class="ev">shell width  <span class="bad">507px</span>   viewport  393px   clipped  <span class="bad">114px</span>
+horizontal scroll available: <span class="bad">none</span> (overflow-x:hidden)
+elements pushed out: exam selector @ x=406, Q-counter @ x=440
+
+after adding min-w-0:  <span class="good">374px</span>  &mdash; header restored</div>
+  <p>Root cause is a Flexbox min-content blowout. <code>div.flex-1</code> keeps the default <code>min-width:auto</code>, so it refuses to shrink below its content. The content forcing it is the Coach Breakdown header row: emoji, title, and the Quick&nbsp;/&nbsp;Deep toggle on one non-wrapping flex line with <code>px-6</code> padding &mdash; 360px of min-content in 251px of space.</p>
+  <div class="fix">
+    <span>Fix</span>
+    <div>Safety net, one word: add <code>min-w-0</code> to the shell div at <code>web/src/App.tsx:329</code>. Verified &mdash; it collapses 507&nbsp;&rarr;&nbsp;374 and the header comes back. Root cause: <code>components/TutorBreakdown.tsx:96</code>, change the header row to <code>flex-wrap gap-2 px-3 sm:px-6</code>.</div>
+  </div>
+</article>
+
+<article class="finding">
+  <div class="fhead">
+    <span class="chip c-high">High</span>
+    <span class="scope">Mobile only</span>
+    <h3>Answering one question costs three to five phone screens of scrolling</h3>
+  </div>
+  <p>The Submit button sits ~1,580px down a static page. There is no sticky action bar, so every question requires roughly two screens of scrolling to answer and another two to read the explanation. Across a 100-question mock exam that is real friction, and it compounds with the clipped progress counter above.</p>
+  <div class="bars">
+    <div class="bar"><span class="lbl">Unanswered</span><span class="track"><span class="fill" style="width:34%"></span></span><span class="num">1.6&times;</span></div>
+    <div class="bar"><span class="lbl">Answered</span><span class="track"><span class="fill warn" style="width:62%"></span></span><span class="num">2.9&times;</span></div>
+    <div class="bar"><span class="lbl">Worst observed</span><span class="track"><span class="fill bad" style="width:100%"></span></span><span class="num">4.7&times;</span></div>
+  </div>
+  <p class="sec-note">Document height as a multiple of the viewport, per question. Measured across 10 questions.</p>
+  <div class="fix">
+    <span>Fix</span>
+    <div>Pin Submit / Next to the bottom on small screens (<code>sticky bottom-0</code> with a safe-area inset &mdash; you already have <code>.safe-area-bottom</code> defined). Collapse the mode banner and the domain title into one line under <code>sm:</code>.</div>
+  </div>
+</article>
+
+<article class="finding">
+  <div class="fhead">
+    <span class="chip c-high">High</span>
+    <span class="scope">Real device only &middot; predicted, not observed</span>
+    <h3>54 uses of <code>min-h-screen</code>, zero dynamic viewport units</h3>
+  </div>
+  <p>Emulation cannot surface this one, but Android Chrome will. <code>100vh</code> resolves to the <em>large</em> viewport &mdash; the height with the URL bar hidden. Every full-height layout therefore overflows by the URL-bar height whenever that bar is visible, and content jumps as it collapses on scroll. The quiz shell and the app shell both use it.</p>
+  <div class="ev">min-h-screen (100vh) usages: <span class="bad">54</span>
+dvh / svh usages:              <span class="bad">0</span></div>
+  <div class="fix">
+    <span>Fix</span>
+    <div>Swap <code>min-h-screen</code> for <code>min-h-dvh</code> in the layout shells first &mdash; <code>App.tsx:325</code> and <code>pages/Quiz.tsx:1475</code>. Supported in every Android Chrome you care about.</div>
+  </div>
+</article>
+
+<article class="finding">
+  <div class="fhead">
+    <span class="chip c-med">Medium</span>
+    <span class="scope">Mobile only</span>
+    <h3>Smart Practice Review traps touch scrolling inside itself</h3>
+  </div>
+  <p>The post-quiz coaching modal puts a fixed 480px scroll window over 3,226px of content, nested inside a page that also scrolls. On touch this is the classic trap: momentum scrolling gets captured by the inner box, and it is not obvious which surface is moving. On a phone the visible text column ends up about four words wide.</p>
+  <div class="ev">inner scroller: 480px window / <span class="bad">3226px</span> content
+page beneath it: also scrolling</div>
+  <div class="fix">
+    <span>Fix</span>
+    <div><code>components/SmartQuizReviewModal.tsx:46</code> &rarr; <code>max-h-none sm:max-h-[30rem]</code>, or make the modal full-screen on mobile with a single scroll region.</div>
+  </div>
+</article>
+
+<article class="finding">
+  <div class="fhead">
+    <span class="chip c-med">Medium</span>
+    <span class="scope">Mobile &middot; accessibility</span>
+    <h3>Tap targets below the 44px minimum</h3>
+  </div>
+  <p>Mostly on Stats, where the per-domain call-to-action is the thing you want tapped.</p>
+  <ul class="plain">
+    <li><b>&ldquo;Start practicing &rarr;&rdquo;</b> &mdash; 119&times;20, appears five times on Stats. This is the conversion path out of the stats page.</li>
+    <li><b>Bloom's Taxonomy info button</b> &mdash; 20&times;20.</li>
+    <li><b>Marketing footer links</b> &mdash; 25px tall, seven of them.</li>
+    <li><b>Hamburger toggle</b> &mdash; 50&times;42, marginal.</li>
+    <li>Stats page also overflows its container by 8px &mdash; cosmetic, but it is the only app page that does.</li>
+  </ul>
+  <div class="fix">
+    <span>Fix</span>
+    <div>Give the small links <code>py-2.5 inline-block</code> or a <code>::after</code> hit-area expander. The matching-question definition cells are also plain <code>div</code>s with click handlers and no <code>role="button"</code> or <code>tabindex</code> &mdash; worth fixing while you are in there.</div>
+  </div>
+</article>
+
+<article class="finding">
+  <div class="fhead">
+    <span class="chip c-high">High</span>
+    <span class="scope">Content &middot; not mobile</span>
+    <h3>The Security+ bank is serving project-management questions</h3>
+  </div>
+  <p>Four of the ten questions I was served under CompTIA Security+ (SY0-701) were generic PM scenarios. The Exam Lens then rationalizes them through a security frame, which makes it worse, not better &mdash; it reads as confident and it is wrong.</p>
+  <div class="ev">Q1 &ldquo;During a project kickoff meeting, the project manager
+    identifies a potential risk due to outdated software tools&hellip;&rdquo;
+    &rarr; explained via <span class="bad">SECURITY TRIAD LENS</span>
+
+Q2 &ldquo;During a project kickoff meeting, the project manager
+    emphasizes the importance of data protection&hellip;&rdquo;
+
+Q3 &ldquo;During a project, a team member discovers a potential
+    security vulnerability&hellip;&rdquo;</div>
+  <p>Your entire pitch is that you teach how a specific exam thinks. A Security+ candidate who hits a PMP question dressed as security will not file a bug &mdash; they will quietly stop trusting the product.</p>
+  <div class="fix">
+    <span>Fix</span>
+    <div>Audit the Security+ bank for <code>examId</code> mis-tagging. Worth checking whether the other CompTIA banks are contaminated the same way.</div>
+  </div>
+</article>
+</section>
+
+<section>
+<h2>What held up</h2>
+<ul class="plain">
+  <li><b>Viewport meta is correct</b>, including <code>viewport-fit=cover</code> for notched devices, plus <code>theme-color</code>. Nothing to do here.</li>
+  <li><b>Matching questions are touch-native.</b> Tap-to-select-then-tap-to-swap, not HTML5 drag. I swapped two definitions with synthetic pointer events and it graded correctly.</li>
+  <li><b>PBQs are touch-safe by construction.</b> <code>PBQQuestion.tsx</code> is entirely click-driven &mdash; no <code>draggable</code>, no drag handlers anywhere in the component.</li>
+  <li><b>No horizontal page scroll</b> on landing, pricing, dashboard, exams, readiness, or results.</li>
+  <li><b>Mobile nav is properly built</b> &mdash; bottom tab bar plus hamburger, 314&times;60 menu rows, well over the touch minimum.</li>
+  <li><b>Full session completes.</b> Ten questions, explanations, matching question, finish, score, coaching review. Nothing hung.</li>
+</ul>
+</section>
+
+<section>
+<h2>Not tested &mdash; and why</h2>
+<ul class="plain">
+  <li><b>Login and signup.</b> Both routes redirect to <code>/app</code> while you are authenticated, and I would have had to sign you out to see them. Say the word and I will. This is the path a new phone user actually takes, so it is the biggest gap here.</li>
+  <li><b>PBQ rendering.</b> Ten Security+ questions produced no <code>type: 'pbq'</code> item. Note that <code>PBQQuestion.tsx</code> contains exactly one responsive class in the whole file &mdash; the interaction model is touch-safe, the layout is unverified.</li>
+  <li><b>Real Android Chrome.</b> This was desktop Chrome at a phone viewport. It does not catch soft-keyboard resize, URL-bar collapse, WebView quirks, or touch latency. The <code>min-h-screen</code> finding above is the one I can predict from source; the rest need a real handset.</li>
+</ul>
+</section>
+
+<section>
+<h2>Where I could be wrong</h2>
+<ul class="plain">
+  <li><b>I nearly filed a false positive.</b> Your Chrome is set to a 20px default font size, which inflates every <code>rem</code> value by 25%. My first measurements showed a 607px blowout. I re-ran the whole thing forced to a real Android 16px root: still 507px, still broken. The bug is real, but it is meaningfully less severe than my first numbers said.</li>
+  <li><b>My viewport was 374px of content, not 393px</b> &mdash; desktop Chrome reserves 19px for a scrollbar that Android overlays instead. That makes every overflow finding conservative, never inflated.</li>
+  <li><b>I tested as a returning authenticated user with mastery data.</b> The empty-state paths a brand-new signup hits are untested, and that is the cohort your conversion depends on.</li>
+  <li><b>You cannot currently measure any of this yourself.</b> The friction-event bug means you have zero mobile telemetry. Fix that first &mdash; it is the cheapest fix on this page and it is the one that tells you whether the rest of these actually matter to real users.</li>
+</ul>
+</section>
+
+<section>
+<h2>Changes I made to your account</h2>
+<ul class="plain">
+  <li>Answered <b>20 practice questions</b> under CompTIA Security+ across two sessions, mostly at random. Your Security+ stats are polluted &mdash; one recorded score of 1/10.</li>
+  <li>Switched your active exam to Security+ to reach CompTIA content, then <b>switched it back to Certified Payroll Professional</b>. Verified.</li>
+  <li>Nothing was deleted, and no settings other than active exam were touched.</li>
+</ul>
+</section>
+
+<footer>CIPHER mobile audit &middot; 2026-08-28 &middot; Chrome device emulation, 393&times;851, production cipherexam.com</footer>
+
+</div>

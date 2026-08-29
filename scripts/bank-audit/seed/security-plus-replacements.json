@@ -39,10 +39,10 @@
    "difficulty": "medium",
    "stem": "A payroll processor will receive employee bank details and tax identifiers. Procurement has a signed master services agreement and a current SOC 2 Type II report. The security team is asked what else is required before data flows. What is the most important remaining item?",
    "options": [
-    "A penetration test of the vendor's production environment performed by your own red team",
-    "A copy of the vendor's cyber insurance certificate naming your organization",
+    "A penetration test of the vendor's production environment by your own red team, repeated at each contract renewal",
+    "A copy of the vendor's cyber insurance certificate naming your organization as an additional insured party",
     "A data processing agreement defining permitted use, breach notification timelines, and return or destruction at termination",
-    "Evidence that the vendor encrypts data at rest using AES-256 specifically"
+    "Evidence that the vendor encrypts data at rest using AES-256 with keys held in a hardware security module"
    ],
    "correctAnswer": 2,
    "explanation": "A SOC 2 Type II attests that controls operated effectively during a window; it does not constrain what the vendor may do with your data, when they must tell you about a breach, or what happens at exit. Those obligations live in a data processing agreement, and without one you have assurance about their controls but no rights over your data. Your own red team testing a third party's production environment is rarely contractually permitted and duplicates the audit. An insurance certificate addresses recovery of loss, not prevention or notification. A specific cipher is a control detail the SOC 2 scope already covers."
@@ -68,7 +68,7 @@
    "stem": "An internal audit and an external penetration test are both scheduled for the same quarter on the same payment application. A manager proposes cancelling one to save budget. What distinction should the security lead present?",
    "options": [
     "The audit verifies whether controls exist and operate as documented; the test verifies whether they can be defeated",
-    "The audit is required by regulation while the penetration test is a discretionary best practice",
+    "The audit is required by regulation while the penetration test is a discretionary practice most firms skip",
     "The audit examines technical configuration while the penetration test reviews policy and procedure",
     "The audit is performed by an independent party while the penetration test is performed internally"
    ],
@@ -137,10 +137,10 @@
    "difficulty": "medium",
    "stem": "A quarterly compliance report shows 100% of servers passing the hardening baseline. A security engineer notes the scan only covers systems registered in the configuration management database, and roughly 15% of production hosts were built by a team that does not register them. How should the reported metric be characterized?",
    "options": [
-    "The metric is accurate, since unregistered hosts fall outside the defined compliance scope",
+    "The metric is accurate, since unregistered hosts fall outside the compliance scope as it was formally defined",
     "The metric measures compliance of known assets and overstates coverage because asset inventory is incomplete",
-    "The metric is invalid and should be replaced with a count of vulnerabilities found",
-    "The metric is acceptable if the 15% are non-production or low-criticality systems"
+    "The metric is invalid and should be replaced with a raw count of vulnerabilities found across the estate",
+    "The metric is acceptable provided the unregistered 15% are non-production or low-criticality systems"
    ],
    "correctAnswer": 1,
    "explanation": "A compliance percentage is only as trustworthy as the denominator. Reporting 100% while 15% of production is invisible to the scanner presents an assurance level the organization does not have, and asset inventory is the control that fails first. Declaring unregistered hosts out of scope makes the metric true by definition and useless in practice — it rewards not registering. Swapping in a vulnerability count measures something different and inherits the same blind spot. The stem states these are production hosts, so the criticality escape does not apply."
@@ -151,10 +151,10 @@
    "difficulty": "medium",
    "stem": "A risk register entry reads: 'Ransomware — High.' The CISO asks for it to be rewritten so the board can act on it. Which rewrite is most useful?",
    "options": [
-    "Ransomware — High likelihood, High impact, owner: IT Security, status: open",
-    "Ransomware attacks have increased 40% across the insurance sector this year",
+    "Ransomware — High likelihood, High impact, owner: IT Security, status: open, review date set for next quarter",
+    "Ransomware attacks have increased 40% across the insurance sector this year according to industry threat reporting",
     "Ransomware encrypting the claims database via an unpatched VPN appliance; likely within 12 months; $2.1M outage and notification cost",
-    "Ransomware — mitigated by endpoint detection, offline backups, and user awareness training"
+    "Ransomware — mitigated by endpoint detection, offline backups, and annual user awareness training for all staff"
    ],
    "correctAnswer": 2,
    "explanation": "A board can only act on a risk statement that names the asset, the threat, the path in, a timeframe, and a consequence in money. A statement naming the asset, the entry path, a timeframe and a dollar consequence supports a decision — patch the appliance, or fund something else. A likelihood/impact pair with an owner is a tracking record, not a decision input; 'High/High' tells the board nothing about what to buy. Sector statistics are threat intelligence, not your risk. Listing controls without stating the residual exposure that remains after them omits the number the board is being asked to accept."
@@ -193,10 +193,10 @@
    "difficulty": "easy",
    "stem": "A finance clerk receives a call from someone claiming to be the CFO, demanding an urgent wire transfer and instructing the clerk not to discuss it with anyone. Which awareness topic most directly addresses this scenario?",
    "options": [
-    "Creating strong, unique passwords for financial systems",
+    "Creating strong, unique passwords for financial systems and storing them in an approved password manager",
     "Recognizing social engineering pressure tactics and following out-of-band verification",
-    "Identifying phishing links in email before clicking them",
-    "Reporting lost or stolen mobile devices promptly"
+    "Identifying phishing links in email by hovering to inspect the destination before clicking them",
+    "Reporting lost or stolen mobile devices to the service desk promptly so access can be revoked"
    ],
    "correctAnswer": 1,
    "explanation": "Urgency plus authority plus a secrecy instruction is the classic business email compromise pattern, delivered here by voice. The countermeasure is a verification step through a separate, known channel — calling the CFO back on a directory number — and training that treats a secrecy instruction as itself a red flag. Password hygiene does not apply; no credential is being requested. Phishing link training addresses a different delivery vector and the call contains no link. Device reporting is unrelated to an inbound fraud attempt."
@@ -207,10 +207,10 @@
    "difficulty": "medium",
    "stem": "A vendor questionnaire response states that the supplier 'follows industry best practices for encryption.' The assessor needs to convert this into something verifiable. What is the best follow-up?",
    "options": [
-    "Accept the response, since best practice claims are standard in vendor questionnaires",
-    "Require the vendor to adopt your organization's internal encryption standard verbatim",
+    "Accept the response, since best practice claims are standard in vendor questionnaires and rarely disputed at review",
+    "Require the vendor to adopt your organization's internal encryption standard verbatim before the contract is signed",
     "Request the specific algorithms, key lengths, and key management process, plus evidence such as a configuration standard",
-    "Substitute the vendor's marketing security page as supporting evidence"
+    "Substitute the vendor's public marketing security page as supporting evidence in the assessment file"
    ],
    "correctAnswer": 2,
    "explanation": "Unfalsifiable claims are the most common weakness in questionnaire-based assessment, and the fix is to ask for specifics that can be checked against an artifact — named algorithms, key lengths, rotation and custody. Accepting the phrase leaves you asserting assurance you never obtained. Imposing your internal standard on a multi-tenant supplier is usually unachievable and not what the assessment is for; you are judging adequacy, not enforcing uniformity. A marketing page is written to persuade, carries no attestation, and is not evidence."
@@ -221,9 +221,9 @@
    "difficulty": "hard",
    "stem": "An organization processes cardholder data and is preparing for a PCI DSS assessment. An architect proposes storing the primary account number encrypted, alongside the decryption key, on the same database server for performance reasons. What is the compliance problem?",
    "options": [
-    "Encrypted primary account numbers may not be stored under any circumstances",
-    "Performance optimization is prohibited within the cardholder data environment",
-    "Primary account numbers must be hashed rather than encrypted in all cases",
+    "Encrypted primary account numbers may not be stored under any circumstances once authorization completes",
+    "Performance optimization is prohibited within the cardholder data environment under all operating conditions",
+    "Primary account numbers must be hashed rather than encrypted in every cardholder data environment",
     "Storing the key with the data it protects defeats the control, since compromise of the host yields both"
    ],
    "correctAnswer": 3,
@@ -277,9 +277,9 @@
    "difficulty": "medium",
    "stem": "An organization wants to reduce insider risk from departing employees. Exit procedures currently revoke building access on the last day. Analysis shows most data exfiltration occurs in the two weeks before resignation is announced. Which control best addresses the observed pattern?",
    "options": [
-    "Revoking all system access at the moment resignation is submitted",
-    "Requiring a longer notice period so exit procedures have more time to run",
-    "Mandatory annual re-signing of the acceptable use policy by all staff",
+    "Revoking all system and building access at the moment a resignation is formally submitted to HR",
+    "Requiring a longer notice period so exit procedures have more time to run before the departure date",
+    "Mandatory annual re-signing of the acceptable use policy by all staff with completion tracked",
     "Behavioral monitoring for anomalous bulk data access, applied continuously rather than at exit"
    ],
    "correctAnswer": 3,
@@ -292,9 +292,9 @@
    "stem": "A web application logs show repeated requests to /api/user?id=1001 through /api/user?id=1400 from a single authenticated session, each returning HTTP 200 with a different user's profile. What is occurring?",
    "options": [
     "Insecure direct object reference being enumerated for horizontal privilege escalation",
-    "A distributed denial of service attack against the user API endpoint",
-    "SQL injection extracting records from the user table",
-    "Session hijacking using stolen authentication cookies"
+    "A distributed denial of service attack saturating the user API endpoint with repeated requests",
+    "SQL injection through the id parameter extracting successive records from the user table",
+    "Session hijacking in which stolen authentication cookies are replayed against each account"
    ],
    "correctAnswer": 0,
    "explanation": "The application authenticates the session but never checks whether that user is authorized for the requested id, so incrementing the parameter walks the whole user table — an insecure direct object reference, exploited horizontally against peer accounts. Volume from one session over 400 requests is not a denial of service and is not distributed. No SQL syntax appears; the parameter is used as intended and the flaw is missing authorization, not injection. The session is legitimately authenticated, so nothing has been hijacked."
@@ -305,10 +305,10 @@
    "difficulty": "medium",
    "stem": "An analyst finds a scheduled task on a domain controller that runs a PowerShell command decoding a base64 string and invoking it in memory. No file is written to disk. Which characteristic makes this technique effective against traditional defenses?",
    "options": [
-    "It uses encryption that endpoint agents are unable to decrypt in transit",
+    "It uses encryption that endpoint agents are unable to decrypt while the payload is in transit",
     "It is fileless, so signature-based antivirus scanning of the file system finds nothing to match",
-    "It runs with lower privileges than a compiled executable would require",
-    "It cannot be recorded in Windows event logs under any configuration"
+    "It runs with markedly lower privileges than an equivalent compiled executable would require",
+    "It cannot be recorded in Windows event logs under any available auditing configuration"
    ],
    "correctAnswer": 1,
    "explanation": "Living-off-the-land techniques execute entirely in memory using signed, trusted interpreters already present on the host, so a scanner looking for malicious files on disk has no artifact to inspect. The countermeasures are script block logging, AMSI, and behavioral detection rather than file signatures. Base64 is an encoding, not encryption, and is trivially reversible. Running on a domain controller under a scheduled task typically means high privilege, not low. PowerShell script block logging can and does capture the decoded content when enabled, which is exactly why enabling it matters."
@@ -333,9 +333,9 @@
    "difficulty": "medium",
    "stem": "A vulnerability scan reports a critical flaw in a library on 400 servers. Investigation shows the vulnerable function is never called by the application, and the library is statically linked with that code path unreachable. How should this be handled?",
    "options": [
-    "Suppress the finding permanently, since unreachable code cannot be exploited",
-    "Patch all 400 servers as an emergency change within 24 hours",
-    "Remove the library entirely and refactor the application to avoid the dependency",
+    "Suppress the finding permanently, since code that is unreachable today cannot be exploited later either",
+    "Patch all 400 servers as an emergency change within 24 hours regardless of whether the path is reachable",
+    "Remove the library entirely and refactor the application to eliminate the dependency this quarter",
     "Document it as not exploitable in this configuration, and still schedule the upgrade on the normal patch cycle"
    ],
    "correctAnswer": 3,
@@ -417,10 +417,10 @@
    "difficulty": "medium",
    "stem": "An application accepts a filename parameter and returns file contents. A tester submits ....//....//etc/passwd and receives the file. What does the successful response reveal about the input handling?",
    "options": [
-    "The application correctly blocked the traversal and returned a decoy file",
+    "The application correctly blocked the traversal and deliberately returned a decoy file instead",
     "A sanitizer strips ../ once without re-checking, so the doubled sequence collapses into a valid traversal",
-    "Input is being URL-decoded twice before the path is resolved",
-    "The web server is running with root privileges, which alone permits the traversal"
+    "Input is being URL-decoded twice by the framework before the final path is resolved",
+    "The web server is running with root privileges, which on its own is what permits the traversal"
    ],
    "correctAnswer": 1,
    "explanation": "Single-pass replacement is the classic sanitization bug: removing the inner ../ from ....// leaves ../, so the filter constructs the traversal it was meant to prevent. Recursive sanitization or canonicalizing the path and checking it stays inside the allowed root is the correct fix. The file was returned, so nothing was blocked. Double URL decoding is a different bypass and would require encoded input, which is not present. Privilege level determines what a successful traversal can read, but it does not create the traversal — an unprivileged process would still have escaped the intended directory."
@@ -516,9 +516,9 @@
    "stem": "A SIEM rule alerts on any authentication from an unusual country. It generates roughly 200 alerts per day, and analysts have begun closing them in bulk without investigation. What is the most effective first correction?",
    "options": [
     "Enrich the rule with context such as impossible travel and known VPN egress ranges to raise fidelity",
-    "Increase staffing so the current alert volume can be fully investigated",
-    "Disable the rule, since it is producing no actionable outcomes",
-    "Route the alerts to a lower-priority queue reviewed weekly"
+    "Increase analyst staffing so the current alert volume can be fully investigated every day",
+    "Disable the rule, since it is producing no actionable outcomes for the analysts working it",
+    "Route the alerts to a lower-priority queue that is reviewed in bulk once each week"
    ],
    "correctAnswer": 0,
    "explanation": "Bulk-closing is the visible symptom of alert fatigue, and the underlying defect is a low-fidelity rule that fires on a signal most employees generate legitimately. Adding context — velocity between logins, whether the source is a known corporate VPN egress — converts noise into a smaller set worth working. Adding analysts scales the cost of a bad rule. Disabling loses the detection entirely, including the true positives buried in the volume. Deferring to a weekly queue delays response on precisely the alerts where minutes matter."
@@ -529,10 +529,10 @@
    "difficulty": "medium",
    "stem": "During incident response on a compromised server, an analyst plans to collect evidence. Which order preserves the most volatile data first?",
    "options": [
-    "Disk images first, then RAM, then network state, then CPU cache",
+    "Disk images first, then RAM, then live network state, then CPU registers and cache",
     "CPU registers and cache, then RAM, then network state, then disk, then archived backups",
-    "Archived backups first, then disk, then RAM, then CPU registers",
-    "Network packet captures first, then disk, then CPU registers, then RAM"
+    "Archived backups first, then disk, then RAM, then CPU registers and processor cache",
+    "Network packet captures first, then disk, then CPU registers and cache, then RAM"
    ],
    "correctAnswer": 1,
    "explanation": "The order of volatility runs from data that disappears fastest to data that persists longest, because every action taken destroys some of the former. Registers and cache change continuously, RAM is lost on power-down, network connection state is transient, disk survives a reboot, and archived backups are the most stable of all. Taking a disk image first spends minutes during which memory-resident malware and live connections may vanish. The remaining orders invert volatility in the same way, discarding the most fragile evidence before capturing it."
@@ -543,10 +543,10 @@
    "difficulty": "medium",
    "stem": "An organization wants to reduce the time between a vulnerability disclosure and its remediation across 3,000 endpoints. Patch approval currently requires a weekly change board meeting for every patch. Which change most directly reduces mean time to remediate?",
    "options": [
-    "Increase the change board meeting frequency from weekly to twice weekly",
-    "Deploy patches without testing to eliminate the validation delay",
+    "Increase the change board meeting frequency from weekly to twice weekly for patch items",
+    "Deploy patches directly to production without testing, eliminating the validation delay",
     "Define pre-approved standard changes for routine patches, reserving board review for exceptions",
-    "Purchase a faster patch distribution system with higher bandwidth"
+    "Purchase a faster patch distribution system with higher bandwidth to the endpoint estate"
    ],
    "correctAnswer": 2,
    "explanation": "The bottleneck is a governance queue, not a technical one, so the fix is to remove routine, low-risk patches from that queue via a pre-approved standard change category while keeping board scrutiny for anything unusual. Meeting twice as often halves one component of the delay but preserves the structural problem. Skipping testing trades one risk for a larger one and causes outages that slow future patching through lost trust. Distribution bandwidth is not the constraint when patches are waiting days for a meeting."
@@ -572,9 +572,9 @@
    "stem": "A user reports their workstation is slow. Analysis finds a browser extension, installed from an official store, that reads page content on every site and posts it to an external endpoint. The extension has 400,000 users and a five-star rating. What best describes this?",
    "options": [
     "A trusted-channel compromise where legitimate distribution and reputation mask malicious functionality",
-    "A zero-day exploit in the browser's extension sandbox",
-    "A drive-by download that installed without user interaction",
-    "A rootkit operating below the browser at kernel level"
+    "A zero-day exploit in the browser's extension sandbox permitting reads across origin boundaries",
+    "A drive-by download that installed the extension without any user interaction or consent prompt",
+    "A rootkit operating below the browser at kernel level and intercepting its network calls"
    ],
    "correctAnswer": 0,
    "explanation": "Official store distribution, a large install base, and strong ratings are the trust signals users and many controls rely on, and none of them speak to what the code actually does with its granted permissions. Extensions are frequently sold or updated into surveillance after building reputation. No sandbox flaw is involved — the extension is using permissions it was legitimately granted. A drive-by download requires no user action, but the stem states it was installed from a store. A rootkit operates at the operating system level, not as a browser extension."
@@ -585,10 +585,10 @@
    "difficulty": "medium",
    "stem": "A penetration tester obtains a low-privilege shell and finds a scheduled task running as SYSTEM that executes C:\\Program Files\\App\\service.exe, written without surrounding quotation marks. Which weakness does this create?",
    "options": [
-    "A buffer overflow in the service executable's argument parsing",
+    "A buffer overflow in the service executable's argument parsing routine reachable at startup",
     "An unquoted service path allowing execution of C:\\Program.exe if the tester can write to the drive root",
-    "A DLL side-loading opportunity in the application directory",
-    "A symbolic link race condition during service startup"
+    "A DLL side-loading opportunity in the application directory searched ahead of the system path",
+    "A symbolic link race condition during service startup between the access check and the file open"
    ],
    "correctAnswer": 1,
    "explanation": "Windows resolves an unquoted path by trying each space-delimited prefix in turn, so it attempts C:\\Program.exe before the intended target. If the low-privilege account can write to the drive root, planting that file yields SYSTEM execution. The flaw is in how the path was registered, not in the executable's parsing, so no overflow is involved. DLL side-loading is a real but different technique requiring a missing or hijackable library rather than a path resolution quirk. A symlink race involves timing between check and use, which is not what the missing quotes create."
@@ -641,10 +641,10 @@
    "difficulty": "medium",
    "stem": "Log retention is set to 30 days. An investigation of a breach discovered on day 45 finds that initial access occurred approximately 60 days ago. What should the post-incident review recommend?",
    "options": [
-    "Increase log verbosity across all sources to capture more detail going forward",
+    "Increase log verbosity across all sources so more detail is captured on every event going forward",
     "Extend retention for authentication and network flow logs to exceed the organization's mean dwell time",
-    "Move all logging to the SIEM's real-time alerting tier and drop archival storage",
-    "Reduce retention further to cut storage cost, since the logs were not useful"
+    "Move all logging into the SIEM's real-time alerting tier and drop archival storage entirely",
+    "Reduce retention further to cut storage cost, given that the logs proved unhelpful here"
    ],
    "correctAnswer": 1,
    "explanation": "Retention has to outlast the time an intruder typically remains undetected, or investigations begin after the evidence has already aged out — which is exactly what happened. Sizing retention against measured or industry dwell time is the direct fix, and prioritizing authentication and flow logs keeps the cost bounded. More verbosity fills the same 30-day window faster and worsens the problem. Real-time alerting without archive removes the historical record entirely. Cutting retention because the logs were absent when needed inverts the lesson."
@@ -655,10 +655,10 @@
    "difficulty": "medium",
    "stem": "An automation playbook is proposed that, on a malware alert, automatically disables the associated user account and isolates the endpoint. The security lead asks what safeguard should accompany it. What is the most important addition?",
    "options": [
-    "A requirement that the playbook run only during business hours",
-    "Encryption of the playbook's configuration file at rest",
+    "A requirement that the playbook run only when an analyst is available to review its actions",
+    "Encryption of the playbook's configuration file and stored credentials at rest in the platform",
     "An exclusion list for critical accounts and systems, plus a rapid human-reviewed rollback path",
-    "A monthly report summarizing how many times the playbook executed"
+    "A monthly report summarizing how many times the playbook executed and on which hosts"
    ],
    "correctAnswer": 2,
    "explanation": "Automated containment is valuable precisely because it acts faster than a human, which is also its risk: a false positive on a domain controller or a shared service account can cause an outage larger than the incident. Exclusions for critical assets plus a fast, human-reviewed reversal keeps the speed while bounding the blast radius. Restricting to business hours forfeits the benefit overnight, when response is slowest. Encrypting the configuration protects the playbook's contents, not the organization from a bad action. A monthly report is useful oversight but arrives far too late to prevent harm."
@@ -669,9 +669,9 @@
    "difficulty": "medium",
    "stem": "An analyst must choose a data source to determine which internal hosts communicated with a known malicious IP address over the past week, on a network with no full packet capture. Which source is most appropriate?",
    "options": [
-    "Endpoint antivirus scan results from the affected subnet",
-    "Windows Security event logs for account logon events",
-    "DNS server cache contents on the internal resolvers",
+    "Endpoint antivirus scan results collected from every host on the affected subnet",
+    "Windows Security event logs filtered for account logon events across the domain controllers",
+    "DNS server cache contents captured from the internal recursive resolvers before entries expire",
     "NetFlow or firewall connection logs showing source, destination, port, and byte counts"
    ],
    "correctAnswer": 3,
