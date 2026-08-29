@@ -1,20 +1,23 @@
 /**
- * Sets status:'quarantined' on questions that contain none of their exam's
- * domain vocabulary. The app treats a missing status as active, so anything
- * this does not touch is unaffected.
+ * Quarantines an explicit list of question IDs. Sets status:'quarantined';
+ * the app treats a missing status as active, so nothing else is affected.
  *
  *   node quarantine.mjs                    dry run (default) — prints, writes nothing
  *   node quarantine.mjs --apply            write
- *   node quarantine.mjs --exam <examId>    limit to one bank
- *   node quarantine.mjs --source <name>    limit to one source, e.g. AI-AutoLeveler
- *   node quarantine.mjs --release --apply  clear status on everything it set
+ *   node quarantine.mjs --release --apply  clear the field again (full undo)
+ *   node quarantine.mjs --list other.json  use a different ID list
  *
- * Deploy the app first: the filter lives in web/src/utils/questionStatus.ts.
- * Writing the field before that ships is harmless but has no effect.
+ * Reads scripts/bank-audit/quarantine-list.json by default. That list was
+ * produced by reading every bank and flagging the two known failure modes, then
+ * checked by hand — an explicit ID list, not a regex run at write time, so what
+ * gets written is exactly what was reviewed.
+ *
+ * The app-side filter (web/src/utils/questionStatus.ts) shipped to production
+ * on 2026-08-29, so the field is honoured as soon as it is written.
  */
 import { initializeApp, applicationDefault, getApps } from 'firebase-admin/app';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import { EXAM_VOCAB } from './vocab.mjs';
+import { readFileSync } from 'node:fs';
 
 const args = process.argv.slice(2);
 const has = (f) => args.includes(f);
@@ -22,61 +25,52 @@ const val = (f) => { const i = args.indexOf(f); return i === -1 ? null : args[i 
 
 const APPLY = has('--apply');
 const RELEASE = has('--release');
-const ONLY_EXAM = val('--exam');
-const ONLY_SOURCE = val('--source');
+const LIST = val('--list') ?? './quarantine-list.json';
 
 if (!getApps().length) initializeApp({ credential: applicationDefault() });
 const db = getFirestore();
 
-const snap = await db.collection('questions').get();
-const targets = [];
+const list = JSON.parse(readFileSync(LIST, 'utf8'));
+const ids = [...new Set(list.ids)];
+console.log(`\n${list.examName} — ${ids.length} question(s) in ${LIST}`);
 
-for (const doc of snap.docs) {
-    const q = doc.data();
+// Read every target first: confirm it exists, and show what is being acted on.
+const snaps = await Promise.all(ids.map((id) => db.collection('questions').doc(id).get()));
+const missing = [], wrongBank = [], targets = [];
+snaps.forEach((s, i) => {
+  if (!s.exists) return missing.push(ids[i]);
+  const d = s.data();
+  if (list.examId && d.examId !== list.examId) return wrongBank.push({ id: ids[i], examId: d.examId });
+  targets.push({ id: ids[i], status: d.status ?? '(none)', stem: (d.stem ?? '').slice(0, 88) });
+});
 
-    if (RELEASE) {
-        if (q.status === 'quarantined') targets.push({ id: doc.id, reason: 'release', stem: (q.stem ?? '').slice(0, 90) });
-        continue;
-    }
+if (missing.length)   console.log(`\n  !! ${missing.length} id(s) not found: ${missing.join(', ')}`);
+if (wrongBank.length) console.log(`\n  !! ${wrongBank.length} id(s) belong to another bank — SKIPPED:`, wrongBank);
 
-    if (ONLY_EXAM && q.examId !== ONLY_EXAM) continue;
-    if (ONLY_SOURCE && q.source !== ONLY_SOURCE) continue;
-    if (q.status === 'quarantined') continue;
-    if (q.type === 'matching' || q.type === 'pbq') continue;  // content lives outside stem/options
+const todo = RELEASE ? targets.filter(t => t.status === 'quarantined')
+                     : targets.filter(t => t.status !== 'quarantined');
 
-    const vocabEntry = EXAM_VOCAB[q.examId];
-    if (!vocabEntry) continue;                                 // never guess on an unconfigured bank
+console.log(`\n${RELEASE ? 'RELEASE' : 'QUARANTINE'}: ${todo.length} to change, ${targets.length - todo.length} already in the desired state${APPLY ? '' : '   [DRY RUN — nothing written]'}\n`);
+for (const t of todo) console.log(`  ${t.id}  ${t.stem}`);
 
-    const haystack = [q.stem ?? '', ...(q.options ?? [])].join(' ');
-    if (!vocabEntry[1].test(haystack)) {
-        targets.push({ id: doc.id, exam: vocabEntry[0], source: q.source ?? '(none)', domain: q.domain ?? '', stem: (q.stem ?? '').slice(0, 90) });
-    }
+if (!APPLY) { console.log(`\nDry run. Re-run with --apply to write.`); process.exit(0); }
+if (!todo.length) { console.log('Nothing to do.'); process.exit(0); }
+
+for (let i = 0; i < todo.length; i += 400) {
+  const batch = db.batch();
+  for (const t of todo.slice(i, i + 400)) {
+    batch.update(db.collection('questions').doc(t.id),
+      RELEASE ? { status: FieldValue.delete() } : { status: 'quarantined' });
+  }
+  await batch.commit();
+  console.log(`  committed ${Math.min(i + 400, todo.length)}/${todo.length}`);
 }
 
-const verb = RELEASE ? 'RELEASE' : 'QUARANTINE';
-console.log(`\n${verb}: ${targets.length} question(s)${APPLY ? '' : '   [DRY RUN — nothing written]'}\n`);
-for (const t of targets) console.log(`  ${t.id}  ${(t.source ?? '').padEnd(26)} ${t.stem}`);
-
-if (!APPLY) {
-    console.log(`\nDry run. Re-run with --apply to write.`);
-    process.exit(0);
-}
-if (!targets.length) { console.log('Nothing to do.'); process.exit(0); }
-
-let written = 0;
-for (let i = 0; i < targets.length; i += 400) {
-    const batch = db.batch();
-    for (const t of targets.slice(i, i + 400)) {
-        batch.update(db.collection('questions').doc(t.id),
-            RELEASE ? { status: FieldValue.delete() } : { status: 'quarantined' });
-    }
-    await batch.commit();
-    written += Math.min(400, targets.length - i);
-    console.log(`  committed ${written}/${targets.length}`);
-}
-
-// Read back a sample rather than trusting the write.
-const check = await Promise.all(targets.slice(0, 5).map((t) => db.collection('questions').doc(t.id).get()));
-console.log('\nVerification (first 5):');
-for (const d of check) console.log(`  ${d.id}  status=${d.data()?.status ?? '(none)'}`);
-console.log(`\nDone. ${written} document(s) updated. Reverse with: node quarantine.mjs --release --apply`);
+// Read back every document rather than trusting the write.
+const after = await Promise.all(todo.map((t) => db.collection('questions').doc(t.id).get()));
+const want = RELEASE ? undefined : 'quarantined';
+const bad = after.filter((s) => s.data()?.status !== want);
+console.log(bad.length
+  ? `\n!! ${bad.length} document(s) did not take: ${bad.map(s => s.id).join(', ')}`
+  : `\nVerified: all ${todo.length} document(s) now status=${want ?? '(none)'}.`);
+console.log(`\nUndo with: node quarantine.mjs --release --apply`);
