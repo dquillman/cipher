@@ -172,7 +172,15 @@ export default function UsageHeatmap({ examId }: UsageHeatmapProps) {
                     <div
                         className="grid w-full"
                         style={{
-                            gridTemplateColumns: `auto repeat(${weeks.length}, 1fr)`,
+                            // minmax(0, …) not 1fr. A bare 1fr is minmax(auto, 1fr),
+                            // and `auto` floors the track at its content's min-content
+                            // width — here the nowrap month labels ("May", "Jun"), about
+                            // 23px each. Sixteen of those plus gaps needs ~446px, so on a
+                            // 393px phone the grid ignored its 309px container and the
+                            // cells ran past the right edge of the card. minmax(0, 1fr)
+                            // lets the tracks actually shrink; cells land at ~13px, which
+                            // is still a legible heatmap.
+                            gridTemplateColumns: `auto repeat(${weeks.length}, minmax(0, 1fr))`,
                             columnGap: '3px',
                             rowGap: '3px',
                         }}
