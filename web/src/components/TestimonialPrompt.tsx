@@ -140,7 +140,9 @@ export default function TestimonialPrompt({ examId, examName, onClose }: Testimo
             placeholder="(Optional) One thing you'd tell a friend studying for this exam?"
             rows={3}
             maxLength={500}
-            className="mt-3 w-full resize-none rounded-md border border-slate-300 bg-white p-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+            // text-base under sm: — iOS Safari zooms the whole page when a
+            // focused input renders below 16px, and it does not zoom back out.
+            className="mt-3 w-full resize-none rounded-md border border-slate-300 bg-white p-2 text-base sm:text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
           />
 
           <label className="mt-2 flex items-start gap-2 text-xs text-slate-600">
@@ -148,7 +150,7 @@ export default function TestimonialPrompt({ examId, examName, onClose }: Testimo
               type="checkbox"
               checked={consentToShare}
               onChange={e => setConsentToShare(e.target.checked)}
-              className="mt-0.5 h-3.5 w-3.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+              className="mt-0.5 h-5 w-5 flex-shrink-0 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
             />
             <span>OK to share my first name + quote on the CipherExam site / social.</span>
           </label>
