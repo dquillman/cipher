@@ -149,6 +149,58 @@ export function isPBQCorrect(config: PBQConfig, state: PBQState): boolean {
     return correct === total;
 }
 
+// ─── Display-order shuffle ──────────────────────────────────────
+
+/* order-steps has always shuffled (initPBQState, above). drag-drop and
+ * fill-table did not, and rendered config.items / config.zones / field.options
+ * in authored array order — so any seed whose author listed items in zone
+ * order, or whose correct option sat at the row's own index, handed those
+ * marks to a candidate who never read the question. Auditing the first
+ * Security+ PBQ set found 43 of 133 scored decisions (32%) recoverable from
+ * layout alone: a zero-knowledge candidate exploiting only that scored 50%.
+ *
+ * Both ends are fixed. Seeds are authored de-correlated, and the order is
+ * shuffled again here so a leaked seed file is not an answer key either.
+ * Shuffling is display-only — placements are keyed by item id and table cells
+ * are compared by value, so scorePBQ is untouched.
+ *
+ * The shuffle is held in a ref keyed by content, so it survives re-renders
+ * (a re-shuffle on every keystroke would make the pool unusable) and is
+ * recomputed when a different question arrives. */
+function shuffleCopy<T>(input: T[]): T[] {
+    const a = input.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+function useShuffledOnce<T>(input: T[], key: string): T[] {
+    const ref = useRef<{ key: string; value: T[] } | null>(null);
+    if (!ref.current || ref.current.key !== key) {
+        ref.current = { key, value: shuffleCopy(input) };
+    }
+    return ref.current.value;
+}
+
+/** fill-table needs a shuffle per dropdown, and hooks cannot be called inside
+ *  the row/field loops. One cache, keyed by the option list itself: identical
+ *  option lists share an order, which is what a real form does anyway. */
+function useOptionShuffler(): (options: string[]) => string[] {
+    const cache = useRef<Map<string, string[]> | null>(null);
+    if (cache.current === null) cache.current = new Map();
+    return useCallback((options: string[]) => {
+        const map = cache.current!;
+        const key = options.join(' ');
+        const hit = map.get(key);
+        if (hit) return hit;
+        const shuffled = shuffleCopy(options);
+        map.set(key, shuffled);
+        return shuffled;
+    }, []);
+}
+
 // ─── Props ──────────────────────────────────────────────────────
 
 interface PBQQuestionProps {
@@ -179,7 +231,9 @@ function DragDropPBQ({ config, state, locked, onChange }: {
     config: DragDropConfig; state: PBQState; locked: boolean; onChange: (s: PBQState) => void;
 }) {
     const placements = state.placements || {};
-    const unplaced = config.items.filter(item => !placements[item.id]);
+    const items = useShuffledOnce(config.items, config.items.map(i => i.id).join(' '));
+    const zones = useShuffledOnce(config.zones, config.zones.map(z => z.id).join(' '));
+    const unplaced = items.filter(item => !placements[item.id]);
     const [dragging, setDragging] = useState<string | null>(null);
 
     const handlePlace = (itemId: string, zoneId: string) => {
@@ -231,8 +285,8 @@ function DragDropPBQ({ config, state, locked, onChange }: {
 
             {/* Zones */}
             <div className="grid gap-3 sm:grid-cols-2">
-                {config.zones.map(zone => {
-                    const zoneItems = config.items.filter(item => placements[item.id] === zone.id);
+                {zones.map(zone => {
+                    const zoneItems = items.filter(item => placements[item.id] === zone.id);
                     const isDropTarget = dragging && !locked;
 
                     return (
@@ -321,6 +375,7 @@ function FillTablePBQ({ config, state, locked, onChange }: {
     config: FillTableConfig; state: PBQState; locked: boolean; onChange: (s: PBQState) => void;
 }) {
     const values = state.tableValues || [];
+    const shuffleOptions = useOptionShuffler();
 
     const handleChange = (rowIdx: number, colIdx: number, value: string) => {
         if (locked) return;
@@ -375,7 +430,7 @@ function FillTablePBQ({ config, state, locked, onChange }: {
                                                     }`}
                                                 >
                                                     <option value="">— Select —</option>
-                                                    {field.options.map(opt => (
+                                                    {shuffleOptions(field.options).map(opt => (
                                                         <option key={opt} value={opt}>{opt}</option>
                                                     ))}
                                                 </select>
