@@ -100,7 +100,7 @@ export const SEO = {
             name: 'How is CipherExam different from other prep tools?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Every question is classified by Bloom’s Taxonomy and explained through an exam-specific reasoning framework (Exam Lens). You learn how the exam thinks, not just the answer.',
+              text: 'Every PMP and CompTIA Security+ question is classified by Bloom’s Taxonomy; Network+ and A+ Core 2 are not yet classified. Every answer on every exam is explained through an exam-specific reasoning framework (Exam Lens).',
             },
           },
         ],

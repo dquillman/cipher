@@ -27,7 +27,7 @@ export default function APlusCore2PracticeLP() {
       <Hero
         eyebrow="A+ Core 2 · CipherExam"
         h1="Practice A+ Core 2 the way CompTIA grades it."
-        sub="Most A+ Core 2 questions aren't asking what you know — they're asking what you do FIRST. Every CipherExam answer is explained through the Exam Lens — what step of the CompTIA troubleshooting model is this? — plus the Bloom's-level reasoning behind the question. Knowing the fix isn't enough. Knowing the order is."
+        sub="Most A+ Core 2 questions aren't asking what you know — they're asking what you do FIRST. Every CipherExam answer is explained through the Exam Lens — what step of the CompTIA troubleshooting model is this? — and the reasoning behind each wrong option is named, not just the right one. Knowing the fix isn't enough. Knowing the order is."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         testimonialBadge="none"
@@ -48,10 +48,11 @@ export default function APlusCore2PracticeLP() {
       <SectionBlock title="Three things compound for A+ Core 2">
         <ol className="space-y-4">
           <li>
-            <strong>Bloom's-classified practice.</strong> Every A+ Core 2 question is tagged
-            by cognitive level. You see whether you're nailing easy "remember" questions but
-            missing the "apply"- and "analyze"-level troubleshooting scenarios that decide the
-            real exam.
+            <strong>Order-first troubleshooting practice.</strong> Questions are written so
+            the decision is which step comes FIRST, not which fix is valid — the thing the real
+            exam actually separates candidates on. Note that Bloom's cognitive-level tagging,
+            which our PMP and Security+ banks carry, is <em>not</em> yet applied to A+ Core 2,
+            so the per-level accuracy breakdown will be empty for this exam.
           </li>
           <li>
             <strong>Exam Lens explanations.</strong> Every right and wrong answer is walked

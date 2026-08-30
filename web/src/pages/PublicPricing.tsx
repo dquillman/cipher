@@ -229,7 +229,7 @@ export default function PublicPricing() {
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
                             <dt className="text-lg font-semibold text-white mb-2">How is CipherExam different from other prep tools?</dt>
                             <dd className="text-slate-300 leading-relaxed">
-                                Every question is classified by Bloom's Taxonomy and explained through an exam-specific reasoning framework called <a href="/exam-lens" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">Exam Lens</a>. You learn <em>how the exam thinks</em>, not just the answer. Your results break accuracy out by reasoning level, so you can see whether you are missing recall questions or judgment questions — they need different fixes.
+                                Every PMP and CompTIA Security+ question is classified by Bloom's Taxonomy (Network+ and A+ Core 2 are not yet classified), and every answer is explained through an exam-specific reasoning framework called <a href="/exam-lens" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">Exam Lens</a>. You learn <em>how the exam thinks</em>, not just the answer. Your results break accuracy out by reasoning level, so you can see whether you are missing recall questions or judgment questions — they need different fixes.
                             </dd>
                         </div>
                     </dl>

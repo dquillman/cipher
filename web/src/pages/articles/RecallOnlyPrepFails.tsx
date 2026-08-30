@@ -206,7 +206,7 @@ export default function RecallOnlyPrepFails() {
             </h2>
 
             <p>
-              Every question in every CIPHER session is classified by Bloom's level. Your accuracy per level is tracked separately from your accuracy per topic. The study plan targets your weakest level first, using the method that trains that level.
+              Questions in our PMP and Security+ banks are classified by Bloom's level; Network+ and A+ Core 2 are not yet classified. Your accuracy per level is tracked separately from your accuracy per topic. The study plan targets your weakest level first, using the method that trains that level.
             </p>
 
             <p>
