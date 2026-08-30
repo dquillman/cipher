@@ -45,7 +45,7 @@ export default function SecurityPlusPracticeLP() {
             Drag systems into the right network zone, order the incident response phases,
             complete a firewall ruleset, or type the command that lists listening sockets
             with their owning process. Five matching items on top of that. The remaining
-            105 are scenario-driven multiple choice — telemetry or an incident, and what
+            97 are scenario-driven multiple choice — telemetry or an incident, and what
             to do next.
           </li>
           <li>
@@ -112,7 +112,7 @@ export default function SecurityPlusPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do you simulate Performance-Based Questions?</dt>
-            <dd className="mt-1">Yes, and here are the exact numbers rather than a claim. The bank is 121 questions: 100 scenario-driven multiple choice, 5 matching items, and 16 performance-based questions across four formats — drag-and-drop into zones (5), ordered procedures (4), configuration tables (4) and a simulated command line (3). What we do <em>not</em> reproduce is CompTIA's own interface chrome or its network-topology diagram items. Sixteen is a starting set, not parity with the real exam, and we would rather say so. Take the free trial and judge them before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
+            <dd className="mt-1">Yes, and here are the exact numbers rather than a claim. The bank is 118 questions: 97 scenario-driven multiple choice, 5 matching items, and 16 performance-based questions across four formats — drag-and-drop into zones (5), ordered procedures (4), configuration tables (4) and a simulated command line (3). What we do <em>not</em> reproduce is CompTIA's own interface chrome or its network-topology diagram items. Sixteen is a starting set, not parity with the real exam, and we would rather say so. Take the free trial and judge them before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>

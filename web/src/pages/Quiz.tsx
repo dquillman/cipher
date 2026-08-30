@@ -129,7 +129,7 @@ export default function Quiz() {
     }, [location.state]);
 
     // Global context fallback
-    const { selectedExamId, examName, bankVersion, examDomains, loading: examContextLoading } = useExam();
+    const { selectedExamId, examName, bankVersion, examDomains, loading: examContextLoading, switchExam } = useExam();
 
     const [activeExamId, setActiveExamId] = useState<string>('');
     const [reinforcementMessage, setReinforcementMessage] = useState<string | null>(null);
@@ -151,6 +151,16 @@ export default function Quiz() {
         // Priority: URL Param > Context > Default
         const effectiveId = paramExamId || selectedExamId || DEFAULT_EXAM_ID;
         setActiveExamId(effectiveId);
+
+        // A /app/quiz/:examId deep link used to set the questions and nothing
+        // else: ExamContext kept the previously selected exam, so examName and
+        // bankVersion stayed stale and every label around the questions named
+        // the wrong exam. Opening Security+ from the exam list rendered its
+        // questions under "PMP-style (ECO July 2026)" and a footer reading
+        // "PMP Exam v2026 Bank v1.0.0". Bring the context with the URL.
+        if (paramExamId && !examContextLoading && paramExamId !== selectedExamId) {
+            void switchExam(paramExamId);
+        }
 
         // Pre-Quiz Reinforcement Check
         const checkReinforcement = () => {
@@ -181,7 +191,7 @@ export default function Quiz() {
             }
         };
         checkReinforcement();
-    }, [paramExamId, selectedExamId]);
+    }, [paramExamId, selectedExamId, examContextLoading]);
 
     useEffect(() => {
         // Per-phase stopwatch for the quiz load.
