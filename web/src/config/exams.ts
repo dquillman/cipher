@@ -187,6 +187,40 @@ export const EXAM_LENS: Record<string, { lensName: string; framework: string }> 
 /** New users land on the live 2026-ECO PMP bank, not the retired 2021 one. */
 export const DEFAULT_EXAM_ID = PMP_2026_EXAM_ID;
 
+/** The four exams the site markets as "covered in depth" — the same four named
+ *  on the landing page, in the meta description, and by the /lp/* pages. Only
+ *  these appear in the exam picker (pages/ExamList.tsx).
+ *
+ *  This is deliberately NARROWER than SELLABLE_EXAMS. Sellable answers "may a
+ *  pass be bought for this bank"; marketed answers "do we put this in front of
+ *  someone choosing an exam". The seven omitted banks (CSM, SHRM-CP, Six Sigma,
+ *  CPP, CIA Part 1, ITIL 4, PgMP) stay sellable and stay fully playable for
+ *  anyone already on them — they are simply not advertised, because a bank that
+ *  cannot fill a full-length mock should not be pitched to a new user.
+ *
+ *  Adding an exam here is a marketing claim. Before adding one, the landing
+ *  page copy, meta description and the "Certification exams" stat all have to
+ *  agree with it. */
+export const MARKETED_EXAM_IDS: readonly string[] = [
+    PMP_2026_EXAM_ID,              // PMP Exam v2026
+    "79cuGMNydTwDMhyiDjry",        // CompTIA Security+ (SY0-701)
+    "N5mrEby0gKLFs1y88DpM",        // CompTIA Network+ (N10-009)
+    "12396VsKMFLnPMXivHKQ",        // CompTIA A+ Core 2 (220-1202)
+];
+
+/** True when the bank is one of the four advertised exams. */
+export function isMarketedExam(examId: string | undefined): boolean {
+    if (!examId) return false;
+    return MARKETED_EXAM_IDS.includes(examId);
+}
+
+/** What the $59 Exam Pass dropdown offers: the marketed four, in the order
+ *  declared above. Narrower than SELLABLE_EXAMS on purpose — we do not put an
+ *  unadvertised bank in front of someone about to pay for it. Every id here is
+ *  non-retired (enforced in exams.test.ts), so this is a subset of
+ *  SELLABLE_EXAMS and needs no second retired check. */
+export const PURCHASABLE_EXAMS: ExamConfig[] = MARKETED_EXAM_IDS.map((id) => EXAMS[id]);
+
 /** Exams that may be offered for purchase. Anything flagged `retired` is
  *  excluded: selling a $59 Exam Pass for an outline the certifying body has
  *  already superseded is a refund waiting to happen. Retired banks stay in

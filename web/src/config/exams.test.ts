@@ -3,6 +3,9 @@ import {
     EXAMS,
     SELLABLE_EXAMS,
     isSellableExam,
+    isMarketedExam,
+    MARKETED_EXAM_IDS,
+    PURCHASABLE_EXAMS,
     examLineage,
     DEFAULT_EXAM_ID,
     PMP_EXAM_ID,
@@ -206,5 +209,70 @@ describe('config integrity', () => {
 
     it('never leaves a retired bank as the default', () => {
         expect(EXAMS[DEFAULT_EXAM_ID].retired).toBeFalsy();
+    });
+});
+
+/**
+ * The bug this block exists to prevent: pages/ExamList.tsx filtered the picker
+ * on the Firestore `isPublished` field alone, which knows nothing about this
+ * config. Every published bank was offered — eleven of them — while the landing
+ * page, meta description and /lp/* pages all claimed four. A trial user could
+ * pick Six Sigma or CIA Part 1, banks too thin to fill a full-length mock.
+ */
+describe('marketed exams', () => {
+    it('advertises exactly the four exams the site claims', () => {
+        expect(MARKETED_EXAM_IDS).toHaveLength(4);
+    });
+
+    it('names a real bank for every marketed id', () => {
+        for (const id of MARKETED_EXAM_IDS) {
+            expect(EXAMS[id], `MARKETED_EXAM_IDS has an id with no bank: ${id}`).toBeDefined();
+        }
+    });
+
+    it('never markets a retired bank', () => {
+        for (const id of MARKETED_EXAM_IDS) {
+            expect(EXAMS[id].retired, `${EXAMS[id].name} is retired and must not be marketed`).toBeFalsy();
+        }
+    });
+
+    it('only markets banks that can actually be bought', () => {
+        for (const id of MARKETED_EXAM_IDS) {
+            expect(isSellableExam(id), `${EXAMS[id].name} is marketed but not sellable`).toBe(true);
+        }
+    });
+
+    it('is narrower than the sellable set — sellable is not the same question', () => {
+        expect(MARKETED_EXAM_IDS.length).toBeLessThan(SELLABLE_EXAMS.length);
+    });
+
+    it('keeps the unadvertised banks sellable and playable, just unlisted', () => {
+        const unmarketed = Object.values(EXAMS).filter((e) => !e.retired && !isMarketedExam(e.id));
+        expect(unmarketed.length).toBeGreaterThan(0);
+        for (const exam of unmarketed) {
+            expect(isSellableExam(exam.id), `${exam.name} should stay sellable`).toBe(true);
+        }
+    });
+
+    it('markets the live PMP bank, not the 2021 one', () => {
+        expect(isMarketedExam(PMP_2026_EXAM_ID)).toBe(true);
+        expect(isMarketedExam(PMP_EXAM_ID)).toBe(false);
+    });
+
+    it('offers exactly the marketed four for purchase', () => {
+        expect(PURCHASABLE_EXAMS.map((e) => e.id)).toEqual([...MARKETED_EXAM_IDS]);
+    });
+
+    it('never lists an undefined bank in the purchase dropdown', () => {
+        for (const exam of PURCHASABLE_EXAMS) {
+            expect(exam, 'MARKETED_EXAM_IDS holds an id absent from EXAMS').toBeDefined();
+            expect(exam.name).toBeTruthy();
+        }
+    });
+
+    it('keeps every purchasable bank sellable — no retired bank reaches checkout', () => {
+        for (const exam of PURCHASABLE_EXAMS) {
+            expect(isSellableExam(exam.id), `${exam.name} is purchasable but not sellable`).toBe(true);
+        }
     });
 });

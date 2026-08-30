@@ -695,7 +695,11 @@ export default function Landing() {
           </h2>
           <p className="text-slate-400 mb-16">Four exams, gone deep. We would rather cover fewer certifications properly than list a dozen we cannot.</p>
 
-          <div ref={examGridRef} className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 ${examGridIn ? "is-in" : ""}`}>
+          {/* Four cards, four columns. This was lg:grid-cols-6 back when the
+              catalogue listed eleven exams; after the cut to four it left two
+              empty cells and the row read as left-aligned against a centered
+              heading. max-w-3xl keeps the cards from stretching wide on desktop. */}
+          <div ref={examGridRef} className={`grid grid-cols-2 sm:grid-cols-4 gap-4 mx-auto max-w-3xl ${examGridIn ? "is-in" : ""}`}>
             {[
               { name: "PMP", org: "PMI", live: true, lp: "/lp/pmp", color: "from-brand-500/20 to-brand-600/5 border-brand-500/25" },
               { name: "Security+", org: "CompTIA", live: true, lp: "/lp/security-plus", color: "from-red-500/20 to-red-600/5 border-red-500/25" },
@@ -872,7 +876,7 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-800 border-y border-slate-800">
             {[
-              { value: "11", label: "Certification exams" },
+              { value: "4", label: "Certification exams" },
               { value: "AI", label: "Reasoning behind every answer" },
               { value: "7 days", label: "Free trial, no credit card" },
             ].map((s, i) => (

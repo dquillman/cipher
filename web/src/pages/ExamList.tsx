@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useExam } from '../contexts/ExamContext';
+import { isMarketedExam } from '../config/exams';
 import DashboardLink from '../components/DashboardLink';
 import { ExamListSkeleton } from '../components/ui/Skeleton';
 
@@ -47,7 +48,9 @@ export default function ExamList() {
                     id: doc.id,
                     ...doc.data()
                 })) as Exam[];
-                // Filter out unpublished exams
+                // Filter out unpublished exams. The marketed-four filter is applied
+                // at render, not here, so it can also let the user's currently
+                // selected bank through (see visibleExams below).
                 setExams(examsData.filter((e: any) => e.isPublished).sort((a, b) => a.name.localeCompare(b.name)));
             } catch (error) {
                 console.error("Error fetching exams:", error);
@@ -58,6 +61,13 @@ export default function ExamList() {
 
         fetchExams();
     }, []);
+
+    // The picker shows the four advertised exams and nothing else — no
+    // exceptions, including for a user whose saved selection is an older bank.
+    // `isPublished` is a Firestore field that knows nothing about this config,
+    // so filtering on it alone offered every published bank (eleven of them,
+    // plus retired exam codes) against a site that claims four.
+    const visibleExams = exams.filter((exam) => isMarketedExam(exam.id));
 
     if (loading) {
         return (
@@ -79,7 +89,7 @@ export default function ExamList() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {exams.map((exam) => {
+                    {visibleExams.map((exam) => {
                         const category = getExamCategory(exam.name);
                         const isCurrent = exam.id === selectedExamId;
                         return (
