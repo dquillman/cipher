@@ -1,0 +1,16 @@
+{
+  "name": "bank-audit",
+  "version": "1.0.0",
+  "description": "Both use the Firebase Admin SDK, so they need admin credentials that Claude does not have and must not handle. Run them yourself.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "firebase-admin": "^14.3.0"
+  }
+}
