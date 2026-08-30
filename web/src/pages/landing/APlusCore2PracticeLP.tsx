@@ -60,10 +60,9 @@ export default function APlusCore2PracticeLP() {
             220-1202 objectives, so you internalize the order, not just the facts.
           </li>
           <li>
-            <strong>90-question Full Mock with PBQ support.</strong> Same length and pacing as
-            the actual exam — 90 questions in 90 minutes — and it supports the question types
-            you'll actually face: multiple-choice, matching, and performance-based questions
-            (PBQs), not just text.
+            <strong>90-question Full Mock at exam pacing.</strong> Same length and pacing as
+            the actual exam — 90 questions in 90 minutes — drawn across the 220-1202
+            objectives as scenario-driven multiple choice.
           </li>
         </ol>
       </SectionBlock>
@@ -106,7 +105,7 @@ export default function APlusCore2PracticeLP() {
         <dl className="space-y-6">
           <div>
             <dt className="font-semibold text-slate-100">How long is the A+ Core 2 exam, and what's the format?</dt>
-            <dd className="mt-1">The real 220-1202 exam is up to 90 questions in 90 minutes. Our Full Mock matches that — 90 questions in 90 minutes — and supports the same question types: multiple-choice, matching, and performance-based questions (PBQs).</dd>
+            <dd className="mt-1">The real 220-1202 exam is up to 90 questions in 90 minutes and mixes multiple choice with performance-based questions. Our Full Mock matches the length and pacing — 90 questions in 90 minutes — but is scenario-driven multiple choice throughout. See the PBQ answer below.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Is this aligned to the current A+ Core 2 objectives?</dt>
@@ -114,7 +113,7 @@ export default function APlusCore2PracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do you support performance-based questions (PBQs)?</dt>
-            <dd className="mt-1">Yes. PBQs are supported natively in the Full Mock — not flattened into plain multiple-choice — so you practice them the way they appear on exam day.</dd>
+            <dd className="mt-1">Not yet, and you should hear it here rather than after paying. The 220-1202 bank is 161 scenario-driven multiple-choice questions. We do not simulate drag-and-drop, configuration tables or CLI items — the engine for those formats is built, the content is not written. What we drill is the six-step ordering judgment those items grade. Take the free trial and judge that before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What makes A+ Core 2 hard?</dt>

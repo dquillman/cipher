@@ -21,8 +21,8 @@ export default function SecurityPlusPracticeLP() {
       <SeoHead {...SEO.lpSecurityPlus} />
       <Hero
         eyebrow="Security+ (SY0-701) · CipherExam"
-        h1="Stop bombing Security+ PBQs."
-        sub="CipherExam runs CompTIA Security+ (SY0-701) Performance-Based Questions natively — drag-and-drop, network topology, and CLI items — and explains every answer through the CIA triad. Pass the simulator that matches the real exam."
+        h1="Security+ punishes the wrong decision, not the missing fact."
+        sub="CipherExam drills SY0-701 as scenario questions and explains every answer through the CIA triad — which principle is under threat, before which control fixes it. We do not simulate the PBQ interface; we train the judgment PBQs are grading. Read what we do and do not cover below."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         videoSrc="/videos/lp/launch-teaser-secplus.mp4"
@@ -30,30 +30,31 @@ export default function SecurityPlusPracticeLP() {
 
       <SectionBlock>
         <p>
-          Most Security+ candidates pass every practice quiz at 90%+ and still walk out of
-          the testing center shaken. The reason: question banks drill facts, but the real
-          Security+ exam mixes MCQ with Performance-Based Questions — and PBQs test whether
-          you can <em>operate</em>, not whether you can <em>recognize</em>. Flashcards can't
-          close that gap.
+          Plenty of candidates pass every practice quiz at 90%+ and still walk out of the
+          testing center shaken. Recognizing a term and choosing the right action under a
+          scenario are different skills, and SY0-701 mostly grades the second one — in its
+          multiple-choice items as much as in its Performance-Based Questions. That is the
+          skill this bank is built to drill.
         </p>
       </SectionBlock>
 
       <SectionBlock title="Three things compound for Security+">
         <ol className="space-y-4">
           <li>
-            <strong>Native PBQ simulation.</strong> Drag-and-drop firewall rules, match
-            attacks to controls, parse CLI output — the same item types CompTIA uses, not
-            text approximations. This is the wedge against flashcard-only competitors.
+            <strong>Scenario items, not definition items.</strong> A question gives you
+            telemetry, a configuration or an incident and asks what it means or what to do
+            next — the register SY0-701 is written in. Five matching items are interactive;
+            the rest are scenario-driven multiple choice.
           </li>
           <li>
             <strong>CIA-triad-first explanations.</strong> Every right and wrong answer
             names the triad principle (confidentiality / integrity / availability) being
-            tested <em>before</em> the control. Naming the principle first is what makes
-            PBQs feel like 30-second questions instead of 5-minute panics.
+            tested <em>before</em> the control. Naming the principle first is what turns a
+            five-minute stare into a thirty-second decision — on PBQs and on everything else.
           </li>
           <li>
             <strong>90-question Full Mock at exam pacing.</strong> 90 questions in 90 minutes —
-            the same length CompTIA uses. MCQ + matching + PBQ in one session.
+            the same length CompTIA uses, drawn from all five SY0-701 domains.
           </li>
         </ol>
       </SectionBlock>
@@ -85,7 +86,7 @@ export default function SecurityPlusPracticeLP() {
             onClick={() => trackCtaClick(`${PAGE_ID}-try-q-cta`)}
             className="inline-flex items-center rounded-md bg-brand-600 px-6 py-3 text-base font-semibold text-white shadow transition hover:bg-brand-700"
           >
-            Start Free Trial to see PBQs in the simulator →
+            Start Free Trial and judge the explanations yourself →
           </Link>
         </p>
       </SectionBlock>
@@ -96,7 +97,7 @@ export default function SecurityPlusPracticeLP() {
         cluster="security-plus"
         pageId={PAGE_ID}
         headline="Free: 10 Security+ PBQ Walkthroughs"
-        sub="The CIA Triad applied to performance-based questions. Drag-drop, topology, CLI — with the reasoning CompTIA grades on. Email it to yourself, no trial required."
+        sub="A written guide: the CIA Triad applied to drag-drop, topology and CLI performance-based questions, with the reasoning CompTIA grades on. A study resource, not a simulator. Email it to yourself, no trial required."
       />
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
@@ -108,8 +109,8 @@ export default function SecurityPlusPracticeLP() {
             <dd className="mt-1">Yes — the question library is built against CompTIA's published SY0-701 exam objectives.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-100">Do PBQs actually work in the simulator?</dt>
-            <dd className="mt-1">Yes. Drag-and-drop, matching, and topology items are native. Not text-only approximations.</dd>
+            <dt className="font-semibold text-slate-100">Do you simulate Performance-Based Questions?</dt>
+            <dd className="mt-1">Not yet, and you should hear that here rather than discover it after paying. The Security+ bank ships 105 questions: 100 scenario-driven multiple choice and 5 interactive matching items. We do not simulate drag-and-drop firewall rules, network topology or CLI terminals. The engine for those formats is built and the content is not written. Our work has gone into the reasoning those items grade — if practising the interface itself is your top priority right now, use the free trial to judge before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
@@ -117,7 +118,7 @@ export default function SecurityPlusPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Will this help me pass Network+ or other CompTIA certs next?</dt>
-            <dd className="mt-1">Network+ is fully live — same Bloom's classification and PBQ support, with the Exam Lens. CISSP is on the roadmap.</dd>
+            <dd className="mt-1">Network+ (N10-009) is live with 106 questions and the same Exam Lens explanations. Same caveat on PBQ simulation as above. CISSP is on the roadmap and not yet built.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Cancel anytime?</dt>

@@ -22,7 +22,7 @@ export default function NetworkPlusPracticeLP() {
       <Hero
         eyebrow="Network+ · CipherExam"
         h1="Troubleshoot Network+ one layer at a time."
-        sub="CipherExam explains every CompTIA Network+ (N10-009) answer through the Exam Lens — what OSI layer is this, and what is the systematic fix? — and runs Performance-Based Questions natively. Knowing the protocols isn't enough. Locating the symptom on the OSI model is."
+        sub="CipherExam explains every CompTIA Network+ (N10-009) answer through the Exam Lens — what OSI layer is this, and what is the systematic fix? Knowing the protocols isn't enough. Locating the symptom on the OSI model is. We drill that judgment; we do not simulate the PBQ interface."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         testimonialBadge="none"
@@ -53,8 +53,8 @@ export default function NetworkPlusPracticeLP() {
           </li>
           <li>
             <strong>90-question Full Mock at exam pacing.</strong> 90 questions in 90 minutes —
-            the same length CompTIA uses. MCQ, matching, and Performance-Based Questions (PBQs)
-            run in one session, not as text approximations.
+            the same length CompTIA uses, drawn across the N10-009 domains as
+            scenario-driven multiple choice.
           </li>
         </ol>
       </SectionBlock>
@@ -86,7 +86,7 @@ export default function NetworkPlusPracticeLP() {
             onClick={() => trackCtaClick(`${PAGE_ID}-try-q-cta`)}
             className="inline-flex items-center rounded-md bg-brand-600 px-6 py-3 text-base font-semibold text-white shadow transition hover:bg-brand-700"
           >
-            Start Free Trial to see PBQs in the simulator →
+            Start Free Trial and judge the explanations yourself →
           </Link>
         </p>
       </SectionBlock>
@@ -100,8 +100,8 @@ export default function NetworkPlusPracticeLP() {
             <dd className="mt-1">Yes — the question library is built against CompTIA's published N10-009 exam objectives.</dd>
           </div>
           <div>
-            <dt className="font-semibold text-slate-100">Do PBQs actually work in the simulator?</dt>
-            <dd className="mt-1">Yes. Performance-Based Questions are native alongside MCQ and matching items — not text-only approximations.</dd>
+            <dt className="font-semibold text-slate-100">Do you simulate Performance-Based Questions?</dt>
+            <dd className="mt-1">No, and we would rather you knew before paying than after. The N10-009 bank is 106 scenario-driven multiple-choice questions. We do not simulate drag-and-drop, topology or CLI items. The engine for those formats exists; the content is not written. What we drill is the layer-first troubleshooting judgment those items grade. Use the free trial to judge that for yourself, and spend an hour in CompTIA's own exam demo before test day.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What makes Network+ hard?</dt>
@@ -109,7 +109,7 @@ export default function NetworkPlusPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
-            <dd className="mt-1">90 questions in 90 minutes — the same length and pacing as CompTIA's exam, with MCQ, matching, and PBQs.</dd>
+            <dd className="mt-1">90 questions in 90 minutes — the same length and pacing as CompTIA's exam. Scenario-driven multiple choice throughout; see the PBQ answer above.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>

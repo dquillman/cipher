@@ -55,8 +55,8 @@ export default function PmpPracticeLP() {
             <strong>180-question Full Mock with EMV math.</strong> The real PMP is 180
             questions (170 scored, 10 pretest) inside a 240-minute sitting. Our Full Mock
             runs the same 180 questions on the same 240-minute clock, so you rehearse
-            stamina and pacing at exam scale — not just recall. EMV / earned-value math is
-            supported natively, not buried in a text box.
+            stamina and pacing at exam scale — not just recall. Items are scenario-driven
+            multiple choice; see the earned-value answer below for what we do not cover.
           </li>
         </ol>
       </SectionBlock>
@@ -120,7 +120,7 @@ export default function PmpPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do you cover EMV / earned-value math?</dt>
-            <dd className="mt-1">Yes, natively. EMV questions are interactive, not just text — the Full Mock supports the calculations.</dd>
+            <dd className="mt-1">Not in the current bank, and we would rather say so plainly. The interactive earned-value item type is built, and the ten questions using it sit in our retired 2021-outline bank. <strong>PMP Exam v2026</strong> — the bank you get today — is scenario-driven multiple choice throughout and does not yet include them. If earned-value calculation practice is your priority right now, use the free trial to check before you pay us anything.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>

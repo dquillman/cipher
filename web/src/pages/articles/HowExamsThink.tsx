@@ -40,10 +40,10 @@ export default function HowExamsThink() {
 
           <header className="mb-12">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-display tracking-tight leading-tight mb-4">
-              How Certification Exams Actually Think (And Why Your Prep Tools Don't Match)
+              How Certification Exams Actually Think
             </h1>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Most prep tools drill facts. The exams test reasoning frames &mdash; Exam Lens, Security Triad, SHRM Competency. Here's the gap, and how to close it.
+              Every exam grades against a reasoning frame &mdash; Exam Lens, Security Triad, SHRM Competency. Here's how to name the frame behind a question, and what to do when drilling more facts stops moving your score.
             </p>
             <div className="flex items-center gap-3 mt-6 text-sm text-slate-500">
               <span>By Dave, founder of CipherExam</span>
@@ -59,7 +59,7 @@ export default function HowExamsThink() {
             </figure>
 
             <p>
-              I've spent the last two years building a tool that prepares people for certification exams. The thing nobody warned me about: most prep tools are solving the wrong problem.
+              I've spent the last two years building a tool that prepares people for certification exams. The thing nobody warned me about: coverage and reasoning are two different problems, and it is easy to spend months solving only the first one.
             </p>
 
             <p>
@@ -111,7 +111,7 @@ export default function HowExamsThink() {
             </h2>
 
             <p>
-              I'll be blunt: I think most question banks are stuck at the bottom rung of Bloom's Taxonomy. They drill <em>remember</em> and <em>understand.</em> They almost never drill <em>evaluate.</em> But the certifying bodies write nearly every high-stakes question at the <em>apply / analyze / evaluate</em> level. If your prep is at level 2 and the exam is at level 5, no amount of more flashcards closes the gap. You'll just have a deeper bench of facts you can't apply.
+              Here is the test worth running on whatever you are studying with, including this one. Take ten questions you got right and ask what each was measuring: could you have answered it from a definition, or did you have to weigh two defensible options and pick the better one? The certifying bodies write most high-stakes questions at the <em>apply / analyze / evaluate</em> level. If your practice sits mostly at <em>remember</em> and <em>understand,</em> more of it will deepen your bench of facts without changing the decision you make under pressure. That is a gap in the mix, not a verdict on any one tool &mdash; plenty of good courses and banks drill the higher levels, and the only way to know about yours is to look.
             </p>
 
             <p>

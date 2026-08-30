@@ -212,7 +212,7 @@ export default function ExamLensGlossary() {
               Exam Lens — the reasoning framework each cert is actually testing
             </h1>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Most prep tools teach you facts. The exams test how you <em>think</em>. Exam Lens is CipherExam's
+              Exams test how you <em>think</em>, not only what you can recall. Exam Lens is CipherExam's
               name for the per-certification reasoning framework that decides which defensible answer is
               actually BEST. One Lens per cert. Here's every one.
             </p>

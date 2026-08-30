@@ -32,8 +32,8 @@ const articles: {
   },
   {
     slug: 'how-certification-exams-think',
-    title: "How Certification Exams Actually Think (And Why Your Prep Tools Don't Match)",
-    excerpt: "Most prep tools drill facts. The exams test reasoning frames — Exam Lens, Security Triad, SHRM Competency. Here's the gap, and how to close it.",
+    title: "How Certification Exams Actually Think",
+    excerpt: "Every exam grades against a reasoning frame — Exam Lens, Security Triad, SHRM Competency. Here's how to name the frame behind a question, and what to do when drilling more facts stops moving your score.",
     author: 'Dave',
     readTime: '5 min read',
     date: 'May 2026',
