@@ -57,10 +57,13 @@ export default function PocketPrepAlternative() {
             You learn how the exam thinks, not just what the answer was.
           </li>
           <li>
-            <strong>11 certifications in one subscription.</strong> PMP, Certified
-            ScrumMaster, SHRM-CP, Six Sigma Green Belt, CPP, CIA Part 1, ITIL 4
-            Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — one
-            account, one price, no per-exam add-ons.
+            <strong>Four certifications, covered in depth.</strong> PMP,
+            CompTIA Security+, Network+ and A+ Core 2 — one account, one price,
+            no per-exam add-ons. We used to list eleven and cut back to four on
+            purpose: a bank that cannot fill more than one full-length mock is
+            not worth selling. Pocket Prep's catalogue is far wider than ours,
+            and if you need a certification outside those four, theirs is the
+            better answer.
           </li>
           <li>
             <strong>Built for the PMP exam that's live today.</strong> PMI's new
@@ -136,7 +139,7 @@ export default function PocketPrepAlternative() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Which certifications does CipherExam cover?</dt>
-            <dd className="mt-1">PMP (with a dedicated PMP Exam v2026 bank built to PMI's July 2026 Exam Content Outline), Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — all in one subscription.</dd>
+            <dd className="mt-1">Four: PMP (a dedicated PMP Exam v2026 bank built to PMI's July 2026 Exam Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202) — all in one subscription. If you need a certification outside those four, Pocket Prep's catalogue is much wider than ours and we would point you there.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does it cost?</dt>

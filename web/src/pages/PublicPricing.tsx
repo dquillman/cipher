@@ -223,7 +223,7 @@ export default function PublicPricing() {
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
                             <dt className="text-lg font-semibold text-white mb-2">Which certifications are included?</dt>
                             <dd className="text-slate-300 leading-relaxed">
-                                PMP, Certified ScrumMaster (CSM), SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional (CPP), CIA Part 1, ITIL 4 Foundation, CompTIA Security+, CompTIA Network+, CompTIA A+ Core 2, and PgMP. CISSP and AWS SAA are coming soon. Every cert is included in Pro at no extra cost.
+                                Four: PMP (built to PMI's July 2026 Exam Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202). All four are included at every paid tier at no extra cost. We used to list eleven and have deliberately cut back — a bank that cannot fill more than one full-length mock is not worth selling, and we would rather go deep on four.
                             </dd>
                         </div>
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">

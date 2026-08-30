@@ -37,8 +37,8 @@ export default function Terms() {
               <p>
                 CipherExam is an AI-powered certification exam preparation platform. We provide practice
                 questions, AI-generated explanations, performance analytics, and study planning tools for
-                professional certification exams including but not limited to PMP, CompTIA Security+, CSM,
-                SHRM-CP, ITIL 4, and others.
+                professional certification exams. As of 29 August 2026 the Service covers four: PMP, CompTIA
+                Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202).
               </p>
               <p className="mt-3">
                 CipherExam is a study aid. We do not guarantee that using the Service will result in passing

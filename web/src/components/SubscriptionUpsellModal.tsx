@@ -67,7 +67,7 @@ export default function SubscriptionUpsellModal({ isOpen, onClose, reason = 'pro
                     </p>
                     {passCoversExamName && (
                         <p className="text-blue-300 text-sm mb-8 max-w-xs mx-auto">
-                            Your pass covers {passCoversExamName}. Want all 11 certs? Upgrade to Pro.
+                            Your pass covers {passCoversExamName}. Want all four exams? Upgrade to Pro.
                         </p>
                     )}
 

@@ -227,7 +227,7 @@ export const SEO = {
   comparePocketPrep: {
     title: 'Pocket Prep Alternative — Reasoning-First Cert Prep · CipherExam',
     description:
-      'Looking for a Pocket Prep alternative? CipherExam explains the reasoning behind every question — Bloom’s-classified, 11 certs in one subscription, 60-day money-back guarantee. Free 7-day trial, no credit card.',
+      'Looking for a Pocket Prep alternative? CipherExam explains the reasoning behind every question — Bloom’s-classified, four certifications covered in depth, 60-day money-back guarantee. Free 7-day trial, no credit card.',
     canonical: '/compare/pocketprep-alternative',
     ogImage: 'https://cipherexam.com/og-default.png',
     jsonLd: {
@@ -239,7 +239,7 @@ export const SEO = {
           name: 'Which certifications does CipherExam cover?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'PMP (aligned to PMI’s July 2026 Examination Content Outline), Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, Network+, A+ Core 2, and PgMP — all in one subscription.',
+            text: 'Four: PMP (aligned to PMI’s July 2026 Examination Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202) — all in one subscription.',
           },
         },
         {

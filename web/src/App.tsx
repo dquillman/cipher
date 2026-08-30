@@ -36,15 +36,9 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 // Tier 1 ad landing pages (added 2026-05-11 via dquillman/cipher-marketing campaign)
 const PmpPracticeLP = lazy(() => import("./pages/landing/PmpPracticeLP"));
 const SecurityPlusPracticeLP = lazy(() => import("./pages/landing/SecurityPlusPracticeLP"));
-const ShrmCpPracticeLP = lazy(() => import("./pages/landing/ShrmCpPracticeLP"));
 // Additional cert LPs (added 2026-06-13 — one per live exam, linked from the home Exam Coverage grid)
-const CsmPracticeLP = lazy(() => import("./pages/landing/CsmPracticeLP"));
-const Itil4PracticeLP = lazy(() => import("./pages/landing/Itil4PracticeLP"));
 const NetworkPlusPracticeLP = lazy(() => import("./pages/landing/NetworkPlusPracticeLP"));
 const APlusCore2PracticeLP = lazy(() => import("./pages/landing/APlusCore2PracticeLP"));
-const SixSigmaPracticeLP = lazy(() => import("./pages/landing/SixSigmaPracticeLP"));
-const PgmpPracticeLP = lazy(() => import("./pages/landing/PgmpPracticeLP"));
-const CiaPart1PracticeLP = lazy(() => import("./pages/landing/CiaPart1PracticeLP"));
 // Comparison / alternative SEO pages (added 2026-07-16)
 const PocketPrepAlternative = lazy(() => import("./pages/compare/PocketPrepAlternative"));
 const BestPmpSimulator2026 = lazy(() => import("./pages/compare/BestPmpSimulator2026"));
@@ -490,14 +484,8 @@ function App() {
               {/* Tier 1 ad landing pages — see dquillman/cipher-marketing for campaign context */}
               <Route path="/lp/pmp" element={<PmpPracticeLP />} />
               <Route path="/lp/security-plus" element={<SecurityPlusPracticeLP />} />
-              <Route path="/lp/shrm-cp" element={<ShrmCpPracticeLP />} />
-              <Route path="/lp/csm" element={<CsmPracticeLP />} />
-              <Route path="/lp/itil" element={<Itil4PracticeLP />} />
               <Route path="/lp/network-plus" element={<NetworkPlusPracticeLP />} />
               <Route path="/lp/a-plus-core-2" element={<APlusCore2PracticeLP />} />
-              <Route path="/lp/six-sigma" element={<SixSigmaPracticeLP />} />
-              <Route path="/lp/pgmp" element={<PgmpPracticeLP />} />
-              <Route path="/lp/cia" element={<CiaPart1PracticeLP />} />
               {/* Comparison / alternative SEO pages */}
               <Route path="/compare/pocketprep-alternative" element={<PocketPrepAlternative />} />
               <Route path="/compare/best-pmp-exam-simulator-2026" element={<BestPmpSimulator2026 />} />

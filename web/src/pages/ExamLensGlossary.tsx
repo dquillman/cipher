@@ -214,7 +214,9 @@ export default function ExamLensGlossary() {
             <p className="text-lg text-slate-400 leading-relaxed">
               Exams test how you <em>think</em>, not only what you can recall. Exam Lens is CipherExam's
               name for the per-certification reasoning framework that decides which defensible answer is
-              actually BEST. One Lens per cert. Here's every one.
+              actually BEST. One Lens per cert. Below is every Lens we have written — note that
+              CipherExam currently offers practice banks for four of them: PMP, CompTIA Security+,
+              Network+ and A+ Core 2. The rest are published as reference, not as a product claim.
             </p>
           </header>
 

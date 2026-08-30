@@ -176,8 +176,8 @@ export default function InteractiveDemo() {
                   {[
                     { name: 'PMP - Project Management Professional', selected: true },
                     { name: 'CompTIA Security+', selected: false },
-                    { name: 'Certified ScrumMaster (CSM)', selected: false },
-                    { name: 'SHRM-CP', selected: false },
+                    { name: 'CompTIA Network+', selected: false },
+                    { name: 'CompTIA A+ Core 2', selected: false },
                   ].map((exam, i) => (
                     <div
                       key={i}

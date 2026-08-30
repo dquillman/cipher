@@ -329,7 +329,7 @@ export default function Landing() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500" />
                 </span>
-                PMP · CompTIA · Scrum · SHRM · ITIL · AWS · 11+ Certifications
+                PMP · Security+ · Network+ · A+ Core 2
               </div>
 
               <h1 className="hero-enter hero-enter-2 text-5xl font-extrabold tracking-tight text-white sm:text-6xl xl:text-7xl mb-6 leading-[1.05] font-display">
@@ -407,13 +407,11 @@ export default function Landing() {
       <div className="ticker border-y border-slate-800/80" aria-hidden="true">
         <div className="ticker-track">
           {[
-            "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
-            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202", "SIX SIGMA · GREEN BELT",
-            "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
+            "PMP · ECO JULY 2026", "SECURITY+ · SY0-701", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202",
           ].concat([
-            "PMP · 180Q BANK", "SECURITY+ · SY0-701", "CSM · SCRUM ALLIANCE", "SHRM-CP · HR",
-            "ITIL 4 · FOUNDATION", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202", "SIX SIGMA · GREEN BELT",
-            "PGMP · PROGRAM MGMT", "CIA · PART 1", "CISSP · COMING SOON", "AWS SAA · COMING SOON",
+            "PMP · ECO JULY 2026", "SECURITY+ · SY0-701", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202",
+          ]).concat([
+            "PMP · ECO JULY 2026", "SECURITY+ · SY0-701", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202",
           ]).map((t, i) => (
             <span key={i} className="font-mono text-[11px] tracking-[0.22em] text-slate-500 px-7 py-3 border-r border-slate-800/80">
               {t}
@@ -633,7 +631,7 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-left">
             {[
-              { n: "01", title: "Choose Your Certification Exam", body: "Select from PMP, Security+, CSM, SHRM-CP, ITIL, Six Sigma, and more." },
+              { n: "01", title: "Choose Your Certification Exam", body: "PMP, CompTIA Security+, Network+, or A+ Core 2." },
               { n: "02", title: "Practice with AI Explanations", body: "Every answer is explained through the Exam Lens for that cert — the reasoning frame the test grades against." },
               { n: "03", title: "Track Improvement with Analytics", body: "See your readiness score, weak domains, and progress over time." },
             ].map((s, i) => (
@@ -669,7 +667,7 @@ export default function Landing() {
               {[
                 { icon: Lightbulb, title: "AI Explanation Engine", body: "Every answer includes a detailed breakdown of the reasoning and the exam's decision framework." },
                 { icon: BarChart3, title: "Performance Analytics", body: "Mastery rings, readiness scores, and domain-level tracking show exactly where you stand." },
-                { icon: ClipboardList, title: "Certification Exam Coverage", body: "PMP, PgMP, Security+, Network+, A+, CSM, SHRM-CP, Six Sigma, ITIL, CIA, and CPP." },
+                { icon: ClipboardList, title: "Certification Exam Coverage", body: "PMP (July 2026 outline), CompTIA Security+, Network+, and A+ Core 2." },
                 { icon: Crosshair, title: "Personalized Practice", body: "The AI targets your weak spots and skips what you already know. Every question counts." },
               ].map(({ icon: Icon, title, body }, i) => (
                 <div key={i} className="flex items-start gap-5 border-t border-slate-800 py-7 first:border-t-0 first:pt-0">
@@ -695,22 +693,14 @@ export default function Landing() {
           <h2 className="text-3xl font-bold text-white sm:text-4xl mb-4 font-display">
             Prepare for Multiple Certifications
           </h2>
-          <p className="text-slate-400 mb-16">One platform. All the exams that matter.</p>
+          <p className="text-slate-400 mb-16">Four exams, gone deep. We would rather cover fewer certifications properly than list a dozen we cannot.</p>
 
           <div ref={examGridRef} className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 ${examGridIn ? "is-in" : ""}`}>
             {[
               { name: "PMP", org: "PMI", live: true, lp: "/lp/pmp", color: "from-brand-500/20 to-brand-600/5 border-brand-500/25" },
               { name: "Security+", org: "CompTIA", live: true, lp: "/lp/security-plus", color: "from-red-500/20 to-red-600/5 border-red-500/25" },
-              { name: "CSM", org: "Scrum Alliance", live: true, lp: "/lp/csm", color: "from-emerald-500/20 to-emerald-600/5 border-emerald-500/25" },
-              { name: "SHRM-CP", org: "SHRM", live: true, lp: "/lp/shrm-cp", color: "from-purple-500/20 to-purple-600/5 border-purple-500/25" },
-              { name: "ITIL 4", org: "PeopleCert", live: true, lp: "/lp/itil", color: "from-cyan-500/20 to-cyan-600/5 border-cyan-500/25" },
               { name: "Network+", org: "CompTIA", live: true, lp: "/lp/network-plus", color: "from-orange-500/20 to-orange-600/5 border-orange-500/25" },
               { name: "A+ Core 2", org: "CompTIA", live: true, lp: "/lp/a-plus-core-2", color: "from-pink-500/20 to-pink-600/5 border-pink-500/25" },
-              { name: "Six Sigma GB", org: "ASQ", live: true, lp: "/lp/six-sigma", color: "from-amber-500/20 to-amber-600/5 border-amber-500/25" },
-              { name: "PgMP", org: "PMI", live: true, lp: "/lp/pgmp", color: "from-blue-500/20 to-blue-600/5 border-blue-500/25" },
-              { name: "CIA Part 1", org: "IIA", live: true, lp: "/lp/cia", color: "from-teal-500/20 to-teal-600/5 border-teal-500/25" },
-              { name: "CISSP", org: "ISC²", live: false, lp: null, color: "" },
-              { name: "AWS SAA", org: "Amazon", live: false, lp: null, color: "" },
             ].map((e, i) => {
               const base = `rounded-xl border p-4 text-center transition-all hover:-translate-y-0.5 ${
                 e.live
