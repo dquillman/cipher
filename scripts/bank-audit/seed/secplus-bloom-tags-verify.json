@@ -1,0 +1,302 @@
+[
+  {
+    "id": "2lk8XPsECfnMbfqjOipV",
+    "stem": "During an incident, an analyst copies a suspect disk and records a SHA-256 hash ",
+    "level": "Understand",
+    "why": "Hashing plus a signed handling record are described; the task is to name the concept they instantiate. Classification of a described procedure, no inference beyond the stem."
+  },
+  {
+    "id": "4DOfNDhYjG4sdJb3WMKX",
+    "stem": "Endpoint telemetry shows a process reading its own memory, locating a specific A",
+    "level": "Analyze",
+    "why": "Raw telemetry (process reads its own memory, overwrites an API function prologue) must be decomposed into a mechanism (unhooking) and then attributed to the control it defeats. Two inferential steps, neither stated."
+  },
+  {
+    "id": "6dq1KkWONxtMas72wCnI",
+    "stem": "An assessment is conducted by a team with no reporting relationship to the depar",
+    "level": "Understand",
+    "why": "Reporting-line arrangement described; name the property. Direct concept recognition."
+  },
+  {
+    "id": "6x68VQ4jMYveqD0IChhe",
+    "stem": "A risk register lists a legacy application with an annualized loss expectancy of",
+    "level": "Evaluate",
+    "why": "Requires computing three-year retained risk (540k) against treatment plus residual (495k) AND judging which of four risk-treatment framings is defensible to leadership. The stem's own criterion is 'most defensible'."
+  },
+  {
+    "id": "8Ggu23Ah19GuWcSY1t4M",
+    "stem": "An attacker registers a domain that differs from a well-known bank's domain by a",
+    "level": "Understand",
+    "why": "Look-alike domain plus credential email; name the technique. Direct classification."
+  },
+  {
+    "id": "9PKh5SMHL28zzubQtZOP",
+    "stem": "A web application logs show repeated requests to /api/user?id=1001 through /api/",
+    "level": "Analyze",
+    "why": "Log evidence (sequential ids, HTTP 200, one session, different profiles) must be read as a pattern and attributed to IDOR rather than SQLi, DDoS, or session replay. Inference from data."
+  },
+  {
+    "id": "A5EPQgN1QCPMTTERtdoZ",
+    "stem": "An internal audit and an external penetration test are both scheduled for the sa",
+    "level": "Analyze",
+    "why": "Differentiating two overlapping assurance activities to show they are not substitutes. Bloom's 'differentiating' sits at Analyze; the budget conflict forces the comparison rather than a definition."
+  },
+  {
+    "id": "B25uZ3RkA62r4c9vt184",
+    "stem": "A design requires that if a long-term private key is later compromised, previous",
+    "level": "Understand",
+    "why": "A requirement is stated in plain language and the task is to name the property that satisfies it (forward secrecy). Recognition, not application."
+  },
+  {
+    "id": "bGcjm4GNS47yAuNqP2qS",
+    "stem": "Users report that an internal web portal briefly displayed another user's dashbo",
+    "level": "Analyze",
+    "why": "Symptom plus one architectural fact; the cause is not stated and must be inferred from how a shared cache interacts with authenticated, personalized responses."
+  },
+  {
+    "id": "bjlqm9TkGJIcfDtPhfRN",
+    "stem": "A network segment hosting industrial controllers cannot be patched because the v",
+    "level": "Apply",
+    "why": "Known constraint (unpatchable asset) mapped to the known compensating control (segmentation with allow-listed flows). A standard rule used in a concrete situation."
+  },
+  {
+    "id": "e1CIfya3H0UY8nCcpjXO",
+    "stem": "A vendor questionnaire response states that the supplier 'follows industry best ",
+    "level": "Evaluate",
+    "why": "The task is to judge that 'industry best practices' is unfalsifiable and to specify what would make it verifiable. Critique of an assertion's evidentiary quality."
+  },
+  {
+    "id": "eEB0NSaFuVLzNckGOeQe",
+    "stem": "A risk register entry reads: 'Ransomware — High.' The CISO asks for it to be rew",
+    "level": "Evaluate",
+    "why": "Four candidate risk statements judged against an explicit criterion (board actionability). Assessing quality against a standard."
+  },
+  {
+    "id": "egEoCbu94Hq3f0La6XGz",
+    "stem": "A message is signed with the sender's private key. A recipient verifies it with ",
+    "level": "Understand",
+    "why": "Which properties a digital signature does and does not provide. Comprehension of a mechanism's guarantees."
+  },
+  {
+    "id": "exTVU9lymFX5B25S2Aez",
+    "stem": "An organization operates in the EU and California. A customer submits a request ",
+    "level": "Apply",
+    "why": "The GDPR/CCPA carve-out permitting a minimal suppression record is a known rule; the item applies it to a concrete deletion request. The marketing objection is context, not the reasoning."
+  },
+  {
+    "id": "F44JELzKInJNReZxLX3V",
+    "stem": "An organization wants to reduce insider risk from departing employees. Exit proc",
+    "level": "Analyze",
+    "why": "The evidence establishes that the risk window opens before HR is aware; the learner must relate control trigger to risk window and see that any exit-triggered control fires too late."
+  },
+  {
+    "id": "fEAMrH4pkQ9bGjPeyUHF",
+    "stem": "An organization processes cardholder data and is preparing for a PCI DSS assessm",
+    "level": "Evaluate",
+    "why": "Critique of a proposed design against a control principle: co-locating the key with the ciphertext nullifies the control. Judging a proposal, not naming a concept."
+  },
+  {
+    "id": "G7lApFq9stDwVwDeNjVM",
+    "stem": "Threat intelligence describes an actor that maintains access for months, uses le",
+    "level": "Analyze",
+    "why": "Adversary properties (slow, credentialed, sub-threshold) must be related to why signature and volume detection cannot fire, and then to what can. Relationship reasoning."
+  },
+  {
+    "id": "GhIJUPP4TlE5tZ8xVigh",
+    "stem": "Log retention is set to 30 days. An investigation of a breach discovered on day ",
+    "level": "Analyze",
+    "why": "Two numbers (30-day retention, 60-day dwell) must be compared to locate the causal gap before any recommendation is possible."
+  },
+  {
+    "id": "gJOt7WiPoj6mQyPQgfxZ",
+    "stem": "A finance clerk receives a call from someone claiming to be the CFO, demanding a",
+    "level": "Understand",
+    "why": "Vishing/BEC scenario mapped to the matching awareness topic. Classification."
+  },
+  {
+    "id": "gree3vp2vKTH5N17as0v",
+    "stem": "A certificate authority must publish the status of a certificate revoked this mo",
+    "level": "Apply",
+    "why": "Explicit constraints (fresh status, no large list per connection) drive selection of a mechanism. Requirement-to-solution match."
+  },
+  {
+    "id": "hCh3wY7Diu1KDJNKIqiZ",
+    "stem": "A penetration test report lists a finding as 'Critical' based on CVSS base score",
+    "level": "Evaluate",
+    "why": "Judging whether a CVSS base rating is defensible for this environment and justifying an adjustment. Explicit critique-and-justify."
+  },
+  {
+    "id": "HNjeyq3tFjIGVhtgDd55",
+    "stem": "An analyst must choose a data source to determine which internal hosts communica",
+    "level": "Apply",
+    "why": "Investigative question plus a constraint (no full packet capture) drives tool selection. Applying knowledge of data sources to a task."
+  },
+  {
+    "id": "IzQnAi2oN7wdcd1fggoR",
+    "stem": "A build pipeline pulls a widely used open source package. A new release of that ",
+    "level": "Understand",
+    "why": "Genuine package, genuine registry, compromised maintainer: name the threat category. Classification."
+  },
+  {
+    "id": "j3Z0t4SqnlHhBZ5eoCZq",
+    "stem": "A quarterly compliance report shows 100% of servers passing the hardening baseli",
+    "level": "Evaluate",
+    "why": "Critique of a metric's validity: the denominator is incomplete, so the number overstates assurance. Judging a measurement, not computing one."
+  },
+  {
+    "id": "JmiwdY6wAsVqaznoLkY7",
+    "stem": "Simulated phishing click rates dropped from 18% to 4% over a year, but the repor",
+    "level": "Analyze",
+    "why": "Three metrics moving differently must be interpreted jointly to infer which behavior was trained and which was not."
+  },
+  {
+    "id": "JwbE9BjfbSdrpp7PWtoa",
+    "stem": "A business continuity plan sets a recovery time objective of four hours for an o",
+    "level": "Evaluate",
+    "why": "Root cause is handed to the learner; the discrimination is judging whether relaxing the objective, exercising more often, or removing the dependency is the legitimate response. Weighing remedies against the requirement."
+  },
+  {
+    "id": "KCBAwTBjDV5RUJuAzMYu",
+    "stem": "During incident response on a compromised server, an analyst plans to collect ev",
+    "level": "Remember",
+    "why": "Recitation of the order of volatility as a fixed sequence. No scenario reasoning; the incident wrapper is decorative."
+  },
+  {
+    "id": "KP14p6RyE7HDTCLDD8LZ",
+    "stem": "A user reports their workstation is slow. Analysis finds a browser extension, in",
+    "level": "Analyze",
+    "why": "The insight tested is that distribution channel, install base, and rating say nothing about behavior; malice must be attributed to granted permissions rather than to an exploit. That attribution is not stated in the stem."
+  },
+  {
+    "id": "LbOAvsbefCd3r3Ksjyoy",
+    "stem": "A federated login flow returns an assertion containing the user's identity and g",
+    "level": "Understand",
+    "why": "The underlying fact (IdP authenticates, SP authorizes) is definitional; the federation flow dresses it. Comprehension of role separation."
+  },
+  {
+    "id": "LdqHcLFK4Bf1lRsZba5v",
+    "stem": "An organization deploys a system where every access request is evaluated against",
+    "level": "Understand",
+    "why": "Zero trust described by its defining properties; name the model. Classification."
+  },
+  {
+    "id": "lFrH5AUouYpG6dtzpbK9",
+    "stem": "An analyst must decide between containment options for ransomware detected encry",
+    "level": "Evaluate",
+    "why": "Explicit trade-off between damage limitation and evidence preservation, with backups already established as current. Weighing competing goods is the definition of Evaluate."
+  },
+  {
+    "id": "M2AMn3XHYTmIcX0pLHPL",
+    "stem": "A database stores order records with a cryptographic hash computed over each row",
+    "level": "Understand",
+    "why": "Map a described mechanism to the CIA objective it serves. Classification."
+  },
+  {
+    "id": "mMvmwXR53yLGBMPZze9i",
+    "stem": "A software supplier is acquired by a company headquartered in a jurisdiction sub",
+    "level": "Evaluate",
+    "why": "'What should happen first' among proportionate and disproportionate responses; the discrimination is judging over- and under-reaction against a contract with two years still to run."
+  },
+  {
+    "id": "nihjAVJqxMaORDEHId5x",
+    "stem": "A penetration tester obtains a low-privilege shell and finds a scheduled task ru",
+    "level": "Understand",
+    "why": "The stem states the distinguishing fact (path written without quotation marks); naming the weakness is recognition of a signature."
+  },
+  {
+    "id": "NPxgbAeQHaDmnwdOMgcw",
+    "stem": "After a merger, two security organizations operate under different frameworks — ",
+    "level": "Evaluate",
+    "why": "Four approaches judged against hard constraints (one quarter, neither program pauses, certification preserved). Feasibility judgment."
+  },
+  {
+    "id": "NSXTDbU8qVE7bpPvNigd",
+    "stem": "A security steering committee has approved an acceptable use policy, but eight m",
+    "level": "Analyze",
+    "why": "Symptoms (drift, no standing agenda item, eight months) must be decomposed to locate the failure at the maintenance layer rather than the authoring or detection layer."
+  },
+  {
+    "id": "p42JO3VcrqyFt73PZAbZ",
+    "stem": "An organization maintains a documented list of every approved software package, ",
+    "level": "Understand",
+    "why": "Default-deny execution described; name the control model. Classification."
+  },
+  {
+    "id": "PqQOTSpUVe5D205BksbT",
+    "stem": "During a risk assessment, a business owner states that a control gap is acceptab",
+    "level": "Evaluate",
+    "why": "Judging whether a business owner's acceptance is defensible and what makes it so (named owner, expiry, review trigger). Critique of a decision."
+  },
+  {
+    "id": "q7Kz21SVaM3cLb5QLDhL",
+    "stem": "An organization is drafting documentation that states all remote access must use",
+    "level": "Understand",
+    "why": "Describes an artifact by its distinguishing feature (mandatory intent, no implementation detail) and asks for the category. The same classification shape as the other 'which term' items."
+  },
+  {
+    "id": "ru8CE2LRxdI8piNiIP1w",
+    "stem": "A vulnerability scan reports a critical flaw in a library on 400 servers. Invest",
+    "level": "Evaluate",
+    "why": "Reachability lowers urgency but does not retire the flaw; the learner must judge proportionality against both over-reaction and permanent suppression."
+  },
+  {
+    "id": "t9m7494cf6XNNNjko4Ld",
+    "stem": "An analyst finds a scheduled task on a domain controller that runs a PowerShell ",
+    "level": "Understand",
+    "why": "Explaining why an in-memory technique defeats file-system signature scanning. Comprehension of a mechanism's effect."
+  },
+  {
+    "id": "tjc1H9bW8yZ5LJSqmMyj",
+    "stem": "A database administrator can create accounts, grant privileges, and delete audit",
+    "level": "Analyze",
+    "why": "Requires distinguishing separation of duties from least privilege, which overlap on these facts, by isolating the specific relationship: one actor can both act and erase the record of acting."
+  },
+  {
+    "id": "VsSDqkjhteuJexMmCdV4",
+    "stem": "A SIEM rule alerts on any authentication from an unusual country. It generates r",
+    "level": "Evaluate",
+    "why": "Four plausible operational responses (staff up, disable, deprioritize, enrich) judged for effectiveness against the underlying defect. Assessing the worth of remedies."
+  },
+  {
+    "id": "WAiNPMcdt15QC1QbHI39",
+    "stem": "An organization wants to reduce the time between a vulnerability disclosure and ",
+    "level": "Analyze",
+    "why": "The discriminating move is locating the bottleneck in the governance queue rather than in distribution or testing; the stem never says where the delay lives."
+  },
+  {
+    "id": "wiCgCZ2Brc13qulzAuX6",
+    "stem": "An application accepts a filename parameter and returns file contents. A tester ",
+    "level": "Analyze",
+    "why": "The payload's structure must be decomposed against a single-pass sanitizer to infer the defect. Genuine mechanism inference from evidence."
+  },
+  {
+    "id": "xRRcp2knW7ij93Tld8FP",
+    "stem": "A hospital system is designed so patient records remain accessible during a regi",
+    "level": "Understand",
+    "why": "Redundancy and generators mapped to the CIA element they serve. Classification."
+  },
+  {
+    "id": "Y0DAdW7UEqAiSyfYeMyM",
+    "stem": "An automation playbook is proposed that, on a malware alert, automatically disab",
+    "level": "Evaluate",
+    "why": "Requires anticipating automation's failure mode and judging which of four safeguards matters most. Prioritization against risk."
+  },
+  {
+    "id": "YclPAWBqiPizv07MFclH",
+    "stem": "A user authenticates with a password and then approves a push notification on a ",
+    "level": "Understand",
+    "why": "Two concrete artifacts mapped to factor categories. Classification with a small transformation."
+  },
+  {
+    "id": "yKULbKPkYzKebJnLFB3c",
+    "stem": "A change advisory board reviews a firewall rule modification. The submitter has ",
+    "level": "Understand",
+    "why": "The stem states what is missing; the task is to name it and explain its purpose. No inference beyond the stem."
+  },
+  {
+    "id": "ZTfONxWIpM73J4pozRPK",
+    "stem": "A payroll processor will receive employee bank details and tax identifiers. Proc",
+    "level": "Evaluate",
+    "why": "Requires judging the sufficiency of a SOC 2 Type II report and an MSA and identifying what they structurally do not cover. Assessing evidence adequacy."
+  }
+]

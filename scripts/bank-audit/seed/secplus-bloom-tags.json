@@ -1,0 +1,302 @@
+[
+  {
+    "id": "2lk8XPsECfnMbfqjOipV",
+    "stem": "During an incident, an analyst copies a suspect disk and records a SHA-256 hash ",
+    "level": "Understand",
+    "why": "The candidate must interpret a described forensic practice - matching hashes plus a signed handling record - as evidence integrity and chain of custody, rather than recall a definition."
+  },
+  {
+    "id": "4DOfNDhYjG4sdJb3WMKX",
+    "stem": "Endpoint telemetry shows a process reading its own memory, locating a specific A",
+    "level": "Analyze",
+    "why": "The stem gives only raw telemetry, a process rewriting the first bytes of an API function in its own memory, and the candidate must infer which defensive mechanism sits at that location and is being defeated."
+  },
+  {
+    "id": "6dq1KkWONxtMas72wCnI",
+    "stem": "An assessment is conducted by a team with no reporting relationship to the depar",
+    "level": "Remember",
+    "why": "Definitional recall: an assessor with no reporting line to the reviewed unit whose results go to the audit committee is the textbook meaning of independence."
+  },
+  {
+    "id": "6x68VQ4jMYveqD0IChhe",
+    "stem": "A risk register lists a legacy application with an annualized loss expectancy of",
+    "level": "Evaluate",
+    "why": "Four defensible risk treatments compete and the candidate must run the three-year arithmetic and justify why the quantified comparison beats acceptance, transfer, or compensating controls."
+  },
+  {
+    "id": "8Ggu23Ah19GuWcSY1t4M",
+    "stem": "An attacker registers a domain that differs from a well-known bank's domain by a",
+    "level": "Remember",
+    "why": "A single transposed character in a lookalike domain plus credential-update emails is the signature of typosquatting; the task is naming the attack, not reasoning about it."
+  },
+  {
+    "id": "9PKh5SMHL28zzubQtZOP",
+    "stem": "A web application logs show repeated requests to /api/user?id=1001 through /api/",
+    "level": "Analyze",
+    "why": "The candidate must read the pattern in the log evidence - sequential ids, HTTP 200s, one authenticated session, other users profiles - and derive both the vulnerability class and the direction of escalation."
+  },
+  {
+    "id": "A5EPQgN1QCPMTTERtdoZ",
+    "stem": "An internal audit and an external penetration test are both scheduled for the sa",
+    "level": "Understand",
+    "why": "The question asks the candidate to explain the difference between two assessment types: an audit verifies controls operate as documented, a test verifies they can be defeated."
+  },
+  {
+    "id": "B25uZ3RkA62r4c9vt184",
+    "stem": "A design requires that if a long-term private key is later compromised, previous",
+    "level": "Understand",
+    "why": "A security requirement is stated and the candidate must explain which cryptographic property satisfies it and why ephemeral keys leave recorded traffic unrecoverable."
+  },
+  {
+    "id": "F44JELzKInJNReZxLX3V",
+    "stem": "An organization wants to reduce insider risk from departing employees. Exit proc",
+    "level": "Analyze",
+    "why": "The evidence contains a timing mismatch - exfiltration happens before resignation is announced while the current control fires at exit - and the candidate must relate that gap to the control that covers the real window."
+  },
+  {
+    "id": "G7lApFq9stDwVwDeNjVM",
+    "stem": "Threat intelligence describes an actor that maintains access for months, uses le",
+    "level": "Analyze",
+    "why": "The candidate must break the actor tradecraft apart and see specifically why legitimate credentials defeat signatures and sub-threshold volumes defeat volume alerting."
+  },
+  {
+    "id": "GhIJUPP4TlE5tZ8xVigh",
+    "stem": "Log retention is set to 30 days. An investigation of a breach discovered on day ",
+    "level": "Analyze",
+    "why": "Three numbers must be related to each other - 30-day retention, discovery on day 45, initial access at day 60 - to conclude the relevant logs had already aged out and that retention must exceed dwell time."
+  },
+  {
+    "id": "HNjeyq3tFjIGVhtgDd55",
+    "stem": "An analyst must choose a data source to determine which internal hosts communica",
+    "level": "Apply",
+    "why": "The candidate applies known properties of each data source to a defined investigative need: identifying host-to-IP conversations over a week with no packet capture available."
+  },
+  {
+    "id": "IzQnAi2oN7wdcd1fggoR",
+    "stem": "A build pipeline pulls a widely used open source package. A new release of that ",
+    "level": "Understand",
+    "why": "The candidate interprets a described chain - maintainer account takeover, then a malicious install script inside a trusted package - and classifies it against similar-sounding threat categories."
+  },
+  {
+    "id": "JmiwdY6wAsVqaznoLkY7",
+    "stem": "Simulated phishing click rates dropped from 18% to 4% over a year, but the repor",
+    "level": "Analyze",
+    "why": "Three metrics move independently and the candidate must reason from that pattern to a behavioural cause: avoidance was trained, reporting was not."
+  },
+  {
+    "id": "JwbE9BjfbSdrpp7PWtoa",
+    "stem": "A business continuity plan sets a recovery time objective of four hours for an o",
+    "level": "Apply",
+    "why": "The root cause is already isolated in the stem, so the candidate applies the standard post-exercise remedy - remove the manual approval dependency - instead of relaxing the objective."
+  },
+  {
+    "id": "KCBAwTBjDV5RUJuAzMYu",
+    "stem": "During incident response on a compromised server, an analyst plans to collect ev",
+    "level": "Remember",
+    "why": "Straight recall of the memorised order of volatility, with the distractors being reorderings of the same list."
+  },
+  {
+    "id": "KP14p6RyE7HDTCLDD8LZ",
+    "stem": "A user reports their workstation is slow. Analysis finds a browser extension, in",
+    "level": "Analyze",
+    "why": "The candidate must reconcile contradictory evidence - official store, 400,000 users, five stars, malicious behaviour - and rule out zero-day, drive-by, and rootkit explanations against that evidence."
+  },
+  {
+    "id": "LbOAvsbefCd3r3Ksjyoy",
+    "stem": "A federated login flow returns an assertion containing the user's identity and g",
+    "level": "Understand",
+    "why": "The candidate explains which party performs which function in a described federated flow, separating authentication at the identity provider from authorization at the service provider."
+  },
+  {
+    "id": "LdqHcLFK4Bf1lRsZba5v",
+    "stem": "An organization deploys a system where every access request is evaluated against",
+    "level": "Understand",
+    "why": "Several described properties - per-request evaluation of posture, identity, and sensitivity with no implicit trust from the LAN - must be interpreted together as zero trust with a policy decision point."
+  },
+  {
+    "id": "M2AMn3XHYTmIcX0pLHPL",
+    "stem": "A database stores order records with a cryptographic hash computed over each row",
+    "level": "Understand",
+    "why": "The candidate interprets what a per-row hash verified on read actually accomplishes, distinguishing detection of unauthorized modification from confidentiality or authentication."
+  },
+  {
+    "id": "NPxgbAeQHaDmnwdOMgcw",
+    "stem": "After a merger, two security organizations operate under different frameworks — ",
+    "level": "Evaluate",
+    "why": "Four genuine post-merger framework strategies compete and the candidate must judge them against the stated constraints of one quarter and no pause to either programme."
+  },
+  {
+    "id": "NSXTDbU8qVE7bpPvNigd",
+    "stem": "A security steering committee has approved an acceptable use policy, but eight m",
+    "level": "Analyze",
+    "why": "The candidate diagnoses which governance element is absent by relating the symptom - three conflicting local versions eight months on, no standing agenda item - to the missing review, exception, and ownership machinery."
+  },
+  {
+    "id": "PqQOTSpUVe5D205BksbT",
+    "stem": "During a risk assessment, a business owner states that a control gap is acceptab",
+    "level": "Apply",
+    "why": "The candidate applies the standard risk-acceptance procedure - documented owner, expiry date, review trigger - to a business owner deferring on a decommission timeline."
+  },
+  {
+    "id": "VsSDqkjhteuJexMmCdV4",
+    "stem": "A SIEM rule alerts on any authentication from an unusual country. It generates r",
+    "level": "Evaluate",
+    "why": "Enriching, staffing, disabling, and deprioritising are all defensible answers to alert fatigue, and the candidate must justify why raising fidelity beats absorbing or hiding the volume."
+  },
+  {
+    "id": "WAiNPMcdt15QC1QbHI39",
+    "stem": "An organization wants to reduce the time between a vulnerability disclosure and ",
+    "level": "Apply",
+    "why": "The candidate applies the change-management concept of a pre-approved standard change to a scenario whose bottleneck is board review frequency, not distribution capacity."
+  },
+  {
+    "id": "Y0DAdW7UEqAiSyfYeMyM",
+    "stem": "An automation playbook is proposed that, on a malware alert, automatically disab",
+    "level": "Evaluate",
+    "why": "Several legitimate safeguards are offered for an automated containment playbook and the candidate must weigh automation speed against the risk of disabling a critical account to pick the most important one."
+  },
+  {
+    "id": "YclPAWBqiPizv07MFclH",
+    "stem": "A user authenticates with a password and then approves a push notification on a ",
+    "level": "Remember",
+    "why": "Straight recall of the authentication factor categories: a password is something you know, a registered phone is something you have."
+  },
+  {
+    "id": "ZTfONxWIpM73J4pozRPK",
+    "stem": "A payroll processor will receive employee bank details and tax identifiers. Proc",
+    "level": "Apply",
+    "why": "With the master agreement and SOC 2 report already in hand, the candidate applies third-party risk practice to identify the data processing agreement as the remaining prerequisite before personal data flows."
+  },
+  {
+    "id": "bGcjm4GNS47yAuNqP2qS",
+    "stem": "Users report that an internal web portal briefly displayed another user's dashbo",
+    "level": "Analyze",
+    "why": "A symptom and an architectural detail must be combined - a brief cross-user dashboard behind a caching reverse proxy - to derive caching of authenticated responses and exclude race conditions, CSRF, and weak TLS."
+  },
+  {
+    "id": "bjlqm9TkGJIcfDtPhfRN",
+    "stem": "A network segment hosting industrial controllers cannot be patched because the v",
+    "level": "Apply",
+    "why": "The candidate applies the compensating-control principle to an unpatchable OT segment, selecting segmentation with allow-listed flows over controls the platform cannot support."
+  },
+  {
+    "id": "e1CIfya3H0UY8nCcpjXO",
+    "stem": "A vendor questionnaire response states that the supplier 'follows industry best ",
+    "level": "Apply",
+    "why": "The candidate applies assessment practice to convert an unverifiable best-practices claim into specific algorithms, key lengths, key management, and documentary evidence."
+  },
+  {
+    "id": "eEB0NSaFuVLzNckGOeQe",
+    "stem": "A risk register entry reads: 'Ransomware — High.' The CISO asks for it to be rew",
+    "level": "Evaluate",
+    "why": "Four plausible rewrites of a risk register entry are offered and the candidate must judge which one gives a board something to act on: named asset, path, timeframe, and quantified impact."
+  },
+  {
+    "id": "egEoCbu94Hq3f0La6XGz",
+    "stem": "A message is signed with the sender's private key. A recipient verifies it with ",
+    "level": "Understand",
+    "why": "The candidate explains what a private-key signature verified with a public key does and does not provide, holding four properties apart at once."
+  },
+  {
+    "id": "exTVU9lymFX5B25S2Aez",
+    "stem": "An organization operates in the EU and California. A customer submits a request ",
+    "level": "Evaluate",
+    "why": "A deletion right and a suppression obligation genuinely conflict, and the candidate must justify retaining a minimal record under a legal basis over denying, over-deleting, or over-retaining."
+  },
+  {
+    "id": "fEAMrH4pkQ9bGjPeyUHF",
+    "stem": "An organization processes cardholder data and is preparing for a PCI DSS assessm",
+    "level": "Understand",
+    "why": "The candidate explains why co-locating the key with the data it protects nullifies the control, and must reject three false statements about what PCI DSS requires."
+  },
+  {
+    "id": "gJOt7WiPoj6mQyPQgfxZ",
+    "stem": "A finance clerk receives a call from someone claiming to be the CFO, demanding a",
+    "level": "Understand",
+    "why": "The candidate interprets an urgency-plus-secrecy pretext call as social engineering rather than a password, phishing-link, or device-loss training topic."
+  },
+  {
+    "id": "gree3vp2vKTH5N17as0v",
+    "stem": "A certificate authority must publish the status of a certificate revoked this mo",
+    "level": "Apply",
+    "why": "A stated efficiency requirement - current status without a large download on every connection - is matched to the mechanism that meets it, applying knowledge of CRLs, OCSP stapling, and pinning."
+  },
+  {
+    "id": "hCh3wY7Diu1KDJNKIqiZ",
+    "stem": "A penetration test report lists a finding as 'Critical' based on CVSS base score",
+    "level": "Apply",
+    "why": "The candidate applies the CVSS environmental metric procedure to re-rate a finding for an isolated lab host, rather than accepting the base score or discarding the finding."
+  },
+  {
+    "id": "j3Z0t4SqnlHhBZ5eoCZq",
+    "stem": "A quarterly compliance report shows 100% of servers passing the hardening baseli",
+    "level": "Analyze",
+    "why": "The candidate must see that a 100% pass rate is computed over a denominator excluding 15% of production hosts, and characterise what the metric therefore does and does not measure."
+  },
+  {
+    "id": "lFrH5AUouYpG6dtzpbK9",
+    "stem": "An analyst must decide between containment options for ransomware detected encry",
+    "level": "Evaluate",
+    "why": "Damage limitation and evidence preservation pull in opposite directions and the candidate must justify isolating while powered on over powering off, partial disconnection, or letting encryption finish."
+  },
+  {
+    "id": "mMvmwXR53yLGBMPZze9i",
+    "stem": "A software supplier is acquired by a company headquartered in a jurisdiction sub",
+    "level": "Apply",
+    "why": "A change-of-control event triggers the standard third-party due diligence procedure, which the candidate applies rather than terminating early or treating the original contract as unaffected."
+  },
+  {
+    "id": "nihjAVJqxMaORDEHId5x",
+    "stem": "A penetration tester obtains a low-privilege shell and finds a scheduled task ru",
+    "level": "Understand",
+    "why": "The candidate recognises the unquoted service path weakness from its signature - an unquoted path containing a space running as SYSTEM - and explains the execution behaviour it permits."
+  },
+  {
+    "id": "p42JO3VcrqyFt73PZAbZ",
+    "stem": "An organization maintains a documented list of every approved software package, ",
+    "level": "Understand",
+    "why": "The candidate interprets described endpoint behaviour, an approved list with everything else refused, as application allow-listing operating on a default-deny basis."
+  },
+  {
+    "id": "q7Kz21SVaM3cLb5QLDhL",
+    "stem": "An organization is drafting documentation that states all remote access must use",
+    "level": "Remember",
+    "why": "Recall of the documentation hierarchy: a mandatory statement naming no products or steps is a policy, not a standard, procedure, or guideline."
+  },
+  {
+    "id": "ru8CE2LRxdI8piNiIP1w",
+    "stem": "A vulnerability scan reports a critical flaw in a library on 400 servers. Invest",
+    "level": "Evaluate",
+    "why": "Suppressing, emergency patching, refactoring, and documenting with a normal-cycle upgrade are all defensible, and the candidate must justify the balance between exploitability today and reachability later."
+  },
+  {
+    "id": "t9m7494cf6XNNNjko4Ld",
+    "stem": "An analyst finds a scheduled task on a domain controller that runs a PowerShell ",
+    "level": "Understand",
+    "why": "The candidate explains why an in-memory, base64-decoded PowerShell payload evades signature scanning: there is no file on disk for the scanner to match."
+  },
+  {
+    "id": "tjc1H9bW8yZ5LJSqmMyj",
+    "stem": "A database administrator can create accounts, grant privileges, and delete audit",
+    "level": "Analyze",
+    "why": "The candidate must see that one role holds both the privileged action and control of its own audit record, which is what separates separation of duties from the tempting least privilege answer, then name the remedy that breaks the pairing."
+  },
+  {
+    "id": "wiCgCZ2Brc13qulzAuX6",
+    "stem": "An application accepts a filename parameter and returns file contents. A tester ",
+    "level": "Analyze",
+    "why": "Only the outcome is given, so the candidate must infer the sanitizer behaviour - a single non-recursive strip that lets the doubled sequence collapse into a valid traversal - and rule out double URL decoding and privilege explanations."
+  },
+  {
+    "id": "xRRcp2knW7ij93Tld8FP",
+    "stem": "A hospital system is designed so patient records remain accessible during a regi",
+    "level": "Remember",
+    "why": "Recall of which CIA triad element covers records remaining reachable during a power event."
+  },
+  {
+    "id": "yKULbKPkYzKebJnLFB3c",
+    "stem": "A change advisory board reviews a firewall rule modification. The submitter has ",
+    "level": "Understand",
+    "why": "The candidate explains why a change board cannot weigh risk against benefit without an impact statement, even when technical detail and a rollback plan are present."
+  }
+]

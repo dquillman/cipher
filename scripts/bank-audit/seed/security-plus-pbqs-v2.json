@@ -1,0 +1,2422 @@
+{
+  "examId": "79cuGMNydTwDMhyiDjry",
+  "examName": "CompTIA Security+ (SY0-701)",
+  "source": "authored-2026-08-secplus-pbq-v2",
+  "authoredAt": "2026-08-29",
+  "note": "Performance-based questions, second set. Not reviewed by a certified subject matter expert.",
+  "questions": [
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Security Operations",
+      "stem": "One user cannot sign in to the VPN. Her password works on the intranet and on her laptop, and her two teammates connect to the VPN from the same office without trouble. She replaced her phone on Monday. Nothing has been run yet. Drag each check to the place its result would actually mean something.",
+      "explanation": "Where a check runs decides whether its result carries information, and two of these carry none anywhere. The concentrator log is the only place the reason code lives: it is the difference between a rejected credential, a failed second factor and a policy that never matched, and no amount of poking at her laptop will produce it. Which factors are enrolled against her account is meaningful on her account alone, because enrolment is per person — comparing it with a teammate tells you only that two people enrolled their own phones, while a token still bound to the handset she replaced on Monday explains everything the symptom shows. The two comparisons are comparisons for a reason. A group membership list read on its own is just a list; read against a colleague who connects, the missing group jumps out, and that is the same reasoning CompTIA’s own simulation is built on, where one workstation’s address means nothing until you have the other workstation’s to hold it against. Client version and client certificate work the same way. The last two are the trap. Her password is already proven working on the intranet, so resetting it tests something the evidence has settled and costs the user her afternoon. Rebuilding the laptop destroys the state you are trying to read while she was signing in from that laptop successfully to everything except the VPN. Both are motion that looks like progress, and both are what \"only make changes to correct the issue\" exists to prevent.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "elsewhere",
+              "label": "On a system neither of them owns"
+            },
+            {
+              "id": "compare",
+              "label": "On hers and on a working teammate’s, compared side by side"
+            },
+            {
+              "id": "skip",
+              "label": "Do not run it — the result cannot separate the possibilities"
+            },
+            {
+              "id": "hers",
+              "label": "On her account or her device — meaningful on its own"
+            }
+          ],
+          "items": [
+            {
+              "id": "reimage",
+              "label": "Rebuild her laptop from the standard image",
+              "correctZone": "skip"
+            },
+            {
+              "id": "log",
+              "label": "Read the VPN concentrator’s authentication log for her failed attempts and the reason code it returned",
+              "correctZone": "elsewhere"
+            },
+            {
+              "id": "client",
+              "label": "Read the VPN client version and client certificate on her laptop against that teammate’s",
+              "correctZone": "compare"
+            },
+            {
+              "id": "pwreset",
+              "label": "Reset her directory password",
+              "correctZone": "skip"
+            },
+            {
+              "id": "groups",
+              "label": "Read her directory group memberships against a teammate who connects",
+              "correctZone": "compare"
+            },
+            {
+              "id": "mfa",
+              "label": "List the multifactor methods currently enrolled against her account",
+              "correctZone": "hers"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Threats, Vulnerabilities, and Mitigations",
+      "stem": "Overnight the domain controllers produced six authentication patterns. For each one, read how many accounts, how many sources, how many attempts per account, and whether anything failed at all. Two of the six should not be escalated to anybody.",
+      "explanation": "Read the shape of the failures, not their count. Password spraying is one password against many accounts, so it shows as a single failure per account across hundreds of accounts, deliberately kept under the lockout threshold — that is the whole technique, and it works the same whether it is compressed into ninety seconds from one host or stretched over nine hours from rented infrastructure to stay under a rate threshold. Credential stuffing replays username-and-password pairs harvested from someone else’s breach, so the tell is inverted: few accounts, an enormous spread of unrelated residential addresses, and a different password on every attempt rather than a shared one. Kerberoasting produces no failed logons at all, which is why counting failures misses it entirely; it is a burst of service-ticket requests for exactly the accounts that carry a service principal name, requested with RC4 so the ticket can be cracked offline at leisure. The two that cost teams their night are the ones that look worst. Thirty-eight failures against one account from the laptop that account uses every day, stopping for good after the user visited the service desk, is a saved credential replaying until somebody typed the new one. Fourteen hundred failures from a single application server, all against one target, ending when the app team restarted the service, is a configuration holding a stale secret in a retry loop. Escalating either burns an analyst’s shift, and escalating the first teaches a user never to call the service desk again.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "spray",
+              "label": "Password spraying"
+            },
+            {
+              "id": "kerb",
+              "label": "Kerberoasting"
+            },
+            {
+              "id": "stuff",
+              "label": "Credential stuffing"
+            },
+            {
+              "id": "benign",
+              "label": "Do not escalate"
+            }
+          ],
+          "items": [
+            {
+              "id": "residential",
+              "label": "340 residential addresses, 12 accounts, every attempt carrying a different password",
+              "correctZone": "stuff"
+            },
+            {
+              "id": "slow",
+              "label": "200 accounts tried once each across nine hours from four hosting-provider addresses",
+              "correctZone": "spray"
+            },
+            {
+              "id": "svcloop",
+              "label": "One service account, 1,400 failures in an hour from a single application server against a single target, ending when the app team restarted the service",
+              "correctZone": "benign"
+            },
+            {
+              "id": "spn",
+              "label": "Nine accounts that carry a service principal name requested as RC4 tickets from one workstation, with no failed logons anywhere",
+              "correctZone": "kerb"
+            },
+            {
+              "id": "fast",
+              "label": "One internal host, 480 accounts, exactly one failed logon each, all inside 90 seconds",
+              "correctZone": "spray"
+            },
+            {
+              "id": "saved",
+              "label": "One account, 38 failures over four hours from the laptop it signs in from daily, then a success; the failures stop for good after the user visited the service desk",
+              "correctZone": "benign"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "General Security Concepts",
+      "stem": "Six TLS failures were reported this week against sites that were working. In each report the useful evidence is not the error text but who fails and who does not. Drag each report to the link in the chain that is broken.",
+      "explanation": "Each report names a different link, and the pattern of who succeeds identifies it. When domain-joined machines load the site and an unmanaged contractor laptop does not, the certificate is fine and the client is not: the private root that signed it arrives by group policy and that laptop never received it. The Java reporting job is the same fault wearing a disguise, and it is the one people misfile — the JVM keeps its own trust store, entirely separate from the operating system’s, so browsers on that very server can load the site while the job on it cannot. A name that warns on the apex and not on www is a subject alternative name problem: current clients ignore the common name altogether and match only against the SAN list, so the apex has to be listed there in its own right. Desktop browsers succeeding while curl and a mobile app fail looks like a client bug and is the opposite of one — the server is not sending its intermediate, and browsers conceal that by caching intermediates from earlier visits or fetching them through the certificate’s AIA extension. curl does neither, so it reports the truth about the server. A single kiosk rejecting a certificate every other client on that switch accepts cannot be evidence about the certificate, since the certificate is the one thing all of them share; the variable is the kiosk, and \"not yet valid\" places its clock behind the certificate’s start date. And when every client breaks the morning after a reissue that followed a key exposure, the old certificate was revoked on purpose and something in the path is still presenting it.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "clock",
+              "label": "The client’s clock is outside the validity window"
+            },
+            {
+              "id": "san",
+              "label": "The hostname is missing from the certificate’s SAN list"
+            },
+            {
+              "id": "revoked",
+              "label": "The certificate was revoked by the CA"
+            },
+            {
+              "id": "trust",
+              "label": "The issuing CA is absent from that client’s trust store"
+            },
+            {
+              "id": "chain",
+              "label": "The server is not sending the intermediate certificate"
+            }
+          ],
+          "items": [
+            {
+              "id": "java",
+              "label": "A Java reporting job fails with \"unable to find valid certification path\"; browsers on that same server load the site",
+              "correctZone": "trust"
+            },
+            {
+              "id": "reissue",
+              "label": "Every client began failing the morning after the vendor reissued following a key exposure",
+              "correctZone": "revoked"
+            },
+            {
+              "id": "curl",
+              "label": "Desktop browsers succeed; curl and an Android app fail with \"unable to get local issuer certificate\"",
+              "correctZone": "chain"
+            },
+            {
+              "id": "apex",
+              "label": "https://example.net warns of a name mismatch; https://www.example.net on the same server does not",
+              "correctZone": "san"
+            },
+            {
+              "id": "kiosk",
+              "label": "One lobby kiosk reports the certificate is not yet valid; every other client on that switch loads the site",
+              "correctZone": "clock"
+            },
+            {
+              "id": "contractor",
+              "label": "Domain-joined laptops load the site; a contractor’s unmanaged laptop reports an untrusted authority",
+              "correctZone": "trust"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Threats, Vulnerabilities, and Mitigations",
+      "stem": "Three near-identical requests to change a supplier’s bank details arrived this week. Accounts payable has forwarded the authentication results and header details for each, along with what the staff noticed about them. Drag each observation to what it actually establishes.",
+      "explanation": "Authentication results answer one narrow question — did this message come from infrastructure the domain owner authorised — and the three cases differ in whether that question was even asked of the right domain. A DMARC reject with SPF failing and no DKIM signature, on a header From carrying the supplier’s domain, is the supplier’s own published policy telling you the message is not theirs; the Received chain showing an entry point the supplier has never used is the same finding from the other direction. The second case is the one that defeats a checklist. Everything passes, and it passes honestly, because the attacker registered their own domain nine days ago and published perfectly valid records for it — authentication proves the message came from the domain it claims, and says nothing whatever about whether that domain is the one you do business with. The third is worse again: real domain, real platform, valid DKIM signature under the supplier’s selector. Nothing was spoofed, which is precisely the problem — the mailbox itself is under someone else’s control, and the reply-to pointing at free webmail is the redirect that gives it away. The last two observations feel like evidence and are not. Clean writing and correct branding are trivially copied and were never a discriminator; the display name is a free-text field the sender chooses, unauthenticated by anything, and treating either as a signal is how the second and third messages get paid.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "nothing",
+              "label": "Establishes nothing about whether the message is legitimate"
+            },
+            {
+              "id": "lookalike",
+              "label": "The domain is not the supplier’s, and its records are genuinely valid"
+            },
+            {
+              "id": "forged",
+              "label": "The sending domain was forged, and its owner’s own policy says so"
+            },
+            {
+              "id": "compromised",
+              "label": "The supplier’s real mailbox is under someone else’s control"
+            }
+          ],
+          "items": [
+            {
+              "id": "received",
+              "label": "The Received chain shows the message entering from an address the supplier has never sent from, with their domain in the From header",
+              "correctZone": "forged"
+            },
+            {
+              "id": "newdomain",
+              "label": "SPF pass, DKIM pass, DMARC pass; the sending domain was registered nine days ago and differs from the supplier’s by one character",
+              "correctZone": "lookalike"
+            },
+            {
+              "id": "realbox",
+              "label": "SPF pass, DKIM pass under the supplier’s own selector, sent from the supplier’s mail platform, reply-to set to a free webmail address",
+              "correctZone": "compromised"
+            },
+            {
+              "id": "branding",
+              "label": "The body has no spelling errors and the branding matches the supplier’s previous invoices",
+              "correctZone": "nothing"
+            },
+            {
+              "id": "dmarcfail",
+              "label": "SPF fail, no DKIM signature, DMARC reject, header From on the supplier’s domain",
+              "correctZone": "forged"
+            },
+            {
+              "id": "displayname",
+              "label": "The display name reads \"Accounts Payable — Supplier Ltd\"",
+              "correctZone": "nothing"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "Security Operations",
+      "stem": "A vendor report names a malware sample, and an analyst has assembled everything the environment holds that mentions it. Before anyone declares this host compromised, sort what each artefact is capable of proving about this host.",
+      "explanation": "The whole question is the distance between \"the file was here\" and \"the file ran\", and containment decisions that ignore it either miss a live compromise or take a working machine off the network for nothing. A process-creation record from the endpoint agent, naming the image, its hash and its parent process on this host, is direct evidence of execution — it is the agent reporting that the operating system started that program. Windows event 4688 is the same claim from the operating system’s own log. A proxy record of this host downloading the file establishes only that the bytes arrived; downloads sit unopened in a downloads folder every day of the week, and treating arrival as execution is how an analyst reports a compromise that never happened. Gateway delivery is weaker still and is a statement about the mail platform rather than about the endpoint: the message reached a mailbox, which is not evidence that it reached a disk, let alone a processor. The last two mention this host nowhere. A hash appearing in a vendor report is a statement about a campaign somewhere in the world and is the reason the search was run, not a result of it — circular, if you let it be. An inventory entry saying the vulnerable version is installed describes exposure, and exposure is a reason to look rather than a finding. Ranked properly, exactly two artefacts support isolating the host, and the other four support continuing to look.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "offered",
+              "label": "Establishes only that it was sent to the user"
+            },
+            {
+              "id": "executed",
+              "label": "Establishes the program ran on this host"
+            },
+            {
+              "id": "present",
+              "label": "Establishes the file reached this host, not that it ran"
+            },
+            {
+              "id": "nothing",
+              "label": "Says nothing about this host specifically"
+            }
+          ],
+          "items": [
+            {
+              "id": "e4688",
+              "label": "Windows Security event 4688 for that image path on this host",
+              "correctZone": "executed"
+            },
+            {
+              "id": "edr",
+              "label": "An endpoint agent process-creation record naming the image, its hash and its parent process on this host",
+              "correctZone": "executed"
+            },
+            {
+              "id": "mail",
+              "label": "The mail gateway recorded delivery of the attachment to the user’s mailbox",
+              "correctZone": "offered"
+            },
+            {
+              "id": "inventory",
+              "label": "The asset inventory lists this host as running the affected application version",
+              "correctZone": "nothing"
+            },
+            {
+              "id": "proxy",
+              "label": "The web proxy logged this host retrieving the file",
+              "correctZone": "present"
+            },
+            {
+              "id": "intel",
+              "label": "The file’s hash appears in the vendor report as associated with the campaign",
+              "correctZone": "nothing"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "Threats, Vulnerabilities, and Mitigations",
+      "stem": "Six scan findings are queued for triage this morning, sorted by the scanner into descending CVSS base score. The queue is longer than the week. Decide what each finding gets.",
+      "explanation": "A base score describes the flaw and is identical for every organisation on earth, so on its own it cannot rank anything; what ranks a finding is whether this environment gives it a reachable path and whether somebody has already written the exploit. On that reading the queue reorders itself and the scanner’s sort turns out to be wrong twice over. The remote code execution on the public checkout path has both properties and a module shipped last week, so somebody else’s scan finds it tonight. The concentrator denial of service scores lower and belongs in the same bucket for a sharper reason: exploiting it removes the remote access the responders would need, and proof-of-concept code is already public. The 9.1 is the highest-scoring finding in the queue and the clearest accept — the service is stopped, the port is closed on the host firewall, and removing the component ends vendor support, so there is no path to it and patching it to turn a dashboard green is theatre. The reporting tool is an accept for a different reason: a signed-off decommission date sooner than any realistic patch cycle makes the decommission the remediation. That leaves two for the ordinary cycle. The wiki disclosure is genuinely reachable by every employee but hands over information rather than control and has no public exploit; the laptop escalation scores higher yet needs local access and an already signed-in user, which is a second compromise it does not itself provide.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "emergency",
+              "label": "Emergency change — patch out of cycle"
+            },
+            {
+              "id": "accept",
+              "label": "Risk-accept with a documented justification and a review date"
+            },
+            {
+              "id": "cycle",
+              "label": "Next scheduled patch cycle"
+            }
+          ],
+          "items": [
+            {
+              "id": "wiki",
+              "label": "CVSS 6.5 · information disclosure in the staff wiki · reachable by every employee · no public exploit",
+              "correctZone": "cycle"
+            },
+            {
+              "id": "rce",
+              "label": "CVSS 9.8 · remote code execution in a library on the public checkout API · an exploitation module for it shipped last week",
+              "correctZone": "emergency"
+            },
+            {
+              "id": "dormant",
+              "label": "CVSS 9.1 · in a component of the vendor appliance image · the service is stopped, its port is closed on the host firewall, and removing the component ends vendor support",
+              "correctZone": "accept"
+            },
+            {
+              "id": "laptop",
+              "label": "CVSS 8.8 · privilege escalation on the standard laptop image · needs local access and a signed-in user · no public exploit",
+              "correctZone": "cycle"
+            },
+            {
+              "id": "eol",
+              "label": "CVSS 5.3 · in a reporting tool whose decommission is signed off for the 14th of next month · reachable only from the admin VLAN",
+              "correctZone": "accept"
+            },
+            {
+              "id": "vpn",
+              "label": "CVSS 7.5 · denial of service in the VPN concentrator every remote worker uses · proof-of-concept code posted yesterday",
+              "correctZone": "emergency"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Security Operations",
+      "stem": "A domain administrator account authenticated from a host it has never used, at an hour its owner was asleep. The account is still live, and everything you do is visible to whoever is using it.",
+      "explanation": "Two clocks run at once: the intruder entrenching, and you announcing yourself. Confirming the alert is genuine has to come at the top, because a domain admin reset at three in the morning against a false positive is its own outage, and the owner working late from a replacement machine produces exactly this alert. Capture is the next thing that can only be done once, since the controller security log rolls and a memory image ceases to exist the moment anyone starts remediating. Scoping follows because you cannot evict what you have not found, and persistence hunting follows scoping because you have to know which hosts to hunt on. An account with domain admin has almost certainly been given a second way in — an added account, a group membership, a scheduled task, a service principal — and cutting only the original access leaves the intruder still signed in. That is why eviction is one coordinated action rather than a sequence of small ones: closing doors individually announces the investigation and lets them walk through whatever is left. The krbtgt reset earns its place near the end and is the classic error when placed at the start. Twice, with replication between, invalidates every Kerberos ticket in the domain including any golden ticket already forged, which is worth doing — but doing it early tips the intruder while their other footholds are still unmapped, and buys one lost foothold in exchange for the rest of the investigation. Recovery restores service under heightened monitoring, and the review has to reach the privileged access model itself, because an account able to do this much damage from a single compromise is the finding underneath the finding.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Confirm the alert against the owner’s location and schedule",
+            "Capture the domain controller security log and a memory image of the host the logon came from",
+            "Enumerate every host the account authenticated to during the exposure window",
+            "Identify persistence: added accounts, group memberships, scheduled tasks and service principals",
+            "Cut all identified access in one coordinated action rather than item by item",
+            "Reset the krbtgt password twice, allowing replication to complete between the resets",
+            "Return systems to service with heightened monitoring on the affected accounts and hosts",
+            "Document the root cause and revise the privileged access model that permitted it"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "General Security Concepts",
+      "stem": "A web server’s private key was committed to a public repository. The certificate has to be replaced and the exposed one revoked, and the site takes customer traffic continuously.",
+      "explanation": "The instinct is to revoke immediately, and it is the single ordering that guarantees an outage. Revocation takes effect the moment the CA publishes it: every client consulting a CRL or an OCSP responder starts refusing the site, and the replacement is still an issuance and a deployment away. So the replacement is built while the compromised certificate is still doing its job. Establishing how long the key was readable comes at the top for a reason that is not sentiment — it is the number that decides how much else has to be rotated, and it stops being recoverable as repository history gets rewritten and logs age out. The new key pair is generated on the server itself, which is what makes the replacement meaningful; a key that has travelled is a key nobody can vouch for, and this entire incident is about a key that travelled. The signing request carries that new public key to the CA, validation completes, and the issued certificate and chain go in alongside the one in service rather than over it, so a mistake is a rollback instead of an outage. Cutover is verified from a client, because the certificate a server is configured to send and the certificate it actually sends part company more often than anyone expects. Only now does revocation cost nothing, and the revocation is confirmed as published, since a revocation requested and never checked has protected nobody. Rotating everything else that key protected closes the incident, and it is scoped by the exposure window established at the start.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Establish how long the key was publicly readable and from where it could have been copied",
+            "Generate a new key pair on the server itself",
+            "Submit a certificate signing request for the new key and complete the CA’s validation",
+            "Install the issued certificate and its chain alongside the certificate in service",
+            "Cut the service over and confirm from a client which certificate the server now sends",
+            "Request revocation of the exposed certificate",
+            "Confirm the revocation is published in the CRL and answered by OCSP",
+            "Rotate every other credential that key protected and close the incident record"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Apply",
+      "domain": "Security Program Management and Oversight",
+      "stem": "An engineer is being terminated this afternoon. In the week they gave notice they downloaded an unusual volume of design files, and legal expects litigation. Ordinary IT process would destroy most of what matters here.",
+      "explanation": "The duty to preserve attaches when litigation is reasonably anticipated, not when a claim is filed, which is why the hold has to be in place at the very top: it is the instrument that suspends the automated retention rules, and those rules are the actual threat. A mailbox purged thirty days after an account is disabled was not destroyed by anybody’s decision — it was destroyed by a policy nobody remembered was running. Cutting access comes second and turns on a distinction that decides the whole case: disabling the account and revoking live sessions and tokens stops the engineer while leaving every artefact intact, whereas deleting the account is the single most destructive thing available, because on many platforms it takes the mailbox and the drive with it. Preservation then runs as one collection rather than several, and that is deliberate. Mailbox, home directory, cloud storage, device images and the access, VPN and file-transfer logs from the notice period have different owners and different retention clocks, and sequencing them invites the one with the shortest clock to expire while somebody works through the list; the laptop in particular is one re-image away from being the next hire’s machine. Handover carries a signed chain-of-custody record, without which evidence collected competently may still be worth nothing in the proceeding it was collected for. Release is the step people take on their own judgement and should not: assets go back to the pool at legal’s direction, because releasing early is what turns a preservation programme into a liability.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Have legal issue the litigation hold",
+            "Disable the accounts and revoke live sessions and tokens, deleting nothing",
+            "Preserve the mailbox, home directory, cloud storage, device images and the logs covering the notice period",
+            "Hand the preserved set to the investigator with a signed chain-of-custody record",
+            "Release the hold and return the assets to the pool at legal’s direction"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Architecture",
+      "stem": "You have to add a rule to an internet-facing firewall you administer remotely, across the very path the rule could break. A site visit is four hours away.",
+      "explanation": "Everything ahead of the change exists to survive the change. A management session that does not depend on the rule being edited is what keeps you connected when the rule is wrong, and if your only path in is the path you are modifying, a bad commit locks you out of the one device that can undo it. Capturing the running configuration and arming the automatic rollback belong together because they are one idea: something to restore, and something that restores it without you. The rollback is what separates a professional change from a hopeful one, since the device reverts on its own absent a confirmation, so even a change that severs your own connection heals itself in minutes rather than after a drive. Placement is not cosmetic — above the deny-all so the rule is ever reached, below the management permit so it cannot shadow your own access. Verification is one step on purpose, and the fact that it is one step is the point: confirming the intended traffic passes proves the rule works, confirming the traffic it denies is still blocked proves you did not write a permit wider than you meant, and neither of those is a check you would sensibly do without the other. The last two are ordered by what a mistake costs. Confirming cancels the rollback, and saving makes the configuration survive a reboot; saving a configuration that has not been verified is a mistake made permanent, and saving before confirming turns the safety net into a formality.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Open a management session that does not depend on the rule being changed",
+            "Capture the running configuration and arm an automatic rollback that reverts the change unless it is confirmed",
+            "Apply the rule above the deny-all and below the management permit",
+            "Verify from the affected segment that the intended traffic passes and that the traffic the rule denies is blocked",
+            "Confirm the change to cancel the automatic rollback",
+            "Save the running configuration to the startup configuration"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "A user forwards a message that led to a convincing single sign-on page. Others on the same distribution list received it, and some may have typed their password into it.",
+      "explanation": "The reported message is evidence before it is a nuisance, and the reflex — purge it everywhere, immediately — destroys the sample and the recipient list in the same action. Preserving it with full headers protects the one copy that carries the sending infrastructure and the authentication results every indicator is derived from. Extraction turns that copy into something searchable: sender, subject, URL, attachment hashes. The gateway search establishes the blast radius, which is the number driving every decision after it, and without it the response is a guess at how many people are involved. Then comes the distinction that changes what the response is for. Who clicked is a monitoring question; who submitted credentials is an active compromise, and those two populations get different treatment. Resetting the submitters and revoking their sessions is placed ahead of cleanup because a stolen credential is being used right now, while a copy of an email sitting in an unopened mailbox is not doing anything at all — and revoking sessions matters as much as the reset, since a password change alone leaves an already-issued token working. Purging and blocking the indicators at the gateway and the proxy closes the remaining exposure, and it lands here rather than at the start precisely because doing it early would have taken the sample and the recipient list with it. The briefing is not a formality: the users who reported it need to see that reporting worked, or the next message arrives with nobody willing to raise it.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Preserve the reported message with its full headers",
+            "Extract the sender, subject, URL and attachment hashes as indicators",
+            "Search the mail gateway for every recipient of the same message",
+            "Separate the recipients who clicked the link from those who submitted credentials",
+            "Reset the credentials of those who submitted them and revoke their sessions",
+            "Purge the message from remaining mailboxes and block the indicators at the gateway and the proxy",
+            "Brief the affected users and add the sample to awareness training"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "General Security Concepts",
+      "stem": "A vendor advisory describes a wormable remote code execution flaw in software your organisation runs. It is the last week of the quarter and a change freeze is in effect.",
+      "explanation": "A freeze is a risk control rather than a law of physics, and the sequence has to earn the exception before invoking it. Verifying that the advisory applies to the versions actually deployed comes at the top because advisories cover version ranges and organisations run what they run; a fleet already past the affected build turns an emergency into a note, and an exception requested on an assumption is the reason freezes stop being respected. Establishing which of those hosts are reachable from an untrusted network is what separates wormable in theory from wormable here, and it is the evidence the exception is built on. Only then is the emergency process invoked, with that evidence attached — going through the process rather than around it is what keeps the freeze meaningful for everybody else. The interim mitigation reaching internet-facing hosts ahead of any testing is the placement that looks wrong and is not: a configuration change or a blocked port costs minutes, a tested patch costs days, and against something self-propagating the gap between those two is the entire exposure. Testing still happens, because a patch that breaks the application during a freeze is precisely what freezes exist to prevent, and skipping it trades one incident for another. Deployment runs exposed hosts first because that is where a worm enters. The closing rescan is not ceremony: the first step trusted an inventory, and on any real network the surviving unpatched instance is the host the inventory never knew about.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Verify the advisory applies to the versions actually deployed",
+            "Identify which of those hosts are reachable from an untrusted network",
+            "Invoke the emergency change process with that evidence attached",
+            "Apply the vendor’s interim mitigation to the internet-facing hosts",
+            "Test the patch on a representative non-production host",
+            "Patch the exposed hosts, working inward to the internal ones",
+            "Rescan to confirm the finding is closed, including on hosts the inventory missed"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Security Architecture",
+      "stem": "Two finance laptops sit at the same bank of desks on the user VLAN. One of them cannot load any external website; the other browses normally. Both send and receive internal mail, load the intranet, and print to the floor printer. The ticket carries ipconfig output from each: 172.16.20.196 and 172.16.20.20, both with mask 255.255.255.0 and gateway 172.16.20.1. The router ACL is listed in evaluation order, first match wins, and anything matching no line is dropped by an implicit deny. Decide whether each line stays or goes, and what removing it would do. Change only what is required.",
+      "explanation": "Read the symptom pattern before the rules, because what still works narrows the fault faster than what fails. Internal mail and the intranet work from both desks, so user VLAN traffic to 172.16.30.0/24 is passing at line 2 and never reaches anything below it. Printing stays on the local segment and never touches the router, so it is not evidence about the ACL in either direction. Only off-net traffic fails, and only for one laptop, and the ticket never says which — that is the arithmetic. 172.16.20.196 falls inside 172.16.20.192/26 and 172.16.20.20 does not, so line 4 denies the first to every destination while the second reaches line 7 and browses. Removing line 4 is the entire fix. Every other removal costs something specific, which is what the second column is for. Line 3 is genuinely defective and removing it changes nothing at all: line 2 already permits everything from the user VLAN to the server VLAN, so the RDP deny beneath it can never match and RDP into the server VLAN is permitted today. That is a real finding, and it belongs in its own ticket rather than in a change made to restore one user’s browsing. Lines 1, 5 and 6 sit above the broad permit at line 7, so deleting any of them hands the whole floor something nobody asked for: ping into the server VLAN, or outbound SSH and RDP, or outbound SNMP. Removing line 2 or line 7 breaks what currently works — line 2 takes the intranet away from the .192/26 hosts and exposes the shadowed RDP deny, and line 7 takes browsing away from the entire floor. Line 8 is the one that looks free: the implicit deny drops the same traffic either way, so removing it changes no packet’s fate and only removes the explicit line that makes those drops visible in the log.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Decision",
+            "If this line were removed"
+          ],
+          "rows": [
+            {
+              "label": "1 · deny · any → 172.16.30.0/24 · ICMP",
+              "fields": [
+                {
+                  "correctValue": "Keep",
+                  "options": [
+                    "Keep",
+                    "Remove"
+                  ]
+                },
+                {
+                  "correctValue": "Permits traffic nobody asked for",
+                  "options": [
+                    "Breaks something that currently works",
+                    "Restores the failing laptop’s internet access",
+                    "No change, but drops stop appearing in the log",
+                    "No change to any traffic",
+                    "Permits traffic nobody asked for"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "2 · permit · 172.16.20.0/24 → 172.16.30.0/24 · any",
+              "fields": [
+                {
+                  "correctValue": "Keep",
+                  "options": [
+                    "Remove",
+                    "Keep"
+                  ]
+                },
+                {
+                  "correctValue": "Breaks something that currently works",
+                  "options": [
+                    "Restores the failing laptop’s internet access",
+                    "No change, but drops stop appearing in the log",
+                    "Permits traffic nobody asked for",
+                    "Breaks something that currently works",
+                    "No change to any traffic"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "3 · deny · 172.16.20.0/24 → 172.16.30.0/24 · TCP 3389",
+              "fields": [
+                {
+                  "correctValue": "Keep",
+                  "options": [
+                    "Remove",
+                    "Keep"
+                  ]
+                },
+                {
+                  "correctValue": "No change to any traffic",
+                  "options": [
+                    "No change, but drops stop appearing in the log",
+                    "Permits traffic nobody asked for",
+                    "No change to any traffic",
+                    "Breaks something that currently works",
+                    "Restores the failing laptop’s internet access"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "4 · deny · 172.16.20.192/26 → any · any",
+              "fields": [
+                {
+                  "correctValue": "Remove",
+                  "options": [
+                    "Remove",
+                    "Keep"
+                  ]
+                },
+                {
+                  "correctValue": "Restores the failing laptop’s internet access",
+                  "options": [
+                    "No change, but drops stop appearing in the log",
+                    "No change to any traffic",
+                    "Breaks something that currently works",
+                    "Permits traffic nobody asked for",
+                    "Restores the failing laptop’s internet access"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "5 · deny · 172.16.20.0/24 → any · TCP 22,3389",
+              "fields": [
+                {
+                  "correctValue": "Keep",
+                  "options": [
+                    "Remove",
+                    "Keep"
+                  ]
+                },
+                {
+                  "correctValue": "Permits traffic nobody asked for",
+                  "options": [
+                    "No change to any traffic",
+                    "No change, but drops stop appearing in the log",
+                    "Permits traffic nobody asked for",
+                    "Restores the failing laptop’s internet access",
+                    "Breaks something that currently works"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "6 · deny · 172.16.20.0/24 → any · UDP 161",
+              "fields": [
+                {
+                  "correctValue": "Keep",
+                  "options": [
+                    "Keep",
+                    "Remove"
+                  ]
+                },
+                {
+                  "correctValue": "Permits traffic nobody asked for",
+                  "options": [
+                    "Restores the failing laptop’s internet access",
+                    "Breaks something that currently works",
+                    "Permits traffic nobody asked for",
+                    "No change to any traffic",
+                    "No change, but drops stop appearing in the log"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "7 · permit · 172.16.20.0/24 → any · any",
+              "fields": [
+                {
+                  "correctValue": "Keep",
+                  "options": [
+                    "Keep",
+                    "Remove"
+                  ]
+                },
+                {
+                  "correctValue": "Breaks something that currently works",
+                  "options": [
+                    "Restores the failing laptop’s internet access",
+                    "Breaks something that currently works",
+                    "No change, but drops stop appearing in the log",
+                    "Permits traffic nobody asked for",
+                    "No change to any traffic"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "8 · deny · any → any · any",
+              "fields": [
+                {
+                  "correctValue": "Keep",
+                  "options": [
+                    "Remove",
+                    "Keep"
+                  ]
+                },
+                {
+                  "correctValue": "No change, but drops stop appearing in the log",
+                  "options": [
+                    "No change to any traffic",
+                    "Permits traffic nobody asked for",
+                    "Restores the failing laptop’s internet access",
+                    "No change, but drops stop appearing in the log",
+                    "Breaks something that currently works"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Security Operations",
+      "stem": "Six alerts are sitting in the queue, each carrying the evidence that generated it. Say what the evidence indicates and how the alert should be dispositioned. Not every alert warrants touching a host, and two of them do not indicate anything different from each other.",
+      "explanation": "What the evidence indicates and what should be done about it are two questions, and the first two rows exist to prove it. Both are untargeted internet scanning — the same actor behaviour, the same shape, no targeting — but one hits a path that does not exist on a service that does not run and collects nothing but 404s, while the other hits a path that does exist and was answered twice with 200. The indication is identical and the disposition is not: the first is noise and deserves a tuned rule so the next thousand page nobody, and the second is an access that succeeded, which is an incident regardless of how unglamorous its origin. A candidate who lets the first column decide the second gets one of those two wrong by construction. The rest turn on reading the evidence rather than the alert name. Hundreds of unique high-entropy domains resolving almost entirely to NXDOMAIN is a generated-domain algorithm searching for a live controller, which is malware running on that host, so the host comes off the network. Two authentications from cities hours apart inside half an hour is impossible travel, and the response is different in kind — you do not isolate a host, you force reauthentication and speak to the human, because a shared credential and an executive on a VPN both produce this signature. Bulk reads followed by a large upload to personal storage from a departing employee is an HR and legal matter as much as a technical one, and wiping the machine to be safe destroys the case. The signed vendor updater writing into its own directory during a patch window is software doing its job; chasing it teaches the team to ignore the next endpoint alert.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "What the evidence indicates",
+            "Disposition"
+          ],
+          "rows": [
+            {
+              "label": "1,200 requests to /wp-login.php from 90 addresses in 4 minutes; the site runs no WordPress; every response 404",
+              "fields": [
+                {
+                  "correctValue": "Untargeted internet scanning",
+                  "options": [
+                    "Bulk data movement by an insider",
+                    "Impossible travel",
+                    "Malware searching for a generated domain",
+                    "Untargeted internet scanning",
+                    "Expected behaviour of a signed updater"
+                  ]
+                },
+                {
+                  "correctValue": "Tune the rule — no host action",
+                  "options": [
+                    "Close as benign and allow-list it",
+                    "Escalate — preserve evidence and involve HR and legal",
+                    "Escalate — treat as a successful access",
+                    "Tune the rule — no host action",
+                    "Escalate — isolate the host",
+                    "Escalate — force reauthentication and verify with the user"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "900 requests to /actuator/env from 60 addresses in 6 minutes; that path exists on this service and answered 200 twice",
+              "fields": [
+                {
+                  "correctValue": "Untargeted internet scanning",
+                  "options": [
+                    "Expected behaviour of a signed updater",
+                    "Malware searching for a generated domain",
+                    "Untargeted internet scanning",
+                    "Impossible travel",
+                    "Bulk data movement by an insider"
+                  ]
+                },
+                {
+                  "correctValue": "Escalate — treat as a successful access",
+                  "options": [
+                    "Escalate — preserve evidence and involve HR and legal",
+                    "Escalate — treat as a successful access",
+                    "Close as benign and allow-list it",
+                    "Escalate — force reauthentication and verify with the user",
+                    "Tune the rule — no host action",
+                    "Escalate — isolate the host"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "One workstation resolved 340 unique high-entropy domains in an hour, nearly all returning NXDOMAIN",
+              "fields": [
+                {
+                  "correctValue": "Malware searching for a generated domain",
+                  "options": [
+                    "Malware searching for a generated domain",
+                    "Impossible travel",
+                    "Untargeted internet scanning",
+                    "Expected behaviour of a signed updater",
+                    "Bulk data movement by an insider"
+                  ]
+                },
+                {
+                  "correctValue": "Escalate — isolate the host",
+                  "options": [
+                    "Escalate — isolate the host",
+                    "Escalate — treat as a successful access",
+                    "Escalate — preserve evidence and involve HR and legal",
+                    "Tune the rule — no host action",
+                    "Escalate — force reauthentication and verify with the user",
+                    "Close as benign and allow-list it"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "One user authenticated from Denver at 09:04 and from Lagos at 09:31 the same morning",
+              "fields": [
+                {
+                  "correctValue": "Impossible travel",
+                  "options": [
+                    "Malware searching for a generated domain",
+                    "Bulk data movement by an insider",
+                    "Untargeted internet scanning",
+                    "Impossible travel",
+                    "Expected behaviour of a signed updater"
+                  ]
+                },
+                {
+                  "correctValue": "Escalate — force reauthentication and verify with the user",
+                  "options": [
+                    "Escalate — treat as a successful access",
+                    "Escalate — isolate the host",
+                    "Escalate — force reauthentication and verify with the user",
+                    "Escalate — preserve evidence and involve HR and legal",
+                    "Close as benign and allow-list it",
+                    "Tune the rule — no host action"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "A departing employee’s account read 8,400 files in 20 minutes, then uploaded 6 GB to personal storage",
+              "fields": [
+                {
+                  "correctValue": "Bulk data movement by an insider",
+                  "options": [
+                    "Malware searching for a generated domain",
+                    "Expected behaviour of a signed updater",
+                    "Bulk data movement by an insider",
+                    "Untargeted internet scanning",
+                    "Impossible travel"
+                  ]
+                },
+                {
+                  "correctValue": "Escalate — preserve evidence and involve HR and legal",
+                  "options": [
+                    "Escalate — preserve evidence and involve HR and legal",
+                    "Escalate — force reauthentication and verify with the user",
+                    "Escalate — treat as a successful access",
+                    "Close as benign and allow-list it",
+                    "Tune the rule — no host action",
+                    "Escalate — isolate the host"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "The endpoint agent flagged a vendor updater, signed by that vendor, writing into its own program directory during the patch window",
+              "fields": [
+                {
+                  "correctValue": "Expected behaviour of a signed updater",
+                  "options": [
+                    "Bulk data movement by an insider",
+                    "Malware searching for a generated domain",
+                    "Untargeted internet scanning",
+                    "Expected behaviour of a signed updater",
+                    "Impossible travel"
+                  ]
+                },
+                {
+                  "correctValue": "Close as benign and allow-list it",
+                  "options": [
+                    "Escalate — force reauthentication and verify with the user",
+                    "Escalate — preserve evidence and involve HR and legal",
+                    "Escalate — isolate the host",
+                    "Close as benign and allow-list it",
+                    "Tune the rule — no host action",
+                    "Escalate — treat as a successful access"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Apply",
+      "domain": "Security Architecture",
+      "stem": "You are writing sshd_config for a bastion host. The standard requires every account to authenticate with a key. A nightly backup job connects to this host as root using a key pair and cannot be changed until next quarter. Administrators reach the management VLAN by forwarding connections through this bastion, and their laptops offer two keys from an ssh-agent on every connection. Choose the value for each directive.",
+      "explanation": "Four of these rows punish the reflex of picking the most restrictive value on offer, which is why reading the constraints is the work. PermitRootLogin no satisfies the standard and stops the backup tonight, because that job authenticates as root with a key; forced-commands-only is stricter still and also stops it, since it requires a command restriction in the authorized_keys entry that nobody has written. prohibit-password keeps root usable by that key and refuses every password-based root logon, which is what the standard actually asks for. MaxAuthTries 1 is the tightest number available and disconnects the administrators, because a client offering two keys from an agent needs more than one attempt before it reaches the key that works; 3 accommodates them while still cutting an attacker’s attempts per connection well below the default. LoginGraceTime is the trap with teeth: 0 looks like the hardest setting and means the opposite, since sshd reads it as no time limit at all, leaving unauthenticated connections open indefinitely, which is exactly the resource exhaustion the directive exists to prevent. AllowTcpForwarding no is correct on almost any other host and wrong on this one, because forwarding through the bastion is the reason the bastion exists. LogLevel is neither the quietest nor the loudest: VERBOSE records the fingerprint of the key that authenticated, which turns \"someone logged in as root\" into \"this key logged in as root\", while DEBUG3 fills the disk and can write sensitive material into the log. PasswordAuthentication and X11Forwarding are the two rows where the reflex happens to be right.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Value"
+          ],
+          "rows": [
+            {
+              "label": "PermitRootLogin",
+              "fields": [
+                {
+                  "correctValue": "prohibit-password",
+                  "options": [
+                    "forced-commands-only",
+                    "no",
+                    "yes",
+                    "prohibit-password"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "PasswordAuthentication",
+              "fields": [
+                {
+                  "correctValue": "no",
+                  "options": [
+                    "no",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "MaxAuthTries",
+              "fields": [
+                {
+                  "correctValue": "3",
+                  "options": [
+                    "6",
+                    "3",
+                    "10",
+                    "1"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "LoginGraceTime",
+              "fields": [
+                {
+                  "correctValue": "30",
+                  "options": [
+                    "0",
+                    "30",
+                    "120",
+                    "600"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "AllowTcpForwarding",
+              "fields": [
+                {
+                  "correctValue": "yes",
+                  "options": [
+                    "no",
+                    "yes",
+                    "local",
+                    "remote"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "X11Forwarding",
+              "fields": [
+                {
+                  "correctValue": "no",
+                  "options": [
+                    "no",
+                    "yes"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "LogLevel",
+              "fields": [
+                {
+                  "correctValue": "VERBOSE",
+                  "options": [
+                    "VERBOSE",
+                    "INFO",
+                    "DEBUG3",
+                    "QUIET"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "Security Architecture",
+      "stem": "Six systems carry a recovery point objective and a recovery time objective agreed with the business. Choose the data protection and the recovery site each one needs, and do not buy a tier nothing requires.",
+      "explanation": "The two objectives drive two different decisions, and the rows that share a protection scheme while needing different sites are there to make that unavoidable: the scheduling system and the HR case system have the same recovery point objective and therefore the same backup, and their recovery times differ by three days, which is a site decision and nothing to do with backups. The recovery point objective is a statement about data age, so it picks the protection. Zero means no committed transaction may be lost, and that is where replication has to be read carefully: synchronous replication delivers the objective and is not by itself a backup, because it copies a deletion, a corruption or a ransomware encryption to the replica in real time with perfect fidelity. Point-in-time backups alongside it are what make the data recoverable from a bad write rather than merely survivable through a lost disk, which is why SY0-701 lists replication and backups as separate concepts. An hour needs incrementals through the day; twenty-four hours is satisfied by a nightly job. An archive written once and never modified has nothing to replicate and a regulatory requirement that it cannot be altered, which write-once media answers directly. The recovery time objective is a statement about time to service, so it picks the site. Fifteen minutes does not allow for provisioning anything, so the standby is already running. Four hours is also a hot site, three days and two days are what a warm site exists for, thirty days makes a cold site sufficient. The sandbox is the judgement row: it holds nothing the build pipeline does not generate, so protecting it is paying to keep a copy of something already held, and giving it a site is paying twice. Assigning every system the strongest option is not caution — it spends the resilience budget where it buys nothing.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Data protection",
+            "Recovery site"
+          ],
+          "rows": [
+            {
+              "label": "Order-entry database · RPO 0 · RTO 15 minutes",
+              "fields": [
+                {
+                  "correctValue": "Synchronous replication with point-in-time backups",
+                  "options": [
+                    "Nightly full with hourly incrementals",
+                    "Synchronous replication with point-in-time backups",
+                    "Write-once immutable media",
+                    "No protection required",
+                    "Nightly full only"
+                  ]
+                },
+                {
+                  "correctValue": "Hot site",
+                  "options": [
+                    "No recovery site",
+                    "Warm site",
+                    "Hot site",
+                    "Cold site"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Clinical scheduling system · RPO 1 hour · RTO 4 hours",
+              "fields": [
+                {
+                  "correctValue": "Nightly full with hourly incrementals",
+                  "options": [
+                    "No protection required",
+                    "Nightly full only",
+                    "Synchronous replication with point-in-time backups",
+                    "Write-once immutable media",
+                    "Nightly full with hourly incrementals"
+                  ]
+                },
+                {
+                  "correctValue": "Hot site",
+                  "options": [
+                    "No recovery site",
+                    "Hot site",
+                    "Warm site",
+                    "Cold site"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "HR case management · RPO 1 hour · RTO 3 days",
+              "fields": [
+                {
+                  "correctValue": "Nightly full with hourly incrementals",
+                  "options": [
+                    "No protection required",
+                    "Nightly full only",
+                    "Nightly full with hourly incrementals",
+                    "Synchronous replication with point-in-time backups",
+                    "Write-once immutable media"
+                  ]
+                },
+                {
+                  "correctValue": "Warm site",
+                  "options": [
+                    "Hot site",
+                    "No recovery site",
+                    "Cold site",
+                    "Warm site"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Corporate file shares · RPO 24 hours · RTO 2 days",
+              "fields": [
+                {
+                  "correctValue": "Nightly full only",
+                  "options": [
+                    "No protection required",
+                    "Synchronous replication with point-in-time backups",
+                    "Write-once immutable media",
+                    "Nightly full only",
+                    "Nightly full with hourly incrementals"
+                  ]
+                },
+                {
+                  "correctValue": "Warm site",
+                  "options": [
+                    "Hot site",
+                    "Cold site",
+                    "Warm site",
+                    "No recovery site"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Seven-year regulatory archive · written once, never modified · RTO 30 days",
+              "fields": [
+                {
+                  "correctValue": "Write-once immutable media",
+                  "options": [
+                    "Write-once immutable media",
+                    "Synchronous replication with point-in-time backups",
+                    "Nightly full only",
+                    "Nightly full with hourly incrementals",
+                    "No protection required"
+                  ]
+                },
+                {
+                  "correctValue": "Cold site",
+                  "options": [
+                    "Warm site",
+                    "Hot site",
+                    "Cold site",
+                    "No recovery site"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Developer sandbox · holds no data the build pipeline does not generate · no stated RTO",
+              "fields": [
+                {
+                  "correctValue": "No protection required",
+                  "options": [
+                    "Synchronous replication with point-in-time backups",
+                    "Nightly full only",
+                    "Write-once immutable media",
+                    "Nightly full with hourly incrementals",
+                    "No protection required"
+                  ]
+                },
+                {
+                  "correctValue": "No recovery site",
+                  "options": [
+                    "Hot site",
+                    "No recovery site",
+                    "Warm site",
+                    "Cold site"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "General Security Concepts",
+      "stem": "An object store evaluates three policy layers on every request: a role policy attached to the caller, a resource policy attached to the bucket, and an organisation-wide guardrail above both. Each layer may allow the action, deny it explicitly, or say nothing about it, and a request needs an allow from both the role policy and the resource policy. Give the result of each request and the layer that decided it.",
+      "explanation": "Two rules settle every row, and neither is stated for you. The first is that an explicit deny anywhere ends the evaluation no matter how many allows sit beneath it, which is the entire reason organisation-wide guardrails are written as denies rather than as narrowed allows — the out-of-region read has two valid allows and the guardrail still wins. The second is that a layer saying nothing is not a layer saying yes. The write with a silent resource policy is the row candidates most often get backwards: nothing denied that write, and it fails anyway, because it never collected the second allow it needed. The read with a silent role policy fails the same way from the other side, and it is the more tempting of the two, since the resource policy names this principal explicitly and being named by name feels decisive. It is not — naming a principal in a resource policy supplies the resource half and only the resource half. The legal-hold delete looks like a contradiction and is not one: the same resource policy allows delete and denies delete on objects under hold, and because explicit deny is evaluated ahead of any allow, the allow is never reached. The last row is the control that proves the guardrail was read rather than pattern-matched. Its guardrail carries a deny, so a candidate skimming for the word denies marks it refused; but the deny covers writes and the request is a read, so it never matches and both required allows are present.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Result",
+            "Deciding layer"
+          ],
+          "rows": [
+            {
+              "label": "Read · role allows · bucket allows · guardrail silent",
+              "fields": [
+                {
+                  "correctValue": "Allowed",
+                  "options": [
+                    "Allowed",
+                    "Denied"
+                  ]
+                },
+                {
+                  "correctValue": "Both layers allow and nothing denies",
+                  "options": [
+                    "Explicit deny in the resource policy",
+                    "No allow at the resource layer",
+                    "No allow at the role layer",
+                    "Both layers allow and nothing denies",
+                    "Explicit deny in the guardrail"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Read from an unapproved region · role allows · bucket allows · guardrail denies out-of-region",
+              "fields": [
+                {
+                  "correctValue": "Denied",
+                  "options": [
+                    "Denied",
+                    "Allowed"
+                  ]
+                },
+                {
+                  "correctValue": "Explicit deny in the guardrail",
+                  "options": [
+                    "Explicit deny in the resource policy",
+                    "Explicit deny in the guardrail",
+                    "Both layers allow and nothing denies",
+                    "No allow at the role layer",
+                    "No allow at the resource layer"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Write · role allows · bucket silent · guardrail silent",
+              "fields": [
+                {
+                  "correctValue": "Denied",
+                  "options": [
+                    "Allowed",
+                    "Denied"
+                  ]
+                },
+                {
+                  "correctValue": "No allow at the resource layer",
+                  "options": [
+                    "No allow at the role layer",
+                    "Explicit deny in the guardrail",
+                    "Explicit deny in the resource policy",
+                    "Both layers allow and nothing denies",
+                    "No allow at the resource layer"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Read · role silent · bucket allows this principal by name · guardrail silent",
+              "fields": [
+                {
+                  "correctValue": "Denied",
+                  "options": [
+                    "Allowed",
+                    "Denied"
+                  ]
+                },
+                {
+                  "correctValue": "No allow at the role layer",
+                  "options": [
+                    "Explicit deny in the guardrail",
+                    "Both layers allow and nothing denies",
+                    "Explicit deny in the resource policy",
+                    "No allow at the resource layer",
+                    "No allow at the role layer"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Delete an object under legal hold · role allows · bucket allows delete but denies delete under hold",
+              "fields": [
+                {
+                  "correctValue": "Denied",
+                  "options": [
+                    "Allowed",
+                    "Denied"
+                  ]
+                },
+                {
+                  "correctValue": "Explicit deny in the resource policy",
+                  "options": [
+                    "No allow at the role layer",
+                    "Both layers allow and nothing denies",
+                    "Explicit deny in the resource policy",
+                    "No allow at the resource layer",
+                    "Explicit deny in the guardrail"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Read · role allows · bucket allows · guardrail denies writes only",
+              "fields": [
+                {
+                  "correctValue": "Allowed",
+                  "options": [
+                    "Allowed",
+                    "Denied"
+                  ]
+                },
+                {
+                  "correctValue": "Both layers allow and nothing denies",
+                  "options": [
+                    "No allow at the resource layer",
+                    "Both layers allow and nothing denies",
+                    "Explicit deny in the resource policy",
+                    "No allow at the role layer",
+                    "Explicit deny in the guardrail"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "Security Program Management and Oversight",
+      "stem": "Six entries came out of a quarterly access review, each with the evidence the reviewer recorded. Give the condition each one represents and the action it warrants. Two entries meet the same condition and do not warrant the same action.",
+      "explanation": "The condition follows from the evidence and the action does not follow from the condition, which is what the two credential rows demonstrate. Both fail the same age rule: a secret last set in 2019 on a standard that requires annual rotation. The service account is a live exposure — it carries interactive logon rights and no second factor, so a credential nobody has touched in years can be used to sign in at a console, which is the ordinary way service accounts become footholds; rotating the secret without removing interactive logon fixes half of it. The break-glass account meets the same condition and is behaving exactly as designed: sealed, unused, and alerting on every logon, which are compensating controls that already address what rotation is meant to address, and rotating it on schedule mostly creates opportunities to lose the sealed copy. Recording why it stands is the correct output. The rest are decided by the evidence in front of them. Entitlements from a prior role are removed surgically, not by removing the account, which is still in use. Four technicians behind one login is an attribution failure before it is an access failure — the log can prove noc_shift acted and can never prove which of the four acted, and no amount of password rotation changes that; named accounts do. One person able to create a vendor record and approve payments to that vendor holds each half legitimately and the combination not at all, so the transaction is split rather than the person demoted. The last row is the one that tests restraint: the groups match the role definition and the previous review was clean, so a reviewer revoking something to look thorough breaks a working role and teaches the business to stop cooperating.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Condition",
+            "Action"
+          ],
+          "rows": [
+            {
+              "label": "Moved helpdesk → payroll in 2024; holds Helpdesk Admins and Payroll Approvers",
+              "fields": [
+                {
+                  "correctValue": "Entitlements retained from a prior role",
+                  "options": [
+                    "One person can complete a transaction alone",
+                    "One login used by several people",
+                    "Credential older than the standard permits",
+                    "Entitlements retained from a prior role",
+                    "Entitlement matches the role definition"
+                  ]
+                },
+                {
+                  "correctValue": "Remove the entitlements from the prior role",
+                  "options": [
+                    "Retain unchanged and record the justification",
+                    "Replace with named individual accounts",
+                    "Split the transaction across two approvers",
+                    "Rotate the secret and remove interactive logon",
+                    "Remove the entitlements from the prior role"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "svc_etl · interactive logon rights · password last set 2019 · no second factor",
+              "fields": [
+                {
+                  "correctValue": "Credential older than the standard permits",
+                  "options": [
+                    "Entitlements retained from a prior role",
+                    "One login used by several people",
+                    "Entitlement matches the role definition",
+                    "Credential older than the standard permits",
+                    "One person can complete a transaction alone"
+                  ]
+                },
+                {
+                  "correctValue": "Rotate the secret and remove interactive logon",
+                  "options": [
+                    "Remove the entitlements from the prior role",
+                    "Rotate the secret and remove interactive logon",
+                    "Split the transaction across two approvers",
+                    "Replace with named individual accounts",
+                    "Retain unchanged and record the justification"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Break-glass administrator · password last set 2019 · credential sealed in the safe · never used · every logon alerts",
+              "fields": [
+                {
+                  "correctValue": "Credential older than the standard permits",
+                  "options": [
+                    "Entitlement matches the role definition",
+                    "Credential older than the standard permits",
+                    "One person can complete a transaction alone",
+                    "One login used by several people",
+                    "Entitlements retained from a prior role"
+                  ]
+                },
+                {
+                  "correctValue": "Retain unchanged and record the justification",
+                  "options": [
+                    "Rotate the secret and remove interactive logon",
+                    "Retain unchanged and record the justification",
+                    "Replace with named individual accounts",
+                    "Remove the entitlements from the prior role",
+                    "Split the transaction across two approvers"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "noc_shift · four technicians sign in with it · one identity for every night action",
+              "fields": [
+                {
+                  "correctValue": "One login used by several people",
+                  "options": [
+                    "Entitlement matches the role definition",
+                    "Entitlements retained from a prior role",
+                    "Credential older than the standard permits",
+                    "One login used by several people",
+                    "One person can complete a transaction alone"
+                  ]
+                },
+                {
+                  "correctValue": "Replace with named individual accounts",
+                  "options": [
+                    "Rotate the secret and remove interactive logon",
+                    "Retain unchanged and record the justification",
+                    "Split the transaction across two approvers",
+                    "Replace with named individual accounts",
+                    "Remove the entitlements from the prior role"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "An analyst can create a vendor record and approve payments to that vendor",
+              "fields": [
+                {
+                  "correctValue": "One person can complete a transaction alone",
+                  "options": [
+                    "Credential older than the standard permits",
+                    "Entitlements retained from a prior role",
+                    "One login used by several people",
+                    "One person can complete a transaction alone",
+                    "Entitlement matches the role definition"
+                  ]
+                },
+                {
+                  "correctValue": "Split the transaction across two approvers",
+                  "options": [
+                    "Retain unchanged and record the justification",
+                    "Split the transaction across two approvers",
+                    "Remove the entitlements from the prior role",
+                    "Rotate the secret and remove interactive logon",
+                    "Replace with named individual accounts"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Finance analyst · groups match the role definition · previous review clean",
+              "fields": [
+                {
+                  "correctValue": "Entitlement matches the role definition",
+                  "options": [
+                    "Entitlement matches the role definition",
+                    "One login used by several people",
+                    "Credential older than the standard permits",
+                    "One person can complete a transaction alone",
+                    "Entitlements retained from a prior role"
+                  ]
+                },
+                {
+                  "correctValue": "Retain unchanged and record the justification",
+                  "options": [
+                    "Rotate the secret and remove interactive logon",
+                    "Split the transaction across two approvers",
+                    "Replace with named individual accounts",
+                    "Remove the entitlements from the prior role",
+                    "Retain unchanged and record the justification"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "A monitoring agent on a Linux application server stopped reporting to its collector at 203.0.113.40 after last night’s network change. Other servers in the same rack still report. You have a shell on the affected server, and the network team will not look at it until you can tell them where this host sits and whether it can reach the collector at all.",
+      "explanation": "Neither piece of evidence is worth much without the other, which is the entire lesson of CompTIA’s own example simulation: one workstation’s address is a number, and the same number held against a working workstation’s address is a diagnosis. The address and mask tell you which subnet this host believes it is on, and that is where last night’s change is most likely to have landed — a host that came back with an address in the wrong scope, or the right address with a mask a bit longer than it was, is reachable from some places and not others, and looks nothing like a broken agent. The reachability test tells you whether packets to the collector are answered, and it is meaningful only alongside the address, because a timeout from a host in the wrong subnet and a timeout from a host in the right one point at completely different teams. Either order scores, since neither result changes what the other command should be. Two things practitioners reach for do not settle this. Restarting the agent tests a hypothesis the evidence has not yet supported and destroys the failing state if it happens to work. Reading the collector’s own logs answers whether data arrived, which you already know it did not, and says nothing about why. Note also what a silent reachability test does not prove: plenty of correctly working hosts drop ICMP by policy, so a timeout narrows the field rather than closing it, and the address is what tells you which direction to narrow in.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "Produce two pieces of evidence for the network team: where this host sits on the network, and whether the collector at 203.0.113.40 answers it. Two commands, in whichever order you prefer.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "ip addr",
+                "ping -c 4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip addr",
+                "ping -c4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip addr",
+                "ping -c 3 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip addr",
+                "ping 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip a",
+                "ping -c 4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip a",
+                "ping -c4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip a",
+                "ping -c 3 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip a",
+                "ping 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip addr show",
+                "ping -c 4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip addr show",
+                "ping -c4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip addr show",
+                "ping -c 3 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip addr show",
+                "ping 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr",
+                "ping -c 4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr",
+                "ping -c4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr",
+                "ping -c 3 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr",
+                "ping 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr show",
+                "ping -c 4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr show",
+                "ping -c4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr show",
+                "ping -c 3 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 addr show",
+                "ping 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig",
+                "ping -c 4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig",
+                "ping -c4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig",
+                "ping -c 3 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig",
+                "ping 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig -a",
+                "ping -c 4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig -a",
+                "ping -c4 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig -a",
+                "ping -c 3 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ifconfig -a",
+                "ping 203.0.113.40"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 4 203.0.113.40",
+                "ip addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 4 203.0.113.40",
+                "ip a"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 4 203.0.113.40",
+                "ip addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 4 203.0.113.40",
+                "ip -4 addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 4 203.0.113.40",
+                "ip -4 addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 4 203.0.113.40",
+                "ifconfig"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 4 203.0.113.40",
+                "ifconfig -a"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c4 203.0.113.40",
+                "ip addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c4 203.0.113.40",
+                "ip a"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c4 203.0.113.40",
+                "ip addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c4 203.0.113.40",
+                "ip -4 addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c4 203.0.113.40",
+                "ip -4 addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c4 203.0.113.40",
+                "ifconfig"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c4 203.0.113.40",
+                "ifconfig -a"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 3 203.0.113.40",
+                "ip addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 3 203.0.113.40",
+                "ip a"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 3 203.0.113.40",
+                "ip addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 3 203.0.113.40",
+                "ip -4 addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 3 203.0.113.40",
+                "ip -4 addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 3 203.0.113.40",
+                "ifconfig"
+              ]
+            },
+            {
+              "steps": [
+                "ping -c 3 203.0.113.40",
+                "ifconfig -a"
+              ]
+            },
+            {
+              "steps": [
+                "ping 203.0.113.40",
+                "ip addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping 203.0.113.40",
+                "ip a"
+              ]
+            },
+            {
+              "steps": [
+                "ping 203.0.113.40",
+                "ip addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping 203.0.113.40",
+                "ip -4 addr"
+              ]
+            },
+            {
+              "steps": [
+                "ping 203.0.113.40",
+                "ip -4 addr show"
+              ]
+            },
+            {
+              "steps": [
+                "ping 203.0.113.40",
+                "ifconfig"
+              ]
+            },
+            {
+              "steps": [
+                "ping 203.0.113.40",
+                "ifconfig -a"
+              ]
+            }
+          ],
+          "hints": [
+            "Two commands, one per line. The network team wants both facts, not a conclusion."
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "Users on the third floor cannot load the partner portal; users on the second floor load it without trouble. Both floors reach the rest of the internet and resolve internal names normally, and the third floor’s browsers report a connection error rather than a certificate warning. You are on a third-floor host and nobody has touched a firewall yet.",
+      "explanation": "The command exists to remove one variable, and the variable is the resolver itself. Asking the name of a resolver this host does not normally use produces an answer you can hold against what the failing floor gets from its own, and the comparison is the finding: matching answers rule name resolution out and justify moving to the path, while differing answers have already found it — an internal resolver handing out a stale or poisoned record, or a split-horizon zone answering one subnet differently from another. dig, nslookup and host all do it, and which is installed varies by image, so the judgement graded here is naming a resolver explicitly rather than which binary you reach for. Running the lookup with no resolver named is the reflex and wastes the test, because the host then asks the same server that may itself be the fault and confirms nothing whichever way it comes back. Pinging the portal is weaker still: a failed ping folds name resolution, routing and ICMP policy into a single result, and plenty of correctly working sites answer no ICMP at all, so the outcome is ambiguous in both directions. Opening the site in a browser is the weakest of the three, since a browser may be using a proxy, a cached record or its own encrypted resolver, none of which is what the rest of the floor is doing.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "Obtain an answer for www.partner-example.com that does not depend on the resolver this host is configured to use, so it can be compared with what the floor is getting. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "dig @8.8.8.8 www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig @8.8.8.8 www.partner-example.com a"
+              ]
+            },
+            {
+              "steps": [
+                "dig @8.8.8.8 a www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig +short @8.8.8.8 www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig @8.8.8.8 +short www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup www.partner-example.com 8.8.8.8"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup -type=a www.partner-example.com 8.8.8.8"
+              ]
+            },
+            {
+              "steps": [
+                "host www.partner-example.com 8.8.8.8"
+              ]
+            },
+            {
+              "steps": [
+                "host -t a www.partner-example.com 8.8.8.8"
+              ]
+            },
+            {
+              "steps": [
+                "dig @1.1.1.1 www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig @1.1.1.1 www.partner-example.com a"
+              ]
+            },
+            {
+              "steps": [
+                "dig @1.1.1.1 a www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig +short @1.1.1.1 www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig @1.1.1.1 +short www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup www.partner-example.com 1.1.1.1"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup -type=a www.partner-example.com 1.1.1.1"
+              ]
+            },
+            {
+              "steps": [
+                "host www.partner-example.com 1.1.1.1"
+              ]
+            },
+            {
+              "steps": [
+                "host -t a www.partner-example.com 1.1.1.1"
+              ]
+            },
+            {
+              "steps": [
+                "dig @9.9.9.9 www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig @9.9.9.9 www.partner-example.com a"
+              ]
+            },
+            {
+              "steps": [
+                "dig @9.9.9.9 a www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig +short @9.9.9.9 www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig @9.9.9.9 +short www.partner-example.com"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup www.partner-example.com 9.9.9.9"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup -type=a www.partner-example.com 9.9.9.9"
+              ]
+            },
+            {
+              "steps": [
+                "host www.partner-example.com 9.9.9.9"
+              ]
+            },
+            {
+              "steps": [
+                "host -t a www.partner-example.com 9.9.9.9"
+              ]
+            }
+          ],
+          "hints": [
+            "Name a resolver of your own choosing that this host would not otherwise ask — any of the well-known public ones will do."
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Apply",
+      "domain": "General Security Concepts",
+      "stem": "A monitoring check reports a certificate name mismatch on portal.example.com, and the certificate the operations team uploaded has the right name on it. The host answers on an address shared with several other sites, and the site loads without complaint in the operations team’s browser.",
+      "explanation": "What a server is configured to send and what it actually sends to a given client are different facts, and on a shared address they part company for a specific reason. A TLS client has to say which site it wants in the Server Name Indication field of the handshake; a client that omits it gets whatever the default virtual host serves, which on a shared address is somebody else’s certificate. That is the commonest cause of exactly this report — a probe that does not send SNI, or a virtual host that was never bound — and any tool that reaches the server as a normal client would will show it. openssl s_client is the usual instrument and needs the hostname supplied explicitly with -servername, since -connect alone opens the socket without setting the field, which reproduces the monitoring check’s confusion rather than resolving it; -showcerts extends the output to every certificate sent, which is how a missing intermediate is told apart from a wrong leaf. curl in verbose mode sends SNI on its own and prints the server certificate it was given, which answers the question with less to get wrong. What does not answer it is the operations team’s browser, and its clean padlock is the reason this ticket is open: browsers cache intermediates from earlier visits and repair incomplete chains through the certificate’s AIA extension, so a browser can show a perfect result against a server that is misconfigured for every other client on the internet.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "Retrieve what the server actually returns to a client asking for portal.example.com on port 443, so it can be compared with the certificate that was uploaded. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "openssl s_client -connect portal.example.com:443 -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -servername portal.example.com -connect portal.example.com:443"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -connect portal.example.com:443 -servername portal.example.com -showcerts"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -servername portal.example.com -connect portal.example.com:443 -showcerts"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -showcerts -connect portal.example.com:443 -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -showcerts -servername portal.example.com -connect portal.example.com:443"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -connect portal.example.com:443 -showcerts -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -connect portal.example.com:443 -servername portal.example.com < /dev/null"
+              ]
+            },
+            {
+              "steps": [
+                "echo | openssl s_client -connect portal.example.com:443 -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "echo -n | openssl s_client -connect portal.example.com:443 -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -servername portal.example.com -connect portal.example.com:443 < /dev/null"
+              ]
+            },
+            {
+              "steps": [
+                "echo | openssl s_client -servername portal.example.com -connect portal.example.com:443"
+              ]
+            },
+            {
+              "steps": [
+                "echo -n | openssl s_client -servername portal.example.com -connect portal.example.com:443"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -connect portal.example.com:443 -servername portal.example.com -showcerts < /dev/null"
+              ]
+            },
+            {
+              "steps": [
+                "echo | openssl s_client -connect portal.example.com:443 -servername portal.example.com -showcerts"
+              ]
+            },
+            {
+              "steps": [
+                "echo -n | openssl s_client -connect portal.example.com:443 -servername portal.example.com -showcerts"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -servername portal.example.com -connect portal.example.com:443 -showcerts < /dev/null"
+              ]
+            },
+            {
+              "steps": [
+                "echo | openssl s_client -servername portal.example.com -connect portal.example.com:443 -showcerts"
+              ]
+            },
+            {
+              "steps": [
+                "echo -n | openssl s_client -servername portal.example.com -connect portal.example.com:443 -showcerts"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -showcerts -connect portal.example.com:443 -servername portal.example.com < /dev/null"
+              ]
+            },
+            {
+              "steps": [
+                "echo | openssl s_client -showcerts -connect portal.example.com:443 -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "echo -n | openssl s_client -showcerts -connect portal.example.com:443 -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -showcerts -servername portal.example.com -connect portal.example.com:443 < /dev/null"
+              ]
+            },
+            {
+              "steps": [
+                "echo | openssl s_client -showcerts -servername portal.example.com -connect portal.example.com:443"
+              ]
+            },
+            {
+              "steps": [
+                "echo -n | openssl s_client -showcerts -servername portal.example.com -connect portal.example.com:443"
+              ]
+            },
+            {
+              "steps": [
+                "openssl s_client -connect portal.example.com:443 -showcerts -servername portal.example.com < /dev/null"
+              ]
+            },
+            {
+              "steps": [
+                "echo | openssl s_client -connect portal.example.com:443 -showcerts -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "echo -n | openssl s_client -connect portal.example.com:443 -showcerts -servername portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "curl -v https://portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "curl -vI https://portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "curl -v --head https://portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "curl -vso /dev/null https://portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "gnutls-cli portal.example.com"
+              ]
+            },
+            {
+              "steps": [
+                "gnutls-cli --print-cert portal.example.com"
+              ]
+            }
+          ],
+          "hints": [
+            "Several sites answer on that address, so whatever you use has to tell the server which one you are asking for."
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "An access review says three named people hold administrative rights on a Windows member server. The server was rebuilt by a contractor last year, and you do not trust a document to describe what is configured on the box.",
+      "explanation": "A review records intent and the group records fact, and on a rebuilt server the two diverge in predictable ways. net localgroup administrators prints the membership from the command shell and Get-LocalGroupMember Administrators does the same from PowerShell with structured output; either is fine, and knowing that the answer lives in a local group rather than a directory one is the judgement being graded. Three things routinely appear there that no review shows. A domain group nested inside the local group grants administrative rights to every one of its members while none of them appears as a named administrator anywhere, and nesting is the usual reason the count in a review and the effective count disagree. A local account the contractor created for the build and never removed sits outside directory governance entirely, so it survives every joiner-mover-leaver process the organisation runs. Domain Admins added directly is expected on some builds and a finding on others, and only the local group can tell you which this is. Checking the membership of Domain Admins answers a different question at a different scope — a member server has its own local group, and membership there is what decides who can act on this machine, whatever the directory says about the wider estate.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "C:\\Users\\analyst>",
+          "scenario": "Produce the current membership of this server’s own local Administrators group. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "net localgroup administrators"
+              ]
+            },
+            {
+              "steps": [
+                "net localgroup \"administrators\""
+              ]
+            },
+            {
+              "steps": [
+                "get-localgroupmember administrators"
+              ]
+            },
+            {
+              "steps": [
+                "get-localgroupmember -group administrators"
+              ]
+            },
+            {
+              "steps": [
+                "get-localgroupmember -name administrators"
+              ]
+            },
+            {
+              "steps": [
+                "get-localgroupmember \"administrators\""
+              ]
+            },
+            {
+              "steps": [
+                "get-localgroupmember -group \"administrators\""
+              ]
+            },
+            {
+              "steps": [
+                "get-localgroupmember -name \"administrators\""
+              ]
+            }
+          ],
+          "hints": [
+            "The group that decides this is local to the machine, not one held in the directory."
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Program Management and Oversight",
+      "stem": "The standard requires every credential to be rotated at least annually. An auditor has asked for proof that the local service account svc_deploy complies, and because the account is not managed by the directory, the directory’s report does not cover it. You have a shell on the host.",
+      "explanation": "The distinction being graded is between evidence and assertion. \"We rotate annually\" is a claim; the date the password was last set is the fact that confirms or refutes it, and it lives on the host in the shadow file rather than in any report. chage -l svc_deploy prints that date along with the minimum and maximum age, the warning period and the account and password expiry dates, which is everything the auditor asked for and a little more. passwd -S svc_deploy is a narrower answer from a different binary that still carries the last-change date and the ageing fields, so it answers the question with less detail. Either is defensible, which is the point: the judgement is knowing which fact settles the control, not memorising one tool. Reading /etc/passwd is the common wrong turn and returns nothing useful, because it has held no password information on any modern system for decades — only an x placeholder, since the hashes and the ageing data were moved to /etc/shadow precisely so they would not be world-readable. Checking the last login answers a different question again: an account can be used every day of the week on a password set five years ago, and it is the password age rather than the login age that this control is about.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "Produce, from this host, the evidence the auditor needs in order to decide whether svc_deploy meets that requirement. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "chage -l svc_deploy"
+              ]
+            },
+            {
+              "steps": [
+                "chage --list svc_deploy"
+              ]
+            },
+            {
+              "steps": [
+                "sudo chage -l svc_deploy"
+              ]
+            },
+            {
+              "steps": [
+                "sudo chage --list svc_deploy"
+              ]
+            },
+            {
+              "steps": [
+                "passwd -S svc_deploy"
+              ]
+            },
+            {
+              "steps": [
+                "passwd --status svc_deploy"
+              ]
+            },
+            {
+              "steps": [
+                "sudo passwd -S svc_deploy"
+              ]
+            },
+            {
+              "steps": [
+                "sudo passwd --status svc_deploy"
+              ]
+            }
+          ],
+          "hints": [
+            "The fact that settles it is kept per account on this host, not in the directory report."
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq-v2",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Apply",
+      "domain": "Threats, Vulnerabilities, and Mitigations",
+      "stem": "Two workstations on one segment report that an internal HTTPS service intermittently presents a certificate signed by an authority nothing in the estate uses. The service itself has not changed and its certificate is untouched. You are on a third workstation on that same segment; the gateway is 10.10.40.1.",
+      "explanation": "A certificate that changes depending on who is asking, on a service whose own certificate has not changed, means something is answering in the middle, and the segment’s layer-two mapping is where that shows. arp -a and ip neigh both print what this host currently believes about which hardware address holds which local address, and either answers the question — the judgement graded here is knowing that the evidence lives at layer two rather than in the service’s own logs. What you are reading the output for is a collision: two different addresses, typically the gateway and one other host, resolving to the same hardware address. That is one machine answering for both, which is the position required to terminate TLS in the middle and present a certificate of its own choosing, and it explains the intermittency, since a poisoned entry ages out and is replaced by whichever answer arrives next. The service’s own logs cannot show any of this, because from its point of view a client connected and everything was normal. Reading the certificate from the affected workstations tells you it is untrusted, which they have already reported, and identifies the issuer without identifying the machine presenting it. The cache is also perishable in a way that matters: entries expire in minutes, so a mapping captured while the fault is live is evidence that no longer exists an hour later.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "From this workstation, produce the current mapping of local addresses to hardware addresses as this host has learned them. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "arp -a"
+              ]
+            },
+            {
+              "steps": [
+                "arp -n"
+              ]
+            },
+            {
+              "steps": [
+                "arp -an"
+              ]
+            },
+            {
+              "steps": [
+                "arp -e"
+              ]
+            },
+            {
+              "steps": [
+                "ip neigh"
+              ]
+            },
+            {
+              "steps": [
+                "ip neigh show"
+              ]
+            },
+            {
+              "steps": [
+                "ip neighbor"
+              ]
+            },
+            {
+              "steps": [
+                "ip neighbor show"
+              ]
+            },
+            {
+              "steps": [
+                "ip neighbour show"
+              ]
+            },
+            {
+              "steps": [
+                "ip -4 neigh show"
+              ]
+            }
+          ],
+          "hints": [
+            "The mapping you want is one this host has already learned and cached; it expires in minutes."
+          ]
+        }
+      }
+    }
+  ]
+}

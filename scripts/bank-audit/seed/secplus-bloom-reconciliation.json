@@ -1,0 +1,130 @@
+[
+  {
+    "id": "6dq1KkWONxtMas72wCnI",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "B",
+    "finalLevel": "Understand",
+    "reasoning": "A calls this definitional recall, but the stem never states the definition — it describes a governance arrangement (no reporting line to the reviewed unit, results routed to the audit committee) and asks what property that structure establishes. Classifying a described case into a concept is an Understand process in Anderson and Krathwohl, not Remember; Remember covers retrieval from a memorised set. Independence, attestation, non-repudiation, and due diligence are not one memorised taxonomy the candidate can index into — they are scattered terms, so the discrimination has to run through the described case. A's own file confirms this: it tags 2lk8XPsECfnMbfqjOipV (chain of custody derived from a described forensic procedure, identical shape) as Understand with the reason that the candidate must interpret a described practice rather than recall a definition. A is internally inconsistent across the pair and Understand is the correct side of it."
+  },
+  {
+    "id": "8Ggu23Ah19GuWcSY1t4M",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "B",
+    "finalLevel": "Understand",
+    "reasoning": "A argues the task is naming the attack, not reasoning about it. But the keyed answer is a compound (typosquatting used as the delivery mechanism for phishing), and each distractor is ruled out only by interpreting a stated fact: the bank's real domain is untouched, so nothing was hijacked; no resolver is involved, so it is not cache poisoning; nothing is intercepted, so it is not on-path. Distinguishing 'registered a lookalike the attacker controls' from 'took over the real domain' is an interpretive step, not a lookup. A tags IzQnAi2oN7wdcd1fggoR (supply chain compromise inferred from a described chain, then separated from similar-sounding categories) as Understand for exactly this reasoning — the same shape gets the same level."
+  },
+  {
+    "id": "A5EPQgN1QCPMTTERtdoZ",
+    "tagA": "Understand",
+    "tagB": "Analyze",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "I was wrong. I reached for Analyze because the item asks the candidate to distinguish two things, and I mapped 'differentiating' onto that. That is a misreading of the taxonomy: in Anderson and Krathwohl, comparing — detecting correspondences and differences between two ideas — is an Understand process, while Analyze's differentiating means separating relevant from irrelevant parts within presented material. Here there is no material to decompose; both assessment types are named in the stem and the candidate explains what each one verifies. The budget conflict is framing, not cognitive load."
+  },
+  {
+    "id": "e1CIfya3H0UY8nCcpjXO",
+    "tagA": "Apply",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I was wrong. I graded this Evaluate on the basis that the candidate must judge an unfalsifiable claim — but the stem already performs that judgement for them: 'The assessor needs to convert this into something verifiable.' The evaluation is handed over as a premise. What remains is knowing what a verifiable encryption answer consists of (named algorithms, key lengths, key management, a configuration standard as evidence) and selecting the option that produces it. That is assessment procedure applied to a situation."
+  },
+  {
+    "id": "exTVU9lymFX5B25S2Aez",
+    "tagA": "Evaluate",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Evaluate",
+    "reasoning": "I was wrong. I treated the minimal-suppression carve-out as a settled rule to be applied, which underrates the item. Two obligations genuinely conflict here — the erasure right against the need to keep honouring a do-not-contact instruction — and every distractor is a position practitioners actually argue: legitimate interest to refuse, delete everything and let the customer re-opt-out, anonymise and retain for analytics. No single procedure outputs the answer; the candidate has to reason about proportionality and decide how far erasure extends and on what legal basis the remainder survives. Weighing competing obligations and justifying the boundary is Evaluate."
+  },
+  {
+    "id": "fEAMrH4pkQ9bGjPeyUHF",
+    "tagA": "Understand",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "I was wrong. I equated 'critique a proposed design' with Evaluate, but Evaluate requires judging against criteria or weighing alternatives, and neither happens here. There is one design, one flaw, and the task is to explain the causal chain: the key beside the ciphertext means a single host compromise yields plaintext, so the control buys nothing. Explaining cause and effect is an Understand process. A's further point is decisive — the three distractors are simply false statements about what PCI DSS requires, so eliminating them draws on factual knowledge rather than judgement."
+  },
+  {
+    "id": "hCh3wY7Diu1KDJNKIqiZ",
+    "tagA": "Apply",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I was wrong. CVSS environmental metrics are a named, documented procedure that exists precisely to re-rate a base score for local asset value, exposure, and compensating controls, and the stem supplies every input it needs (isolated lab system, no production data, no route to the corporate network). The candidate invokes the procedure. The distractors fail on fact rather than on judgement — the base score is not authoritative for triage, and an accurate finding on an isolated host is not a false positive — so nothing is being weighed."
+  },
+  {
+    "id": "j3Z0t4SqnlHhBZ5eoCZq",
+    "tagA": "Analyze",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Analyze",
+    "reasoning": "I was wrong, and the stem's own verb gives it away: it asks how the metric should be characterised, not whether it is acceptable or what should be done. The keyed answer is a description of what the number covers and what it omits, not a judgement of adequacy and not a recommendation. The denominator defect is also stated outright (the scan covers only CMDB-registered systems; 15% of production is unregistered), so the work left is relating scope to denominator to claim — attributing and organising, which is Analyze."
+  },
+  {
+    "id": "JwbE9BjfbSdrpp7PWtoa",
+    "tagA": "Apply",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I was wrong, and my own written rationale conceded the deciding fact before I ignored it: the root cause is handed to the candidate ('the delay was traced to a manual DNS change requiring an approval that was unavailable overnight'). With the cause isolated, selecting the standard remedy — pre-authorise or automate the cutover — is application. I inflated the level because the 'extend the RTO to twelve hours' distractor is tempting, but nothing in the stem suggests four hours was the wrong target, so it is a plausibility trap rather than a competing good. Tempting distractors raise difficulty, not Bloom level."
+  },
+  {
+    "id": "mMvmwXR53yLGBMPZze9i",
+    "tagA": "Apply",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I was wrong, by the same error as JwbE9BjfbSdrpp7PWtoa. Third-party risk management has an explicit trigger for exactly this event: a change of control means re-running due diligence against the new owner and reading what the change-of-control clause entitles you to. The stem asks what should happen first, and the answer is the first step of a defined procedure. Terminating immediately, doing nothing, and rebuilding in-house are an over-reaction, an under-reaction, and an irrelevance — no criteria are being weighed against each other."
+  },
+  {
+    "id": "PqQOTSpUVe5D205BksbT",
+    "tagA": "Apply",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I was wrong. The item does not ask whether acceptance is an appropriate treatment — it grants that it is — so nothing is being judged for adequacy. It asks how the acceptance must be recorded, and the answer recites the required fields of a documented risk acceptance (named accountable owner, explicit expiry, review trigger if the timeline slips) applied to this case. That is procedure applied to a situation."
+  },
+  {
+    "id": "q7Kz21SVaM3cLb5QLDhL",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "I was wrong. I applied a blanket rule that any 'describe an instance, name the category' item is Understand, and that rule is too coarse. The line that actually holds: Remember when the answer comes out of a memorised short taxonomy and the stem hands over the definition's discriminating clause verbatim; Understand when a situation with a mechanism has to be interpreted first. This stem states the discriminator outright — mandatory intent ('must use multifactor authentication') with no products or configuration steps — which is the textbook separation of policy from standard, procedure, and guideline. Nothing is left but retrieval of a four-item hierarchy."
+  },
+  {
+    "id": "WAiNPMcdt15QC1QbHI39",
+    "tagA": "Apply",
+    "tagB": "Analyze",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I was wrong. I claimed the stem never says where the delay lives, but it does: patch approval requires a weekly change board meeting for every patch. The bottleneck is named and its cadence quantified, and no fact in the stem supports the competing distribution-capacity hypothesis, so that option is unsupported rather than something the candidate must reason away. With the constraint identified, the residual task is applying a named change-management construct — the pre-approved standard change — which is Apply. Resolved consistently with JwbE9BjfbSdrpp7PWtoa: when the stem isolates the constraint, what remains is application."
+  },
+  {
+    "id": "xRRcp2knW7ij93Tld8FP",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "I was wrong. The stem contains the answer's defining word — records 'remain accessible' during a power event — so the mapping to availability is a keyword match against a three-item triad, with the distractors being the other two members plus non-repudiation. That is recognition. The contrast with M2AMn3XHYTmIcX0pLHPL, the other CIA item, is what settles it: there the candidate must see that a per-row hash detects rather than prevents modification, which is genuine interpretation and correctly sits at Understand. The two CIA items differ in demand and should not carry the same level."
+  },
+  {
+    "id": "YclPAWBqiPizv07MFclH",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "I was wrong. A password and a registered phone are the canonical textbook exemplars of the knowledge and possession factors, and the candidate retrieves a memorised three-category list to place them. The distractors are permutations of that same list rather than rival interpretations of the scenario. Nothing in the stem needs interpreting — no mechanism, no evidence, no conflict — so this falls on the Remember side of the line I set for q7Kz21SVaM3cLb5QLDhL and xRRcp2knW7ij93Tld8FP."
+  },
+  {
+    "id": "ZTfONxWIpM73J4pozRPK",
+    "tagA": "Apply",
+    "tagB": "Evaluate",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I was wrong. The candidate applies knowledge of what each third-party instrument covers — a SOC 2 Type II attests that controls operated over a window, an MSA sets commercial terms, a DPA binds permitted use, breach notification, and return or destruction at exit — to identify the missing prerequisite before personal data flows. There is a correct answer that falls out of procedure; no competing goods are weighed and no proposal is judged for adequacy against criteria."
+  }
+]
