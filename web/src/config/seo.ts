@@ -13,7 +13,7 @@ export const SEO = {
   landing: {
     title: 'CipherExam — Learn How Certification Exams Think',
     description:
-      'AI-powered certification exam prep that explains the reasoning behind every question. 11+ certifications: PMP, Security+, SHRM-CP, and more. Free 7-day trial, no credit card.',
+      'AI-powered certification exam prep that explains the reasoning behind every question. Four certifications covered in depth: PMP, CompTIA Security+, Network+ and A+ Core 2. Free 7-day trial, no credit card.',
     canonical: '/',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -92,7 +92,7 @@ export const SEO = {
             name: 'Which certifications are included?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'PMP, Certified ScrumMaster, SHRM-CP, Six Sigma Green Belt, Certified Payroll Professional, CIA Part 1, ITIL 4 Foundation, CompTIA Security+, CompTIA Network+, CompTIA A+ Core 2, and PgMP. CISSP and AWS SAA coming soon.',
+              text: 'Four: PMP (built to PMI’s July 2026 Exam Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202). All four are included at every paid tier.',
             },
           },
           {
@@ -134,7 +134,7 @@ export const SEO = {
   blogIndex: {
     title: 'The CipherExam Blog — Certification Prep, Decoded',
     description:
-      'Cognitive-science-backed cert prep writing. Bloom’s taxonomy, exam reasoning, study strategies for PMP, Security+, SHRM-CP and more.',
+      'Cognitive-science-backed cert prep writing. Bloom’s taxonomy, exam reasoning, and study strategies for PMP and the CompTIA certifications.',
     canonical: '/blog',
     jsonLd: {
       '@context': 'https://schema.org',
