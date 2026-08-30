@@ -29,7 +29,14 @@ export interface OrderStepsConfig { steps: string[] /* correct order */ }
 export interface CommandConfig {
     prompt: string;           // e.g. "C:\>"
     scenario: string;         // what the user needs to accomplish
-    acceptedCommands: string[][]; // each inner array = one acceptable answer sequence
+    /** Each entry is one acceptable answer sequence.
+     *
+     *  Firestore rejects an array stored directly inside another array
+     *  ("invalid nested entity"), so a persisted config carries each sequence
+     *  as { steps: [...] }. Locally-authored configs may still use the plain
+     *  string[][] form. Read them through commandSequences(), never directly —
+     *  this mismatch is why no PBQ could be written to the bank before. */
+    acceptedCommands: (string[] | { steps: string[] })[];
     hints?: string[];
 }
 
@@ -87,6 +94,13 @@ export function initPBQState(config: PBQConfig): PBQState {
     return base;
 }
 
+/** Normalises acceptedCommands to sequences, whichever shape it was stored in. */
+export function commandSequences(config: CommandConfig): string[][] {
+    return (config.acceptedCommands || []).map(seq =>
+        Array.isArray(seq) ? seq : (seq?.steps ?? [])
+    );
+}
+
 export function scorePBQ(config: PBQConfig, state: PBQState): { correct: number; total: number } {
     switch (config.pbqType) {
         case 'drag-drop': {
@@ -120,7 +134,7 @@ export function scorePBQ(config: PBQConfig, state: PBQState): { correct: number;
         }
         case 'command': {
             const history = (state.commandHistory || []).map(c => c.toLowerCase().trim());
-            const accepted = config.command!.acceptedCommands;
+            const accepted = commandSequences(config.command!);
             const matched = accepted.some(seq => {
                 if (seq.length !== history.length) return false;
                 return seq.every((cmd, i) => history[i] === cmd.toLowerCase().trim());
@@ -553,7 +567,7 @@ function CommandPBQ({ config, state, locked, onChange }: {
         setInput('');
     };
 
-    const isMatch = locked && config.acceptedCommands.some(seq => {
+    const isMatch = locked && commandSequences(config).some(seq => {
         if (seq.length !== history.length) return false;
         return seq.every((cmd, i) => history[i].toLowerCase().trim() === cmd.toLowerCase().trim());
     });
@@ -642,7 +656,7 @@ function CommandPBQ({ config, state, locked, onChange }: {
                     </div>
                     {!isMatch && (
                         <div className="mt-2 p-3 rounded-lg bg-slate-800/60 font-mono text-sm">
-                            {config.acceptedCommands[0].map((cmd, i) => (
+                            {(commandSequences(config)[0] ?? []).map((cmd, i) => (
                                 <div key={i} className="text-emerald-400">
                                     {config.prompt} <span className="text-slate-200">{cmd}</span>
                                 </div>

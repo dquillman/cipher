@@ -22,7 +22,7 @@ export default function SecurityPlusPracticeLP() {
       <Hero
         eyebrow="Security+ (SY0-701) · CipherExam"
         h1="Security+ punishes the wrong decision, not the missing fact."
-        sub="CipherExam drills SY0-701 as scenario questions and explains every answer through the CIA triad — which principle is under threat, before which control fixes it. We do not simulate the PBQ interface; we train the judgment PBQs are grading. Read what we do and do not cover below."
+        sub="CipherExam drills SY0-701 as scenario questions plus 16 interactive performance-based questions — drag-and-drop zoning, ordered procedures, configuration tables and a command terminal — and explains every answer through the CIA triad. Exact counts and what is still missing are below."
         ctaHref={SIGNUP_HREF}
         onCtaClick={() => trackCtaClick(`${PAGE_ID}-hero`)}
         videoSrc="/videos/lp/launch-teaser-secplus.mp4"
@@ -41,10 +41,12 @@ export default function SecurityPlusPracticeLP() {
       <SectionBlock title="Three things compound for Security+">
         <ol className="space-y-4">
           <li>
-            <strong>Scenario items, not definition items.</strong> A question gives you
-            telemetry, a configuration or an incident and asks what it means or what to do
-            next — the register SY0-701 is written in. Five matching items are interactive;
-            the rest are scenario-driven multiple choice.
+            <strong>16 performance-based questions that you actually operate.</strong>
+            Drag systems into the right network zone, order the incident response phases,
+            complete a firewall ruleset, or type the command that lists listening sockets
+            with their owning process. Five matching items on top of that. The remaining
+            105 are scenario-driven multiple choice — telemetry or an incident, and what
+            to do next.
           </li>
           <li>
             <strong>CIA-triad-first explanations.</strong> Every right and wrong answer
@@ -86,7 +88,7 @@ export default function SecurityPlusPracticeLP() {
             onClick={() => trackCtaClick(`${PAGE_ID}-try-q-cta`)}
             className="inline-flex items-center rounded-md bg-brand-600 px-6 py-3 text-base font-semibold text-white shadow transition hover:bg-brand-700"
           >
-            Start Free Trial and judge the explanations yourself →
+            Start Free Trial and try a PBQ yourself →
           </Link>
         </p>
       </SectionBlock>
@@ -110,7 +112,7 @@ export default function SecurityPlusPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do you simulate Performance-Based Questions?</dt>
-            <dd className="mt-1">Not yet, and you should hear that here rather than discover it after paying. The Security+ bank ships 105 questions: 100 scenario-driven multiple choice and 5 interactive matching items. We do not simulate drag-and-drop firewall rules, network topology or CLI terminals. The engine for those formats is built and the content is not written. Our work has gone into the reasoning those items grade — if practising the interface itself is your top priority right now, use the free trial to judge before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
+            <dd className="mt-1">Yes, and here are the exact numbers rather than a claim. The bank is 121 questions: 100 scenario-driven multiple choice, 5 matching items, and 16 performance-based questions across four formats — drag-and-drop into zones (5), ordered procedures (4), configuration tables (4) and a simulated command line (3). What we do <em>not</em> reproduce is CompTIA's own interface chrome or its network-topology diagram items. Sixteen is a starting set, not parity with the real exam, and we would rather say so. Take the free trial and judge them before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
@@ -118,7 +120,7 @@ export default function SecurityPlusPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Will this help me pass Network+ or other CompTIA certs next?</dt>
-            <dd className="mt-1">Network+ (N10-009) is live with 106 questions and the same Exam Lens explanations. Same caveat on PBQ simulation as above. CISSP is on the roadmap and not yet built.</dd>
+            <dd className="mt-1">Network+ (N10-009) is live with 106 questions and the same Exam Lens explanations, but the performance-based questions are Security+ only for now — Network+ and A+ are scenario-driven multiple choice today. CISSP is on the roadmap and not yet built.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Cancel anytime?</dt>

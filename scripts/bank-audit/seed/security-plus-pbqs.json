@@ -1,0 +1,1078 @@
+{
+  "examId": "79cuGMNydTwDMhyiDjry",
+  "examName": "CompTIA Security+ (SY0-701)",
+  "source": "authored-2026-08-secplus-pbq",
+  "authoredAt": "2026-08-29",
+  "note": "Performance-based questions. Not reviewed by a certified subject matter expert.",
+  "questions": [
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Architecture",
+      "stem": "A small company is segmenting its network before an audit. Place each system into the zone where it belongs. Systems reachable by the public go in the screened subnet; systems holding regulated data stay internal; administrative interfaces live on their own restricted segment.",
+      "explanation": "The screened subnet (DMZ) holds only systems that must answer unsolicited traffic from the internet — the public web server and the reverse proxy that fronts it. The database and the file server hold regulated data and must never accept a connection sourced from the internet, so they belong on the internal LAN; the web server reaches the database through a single permitted path, which is the entire point of the split. The jump host and the switch management interface belong on an out-of-band management VLAN: if administrative access sits on the same segment as ordinary user traffic, one compromised workstation reaches the control plane of the whole network. Putting the database in the screened subnet is the classic wrong answer here — it is reachable by the web server either way, and the DMZ is the segment most exposed to compromise.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "dmz",
+              "label": "Screened subnet (DMZ)"
+            },
+            {
+              "id": "lan",
+              "label": "Internal LAN"
+            },
+            {
+              "id": "mgmt",
+              "label": "Management VLAN (out-of-band)"
+            }
+          ],
+          "items": [
+            {
+              "id": "web",
+              "label": "Public web server",
+              "correctZone": "dmz"
+            },
+            {
+              "id": "proxy",
+              "label": "Reverse proxy",
+              "correctZone": "dmz"
+            },
+            {
+              "id": "db",
+              "label": "Customer database (PCI data)",
+              "correctZone": "lan"
+            },
+            {
+              "id": "file",
+              "label": "HR file server",
+              "correctZone": "lan"
+            },
+            {
+              "id": "jump",
+              "label": "Administrator jump host",
+              "correctZone": "mgmt"
+            },
+            {
+              "id": "swmgmt",
+              "label": "Core switch management interface",
+              "correctZone": "mgmt"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Threats, Vulnerabilities, and Mitigations",
+      "stem": "Four findings came out of a penetration test. Drag each finding to the control that most directly prevents it. Each control is used once.",
+      "explanation": "Match the control to the mechanism the attack actually used, not to the topic it sounds like. Credential stuffing succeeds because a valid username and password pair is enough — MFA breaks that by requiring a second factor the attacker does not hold; a stronger password policy does not help when the password is already correct. The SQL injection is fixed at the point the query is built: parameterised queries keep input as data and never as executable syntax. A WAF can filter some payloads but is a compensating layer, not the fix. VLAN hopping abuses trunk negotiation, so disabling DTP and hard-setting access ports removes the capability. The unauthenticated firmware update is an integrity problem: code signing means the device refuses an image it cannot verify, regardless of who uploaded it.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "mfa",
+              "label": "Multifactor authentication"
+            },
+            {
+              "id": "param",
+              "label": "Parameterised queries"
+            },
+            {
+              "id": "dtp",
+              "label": "Disable DTP / hard-set access ports"
+            },
+            {
+              "id": "signing",
+              "label": "Code signing"
+            }
+          ],
+          "items": [
+            {
+              "id": "stuff",
+              "label": "Valid credentials reused from a public breach dump granted portal access",
+              "correctZone": "mfa"
+            },
+            {
+              "id": "sqli",
+              "label": "A search field returned other customers’ records when an apostrophe was submitted",
+              "correctZone": "param"
+            },
+            {
+              "id": "vlan",
+              "label": "A host on the guest VLAN reached the finance VLAN by negotiating a trunk",
+              "correctZone": "dtp"
+            },
+            {
+              "id": "fw",
+              "label": "A modified firmware image was accepted by a network appliance",
+              "correctZone": "signing"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "easy",
+      "bloomLevel": "Understand",
+      "domain": "General Security Concepts",
+      "stem": "An incident report lists four consequences. Drag each one to the element of the CIA triad it primarily violates.",
+      "explanation": "Name the property that was lost, not the attack that caused it. Reading data you are not cleared for is a confidentiality loss — nothing was changed or taken offline. Silently altering a payment total is an integrity loss: the data is still available and still private, but it no longer says what it should. A flood that exhausts a link is availability, the classic case. Deleting the only backup copy is also availability, and that is the one candidates most often mislabel: the harm is that the data cannot be produced when it is needed, not that anyone saw it or altered it.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "c",
+              "label": "Confidentiality"
+            },
+            {
+              "id": "i",
+              "label": "Integrity"
+            },
+            {
+              "id": "a",
+              "label": "Availability"
+            }
+          ],
+          "items": [
+            {
+              "id": "read",
+              "label": "A contractor read salary records outside their clearance",
+              "correctZone": "c"
+            },
+            {
+              "id": "alter",
+              "label": "An invoice total was changed in transit without detection",
+              "correctZone": "i"
+            },
+            {
+              "id": "flood",
+              "label": "A traffic flood saturated the internet link for three hours",
+              "correctZone": "a"
+            },
+            {
+              "id": "del",
+              "label": "The only backup copy of a records archive was deleted",
+              "correctZone": "a"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "General Security Concepts",
+      "stem": "A new access system is being specified. Drag each proposed authentication method to the factor category it belongs to.",
+      "explanation": "Factor categories are about the kind of proof, not how strong it feels. A memorised PIN and the answer to a security question are both knowledge — something you know — which is why pairing them is not multifactor. A hardware token and a certificate held in the device TPM are both possession: the holder proves control of an object. A fingerprint is inherence, something you are. Geofencing that permits authentication only from inside a building is the location factor, sometimes written somewhere you are; it is contextual and is never sufficient by itself. The common exam trap is treating two knowledge items as two factors.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "know",
+              "label": "Something you know"
+            },
+            {
+              "id": "have",
+              "label": "Something you have"
+            },
+            {
+              "id": "are",
+              "label": "Something you are"
+            },
+            {
+              "id": "where",
+              "label": "Somewhere you are"
+            }
+          ],
+          "items": [
+            {
+              "id": "pin",
+              "label": "Six-digit memorised PIN",
+              "correctZone": "know"
+            },
+            {
+              "id": "sq",
+              "label": "Security question answer",
+              "correctZone": "know"
+            },
+            {
+              "id": "token",
+              "label": "FIDO2 hardware security key",
+              "correctZone": "have"
+            },
+            {
+              "id": "cert",
+              "label": "Client certificate stored in the device TPM",
+              "correctZone": "have"
+            },
+            {
+              "id": "fp",
+              "label": "Fingerprint reader",
+              "correctZone": "are"
+            },
+            {
+              "id": "geo",
+              "label": "Geofence restricting logon to the building",
+              "correctZone": "where"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Security Program Management and Oversight",
+      "stem": "Drag each measure to its control function. Judge what the control does at the moment it operates, not what it is made of.",
+      "explanation": "Control function is about timing and effect. A preventive control stops the event before it happens: a badge-controlled lock and a deny-by-default ruleset both refuse the action outright. A detective control tells you an event occurred: alert review and CCTV recording do not stop anything, they produce evidence afterwards. A corrective control restores or limits damage once the event has happened: restoring from backup and quarantining a host both act after detection. Candidates lose points by sorting on the category instead — physical, technical, managerial — which is a separate axis. CCTV is physical and detective at the same time; a lock is physical and preventive. Same category, different function.",
+      "pbqConfig": {
+        "pbqType": "drag-drop",
+        "dragDrop": {
+          "zones": [
+            {
+              "id": "prev",
+              "label": "Preventive"
+            },
+            {
+              "id": "det",
+              "label": "Detective"
+            },
+            {
+              "id": "corr",
+              "label": "Corrective"
+            }
+          ],
+          "items": [
+            {
+              "id": "lock",
+              "label": "Badge-controlled door lock",
+              "correctZone": "prev"
+            },
+            {
+              "id": "acl",
+              "label": "Deny-by-default firewall ruleset",
+              "correctZone": "prev"
+            },
+            {
+              "id": "logrev",
+              "label": "Daily SIEM alert review",
+              "correctZone": "det"
+            },
+            {
+              "id": "cctv",
+              "label": "Recording CCTV camera",
+              "correctZone": "det"
+            },
+            {
+              "id": "restore",
+              "label": "Restoring a server from last night’s backup",
+              "correctZone": "corr"
+            },
+            {
+              "id": "isolate",
+              "label": "Quarantining an infected host from the network",
+              "correctZone": "corr"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "Ransomware has encrypted a file server. Put the incident response phases in the order NIST defines them.",
+      "explanation": "Preparation comes first and is the only phase that happens before an incident exists — plans, tooling and contacts. Detection and analysis is where you confirm something real is happening and scope it. Containment comes before eradication for a reason candidates often miss: you stop the spread first, even if that means leaving the malware present, because eradicating on one host while the infection spreads is losing ground. Eradication removes the cause. Recovery returns systems to production and monitors them. Lessons learned closes the loop, and skipping it is why the same incident repeats. Wiping and restoring the moment you see encryption is the tempting wrong move: it destroys the evidence you need and does nothing about the account still spreading it.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Preparation",
+            "Detection and analysis",
+            "Containment",
+            "Eradication",
+            "Recovery",
+            "Lessons learned"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Analyze",
+      "domain": "Security Operations",
+      "stem": "A compromised laptop is still powered on and must be preserved for a possible prosecution. Order the acquisition steps from most volatile to least, per the order of volatility.",
+      "explanation": "Collect what disappears soonest. CPU registers and cache survive microseconds. The routing table, ARP cache and process table live in kernel memory and change with every packet. Full system RAM is next and is the prize — encryption keys and injected code exist nowhere else. Temporary file systems can be overwritten by ordinary use. The local disk persists across a reboot. Remote logging data is the most durable of the live sources. Archival media changes only if someone touches it. The costly error is pulling the power to \"preserve\" the disk: that is the one action guaranteed to destroy everything above it in this list.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "CPU registers and cache",
+            "Routing table, ARP cache, process table",
+            "System RAM",
+            "Temporary file systems",
+            "Local disk",
+            "Remote logging and monitoring data",
+            "Archival media"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Program Management and Oversight",
+      "stem": "A critical patch must go to production servers under the organisation’s change management policy. Put the steps in the order the policy requires.",
+      "explanation": "The order exists to make the change reversible and accountable. A request is raised and the change documented before anything else, because an undocumented emergency change is the one nobody can unwind. Impact and risk are assessed next: what breaks, who is affected, how long. The change advisory board approves — approval before testing would authorise something nobody has tried. The patch is tested in a non-production environment, and only then does a maintenance window open. Implementation follows the plan, with the backout plan written beforehand rather than improvised during it. Verification confirms the result and the change record is closed. Testing after approval and before implementation is the sequence candidates most often invert.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Submit and document the change request",
+            "Assess impact and risk",
+            "Obtain change advisory board approval",
+            "Test the patch in a non-production environment",
+            "Schedule the maintenance window and notify stakeholders",
+            "Implement the change, with the backout plan ready",
+            "Verify the result and close the change record"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Architecture",
+      "stem": "A public web server needs a certificate from a commercial certificate authority. Order the steps.",
+      "explanation": "The private key is generated on the server that will use it and never leaves — that is what makes the certificate meaningful. The certificate signing request is generated from that key and carries the public key plus the subject details. The CSR goes to the CA. The CA validates control of the domain before it will sign anything. It then signs and issues the certificate. The certificate and its chain are installed on the server, and the service is reloaded to pick them up. Verification confirms the chain resolves and the hostname matches. The security-relevant trap is any flow where a key is generated somewhere else and sent to the server: a private key that has travelled is a private key you cannot vouch for.",
+      "pbqConfig": {
+        "pbqType": "order-steps",
+        "orderSteps": {
+          "steps": [
+            "Generate the private key on the web server",
+            "Generate the certificate signing request from that key",
+            "Submit the CSR to the certificate authority",
+            "Complete the CA’s domain control validation",
+            "Receive the signed certificate and chain",
+            "Install the certificate and chain on the server",
+            "Reload the service and verify the chain and hostname"
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Architecture",
+      "stem": "Complete the migration table. For each legacy service, select the port it uses and the secure protocol that should replace it.",
+      "explanation": "Each row is an insecure protocol carrying credentials or data in clear text. Telnet on 23 is replaced by SSH. FTP control on 21 is replaced by SFTP, which rides SSH rather than adding TLS to FTP. HTTP on 80 becomes HTTPS. LDAP on 389 becomes LDAPS. SNMPv1 on 161 is replaced by SNMPv3, which is the only version of SNMP with real authentication and encryption — choosing SNMPv2c here is the trap, because it changes community-string handling but adds no cryptography at all.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Default port",
+            "Secure replacement"
+          ],
+          "rows": [
+            {
+              "label": "Telnet",
+              "fields": [
+                {
+                  "correctValue": "23",
+                  "options": [
+                    "21",
+                    "22",
+                    "23",
+                    "25"
+                  ]
+                },
+                {
+                  "correctValue": "SSH",
+                  "options": [
+                    "SSH",
+                    "SFTP",
+                    "TLS",
+                    "Kerberos"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "FTP (control)",
+              "fields": [
+                {
+                  "correctValue": "21",
+                  "options": [
+                    "20",
+                    "21",
+                    "22",
+                    "69"
+                  ]
+                },
+                {
+                  "correctValue": "SFTP",
+                  "options": [
+                    "SFTP",
+                    "TFTP",
+                    "SMB",
+                    "HTTPS"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "HTTP",
+              "fields": [
+                {
+                  "correctValue": "80",
+                  "options": [
+                    "80",
+                    "88",
+                    "443",
+                    "8080"
+                  ]
+                },
+                {
+                  "correctValue": "HTTPS",
+                  "options": [
+                    "HTTPS",
+                    "SSH",
+                    "IPSec",
+                    "S/MIME"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "LDAP",
+              "fields": [
+                {
+                  "correctValue": "389",
+                  "options": [
+                    "389",
+                    "636",
+                    "445",
+                    "1812"
+                  ]
+                },
+                {
+                  "correctValue": "LDAPS",
+                  "options": [
+                    "LDAPS",
+                    "RADIUS",
+                    "TACACS+",
+                    "Kerberos"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "SNMPv1",
+              "fields": [
+                {
+                  "correctValue": "161",
+                  "options": [
+                    "161",
+                    "162",
+                    "514",
+                    "123"
+                  ]
+                },
+                {
+                  "correctValue": "SNMPv3",
+                  "options": [
+                    "SNMPv3",
+                    "SNMPv2c",
+                    "Syslog",
+                    "NetFlow"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "Security Program Management and Oversight",
+      "stem": "Classify each control on both axes. Category is what the control is made of; function is what it does at the moment it operates.",
+      "explanation": "The two axes are independent, which is the whole point of the question. A security guard is a physical control and, because a guard stops entry, preventive. A SIEM correlation rule is technical and detective — it reports, it does not block. An acceptable use policy is managerial and preventive: it sets expectations before the act. Backup restoration is technical and corrective. Bollards are physical and, in CompTIA’s framing, deterrent: they discourage the vehicle attack rather than detecting or remediating it. Sorting a guard as detective because guards watch things is the common miss; ask what happens when the control operates, not what the person spends their time doing.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Category",
+            "Function"
+          ],
+          "rows": [
+            {
+              "label": "Security guard at the entrance",
+              "fields": [
+                {
+                  "correctValue": "Physical",
+                  "options": [
+                    "Physical",
+                    "Technical",
+                    "Managerial",
+                    "Operational"
+                  ]
+                },
+                {
+                  "correctValue": "Preventive",
+                  "options": [
+                    "Preventive",
+                    "Detective",
+                    "Corrective",
+                    "Deterrent"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "SIEM correlation rule raising an alert",
+              "fields": [
+                {
+                  "correctValue": "Technical",
+                  "options": [
+                    "Physical",
+                    "Technical",
+                    "Managerial",
+                    "Operational"
+                  ]
+                },
+                {
+                  "correctValue": "Detective",
+                  "options": [
+                    "Preventive",
+                    "Detective",
+                    "Corrective",
+                    "Deterrent"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Signed acceptable use policy",
+              "fields": [
+                {
+                  "correctValue": "Managerial",
+                  "options": [
+                    "Physical",
+                    "Technical",
+                    "Managerial",
+                    "Operational"
+                  ]
+                },
+                {
+                  "correctValue": "Preventive",
+                  "options": [
+                    "Preventive",
+                    "Detective",
+                    "Corrective",
+                    "Deterrent"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Restoring data from backup after deletion",
+              "fields": [
+                {
+                  "correctValue": "Technical",
+                  "options": [
+                    "Physical",
+                    "Technical",
+                    "Managerial",
+                    "Operational"
+                  ]
+                },
+                {
+                  "correctValue": "Corrective",
+                  "options": [
+                    "Preventive",
+                    "Detective",
+                    "Corrective",
+                    "Deterrent"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Bollards outside the lobby",
+              "fields": [
+                {
+                  "correctValue": "Physical",
+                  "options": [
+                    "Physical",
+                    "Technical",
+                    "Managerial",
+                    "Operational"
+                  ]
+                },
+                {
+                  "correctValue": "Deterrent",
+                  "options": [
+                    "Preventive",
+                    "Detective",
+                    "Corrective",
+                    "Deterrent"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Evaluate",
+      "domain": "General Security Concepts",
+      "stem": "For each requirement, select the algorithm that satisfies it and the property it provides.",
+      "explanation": "Pick the primitive that matches the job. Bulk encryption of stored data wants a symmetric cipher: AES-256, providing confidentiality. Verifying a downloaded file has not changed wants a cryptographic hash: SHA-256, providing integrity. Proving a message came from a specific sender, so they cannot later deny it, wants a digital signature: ECDSA over a hash, providing non-repudiation. Storing user passwords is the row that catches people: the answer is a deliberately slow key derivation function such as bcrypt, and the property is integrity of the credential store rather than confidentiality — you are not encrypting the password, you are storing something that cannot be reversed. Choosing SHA-256 for passwords is fast, and being fast is precisely the defect.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Algorithm",
+            "Property provided"
+          ],
+          "rows": [
+            {
+              "label": "Encrypt an archive of customer records at rest",
+              "fields": [
+                {
+                  "correctValue": "AES-256",
+                  "options": [
+                    "AES-256",
+                    "SHA-256",
+                    "bcrypt",
+                    "RSA"
+                  ]
+                },
+                {
+                  "correctValue": "Confidentiality",
+                  "options": [
+                    "Confidentiality",
+                    "Integrity",
+                    "Non-repudiation",
+                    "Availability"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Confirm a downloaded installer was not modified",
+              "fields": [
+                {
+                  "correctValue": "SHA-256",
+                  "options": [
+                    "AES-256",
+                    "SHA-256",
+                    "bcrypt",
+                    "3DES"
+                  ]
+                },
+                {
+                  "correctValue": "Integrity",
+                  "options": [
+                    "Confidentiality",
+                    "Integrity",
+                    "Non-repudiation",
+                    "Availability"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Prove a signed contract came from the sender",
+              "fields": [
+                {
+                  "correctValue": "ECDSA",
+                  "options": [
+                    "ECDSA",
+                    "AES-256",
+                    "SHA-256",
+                    "Diffie-Hellman"
+                  ]
+                },
+                {
+                  "correctValue": "Non-repudiation",
+                  "options": [
+                    "Confidentiality",
+                    "Integrity",
+                    "Non-repudiation",
+                    "Availability"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Store user passwords in the application database",
+              "fields": [
+                {
+                  "correctValue": "bcrypt",
+                  "options": [
+                    "bcrypt",
+                    "SHA-256",
+                    "AES-256",
+                    "RSA"
+                  ]
+                },
+                {
+                  "correctValue": "Integrity",
+                  "options": [
+                    "Confidentiality",
+                    "Integrity",
+                    "Non-repudiation",
+                    "Availability"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Architecture",
+      "stem": "Complete the firewall ruleset for the screened subnet. Rules are evaluated top to bottom, first match wins.",
+      "explanation": "Read the rules in order and let the last one do the work. Inbound web traffic from any source to the web server on 443 is permitted — that is the service the subnet exists for. The web server reaching the internal database on 1433 is permitted, because breaking that path breaks the application; it is narrow, one source to one destination on one port. Any host on the internet reaching the database directly is denied: nothing outside should ever address the database. Management SSH is permitted only from the jump host. The final rule is an explicit deny of everything else, which is what makes the ruleset deny-by-default; without it you are relying on an implicit rule you cannot see or log.",
+      "pbqConfig": {
+        "pbqType": "fill-table",
+        "fillTable": {
+          "columns": [
+            "Action"
+          ],
+          "rows": [
+            {
+              "label": "Source ANY → Web server, TCP 443",
+              "fields": [
+                {
+                  "correctValue": "Permit",
+                  "options": [
+                    "Permit",
+                    "Deny"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Source Web server → Database, TCP 1433",
+              "fields": [
+                {
+                  "correctValue": "Permit",
+                  "options": [
+                    "Permit",
+                    "Deny"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Source ANY → Database, TCP 1433",
+              "fields": [
+                {
+                  "correctValue": "Deny",
+                  "options": [
+                    "Permit",
+                    "Deny"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Source Jump host → Web server, TCP 22",
+              "fields": [
+                {
+                  "correctValue": "Permit",
+                  "options": [
+                    "Permit",
+                    "Deny"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "Source ANY → ANY, ANY port (final rule)",
+              "fields": [
+                {
+                  "correctValue": "Deny",
+                  "options": [
+                    "Permit",
+                    "Deny"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "A Linux host is suspected of running an unauthorised listening service. Run one command that lists listening TCP sockets together with the process holding each one.",
+      "explanation": "You need two things in one output: which ports are listening and which process owns them. On a modern Linux host that is ss with the listening, TCP, numeric and process flags — ss -lntp. The older netstat -lntp gives the same view where netstat is still installed. Listing ports without the owning process leaves you knowing something is open and not what to act on, and running without elevation hides process names for sockets you do not own, which is why the output can look harmless on a host that is in fact compromised. Reaching for nmap against localhost is a common reflex and is the wrong tool: it scans from the outside and can never tell you the owning process.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "List all listening TCP sockets with the owning process. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "ss -lntp"
+              ]
+            },
+            {
+              "steps": [
+                "ss -tlnp"
+              ]
+            },
+            {
+              "steps": [
+                "ss -ltnp"
+              ]
+            },
+            {
+              "steps": [
+                "ss -tulnp"
+              ]
+            },
+            {
+              "steps": [
+                "ss -tulpn"
+              ]
+            },
+            {
+              "steps": [
+                "sudo ss -lntp"
+              ]
+            },
+            {
+              "steps": [
+                "sudo ss -tlnp"
+              ]
+            },
+            {
+              "steps": [
+                "netstat -lntp"
+              ]
+            },
+            {
+              "steps": [
+                "netstat -tlnp"
+              ]
+            },
+            {
+              "steps": [
+                "netstat -tulnp"
+              ]
+            },
+            {
+              "steps": [
+                "netstat -tulpn"
+              ]
+            },
+            {
+              "steps": [
+                "sudo netstat -lntp"
+              ]
+            },
+            {
+              "steps": [
+                "sudo netstat -tlnp"
+              ]
+            }
+          ],
+          "hints": [
+            "Two flags matter most: listening only, and show the process."
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "medium",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "A phishing email claims to come from partner-domain.com. Before anything else you need that domain’s published sender authorisation policy. Run one command that retrieves its SPF record.",
+      "explanation": "SPF is published as a DNS TXT record on the domain itself, so the query is a TXT lookup: dig txt partner-domain.com, or nslookup -type=txt partner-domain.com where dig is unavailable. Querying the A record tells you where the site is hosted and nothing about mail authorisation. Querying MX tells you who receives mail for the domain, not who is permitted to send as it. The DMARC record lives on the _dmarc subdomain and DKIM under a selector on _domainkey, so a bare TXT query on the domain returns SPF and not those — which is exactly why an investigation usually needs all three lookups rather than one.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "Retrieve the SPF record for partner-domain.com. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "dig txt partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig TXT partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig partner-domain.com txt"
+              ]
+            },
+            {
+              "steps": [
+                "dig partner-domain.com TXT"
+              ]
+            },
+            {
+              "steps": [
+                "dig +short txt partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "dig +short TXT partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup -type=txt partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup -type=TXT partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "nslookup -q=txt partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "host -t txt partner-domain.com"
+              ]
+            },
+            {
+              "steps": [
+                "host -t TXT partner-domain.com"
+              ]
+            }
+          ],
+          "hints": [
+            "SPF is not its own record type."
+          ]
+        }
+      }
+    },
+    {
+      "examId": "79cuGMNydTwDMhyiDjry",
+      "source": "authored-2026-08-secplus-pbq",
+      "type": "pbq",
+      "difficulty": "hard",
+      "bloomLevel": "Apply",
+      "domain": "Security Operations",
+      "stem": "You have downloaded an installer and the vendor publishes a SHA-256 checksum for it. Run one command that produces the file’s SHA-256 hash so you can compare them. The file is installer.bin in the current directory.",
+      "explanation": "The check is a hash comparison, so compute the same algorithm the vendor published: sha256sum installer.bin, or openssl dgst -sha256 installer.bin where the coreutils tool is absent. Computing md5sum instead is the trap — it produces a hash that looks equally convincing and is collision-broken, so a modified file can be made to match. Note what this proves and what it does not: a matching hash shows the file is byte-identical to the one the vendor hashed, and nothing more. If the vendor’s own page was compromised, the attacker published a checksum for their own file and it will match perfectly. That is why a signature you can verify against a known key is stronger than a checksum you read off the same page as the download.",
+      "pbqConfig": {
+        "pbqType": "command",
+        "command": {
+          "prompt": "analyst@host:~$",
+          "scenario": "Produce the SHA-256 hash of installer.bin. One command.",
+          "acceptedCommands": [
+            {
+              "steps": [
+                "sha256sum installer.bin"
+              ]
+            },
+            {
+              "steps": [
+                "sha256sum ./installer.bin"
+              ]
+            },
+            {
+              "steps": [
+                "openssl dgst -sha256 installer.bin"
+              ]
+            },
+            {
+              "steps": [
+                "openssl sha256 installer.bin"
+              ]
+            },
+            {
+              "steps": [
+                "shasum -a 256 installer.bin"
+              ]
+            },
+            {
+              "steps": [
+                "shasum -a256 installer.bin"
+              ]
+            }
+          ],
+          "hints": [
+            "Match the algorithm the vendor published."
+          ]
+        }
+      }
+    }
+  ]
+}
