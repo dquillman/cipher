@@ -32,6 +32,7 @@ import ExplanationPanel from '../components/quiz/ExplanationPanel';
 import StudyThemeToggle from '../components/quiz/StudyThemeToggle';
 import { useStudyTheme } from '../hooks/useStudyTheme';
 import { excludeQuarantined } from '../utils/questionStatus';
+import { withTimeout } from '../utils/withTimeout';
 
 /** Persisted `selectedOption` for a format that has no single chosen index
  *  (matching, pbq, multi-response). Never a real option index — consumers only
@@ -1330,8 +1331,12 @@ export default function Quiz() {
 
         // PERSISTENCE: Save Progress
         if (activeRunId && auth.currentUser) {
+            // withTimeout, not a bare await: a stalled write used to freeze
+            // "Next Question" entirely, with no spinner and no message. The
+            // answer is already in component state and the next saveProgress
+            // call re-sends it.
             try {
-                await QuizRunService.saveProgress(
+                await withTimeout(QuizRunService.saveProgress(
                     auth.currentUser.uid,
                     activeRunId,
                     {
@@ -1350,7 +1355,7 @@ export default function Quiz() {
                         domain: currentQuestion.domain
                     },
                     currentQuestionIndex + 1 // Next Index to resume from
-                );
+                ), 6000, 'quiz saveProgress');
             } catch (e) {
                 console.error("Failed to save progress", e);
             }
@@ -1550,17 +1555,27 @@ export default function Quiz() {
                         {quizType === 'diagnostic' ? (
                             <button
                                 onClick={async () => {
-                                    if (window.confirm("Exit Diagnostic? Your progress will not be saved.")) {
+                                    // The copy used to say "Your progress will not be
+                                    // saved", then called completeRun, which saved the
+                                    // run AND marked the diagnostic done — so bailing
+                                    // out on question 2 retired the onboarding card and
+                                    // fed a two-answer sample to the study plan. Say
+                                    // what actually happens.
+                                    if (window.confirm("Exit the diagnostic? It will be recorded as incomplete and you can retake it from the dashboard.")) {
                                         const uid = auth.currentUser!.uid;
                                         FrictionEventService.emit(uid, 'quiz_abandon', { quizType: 'diagnostic', examId: activeExamId, questionIndex: currentQuestionIndex, totalQuestions: questions.length });
+                                        // Navigate first. This await used to sit in front
+                                        // of navigate(), so on a stalled connection the
+                                        // escape hatch was frozen by the same bug the
+                                        // tester was trying to escape.
+                                        navigate('/app');
                                         if (activeRunId) {
                                             const { QuizRunService } = await import('../services/QuizRunService');
-                                            await QuizRunService.completeRun(uid, activeRunId, {
+                                            void withTimeout(QuizRunService.completeRun(uid, activeRunId, {
                                                 abort: true,
                                                 score: score
-                                            });
+                                            }), 6000, 'diagnostic abort');
                                         }
-                                        navigate('/app');
                                     }
                                 }}
                                 className="text-slate-400 hover:text-red-400 transition-colors flex items-center gap-2 group"

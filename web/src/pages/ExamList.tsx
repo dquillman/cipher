@@ -38,6 +38,7 @@ function getExamCategory(examName: string) {
 export default function ExamList() {
     const [exams, setExams] = useState<Exam[]>([]);
     const [loading, setLoading] = useState(true);
+    const [loadError, setLoadError] = useState(false);
     const { selectedExamId, switchExam } = useExam();
 
     useEffect(() => {
@@ -54,6 +55,7 @@ export default function ExamList() {
                 setExams(examsData.filter((e: any) => e.isPublished).sort((a, b) => a.name.localeCompare(b.name)));
             } catch (error) {
                 console.error("Error fetching exams:", error);
+                setLoadError(true);
             } finally {
                 setLoading(false);
             }
@@ -86,6 +88,23 @@ export default function ExamList() {
                 <div>
                     <h1 className="text-3xl font-bold text-white font-display tracking-tight">Available Exams</h1>
                     <p className="text-slate-400 mt-1">Select an exam to start practicing.</p>
+                {loadError && (
+                    /* The catch used to only console.error, so a failed fetch
+                       rendered this heading above an empty page — indistinguishable
+                       from "this product has no content". */
+                    <div className="mt-6 rounded-xl border border-amber-500/30 bg-amber-500/10 p-5 text-left">
+                        <p className="font-semibold text-amber-200">We couldn't load your exams</p>
+                        <p className="mt-1 text-sm text-amber-100/70">
+                            This is a connection problem on our side, not your account. Your progress is safe.
+                        </p>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="mt-4 rounded-lg bg-amber-500/20 px-4 py-2 text-sm font-semibold text-amber-100 hover:bg-amber-500/30"
+                        >
+                            Try again
+                        </button>
+                    </div>
+                )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

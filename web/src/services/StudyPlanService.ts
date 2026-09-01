@@ -159,6 +159,9 @@ export const StudyPlanService = {
                     .map(d => d.data())
                     .filter(run =>
                         run.examId === examId &&
+                        // Top-level field is the real one; meta is checked only
+                        // for any legacy document written before the split.
+                        run.quizType !== 'diagnostic' &&
                         run.meta?.quizType !== 'diagnostic'
                     );
 

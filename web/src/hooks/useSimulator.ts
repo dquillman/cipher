@@ -9,6 +9,7 @@ import { EXAMS, isExam, type QuestionType } from '../config/exams';
 import { filterToSingleIndexGraded } from '../utils/scoring';
 import { QuizRunService } from '../services/QuizRunService';
 import type { BloomLevel } from '../types/Bloom';
+import { withTimeout } from '../utils/withTimeout';
 
 export interface Question {
     id: string;
@@ -242,25 +243,26 @@ export const useSimulator = () => {
                 domain: q.domain,
             })).filter((a) => a.selectedOption !== undefined);
 
-            try {
-                await QuizRunService.overwriteAnswers(user.uid, runId, answerRecords);
-                await QuizRunService.completeRun(user.uid, runId, {
+            // Timed out rather than plainly awaited: a hanging write used to
+            // leave the tester on the last question of a finished exam with no
+            // spinner and no error. Results are computed locally and passed in
+            // navigation state, so showing them does not depend on the write.
+            await withTimeout(
+                QuizRunService.overwriteAnswers(user.uid, runId, answerRecords),
+                6000, 'simulator overwriteAnswers');
+            await withTimeout(
+                QuizRunService.completeRun(user.uid, runId, {
                     score,
                     total: questions.length,
                     timeSpent,
                     examId: currentExamId,
                     mode: 'simulation',
-                });
-            } catch (err) {
-                console.error('[useSimulator] completeRun failed — attempt may not appear in history:', err);
-            }
+                }), 6000, 'simulator completeRun');
         }
 
-        try {
-            await XPService.awardXP(questions.length * 5 + score * 10, "Completed Exam Simulator", currentExamId);
-        } catch (error) {
-            console.error("Error awarding XP:", error);
-        }
+        await withTimeout(
+            XPService.awardXP(questions.length * 5 + score * 10, "Completed Exam Simulator", currentExamId),
+            4000, 'simulator awardXP');
 
         navigate('/app/simulator/results', { state: resultState });
     };

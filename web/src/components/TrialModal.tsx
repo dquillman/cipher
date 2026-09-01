@@ -37,11 +37,20 @@ export default function TrialModal() {
         }
     }, [user, entitlement]);
 
+    const [trialError, setTrialError] = useState(false);
+
     const handleStartTrial = async () => {
+        // startTrial swallows every failure and returns false, and this had no
+        // else branch — so the primary button on a full-screen modal read
+        // "Activating..." for up to 70 seconds and then flipped back, with no
+        // message. The tester has no idea whether they now have a trial.
+        setTrialError(false);
         const success = await startTrial();
         if (success) {
             trackTrialStart();
             setIsOpen(false);
+        } else {
+            setTrialError(true);
         }
     };
 
@@ -78,6 +87,13 @@ export default function TrialModal() {
                     >
                         {loading ? 'Activating...' : 'Start Free Trial'}
                     </button>
+                    {trialError && (
+                        <p className="mt-3 text-sm text-amber-300" role="alert">
+                            We couldn't start your trial just now — that's on us, not your account.
+                            Check your connection and try again, or carry on with free practice and
+                            start the trial later from Account.
+                        </p>
+                    )}
 
                     <button
                         onClick={handleNotNow}

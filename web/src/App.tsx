@@ -415,9 +415,34 @@ class AppErrorBoundary extends React.Component<{ children: ReactNode }, { error:
       return (
         <div className="flex min-h-dvh items-center justify-center bg-slate-900 text-white p-8">
           <div className="max-w-lg text-center">
-            <h1 className="text-2xl font-bold text-red-400 mb-4">Something went wrong</h1>
-            <pre className="text-left text-sm text-slate-300 bg-slate-800 p-4 rounded-lg overflow-auto max-h-64 whitespace-pre-wrap">{this.state.error.message}{'\n'}{this.state.error.stack}</pre>
-            <button onClick={() => window.location.reload()} className="mt-4 px-6 py-2 bg-brand-600 rounded-lg font-bold">Reload</button>
+            {/* This used to print error.message and error.stack straight into a
+                <pre>. A non-engineer got a wall of minified stack frames and one
+                button that reloaded them into the same crash. The stack is still
+                worth having, so it moves behind a disclosure. */}
+            <h1 className="text-2xl font-bold text-white mb-3 font-display">Something broke on this page</h1>
+            <p className="text-slate-400 mb-6">
+              This is our bug, not something you did, and your progress is saved. Going back to the
+              dashboard usually clears it. If it keeps happening, Report a Problem in the sidebar
+              tells us where it broke.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onClick={() => { window.location.href = '/app'; }}
+                className="px-6 py-3 bg-brand-600 hover:bg-brand-500 rounded-lg font-bold transition-colors"
+              >
+                Back to dashboard
+              </button>
+              <button
+                onClick={() => window.location.reload()}
+                className="px-6 py-3 border border-slate-700 hover:bg-slate-800 rounded-lg font-medium transition-colors"
+              >
+                Try this page again
+              </button>
+            </div>
+            <details className="mt-8 text-left">
+              <summary className="cursor-pointer text-xs uppercase tracking-wider text-slate-500 hover:text-slate-400">Technical detail</summary>
+              <pre className="mt-3 text-left text-xs text-slate-400 bg-slate-800 p-4 rounded-lg overflow-auto max-h-64 whitespace-pre-wrap">{this.state.error.message}</pre>
+            </details>
           </div>
         </div>
       );

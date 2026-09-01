@@ -147,10 +147,22 @@ export default function Login() {
                 message = "Password should be at least 6 characters.";
             } else if (err.code === 'auth/operation-not-allowed') {
                 message = "Email/Password login is not enabled in Firebase Console.";
+            } else if (err.code === 'auth/network-request-failed') {
+                message = "We couldn't reach the server. Check your connection and try again.";
+            } else if (err.code === 'auth/too-many-requests') {
+                message = "Too many attempts. Wait a few minutes and try again, or reset your password.";
+            } else if (err.code === 'auth/popup-closed-by-user' || err.code === 'auth/cancelled-popup-request') {
+                // Not an error — they closed the Google window themselves.
+                return;
+            } else if (err.code === 'auth/popup-blocked') {
+                message = "Your browser blocked the Google sign-in window. Allow pop-ups for this site, or use email instead.";
             } else if (err.message && err.message.includes('400')) {
                 message = "Invalid request. Please check your input.";
             } else {
-                message = err.message || message;
+                // Never surface a raw Firebase string. It reads as a crash and
+                // tells a candidate nothing they can act on.
+                console.error('[auth] unhandled error', err);
+                message = "Something went wrong signing you in. Please try again.";
             }
             setError(message);
         }

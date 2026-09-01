@@ -117,7 +117,10 @@ export default function StudySchedule() {
                 console.log("StudySchedule loading plan for exam:", selectedExamId);
                 const currentPlan = await StudyPlanService.getCurrentPlan(user.uid, selectedExamId);
                 if (!currentPlan) {
-                    navigate('/app/planner/setup');
+                    // Carry the diagnostic result through. Without this the
+                    // setup page tells someone who just finished the diagnostic
+                    // that they have not taken it.
+                    navigate('/app/planner/setup', { state: location.state ?? undefined });
                     return;
                 }
 
