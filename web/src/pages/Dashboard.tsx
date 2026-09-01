@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MasteryRing from '../components/MasteryRing';
 import { DashboardSkeleton } from '../components/ui/Skeleton';
 import { useState, useEffect } from 'react';
-import { doc, onSnapshot, collection, query, where, orderBy, limit, setDoc, getCountFromServer, updateDoc, serverTimestamp, type QuerySnapshot, type DocumentData } from 'firebase/firestore';
+import { doc, onSnapshot, collection, query, where, orderBy, limit, setDoc, getDocs, updateDoc, serverTimestamp, type QuerySnapshot, type DocumentData } from 'firebase/firestore';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { XPService } from '../services/xpService';
 import { useExam } from '../contexts/ExamContext';
@@ -19,6 +19,7 @@ import PrimaryButton from '../components/ui/PrimaryButton';
 import { Flame } from 'lucide-react';
 import GuidedPath from '../components/onboarding/GuidedPath';
 import { StudyPlanService } from '../services/StudyPlanService';
+import { isServable } from '../utils/questionStatus';
 
 const ACTIVITY_MODE_LABELS: Record<string, string> = {
     diagnostic: "Diagnostic Quiz",
@@ -79,16 +80,26 @@ export default function Dashboard() {
 
         for (const domain of domains) {
             try {
+                // getCountFromServer counts EVERY document, including the
+                // quarantined ones — and quarantine cannot be a Firestore
+                // where() because most documents have no status field at all
+                // (see utils/questionStatus.ts). Security+ has 53 quarantined
+                // of 171, so the mastery rings read "0 of 44" for a domain that
+                // can only ever serve 24: the denominator was unreachable and
+                // 100% was impossible by construction.
                 const q = query(
                     collection(db, 'questions'),
                     where('examId', '==', examId),
                     where('domain', '==', domain)
                 );
-                const snapshot = await getCountFromServer(q);
-                totals[domain] = snapshot.data().count;
+                const snapshot = await getDocs(q);
+                totals[domain] = snapshot.docs.filter((d) => isServable(d.data() as { status?: string })).length;
             } catch (e) {
                 console.error(`Error fetching total for ${domain}:`, e);
-                totals[domain] = 100;
+                // Was 100 — an invented denominator that showed the learner a
+                // mastery target no bank actually has. 0 renders as an honest
+                // empty state instead.
+                totals[domain] = 0;
             }
         }
         setDomainTotalCounts(totals);
