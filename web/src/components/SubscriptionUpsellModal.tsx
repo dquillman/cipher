@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { X, Check, Star } from 'lucide-react';
 import { useEffect } from 'react';
 import { ConversionIntentService } from '../services/ConversionIntentService';
+import { useSubscription } from '../contexts/SubscriptionContext';
 
 interface SubscriptionUpsellModalProps {
     isOpen: boolean;
@@ -17,6 +18,7 @@ import { useMarketingCopy } from '../hooks/useMarketingCopy';
 export default function SubscriptionUpsellModal({ isOpen, onClose, reason = 'pro_feature', passCoversExamName }: SubscriptionUpsellModalProps) {
     const navigate = useNavigate();
     const copy = useMarketingCopy();
+    const { dailyLimit } = useSubscription();
 
     // EC-111: Track when the upsell modal is shown
     useEffect(() => {
@@ -33,7 +35,10 @@ export default function SubscriptionUpsellModal({ isOpen, onClose, reason = 'pro
     const messages = {
         daily_limit: {
             title: "Daily Limit Reached",
-            description: "You've completed your 5 free questions for today. Upgrade to Pro for unlimited practice.",
+            // Was hardcoded to 5 while getFreeTierDailyLimit computes the real
+            // cap, so a tester watched the sidebar count to 20 / 20 and was then
+            // told they had used their 5.
+            description: `You've completed your ${dailyLimit} free question${dailyLimit === 1 ? '' : 's'} for today. Upgrade to Pro for unlimited practice.`,
         },
         pro_feature: {
             title: copy.pro_value_primary,

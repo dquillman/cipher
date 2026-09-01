@@ -9,7 +9,10 @@ import { breadcrumbSchema } from '../config/seo';
 type LensEntry = {
   exam: string;
   examSlug: string;            // e.g. 'pmp' — for the LP link
-  lpHref?: string;             // present only for Tier 1 exams (PMP / Sec+ / SHRM-CP)
+  /** Only the four exams we still sell have a landing page. Six of these
+   *  pointed at routes deleted in the catalogue cut and 404'd from a CTA
+   *  on a page linked from the main nav. */
+  lpHref?: string;
   lensName: string;
   prompt: string;
   body: string;
@@ -46,7 +49,6 @@ const LENSES: LensEntry[] = [
   {
     exam: 'SHRM-CP',
     examSlug: 'shrm-cp',
-    lpHref: '/lp/shrm-cp',
     lensName: 'SHRM Competency Lens',
     prompt: 'Which SHRM behavioral competency does this scenario test?',
     body:
@@ -59,7 +61,6 @@ const LENSES: LensEntry[] = [
   {
     exam: 'Six Sigma Green Belt',
     examSlug: 'six-sigma',
-    lpHref: '/lp/six-sigma',
     lensName: 'DMAIC Lens',
     prompt: 'Where in Define-Measure-Analyze-Improve-Control does this fall?',
     body:
@@ -84,7 +85,6 @@ const LENSES: LensEntry[] = [
   {
     exam: 'CIA Part 1',
     examSlug: 'cia',
-    lpHref: '/lp/cia',
     lensName: 'IIA Standards Lens',
     prompt: 'What do the IIA International Standards say?',
     body:
@@ -97,7 +97,6 @@ const LENSES: LensEntry[] = [
   {
     exam: 'ITIL 4 Foundation',
     examSlug: 'itil',
-    lpHref: '/lp/itil',
     lensName: 'Service Value Lens',
     prompt: 'How does this serve the ITIL service value chain?',
     body:
@@ -110,7 +109,6 @@ const LENSES: LensEntry[] = [
   {
     exam: 'Certified ScrumMaster (CSM)',
     examSlug: 'csm',
-    lpHref: '/lp/csm',
     lensName: 'Scrum Guide Lens',
     prompt: 'What does the Scrum Guide say the role should do?',
     body:
@@ -149,7 +147,6 @@ const LENSES: LensEntry[] = [
   {
     exam: 'PgMP',
     examSlug: 'pgmp',
-    lpHref: '/lp/pgmp',
     lensName: 'Program Governance Lens',
     prompt: 'How does this serve the program\'s strategic objectives and benefits realization?',
     body:

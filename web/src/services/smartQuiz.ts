@@ -1,6 +1,6 @@
 import { db } from '../firebase';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
-import { excludeQuarantined } from '../utils/questionStatus';
+import { excludeQuarantined, isServable } from '../utils/questionStatus';
 
 
 
@@ -175,10 +175,16 @@ export const SmartQuizService = {
                     collection(db, 'questions'),
                     where('examId', '==', examId),
                     where('domain', '==', domain),
-                    limit(QUESTIONS_PER_DOMAIN * 3) // Fetch extra for randomness
+                    limit(QUESTIONS_PER_DOMAIN * 6) // Fetch extra for randomness AND for the quarantine filter below
                 );
                 const snap = await getDocs(q);
-                return snap.docs.map(d => d.id);
+                // Drop quarantined docs HERE, not after the slice. They used to
+                // survive selection and get dropped downstream by
+                // fetchQuestionDocsByIds, so they ate places in the 3-per-domain
+                // quota: Security+ shipped ~10 of 15 questions, weighted so the
+                // domains with the most quarantined content were the thinnest.
+                // Cannot be a Firestore where() — see utils/questionStatus.ts.
+                return snap.docs.filter(d => isServable(d.data())).map(d => d.id);
             } catch (error) {
                 console.error(`Error fetching questions for domain ${domain}:`, error);
                 return [] as string[];
@@ -219,7 +225,11 @@ export const SmartQuizService = {
             );
 
             const snap = await getDocs(q);
-            const allIds = snap.docs.map(doc => doc.id);
+            // Same fix as the diagnostic above: filter before the slice, or the
+            // mock silently under-delivers. Security+ asks for 90 and was
+            // serving about 51 because 53 quarantined docs were counted into
+            // the shuffle and dropped afterwards.
+            const allIds = snap.docs.filter(doc => isServable(doc.data())).map(doc => doc.id);
 
             if (allIds.length >= FETCH_CAP) {
                 console.warn(

@@ -523,6 +523,12 @@ function App() {
                   <Route path="faq" element={<Faq />} />
                   <Route path="start-here" element={<StartHere />} />
                   <Route path="mcc" element={<MarketingCommandCenter />} />
+                  {/* Without this, any unknown path under /app/* matched the
+                      parent route, rendered AppLayout, and left the Outlet
+                      empty — an entirely blank dark screen with no sidebar, no
+                      header and no way back. /app/dashboard did exactly that,
+                      and it is a URL people guess and bookmark. */}
+                  <Route path="*" element={<NotFound />} />
                 </Route>
               </Route>
 

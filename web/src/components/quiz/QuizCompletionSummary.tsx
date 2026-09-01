@@ -3,6 +3,7 @@ import { Crosshair, Wrench, TrendingUp, Scale, ShieldCheck } from 'lucide-react'
 import type { PatternData } from '../PatternInsightCard';
 import { useMarketingCopy } from '../../hooks/useMarketingCopy';
 import MasteryDisclosure from './MasteryDisclosure';
+import { EXAM_LENS } from '../../config/exams';
 
 interface QuizCompletionSummaryProps {
     score: number;
@@ -26,6 +27,21 @@ export default function QuizCompletionSummary({
     activeExamId,
     onUpsell,
 }: QuizCompletionSummaryProps) {
+    /* This screen is the first result any account ever sees, and it was
+     * hard-coded to PMI on every exam — a Security+ tester was told the system
+     * was learning how PMI patterns affect their answers. activeExamId was
+     * already passed in and simply unused. EXAM_LENS already carries the right
+     * framing for every bank. */
+    const lens = (() => {
+        const entry = EXAM_LENS[activeExamId];
+        if (!entry) return { trapLabel: 'reasoning trap', patternLabel: 'reasoning patterns' };
+        const isPmi = entry.lensName.startsWith('PMI');
+        return {
+            trapLabel: isPmi ? 'PMI Thinking Trap' : `${entry.lensName} trap`,
+            patternLabel: isPmi ? 'PMI patterns' : `${entry.lensName} patterns`,
+        };
+    })();
+
     const location = useLocation();
     const navigate = useNavigate();
     const copy = useMarketingCopy();
@@ -66,7 +82,7 @@ export default function QuizCompletionSummary({
                             <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
                             <h3 className="text-indigo-300 font-bold uppercase tracking-wider text-xs mb-2">Insight Detected</h3>
                             <p className="text-white text-lg font-medium leading-relaxed mb-4">
-                                "You just encountered a common PMI Thinking Trap: <strong className="text-indigo-400">{topTrap.pattern.pattern_name}</strong>."
+                                "You just hit a common {lens.trapLabel}: <strong className="text-indigo-400">{topTrap.pattern.pattern_name}</strong>."
                             </p>
                             <p className="text-slate-400 text-sm italic border-l-2 border-indigo-500/30 pl-3">
                                 {topTrap.pattern.core_rule}
@@ -76,7 +92,7 @@ export default function QuizCompletionSummary({
                         <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-6 mb-8">
                             <h3 className="text-slate-300 font-bold mb-2">Analysis</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                "As you practice, the system learns exactly how PMI patterns affect your answers. Keep going to unlock deeper insights."
+                                "As you practice, the system learns which {lens.patternLabel} keep catching you out. Keep going to unlock deeper insights."
                             </p>
                         </div>
                     )}

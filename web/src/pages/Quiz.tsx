@@ -1449,6 +1449,35 @@ export default function Quiz() {
         );
     }
 
+    if (questions.length === 0 && showUpsell) {
+        // The server denied the start because the free daily cap is spent. That
+        // sets showUpsell, but questions is still [] — and the "bank is empty"
+        // branch below returns before the modal ever renders, so the tester was
+        // told a 194-question exam had no content. Render the cap message and
+        // let the modal mount.
+        return (
+            <div className="min-h-dvh flex items-center justify-center p-4">
+                <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl border border-slate-700 text-center max-w-md w-full">
+                    <p className="text-slate-200 text-lg font-semibold mb-2">That is today's free practice done</p>
+                    <p className="text-slate-400 text-sm mb-6">
+                        Your free questions reset tomorrow. Pro removes the daily cap.
+                    </p>
+                    <button
+                        onClick={() => navigate('/app')}
+                        className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 rounded-lg transition-colors"
+                    >
+                        Back to Dashboard
+                    </button>
+                </div>
+                <SubscriptionUpsellModal
+                    isOpen={showUpsell}
+                    onClose={() => navigate('/app')}
+                    reason="daily_limit"
+                />
+            </div>
+        );
+    }
+
     if (questions.length === 0) {
         // Reached only if the exam bank is genuinely empty (the loader now falls
         // back to the full bank when a filter matches nothing). Give the learner

@@ -52,7 +52,7 @@ export default function PmpPracticeLP() {
             internalize the frame, not just the facts.
           </li>
           <li>
-            <strong>180-question Full Mock with EMV math.</strong> The real PMP is 180
+            <strong>180-question Full Mock at exam pacing.</strong> The real PMP is 180
             questions (170 scored, 10 pretest) inside a 240-minute sitting. Our Full Mock
             runs the same 180 questions on the same 240-minute clock, so you rehearse
             stamina and pacing at exam scale — not just recall. Items are scenario-driven

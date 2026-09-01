@@ -1,4 +1,4 @@
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSimulator } from '../hooks/useSimulator';
 import { QuestionNavigator } from '../components/simulator/QuestionNavigator';
 import { QuestionCard } from '../components/simulator/QuestionCard';
@@ -6,7 +6,7 @@ import { useExam } from '../contexts/ExamContext';
 import { useStudyTheme } from '../hooks/useStudyTheme';
 
 export default function Simulator() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     // Daylight study mode — light skin for bright rooms / long sessions
     const { theme: studyTheme, toggleTheme: toggleStudyTheme } = useStudyTheme();
     const { examName } = useExam();
@@ -34,7 +34,34 @@ export default function Simulator() {
         );
     }
 
-    if (!questions.length) return null;
+    if (!questions.length) {
+        // Previously `return null`, which painted a black screen with no text and
+        // no way out. A mock can legitimately come back empty (every candidate
+        // question quarantined, or a bank still being built) and the tester needs
+        // to be told rather than left staring at the background colour.
+        return (
+            <div className="min-h-dvh bg-slate-900 flex items-center justify-center p-6 text-center text-slate-100">
+                <div className="max-w-md">
+                    <h1 className="text-xl font-bold mb-2">This mock exam could not be built</h1>
+                    <p className="text-slate-400 mb-6">
+                        We could not assemble enough questions for {examName || 'this exam'} right now.
+                        Nothing is wrong with your account — please try another exam, or practice mode.
+                    </p>
+                    <button
+                        onClick={() => navigate('/app')}
+                        className="rounded-md bg-brand-600 px-5 py-2.5 font-semibold text-white hover:bg-brand-700"
+                    >
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    /* "Exit Exam (Progress Lost)" was wired to () => {}: the confirm dialog
+     * appeared, the tester pressed OK, and nothing happened. It is the only way
+     * out of a timed 180-question exam. */
+    const handleQuit = () => navigate('/app');
 
     const currentQ = questions[currentIndex];
 
@@ -42,7 +69,7 @@ export default function Simulator() {
         <div className="min-h-dvh bg-slate-900 text-slate-100 flex flex-col md:flex-row h-dvh overflow-hidden">
             {/* Left Sidebar - Navigator */}
             <div className="hidden md:block">
-                <QuestionNavigator onQuit={() => {}}
+                <QuestionNavigator onQuit={handleQuit}
                     questions={questions}
                     currentIndex={currentIndex}
                     answers={answers}
@@ -72,7 +99,27 @@ export default function Simulator() {
                 onSubmit={() => submitExam()}
             />
 
-            {/* Mobile-only Navigator Logic could be added here as a drawer if needed */}
+            {/* The navigator owns the countdown, the exit control and Finish, and
+                was `hidden md:block` — so a phone tester sat a timed exam with no
+                clock and no way out. Show a compact bar on small screens. */}
+            <div className="md:hidden fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3
+                            border-t border-slate-700 bg-slate-900/95 px-4 py-3 backdrop-blur">
+                <button
+                    onClick={() => { if (window.confirm('Exit the exam? Your progress will be lost.')) handleQuit(); }}
+                    className="rounded-md border border-slate-600 px-3 py-2 text-sm font-medium text-slate-300"
+                >
+                    Exit
+                </button>
+                <span className="font-mono text-base font-bold tabular-nums text-white" aria-live="polite">
+                    {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
+                </span>
+                <button
+                    onClick={() => { if (window.confirm('Finish the exam and see your results?')) submitExam(); }}
+                    className="rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white"
+                >
+                    Finish
+                </button>
+            </div>
         </div>
     );
 }
