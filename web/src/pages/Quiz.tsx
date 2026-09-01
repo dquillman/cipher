@@ -102,6 +102,7 @@ export default function Quiz() {
 
     const { isPro, canTakeQuiz, incrementDailyCount, hasPassFor, passEntitlement } = useSubscription();
     const [showUpsell, setShowUpsell] = useState(false);
+    const [resumeUnavailable, setResumeUnavailable] = useState(false);
     const [validationError, setValidationError] = useState<string | null>(null);
     const [retryCount, setRetryCount] = useState(0);
 
@@ -338,9 +339,23 @@ export default function Quiz() {
                         // Re-fetch questions from snapshot IDs
                         setQuizType(run.quizType || run.type || 'standard'); // Derived from DATA
                         const fetchedQs = await fetchQuestionDocsByIds<Question>(run.snapshot.questionIds);
+                        // fetchQuestionDocsByIds drops ids that no longer resolve —
+                        // deleted questions, and now quarantined ones too. The saved
+                        // index could therefore point past the end of the shorter
+                        // list, and questions[index] came back undefined and took the
+                        // whole app down to the error boundary. Resume is a dashboard
+                        // button, so the tester could not get out of it either.
+                        if (fetchedQs.length === 0) {
+                            console.warn('[quiz] resumed run has no resolvable questions; starting fresh');
+                            setResumeUnavailable(true);
+                            setLoading(false);
+                            return;
+                        }
                         setQuestions(fetchedQs);
                         if (run.snapshot.currentQuestionIndex !== undefined) {
-                            setCurrentQuestionIndex(run.snapshot.currentQuestionIndex);
+                            setCurrentQuestionIndex(
+                                Math.min(run.snapshot.currentQuestionIndex, fetchedQs.length - 1),
+                            );
                         }
 
                         // Restore the progress already earned in this run.
@@ -1435,7 +1450,17 @@ export default function Quiz() {
     }, [loading, quizCompleted, currentQuestionIndex, quizType, activeExamId, questions]);
 
     if (loading) {
-        return <div className="min-h-dvh flex items-center justify-center">Loading quiz...</div>;
+        // Was a bare unstyled string with no spinner, on a page that can sit
+        // there past a minute while the bank, progress and mastery all load.
+        return (
+            <div className="min-h-dvh flex items-center justify-center">
+                <div className="text-center">
+                    <div className="w-12 h-12 border-4 border-brand-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                    <p className="font-display font-medium text-slate-200">Building your session…</p>
+                    <p className="mt-1 text-sm text-slate-500">Picking questions and loading your progress.</p>
+                </div>
+            </div>
+        );
     }
 
     if (validationError) {
@@ -1448,6 +1473,26 @@ export default function Quiz() {
                         className="px-6 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors"
                     >
                         Retry
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    if (resumeUnavailable) {
+        return (
+            <div className="min-h-dvh flex items-center justify-center p-4">
+                <div className="bg-slate-900/50 backdrop-blur-md p-8 rounded-2xl border border-slate-700 text-center max-w-md w-full">
+                    <p className="text-slate-200 text-lg font-semibold mb-2">We couldn't reopen that session</p>
+                    <p className="text-slate-400 text-sm mb-6">
+                        Some of its questions have since been withdrawn from the bank. Nothing is wrong
+                        with your account — start a fresh session and your progress so far is unaffected.
+                    </p>
+                    <button
+                        onClick={() => navigate('/app')}
+                        className="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 rounded-lg transition-colors"
+                    >
+                        Back to Dashboard
                     </button>
                 </div>
             </div>

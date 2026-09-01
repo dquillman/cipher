@@ -294,8 +294,14 @@ import TrialModal from "./components/TrialModal";
 import AppHeader from "./components/layout/AppHeader";
 
 function FreePlanBanner() {
-  const { isPro, hasPassFor, questionsAnsweredToday, dailyLimit } = useSubscription();
+  const { isPro, hasPassFor, questionsAnsweredToday, dailyLimit, loading } = useSubscription();
   const { selectedExamId } = useExam();
+  // Nothing used to gate on `loading`, so the very first screen after signing up
+  // for a 14-day trial carried "Free plan: 0 / 20 questions used today —
+  // Upgrade for unlimited practice" until the user doc arrived. Showing a
+  // paywall to someone who just started a trial reads as a bait and switch.
+  // Render nothing until entitlement is actually known.
+  if (loading) return null;
   // Exam Pass holders bypass the free-tier quota for their covered exam.
   if (isPro || hasPassFor(selectedExamId)) return null;
   const countColor = questionsAnsweredToday >= dailyLimit
