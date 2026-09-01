@@ -4,6 +4,7 @@
  * and reviewable in a diff. Run: node build-secplus-pbqs.mjs
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
+import { leakOf } from './pbq-leak.mjs';
 
 const EXAM_ID = '79cuGMNydTwDMhyiDjry';
 const SOURCE = 'authored-2026-08-secplus-pbq';
@@ -402,6 +403,50 @@ const questions = [
         },
     }),
 ];
+
+/* Authoring items grouped by zone reads well in a diff and is exactly how the
+ * first set leaked half its marks: the pool listed [0,0,1,1,2,2] against zones
+ * [0,1,2], so placing top-to-top scored full marks without reading anything.
+ * The renderer shuffles too, but a seed file should not be an answer key on its
+ * own. Deterministic so the emitted file is stable across runs and reviewable
+ * in a diff. */
+function rngFrom(seed) {
+    let h = 2166136261;
+    for (const c of String(seed)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); }
+    return () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return ((h >>> 0) % 100000) / 100000; };
+}
+function shuffle(arr, rng) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+}
+/* One shuffle can land correlated by luck, so search: try candidate seeds and
+ * keep the arrangement a zero-knowledge candidate does worst against. Small
+ * questions have few arrangements, so the floor is chance, not zero. */
+function arrange(cfg, seedBase) {
+    let best = null;
+    for (let attempt = 0; attempt < 200; attempt++) {
+        const rng = rngFrom(`${seedBase}:${attempt}`);
+        const c = JSON.parse(JSON.stringify(cfg));
+        if (c.pbqType === 'drag-drop') {
+            c.dragDrop.items = shuffle(c.dragDrop.items, rng);
+            c.dragDrop.zones = shuffle(c.dragDrop.zones, rng);
+        } else if (c.pbqType === 'fill-table') {
+            c.fillTable.rows.forEach(r => r.fields.forEach(f => { f.options = shuffle(f.options, rng); }));
+        } else {
+            return cfg;
+        }
+        const { free, chance, scored } = leakOf(c);
+        const excess = scored ? (free - chance) / scored : 0;
+        if (!best || excess < best.excess) best = { c, excess };
+        if (best.excess <= 0) break;
+    }
+    return best.c;
+}
+
+questions.forEach((q, i) => {
+    q.pbqConfig = arrange(q.pbqConfig, `${SOURCE}:${i}`);
+});
 
 const out = {
     examId: EXAM_ID,

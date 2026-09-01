@@ -18,6 +18,7 @@
 import { initializeApp, applicationDefault, getApps } from 'firebase-admin/app';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { readFileSync } from 'node:fs';
+import { auditLeak, leakOf } from './pbq-leak.mjs';
 
 const args = process.argv.slice(2);
 const APPLY = args.includes('--apply');
@@ -166,6 +167,17 @@ function validate(qs) {
         const bad = nestedArrayPath(cfg);
         if (bad) errs.push(`${at}: Firestore cannot store a nested array at ${bad}`);
 
+        // "A perfect answer scores full marks" passes content that a
+        // zero-knowledge answer also passes. Ask the adversarial question too:
+        // the first live PBQ set was 49% recoverable from layout and this
+        // validator waved all sixteen through.
+        const leak = leakOf(cfg);
+        if (leak.scored && (leak.free - leak.chance) / leak.scored > 0.15) {
+            errs.push(`${at}: ${leak.free}/${leak.scored} marks answerable without reading it ` +
+                `(luck would give ${leak.chance.toFixed(1)})` +
+                (leak.strategies.length ? ` — ${leak.strategies.join('; ')}` : ''));
+        }
+
         const { correct, total } = scorePerfect(cfg);
         if (correct !== total) errs.push(`${at}: a perfect answer scores ${correct}/${total}, not full marks`);
     });
@@ -206,6 +218,9 @@ if (errs.length) {
 const counts = {};
 questions.forEach((q) => { counts[q.pbqConfig.pbqType] = (counts[q.pbqConfig.pbqType] || 0) + 1; });
 console.log('  all pass. by type:', JSON.stringify(counts));
+const setLeak = auditLeak(questions.map((q) => q.pbqConfig));
+console.log(`  zero-knowledge score: ${setLeak.free}/${setLeak.scored} (${setLeak.pct}%), ` +
+            `luck would give ${setLeak.chancePct}%`);
 
 if (existing.length) {
     console.error(`\n  ABORT: ${existing.length} questions with source ${SOURCE} already exist.`);

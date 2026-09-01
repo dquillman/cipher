@@ -19,24 +19,19 @@
         "dragDrop": {
           "zones": [
             {
+              "id": "mgmt",
+              "label": "Management VLAN (out-of-band)"
+            },
+            {
               "id": "dmz",
               "label": "Screened subnet (DMZ)"
             },
             {
               "id": "lan",
               "label": "Internal LAN"
-            },
-            {
-              "id": "mgmt",
-              "label": "Management VLAN (out-of-band)"
             }
           ],
           "items": [
-            {
-              "id": "web",
-              "label": "Public web server",
-              "correctZone": "dmz"
-            },
             {
               "id": "proxy",
               "label": "Reverse proxy",
@@ -53,14 +48,19 @@
               "correctZone": "lan"
             },
             {
+              "id": "swmgmt",
+              "label": "Core switch management interface",
+              "correctZone": "mgmt"
+            },
+            {
               "id": "jump",
               "label": "Administrator jump host",
               "correctZone": "mgmt"
             },
             {
-              "id": "swmgmt",
-              "label": "Core switch management interface",
-              "correctZone": "mgmt"
+              "id": "web",
+              "label": "Public web server",
+              "correctZone": "dmz"
             }
           ]
         }
@@ -84,38 +84,38 @@
               "label": "Multifactor authentication"
             },
             {
-              "id": "param",
-              "label": "Parameterised queries"
+              "id": "signing",
+              "label": "Code signing"
             },
             {
               "id": "dtp",
               "label": "Disable DTP / hard-set access ports"
             },
             {
-              "id": "signing",
-              "label": "Code signing"
+              "id": "param",
+              "label": "Parameterised queries"
             }
           ],
           "items": [
-            {
-              "id": "stuff",
-              "label": "Valid credentials reused from a public breach dump granted portal access",
-              "correctZone": "mfa"
-            },
-            {
-              "id": "sqli",
-              "label": "A search field returned other customers’ records when an apostrophe was submitted",
-              "correctZone": "param"
-            },
             {
               "id": "vlan",
               "label": "A host on the guest VLAN reached the finance VLAN by negotiating a trunk",
               "correctZone": "dtp"
             },
             {
+              "id": "stuff",
+              "label": "Valid credentials reused from a public breach dump granted portal access",
+              "correctZone": "mfa"
+            },
+            {
               "id": "fw",
               "label": "A modified firmware image was accepted by a network appliance",
               "correctZone": "signing"
+            },
+            {
+              "id": "sqli",
+              "label": "A search field returned other customers’ records when an apostrophe was submitted",
+              "correctZone": "param"
             }
           ]
         }
@@ -135,24 +135,19 @@
         "dragDrop": {
           "zones": [
             {
-              "id": "c",
-              "label": "Confidentiality"
+              "id": "a",
+              "label": "Availability"
             },
             {
               "id": "i",
               "label": "Integrity"
             },
             {
-              "id": "a",
-              "label": "Availability"
+              "id": "c",
+              "label": "Confidentiality"
             }
           ],
           "items": [
-            {
-              "id": "read",
-              "label": "A contractor read salary records outside their clearance",
-              "correctZone": "c"
-            },
             {
               "id": "alter",
               "label": "An invoice total was changed in transit without detection",
@@ -162,6 +157,11 @@
               "id": "flood",
               "label": "A traffic flood saturated the internet link for three hours",
               "correctZone": "a"
+            },
+            {
+              "id": "read",
+              "label": "A contractor read salary records outside their clearance",
+              "correctZone": "c"
             },
             {
               "id": "del",
@@ -186,23 +186,33 @@
         "dragDrop": {
           "zones": [
             {
-              "id": "know",
-              "label": "Something you know"
+              "id": "where",
+              "label": "Somewhere you are"
             },
             {
               "id": "have",
               "label": "Something you have"
             },
             {
-              "id": "are",
-              "label": "Something you are"
+              "id": "know",
+              "label": "Something you know"
             },
             {
-              "id": "where",
-              "label": "Somewhere you are"
+              "id": "are",
+              "label": "Something you are"
             }
           ],
           "items": [
+            {
+              "id": "token",
+              "label": "FIDO2 hardware security key",
+              "correctZone": "have"
+            },
+            {
+              "id": "fp",
+              "label": "Fingerprint reader",
+              "correctZone": "are"
+            },
             {
               "id": "pin",
               "label": "Six-digit memorised PIN",
@@ -214,19 +224,9 @@
               "correctZone": "know"
             },
             {
-              "id": "token",
-              "label": "FIDO2 hardware security key",
-              "correctZone": "have"
-            },
-            {
               "id": "cert",
               "label": "Client certificate stored in the device TPM",
               "correctZone": "have"
-            },
-            {
-              "id": "fp",
-              "label": "Fingerprint reader",
-              "correctZone": "are"
             },
             {
               "id": "geo",
@@ -251,33 +251,23 @@
         "dragDrop": {
           "zones": [
             {
+              "id": "corr",
+              "label": "Corrective"
+            },
+            {
               "id": "prev",
               "label": "Preventive"
             },
             {
               "id": "det",
               "label": "Detective"
-            },
-            {
-              "id": "corr",
-              "label": "Corrective"
             }
           ],
           "items": [
             {
-              "id": "lock",
-              "label": "Badge-controlled door lock",
-              "correctZone": "prev"
-            },
-            {
-              "id": "acl",
-              "label": "Deny-by-default firewall ruleset",
-              "correctZone": "prev"
-            },
-            {
-              "id": "logrev",
-              "label": "Daily SIEM alert review",
-              "correctZone": "det"
+              "id": "restore",
+              "label": "Restoring a server from last night’s backup",
+              "correctZone": "corr"
             },
             {
               "id": "cctv",
@@ -285,14 +275,24 @@
               "correctZone": "det"
             },
             {
-              "id": "restore",
-              "label": "Restoring a server from last night’s backup",
-              "correctZone": "corr"
+              "id": "logrev",
+              "label": "Daily SIEM alert review",
+              "correctZone": "det"
             },
             {
               "id": "isolate",
               "label": "Quarantining an infected host from the network",
               "correctZone": "corr"
+            },
+            {
+              "id": "acl",
+              "label": "Deny-by-default firewall ruleset",
+              "correctZone": "prev"
+            },
+            {
+              "id": "lock",
+              "label": "Badge-controlled door lock",
+              "correctZone": "prev"
             }
           ]
         }
@@ -416,17 +416,17 @@
                 {
                   "correctValue": "23",
                   "options": [
+                    "25",
                     "21",
                     "22",
-                    "23",
-                    "25"
+                    "23"
                   ]
                 },
                 {
                   "correctValue": "SSH",
                   "options": [
-                    "SSH",
                     "SFTP",
+                    "SSH",
                     "TLS",
                     "Kerberos"
                   ]
@@ -440,8 +440,8 @@
                   "correctValue": "21",
                   "options": [
                     "20",
-                    "21",
                     "22",
+                    "21",
                     "69"
                   ]
                 },
@@ -449,8 +449,8 @@
                   "correctValue": "SFTP",
                   "options": [
                     "SFTP",
-                    "TFTP",
                     "SMB",
+                    "TFTP",
                     "HTTPS"
                   ]
                 }
@@ -462,19 +462,19 @@
                 {
                   "correctValue": "80",
                   "options": [
-                    "80",
-                    "88",
                     "443",
-                    "8080"
+                    "80",
+                    "8080",
+                    "88"
                   ]
                 },
                 {
                   "correctValue": "HTTPS",
                   "options": [
                     "HTTPS",
-                    "SSH",
+                    "S/MIME",
                     "IPSec",
-                    "S/MIME"
+                    "SSH"
                   ]
                 }
               ]
@@ -485,19 +485,19 @@
                 {
                   "correctValue": "389",
                   "options": [
-                    "389",
-                    "636",
                     "445",
-                    "1812"
+                    "1812",
+                    "389",
+                    "636"
                   ]
                 },
                 {
                   "correctValue": "LDAPS",
                   "options": [
-                    "LDAPS",
-                    "RADIUS",
+                    "Kerberos",
                     "TACACS+",
-                    "Kerberos"
+                    "RADIUS",
+                    "LDAPS"
                   ]
                 }
               ]
@@ -508,19 +508,19 @@
                 {
                   "correctValue": "161",
                   "options": [
-                    "161",
+                    "123",
                     "162",
                     "514",
-                    "123"
+                    "161"
                   ]
                 },
                 {
                   "correctValue": "SNMPv3",
                   "options": [
-                    "SNMPv3",
-                    "SNMPv2c",
                     "Syslog",
-                    "NetFlow"
+                    "NetFlow",
+                    "SNMPv3",
+                    "SNMPv2c"
                   ]
                 }
               ]
@@ -552,19 +552,19 @@
                 {
                   "correctValue": "Physical",
                   "options": [
-                    "Physical",
-                    "Technical",
                     "Managerial",
-                    "Operational"
+                    "Technical",
+                    "Operational",
+                    "Physical"
                   ]
                 },
                 {
                   "correctValue": "Preventive",
                   "options": [
-                    "Preventive",
-                    "Detective",
+                    "Deterrent",
                     "Corrective",
-                    "Deterrent"
+                    "Detective",
+                    "Preventive"
                   ]
                 }
               ]
@@ -575,19 +575,19 @@
                 {
                   "correctValue": "Technical",
                   "options": [
-                    "Physical",
+                    "Operational",
                     "Technical",
                     "Managerial",
-                    "Operational"
+                    "Physical"
                   ]
                 },
                 {
                   "correctValue": "Detective",
                   "options": [
+                    "Deterrent",
                     "Preventive",
-                    "Detective",
                     "Corrective",
-                    "Deterrent"
+                    "Detective"
                   ]
                 }
               ]
@@ -598,19 +598,19 @@
                 {
                   "correctValue": "Managerial",
                   "options": [
-                    "Physical",
                     "Technical",
-                    "Managerial",
-                    "Operational"
+                    "Operational",
+                    "Physical",
+                    "Managerial"
                   ]
                 },
                 {
                   "correctValue": "Preventive",
                   "options": [
                     "Preventive",
-                    "Detective",
+                    "Deterrent",
                     "Corrective",
-                    "Deterrent"
+                    "Detective"
                   ]
                 }
               ]
@@ -621,19 +621,19 @@
                 {
                   "correctValue": "Technical",
                   "options": [
-                    "Physical",
                     "Technical",
-                    "Managerial",
-                    "Operational"
+                    "Physical",
+                    "Operational",
+                    "Managerial"
                   ]
                 },
                 {
                   "correctValue": "Corrective",
                   "options": [
+                    "Deterrent",
                     "Preventive",
                     "Detective",
-                    "Corrective",
-                    "Deterrent"
+                    "Corrective"
                   ]
                 }
               ]
@@ -644,19 +644,19 @@
                 {
                   "correctValue": "Physical",
                   "options": [
-                    "Physical",
-                    "Technical",
+                    "Operational",
                     "Managerial",
-                    "Operational"
+                    "Physical",
+                    "Technical"
                   ]
                 },
                 {
                   "correctValue": "Deterrent",
                   "options": [
                     "Preventive",
+                    "Deterrent",
                     "Detective",
-                    "Corrective",
-                    "Deterrent"
+                    "Corrective"
                   ]
                 }
               ]
@@ -688,19 +688,19 @@
                 {
                   "correctValue": "AES-256",
                   "options": [
-                    "AES-256",
-                    "SHA-256",
                     "bcrypt",
-                    "RSA"
+                    "RSA",
+                    "AES-256",
+                    "SHA-256"
                   ]
                 },
                 {
                   "correctValue": "Confidentiality",
                   "options": [
-                    "Confidentiality",
                     "Integrity",
                     "Non-repudiation",
-                    "Availability"
+                    "Availability",
+                    "Confidentiality"
                   ]
                 }
               ]
@@ -711,10 +711,10 @@
                 {
                   "correctValue": "SHA-256",
                   "options": [
-                    "AES-256",
-                    "SHA-256",
+                    "3DES",
                     "bcrypt",
-                    "3DES"
+                    "AES-256",
+                    "SHA-256"
                   ]
                 },
                 {
@@ -734,10 +734,10 @@
                 {
                   "correctValue": "ECDSA",
                   "options": [
-                    "ECDSA",
-                    "AES-256",
+                    "Diffie-Hellman",
                     "SHA-256",
-                    "Diffie-Hellman"
+                    "AES-256",
+                    "ECDSA"
                   ]
                 },
                 {
@@ -745,8 +745,8 @@
                   "options": [
                     "Confidentiality",
                     "Integrity",
-                    "Non-repudiation",
-                    "Availability"
+                    "Availability",
+                    "Non-repudiation"
                   ]
                 }
               ]
@@ -757,18 +757,18 @@
                 {
                   "correctValue": "bcrypt",
                   "options": [
-                    "bcrypt",
-                    "SHA-256",
+                    "RSA",
                     "AES-256",
-                    "RSA"
+                    "SHA-256",
+                    "bcrypt"
                   ]
                 },
                 {
                   "correctValue": "Integrity",
                   "options": [
+                    "Non-repudiation",
                     "Confidentiality",
                     "Integrity",
-                    "Non-repudiation",
                     "Availability"
                   ]
                 }
@@ -800,8 +800,8 @@
                 {
                   "correctValue": "Permit",
                   "options": [
-                    "Permit",
-                    "Deny"
+                    "Deny",
+                    "Permit"
                   ]
                 }
               ]
@@ -836,8 +836,8 @@
                 {
                   "correctValue": "Permit",
                   "options": [
-                    "Permit",
-                    "Deny"
+                    "Deny",
+                    "Permit"
                   ]
                 }
               ]
