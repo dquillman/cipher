@@ -561,18 +561,18 @@
                 {
                   "correctValue": "Keep",
                   "options": [
-                    "Keep",
-                    "Remove"
+                    "Remove",
+                    "Keep"
                   ]
                 },
                 {
                   "correctValue": "Permits traffic nobody asked for",
                   "options": [
                     "Breaks something that currently works",
-                    "Restores the failing laptop’s internet access",
+                    "Permits traffic nobody asked for",
                     "No change, but drops stop appearing in the log",
                     "No change to any traffic",
-                    "Permits traffic nobody asked for"
+                    "Restores the failing laptop’s internet access"
                   ]
                 }
               ]
@@ -583,17 +583,17 @@
                 {
                   "correctValue": "Keep",
                   "options": [
-                    "Remove",
-                    "Keep"
+                    "Keep",
+                    "Remove"
                   ]
                 },
                 {
                   "correctValue": "Breaks something that currently works",
                   "options": [
-                    "Restores the failing laptop’s internet access",
+                    "Breaks something that currently works",
                     "No change, but drops stop appearing in the log",
                     "Permits traffic nobody asked for",
-                    "Breaks something that currently works",
+                    "Restores the failing laptop’s internet access",
                     "No change to any traffic"
                   ]
                 }
@@ -612,9 +612,9 @@
                 {
                   "correctValue": "No change to any traffic",
                   "options": [
-                    "No change, but drops stop appearing in the log",
-                    "Permits traffic nobody asked for",
                     "No change to any traffic",
+                    "Permits traffic nobody asked for",
+                    "No change, but drops stop appearing in the log",
                     "Breaks something that currently works",
                     "Restores the failing laptop’s internet access"
                   ]
@@ -635,10 +635,10 @@
                   "correctValue": "Restores the failing laptop’s internet access",
                   "options": [
                     "No change, but drops stop appearing in the log",
-                    "No change to any traffic",
+                    "Restores the failing laptop’s internet access",
                     "Breaks something that currently works",
                     "Permits traffic nobody asked for",
-                    "Restores the failing laptop’s internet access"
+                    "No change to any traffic"
                   ]
                 }
               ]
@@ -656,9 +656,9 @@
                 {
                   "correctValue": "Permits traffic nobody asked for",
                   "options": [
-                    "No change to any traffic",
-                    "No change, but drops stop appearing in the log",
                     "Permits traffic nobody asked for",
+                    "No change, but drops stop appearing in the log",
+                    "No change to any traffic",
                     "Restores the failing laptop’s internet access",
                     "Breaks something that currently works"
                   ]
@@ -679,8 +679,8 @@
                   "correctValue": "Permits traffic nobody asked for",
                   "options": [
                     "Restores the failing laptop’s internet access",
-                    "Breaks something that currently works",
                     "Permits traffic nobody asked for",
+                    "Breaks something that currently works",
                     "No change to any traffic",
                     "No change, but drops stop appearing in the log"
                   ]
@@ -693,15 +693,15 @@
                 {
                   "correctValue": "Keep",
                   "options": [
-                    "Keep",
-                    "Remove"
+                    "Remove",
+                    "Keep"
                   ]
                 },
                 {
                   "correctValue": "Breaks something that currently works",
                   "options": [
-                    "Restores the failing laptop’s internet access",
                     "Breaks something that currently works",
+                    "Restores the failing laptop’s internet access",
                     "No change, but drops stop appearing in the log",
                     "Permits traffic nobody asked for",
                     "No change to any traffic"
@@ -715,17 +715,17 @@
                 {
                   "correctValue": "Keep",
                   "options": [
-                    "Remove",
-                    "Keep"
+                    "Keep",
+                    "Remove"
                   ]
                 },
                 {
                   "correctValue": "No change, but drops stop appearing in the log",
                   "options": [
                     "No change to any traffic",
-                    "Permits traffic nobody asked for",
-                    "Restores the failing laptop’s internet access",
                     "No change, but drops stop appearing in the log",
+                    "Restores the failing laptop’s internet access",
+                    "Permits traffic nobody asked for",
                     "Breaks something that currently works"
                   ]
                 }
@@ -759,9 +759,9 @@
                   "correctValue": "Untargeted internet scanning",
                   "options": [
                     "Bulk data movement by an insider",
-                    "Impossible travel",
-                    "Malware searching for a generated domain",
                     "Untargeted internet scanning",
+                    "Malware searching for a generated domain",
+                    "Impossible travel",
                     "Expected behaviour of a signed updater"
                   ]
                 },
@@ -769,9 +769,9 @@
                   "correctValue": "Tune the rule — no host action",
                   "options": [
                     "Close as benign and allow-list it",
-                    "Escalate — preserve evidence and involve HR and legal",
-                    "Escalate — treat as a successful access",
                     "Tune the rule — no host action",
+                    "Escalate — treat as a successful access",
+                    "Escalate — preserve evidence and involve HR and legal",
                     "Escalate — isolate the host",
                     "Escalate — force reauthentication and verify with the user"
                   ]
@@ -784,9 +784,9 @@
                 {
                   "correctValue": "Untargeted internet scanning",
                   "options": [
-                    "Expected behaviour of a signed updater",
-                    "Malware searching for a generated domain",
                     "Untargeted internet scanning",
+                    "Malware searching for a generated domain",
+                    "Expected behaviour of a signed updater",
                     "Impossible travel",
                     "Bulk data movement by an insider"
                   ]
@@ -794,8 +794,8 @@
                 {
                   "correctValue": "Escalate — treat as a successful access",
                   "options": [
-                    "Escalate — preserve evidence and involve HR and legal",
                     "Escalate — treat as a successful access",
+                    "Escalate — preserve evidence and involve HR and legal",
                     "Close as benign and allow-list it",
                     "Escalate — force reauthentication and verify with the user",
                     "Tune the rule — no host action",
@@ -810,10 +810,10 @@
                 {
                   "correctValue": "Malware searching for a generated domain",
                   "options": [
-                    "Malware searching for a generated domain",
+                    "Expected behaviour of a signed updater",
                     "Impossible travel",
                     "Untargeted internet scanning",
-                    "Expected behaviour of a signed updater",
+                    "Malware searching for a generated domain",
                     "Bulk data movement by an insider"
                   ]
                 },
@@ -838,8 +838,8 @@
                   "options": [
                     "Malware searching for a generated domain",
                     "Bulk data movement by an insider",
-                    "Untargeted internet scanning",
                     "Impossible travel",
+                    "Untargeted internet scanning",
                     "Expected behaviour of a signed updater"
                   ]
                 },
@@ -847,8 +847,8 @@
                   "correctValue": "Escalate — force reauthentication and verify with the user",
                   "options": [
                     "Escalate — treat as a successful access",
-                    "Escalate — isolate the host",
                     "Escalate — force reauthentication and verify with the user",
+                    "Escalate — isolate the host",
                     "Escalate — preserve evidence and involve HR and legal",
                     "Close as benign and allow-list it",
                     "Tune the rule — no host action"
@@ -862,9 +862,9 @@
                 {
                   "correctValue": "Bulk data movement by an insider",
                   "options": [
-                    "Malware searching for a generated domain",
-                    "Expected behaviour of a signed updater",
                     "Bulk data movement by an insider",
+                    "Expected behaviour of a signed updater",
+                    "Malware searching for a generated domain",
                     "Untargeted internet scanning",
                     "Impossible travel"
                   ]
@@ -889,9 +889,9 @@
                   "correctValue": "Expected behaviour of a signed updater",
                   "options": [
                     "Bulk data movement by an insider",
-                    "Malware searching for a generated domain",
-                    "Untargeted internet scanning",
                     "Expected behaviour of a signed updater",
+                    "Untargeted internet scanning",
+                    "Malware searching for a generated domain",
                     "Impossible travel"
                   ]
                 },
@@ -899,9 +899,9 @@
                   "correctValue": "Close as benign and allow-list it",
                   "options": [
                     "Escalate — force reauthentication and verify with the user",
-                    "Escalate — preserve evidence and involve HR and legal",
-                    "Escalate — isolate the host",
                     "Close as benign and allow-list it",
+                    "Escalate — isolate the host",
+                    "Escalate — preserve evidence and involve HR and legal",
                     "Tune the rule — no host action",
                     "Escalate — treat as a successful access"
                   ]
@@ -936,8 +936,8 @@
                   "options": [
                     "forced-commands-only",
                     "no",
-                    "yes",
-                    "prohibit-password"
+                    "prohibit-password",
+                    "yes"
                   ]
                 }
               ]
@@ -948,8 +948,8 @@
                 {
                   "correctValue": "no",
                   "options": [
-                    "no",
-                    "yes"
+                    "yes",
+                    "no"
                   ]
                 }
               ]
@@ -961,9 +961,9 @@
                   "correctValue": "3",
                   "options": [
                     "6",
-                    "3",
+                    "1",
                     "10",
-                    "1"
+                    "3"
                   ]
                 }
               ]
@@ -974,8 +974,8 @@
                 {
                   "correctValue": "30",
                   "options": [
-                    "0",
                     "30",
+                    "0",
                     "120",
                     "600"
                   ]
@@ -1014,9 +1014,9 @@
                 {
                   "correctValue": "VERBOSE",
                   "options": [
-                    "VERBOSE",
-                    "INFO",
                     "DEBUG3",
+                    "INFO",
+                    "VERBOSE",
                     "QUIET"
                   ]
                 }
@@ -1050,8 +1050,8 @@
                   "correctValue": "Synchronous replication with point-in-time backups",
                   "options": [
                     "Nightly full with hourly incrementals",
-                    "Synchronous replication with point-in-time backups",
                     "Write-once immutable media",
+                    "Synchronous replication with point-in-time backups",
                     "No protection required",
                     "Nightly full only"
                   ]
@@ -1061,8 +1061,8 @@
                   "options": [
                     "No recovery site",
                     "Warm site",
-                    "Hot site",
-                    "Cold site"
+                    "Cold site",
+                    "Hot site"
                   ]
                 }
               ]
@@ -1076,15 +1076,15 @@
                     "No protection required",
                     "Nightly full only",
                     "Synchronous replication with point-in-time backups",
-                    "Write-once immutable media",
-                    "Nightly full with hourly incrementals"
+                    "Nightly full with hourly incrementals",
+                    "Write-once immutable media"
                   ]
                 },
                 {
                   "correctValue": "Hot site",
                   "options": [
-                    "No recovery site",
                     "Hot site",
+                    "No recovery site",
                     "Warm site",
                     "Cold site"
                   ]
@@ -1097,9 +1097,9 @@
                 {
                   "correctValue": "Nightly full with hourly incrementals",
                   "options": [
-                    "No protection required",
-                    "Nightly full only",
                     "Nightly full with hourly incrementals",
+                    "Nightly full only",
+                    "No protection required",
                     "Synchronous replication with point-in-time backups",
                     "Write-once immutable media"
                   ]
@@ -1108,9 +1108,9 @@
                   "correctValue": "Warm site",
                   "options": [
                     "Hot site",
-                    "No recovery site",
+                    "Warm site",
                     "Cold site",
-                    "Warm site"
+                    "No recovery site"
                   ]
                 }
               ]
@@ -1122,9 +1122,9 @@
                   "correctValue": "Nightly full only",
                   "options": [
                     "No protection required",
-                    "Synchronous replication with point-in-time backups",
-                    "Write-once immutable media",
                     "Nightly full only",
+                    "Write-once immutable media",
+                    "Synchronous replication with point-in-time backups",
                     "Nightly full with hourly incrementals"
                   ]
                 },
@@ -1145,9 +1145,9 @@
                 {
                   "correctValue": "Write-once immutable media",
                   "options": [
-                    "Write-once immutable media",
-                    "Synchronous replication with point-in-time backups",
                     "Nightly full only",
+                    "Synchronous replication with point-in-time backups",
+                    "Write-once immutable media",
                     "Nightly full with hourly incrementals",
                     "No protection required"
                   ]
@@ -1157,8 +1157,8 @@
                   "options": [
                     "Warm site",
                     "Hot site",
-                    "Cold site",
-                    "No recovery site"
+                    "No recovery site",
+                    "Cold site"
                   ]
                 }
               ]
@@ -1172,15 +1172,15 @@
                     "Synchronous replication with point-in-time backups",
                     "Nightly full only",
                     "Write-once immutable media",
-                    "Nightly full with hourly incrementals",
-                    "No protection required"
+                    "No protection required",
+                    "Nightly full with hourly incrementals"
                   ]
                 },
                 {
                   "correctValue": "No recovery site",
                   "options": [
-                    "Hot site",
                     "No recovery site",
+                    "Hot site",
                     "Warm site",
                     "Cold site"
                   ]
@@ -1214,17 +1214,17 @@
                 {
                   "correctValue": "Allowed",
                   "options": [
-                    "Allowed",
-                    "Denied"
+                    "Denied",
+                    "Allowed"
                   ]
                 },
                 {
                   "correctValue": "Both layers allow and nothing denies",
                   "options": [
                     "Explicit deny in the resource policy",
-                    "No allow at the resource layer",
-                    "No allow at the role layer",
                     "Both layers allow and nothing denies",
+                    "No allow at the role layer",
+                    "No allow at the resource layer",
                     "Explicit deny in the guardrail"
                   ]
                 }
@@ -1243,8 +1243,8 @@
                 {
                   "correctValue": "Explicit deny in the guardrail",
                   "options": [
-                    "Explicit deny in the resource policy",
                     "Explicit deny in the guardrail",
+                    "Explicit deny in the resource policy",
                     "Both layers allow and nothing denies",
                     "No allow at the role layer",
                     "No allow at the resource layer"
@@ -1280,8 +1280,8 @@
                 {
                   "correctValue": "Denied",
                   "options": [
-                    "Allowed",
-                    "Denied"
+                    "Denied",
+                    "Allowed"
                   ]
                 },
                 {
@@ -1289,9 +1289,9 @@
                   "options": [
                     "Explicit deny in the guardrail",
                     "Both layers allow and nothing denies",
-                    "Explicit deny in the resource policy",
+                    "No allow at the role layer",
                     "No allow at the resource layer",
-                    "No allow at the role layer"
+                    "Explicit deny in the resource policy"
                   ]
                 }
               ]
@@ -1311,8 +1311,8 @@
                   "options": [
                     "No allow at the role layer",
                     "Both layers allow and nothing denies",
-                    "Explicit deny in the resource policy",
                     "No allow at the resource layer",
+                    "Explicit deny in the resource policy",
                     "Explicit deny in the guardrail"
                   ]
                 }
@@ -1331,8 +1331,8 @@
                 {
                   "correctValue": "Both layers allow and nothing denies",
                   "options": [
-                    "No allow at the resource layer",
                     "Both layers allow and nothing denies",
+                    "No allow at the resource layer",
                     "Explicit deny in the resource policy",
                     "No allow at the role layer",
                     "Explicit deny in the guardrail"
@@ -1368,9 +1368,9 @@
                   "correctValue": "Entitlements retained from a prior role",
                   "options": [
                     "One person can complete a transaction alone",
-                    "One login used by several people",
-                    "Credential older than the standard permits",
                     "Entitlements retained from a prior role",
+                    "Credential older than the standard permits",
+                    "One login used by several people",
                     "Entitlement matches the role definition"
                   ]
                 },
@@ -1394,8 +1394,8 @@
                   "options": [
                     "Entitlements retained from a prior role",
                     "One login used by several people",
-                    "Entitlement matches the role definition",
                     "Credential older than the standard permits",
+                    "Entitlement matches the role definition",
                     "One person can complete a transaction alone"
                   ]
                 },
@@ -1403,9 +1403,9 @@
                   "correctValue": "Rotate the secret and remove interactive logon",
                   "options": [
                     "Remove the entitlements from the prior role",
-                    "Rotate the secret and remove interactive logon",
-                    "Split the transaction across two approvers",
                     "Replace with named individual accounts",
+                    "Split the transaction across two approvers",
+                    "Rotate the secret and remove interactive logon",
                     "Retain unchanged and record the justification"
                   ]
                 }
@@ -1417,8 +1417,8 @@
                 {
                   "correctValue": "Credential older than the standard permits",
                   "options": [
-                    "Entitlement matches the role definition",
                     "Credential older than the standard permits",
+                    "Entitlement matches the role definition",
                     "One person can complete a transaction alone",
                     "One login used by several people",
                     "Entitlements retained from a prior role"
@@ -1445,8 +1445,8 @@
                     "Entitlement matches the role definition",
                     "Entitlements retained from a prior role",
                     "Credential older than the standard permits",
-                    "One login used by several people",
-                    "One person can complete a transaction alone"
+                    "One person can complete a transaction alone",
+                    "One login used by several people"
                   ]
                 },
                 {
@@ -1454,8 +1454,8 @@
                   "options": [
                     "Rotate the secret and remove interactive logon",
                     "Retain unchanged and record the justification",
-                    "Split the transaction across two approvers",
                     "Replace with named individual accounts",
+                    "Split the transaction across two approvers",
                     "Remove the entitlements from the prior role"
                   ]
                 }
@@ -1477,8 +1477,8 @@
                 {
                   "correctValue": "Split the transaction across two approvers",
                   "options": [
-                    "Retain unchanged and record the justification",
                     "Split the transaction across two approvers",
+                    "Retain unchanged and record the justification",
                     "Remove the entitlements from the prior role",
                     "Rotate the secret and remove interactive logon",
                     "Replace with named individual accounts"
@@ -1492,8 +1492,8 @@
                 {
                   "correctValue": "Entitlement matches the role definition",
                   "options": [
-                    "Entitlement matches the role definition",
                     "One login used by several people",
+                    "Entitlement matches the role definition",
                     "Credential older than the standard permits",
                     "One person can complete a transaction alone",
                     "Entitlements retained from a prior role"

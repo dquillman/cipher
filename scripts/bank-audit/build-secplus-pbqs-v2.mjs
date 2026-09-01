@@ -98,6 +98,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { arrangeConfig, balanceOptionPositions } from './pbq-leak.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
@@ -1181,6 +1182,14 @@ if (process.exitCode) {
     console.error('\n  Nothing written.\n');
     process.exit(1);
 }
+
+/* Items authored grouped by zone, and correct values left at the top of a
+ * dropdown, make the seed an answer key even though the renderer shuffles.
+ * Search for an arrangement a zero-knowledge candidate does worst against. */
+questions.forEach((q, i) => {
+    if (q.pbqConfig) q.pbqConfig = arrangeConfig(q.pbqConfig, `${SOURCE}:${i}`);
+});
+balanceOptionPositions(questions);
 
 const out = {
     examId: EXAM_ID,

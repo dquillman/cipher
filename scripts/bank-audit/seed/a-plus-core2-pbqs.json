@@ -30,8 +30,8 @@
                   "correctValue": "Read and write",
                   "options": [
                     "No access",
-                    "Read only",
                     "Read and write",
+                    "Read only",
                     "Full control"
                   ]
                 },
@@ -39,8 +39,8 @@
                   "correctValue": "Read only",
                   "options": [
                     "No access",
-                    "Read only",
                     "Read and write",
+                    "Read only",
                     "Full control"
                   ]
                 },
@@ -64,16 +64,16 @@
                   "correctValue": "Read only",
                   "options": [
                     "No access",
-                    "Read only",
+                    "Full control",
                     "Read and write",
-                    "Full control"
+                    "Read only"
                   ]
                 },
                 {
                   "correctValue": "Read only",
                   "options": [
-                    "No access",
                     "Read only",
+                    "No access",
                     "Read and write",
                     "Full control"
                   ]
@@ -81,9 +81,9 @@
                 {
                   "correctValue": "No change",
                   "options": [
-                    "No change",
-                    "Raise this group’s share permission to Change",
                     "Raise this group’s NTFS permission to Modify",
+                    "Raise this group’s share permission to Change",
+                    "No change",
                     "Grant Everyone Full Control on the share",
                     "Remove the Deny entry",
                     "Remove this group from the share"
@@ -98,9 +98,9 @@
                   "correctValue": "Full control",
                   "options": [
                     "No access",
-                    "Read only",
+                    "Full control",
                     "Read and write",
-                    "Full control"
+                    "Read only"
                   ]
                 },
                 {
@@ -108,17 +108,17 @@
                   "options": [
                     "No access",
                     "Read only",
-                    "Read and write",
-                    "Full control"
+                    "Full control",
+                    "Read and write"
                   ]
                 },
                 {
                   "correctValue": "No change",
                   "options": [
-                    "No change",
+                    "Grant Everyone Full Control on the share",
                     "Raise this group’s share permission to Change",
                     "Raise this group’s NTFS permission to Modify",
-                    "Grant Everyone Full Control on the share",
+                    "No change",
                     "Remove the Deny entry",
                     "Remove this group from the share"
                   ]
@@ -131,9 +131,9 @@
                 {
                   "correctValue": "No access",
                   "options": [
-                    "No access",
-                    "Read only",
                     "Read and write",
+                    "Read only",
+                    "No access",
                     "Full control"
                   ]
                 },
@@ -149,11 +149,11 @@
                 {
                   "correctValue": "No change",
                   "options": [
-                    "No change",
+                    "Remove the Deny entry",
                     "Raise this group’s share permission to Change",
                     "Raise this group’s NTFS permission to Modify",
                     "Grant Everyone Full Control on the share",
-                    "Remove the Deny entry",
+                    "No change",
                     "Remove this group from the share"
                   ]
                 }
@@ -166,29 +166,29 @@
                   "correctValue": "Full control",
                   "options": [
                     "No access",
-                    "Read only",
+                    "Full control",
                     "Read and write",
-                    "Full control"
+                    "Read only"
                   ]
                 },
                 {
                   "correctValue": "Read only",
                   "options": [
                     "No access",
-                    "Read only",
                     "Read and write",
+                    "Read only",
                     "Full control"
                   ]
                 },
                 {
                   "correctValue": "No change",
                   "options": [
-                    "No change",
+                    "Remove this group from the share",
                     "Raise this group’s share permission to Change",
                     "Raise this group’s NTFS permission to Modify",
                     "Grant Everyone Full Control on the share",
                     "Remove the Deny entry",
-                    "Remove this group from the share"
+                    "No change"
                   ]
                 }
               ]
@@ -234,10 +234,10 @@
                   "correctValue": "Change it here, on the bench",
                   "options": [
                     "Leave it as found",
-                    "Change it here, on the bench",
+                    "Refuse to release the machine at all",
                     "Escalate — this one is not yours to change alone",
                     "Record it and let the auditor decide in the field",
-                    "Refuse to release the machine at all"
+                    "Change it here, on the bench"
                   ]
                 }
               ]
@@ -248,9 +248,9 @@
                 {
                   "correctValue": "A signed-in session left unattended in the field",
                   "options": [
-                    "Nothing — this already meets policy",
-                    "Anyone who takes the hardware can read the stored data",
                     "A signed-in session left unattended in the field",
+                    "Anyone who takes the hardware can read the stored data",
+                    "Nothing — this already meets policy",
                     "Anything the user launches elevates without ever prompting",
                     "A standing credential nobody can rotate or attribute",
                     "The key that unlocks the disk travels with the disk",
@@ -261,8 +261,8 @@
                 {
                   "correctValue": "Change it here, on the bench",
                   "options": [
-                    "Leave it as found",
                     "Change it here, on the bench",
+                    "Leave it as found",
                     "Escalate — this one is not yours to change alone",
                     "Record it and let the auditor decide in the field",
                     "Refuse to release the machine at all"
@@ -304,9 +304,9 @@
                 {
                   "correctValue": "Nothing — this already meets policy",
                   "options": [
-                    "Nothing — this already meets policy",
-                    "Anyone who takes the hardware can read the stored data",
                     "A signed-in session left unattended in the field",
+                    "Anyone who takes the hardware can read the stored data",
+                    "Nothing — this already meets policy",
                     "Anything the user launches elevates without ever prompting",
                     "A standing credential nobody can rotate or attribute",
                     "The key that unlocks the disk travels with the disk",
@@ -317,9 +317,9 @@
                 {
                   "correctValue": "Leave it as found",
                   "options": [
-                    "Leave it as found",
-                    "Change it here, on the bench",
                     "Escalate — this one is not yours to change alone",
+                    "Change it here, on the bench",
+                    "Leave it as found",
                     "Record it and let the auditor decide in the field",
                     "Refuse to release the machine at all"
                   ]
@@ -332,11 +332,11 @@
                 {
                   "correctValue": "A standing credential nobody can rotate or attribute",
                   "options": [
-                    "Nothing — this already meets policy",
+                    "A standing credential nobody can rotate or attribute",
                     "Anyone who takes the hardware can read the stored data",
                     "A signed-in session left unattended in the field",
                     "Anything the user launches elevates without ever prompting",
-                    "A standing credential nobody can rotate or attribute",
+                    "Nothing — this already meets policy",
                     "The key that unlocks the disk travels with the disk",
                     "Known vulnerabilities stay open for months",
                     "The device cannot be located or wiped if it is lost"
@@ -347,8 +347,8 @@
                   "options": [
                     "Leave it as found",
                     "Change it here, on the bench",
-                    "Escalate — this one is not yours to change alone",
                     "Record it and let the auditor decide in the field",
+                    "Escalate — this one is not yours to change alone",
                     "Refuse to release the machine at all"
                   ]
                 }
@@ -360,8 +360,8 @@
                 {
                   "correctValue": "Nothing — this already meets policy",
                   "options": [
-                    "Nothing — this already meets policy",
                     "Anyone who takes the hardware can read the stored data",
+                    "Nothing — this already meets policy",
                     "A signed-in session left unattended in the field",
                     "Anything the user launches elevates without ever prompting",
                     "A standing credential nobody can rotate or attribute",
@@ -373,11 +373,11 @@
                 {
                   "correctValue": "Leave it as found",
                   "options": [
-                    "Leave it as found",
+                    "Refuse to release the machine at all",
                     "Change it here, on the bench",
                     "Escalate — this one is not yours to change alone",
                     "Record it and let the auditor decide in the field",
-                    "Refuse to release the machine at all"
+                    "Leave it as found"
                   ]
                 }
               ]
@@ -390,10 +390,10 @@
                   "options": [
                     "Nothing — this already meets policy",
                     "Anyone who takes the hardware can read the stored data",
-                    "A signed-in session left unattended in the field",
+                    "The key that unlocks the disk travels with the disk",
                     "Anything the user launches elevates without ever prompting",
                     "A standing credential nobody can rotate or attribute",
-                    "The key that unlocks the disk travels with the disk",
+                    "A signed-in session left unattended in the field",
                     "Known vulnerabilities stay open for months",
                     "The device cannot be located or wiped if it is lost"
                   ]
@@ -401,8 +401,8 @@
                 {
                   "correctValue": "Change it here, on the bench",
                   "options": [
-                    "Leave it as found",
                     "Change it here, on the bench",
+                    "Leave it as found",
                     "Escalate — this one is not yours to change alone",
                     "Record it and let the auditor decide in the field",
                     "Refuse to release the machine at all"
@@ -437,10 +437,10 @@
                 {
                   "correctValue": "The partition table cannot address the rest of the disk",
                   "options": [
-                    "The partition table cannot address the rest of the disk",
+                    "The disk carries another machine’s volume database",
                     "The file system has a maximum size for any single file",
                     "Windows cannot identify a file system on the volume",
-                    "The disk carries another machine’s volume database",
+                    "The partition table cannot address the rest of the disk",
                     "The medium is failing and remapping sectors as it goes",
                     "The volume is out of free space",
                     "The drive letter is already taken by another volume",
@@ -450,11 +450,11 @@
                 {
                   "correctValue": "Copy the contents off, then convert the partition style",
                   "options": [
-                    "Copy the contents off, then convert the partition style",
+                    "Accept the format offer Windows is showing",
                     "Reformat with exFAT and copy the data back",
                     "Image the whole drive first and work only on the image",
                     "Adopt the existing volumes without initialising the disk",
-                    "Accept the format offer Windows is showing",
+                    "Copy the contents off, then convert the partition style",
                     "Initialise the disk and create a new volume",
                     "Run a full surface scan and repair before copying anything"
                   ]
@@ -467,8 +467,8 @@
                 {
                   "correctValue": "The file system has a maximum size for any single file",
                   "options": [
-                    "The partition table cannot address the rest of the disk",
                     "The file system has a maximum size for any single file",
+                    "The partition table cannot address the rest of the disk",
                     "Windows cannot identify a file system on the volume",
                     "The disk carries another machine’s volume database",
                     "The medium is failing and remapping sectors as it goes",
@@ -480,8 +480,8 @@
                 {
                   "correctValue": "Reformat with exFAT and copy the data back",
                   "options": [
-                    "Copy the contents off, then convert the partition style",
                     "Reformat with exFAT and copy the data back",
+                    "Copy the contents off, then convert the partition style",
                     "Image the whole drive first and work only on the image",
                     "Adopt the existing volumes without initialising the disk",
                     "Accept the format offer Windows is showing",
@@ -498,8 +498,8 @@
                   "correctValue": "Windows cannot identify a file system on the volume",
                   "options": [
                     "The partition table cannot address the rest of the disk",
-                    "The file system has a maximum size for any single file",
                     "Windows cannot identify a file system on the volume",
+                    "The file system has a maximum size for any single file",
                     "The disk carries another machine’s volume database",
                     "The medium is failing and remapping sectors as it goes",
                     "The volume is out of free space",
@@ -511,8 +511,8 @@
                   "correctValue": "Image the whole drive first and work only on the image",
                   "options": [
                     "Copy the contents off, then convert the partition style",
-                    "Reformat with exFAT and copy the data back",
                     "Image the whole drive first and work only on the image",
+                    "Reformat with exFAT and copy the data back",
                     "Adopt the existing volumes without initialising the disk",
                     "Accept the format offer Windows is showing",
                     "Initialise the disk and create a new volume",
@@ -529,8 +529,8 @@
                   "options": [
                     "The partition table cannot address the rest of the disk",
                     "The file system has a maximum size for any single file",
-                    "Windows cannot identify a file system on the volume",
                     "The disk carries another machine’s volume database",
+                    "Windows cannot identify a file system on the volume",
                     "The medium is failing and remapping sectors as it goes",
                     "The volume is out of free space",
                     "The drive letter is already taken by another volume",
@@ -542,8 +542,8 @@
                   "options": [
                     "Copy the contents off, then convert the partition style",
                     "Reformat with exFAT and copy the data back",
-                    "Image the whole drive first and work only on the image",
                     "Adopt the existing volumes without initialising the disk",
+                    "Image the whole drive first and work only on the image",
                     "Accept the format offer Windows is showing",
                     "Initialise the disk and create a new volume",
                     "Run a full surface scan and repair before copying anything"
@@ -560,8 +560,8 @@
                     "The partition table cannot address the rest of the disk",
                     "The file system has a maximum size for any single file",
                     "Windows cannot identify a file system on the volume",
-                    "The disk carries another machine’s volume database",
                     "The medium is failing and remapping sectors as it goes",
+                    "The disk carries another machine’s volume database",
                     "The volume is out of free space",
                     "The drive letter is already taken by another volume",
                     "The enclosure’s USB bridge limits the volume size"
@@ -572,8 +572,8 @@
                   "options": [
                     "Copy the contents off, then convert the partition style",
                     "Reformat with exFAT and copy the data back",
-                    "Image the whole drive first and work only on the image",
                     "Adopt the existing volumes without initialising the disk",
+                    "Image the whole drive first and work only on the image",
                     "Accept the format offer Windows is showing",
                     "Initialise the disk and create a new volume",
                     "Run a full surface scan and repair before copying anything"
@@ -609,11 +609,11 @@
                 {
                   "correctValue": "Every selected byte, again",
                   "options": [
-                    "Every selected byte, again",
+                    "Nothing — no job runs on weeknights",
                     "Only what changed since Tuesday night’s job",
                     "Everything changed since Sunday’s full",
                     "Only changed blocks, merged into a new full on the target",
-                    "Nothing — no job runs on weeknights",
+                    "Every selected byte, again",
                     "Only files whose archive bit is already clear",
                     "A block-level snapshot of the running volumes"
                   ]
@@ -621,8 +621,8 @@
                 {
                   "correctValue": "1",
                   "options": [
-                    "1",
                     "2",
+                    "1",
                     "4",
                     "5",
                     "7"
@@ -648,11 +648,11 @@
                   "correctValue": "Only what changed since Tuesday night’s job",
                   "options": [
                     "Every selected byte, again",
-                    "Only what changed since Tuesday night’s job",
+                    "Only files whose archive bit is already clear",
                     "Everything changed since Sunday’s full",
                     "Only changed blocks, merged into a new full on the target",
                     "Nothing — no job runs on weeknights",
-                    "Only files whose archive bit is already clear",
+                    "Only what changed since Tuesday night’s job",
                     "A block-level snapshot of the running volumes"
                   ]
                 },
@@ -669,9 +669,9 @@
                 {
                   "correctValue": "No — this is the scheme whose restore needed six media sets",
                   "options": [
-                    "Yes — it fits both constraints",
-                    "No — this is the scheme that is overrunning the window",
                     "No — this is the scheme whose restore needed six media sets",
+                    "No — this is the scheme that is overrunning the window",
+                    "Yes — it fits both constraints",
                     "No — the agent on this server cannot build one",
                     "No — Thursday morning and most of the week would be gone",
                     "No — it cannot restore an individual file"
@@ -685,9 +685,9 @@
                 {
                   "correctValue": "Everything changed since Sunday’s full",
                   "options": [
-                    "Every selected byte, again",
-                    "Only what changed since Tuesday night’s job",
                     "Everything changed since Sunday’s full",
+                    "Only what changed since Tuesday night’s job",
+                    "Every selected byte, again",
                     "Only changed blocks, merged into a new full on the target",
                     "Nothing — no job runs on weeknights",
                     "Only files whose archive bit is already clear",
@@ -698,19 +698,19 @@
                   "correctValue": "2",
                   "options": [
                     "1",
-                    "2",
-                    "4",
                     "5",
+                    "4",
+                    "2",
                     "7"
                   ]
                 },
                 {
                   "correctValue": "Yes — it fits both constraints",
                   "options": [
-                    "Yes — it fits both constraints",
+                    "No — the agent on this server cannot build one",
                     "No — this is the scheme that is overrunning the window",
                     "No — this is the scheme whose restore needed six media sets",
-                    "No — the agent on this server cannot build one",
+                    "Yes — it fits both constraints",
                     "No — Thursday morning and most of the week would be gone",
                     "No — it cannot restore an individual file"
                   ]
@@ -724,9 +724,9 @@
                   "correctValue": "Only changed blocks, merged into a new full on the target",
                   "options": [
                     "Every selected byte, again",
-                    "Only what changed since Tuesday night’s job",
-                    "Everything changed since Sunday’s full",
                     "Only changed blocks, merged into a new full on the target",
+                    "Everything changed since Sunday’s full",
+                    "Only what changed since Tuesday night’s job",
                     "Nothing — no job runs on weeknights",
                     "Only files whose archive bit is already clear",
                     "A block-level snapshot of the running volumes"
@@ -735,11 +735,11 @@
                 {
                   "correctValue": "1",
                   "options": [
-                    "1",
+                    "7",
                     "2",
                     "4",
                     "5",
-                    "7"
+                    "1"
                   ]
                 },
                 {
@@ -747,8 +747,8 @@
                   "options": [
                     "Yes — it fits both constraints",
                     "No — this is the scheme that is overrunning the window",
-                    "No — this is the scheme whose restore needed six media sets",
                     "No — the agent on this server cannot build one",
+                    "No — this is the scheme whose restore needed six media sets",
                     "No — Thursday morning and most of the week would be gone",
                     "No — it cannot restore an individual file"
                   ]
@@ -763,9 +763,9 @@
                   "options": [
                     "Every selected byte, again",
                     "Only what changed since Tuesday night’s job",
-                    "Everything changed since Sunday’s full",
-                    "Only changed blocks, merged into a new full on the target",
                     "Nothing — no job runs on weeknights",
+                    "Only changed blocks, merged into a new full on the target",
+                    "Everything changed since Sunday’s full",
                     "Only files whose archive bit is already clear",
                     "A block-level snapshot of the running volumes"
                   ]
@@ -820,11 +820,11 @@
                 {
                   "correctValue": "A swollen cell inside the battery",
                   "options": [
-                    "A swollen cell inside the battery",
+                    "Something laid on top of the glass, not the sensor under it",
                     "The installed app builds predate the new OS release",
                     "Something specific to this line or handset, not the carrier",
                     "A digitiser fault — likely, but not yet established",
-                    "Something laid on top of the glass, not the sensor under it",
+                    "A swollen cell inside the battery",
                     "A corrupted OS update",
                     "A carrier outage in this area",
                     "The device has run out of storage"
@@ -833,10 +833,10 @@
                 {
                   "correctValue": "Stop using it, stop charging it, isolate it, and never press the cover flat",
                   "options": [
-                    "Stop using it, stop charging it, isolate it, and never press the cover flat",
+                    "Strip the case and protector, restart, and re-test before ordering any part",
                     "Update the affected apps; escalate to their vendors if no compatible build exists",
                     "Check the data toggle, the plan’s data allowance and the APN on this line",
-                    "Strip the case and protector, restart, and re-test before ordering any part",
+                    "Stop using it, stop charging it, isolate it, and never press the cover flat",
                     "Order the screen and digitiser assembly",
                     "Factory reset the device",
                     "Replace the battery again under warranty"
@@ -850,8 +850,8 @@
                 {
                   "correctValue": "The installed app builds predate the new OS release",
                   "options": [
-                    "A swollen cell inside the battery",
                     "The installed app builds predate the new OS release",
+                    "A swollen cell inside the battery",
                     "Something specific to this line or handset, not the carrier",
                     "A digitiser fault — likely, but not yet established",
                     "Something laid on top of the glass, not the sensor under it",
@@ -864,10 +864,10 @@
                   "correctValue": "Update the affected apps; escalate to their vendors if no compatible build exists",
                   "options": [
                     "Stop using it, stop charging it, isolate it, and never press the cover flat",
-                    "Update the affected apps; escalate to their vendors if no compatible build exists",
+                    "Order the screen and digitiser assembly",
                     "Check the data toggle, the plan’s data allowance and the APN on this line",
                     "Strip the case and protector, restart, and re-test before ordering any part",
-                    "Order the screen and digitiser assembly",
+                    "Update the affected apps; escalate to their vendors if no compatible build exists",
                     "Factory reset the device",
                     "Replace the battery again under warranty"
                   ]
@@ -881,8 +881,8 @@
                   "correctValue": "Something specific to this line or handset, not the carrier",
                   "options": [
                     "A swollen cell inside the battery",
-                    "The installed app builds predate the new OS release",
                     "Something specific to this line or handset, not the carrier",
+                    "The installed app builds predate the new OS release",
                     "A digitiser fault — likely, but not yet established",
                     "Something laid on top of the glass, not the sensor under it",
                     "A corrupted OS update",
@@ -895,10 +895,10 @@
                   "options": [
                     "Stop using it, stop charging it, isolate it, and never press the cover flat",
                     "Update the affected apps; escalate to their vendors if no compatible build exists",
-                    "Check the data toggle, the plan’s data allowance and the APN on this line",
+                    "Factory reset the device",
                     "Strip the case and protector, restart, and re-test before ordering any part",
                     "Order the screen and digitiser assembly",
-                    "Factory reset the device",
+                    "Check the data toggle, the plan’s data allowance and the APN on this line",
                     "Replace the battery again under warranty"
                   ]
                 }
@@ -912,8 +912,8 @@
                   "options": [
                     "A swollen cell inside the battery",
                     "The installed app builds predate the new OS release",
-                    "Something specific to this line or handset, not the carrier",
                     "A digitiser fault — likely, but not yet established",
+                    "Something specific to this line or handset, not the carrier",
                     "Something laid on top of the glass, not the sensor under it",
                     "A corrupted OS update",
                     "A carrier outage in this area",
@@ -923,10 +923,10 @@
                 {
                   "correctValue": "Strip the case and protector, restart, and re-test before ordering any part",
                   "options": [
-                    "Stop using it, stop charging it, isolate it, and never press the cover flat",
+                    "Strip the case and protector, restart, and re-test before ordering any part",
                     "Update the affected apps; escalate to their vendors if no compatible build exists",
                     "Check the data toggle, the plan’s data allowance and the APN on this line",
-                    "Strip the case and protector, restart, and re-test before ordering any part",
+                    "Stop using it, stop charging it, isolate it, and never press the cover flat",
                     "Order the screen and digitiser assembly",
                     "Factory reset the device",
                     "Replace the battery again under warranty"
@@ -943,8 +943,8 @@
                     "A swollen cell inside the battery",
                     "The installed app builds predate the new OS release",
                     "Something specific to this line or handset, not the carrier",
-                    "A digitiser fault — likely, but not yet established",
                     "Something laid on top of the glass, not the sensor under it",
+                    "A digitiser fault — likely, but not yet established",
                     "A corrupted OS update",
                     "A carrier outage in this area",
                     "The device has run out of storage"
@@ -954,9 +954,9 @@
                   "correctValue": "Strip the case and protector, restart, and re-test before ordering any part",
                   "options": [
                     "Stop using it, stop charging it, isolate it, and never press the cover flat",
-                    "Update the affected apps; escalate to their vendors if no compatible build exists",
-                    "Check the data toggle, the plan’s data allowance and the APN on this line",
                     "Strip the case and protector, restart, and re-test before ordering any part",
+                    "Check the data toggle, the plan’s data allowance and the APN on this line",
+                    "Update the affected apps; escalate to their vendors if no compatible build exists",
                     "Order the screen and digitiser assembly",
                     "Factory reset the device",
                     "Replace the battery again under warranty"
@@ -991,9 +991,9 @@
                 {
                   "correctValue": "Credential phishing from an outside domain",
                   "options": [
-                    "Credential phishing from an outside domain",
-                    "Business email compromise — no link, no malware, a payment ask",
                     "Unwanted bulk mail, not malicious",
+                    "Business email compromise — no link, no malware, a payment ask",
+                    "Credential phishing from an outside domain",
                     "Malware sent from a mailbox that really is the sender’s",
                     "Legitimate mail the user simply did not expect",
                     "A spoofed internal address",
@@ -1003,12 +1003,12 @@
                 {
                   "correctValue": "Report it and block the registered domain the link really goes to; open nothing",
                   "options": [
-                    "Report it and block the registered domain the link really goes to; open nothing",
+                    "Delete it and tell the user to ignore it",
                     "Quarantine it and confirm with the named person on a number you already had",
                     "Unsubscribe or filter it; raise no incident",
                     "Release it to the user and explain why it is genuine",
                     "Reply to the message asking the sender to confirm",
-                    "Delete it and tell the user to ignore it"
+                    "Report it and block the registered domain the link really goes to; open nothing"
                   ]
                 }
               ]
@@ -1020,9 +1020,9 @@
                   "correctValue": "Business email compromise — no link, no malware, a payment ask",
                   "options": [
                     "Credential phishing from an outside domain",
-                    "Business email compromise — no link, no malware, a payment ask",
-                    "Unwanted bulk mail, not malicious",
                     "Malware sent from a mailbox that really is the sender’s",
+                    "Unwanted bulk mail, not malicious",
+                    "Business email compromise — no link, no malware, a payment ask",
                     "Legitimate mail the user simply did not expect",
                     "A spoofed internal address",
                     "An authorised internal awareness test"
@@ -1031,8 +1031,8 @@
                 {
                   "correctValue": "Quarantine it and confirm with the named person on a number you already had",
                   "options": [
-                    "Report it and block the registered domain the link really goes to; open nothing",
                     "Quarantine it and confirm with the named person on a number you already had",
+                    "Report it and block the registered domain the link really goes to; open nothing",
                     "Unsubscribe or filter it; raise no incident",
                     "Release it to the user and explain why it is genuine",
                     "Reply to the message asking the sender to confirm",
@@ -1049,9 +1049,9 @@
                   "options": [
                     "Credential phishing from an outside domain",
                     "Business email compromise — no link, no malware, a payment ask",
-                    "Unwanted bulk mail, not malicious",
-                    "Malware sent from a mailbox that really is the sender’s",
                     "Legitimate mail the user simply did not expect",
+                    "Malware sent from a mailbox that really is the sender’s",
+                    "Unwanted bulk mail, not malicious",
                     "A spoofed internal address",
                     "An authorised internal awareness test"
                   ]
@@ -1060,8 +1060,8 @@
                   "correctValue": "Unsubscribe or filter it; raise no incident",
                   "options": [
                     "Report it and block the registered domain the link really goes to; open nothing",
-                    "Quarantine it and confirm with the named person on a number you already had",
                     "Unsubscribe or filter it; raise no incident",
+                    "Quarantine it and confirm with the named person on a number you already had",
                     "Release it to the user and explain why it is genuine",
                     "Reply to the message asking the sender to confirm",
                     "Delete it and tell the user to ignore it"
@@ -1078,9 +1078,9 @@
                     "Credential phishing from an outside domain",
                     "Business email compromise — no link, no malware, a payment ask",
                     "Unwanted bulk mail, not malicious",
-                    "Malware sent from a mailbox that really is the sender’s",
-                    "Legitimate mail the user simply did not expect",
                     "A spoofed internal address",
+                    "Legitimate mail the user simply did not expect",
+                    "Malware sent from a mailbox that really is the sender’s",
                     "An authorised internal awareness test"
                   ]
                 },
@@ -1088,8 +1088,8 @@
                   "correctValue": "Quarantine it and confirm with the named person on a number you already had",
                   "options": [
                     "Report it and block the registered domain the link really goes to; open nothing",
-                    "Quarantine it and confirm with the named person on a number you already had",
                     "Unsubscribe or filter it; raise no incident",
+                    "Quarantine it and confirm with the named person on a number you already had",
                     "Release it to the user and explain why it is genuine",
                     "Reply to the message asking the sender to confirm",
                     "Delete it and tell the user to ignore it"
@@ -1103,11 +1103,11 @@
                 {
                   "correctValue": "Legitimate mail the user simply did not expect",
                   "options": [
-                    "Credential phishing from an outside domain",
+                    "Legitimate mail the user simply did not expect",
                     "Business email compromise — no link, no malware, a payment ask",
                     "Unwanted bulk mail, not malicious",
                     "Malware sent from a mailbox that really is the sender’s",
-                    "Legitimate mail the user simply did not expect",
+                    "Credential phishing from an outside domain",
                     "A spoofed internal address",
                     "An authorised internal awareness test"
                   ]
@@ -1151,12 +1151,12 @@
               "label": "Ransomware"
             },
             {
-              "id": "miner",
-              "label": "Cryptominer"
-            },
-            {
               "id": "rootkit",
               "label": "Rootkit"
+            },
+            {
+              "id": "miner",
+              "label": "Cryptominer"
             },
             {
               "id": "notmal",
@@ -1164,6 +1164,16 @@
             }
           ],
           "items": [
+            {
+              "id": "ram",
+              "label": "Slow and swapping since a memory upgrade; Task Manager reports 16.0 GB installed, 4.0 GB usable",
+              "correctZone": "notmal"
+            },
+            {
+              "id": "hot",
+              "label": "Idle CPU sits above 90%, the case is hot, the lab’s power draw doubled, and no data is missing or altered",
+              "correctZone": "miner"
+            },
             {
               "id": "creds",
               "label": "Bank credentials typed on this machine turned up in a phishing dump; no slowdown, no missing files, no ransom note",
@@ -1175,19 +1185,9 @@
               "correctZone": "ransom"
             },
             {
-              "id": "hot",
-              "label": "Idle CPU sits above 90%, the case is hot, the lab’s power draw doubled, and no data is missing or altered",
-              "correctZone": "miner"
-            },
-            {
               "id": "offline",
               "label": "The installed AV scan is clean, but a boot-time scan from external media finds a driver the running OS never listed",
               "correctZone": "rootkit"
-            },
-            {
-              "id": "ram",
-              "label": "Slow and swapping since a memory upgrade; Task Manager reports 16.0 GB installed, 4.0 GB usable",
-              "correctZone": "notmal"
             },
             {
               "id": "onedrive",
@@ -1212,6 +1212,14 @@
         "dragDrop": {
           "zones": [
             {
+              "id": "z_acct",
+              "label": "Eliminates the user’s account and its permissions"
+            },
+            {
+              "id": "z_none",
+              "label": "Eliminates nothing — consistent with the fault either way"
+            },
+            {
               "id": "z_net",
               "label": "Eliminates the workstation’s addressing and its path off the subnet"
             },
@@ -1222,31 +1230,23 @@
             {
               "id": "z_site",
               "label": "Eliminates the site itself being down"
-            },
-            {
-              "id": "z_acct",
-              "label": "Eliminates the user’s account and its permissions"
-            },
-            {
-              "id": "z_none",
-              "label": "Eliminates nothing — consistent with the fault either way"
             }
           ],
           "items": [
+            {
+              "id": "i_nslk",
+              "label": "nslookup portal.example.com returns the same address the working machine resolves it to",
+              "correctZone": "z_dns"
+            },
             {
               "id": "i_ipcfg",
               "label": "ipconfig returns the same address range, mask and gateway as the machine on the next desk, which loads the site",
               "correctZone": "z_net"
             },
             {
-              "id": "i_other",
-              "label": "Every other site the user tries loads on this workstation, and its mapped drives are connected",
-              "correctZone": "z_net"
-            },
-            {
-              "id": "i_nslk",
-              "label": "nslookup portal.example.com returns the same address the working machine resolves it to",
-              "correctZone": "z_dns"
+              "id": "i_clock",
+              "label": "The workstation’s clock is 11 minutes fast",
+              "correctZone": "z_none"
             },
             {
               "id": "i_phone",
@@ -1259,9 +1259,9 @@
               "correctZone": "z_acct"
             },
             {
-              "id": "i_clock",
-              "label": "The workstation’s clock is 11 minutes fast",
-              "correctZone": "z_none"
+              "id": "i_other",
+              "label": "Every other site the user tries loads on this workstation, and its mapped drives are connected",
+              "correctZone": "z_net"
             }
           ]
         }
@@ -1281,50 +1281,35 @@
         "dragDrop": {
           "zones": [
             {
-              "id": "startup",
-              "label": "Task Manager — Startup tab"
-            },
-            {
               "id": "evt",
               "label": "Event Viewer"
-            },
-            {
-              "id": "devmgr",
-              "label": "Device Manager"
             },
             {
               "id": "diskmgr",
               "label": "Disk Management"
             },
             {
-              "id": "sched",
-              "label": "Task Scheduler"
+              "id": "startup",
+              "label": "Task Manager — Startup tab"
             },
             {
               "id": "asdesigned",
               "label": "No tool — this is configured behaviour, not a fault"
+            },
+            {
+              "id": "devmgr",
+              "label": "Device Manager"
+            },
+            {
+              "id": "sched",
+              "label": "Task Scheduler"
             }
           ],
           "items": [
             {
-              "id": "slowlogon",
-              "label": "Sign-in takes four minutes, then the desktop is fast; three vendor updaters launch at logon",
-              "correctZone": "startup"
-            },
-            {
-              "id": "reboot",
-              "label": "A workstation reboots unpredictably while nobody is at it; you need the record of what happened at 12:40 yesterday",
-              "correctZone": "evt"
-            },
-            {
               "id": "unknowndev",
               "label": "A newly attached USB scanner shows a yellow triangle and no driver bound to it; Windows Update finds none",
               "correctZone": "devmgr"
-            },
-            {
-              "id": "newssd",
-              "label": "A second internal drive is listed in the firmware setup but never appears in File Explorer; it has never held data",
-              "correctZone": "diskmgr"
             },
             {
               "id": "threeam",
@@ -1332,13 +1317,28 @@
               "correctZone": "sched"
             },
             {
-              "id": "idlelogoff",
-              "label": "A shared reception PC signs every user out after 15 minutes idle; three tickets this week call it a crash",
+              "id": "firstboot",
+              "label": "A workstation reimaged yesterday runs its disk at 100% for ten minutes after every start, then behaves normally",
               "correctZone": "asdesigned"
             },
             {
-              "id": "firstboot",
-              "label": "A workstation reimaged yesterday runs its disk at 100% for ten minutes after every start, then behaves normally",
+              "id": "reboot",
+              "label": "A workstation reboots unpredictably while nobody is at it; you need the record of what happened at 12:40 yesterday",
+              "correctZone": "evt"
+            },
+            {
+              "id": "newssd",
+              "label": "A second internal drive is listed in the firmware setup but never appears in File Explorer; it has never held data",
+              "correctZone": "diskmgr"
+            },
+            {
+              "id": "slowlogon",
+              "label": "Sign-in takes four minutes, then the desktop is fast; three vendor updaters launch at logon",
+              "correctZone": "startup"
+            },
+            {
+              "id": "idlelogoff",
+              "label": "A shared reception PC signs every user out after 15 minutes idle; three tickets this week call it a crash",
               "correctZone": "asdesigned"
             }
           ]
@@ -1359,8 +1359,16 @@
         "dragDrop": {
           "zones": [
             {
+              "id": "z_none",
+              "label": "None — already covered by a standing procedure"
+            },
+            {
               "id": "z_change",
               "label": "A change record and approval before it starts"
+            },
+            {
+              "id": "z_aup",
+              "label": "The acceptable use and monitoring policy"
             },
             {
               "id": "z_ir",
@@ -1369,36 +1377,13 @@
             {
               "id": "z_asset",
               "label": "The asset inventory"
-            },
-            {
-              "id": "z_aup",
-              "label": "The acceptable use and monitoring policy"
-            },
-            {
-              "id": "z_none",
-              "label": "None — already covered by a standing procedure"
             }
           ],
           "items": [
             {
-              "id": "i_fw",
-              "label": "Push firmware to the twelve switches in the main distribution frame at Thursday lunchtime",
-              "correctZone": "z_change"
-            },
-            {
               "id": "i_dns",
               "label": "Point the domain controllers at a different upstream resolver",
               "correctZone": "z_change"
-            },
-            {
-              "id": "i_image",
-              "label": "Take a laptop out of the locked drawer and image it for the investigation HR opened this morning",
-              "correctZone": "z_ir"
-            },
-            {
-              "id": "i_stock",
-              "label": "Sign four returned laptops back into stock and reissue two of them to new starters",
-              "correctZone": "z_asset"
             },
             {
               "id": "i_folder",
@@ -1409,6 +1394,21 @@
               "id": "i_reimage",
               "label": "Reimage a failed laptop from the standard image and restore the user’s data from backup",
               "correctZone": "z_none"
+            },
+            {
+              "id": "i_stock",
+              "label": "Sign four returned laptops back into stock and reissue two of them to new starters",
+              "correctZone": "z_asset"
+            },
+            {
+              "id": "i_image",
+              "label": "Take a laptop out of the locked drawer and image it for the investigation HR opened this morning",
+              "correctZone": "z_ir"
+            },
+            {
+              "id": "i_fw",
+              "label": "Push firmware to the twelve switches in the main distribution frame at Thursday lunchtime",
+              "correctZone": "z_change"
             }
           ]
         }
@@ -1436,23 +1436,23 @@
               "label": "Boot loader / BCD"
             },
             {
-              "id": "kernel",
-              "label": "Windows kernel and drivers"
+              "id": "expected",
+              "label": "Not a fault — expected behaviour"
             },
             {
               "id": "profile",
               "label": "User profile / shell"
             },
             {
-              "id": "expected",
-              "label": "Not a fault — expected behaviour"
+              "id": "kernel",
+              "label": "Windows kernel and drivers"
             }
           ],
           "items": [
             {
-              "id": "beeps",
-              "label": "A beep pattern and no video, on the onboard port and on a known-good graphics card",
-              "correctZone": "post"
+              "id": "blackdesk",
+              "label": "Sign-in succeeds to a black screen with only a cursor, but a brand-new local account works normally",
+              "correctZone": "profile"
             },
             {
               "id": "bootmgr",
@@ -1465,18 +1465,18 @@
               "correctZone": "kernel"
             },
             {
-              "id": "blackdesk",
-              "label": "Sign-in succeeds to a black screen with only a cursor, but a brand-new local account works normally",
-              "correctZone": "profile"
+              "id": "winre",
+              "label": "After three starts interrupted by a failing power strip, the machine boots into the recovery environment and offers Startup Repair",
+              "correctZone": "expected"
+            },
+            {
+              "id": "beeps",
+              "label": "A beep pattern and no video, on the onboard port and on a known-good graphics card",
+              "correctZone": "post"
             },
             {
               "id": "bitlocker",
               "label": "After enabling BitLocker and then changing the UEFI boot order, the machine demands a 48-digit recovery key",
-              "correctZone": "expected"
-            },
-            {
-              "id": "winre",
-              "label": "After three starts interrupted by a failing power strip, the machine boots into the recovery environment and offers Startup Repair",
               "correctZone": "expected"
             }
           ]
@@ -1497,10 +1497,6 @@
         "dragDrop": {
           "zones": [
             {
-              "id": "erase",
-              "label": "ATA Secure Erase, then redeploy"
-            },
-            {
               "id": "crypto",
               "label": "Cryptographic erase (destroy the key)"
             },
@@ -1511,23 +1507,27 @@
             {
               "id": "shred",
               "label": "Shred or incinerate, with a certificate of destruction"
+            },
+            {
+              "id": "erase",
+              "label": "ATA Secure Erase, then redeploy"
             }
           ],
           "items": [
-            {
-              "id": "ssd20",
-              "label": "20 healthy SATA SSDs from finance laptops, redeploying to the same department",
-              "correctZone": "erase"
-            },
             {
               "id": "contractor",
               "label": "A returned contractor laptop that never held anything above internal classification, going to a new starter next week",
               "correctZone": "erase"
             },
             {
-              "id": "sed",
-              "label": "A healthy self-encrypting SSD that must be reissued to another team this afternoon",
-              "correctZone": "crypto"
+              "id": "deadssd",
+              "label": "A failed SSD that held patient records; its controller is dead, so no erase command completes",
+              "correctZone": "shred"
+            },
+            {
+              "id": "ssd20",
+              "label": "20 healthy SATA SSDs from finance laptops, redeploying to the same department",
+              "correctZone": "erase"
             },
             {
               "id": "lto",
@@ -1535,13 +1535,13 @@
               "correctZone": "degauss"
             },
             {
-              "id": "legal",
-              "label": "A magnetic hard drive from a legal-hold system, out of warranty, that an auditor must see destroyed",
-              "correctZone": "shred"
+              "id": "sed",
+              "label": "A healthy self-encrypting SSD that must be reissued to another team this afternoon",
+              "correctZone": "crypto"
             },
             {
-              "id": "deadssd",
-              "label": "A failed SSD that held patient records; its controller is dead, so no erase command completes",
+              "id": "legal",
+              "label": "A magnetic hard drive from a legal-hold system, out of warranty, that an auditor must see destroyed",
               "correctZone": "shred"
             }
           ]

@@ -4,7 +4,7 @@
  * and reviewable in a diff. Run: node build-secplus-pbqs.mjs
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
-import { leakOf } from './pbq-leak.mjs';
+import { arrangeConfig, balanceOptionPositions } from './pbq-leak.mjs';
 
 const EXAM_ID = '79cuGMNydTwDMhyiDjry';
 const SOURCE = 'authored-2026-08-secplus-pbq';
@@ -445,8 +445,9 @@ function arrange(cfg, seedBase) {
 }
 
 questions.forEach((q, i) => {
-    q.pbqConfig = arrange(q.pbqConfig, `${SOURCE}:${i}`);
+    q.pbqConfig = arrangeConfig(q.pbqConfig, `${SOURCE}:${i}`);
 });
+balanceOptionPositions(questions);
 
 const out = {
     examId: EXAM_ID,

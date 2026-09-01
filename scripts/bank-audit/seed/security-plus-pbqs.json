@@ -23,18 +23,23 @@
               "label": "Management VLAN (out-of-band)"
             },
             {
-              "id": "dmz",
-              "label": "Screened subnet (DMZ)"
-            },
-            {
               "id": "lan",
               "label": "Internal LAN"
+            },
+            {
+              "id": "dmz",
+              "label": "Screened subnet (DMZ)"
             }
           ],
           "items": [
             {
-              "id": "proxy",
-              "label": "Reverse proxy",
+              "id": "swmgmt",
+              "label": "Core switch management interface",
+              "correctZone": "mgmt"
+            },
+            {
+              "id": "web",
+              "label": "Public web server",
               "correctZone": "dmz"
             },
             {
@@ -43,24 +48,19 @@
               "correctZone": "lan"
             },
             {
+              "id": "proxy",
+              "label": "Reverse proxy",
+              "correctZone": "dmz"
+            },
+            {
               "id": "file",
               "label": "HR file server",
               "correctZone": "lan"
             },
             {
-              "id": "swmgmt",
-              "label": "Core switch management interface",
-              "correctZone": "mgmt"
-            },
-            {
               "id": "jump",
               "label": "Administrator jump host",
               "correctZone": "mgmt"
-            },
-            {
-              "id": "web",
-              "label": "Public web server",
-              "correctZone": "dmz"
             }
           ]
         }
@@ -186,26 +186,31 @@
         "dragDrop": {
           "zones": [
             {
-              "id": "where",
-              "label": "Somewhere you are"
-            },
-            {
-              "id": "have",
-              "label": "Something you have"
+              "id": "are",
+              "label": "Something you are"
             },
             {
               "id": "know",
               "label": "Something you know"
             },
             {
-              "id": "are",
-              "label": "Something you are"
+              "id": "where",
+              "label": "Somewhere you are"
+            },
+            {
+              "id": "have",
+              "label": "Something you have"
             }
           ],
           "items": [
             {
-              "id": "token",
-              "label": "FIDO2 hardware security key",
+              "id": "geo",
+              "label": "Geofence restricting logon to the building",
+              "correctZone": "where"
+            },
+            {
+              "id": "cert",
+              "label": "Client certificate stored in the device TPM",
               "correctZone": "have"
             },
             {
@@ -219,19 +224,14 @@
               "correctZone": "know"
             },
             {
-              "id": "sq",
-              "label": "Security question answer",
-              "correctZone": "know"
-            },
-            {
-              "id": "cert",
-              "label": "Client certificate stored in the device TPM",
+              "id": "token",
+              "label": "FIDO2 hardware security key",
               "correctZone": "have"
             },
             {
-              "id": "geo",
-              "label": "Geofence restricting logon to the building",
-              "correctZone": "where"
+              "id": "sq",
+              "label": "Security question answer",
+              "correctZone": "know"
             }
           ]
         }
@@ -265,14 +265,14 @@
           ],
           "items": [
             {
+              "id": "acl",
+              "label": "Deny-by-default firewall ruleset",
+              "correctZone": "prev"
+            },
+            {
               "id": "restore",
               "label": "Restoring a server from last night’s backup",
               "correctZone": "corr"
-            },
-            {
-              "id": "cctv",
-              "label": "Recording CCTV camera",
-              "correctZone": "det"
             },
             {
               "id": "logrev",
@@ -285,9 +285,9 @@
               "correctZone": "corr"
             },
             {
-              "id": "acl",
-              "label": "Deny-by-default firewall ruleset",
-              "correctZone": "prev"
+              "id": "cctv",
+              "label": "Recording CCTV camera",
+              "correctZone": "det"
             },
             {
               "id": "lock",
@@ -416,17 +416,17 @@
                 {
                   "correctValue": "23",
                   "options": [
-                    "25",
                     "21",
+                    "23",
                     "22",
-                    "23"
+                    "25"
                   ]
                 },
                 {
                   "correctValue": "SSH",
                   "options": [
-                    "SFTP",
                     "SSH",
+                    "SFTP",
                     "TLS",
                     "Kerberos"
                   ]
@@ -439,18 +439,18 @@
                 {
                   "correctValue": "21",
                   "options": [
+                    "21",
                     "20",
                     "22",
-                    "21",
                     "69"
                   ]
                 },
                 {
                   "correctValue": "SFTP",
                   "options": [
+                    "TFTP",
                     "SFTP",
                     "SMB",
-                    "TFTP",
                     "HTTPS"
                   ]
                 }
@@ -462,19 +462,19 @@
                 {
                   "correctValue": "80",
                   "options": [
-                    "443",
                     "80",
-                    "8080",
-                    "88"
+                    "88",
+                    "443",
+                    "8080"
                   ]
                 },
                 {
                   "correctValue": "HTTPS",
                   "options": [
+                    "SSH",
                     "HTTPS",
-                    "S/MIME",
                     "IPSec",
-                    "SSH"
+                    "S/MIME"
                   ]
                 }
               ]
@@ -486,17 +486,17 @@
                   "correctValue": "389",
                   "options": [
                     "445",
-                    "1812",
+                    "636",
                     "389",
-                    "636"
+                    "1812"
                   ]
                 },
                 {
                   "correctValue": "LDAPS",
                   "options": [
                     "Kerberos",
-                    "TACACS+",
                     "RADIUS",
+                    "TACACS+",
                     "LDAPS"
                   ]
                 }
@@ -508,19 +508,19 @@
                 {
                   "correctValue": "161",
                   "options": [
-                    "123",
+                    "161",
                     "162",
                     "514",
-                    "161"
+                    "123"
                   ]
                 },
                 {
                   "correctValue": "SNMPv3",
                   "options": [
-                    "Syslog",
-                    "NetFlow",
+                    "SNMPv2c",
                     "SNMPv3",
-                    "SNMPv2c"
+                    "Syslog",
+                    "NetFlow"
                   ]
                 }
               ]
@@ -554,16 +554,16 @@
                   "options": [
                     "Managerial",
                     "Technical",
-                    "Operational",
-                    "Physical"
+                    "Physical",
+                    "Operational"
                   ]
                 },
                 {
                   "correctValue": "Preventive",
                   "options": [
                     "Deterrent",
-                    "Corrective",
                     "Detective",
+                    "Corrective",
                     "Preventive"
                   ]
                 }
@@ -575,19 +575,19 @@
                 {
                   "correctValue": "Technical",
                   "options": [
-                    "Operational",
                     "Technical",
+                    "Physical",
                     "Managerial",
-                    "Physical"
+                    "Operational"
                   ]
                 },
                 {
                   "correctValue": "Detective",
                   "options": [
-                    "Deterrent",
                     "Preventive",
+                    "Detective",
                     "Corrective",
-                    "Detective"
+                    "Deterrent"
                   ]
                 }
               ]
@@ -598,19 +598,19 @@
                 {
                   "correctValue": "Managerial",
                   "options": [
+                    "Physical",
                     "Technical",
                     "Operational",
-                    "Physical",
                     "Managerial"
                   ]
                 },
                 {
                   "correctValue": "Preventive",
                   "options": [
-                    "Preventive",
-                    "Deterrent",
                     "Corrective",
-                    "Detective"
+                    "Detective",
+                    "Preventive",
+                    "Deterrent"
                   ]
                 }
               ]
@@ -623,17 +623,17 @@
                   "options": [
                     "Technical",
                     "Physical",
-                    "Operational",
-                    "Managerial"
+                    "Managerial",
+                    "Operational"
                   ]
                 },
                 {
                   "correctValue": "Corrective",
                   "options": [
-                    "Deterrent",
                     "Preventive",
+                    "Corrective",
                     "Detective",
-                    "Corrective"
+                    "Deterrent"
                   ]
                 }
               ]
@@ -644,19 +644,19 @@
                 {
                   "correctValue": "Physical",
                   "options": [
-                    "Operational",
                     "Managerial",
+                    "Technical",
                     "Physical",
-                    "Technical"
+                    "Operational"
                   ]
                 },
                 {
                   "correctValue": "Deterrent",
                   "options": [
                     "Preventive",
-                    "Deterrent",
                     "Detective",
-                    "Corrective"
+                    "Corrective",
+                    "Deterrent"
                   ]
                 }
               ]
@@ -688,19 +688,19 @@
                 {
                   "correctValue": "AES-256",
                   "options": [
-                    "bcrypt",
-                    "RSA",
+                    "SHA-256",
                     "AES-256",
-                    "SHA-256"
+                    "bcrypt",
+                    "RSA"
                   ]
                 },
                 {
                   "correctValue": "Confidentiality",
                   "options": [
+                    "Confidentiality",
                     "Integrity",
                     "Non-repudiation",
-                    "Availability",
-                    "Confidentiality"
+                    "Availability"
                   ]
                 }
               ]
@@ -711,19 +711,19 @@
                 {
                   "correctValue": "SHA-256",
                   "options": [
-                    "3DES",
-                    "bcrypt",
                     "AES-256",
-                    "SHA-256"
+                    "bcrypt",
+                    "SHA-256",
+                    "3DES"
                   ]
                 },
                 {
                   "correctValue": "Integrity",
                   "options": [
                     "Confidentiality",
-                    "Integrity",
+                    "Availability",
                     "Non-repudiation",
-                    "Availability"
+                    "Integrity"
                   ]
                 }
               ]
@@ -734,19 +734,19 @@
                 {
                   "correctValue": "ECDSA",
                   "options": [
-                    "Diffie-Hellman",
-                    "SHA-256",
+                    "ECDSA",
                     "AES-256",
-                    "ECDSA"
+                    "SHA-256",
+                    "Diffie-Hellman"
                   ]
                 },
                 {
                   "correctValue": "Non-repudiation",
                   "options": [
                     "Confidentiality",
+                    "Non-repudiation",
                     "Integrity",
-                    "Availability",
-                    "Non-repudiation"
+                    "Availability"
                   ]
                 }
               ]
@@ -757,19 +757,19 @@
                 {
                   "correctValue": "bcrypt",
                   "options": [
-                    "RSA",
                     "AES-256",
                     "SHA-256",
-                    "bcrypt"
+                    "bcrypt",
+                    "RSA"
                   ]
                 },
                 {
                   "correctValue": "Integrity",
                   "options": [
-                    "Non-repudiation",
                     "Confidentiality",
-                    "Integrity",
-                    "Availability"
+                    "Availability",
+                    "Non-repudiation",
+                    "Integrity"
                   ]
                 }
               ]
@@ -824,8 +824,8 @@
                 {
                   "correctValue": "Deny",
                   "options": [
-                    "Permit",
-                    "Deny"
+                    "Deny",
+                    "Permit"
                   ]
                 }
               ]
@@ -848,8 +848,8 @@
                 {
                   "correctValue": "Deny",
                   "options": [
-                    "Permit",
-                    "Deny"
+                    "Deny",
+                    "Permit"
                   ]
                 }
               ]

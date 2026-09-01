@@ -561,9 +561,9 @@
                   "correctValue": "Permitted by line 6",
                   "options": [
                     "Denied by line 7",
-                    "Permitted by line 5",
+                    "Permitted by line 6",
                     "Denied by line 3",
-                    "Permitted by line 6"
+                    "Permitted by line 5"
                   ]
                 }
               ]
@@ -602,9 +602,9 @@
                 {
                   "correctValue": "Permitted by line 5",
                   "options": [
-                    "Permitted by line 6",
-                    "Denied by line 7",
                     "Permitted by line 5",
+                    "Denied by line 7",
+                    "Permitted by line 6",
                     "Denied by line 3"
                   ]
                 }
@@ -617,8 +617,8 @@
                   "correctValue": "Change the source to 10.10.20.192/26",
                   "options": [
                     "Move it below line 5",
-                    "Remove the line",
                     "Change the source to 10.10.20.192/26",
+                    "Remove the line",
                     "Keep unchanged"
                   ]
                 }
@@ -630,9 +630,9 @@
                 {
                   "correctValue": "Keep unchanged",
                   "options": [
-                    "Keep unchanged",
-                    "Remove the line",
                     "Change the destination to 10.10.30.0/24",
+                    "Remove the line",
+                    "Keep unchanged",
                     "Change the protocol to TCP 53"
                   ]
                 }
@@ -659,8 +659,8 @@
                   "correctValue": "Move it above line 3",
                   "options": [
                     "Remove the line",
-                    "Keep unchanged",
                     "Move it above line 3",
+                    "Keep unchanged",
                     "Change the source to 10.10.20.0/24"
                   ]
                 }
@@ -672,9 +672,9 @@
                 {
                   "correctValue": "Narrow it to TCP 80, 443, 143 and 993",
                   "options": [
-                    "Narrow it to TCP 80, 443, 143 and 993",
-                    "Keep unchanged",
                     "Move it above line 3",
+                    "Keep unchanged",
+                    "Narrow it to TCP 80, 443, 143 and 993",
                     "Remove the line"
                   ]
                 }
@@ -686,10 +686,10 @@
                 {
                   "correctValue": "Narrow it to TCP 80 and 443",
                   "options": [
-                    "Keep unchanged",
+                    "Narrow it to TCP 80 and 443",
                     "Remove the line",
                     "Change the source to 10.10.20.0/25",
-                    "Narrow it to TCP 80 and 443"
+                    "Keep unchanged"
                   ]
                 }
               ]
@@ -727,9 +727,9 @@
                 {
                   "correctValue": "Denied by the lab quarantine",
                   "options": [
-                    "Denied by the lab quarantine",
-                    "Permitted by the server-VLAN permit",
                     "Permitted by the internet permit",
+                    "Permitted by the server-VLAN permit",
+                    "Denied by the lab quarantine",
                     "Denied by the final deny"
                   ]
                 }
@@ -741,10 +741,10 @@
                 {
                   "correctValue": "Denied by the final deny",
                   "options": [
-                    "Denied by the SSH deny",
+                    "Denied by the final deny",
                     "Permitted by the internet permit",
                     "Permitted by the server-VLAN permit",
-                    "Denied by the final deny"
+                    "Denied by the SSH deny"
                   ]
                 }
               ]
@@ -755,8 +755,8 @@
                 {
                   "correctValue": "Permitted by the internet permit",
                   "options": [
-                    "Permitted by the internet permit",
                     "Denied by the lab quarantine",
+                    "Permitted by the internet permit",
                     "Denied by the final deny",
                     "Permitted by the server-VLAN permit"
                   ]
@@ -789,9 +789,9 @@
                 {
                   "correctValue": "Entry C — next hop 10.40.255.6",
                   "options": [
-                    "Entry C — next hop 10.40.255.6",
-                    "Entry G — next hop 203.0.113.1",
                     "Entry B — next hop 10.40.255.2",
+                    "Entry G — next hop 203.0.113.1",
+                    "Entry C — next hop 10.40.255.6",
                     "Entry D — next hop 10.40.255.10"
                   ]
                 }
@@ -803,10 +803,10 @@
                 {
                   "correctValue": "Entry D — next hop 10.40.255.10",
                   "options": [
-                    "Entry G — next hop 203.0.113.1",
+                    "Entry D — next hop 10.40.255.10",
                     "Entry B — next hop 10.40.255.2",
                     "Entry C — next hop 10.40.255.6",
-                    "Entry D — next hop 10.40.255.10"
+                    "Entry G — next hop 203.0.113.1"
                   ]
                 }
               ]
@@ -818,9 +818,9 @@
                   "correctValue": "Entry E — next hop 10.40.255.14",
                   "options": [
                     "Entry A — next hop 203.0.113.1",
-                    "Entry B — next hop 10.40.255.2",
+                    "Entry E — next hop 10.40.255.14",
                     "Entry F — next hop 10.40.255.18",
-                    "Entry E — next hop 10.40.255.14"
+                    "Entry B — next hop 10.40.255.2"
                   ]
                 }
               ]
@@ -832,8 +832,8 @@
                   "correctValue": "Entry G — next hop 203.0.113.1",
                   "options": [
                     "Entry B — next hop 10.40.255.2",
-                    "Entry G — next hop 203.0.113.1",
                     "Entry C — next hop 10.40.255.6",
+                    "Entry G — next hop 203.0.113.1",
                     "Entry A — next hop 203.0.113.1"
                   ]
                 }
@@ -846,8 +846,8 @@
                   "correctValue": "Keep unchanged",
                   "options": [
                     "Change the next hop to 10.40.255.2",
-                    "Remove the entry",
-                    "Keep unchanged"
+                    "Keep unchanged",
+                    "Remove the entry"
                   ]
                 }
               ]
@@ -859,8 +859,8 @@
                   "correctValue": "Keep unchanged",
                   "options": [
                     "Remove the entry",
-                    "Keep unchanged",
-                    "Change the prefix to 10.40.0.0/8"
+                    "Change the prefix to 10.40.0.0/8",
+                    "Keep unchanged"
                   ]
                 }
               ]
@@ -884,8 +884,8 @@
                 {
                   "correctValue": "Change the prefix to 10.40.8.128/25",
                   "options": [
-                    "Keep unchanged",
                     "Change the prefix to 10.40.8.128/25",
+                    "Keep unchanged",
                     "Change the next hop to 10.40.255.6",
                     "Remove the entry"
                   ]
@@ -899,9 +899,9 @@
                   "correctValue": "Remove the entry",
                   "options": [
                     "Change the next hop to 10.40.255.18",
-                    "Change the prefix to 10.40.9.0/25",
+                    "Remove the entry",
                     "Keep unchanged",
-                    "Remove the entry"
+                    "Change the prefix to 10.40.9.0/25"
                   ]
                 }
               ]
@@ -913,8 +913,8 @@
                   "correctValue": "Keep unchanged",
                   "options": [
                     "Change the administrative distance to 1",
-                    "Remove the entry",
-                    "Keep unchanged"
+                    "Keep unchanged",
+                    "Remove the entry"
                   ]
                 }
               ]
@@ -940,9 +940,9 @@
                   "correctValue": "Entry D — next hop 10.40.255.10",
                   "options": [
                     "Discarded — no matching entry",
-                    "Entry D — next hop 10.40.255.10",
+                    "Entry C — next hop 10.40.255.6",
                     "Entry B — next hop 10.40.255.2",
-                    "Entry C — next hop 10.40.255.6"
+                    "Entry D — next hop 10.40.255.10"
                   ]
                 }
               ]
@@ -953,10 +953,10 @@
                 {
                   "correctValue": "Entry F — next hop 10.40.255.18",
                   "options": [
-                    "Discarded — no matching entry",
+                    "Entry F — next hop 10.40.255.18",
                     "Entry B — next hop 10.40.255.2",
                     "Entry E — next hop 10.40.255.14",
-                    "Entry F — next hop 10.40.255.18"
+                    "Discarded — no matching entry"
                   ]
                 }
               ]
@@ -967,8 +967,8 @@
                 {
                   "correctValue": "Entry B — next hop 10.40.255.2",
                   "options": [
-                    "Entry B — next hop 10.40.255.2",
                     "Entry C — next hop 10.40.255.6",
+                    "Entry B — next hop 10.40.255.2",
                     "Entry G — next hop 203.0.113.1",
                     "Discarded — no matching entry"
                   ]
@@ -981,9 +981,9 @@
                 {
                   "correctValue": "Entry A — next hop 203.0.113.1",
                   "options": [
-                    "Entry A — next hop 203.0.113.1",
-                    "Discarded — no matching entry",
                     "Entry G — next hop 203.0.113.1",
+                    "Discarded — no matching entry",
+                    "Entry A — next hop 203.0.113.1",
                     "Entry B — next hop 10.40.255.2"
                   ]
                 }
@@ -1018,17 +1018,17 @@
                   "correctValue": "10.80.16.0/23",
                   "options": [
                     "10.80.16.0/24",
-                    "10.80.16.0/23",
+                    "10.80.16.0/22",
                     "10.80.16.0/25",
-                    "10.80.16.0/22"
+                    "10.80.16.0/23"
                   ]
                 },
                 {
                   "correctValue": "10.80.16.1",
                   "options": [
                     "10.80.17.1",
-                    "10.80.16.2",
                     "10.80.16.1",
+                    "10.80.16.2",
                     "10.80.16.0"
                   ]
                 },
@@ -1060,8 +1060,8 @@
                   "options": [
                     "10.80.18.2",
                     "10.80.17.255",
-                    "10.80.18.1",
-                    "10.80.18.0"
+                    "10.80.18.0",
+                    "10.80.18.1"
                   ]
                 },
                 {
@@ -1082,8 +1082,8 @@
                   "correctValue": "10.80.19.0/25",
                   "options": [
                     "10.80.19.0/26",
-                    "10.80.20.0/25",
                     "10.80.19.0/25",
+                    "10.80.20.0/25",
                     "10.80.19.0/24"
                   ]
                 },
@@ -1091,8 +1091,8 @@
                   "correctValue": "10.80.19.1",
                   "options": [
                     "10.80.19.0",
-                    "10.80.19.1",
                     "10.80.19.129",
+                    "10.80.19.1",
                     "10.80.19.2"
                   ]
                 },
@@ -1113,9 +1113,9 @@
                 {
                   "correctValue": "10.80.19.128/26",
                   "options": [
-                    "10.80.19.128/27",
-                    "10.80.19.128/25",
                     "10.80.19.128/26",
+                    "10.80.19.128/25",
+                    "10.80.19.128/27",
                     "10.80.19.192/26"
                   ]
                 },
@@ -1123,8 +1123,8 @@
                   "correctValue": "10.80.19.129",
                   "options": [
                     "10.80.19.128",
-                    "10.80.19.130",
                     "10.80.19.129",
+                    "10.80.19.130",
                     "10.80.19.192"
                   ]
                 },
@@ -1145,17 +1145,17 @@
                 {
                   "correctValue": "10.80.19.192/27",
                   "options": [
-                    "10.80.19.192/27",
+                    "10.80.19.192/26",
                     "10.80.19.224/27",
                     "10.80.19.192/28",
-                    "10.80.19.192/26"
+                    "10.80.19.192/27"
                   ]
                 },
                 {
                   "correctValue": "10.80.19.193",
                   "options": [
-                    "10.80.19.224",
                     "10.80.19.193",
+                    "10.80.19.224",
                     "10.80.19.194",
                     "10.80.19.192"
                   ]
@@ -1164,9 +1164,9 @@
                   "correctValue": "10.80.19.223",
                   "options": [
                     "10.80.19.222",
-                    "10.80.19.255",
+                    "10.80.19.223",
                     "10.80.19.224",
-                    "10.80.19.223"
+                    "10.80.19.255"
                   ]
                 }
               ]
@@ -1198,8 +1198,8 @@
                   "correctValue": "Duplex mismatch between the port and the host",
                   "options": [
                     "A failing cable or connector",
-                    "Duplex mismatch between the port and the host",
                     "No remaining power budget on the switch",
+                    "Duplex mismatch between the port and the host",
                     "A switching loop on the segment"
                   ]
                 }
@@ -1225,9 +1225,9 @@
                 {
                   "correctValue": "The switch has no remaining power budget for this device",
                   "options": [
-                    "Duplex mismatch between the port and the host",
-                    "A failing cable or connector",
                     "The switch has no remaining power budget for this device",
+                    "A failing cable or connector",
+                    "Duplex mismatch between the port and the host",
                     "A switching loop on the segment"
                   ]
                 }
@@ -1254,8 +1254,8 @@
                   "correctValue": "A switching loop is flooding the segment",
                   "options": [
                     "Duplex mismatch between the port and the host",
-                    "A switching loop is flooding the segment",
                     "Two hosts hold the same IP address",
+                    "A switching loop is flooding the segment",
                     "Congestion — more is offered than the port can send"
                   ]
                 }
@@ -1269,8 +1269,8 @@
                   "options": [
                     "Duplex mismatch between the port and the host",
                     "A failing cable or connector",
-                    "The port’s VLAN is not carried across the uplink",
-                    "No DHCP scope exists for this VLAN"
+                    "No DHCP scope exists for this VLAN",
+                    "The port’s VLAN is not carried across the uplink"
                   ]
                 }
               ]
@@ -1301,8 +1301,8 @@
                 {
                   "correctValue": "No action — this is inside headroom",
                   "options": [
-                    "No action — this is inside headroom",
                     "Order a circuit upgrade this quarter",
+                    "No action — this is inside headroom",
                     "Move the heaviest traffic out of the busy period",
                     "Investigate the physical layer"
                   ]
@@ -1315,8 +1315,8 @@
                 {
                   "correctValue": "Order a circuit upgrade this quarter",
                   "options": [
-                    "No action — this is inside headroom",
                     "Order a circuit upgrade this quarter",
+                    "No action — this is inside headroom",
                     "Prioritise the sensitive traffic and rate-limit the rest",
                     "Investigate the physical layer"
                   ]
@@ -1359,8 +1359,8 @@
                   "options": [
                     "No action — this is inside headroom",
                     "Investigate the physical layer",
-                    "Move the heaviest traffic out of the busy period",
-                    "Order a circuit upgrade this quarter"
+                    "Order a circuit upgrade this quarter",
+                    "Move the heaviest traffic out of the busy period"
                   ]
                 }
               ]
@@ -1404,9 +1404,9 @@
                 {
                   "correctValue": "Alternate port (discarding)",
                   "options": [
-                    "Designated port",
+                    "Alternate port (discarding)",
                     "Root port",
-                    "Alternate port (discarding)"
+                    "Designated port"
                   ]
                 }
               ]
@@ -1456,8 +1456,8 @@
                 {
                   "correctValue": "Designated port",
                   "options": [
-                    "Designated port",
                     "Alternate port (discarding)",
+                    "Designated port",
                     "Root port"
                   ]
                 }
@@ -1470,8 +1470,8 @@
                   "correctValue": "Designated port",
                   "options": [
                     "Root port",
-                    "Designated port",
-                    "Alternate port (discarding)"
+                    "Alternate port (discarding)",
+                    "Designated port"
                   ]
                 }
               ]
@@ -1518,8 +1518,8 @@
                   "options": [
                     "10.90.20.15",
                     "10.90.20.61",
-                    "10.90.20.40",
-                    "No answer — that resolver has no knowledge of this zone"
+                    "No answer — that resolver has no knowledge of this zone",
+                    "10.90.20.40"
                   ]
                 }
               ]
@@ -1531,9 +1531,9 @@
                   "correctValue": "10.90.20.60",
                   "options": [
                     "No answer — the name does not exist",
-                    "10.90.20.60",
+                    "10.90.20.61",
                     "10.90.20.40",
-                    "10.90.20.61"
+                    "10.90.20.60"
                   ]
                 }
               ]
@@ -1544,10 +1544,10 @@
                 {
                   "correctValue": "10.90.20.61",
                   "options": [
-                    "No answer — the name does not exist",
+                    "10.90.20.61",
                     "10.90.20.40",
                     "10.90.20.60",
-                    "10.90.20.61"
+                    "No answer — the name does not exist"
                   ]
                 }
               ]
@@ -1559,9 +1559,9 @@
                   "correctValue": "Change the second entry to 10.90.5.11",
                   "options": [
                     "Remove the second entry",
-                    "Change the first entry to 8.8.8.8",
+                    "Change the second entry to 10.90.5.11",
                     "Keep unchanged",
-                    "Change the second entry to 10.90.5.11"
+                    "Change the first entry to 8.8.8.8"
                   ]
                 }
               ]
@@ -1572,9 +1572,9 @@
                 {
                   "correctValue": "Increment it so the secondary transfers the change",
                   "options": [
-                    "Set it back to yesterday’s value",
+                    "Increment it so the secondary transfers the change",
                     "Keep unchanged",
-                    "Increment it so the secondary transfers the change"
+                    "Set it back to yesterday’s value"
                   ]
                 }
               ]
@@ -1598,9 +1598,9 @@
                 {
                   "correctValue": "Keep unchanged",
                   "options": [
-                    "Keep unchanged",
+                    "Remove the forwarder",
                     "Change the forwarder to 10.90.5.11",
-                    "Remove the forwarder"
+                    "Keep unchanged"
                   ]
                 }
               ]
@@ -1625,8 +1625,8 @@
                   "correctValue": "10.90.20.40",
                   "options": [
                     "10.90.20.61",
-                    "10.90.20.40",
                     "No answer — that resolver has no knowledge of this zone",
+                    "10.90.20.40",
                     "10.90.20.15"
                   ]
                 }
@@ -1638,10 +1638,10 @@
                 {
                   "correctValue": "10.90.20.61",
                   "options": [
-                    "10.90.20.61",
+                    "10.90.20.40",
                     "No answer — the name does not exist",
                     "10.90.20.60",
-                    "10.90.20.40"
+                    "10.90.20.61"
                   ]
                 }
               ]
@@ -1687,8 +1687,8 @@
                   "correctValue": "Powers up within 802.3af",
                   "options": [
                     "Needs an 802.3at port",
-                    "Beyond this switch — the device needs 802.3bt",
                     "Powers up within 802.3af",
+                    "Beyond this switch — the device needs 802.3bt",
                     "Refused — not enough budget remains"
                   ]
                 }
@@ -1790,9 +1790,9 @@
                 {
                   "correctValue": "Change to CCMP only",
                   "options": [
-                    "Change to CCMP only",
+                    "Change to TKIP only",
                     "Keep unchanged",
-                    "Change to TKIP only"
+                    "Change to CCMP only"
                   ]
                 }
               ]
@@ -1803,8 +1803,8 @@
                 {
                   "correctValue": "Change to required",
                   "options": [
-                    "Change to required",
                     "Keep unchanged",
+                    "Change to required",
                     "Change to optional"
                   ]
                 }
@@ -1816,9 +1816,9 @@
                 {
                   "correctValue": "Keep unchanged",
                   "options": [
-                    "Restrict it to the 5 GHz radio",
+                    "Keep unchanged",
                     "Disable it",
-                    "Keep unchanged"
+                    "Restrict it to the 5 GHz radio"
                   ]
                 }
               ]
@@ -1844,8 +1844,8 @@
                   "correctValue": "Keep unchanged",
                   "options": [
                     "Permit it to the server VLAN as well",
-                    "Move it to the corporate VLAN",
-                    "Keep unchanged"
+                    "Keep unchanged",
+                    "Move it to the corporate VLAN"
                   ]
                 }
               ]
@@ -1856,9 +1856,9 @@
                 {
                   "correctValue": "Disable it",
                   "options": [
-                    "Disable it",
+                    "Leave it on the guest SSID only",
                     "Keep unchanged",
-                    "Leave it on the guest SSID only"
+                    "Disable it"
                   ]
                 }
               ]

@@ -146,3 +146,200 @@ export function auditLeak(configs, { tolerance = 0.15 } = {}) {
         offenders,
     };
 }
+
+// ─── Set-level position tests ───────────────────────────────────
+//
+// Ported from load-netplus-pbqs.mjs, which caught skew the per-question checks
+// above miss: a set can look fine question by question and still have the key
+// sitting at the top of the dropdown far more often than chance across the
+// whole file.
+//
+// One correction to the note that came with them. They were written believing
+// "the widget does not shuffle" — that was true until 2026-08-30, when
+// PBQQuestion.tsx gained useShuffledOnce/useOptionShuffler and both were
+// deployed. The player is shuffled now. These checks still matter, because a
+// seed file should not be an answer key on its own and a future renderer change
+// must not silently re-open the hole.
+
+/** Where does the correct value sit in its dropdown, across the whole set?
+ *  Reports a sigma per position, so a skew that no single question would flag
+ *  still shows up. */
+export function optionPositionReport(questions) {
+    const observed = [], expected = [], variance = [];
+    let cells = 0;
+    for (const q of questions) {
+        const cfg = q.pbqConfig || q;
+        if (cfg?.pbqType !== 'fill-table') continue;
+        for (const r of cfg.fillTable.rows) {
+            for (const f of r.fields) {
+                const n = f.options.length;
+                const at = f.options.indexOf(f.correctValue);
+                if (at < 0) continue;
+                cells++;
+                observed[at] = (observed[at] || 0) + 1;
+                for (let p = 0; p < n; p++) {
+                    expected[p] = (expected[p] || 0) + 1 / n;
+                    variance[p] = (variance[p] || 0) + (1 / n) * (1 - 1 / n);
+                }
+            }
+        }
+    }
+    const positions = expected.map((e, p) => ({
+        position: p,
+        observed: observed[p] || 0,
+        expected: e,
+        sigma: variance[p] > 0 ? ((observed[p] || 0) - e) / Math.sqrt(variance[p]) : 0,
+    }));
+    return { cells, positions };
+}
+
+/** What "always pick the kth entry in every dropdown" scores. Clamped to the
+ *  last option, because that is what someone reaching for a fixed position
+ *  actually does on a shorter list. */
+export function fixedPositionScores(questions) {
+    const cells = [];
+    for (const q of questions) {
+        const cfg = q.pbqConfig || q;
+        if (cfg?.pbqType !== 'fill-table') continue;
+        for (const r of cfg.fillTable.rows) cells.push(...r.fields);
+    }
+    if (!cells.length) return [];
+    const max = Math.max(...cells.map((f) => f.options.length));
+    return Array.from({ length: max }, (_, k) =>
+        cells.filter((f) => f.options[Math.min(k, f.options.length - 1)] === f.correctValue).length / cells.length);
+}
+
+/** Monotonic in EITHER direction, plus items grouped by zone when the counts
+ *  would allow an interleave. Stricter than the walk strategies above. */
+export function dragDropOrderErrors(cfg, at) {
+    const errs = [];
+    if (cfg.pbqType !== 'drag-drop') return errs;
+    const order = new Map(cfg.dragDrop.zones.map((z, i) => [z.id, i]));
+    const s = cfg.dragDrop.items.map((it) => order.get(it.correctZone));
+    if (s.some((v) => v === undefined)) return errs;
+    const up = s.every((v, i) => i === 0 || v >= s[i - 1]);
+    const down = s.every((v, i) => i === 0 || v <= s[i - 1]);
+    if (up || down) {
+        errs.push(`${at}: correctZone sequence [${s.join(',')}] is monotonic — items authored in answer order`);
+    }
+    const counts = {};
+    for (const v of s) counts[v] = (counts[v] || 0) + 1;
+    const avoidable = Math.max(...Object.values(counts)) <= Math.ceil(s.length / 2);
+    const runs = s.filter((v, i) => i > 0 && v === s[i - 1]).length;
+    if (avoidable && runs > 0) {
+        errs.push(`${at}: ${runs} adjacent item pair(s) share a zone though the counts allow a full interleave`);
+    }
+    return errs;
+}
+
+/** Command questions where the scenario or a hint gives away how many lines to
+ *  type, or where a single command is accepted for a task whose whole point is
+ *  probe-then-act. */
+export function commandGiveawayErrors(cfg, at) {
+    const errs = [];
+    if (cfg.pbqType !== 'command') return errs;
+    const c = cfg.command || {};
+    const COUNT = /(one|two|three|1|2|3)\s+commands?|single command|commands?\s*:\s*[123]/i;
+    if (c.scenario && COUNT.test(c.scenario)) errs.push(`${at}: scenario states how many commands to type`);
+    (c.hints || []).forEach((h, i) => {
+        if (COUNT.test(h)) errs.push(`${at}: hint ${i + 1} states how many commands to type`);
+    });
+    return errs;
+}
+
+// ─── Authoring-time de-correlation ──────────────────────────────
+
+/** Deterministic PRNG so an emitted seed file is stable and diffable. */
+export function rngFrom(seed) {
+    let h = 2166136261;
+    for (const c of String(seed)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); }
+    return () => { h ^= h << 13; h ^= h >>> 17; h ^= h << 5; return ((h >>> 0) % 100000) / 100000; };
+}
+
+function shuffleWith(arr, rng) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+}
+
+/** Search for an arrangement a zero-knowledge candidate does worst against.
+ *  One shuffle can land correlated by luck, so try many and keep the best. An
+ *  arrangement is only accepted if it also clears dragDropOrderErrors, which
+ *  rejects monotonic sequences a raw score can still tolerate. */
+export function arrangeConfig(cfg, seedBase, attempts = 400) {
+    // drag-drop only. fill-table option order is set by
+    // balanceOptionPositions, which sees the whole file; running both over
+    // the same cells means each undoes the other.
+    if (cfg.pbqType !== 'drag-drop') return cfg;
+    let best = null;
+    for (let n = 0; n < attempts; n++) {
+        const rng = rngFrom(`${seedBase}:${n}`);
+        const c = JSON.parse(JSON.stringify(cfg));
+        c.dragDrop.items = shuffleWith(c.dragDrop.items, rng);
+        c.dragDrop.zones = shuffleWith(c.dragDrop.zones, rng);
+        const { free, chance, scored } = leakOf(c);
+        const excess = scored ? (free - chance) / scored : 0;
+        const structural = dragDropOrderErrors(c, 'x').length;
+        const cost = excess + structural;   // any monotonic/interleave error outweighs a small excess
+        if (!best || cost < best.cost) best = { c, cost };
+        if (best.cost <= 0) break;
+    }
+    return best.c;
+}
+
+/** Per-question arranging cannot see the whole file, so a set can still end up
+ *  with the key sitting at one dropdown position far more often than chance.
+ *  This walks every cell and moves the correct value to whichever position is
+ *  least used so far, which drives both the sigma and the "always pick the kth
+ *  entry" score down to chance. Mutates in place; call after arrangeConfig. */
+export function balanceOptionPositions(questions) {
+    // Cells differ in how many options they have, so position 0 is reachable by
+    // every cell while position 3 is reachable only by the long ones. Balancing
+    // on raw counts therefore over-corrects and makes the skew worse. Track the
+    // expected count per position too, and place each key where the deficit
+    // (expected minus actual) is largest among the positions THIS cell can
+    // reach.
+    const cells = [];
+    for (const q of questions) {
+        const cfg = q.pbqConfig || q;
+        if (cfg?.pbqType !== 'fill-table') continue;
+        cfg.fillTable.rows.forEach((row, ri) => {
+            for (const f of row.fields) {
+                if (f.options.indexOf(f.correctValue) >= 0) { f.__rowIndex = ri; cells.push(f); }
+            }
+        });
+    }
+    const maxN = cells.length ? Math.max(...cells.map((f) => f.options.length)) : 0;
+    const expected = Array(maxN).fill(0);
+    for (const f of cells) {
+        for (let p = 0; p < f.options.length; p++) expected[p] += 1 / f.options.length;
+    }
+    // Longest lists first: they are the only ones that can reach the high
+    // positions, so they get to claim them before the short lists crowd the low
+    // ones.
+    const order = cells.map((f, i) => ({ f, i })).sort((a, b) => b.f.options.length - a.f.options.length);
+    const used = Array(maxN).fill(0);
+    let moved = 0;
+    for (const { f } of order) {
+        const n = f.options.length;
+        const at = f.options.indexOf(f.correctValue);
+        let target = 0, bestDeficit = -Infinity;
+        for (let p = 0; p < n; p++) {
+            // Nudge away from the row's own index too: "the answer is on the
+            // diagonal" is the other fixed-position tell, and it costs nothing
+            // to break ties against it.
+            const deficit = expected[p] - used[p] - (p === f.__rowIndex ? 0.001 : 0);
+            if (deficit > bestDeficit) { bestDeficit = deficit; target = p; }
+        }
+        if (target !== at) {
+            const a = f.options.slice();
+            [a[at], a[target]] = [a[target], a[at]];
+            f.options = a;
+            moved++;
+        }
+        used[target] += 1;
+    }
+    for (const f of cells) delete f.__rowIndex;
+    return { moved, histogram: used, expected };
+}
+

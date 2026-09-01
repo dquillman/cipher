@@ -81,6 +81,7 @@
  * These questions are NOT reviewed by a certified subject matter expert.
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
+import { arrangeConfig, balanceOptionPositions } from './pbq-leak.mjs';
 
 const EXAM_ID = '12396VsKMFLnPMXivHKQ';
 const SOURCE = 'authored-2026-08-aplus-pbq';
@@ -926,6 +927,14 @@ if (lint.length) {
 }
 
 // ─── Emit ────────────────────────────────────────────────────────
+
+/* Items authored grouped by zone, and correct values left at the top of a
+ * dropdown, make the seed an answer key even though the renderer shuffles.
+ * Search for an arrangement a zero-knowledge candidate does worst against. */
+questions.forEach((q, i) => {
+    if (q.pbqConfig) q.pbqConfig = arrangeConfig(q.pbqConfig, `${SOURCE}:${i}`);
+});
+balanceOptionPositions(questions);
 
 const out = {
     examId: EXAM_ID,

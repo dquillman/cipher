@@ -43,6 +43,7 @@
  * Not reviewed by a certified subject matter expert.
  */
 import { writeFileSync, mkdirSync } from 'node:fs';
+import { balanceOptionPositions } from './pbq-leak.mjs';
 
 const EXAM_ID = 'N5mrEby0gKLFs1y88DpM';
 const SOURCE = 'authored-2026-08-netplus-pbq';
@@ -912,6 +913,10 @@ for (let seed = 1; seed <= 5000; seed++) {
     questions = candidate; chosenSeed = seed; bias = b; strat = s; break;
 }
 if (!questions) throw new Error('no seed produced an acceptably flat option-position distribution');
+
+/* Balance the key's dropdown position across the whole set, which a
+ * per-question shuffle cannot do. */
+balanceOptionPositions(questions);
 
 const out = {
     examId: EXAM_ID,
