@@ -166,8 +166,12 @@ export default function Quiz() {
 
         // Pre-Quiz Reinforcement Check
         const checkReinforcement = () => {
-            const MEMORY_KEY = 'exam_coach_reinforcement';
-            const FREQUENCY_KEY = 'exam_coach_last_reinforcement_shown';
+            // Scoped per user: a global key leaks one account's learning history
+            // to the next person who signs in on the same browser.
+            const uid = auth.currentUser?.uid;
+            if (!uid) return;
+            const MEMORY_KEY = `exam_coach_reinforcement_${uid}`;
+            const FREQUENCY_KEY = `exam_coach_last_reinforcement_shown_${uid}`;
             const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
             const ONE_DAY = 24 * 60 * 60 * 1000;
 
@@ -179,6 +183,12 @@ export default function Quiz() {
                 const now = Date.now();
 
                 if ((now - memory.timestamp) > SEVEN_DAYS) return;
+                // A diagnostic is a baseline. Telling someone they are "getting
+                // better" before they have answered anything is nonsense, and on
+                // their first session it is their first impression.
+                if (location.state?.mode === 'diagnostic') return;
+                // And never carry a pattern from a different exam.
+                if (memory.examId && memory.examId !== effectiveId) return;
 
                 const lastShownStr = localStorage.getItem(FREQUENCY_KEY);
                 if (lastShownStr) {

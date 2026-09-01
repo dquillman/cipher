@@ -7,6 +7,7 @@ import { useExam } from '../contexts/ExamContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { Lock, Zap, ArrowRight, X, Brain, ShieldCheck } from 'lucide-react';
 import { type PatternData } from './PatternInsightCard';
+import { auth } from '../firebase';
 
 
 export default function ThinkingTrapsCard() {
@@ -142,7 +143,7 @@ export default function ThinkingTrapsCard() {
 
                 {/* Reinforcement Memory Display */}
                 {(() => {
-                    const MEMORY_KEY = 'exam_coach_reinforcement';
+                    const MEMORY_KEY = `exam_coach_reinforcement_${auth.currentUser?.uid ?? 'anon'}`;
                     try {
                         const memoryStr = localStorage.getItem(MEMORY_KEY);
                         if (memoryStr) {

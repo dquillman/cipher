@@ -4,6 +4,7 @@ import type { PatternData } from '../PatternInsightCard';
 import { useMarketingCopy } from '../../hooks/useMarketingCopy';
 import MasteryDisclosure from './MasteryDisclosure';
 import { EXAM_LENS } from '../../config/exams';
+import { auth } from '../../firebase';
 
 interface QuizCompletionSummaryProps {
     score: number;
@@ -247,7 +248,9 @@ export default function QuizCompletionSummary({
                     {(() => {
                         // Generate and store if not already done for this session
                         // We can use a simple check or just overwrite since it's the end of session
-                        const REINFORCEMENT_KEY = 'exam_coach_reinforcement';
+                        // Per-user, or it is read back by the next account to
+                        // sign in on this browser.
+                        const REINFORCEMENT_KEY = `exam_coach_reinforcement_${auth.currentUser?.uid ?? 'anon'}`;
 
                         // Only generate if accuracy is decent (e.g. > 40%) to avoid reinforcing failure
                         if (accuracy > 40) {
