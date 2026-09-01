@@ -1,0 +1,638 @@
+[
+  {
+    "id": "0VJkaVeL7pHK7oVbHUEy",
+    "stem": "A user tells Camila that the ERP client will not connect. Camila confirms the port has a link light, the workstation holds a valid DHCP address, mask, and gateway, and it can ping both the default gateway and an internet host by IP address. Which approach should Camila take, and where should she begin?",
+    "level": "Analyze",
+    "why": "Link, addressing and successful ICMP on-net and off-net are three pieces of evidence that must be related to each other to work out which layers are already eliminated before a methodology can be chosen."
+  },
+  {
+    "id": "0jdKWW86fs8QthyESvZi",
+    "stem": "A branch office suffers brief power blips several times a month, and each one reboots the rack of switches and the firewall, dropping the site offline for minutes. Facilities lead Carla wants the equipment to ride through short outages and shut down gracefully during long ones. The rack currently feeds all equipment from a basic power strip. What should she install?",
+    "level": "Apply",
+    "why": "Two stated requirements (ride through blips, shut down gracefully) drive selection of a known device. Straight application of what a UPS does versus a PDU."
+  },
+  {
+    "id": "16chfYjNCQwuEzX3lBH1",
+    "stem": "Maria, a network technician, is dispatched to trace a suspected damaged copper run between the main distribution frame and a workgroup switch in an adjacent building. Which type of documentation will be MOST useful for locating the exact cable path and termination points?",
+    "level": "Apply",
+    "why": "Task-to-resource selection: a physical tracing job calls for the Layer 1 cable map. Known rule used in a situation."
+  },
+  {
+    "id": "1RsY4iGDaO8w8WsJesQ9",
+    "stem": "A new privacy policy requires that DNS queries from Hannah's corporate laptops be encrypted in transit so an on-path observer cannot read which domains users look up. Hannah's colleague suggests enabling DNSSEC on the company's zones. Why is that suggestion insufficient, and what should Hannah deploy?",
+    "level": "Understand",
+    "why": "The work is interpreting what DNSSEC actually provides (integrity and authenticity) versus what the policy demands (confidentiality). A property mismatch explanation, not evidence-to-cause reasoning."
+  },
+  {
+    "id": "1s29HPjUHfNJKAc9GP9i",
+    "stem": "During an audit, Marcus is asked how his team detects unauthorized changes to router configurations. The team already takes nightly configuration backups and uses a ticketing system for change requests. Which addition would BEST let the team detect configuration drift?",
+    "level": "Apply",
+    "why": "Given a requirement (detect drift) and existing tooling, select the control that meets it. Golden-config diffing is a known practice applied to a new situation."
+  },
+  {
+    "id": "2ICCd1uan5rNYZtQvfDb",
+    "stem": "Shortly after a contractor plugs a personal wireless router into a conference room wall jack, employees across the floor begin receiving IP addresses in an unfamiliar range with the contractor's device listed as their default gateway, and they lose access to internal resources. Which attack or condition does help-desk lead Omar identify?",
+    "level": "Analyze",
+    "why": "Observed state only: unfamiliar address range, wrong gateway, lost internal resources. The stem never says the device is serving DHCP; that mechanism has to be inferred and separated from evil twin and DNS spoofing."
+  },
+  {
+    "id": "2nrGMN9URLulIXm5E8Vk",
+    "stem": "After a core router failure took the whole branch office offline for an hour, network engineer Tomás is told to make the default gateway survive a single router outage without any reconfiguration on client machines. He installs a second router. What should he configure next?",
+    "level": "Apply",
+    "why": "Requirement (gateway survives a router loss with no client change) maps to a known technology. Selection, not diagnosis."
+  },
+  {
+    "id": "34m6hlgX7poZp88h3V8S",
+    "stem": "Dana administers 200 routers and switches and wants centralized AAA where each network engineer's individual CLI commands can be authorized and logged separately, with authentication traffic fully encrypted between the device and the AAA server. Which protocol best fits these requirements?",
+    "level": "Apply",
+    "why": "Two stated requirements discriminate TACACS+ from RADIUS. Known protocol properties applied to a stated need."
+  },
+  {
+    "id": "5kC1FABxZDW0bze7DeJs",
+    "stem": "Odette replaced a failed eight-port midspan PoE injector that fed a conference room's IP phone, two ceiling speakers, and a wall-mounted room controller. The phone now powers up and registers with the call server. What should Odette do before she closes the ticket?",
+    "level": "Apply",
+    "why": "The CompTIA troubleshooting model is a known procedure; the step after implementing a fix is verify full system functionality. Applied to a new ticket."
+  },
+  {
+    "id": "5lbWALeKxEQ77dygJHKY",
+    "stem": "Gustavo must link two campus buildings with fiber. The run is 25 kilometers, and the link must support 10 Gbps. Which media choice is appropriate?",
+    "level": "Apply",
+    "why": "Distance and speed constraints applied against known media limits to choose single-mode fiber."
+  },
+  {
+    "id": "73EWAYGLUTprYZ6cVDMW",
+    "stem": "Users on one office subnet report intermittent connectivity, and Rosa, the network engineer, finds that the MAC address associated with the default gateway's IP in every workstation's ARP cache belongs to an unmanaged PC in a cubicle. Traffic from the subnet appears to be flowing through that PC before reaching the router. What is happening?",
+    "level": "Analyze",
+    "why": "The evidence is a state observation (gateway IP mapped to a workstation MAC, traffic transiting it). Forged ARP replies are never stated and must be inferred, and DNS poisoning and rogue DHCP have to be ruled out on which mapping is wrong."
+  },
+  {
+    "id": "7c1sEL6hlaMJ06peHiMT",
+    "stem": "Cole, a firewall administrator, must allow a partner to upload nightly data files using SFTP while keeping the rule as narrow as possible. Which port should Cole open on the firewall?",
+    "level": "Remember",
+    "why": "The answer is a port number. The scenario is decoration; SFTP runs on TCP 22 is retrieved, not applied."
+  },
+  {
+    "id": "7lgGCrg4U84GUuf6R2pg",
+    "stem": "Marcus deploys a new internal HR web portal. Employees complain that every browser session begins with a warning that the site's identity cannot be verified, and the security team worries users are being trained to click through certificate errors. The server is currently using a certificate the web server generated for itself. What should Marcus do to resolve the warnings properly?",
+    "level": "Apply",
+    "why": "The cause is stated in the stem (self-signed cert). Selecting the PKI-issued certificate is applying a known remedy."
+  },
+  {
+    "id": "7qsURbAtaMAkzswDm9Pz",
+    "stem": "Ingrid needs to determine which of 96 unlabeled ports on an IDF patch panel serves the wall jack in room 214. Nothing is currently patched to a switch, so the run is dead. Which tool should she use?",
+    "level": "Apply",
+    "why": "Tool selection under constraints: an unpatched dead run rules out traffic-based tools, so a toner and probe is the applied answer."
+  },
+  {
+    "id": "7yEBoSynmSgOiUtj1SvL",
+    "stem": "Imani is connecting twelve servers to a top-of-rack switch at 10 Gbps. Every link is under three meters, and the project budget is tight. Optical transceivers with fiber patch cables would work, but her senior engineer suggests a cheaper option that plugs into the same SFP+ ports. What is the engineer recommending?",
+    "level": "Apply",
+    "why": "Constraints (under three metres, tight budget, SFP+ ports) applied to known media options to select DAC."
+  },
+  {
+    "id": "890t9piHVEpjfKZ3liMu",
+    "stem": "A hotel wants visitors on its guest Wi-Fi to accept an acceptable-use policy and enter their room number before getting internet access, without installing anything on guest devices. Which mechanism should consultant Felix recommend for the guest network?",
+    "level": "Apply",
+    "why": "Requirements (accept a policy, no client install) applied to the known guest-network pattern."
+  },
+  {
+    "id": "8dRz1oK0WWYjOHUFtntt",
+    "stem": "Two office buildings 400 meters apart need a wireless link between their networks; trenching fiber is not an option. Engineer Sam will mount an AP on each roof, aimed at the other building. Which antenna type should he use, and why?",
+    "level": "Apply",
+    "why": "A point-to-point 400 m bridge applied to known antenna radiation patterns to select directional."
+  },
+  {
+    "id": "91s7ZGRXzjTtZcIEwgBL",
+    "stem": "Priya learns that the vendor of her organization's core switches has announced an end-of-support (EOS) date eighteen months out, after which no software patches or technical support will be available. The switches are currently stable and performing well. What is the MOST appropriate response?",
+    "level": "Apply",
+    "why": "EOS means no patches; the known lifecycle-management response is applied to a new situation. No competing defensible option here."
+  },
+  {
+    "id": "9Fe05t6dMCZYciTJjXrA",
+    "stem": "A storage team asks network engineer Malik to enable jumbo frames for the iSCSI VLAN to cut per-packet overhead between servers and the SAN. Malik enables a 9000-byte MTU on the SAN's switch ports, but performance gets worse and packet captures show fragmentation and drops. What did Malik most likely overlook?",
+    "level": "Analyze",
+    "why": "Symptoms (fragmentation and drops after configuring only the SAN-side ports) must be related to the requirement that MTU agree end to end. The cause is not stated."
+  },
+  {
+    "id": "9m6UjUHnDi2AfBE9Rt3R",
+    "stem": "After a breach investigation, consultants tell Dana's company to stop trusting devices simply because they connect from the corporate LAN. The new requirement: every access request must be authenticated and authorized against policy regardless of the user's location, and each user must receive only the minimum access needed for their role. Which architecture do these requirements describe?",
+    "level": "Understand",
+    "why": "Requirements are given and the task is to name the architecture they describe. Concept identification."
+  },
+  {
+    "id": "A0s4VP0BTbaE7A7F8nY5",
+    "stem": "A 300-employee firm currently uses one WPA2 passphrase for its main Wi-Fi. When an employee left last month, IT had to change the passphrase and re-enroll every device. Security lead Imani wants each user to authenticate with individual credentials that can be revoked centrally. What should she deploy?",
+    "level": "Apply",
+    "why": "Requirements (individual credentials, central revocation) applied to select Enterprise mode over PSK."
+  },
+  {
+    "id": "AR0F9MUxfFgGyBx1738F",
+    "stem": "A user reports she cannot reach any websites or internal servers. Quentin, the on-site technician, runs ipconfig and finds the workstation's address is 169.254.31.7 with a subnet mask of 255.255.0.0. What does this address tell Quentin?",
+    "level": "Understand",
+    "why": "Interpreting what an observed address means, including why it appeared. Reading a fact for its significance, not chaining evidence."
+  },
+  {
+    "id": "BiI2a8DksE1mpYkI5LIy",
+    "stem": "At a coffee shop, consultant Jae notices two Wi-Fi networks with the identical SSID as the shop's official network. After connecting to the stronger signal, his HTTPS sessions begin producing certificate warnings, and a colleague confirms the shop operates only one access point. Which attack is Jae most likely experiencing?",
+    "level": "Understand",
+    "why": "The defining characteristic of an evil twin, a duplicate SSID at a public hotspot, is stated outright. The certificate warnings corroborate rather than force an inference; the task is naming the technique."
+  },
+  {
+    "id": "CBsNAiYj4LzxbhlNlQ3K",
+    "stem": "Devon, a network analyst, is examining a capture of a slow file transfer. He sees the receiver repeatedly shrinking its advertised window size and the sender pausing until the window reopens, along with occasional retransmissions of lost segments. Which OSI layer is responsible for the behavior Devon is observing?",
+    "level": "Understand",
+    "why": "Interpreting an observed TCP behaviour into the OSI layer that owns it. Definitional mapping."
+  },
+  {
+    "id": "CKCHDBywqiTwpszleDoD",
+    "stem": "After several intrusion attempts against her company's perimeter, security analyst Noor deploys an intentionally vulnerable-looking server in an isolated network segment. It hosts no production data; its only purpose is to attract attackers so their tools and techniques can be observed and logged safely. What has Noor deployed?",
+    "level": "Understand",
+    "why": "The stem is a textbook description of a honeypot and asks what it is. Naming a concept from its description."
+  },
+  {
+    "id": "CVei1dPPh3w6rmqkAYLr",
+    "stem": "Aiko has built a GRE tunnel between two branch routers to carry multicast routing updates that the ISP network will not transport natively. A security audit flags that the tunneled traffic crosses the internet unprotected. Aiko must keep the GRE tunnel's ability to carry this traffic while adding confidentiality. What should she implement?",
+    "level": "Apply",
+    "why": "Constraint (keep GRE multicast carriage) plus requirement (confidentiality) applied to select GRE over IPSec ESP."
+  },
+  {
+    "id": "DClmcqG6bK5gVzzTyG80",
+    "stem": "Aisha wants to stop unauthorized laptops from gaining network access simply by plugging into lobby wall jacks. Her requirements: every device must authenticate with credentials or a certificate before its switch port passes traffic, validated against the corporate directory through a central authentication server. Which solution meets the requirements?",
+    "level": "Apply",
+    "why": "Stated requirements map to 802.1X. Known technology applied to a new access-control need."
+  },
+  {
+    "id": "DJIyN5EuZH9okCnQGBY8",
+    "stem": "Jolene, a network director, is consolidating vendors. Her remote workforce currently uses a VPN concentrator, a separate secure web gateway, a cloud access security broker, and SD-WAN appliances at branches — each managed separately. She wants networking and security functions delivered together as a unified cloud service enforced close to the user, wherever they work. Which framework matches this goal?",
+    "level": "Understand",
+    "why": "A list of consolidation goals is given and the task is to name the framework that matches. Concept identification."
+  },
+  {
+    "id": "DLAf1U58YTIIjgehkh5G",
+    "stem": "Lena, an infrastructure architect, is designing storage for a new virtualization cluster. The hypervisors require block-level storage presented over a dedicated high-speed network so that virtual machine disks perform like local drives. The finance team separately needs a simple shared folder for spreadsheets. Which pairing best fits these two needs?",
+    "level": "Apply",
+    "why": "Two workloads with different access models applied to block versus file storage. Design selection."
+  },
+  {
+    "id": "DYMDk4P86qTSWhdngJyo",
+    "stem": "Nikolai theorizes that a flapping switch port is caused by a failing patch cable. He replaces the cable with a known-good one and the port continues to flap every few minutes. According to the troubleshooting methodology, what should Nikolai do next?",
+    "level": "Apply",
+    "why": "The methodology explicitly covers a disproved theory: establish a new one or escalate. Known procedure applied."
+  },
+  {
+    "id": "DaoAb0pKMlvxmcPAjC7l",
+    "stem": "Devon administers addressing for a growing company using a shared spreadsheet. Last week two administrators, each working from a stale copy, assigned the same static IP address to two different servers, causing an outage. Which solution BEST prevents this class of problem long term?",
+    "level": "Apply",
+    "why": "Problem (stale spreadsheet, duplicate assignment) applied to select the authoritative-record tool."
+  },
+  {
+    "id": "HBghroSK5TzmQ1vMqktE",
+    "stem": "Users report the print server is reachable one minute and gone the next. It is configured with a static address of 10.20.4.60. On the gateway, show arp displays 10.20.4.60 alternating between two different MAC addresses, and one of them belongs to a corporate laptop that recently received a DHCP lease. The scope covers 10.20.4.1 through .254 with no exclusions configured. What is the cause and the correct fix for Bilal?",
+    "level": "Analyze",
+    "why": "Three pieces of evidence, the alternating ARP entries, the laptop DHCP lease, and the scope range with no exclusions, must be related to reach both the duplicate-IP symptom and the underlying static-inside-scope cause."
+  },
+  {
+    "id": "HpixcFTQp47dsOmba8TP",
+    "stem": "While investigating an incident, Andre finds that timestamps in the firewall, switch, and server logs disagree by several minutes, making it impossible to build an accurate event timeline. Which network service should he configure across all devices to prevent this?",
+    "level": "Apply",
+    "why": "Problem (disagreeing timestamps) applied to select the service that fixes it."
+  },
+  {
+    "id": "IOcjMzQLG7fCwnGodJbb",
+    "stem": "Yolanda supports a training center whose visitor floor uses scope 192.168.50.0/24 with a range of .100 through .199 and an eight-day lease. Most attendees visit for a single day. By mid-afternoon, new devices self-assign 169.254 addresses and the DHCP server logs report that no addresses are available. What should Yolanda do?",
+    "level": "Analyze",
+    "why": "Pool size, lease duration and actual dwell time are three facts whose relationship is the whole problem; you must see that a one-day visitor holds an address for eight days before the fix follows."
+  },
+  {
+    "id": "JQYdTLUbWFGkpfT2C0Yn",
+    "stem": "Priya, a network engineer, notices her core router has learned two routes to 172.16.40.0/24: one via EIGRP with a metric of 30720 and one via OSPF with a cost of 20. Only one route appears in the routing table. Which route was installed, and why?",
+    "level": "Apply",
+    "why": "A known route-selection rule (administrative distance is compared before metric) applied to a specific pair of routes."
+  },
+  {
+    "id": "JkujCULyIb9Yi8b6M24J",
+    "stem": "Bree is designing the network for a 60-person office in a single building with two switch closets. A consultant's template proposes a full three-tier hierarchy, but Bree's budget cannot cover separate core and distribution switch pairs, and the traffic volume does not justify them. Which design choice keeps hierarchical structure while fitting the budget?",
+    "level": "Apply",
+    "why": "Budget and traffic constraints applied to select the design that keeps hierarchy. Known pattern applied."
+  },
+  {
+    "id": "KTiZ84OrBKWP7R7eUm78",
+    "stem": "Victor is designing high availability for a customer-facing web platform across two data centers. Requirements: both data centers must serve live traffic simultaneously to use purchased capacity, and the loss of either site must not require a failover event to keep the service online. Which approach satisfies this?",
+    "level": "Apply",
+    "why": "Two stated requirements (both sites live, no failover event) applied to select the HA model."
+  },
+  {
+    "id": "KjvYXiAE5CrV77pLof17",
+    "stem": "Lena needs to capture all packets flowing to and from a database server connected to a production switch so an analyst can inspect them. She cannot take the server offline or insert an inline tap. What should she configure?",
+    "level": "Apply",
+    "why": "Constraints (no downtime, no inline tap) applied to select port mirroring."
+  },
+  {
+    "id": "KyfkqFkExjExBJmh0mQL",
+    "stem": "Otto terminates a new 60-meter multimode fiber pair between two switches using LC connectors. Both switch ports report a status of down/down rather than administratively down. The transceivers at each end are the same model and the correct type, and a visual fault locator shows visible light emerging at the far end on both strands. What is the most likely cause?",
+    "level": "Analyze",
+    "why": "Matched transceivers, confirmed light on both strands, and down/down together eliminate distance, mismatch and admin shutdown, leaving polarity. The cause is reached by relating what the evidence rules out."
+  },
+  {
+    "id": "LR85UtPuGFchWMyRD6IH",
+    "stem": "Priya, a security engineer, has deployed a sensor that receives a mirrored copy of all traffic entering the data center. During a penetration test, the sensor generated accurate alerts for every attack, but none of the attacks were stopped. Management wants attacks blocked in real time. What should Priya deploy?",
+    "level": "Apply",
+    "why": "The stem states the sensor is fed from a mirror and only alerts; selecting an inline IPS is applying the IDS-versus-IPS distinction."
+  },
+  {
+    "id": "LhkbDmeGjBLD4yZ0mjFs",
+    "stem": "Zora is asked why file copies between a workstation and a file server never exceed about 11.8 MB/s even though both hosts have idle gigabit NICs. Tracing the path, she finds the traffic crosses a legacy media converter, and show interface on that closet uplink reports 100 Mbps full duplex with no errors. What is the correct conclusion?",
+    "level": "Analyze",
+    "why": "The observed rate must be converted (11.8 MB/s to about 94 Mbps) and related to the 100 Mbps segment found in the path, while ruling out disk, latency and loss. Several facts, and the relationship is the work."
+  },
+  {
+    "id": "LkyE4Kfuf9eB4YNbuLpI",
+    "stem": "A global DNS provider advertises the same resolver IP address from dozens of sites worldwide, and each user's queries are automatically routed to the nearest site. Nadia, a junior engineer, asks her mentor what this traffic type is called. What is the correct answer?",
+    "level": "Understand",
+    "why": "A behaviour is described and the task is to name the addressing type. Concept identification."
+  },
+  {
+    "id": "Lygiobccwxihd9vdLmhe",
+    "stem": "Marisol, a help desk technician, is investigating why two servers on the same VLAN cannot communicate. A packet capture shows the frames leaving the first server carry the correct destination MAC address, but the switch is flooding them out every port instead of forwarding them to the second server. At which OSI layer is Marisol troubleshooting?",
+    "level": "Understand",
+    "why": "Interpreting an observed switch behaviour into the OSI layer responsible for it."
+  },
+  {
+    "id": "N7rH4CgmNOInaliWNlis",
+    "stem": "Rachel manages 40 network devices that each store logs locally. During a recent incident, correlating events across devices took hours, and several device logs had already rolled over. Which solution BEST addresses both problems?",
+    "level": "Apply",
+    "why": "Two stated problems (correlation, rollover) applied to select central syslog plus SIEM."
+  },
+  {
+    "id": "NFhNVljZ22NAVPOscorN",
+    "stem": "During disaster recovery planning, the finance director tells Sam that the order-processing database can lose no more than 15 minutes of committed transactions in a disaster. Which DR metric does this requirement define, and what does it drive?",
+    "level": "Understand",
+    "why": "A stated tolerance is interpreted into the DR metric it defines and what that metric drives. Concept identification."
+  },
+  {
+    "id": "O1RPglVaVuPZ7JHG1mQ4",
+    "stem": "Users on one switch port complain of terrible file-transfer performance, and the switch counters show runts and FCS errors climbing on that port, while the workstation logs late collisions. Technician Rob finds the switch port hardcoded to 100/full while the workstation NIC is set to autonegotiate. What is happening?",
+    "level": "Analyze",
+    "why": "Runts, FCS errors and late collisions plus a one-sided hardcode must be connected through the autonegotiation fallback mechanism, which the stem never states."
+  },
+  {
+    "id": "OVaK2BXuW45N4hwtk21K",
+    "stem": "Delia investigates a shop-floor camera whose video stutters. The UTP run to it certified as passing Cat 6 at install eighteen months ago, and the camera streamed cleanly until a 480-volt motor feeder was pulled into the same cable tray last month. On the switch, show interface reports the port up at 1 Gbps full duplex with zero runts and zero giants, and the CRC and input error counters step up in bursts each time the motor cycles. What is the cause and the correct fix?",
+    "level": "Analyze",
+    "why": "A passing certification, a new power feeder, clean runt and giant counters, and CRC bursts timed to motor cycling are only meaningful in relation to one another; that correlation is what identifies induced noise over attenuation."
+  },
+  {
+    "id": "P3hEpcoK3MY6x9e19Zh0",
+    "stem": "Tariq is building a virtual private cloud that hosts application servers in a private subnet. The servers must download operating system patches from vendor sites on the internet, but nothing on the internet should be able to initiate a connection to them. Which cloud component should Tariq deploy?",
+    "level": "Apply",
+    "why": "Requirement (outbound patching, no inbound initiation) applied to select the NAT gateway."
+  },
+  {
+    "id": "PaJUV3mN1UarM0ItiRiu",
+    "stem": "A data center uses hot aisle/cold aisle containment. After a switch refresh, several new top-of-rack switches begin overheating even though the room temperature is normal. Technician Devon notices the new switches' fans pull air in from the port side, and the ports face the hot aisle. What is the problem?",
+    "level": "Analyze",
+    "why": "Normal room temperature, port-side intake fans, and ports facing the hot aisle must be related before the airflow-orientation cause appears. The stem never names the defect."
+  },
+  {
+    "id": "PkwfpweLpD8cwML5dv1i",
+    "stem": "Networking equipment for a new four-story office is being planned. The building's internet handoff and core switching will live in a ground-floor room, and each upper floor needs its own wiring closet feeding that floor's access switches back to the core. In standard structured-cabling terms, what are these rooms called?",
+    "level": "Remember",
+    "why": "The answer is two terms, MDF and IDF. The building description is decoration around a definitional distinction."
+  },
+  {
+    "id": "QFRQ2oYc4K6pkOciHvWm",
+    "stem": "Yusuf must carve a subnet out of 10.40.8.0/22 for a new department of 50 devices, and the addressing plan requires him to waste as few addresses as possible. Which prefix length should Yusuf assign to the department's subnet?",
+    "level": "Apply",
+    "why": "Host count and a minimize-waste constraint applied through subnetting arithmetic to select the prefix."
+  },
+  {
+    "id": "S4X20tmi3CsdDu4yDKz7",
+    "stem": "Elena's company is adopting several cloud SaaS applications. Leadership wants employees to sign in once with their corporate directory credentials and gain access to each cloud app without separate passwords, using an open standard in which the company's identity provider sends signed assertions to each application. Which technology is being described?",
+    "level": "Understand",
+    "why": "A federated sign-on mechanism is described and the task is to name it. Concept identification."
+  },
+  {
+    "id": "Si02dYgjZiLZzbgRKrGZ",
+    "stem": "Esme migrated the company web server to a new IP address and updated the zone. Some users reach the new server while others still land on the decommissioned one. Which action best isolates the cause?",
+    "level": "Analyze",
+    "why": "Split behaviour across users has to be read as a resolution problem rather than a reachability one before the right isolating query follows; that inference is the work."
+  },
+  {
+    "id": "Su4zm3CFyO0TB8wNBSaG",
+    "stem": "Padma administers a hospital wireless network where clinicians roll workstations on wheels between units. The tablets on those carts stay associated with the access point they joined in the previous ward, holding on down to -85 dBm while passing directly beneath APs the same tablets measure at -55 dBm, until the EHR session times out and staff toggle the radio off and on. Every AP is joined to one controller, advertises the same SSID and security settings, and uses a non-overlapping channel plan. What is the appropriate action?",
+    "level": "Analyze",
+    "why": "Holding at -85 dBm while passing under a -55 dBm AP, one controller, one SSID and a clean channel plan together eliminate coverage holes and RF design, leaving client stickiness that the infrastructure must break."
+  },
+  {
+    "id": "T6LuPuzpiGuMzvvMFalj",
+    "stem": "Ruben has tested and confirmed his theory: an access control list on a distribution switch is blocking the newly built 10.50.20.0/24 subnet. He wants to fix it right now by removing the ACL from the interface in the middle of the business day. What is the appropriate next step in the methodology?",
+    "level": "Apply",
+    "why": "The methodology step after a confirmed theory is establish a plan of action and identify potential effects. Known procedure applied to a new situation."
+  },
+  {
+    "id": "TrwARUYhbpZiWRmqEolj",
+    "stem": "During an assessment of a small branch office, consultant Liam finds the managed switch still accepts the manufacturer's published admin password, and Telnet, HTTP management, and an unused file-transfer service are all enabled. Which device hardening steps should he recommend first?",
+    "level": "Apply",
+    "why": "Observed weaknesses (default credentials, insecure services) applied to the standard hardening actions."
+  },
+  {
+    "id": "UCoAwxLJ5DEfmMSHEaYl",
+    "stem": "Omar manages a retail website that now runs on six identical web servers. Customers should reach the site through one public address, requests should be spread across the servers, and a failed server should stop receiving traffic automatically. Which appliance meets these requirements?",
+    "level": "Apply",
+    "why": "Three stated requirements applied to select the appliance that satisfies all three."
+  },
+  {
+    "id": "UYEJUOeniGmVhsL60Cqb",
+    "stem": "The uplink between an access switch and the distribution switch is saturating at peak hours, and management also wants the uplink to survive a single cable failure. Engineer Lucia has two spare fiber pairs between the closets. What should she configure?",
+    "level": "Apply",
+    "why": "Two requirements (bandwidth and survive a cable failure) with two spare pairs applied to select LACP."
+  },
+  {
+    "id": "Uu6wTEcl47Pwq0pdfl2Z",
+    "stem": "Priya, a network technician at a medical billing company, is reviewing the company's data protection posture. Nightly database backups are copied to disks in a locked cabinet, but an auditor notes that anyone who steals a disk could read every record on it. Which control directly addresses the auditor's concern?",
+    "level": "Apply",
+    "why": "The exposure is stated as data at rest on stolen media; encryption of the backup volumes is the applied remedy."
+  },
+  {
+    "id": "VENzq6wDWcqAh0St0QKY",
+    "stem": "Sanjay configures a workstation statically as 172.16.5.40 with mask 255.255.0.0 and gateway 172.16.5.1. The LAN is actually 172.16.5.0/24, and other internal subnets such as 172.16.9.0/24 are reachable through the router. The PC reaches local hosts and the internet normally, but cannot reach the application server at 172.16.9.10; a capture shows the PC broadcasting ARP requests for 172.16.9.10. What is wrong?",
+    "level": "Analyze",
+    "why": "The PC reaching the internet but ARPing for an internal host is the decisive relationship: the mask has to be connected to local-versus-remote classification to see why one works and the other does not."
+  },
+  {
+    "id": "Vp1JaIHE08Unq1p1lVrE",
+    "stem": "A small accounting firm has 45 workstations but its ISP provides only a single public IPv4 address. Dana, the office's IT consultant, needs every workstation to reach the internet simultaneously. Which technology should she configure on the edge router?",
+    "level": "Apply",
+    "why": "Host count against a single public address applied to select PAT over one-to-one NAT."
+  },
+  {
+    "id": "W3h3eODQhc024DmV6l2T",
+    "stem": "Colm is connected over SSH to a switch in an unlabeled IDF at a site 200 miles away. The site diagrams are years out of date, and he needs to know which neighboring switch the uplink terminates on and which port on that neighbor it uses, without dispatching a technician. What should he use?",
+    "level": "Apply",
+    "why": "Constraints (remote, no dispatch, need neighbour port) applied to select the LLDP/CDP neighbour table."
+  },
+  {
+    "id": "W48Y1WpvQdWqmRxPrB1D",
+    "stem": "Port Gi1/0/14 on Kwame's access switch is configured with port security permitting a single MAC address. A user plugged an unmanaged five-port switch into that jack and connected three devices to it. The port now shows a status of err-disabled and the link light is dark. What has happened, and what is the correct response?",
+    "level": "Analyze",
+    "why": "Port security configured for one MAC, three devices behind an unmanaged switch, and err-disabled must be related; BPDU guard is a genuinely competing explanation for the same state and has to be reasoned away."
+  },
+  {
+    "id": "W4I0HrzlkoAygo4dUTCW",
+    "stem": "In a new office, most laptops support both 2.4GHz and 5GHz, yet the controller dashboard shows 80% of clients associated to the congested 2.4GHz radios while the 5GHz radios sit nearly idle. Wireless engineer Theo wants capable clients moved to 5GHz automatically. Which feature addresses this?",
+    "level": "Apply",
+    "why": "Observed band distribution applied to select the AP-side feature that moves capable clients."
+  },
+  {
+    "id": "WCEEeoNAQ0cKWMTzDov1",
+    "stem": "Ezra's company has exhausted its IPv4 allocation and is beginning an IPv6 rollout. During the multi-year transition, internal hosts must reach both IPv6-enabled services and legacy IPv4-only services natively, without translating every connection. Which approach should Ezra implement on the client network?",
+    "level": "Apply",
+    "why": "Transition requirements (both natively, no translation) applied to select dual stack."
+  },
+  {
+    "id": "WfPUlp5oT6bIQX04ZIC1",
+    "stem": "Renata's company is adding a second ISP for redundancy and wants to influence which provider inbound traffic uses to reach the company's public prefix. Which routing protocol is designed for this multi-ISP, inter-autonomous-system scenario?",
+    "level": "Apply",
+    "why": "Requirement (influence inbound path across two ISPs) applied to select the exterior gateway protocol."
+  },
+  {
+    "id": "Wl6SGiYwvn41aacrMQpg",
+    "stem": "During a penetration test, Sofia crafts frames carrying two 802.1Q tags. The access switch strips the outer tag and forwards the frame to a downstream switch, which reads the inner tag and delivers the frame into the finance VLAN — a segment Sofia's port should never reach. Which attack has she demonstrated?",
+    "level": "Understand",
+    "why": "The double-tagging mechanism is described step by step; the task is to name the attack it constitutes."
+  },
+  {
+    "id": "XaIax1bDjbdMbi2gBOjf",
+    "stem": "A misapplied ACL on a core switch cut off all in-band management access to Carlos's network devices, and the switch is in a data center 200 miles away. Which capability, had it been in place, would let Carlos reach the switch's CLI even while the production network is unreachable?",
+    "level": "Apply",
+    "why": "Failure mode (in-band path broken) applied to select out-of-band management."
+  },
+  {
+    "id": "XdUMbJXEd8Pez54EjALY",
+    "stem": "Auditors require that all administrative SSH sessions into Dana's secure server segment originate from a single hardened, centrally logged host protected by multifactor authentication, rather than from individual administrator workstations scattered across the LAN. Which design satisfies this requirement?",
+    "level": "Apply",
+    "why": "Audit requirement (single hardened, logged, MFA-protected origin) applied to select a jump box."
+  },
+  {
+    "id": "ZYumvEYXHZpxoMwIpejX",
+    "stem": "A retailer is rolling out 60 access points across 12 stores and wants centralized configuration, coordinated channel/power management, and seamless roaming, with all AP policy managed from headquarters. Which architecture should network architect Grace choose?",
+    "level": "Apply",
+    "why": "Fleet size and central-management requirements applied to select controller-based lightweight APs."
+  },
+  {
+    "id": "aX4L1fTgudmMH4YMM9MV",
+    "stem": "Farid is redesigning a data center network. The current three-tier design forces heavy server-to-server (east-west) traffic between racks to travel up through the distribution and core layers, adding latency and creating variable hop counts. Which architecture should Farid propose so that any server is a predictable, equal number of hops from any other?",
+    "level": "Apply",
+    "why": "A stated east-west traffic problem applied to select the fabric that gives predictable hop counts."
+  },
+  {
+    "id": "cHl4PkDMY6rLnj2fBYay",
+    "stem": "DHCP server logs give Hector the MAC address of an unknown device that appeared on the network overnight. He needs to determine which access switch port that device is plugged into so it can be physically located. Which command gives him that information?",
+    "level": "Apply",
+    "why": "Starting from a known MAC and needing a physical port, select the command that maps MAC to port."
+  },
+  {
+    "id": "csEyKcj7ltiSH2pIBvRB",
+    "stem": "Hollis receives complaints that calls on the VoIP system sound choppy and robotic, with syllables clipped out. A continuous ping to the call server reports 0 percent loss, with round-trip times bouncing between 12 ms and 95 ms. Data applications on the same circuit perform normally. What is happening?",
+    "level": "Analyze",
+    "why": "Zero loss with round-trip times swinging between 12 and 95 ms, plus data applications performing normally, must be related before jitter separates from latency and loss. Variance rather than magnitude is the inference."
+  },
+  {
+    "id": "dcA71zp5D6PCKbrSrc7d",
+    "stem": "During a building walkthrough, an inspector notices Cat 6 cable running through the open space above a suspended ceiling that is also used to circulate air for the HVAC system. The inspector says the installed cable must be replaced. Which cable should the contractor, Silas, pull in its place?",
+    "level": "Apply",
+    "why": "A code requirement for air-handling spaces applied to select plenum-rated cable."
+  },
+  {
+    "id": "fWHEOOZIv6Iw5B6lT1hw",
+    "stem": "Renata's company is moving a latency-sensitive trading application to a public cloud provider. The application requires consistent throughput and predictable latency between the on-premises data center and the cloud, and traffic must not traverse the public internet. Which connectivity option should Renata choose?",
+    "level": "Apply",
+    "why": "Requirements (predictable latency, off the public internet) applied to select a dedicated circuit."
+  },
+  {
+    "id": "g9WKmVMtTyfFvQSQ2JNb",
+    "stem": "An IDS alert shows a host on the warehouse floor sending thousands of frames per second, each with a different randomized source MAC address, and the access switch has begun forwarding unicast traffic out every port on that segment. Network engineer Colin needs a switch-level control that limits how many MAC addresses a port may learn and shuts the port down when the limit is exceeded. Which feature should he configure?",
+    "level": "Apply",
+    "why": "The stem states the control needed, cap MACs per port and shut down on violation, so selecting port security is application, not diagnosis."
+  },
+  {
+    "id": "gk6clslKFyxScbDvy8dq",
+    "stem": "After moving desks, a user reports she can browse the internet but cannot reach any file servers on 10.10.20.0/24. Anya finds the workstation holds 10.30.7.44/24, an address that belongs to the building guest scope. What is the most likely cause?",
+    "level": "Analyze",
+    "why": "A corporate PC holding a guest-scope address after a desk move only points at VLAN assignment once address, scope and port are related; duplicate address and mask errors have to be ruled out on the pattern."
+  },
+  {
+    "id": "hIfPBcJlyFB3NOKeFpqI",
+    "stem": "During a design review, Hana explains that her ticketing platform sees a tenfold traffic surge for two hours whenever concert tickets go on sale, then returns to normal. She wants the cloud environment to add web server instances automatically during the surge and remove them afterward so the company only pays for what it uses. Which cloud characteristic is Hana describing?",
+    "level": "Understand",
+    "why": "A surge-and-shrink pattern is described and the task is to name the cloud characteristic, separating elasticity from scalability. Concept identification."
+  },
+  {
+    "id": "hJDidalwu1z9gGtpEzTs",
+    "stem": "A junior accountant at Tomas's firm was found to have standing access to firewall management, the payroll database, and the backup console — none of which her job requires. Tomas wants an authorization principle applied so every account holds only the permissions its role actually needs. Which concept is he applying?",
+    "level": "Understand",
+    "why": "A scenario is given and the task is to name the authorization principle. Concept identification."
+  },
+  {
+    "id": "huSxpwPDpy7Oi1iDygDO",
+    "stem": "Nadia is deploying three access points on the 2.4GHz band in a small office and wants to minimize co-channel and adjacent-channel interference between them. Which channel plan should she use?",
+    "level": "Remember",
+    "why": "The answer is the memorized non-overlapping 2.4 GHz channel set. The three-AP scenario adds nothing to retrieve it."
+  },
+  {
+    "id": "iZAu6Lv6abLp12Nwn2k7",
+    "stem": "After connecting a new trunk between two switches, Amara sees log messages warning of a native VLAN mismatch, and some untagged traffic is leaking into the wrong VLAN. One switch has native VLAN 1 on the trunk; the other has native VLAN 99. What should she do?",
+    "level": "Apply",
+    "why": "The stem states both native VLAN values and the mismatch; matching them is applying a known configuration rule."
+  },
+  {
+    "id": "iscPdjHY8xmbkMUkHS3U",
+    "stem": "Mateo troubleshoots a workstation whose link comes up at only 100 Mbps and drops several times a day. The horizontal run from the IDF patch panel to the wall jack measures 130 meters before patch cords, and a certification-grade cable tester reports excessive insertion loss. What is the problem and the proper remedy?",
+    "level": "Analyze",
+    "why": "A 130 m measurement, an insertion-loss reading and a 100 Mbps link that drops must be related through the channel limit before the remedy follows."
+  },
+  {
+    "id": "jgQkH5CpvxPo0eYqPPog",
+    "stem": "Freya is sent to a workstation that reaches every host on its own 10.14.6.0/24 subnet, including the local file server, but cannot reach any other subnet or the internet. ipconfig reports 10.14.6.77, mask 255.255.255.0, gateway 10.14.6.254. The ARP cache resolves 10.14.6.254 to a MAC address, but tracert to an off-net destination times out at hop 1 and never advances. Freya then checks the switch: the routed interface for this VLAN is 10.14.6.1, and 10.14.6.254 is the address of a multifunction printer. What is wrong?",
+    "level": "Analyze",
+    "why": "Clean on-subnet reachability, a resolved ARP entry, a trace that dies at hop one, and the discovery that the gateway address belongs to a printer are only conclusive together. Multi-step evidence-to-cause."
+  },
+  {
+    "id": "k51xKOvMM9pwoJVE1iQB",
+    "stem": "Rosa's company is opening 40 small branch offices. Each branch will get a preconfigured edge appliance shipped directly from the vendor; when a local employee plugs it in, the device must contact the controller, download its configuration automatically, and build tunnels over whatever circuit is available — broadband, LTE, or MPLS. Policies must be defined once at headquarters and pushed everywhere. Which technology set is Rosa deploying?",
+    "level": "Understand",
+    "why": "Zero-touch provisioning, transport agnosticism and central policy are described and the task is to name the technology set."
+  },
+  {
+    "id": "kyDquVr1yLa48Vdymjcu",
+    "stem": "Investigating reports that a SaaS application is slow, Ivan runs a traceroute and sees hop 4 reporting 40 percent loss and elevated response times, while hops 5 through 9 and the destination all report 0 percent loss and normal times. A continuous ping to the destination shows 0 percent loss. How should Ivan interpret this?",
+    "level": "Analyze",
+    "why": "The decisive reasoning is that packets must have crossed hop 4 to elicit replies from hops 5 through 9, so apparent loss at hop 4 is a control-plane artifact. Relating hop-by-hop evidence is the entire item."
+  },
+  {
+    "id": "lcT6NwmdXSCJW34WIXVP",
+    "stem": "Employees at Kenji's company report that typing the correct URL for the corporate payroll site occasionally lands them on a visually identical page hosted at an unrelated IP address. Kenji finds that the company's caching DNS resolver is returning a forged A record for the payroll hostname. Which attack does this describe?",
+    "level": "Understand",
+    "why": "The stem states the resolver is returning a forged A record; the task is to name the attack that mechanism constitutes."
+  },
+  {
+    "id": "loxDkebWqO1erDOlcDSY",
+    "stem": "A security appliance managed by Rosa logs only IP addresses, and she needs the appliance to resolve those IPs back to hostnames for readable reports. Which DNS record type, hosted in a reverse lookup zone, makes this possible?",
+    "level": "Remember",
+    "why": "The answer is a DNS record type, and the stem even supplies the reverse-lookup zone. Retrieval, not application."
+  },
+  {
+    "id": "m4z7uXET5x5oX4PyxlRH",
+    "stem": "Elena manages a fleet of network printers that must always receive the same IP addresses so print queues do not break, but she wants the addresses centrally managed through DHCP rather than configured on each printer. What should she configure?",
+    "level": "Apply",
+    "why": "Requirement (fixed addresses, centrally managed) applied to select DHCP reservations."
+  },
+  {
+    "id": "n3Gx6qb046YJcFxLifXO",
+    "stem": "Clients cannot reach a newly deployed application on TCP 8443 and receive connection refused immediately. Talia confirms the server answers pings, the host firewall is disabled, and an nmap scan from a client reports 8443 closed. What should she do next?",
+    "level": "Analyze",
+    "why": "Connection refused, successful pings, a disabled host firewall and a closed port must be related through what a TCP reset proves before the next diagnostic step is obvious. The path is eliminated by inference."
+  },
+  {
+    "id": "pDsttWWzhQN1on7TP09O",
+    "stem": "Aisha notices that when a switch's CPU utilization crosses 90 percent, the switch immediately sends an unsolicited alert message to the network management station without being polled. Which SNMP mechanism is in use?",
+    "level": "Understand",
+    "why": "An unsolicited, threshold-triggered push is described and the task is to name the SNMP mechanism."
+  },
+  {
+    "id": "pVF0SqIRJCGRyEczSO5G",
+    "stem": "Fatima's company is deploying a public-facing web server. Security policy says internet users must be able to reach it, but if the server is compromised, the attacker must not gain a direct path into the internal LAN. Where should Fatima place the server?",
+    "level": "Apply",
+    "why": "Requirements (internet reachable, no inward pivot) applied to select the screened subnet placement."
+  },
+  {
+    "id": "phe5KIHlZ8Pwq6qKlKrc",
+    "stem": "Since moving all 300 remote employees to a full-tunnel VPN, Priya's headquarters internet circuit is saturated, largely by remote users' video streaming and general web browsing. Security only requires that traffic destined for internal corporate resources traverse the VPN. What should Priya implement?",
+    "level": "Apply",
+    "why": "A stated bandwidth problem plus a stated security scope applied to select split tunnelling."
+  },
+  {
+    "id": "pzuhVrX8ojU15weQXqaL",
+    "stem": "Wei operates two data centers connected by a routed Layer 3 WAN. A virtualization project requires live-migrating virtual machines between the sites, which means the same Layer 2 segment must exist in both locations. The WAN routers cannot simply be bridged. Which technology lets Wei extend the Layer 2 segment across the routed connection?",
+    "level": "Apply",
+    "why": "Requirement (same Layer 2 segment across a routed WAN) applied to select VXLAN."
+  },
+  {
+    "id": "tYDL9NouT0fMwv230MMb",
+    "stem": "Simone installs six outdoor access points, each rated for 802.3bt Type 3 and drawing roughly 45 watts. She connects them to a 24-port switch that supplies 802.3af only, with a 370-watt total PoE budget; these are the only powered ports. Each AP lights up, gets partway through its boot sequence, and restarts, cycling continuously. On the switch, show power inline lists all six ports as powered and capped at 15.4 watts, with 92.4 watts consumed against the 370-watt budget. What is the cause?",
+    "level": "Analyze",
+    "why": "The reported numbers are the item: 15.4 W per port against 45 W devices, and 92.4 W against a 370 W budget. Relating those figures is what separates a standard mismatch from budget exhaustion."
+  },
+  {
+    "id": "taPOmeNyCHJpbm5iMaii",
+    "stem": "Handheld scanners used at the far rack aisles of a warehouse report -82 dBm, negotiate very low data rates, and disconnect frequently. All access points are mounted over the office area at the front of the building. A Wi-Fi analyzer taken to the rack aisles shows a single audible AP on a clean channel with no competing networks. What should Nia do?",
+    "level": "Analyze",
+    "why": "A reading of -82 dBm, a single audible AP, and no competing networks together eliminate interference and authentication, leaving a coverage hole. The conclusion comes from what the measurements rule out."
+  },
+  {
+    "id": "uaRkGjtsVTBtgEgHMbp6",
+    "stem": "A company is deploying VoIP phones that each have a built-in switch port, so the user's PC plugs into the phone and the phone plugs into the wall. Network technician Jae wants the phone's traffic separated from the PC's traffic for QoS, using a single switch port per desk. What should he configure on each access port?",
+    "level": "Apply",
+    "why": "Requirements (one port per desk, separate voice for QoS) applied to select the voice VLAN."
+  },
+  {
+    "id": "vrmlaCCtx5Xzi9HAcXEM",
+    "stem": "After Jamal creates a new VLAN for a call center, clients on it fail to obtain IP addresses even though the DHCP server, located in the data center on a different subnet, has a scope configured for the new VLAN. Wired connectivity checks out. What is the MOST likely fix?",
+    "level": "Apply",
+    "why": "A known rule, routers do not forward DHCP broadcasts, applied to a new VLAN whose server sits on another subnet."
+  },
+  {
+    "id": "wdtISKOoFRJrGnvDa0pg",
+    "stem": "Marcus configures a static route to 10.20.30.0/24 pointing at a backup firewall, while OSPF is advertising 10.20.0.0/16 through the primary path. A packet arrives destined for 10.20.30.77. The static route has administrative distance 1 and the OSPF route has administrative distance 110. Which path does the packet take, and why?",
+    "level": "Apply",
+    "why": "The route-selection rule (longest prefix before administrative distance) applied to a specific pair of routes."
+  },
+  {
+    "id": "wvuSHTLuUXSbORJYfTse",
+    "stem": "Beatriz, a network technician, picks up a ticket that says only \"nobody at the Cedar branch can get to the internet.\" She has no other details. Before she forms any theory about the cause, which action best fits the first step of the CompTIA troubleshooting methodology?",
+    "level": "Apply",
+    "why": "Step one of a known methodology applied to a vague ticket."
+  },
+  {
+    "id": "wzQCgsW3X3ND3HYbE6k8",
+    "stem": "Omar's WAN link to a branch office saturates every afternoon. Management wants weeks of historical data identifying top talkers, applications, and protocol mix on the link, but storing continuous full packet captures is not feasible. Which monitoring method BEST fits?",
+    "level": "Apply",
+    "why": "Stated constraints (weeks of history, no full capture) applied to select flow export."
+  },
+  {
+    "id": "xLTT0AlBqT8sBjLbT107",
+    "stem": "During a maintenance window, engineer Sofia adds a second cable between two access switches for redundancy. Minutes later the network grinds to a halt: switch CPUs spike, the same broadcast frames circulate endlessly, and MAC address tables flap between ports. Sofia discovers spanning tree was administratively disabled on both switches. What did the redundant link create, and what would have prevented it?",
+    "level": "Analyze",
+    "why": "CPU spikes, endlessly circulating broadcasts and flapping MAC tables must be connected to the new redundant path through the loop mechanism, which the stem never names."
+  },
+  {
+    "id": "xQ825Yhl5W4mUwIgHelP",
+    "stem": "A security review finds that Tomas's monitoring platform polls devices using SNMPv2c with the community string 'public', sent in cleartext. Policy now requires both authentication of the poller and encryption of monitoring traffic. What should Tomas implement?",
+    "level": "Apply",
+    "why": "Policy requirements (authentication and encryption) applied to select the only SNMP version that provides both."
+  },
+  {
+    "id": "y7bHt8n9XRP0Jb6cSGjJ",
+    "stem": "Owen has one router with a single physical Ethernet interface and a switch carrying three VLANs (10, 20, 30) that must route between each other. The router does not have enough interfaces for one link per VLAN. How can Owen provide inter-VLAN routing over the single physical link?",
+    "level": "Apply",
+    "why": "A hardware constraint (one interface, three VLANs) applied to the router-on-a-stick pattern."
+  },
+  {
+    "id": "yUa1I3a2DQpXaz4BwFCe",
+    "stem": "Nadia's company wants a disaster recovery site with power, cooling, network connectivity, and server hardware already installed, but with data to be restored from recent backups after a disaster is declared. The budget will not support real-time replication. Which DR site type matches?",
+    "level": "Understand",
+    "why": "Facilities and hardware present but data restored at declaration time is described, and the task is to name the site type."
+  },
+  {
+    "id": "yzgiB1XbqLugWRxEHrh9",
+    "stem": "Noor's team manages 200 switches using hand-typed CLI sessions. An audit found dozens of devices whose running configurations have drifted from the approved baseline, and no one can say who changed what or when. The team adopts an infrastructure as code approach. Which combination of practices most directly fixes both findings?",
+    "level": "Apply",
+    "why": "Two audit findings mapped onto the version-control and automated-compliance practices that address them. Known practices applied."
+  },
+  {
+    "id": "ziRNSPTLgexEpIJwwMnq",
+    "stem": "While auditing an addressing plan, Chandra finds four address blocks proposed for internal use. Company policy requires all internal networks to use RFC1918 private address space. Which proposed block complies with the policy?",
+    "level": "Remember",
+    "why": "The answer is the memorized RFC1918 ranges. There is no situation; the trap tests recall precision at the 172.31 / 172.32 boundary."
+  }
+]

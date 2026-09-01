@@ -1,0 +1,74 @@
+[
+  {
+    "id": "16chfYjNCQwuEzX3lBH1",
+    "tagA": "Understand",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "I called this Apply because a technician has a task (trace a copper run) and picks a resource for it, which felt like using a rule in a situation. On rereading, nothing is actually applied. Every distractor falls the moment you know what the artifact contains: a Layer 3 diagram holds logical routing, a heat map holds RF coverage, an asset inventory holds licensing. No constraint in the stem does any eliminating work. Contrast the toner-and-probe item (7qsURbAtaMAkzswDm9Pz), which both of us tagged Apply and where the stated condition that nothing is patched is load-bearing: it is what kills the protocol analyzer and the speed tester. Here the scenario is a frame around four definitions. A is right."
+  },
+  {
+    "id": "2ICCd1uan5rNYZtQvfDb",
+    "tagA": "Understand",
+    "tagB": "Analyze",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "I argued the stem never says the contractor's router is serving DHCP, so the mechanism has to be inferred. That reading is too strict. 'Employees begin receiving IP addresses in an unfamiliar range with the contractor's device listed as their default gateway' states a device issuing leases and naming itself the gateway, which is the condition itself, not a symptom of it. The only missing element is the label. Worse, I was inconsistent: on the evil twin item (BiI2a8DksE1mpYkI5LIy) and the DNS poisoning item (lcT6NwmdXSCJW34WIXVP) I applied exactly the rule A is applying here and tagged both Understand. A is right."
+  },
+  {
+    "id": "73EWAYGLUTprYZ6cVDMW",
+    "tagA": "Understand",
+    "tagB": "Analyze",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "Same error as the item above, and the same correction. A gateway IP resolving to a cubicle workstation's MAC in every ARP cache, with traffic transiting that host, is the poisoned state described in full, not evidence from which the poisoning must be reconstructed. The Security+ calibration set draws the line cleanly: its Analyze item hands the candidate raw log lines (/api/user?id=1001 through 1400, HTTP 200, different profile each time) and requires inferring that a missing authorization check permits enumeration. Nothing here is raw in that way. The candidate names a described condition. A is right."
+  },
+  {
+    "id": "7yEBoSynmSgOiUtj1SvL",
+    "tagA": "Understand",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "I treated the sub-three-metre runs, the tight budget, and the SFP+ ports as constraints applied to media options. A reads them correctly as descriptors: the stem hands over DAC's defining properties (cheaper than optics, plugs into the same SFP+ ports, very short runs) and the question is literally 'What is the engineer recommending?' That is naming a thing from its description. The single-mode fiber item (5lbWALeKxEQ77dygJHKY), which we both tagged Apply, shows the difference: there the 25 km figure has to be checked against known media reach, and multimode fails on the arithmetic. Here no limit is checked against anything. A is right."
+  },
+  {
+    "id": "91s7ZGRXzjTtZcIEwgBL",
+    "tagA": "Evaluate",
+    "tagB": "Apply",
+    "whoIsRight": "B",
+    "finalLevel": "Apply",
+    "reasoning": "A treats 'the switches are currently stable and performing well' as a genuine competing consideration to be weighed against loss of patches. It is a distractor lure, not a defensible position, and a trap does not raise a Bloom level. Of the other three options, downgrading firmware does not change support status and a third-party hardware warranty cannot produce vendor software patches, so both are simply false. That leaves exactly one defensible option, which fails the Evaluate test. Nor does the stem supply anything to weigh against: no budget, no competing priority, no horizon. Compare the Security+ Evaluate items, where reporting two frameworks separately is genuinely what many firms do, and where a three-year ALE comparison has to actually be computed. This item is a known condition (end of support) meeting a known lifecycle response. B is right."
+  },
+  {
+    "id": "Si02dYgjZiLZzbgRKrGZ",
+    "tagA": "Apply",
+    "tagB": "Analyze",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I claimed the split behaviour across users must first be read as a resolution problem rather than a reachability one, and that this inference was the work. But the stem has already put the candidate inside DNS: Esme migrated the server and updated the zone. The frame is given, not deduced. What remains is knowing which query separates what authority publishes from what a client is told, which is tool knowledge applied to a known problem domain. The contrast is the connection-refused item (n3Gx6qb046YJcFxLifXO), which I also tagged Analyze and A agreed: there the candidate must realise unaided that a TCP reset proves the packets reached the host, and that single unstated inference eliminates three of the four options. Nothing comparable is unstated here. A is right."
+  },
+  {
+    "id": "T6LuPuzpiGuMzvvMFalj",
+    "tagA": "Evaluate",
+    "tagB": "Apply",
+    "whoIsRight": "B",
+    "finalLevel": "Apply",
+    "reasoning": "This is the closest of the nine and A's reading is not unreasonable: the stem deliberately builds a tension between an ongoing outage mid-business-day and the blast radius of stripping an ACL. But two things decide it. First, option D is written to be wrong rather than defensible ('a confirmed theory justifies acting without further analysis'), and removing an entire ACL is disproportionate to the fix in any case, so there is no second defensible option to weigh. Second, a candidate who has memorised the CompTIA seven steps answers this without weighing anything at all, which is not true of a real Evaluate item. Decisively, the bank contains three sibling methodology items (5kC1FABxZDW0bze7DeJs, DYMDk4P86qTSWhdngJyo, wvuSHTLuUXSbORJYfTse) that both of us tagged Apply; tagging the fourth Evaluate would make the bank inconsistent about one underlying skill. B is right, with the caveat that this is the disagreement I hold most loosely."
+  },
+  {
+    "id": "xLTT0AlBqT8sBjLbT107",
+    "tagA": "Understand",
+    "tagB": "Analyze",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "I said the loop mechanism is never named and must be connected to the new redundant path. Rereading, the stem states the second cable, states that spanning tree was administratively disabled on both switches, and describes 'the same broadcast frames circulate endlessly' — which is the loop, described rather than inferred. Cause and effect are both handed over; the candidate names the phenomenon and names the control. The duplex mismatch item (O1RPglVaVuPZ7JHG1mQ4), which we both tagged Analyze, is the right contrast: there the connection between a one-sided hardcode and late collisions runs through the autonegotiation fallback rule, which the stem never mentions and which is the whole discrimination. A is right."
+  },
+  {
+    "id": "ziRNSPTLgexEpIJwwMnq",
+    "tagA": "Apply",
+    "tagB": "Remember",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "I went back and forth on this one during my own pass and landed wrong. My argument was that there is no real situation and the answer is the memorised RFC1918 ranges. But the item does not ask what those ranges are; it presents four deliberate near-misses and requires a range-membership test on each — is a /20 at 172.20.16.0 inside a /12 at 172.16.0.0, does 172.32.0.0/16 sit past the upper boundary, is 192.169 the same as 192.168, is 11.0.0.0 the same as 10.0.0.0. That is a rule used against novel candidates, which is Apply. My own Remember tags in this bank (SFTP on 22, PTR records, channels 1/6/11, MDF versus IDF) are all single retrieved facts with nothing done to them, and this one does not match that shape. A is right."
+  }
+]

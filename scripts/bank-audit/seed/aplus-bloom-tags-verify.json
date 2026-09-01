@@ -1,0 +1,968 @@
+[
+  {
+    "id": "0C6Fh0mnE3suB4sB6kgV",
+    "stem": "A managed service provider builds an internal AI assistant for its help desk. It runs on the MSP's own hardware, no ticket text leaves the network, and access is limited to help desk staff. Reviewing the first month, Wendy finds the assistant confidently recommending a firewall configuration procedure that matches none of the firewall models the MSP actually deploys. What does this most likely indicate?",
+    "level": "Analyze",
+    "why": "Four competing interpretations of the same evidence; the reader must connect 'runs on internal hardware' to 'was never grounded in the equipment the MSP actually deploys' to rule out hallucination, bias and policy."
+  },
+  {
+    "id": "0CRNOy5jm0D3xfcybphw",
+    "stem": "Noor works a ticket where Windows Update has failed on the same machine for two weeks. She also finds that Defender real-time protection is off and will not stay on, tamper protection has been switched off, and the Windows Update service returns to Disabled within minutes of her setting it back to Automatic. The system volume has 300 GB free. What should Noor conclude?",
+    "level": "Analyze",
+    "why": "Cause is unstated; free space, tamper protection off, and the update service re-disabling itself must be combined to conclude active malware, and a stated fact defeats each distractor."
+  },
+  {
+    "id": "0YyrCjqG46xV7p6wjCYa",
+    "stem": "Elena arrives at a user's desk to repair a laptop. The user is loudly complaining that \"IT never fixes anything,\" and interrupts her twice while she tries to ask what the symptom is. What is the most appropriate response?",
+    "level": "Apply",
+    "why": "A known professionalism procedure (listen without interrupting, restate, ask open-ended questions) used in a specific customer situation."
+  },
+  {
+    "id": "10YWUGqPckeFVHsodWvT",
+    "stem": "Nadia investigates a workstation where a kernel-mode driver signed with a revoked certificate loads at boot, several processes are hidden from Task Manager, and every remediation she applies is reversed after the next restart. The installed antivirus reports the system clean. What is the appropriate resolution?",
+    "level": "Analyze",
+    "why": "Rootkit is never named; kernel driver at boot, hidden processes, reversal after every reboot and a clean AV scan must be related before reimaging is the only action left."
+  },
+  {
+    "id": "1gcBZaCgNFqTL3L3d01D",
+    "stem": "Renata is asked to classify an email that reached only the company's chief financial officer. It greets him by name and title, cites the board meeting he chaired last week, and links to a page imitating the company's own expense portal that asks him to re-enter his network credentials. The message requests no payment, transfer, or purchase, impersonates no other employee, and no one else in the company received it. Which attack is this?",
+    "level": "Understand",
+    "why": "The stem describes an incident and the reader interprets which technique it is; the CFO target and the absence of any payment request separate whaling from neighboring terms."
+  },
+  {
+    "id": "264iIgAUtf9uXeyPLcG8",
+    "stem": "Hannah supports a dual-boot laptop running Windows 11 and a Linux distribution. Whenever the user shuts Windows down and then boots Linux, the Windows partition mounts read-only and Linux warns that the volume was not cleanly unmounted. Choosing Restart from Windows and then booting Linux never causes the problem. Which Windows setting should Hannah change?",
+    "level": "Apply",
+    "why": "A known behavior (Fast startup leaves NTFS dirty) applied to a dual-boot situation; the shutdown-versus-restart contrast is stated rather than inferred."
+  },
+  {
+    "id": "2UjNPMF3WYtwXfhmabN7",
+    "stem": "A corporate Android phone comes back from a third-party screen-repair vendor, which was given the device PIN so it could test the replacement panel, and within a day the user reports a data-usage limit notification and an unfamiliar app that the MDM inventory shows never came from the managed store. Bianca finds developer options enabled with USB debugging switched on, left over from a pilot deployment, on that phone and on eleven others. All twelve are encrypted and use a six-digit PIN. Which action addresses the mechanism that allowed the unauthorized install?",
+    "level": "Analyze",
+    "why": "The enabling mechanism is not named; encryption and PIN length are present precisely as facts that do not explain the install, leaving leftover USB debugging as the only relationship that fits."
+  },
+  {
+    "id": "3m055QBCMsnD9ugbMBYo",
+    "stem": "Hector is inventorying what is stored on a workstation before it is wiped and redeployed to another department. Which of the items he found is regulated data?",
+    "level": "Remember",
+    "why": "One memorized fact: cardholder data is regulated. The other three items are plainly public or internal and no situation is interpreted."
+  },
+  {
+    "id": "3my5PcHHEp56gI5SjD67",
+    "stem": "Registration workstations at a clinic reboot on hot afternoons whenever the building's HVAC compressors start. Facility power monitoring shows the supply repeatedly sagging to roughly 100 V for several seconds at a time. Every workstation is already plugged into a surge suppressor. What should the technician recommend?",
+    "level": "Apply",
+    "why": "The measurement is given (sag to 100 V); the work is applying the known rule that undervoltage needs a UPS with AVR, not more surge suppression."
+  },
+  {
+    "id": "3SMCo0wkUtKgsJ35UAPT",
+    "stem": "Theo supports a company that allows employees to access corporate email from personal phones under a BYOD policy and now needs every enrolled device to enforce device encryption and an automatic screen lock. What is the most effective way to implement this?",
+    "level": "Apply",
+    "why": "A stated requirement (enforce encryption and screen lock across BYOD) matched to the known mechanism."
+  },
+  {
+    "id": "4v4PDgNhFWMQt1c37nyh",
+    "stem": "Nils documents an incident in which an employee working at an airport gate reported that a stranger stood close behind her and watched the screen and keyboard while she typed her VPN passphrase. Nothing was installed on the laptop and no message was sent to her. Which attack is this?",
+    "level": "Understand",
+    "why": "The stem describes an observed incident and the reader interprets it as shoulder surfing; 'nothing installed, no message sent' rules out the neighboring terms."
+  },
+  {
+    "id": "5VMqGzdteSj18jMf3tXb",
+    "stem": "Rosa is installing twelve new network drops between two suites in a leased office building. The most direct path runs above the suspended ceiling, and the building uses that space as a return-air plenum for its HVAC system. The cable on her van is standard riser-rated (CMR) Cat 6. What should she do?",
+    "level": "Apply",
+    "why": "A known code rule (plenum space requires CMP) used in a specific installation."
+  },
+  {
+    "id": "6aiS7tfUZ8Bb37QwMAEF",
+    "stem": "Gia reviews event logs on a shared workstation and finds thousands of failed logon attempts against local accounts overnight, cycling through common passwords. Which hardening setting most directly stops the attack from succeeding?",
+    "level": "Apply",
+    "why": "A known hardening control (account lockout threshold) applied to a described password-spraying pattern."
+  },
+  {
+    "id": "6K0KDKDryK9QMC1vLwZf",
+    "stem": "Kwame has just edited a Group Policy Object that maps a new department drive. A user is already signed in, cannot sign out, and cannot wait for the normal policy refresh interval. Which command should Kwame run on that user's Windows 11 workstation to make the client request and apply the policy immediately?",
+    "level": "Remember",
+    "why": "Single command recall; no other option in the set refreshes policy."
+  },
+  {
+    "id": "6LRk3yKYPvwy2PAJIKDX",
+    "stem": "Farid takes a ticket from a user whose iPhone will not install a newly published business app: the App Store shows the Get button, but tapping it returns an error and nothing downloads. Other apps install normally on the same phone over the same Wi-Fi, iPhone Storage shows 40 GB free, and the listing's compatibility section names a minimum iOS release two versions newer than the one the phone runs. What should Farid do?",
+    "level": "Apply",
+    "why": "The cause is stated outright in the stem (minimum iOS two releases newer than installed); the reader selects the corresponding action."
+  },
+  {
+    "id": "79uCVEt9ndzlDbtM5kf3",
+    "stem": "Dana is dispatched to a workstation where every document on the user's mapped drive has been renamed with an unfamiliar extension and will not open in any application, a text file demanding payment sits on the desktop, and Windows Update has failed with the same error for several days. The drive letter still browses and the user's profile signs in normally. Which conclusion best fits these symptoms?",
+    "level": "Analyze",
+    "why": "Three competing causal explanations for one symptom set; the discriminating step is tying the failed updates to the same ransomware rather than to a separate fault."
+  },
+  {
+    "id": "7sFuJJlnJVJITZoegWKq",
+    "stem": "Ben takes a call from a user whose desktop has become sluggish and whose fans run loudly even when she is not working. Task Manager shows a background process holding the CPU and GPU near 100 percent overnight, but her files open normally and no ransom message has appeared. Which malware type best fits these symptoms?",
+    "level": "Understand",
+    "why": "A symptom picture interpreted into a malware category: sustained CPU and GPU load with intact files reads as cryptomining."
+  },
+  {
+    "id": "85SJRrDo5vY8tUbPzfdy",
+    "stem": "Delia takes a ticket from a user who says new windows keep opening on their own while she reads legitimate news sites. The browser is current, the machine scans clean, and the windows stop appearing when she leaves those sites. Which browser setting should Delia change?",
+    "level": "Apply",
+    "why": "A known browser setting selected for a described symptom after the stem rules out malware and an outdated browser."
+  },
+  {
+    "id": "88HmphmbtNW8BY1W04BC",
+    "stem": "Talia works for a managed service provider supporting 900 endpoints across 40 small clients. She needs unattended access to any endpoint, plus patch status and alerting for the whole fleet, from one console — without requiring someone to be sitting at the remote machine. Which technology best fits?",
+    "level": "Apply",
+    "why": "Stated requirements (unattended access, patch status, alerting, one console, 900 endpoints) matched to RMM."
+  },
+  {
+    "id": "8FAQLwJGHFqnzsLjPn76",
+    "stem": "A hardware vendor's support desk asks Devon to send one exportable report that lists a workstation's BIOS/UEFI version, installed physical memory, OS build number, and hardware resource assignments. Which built-in Windows tool produces all of that in a single saved file?",
+    "level": "Remember",
+    "why": "Recall of what one built-in tool reports; no alternative in the option set produces that inventory."
+  },
+  {
+    "id": "8hrAloHU4xDeNeAjHJm9",
+    "stem": "Every Monday morning, Malik signs in to 14 branch servers one at a time, reads the free space on each volume, and types the numbers into a spreadsheet for the capacity report. He wants to stop doing this by hand. Which scripting use case describes what he should automate?",
+    "level": "Understand",
+    "why": "A described activity is classified into a named scripting use case."
+  },
+  {
+    "id": "8yGTK2ZYqji4liPPTw5k",
+    "stem": "Rafael supports field technicians who work from hotel and airport networks where the local resolver cannot be trusted and plaintext lookups reveal which sites they visit. He wants name resolution protected inside the browser without deploying a VPN client. What should he enable?",
+    "level": "Apply",
+    "why": "Stated constraints (untrusted resolver, no VPN, protection inside the browser) matched to DNS over HTTPS."
+  },
+  {
+    "id": "9fBoIReCr6VMvxVSl0yE",
+    "stem": "Sofia's help desk wants to speed up ticket documentation by pasting raw ticket text — customer names, home addresses, device serial numbers, and account identifiers — into a free public AI chatbot to have it draft resolution notes. Which concern should IT raise first?",
+    "level": "Evaluate",
+    "why": "All four options name real AI risks; the reader must justify which takes priority given that the pasted text is regulated customer data."
+  },
+  {
+    "id": "9fF4EswUJSO97yx01NOX",
+    "stem": "On a Linux workstation, a second data disk mounts correctly whenever Nadia runs mount manually, but the mount is gone after every reboot and users find an empty /data directory. Which file should she edit so the volume mounts automatically at boot?",
+    "level": "Remember",
+    "why": "Single file recall."
+  },
+  {
+    "id": "9nlbuycINHcf6UW0POwK",
+    "stem": "The MDM console flags a corporate-owned Android phone as non-compliant with the reason 'root detected,' and the company's expense app now refuses to launch on that device. The assigned user acknowledges that a friend unlocked the bootloader and installed a superuser manager so he could remove preinstalled apps. What is the appropriate action?",
+    "level": "Apply",
+    "why": "Known policy for a rooted corporate device applied; the three workarounds are ruled out by the policy itself."
+  },
+  {
+    "id": "9Pd6rWanNoPQpJrAb4mE",
+    "stem": "Users of a Windows 11 file-preparation workstation report that searching from File Explorer for text inside documents stored on a newly attached D: volume returns no matches, and that any search on that volume takes minutes, while the same searches under the user profile return instantly. The files are visible when the folder is browsed directly, and permissions are correct. Which Windows setting should the technician, Dmitri, adjust?",
+    "level": "Apply",
+    "why": "The contrast between the profile and the D: volume is stated, and the answer is the known setting that governs content search."
+  },
+  {
+    "id": "achd7D7LGCXx7iInHL8n",
+    "stem": "Dana audits a manufacturing floor and finds eight PCs still running an operating system version the vendor declared end-of-life (EOL) 14 months ago. The PCs boot normally and the operators report no problems at all. Which statement best describes the risk Dana should put in her report?",
+    "level": "Understand",
+    "why": "Interpreting what vendor end-of-life actually means, against three common misconceptions."
+  },
+  {
+    "id": "ad5ddHbz0PiiTFdpALKR",
+    "stem": "Priya, a systems technician, finds that the backup agent service on a file server no longer starts at boot. The System log records 'The service did not start due to a logon failure.' The service is set to Automatic and was working until the security team completed a service-account password rotation last weekend. What should Priya do?",
+    "level": "Apply",
+    "why": "The cause is handed over (logon failure following a service-account password rotation); the reader selects the matching fix."
+  },
+  {
+    "id": "AX6UZq4zMDnvwj4htlMP",
+    "stem": "Across a warehouse's forty managed Android handhelds, the current OS release never installs: the update downloads and then is skipped at the scheduled install window. Staff phones of the same model on the same Wi-Fi, but not enrolled in management, take the release without any trouble. Free storage and battery level on the managed handhelds are well above the update thresholds. What should the technician check first?",
+    "level": "Analyze",
+    "why": "Cause unstated; the managed-versus-unmanaged contrast on identical hardware is the relationship that points at an MDM deferral, and storage and battery are given only to eliminate distractors."
+  },
+  {
+    "id": "bAMx3F4edpH2KCzKi04E",
+    "stem": "Hugo supports a lab where staff sign in to whichever shared workstation is free. Users complain that documents they saved yesterday are missing today, because each file was written to the local profile of a different machine. Which Active Directory configuration solves this?",
+    "level": "Apply",
+    "why": "A stated symptom (files landing in per-machine local profiles) matched to the known directory feature."
+  },
+  {
+    "id": "bd5qRNWzwE0UmuyUlvrH",
+    "stem": "Sanjay is asked to publish a small office's internal web application to customers on the internet. The owner insists that a compromise of the web server must not give an attacker direct access to the accounting workstations on the LAN. Which router configuration best meets that requirement?",
+    "level": "Apply",
+    "why": "A stated requirement (a web-server compromise must not reach the LAN) matched to a screened subnet."
+  },
+  {
+    "id": "bD9oNgbMm49IxP9qLgWf",
+    "stem": "Otis is asked to give staff access to a cloud-hosted expense portal using the same directory credentials they already use on their workstations, with no second password issued to anyone. Which approach meets that requirement?",
+    "level": "Apply",
+    "why": "Stated requirement (one credential, no second password issued) matched to SAML SSO."
+  },
+  {
+    "id": "bSBuxQaJYmHGCuFd1kB7",
+    "stem": "Wren finds that a third-party antivirus subscription lapsed 60 days ago and the product was uninstalled from a group of workstations. The Windows Security dashboard on those machines now reports that no virus and threat protection is running. What should she do first on those workstations?",
+    "level": "Apply",
+    "why": "A known first step -- confirm the built-in AV took over and update definitions -- applied after a third-party product was removed."
+  },
+  {
+    "id": "bsJXWY4P22rLuA9RR5zt",
+    "stem": "Oksana is documenting impact considerations for deploying a 4 GB design suite to 600 workstations. She has already confirmed that every workstation exceeds the published system requirements, that licensing is purchased for all 600 seats, and that the help desk is staffed for the rollout. The remaining detail is that all 600 clients will pull the installer from a single distribution point across the same 1 Gbps campus uplink on a Tuesday morning. Which impact should she document, and what mitigation follows from it?",
+    "level": "Apply",
+    "why": "Three impact categories are explicitly eliminated by the stem; the remaining detail is classified with the known change-management framework."
+  },
+  {
+    "id": "BUeb8dvAHCoYrVvJzdFf",
+    "stem": "Hector, a clinic technician, must ensure that USB flash drives carrying patient records remain unreadable if one is lost outside the building. The workstations run Windows 11 Pro. Which built-in feature meets the requirement?",
+    "level": "Apply",
+    "why": "Stated requirement (removable media unreadable if lost, Windows 11 Pro) matched to BitLocker To Go."
+  },
+  {
+    "id": "cahwxWMc0EK7qDUTDkK0",
+    "stem": "A zero-day vulnerability in the company's VPN concentrator is being actively exploited in the wild. Kwame's team must patch tonight, far inside the normal two-week change advisory cycle. How should the work be classified and handled?",
+    "level": "Apply",
+    "why": "The change-classification framework applied to an actively exploited zero-day that must be patched inside the normal cycle."
+  },
+  {
+    "id": "cDKnsSf4C1As4sJpYdiI",
+    "stem": "Aisha is speccing a single analysis workstation for a genomics lab that standardizes on Windows 10. The chassis has four physical CPU sockets, the team is installing 3 TB of RAM, and researchers must connect to the machine desktop over RDP while long jobs run. Which Windows 10 edition meets all of these requirements?",
+    "level": "Apply",
+    "why": "Published edition limits (four sockets, 3 TB RAM, RDP host) checked against a candidate configuration."
+  },
+  {
+    "id": "cKK4N9nI1zxgAszRMWgF",
+    "stem": "Yusuf is remediating malware on a Windows Home system when a junior technician asks him why the procedure calls for turning System Restore off before scanning and back on afterward. What is the correct explanation?",
+    "level": "Understand",
+    "why": "Explaining why a step in the removal procedure exists rather than performing it."
+  },
+  {
+    "id": "Cue2h5JDg7KYgcPCsrB5",
+    "stem": "A Linux server alerts that its root filesystem is nearly full. Deshawn has already confirmed the overall filesystem usage percentage and now needs to see which directories under /var are consuming the space. Which command gives him that breakdown?",
+    "level": "Remember",
+    "why": "Single command recall; the stem has already ruled out df."
+  },
+  {
+    "id": "cUr1FDaqivOb5NmKbV8S",
+    "stem": "Tessa investigates a workstation where every search is redirected through an unfamiliar host and pages load slowly. The machine scans clean, but the browser's connection settings list a proxy server address the user says she never configured. What should Tessa do?",
+    "level": "Apply",
+    "why": "The cause is stated (a proxy entry the user never configured); the reader selects the corresponding fix."
+  },
+  {
+    "id": "dAcVgf1YhlGaqDdT4msZ",
+    "stem": "Marcus is preparing a 128 GB USB flash drive that a video team will use to hand single 12 GB project files back and forth between Windows 11 desktops and macOS laptops. Both platforms must be able to read and write the drive without installing third-party drivers. Which filesystem should Marcus format the drive with?",
+    "level": "Apply",
+    "why": "Stated constraints (cross-platform read/write, 12 GB files, no third-party drivers) matched to exFAT."
+  },
+  {
+    "id": "dcqfCRN7yaNfQYEjIpxs",
+    "stem": "A Windows 11 jump box in the server room is suspected of running an unauthorized listener on TCP 4444. Sofia needs to see every listening port on the host together with the process ID that owns it, using only built-in tools. Which command should she run?",
+    "level": "Remember",
+    "why": "Single command-and-switch recall."
+  },
+  {
+    "id": "dvnDJkJGvo5VK67fOPnB",
+    "stem": "Camila's Android phone has stopped completing contactless payments at every register, and the same phone no longer opens the office badge readers. She demonstrates the failure with the phone unlocked, the screen on, and the protective case removed, and a coworker's phone works at both the same register and the same badge reader. What should the technician check first?",
+    "level": "Analyze",
+    "why": "Cause unstated; that two unrelated NFC functions fail while a coworker's phone works at both endpoints is the relationship that isolates the radio, and each distractor is defeated by a specific fact."
+  },
+  {
+    "id": "EdLGgHyROqUG9J1YklkD",
+    "stem": "Ingrid, a desktop support technician at a European subsidiary, images the site's laptops from Windows 11 Pro N installation media. Users immediately report that Windows Media Player, the video app, and several line-of-business applications that depend on media codecs will not run. Which explanation and remedy are correct?",
+    "level": "Understand",
+    "why": "Interpreting what an N edition is and what follows from it, against three plausible misreadings."
+  },
+  {
+    "id": "eh38RKyh1DN5Mn7lemcc",
+    "stem": "Malik supports kiosk laptops that sit unattended in a public lobby; their internal drives are not encrypted. He discovers that someone booted one of them from a USB Linux distribution, mounted the internal drive, and altered local account files. Which hardening step most directly prevents an alternate operating system from loading again?",
+    "level": "Apply",
+    "why": "A stated attack path (booting an alternate OS from USB) matched to the known firmware hardening step."
+  },
+  {
+    "id": "enoRKT16cxDzMF0upL78",
+    "stem": "A pallet of leaking laser toner cartridges is discovered in a storeroom. Miguel is assigned to package and dispose of them and needs to know what personal protective equipment to wear, how to clean the spill, and how the cartridges must be disposed of. Which document provides that information?",
+    "level": "Remember",
+    "why": "Single document recall."
+  },
+  {
+    "id": "EPgZwD9KN5zny84YQq9I",
+    "stem": "Duncan analyzes a coffee shop incident where a laptop on the shop's Wi-Fi received ARP replies claiming the default gateway's IP address belonged to another station. That station forwarded the traffic onward, and users saw certificate warnings for well-known sites. Which attack is this?",
+    "level": "Understand",
+    "why": "A described mechanism -- forged ARP replies, onward forwarding, certificate warnings -- interpreted into the attack name."
+  },
+  {
+    "id": "eQQ7jlorB6JRDQDXZLY4",
+    "stem": "After removing malware from a Windows 11 laptop, Ana finds that several Windows components fail to launch and Windows reports that protected system files may be damaged. The user's data must be preserved. Which command should she run to verify and repair the operating system's protected files?",
+    "level": "Remember",
+    "why": "Single command recall for repairing protected system files."
+  },
+  {
+    "id": "EVk3hG45QpJUWjeBzbuF",
+    "stem": "Marcus diagnoses a six-year-old office laptop for Dana: the display panel and the battery both need replacing, and parts plus labor come to slightly more than a current model already on the company's standard hardware list. Dana says she does not want the disruption of a new machine and tells him to just fix this one. How should Marcus proceed?",
+    "level": "Evaluate",
+    "why": "Two defensible positions collide: honoring the customer's stated decision versus a repair costing more than replacement. The reader must justify presenting both with costs and letting her choose."
+  },
+  {
+    "id": "EvLPqmVyJ0rb63We8rNN",
+    "stem": "Hank keeps three copies of the engineering design files: the working copy on the workstation, a copy on an external USB drive, and a copy on the office NAS. All three sit in the same suite. Measured against the 3-2-1 backup rule, what is missing?",
+    "level": "Understand",
+    "why": "A described backup arrangement is interpreted against the 3-2-1 rule to name the element it does not satisfy."
+  },
+  {
+    "id": "F7zLIP2qyzlGs8XZNgqU",
+    "stem": "Renee supports a domain-joined branch office where six workstations have begun failing sign-in with clock-skew errors. Each affected machine gains about twenty minutes over a single powered-on workday, so a clock she corrects by hand is back outside the allowed skew roughly two hours later, with the machine never powered off in between. What is the most appropriate action?",
+    "level": "Analyze",
+    "why": "CMOS battery is the intuitive answer and is defeated by 'never powered off in between'; reconciling that contradiction with the drift rate is the work."
+  },
+  {
+    "id": "fAglhpHoeKyf9lNBKgxt",
+    "stem": "Ines helps a user who reset her password on a customer portal. The portal still greets her under the old session and shows a stale error page that no longer exists on the site; the browser is presenting the pre-reset session cookie and a cached copy of that page. What should Ines do?",
+    "level": "Apply",
+    "why": "The cause is stated (a stale session cookie and a cached page); the reader selects the corresponding fix."
+  },
+  {
+    "id": "Fef7xdrR4gArKYh8WMFk",
+    "stem": "The nightly backup window at a law firm is too short to finish a weekly full backup of the file server, and the restore team refuses to chain a long series of jobs at recovery time. Ines needs a configuration that yields a current, single-step restore point every night while the backup software still reads only that night's changed data from the production server. Which backup type meets all three constraints?",
+    "level": "Apply",
+    "why": "Three stated constraints checked against four backup types."
+  },
+  {
+    "id": "FEwewpSFdujMs2U8DgJh",
+    "stem": "Ines wrote a maintenance script at /opt/scripts/rotate.sh on a Linux server. The file's owner must be able to read, write, and execute it, while members of the owning group and all other users must be able to read and execute it but never modify it. Which command sets exactly those permissions?",
+    "level": "Apply",
+    "why": "Translating a spelled-out permission set into the correct numeric mode."
+  },
+  {
+    "id": "fl6tdaO3Gb2lyJvolPnZ",
+    "stem": "Desmond is sent to a workstation that cannot open any internal or internet site. ipconfig shows a valid address, mask, and gateway from the office DHCP scope, and the gateway answers pings by IP address. Name lookups return addresses that do not match what the corporate DNS server answers for the same names, and the adapter lists a DNS server the DHCP scope has never issued. What is the most likely cause?",
+    "level": "Analyze",
+    "why": "Cause unstated; a working gateway, wrong name answers, and a DNS server the DHCP scope never issued must be combined, and each distractor is defeated by a stated fact."
+  },
+  {
+    "id": "FPtcwmQGV8JkvyvWbERv",
+    "stem": "Oscar interviews an employee who received a phone call from a man who said he was from the company help desk, referenced a ticket number, and asked her to read back the six-digit code that had just arrived on her phone so he could finish verifying her account. No email or text was sent by the caller. Which attack is this?",
+    "level": "Understand",
+    "why": "A described social-engineering interaction interpreted into the attack name; 'no email or text was sent' separates it from the phishing variants."
+  },
+  {
+    "id": "fpyvfTYgVlJnhsao4EY2",
+    "stem": "Elena's company hired 300 remote employees. Laptops will ship sealed from the vendor directly to each home address, and no technician will ever physically touch them. Each laptop must join the corporate cloud directory, apply corporate policy, and install the standard application set the first time the user powers it on and signs in. Which type of installation should Elena plan for?",
+    "level": "Apply",
+    "why": "Stated constraints (sealed shipment, no technician contact, provisioning at first sign-in) matched to zero-touch deployment."
+  },
+  {
+    "id": "fRk1ZvMULvluvzWiXUm1",
+    "stem": "Tobias is working from hotel Wi-Fi. He browses the internet normally, but his mapped drive to \\\\fs01\\projects fails and the internal intranet site does not resolve. Company policy requires that internal resources never be published to the public internet. Which network connection should he establish on the client?",
+    "level": "Apply",
+    "why": "Stated constraints (internal resources unreachable, nothing published publicly) matched to a corporate VPN."
+  },
+  {
+    "id": "G1oOwSgYt32Oazr6W71i",
+    "stem": "Luis takes a ticket for a desktop that shuts down and restarts on its own two or three times a day with no blue screen and no warning to the user. The machine is out of warranty, and Luis has a spare power supply on the bench. What should he do first?",
+    "level": "Apply",
+    "why": "Troubleshooting methodology applied: gather recorded evidence before swapping the part that happens to be on the bench."
+  },
+  {
+    "id": "GiuwkB9Cv7et0V8En9oJ",
+    "stem": "Owen takes a report from a traveling consultant who says that in an airport lounge her laptop connected to a network with the same SSID as the lounge's official Wi-Fi but with a much stronger signal, and afterward she was prompted to accept an unfamiliar certificate. Which attack is most likely?",
+    "level": "Understand",
+    "why": "A described incident -- duplicate SSID, stronger signal, unexpected certificate prompt -- interpreted into the attack name."
+  },
+  {
+    "id": "glEUHf8PXWnCSbj7NDLE",
+    "stem": "Sofia escalates a tablet that no longer rotates its display. The technician verifies rotation lock is off in Quick Settings, confirms the failure occurs in every app including the home screen, and finds that a restart and a full OS update made no difference. A built-in sensor test reports no accelerometer data. What is the appropriate conclusion?",
+    "level": "Analyze",
+    "why": "Four competing causal explanations; rotation lock, app scope, restart, OS update and the sensor readout must be combined before hardware failure is the only one still standing."
+  },
+  {
+    "id": "GtFicdNpqyPDQ5jBxzvt",
+    "stem": "Emeka needs to install an approved line-of-business application on a workstation while the standard user is signed in. The installer exits with the message \"This installation requires administrative privileges.\" Company policy says the user must remain a standard user afterward. What should Emeka do?",
+    "level": "Apply",
+    "why": "A known elevation technique applied under the constraint that the user must remain a standard user."
+  },
+  {
+    "id": "hbKQtzXGGQbWaaxG2B88",
+    "stem": "A CAD package lists these system requirements: a 64-bit operating system, 32 GB of RAM, 200 GB of free storage, and a dedicated graphics card with at least 8 GB of VRAM. The candidate workstation runs 64-bit Windows 11 Pro with 64 GB of RAM, 1 TB free, and integrated graphics that share system memory. What should the technician, Farid, report?",
+    "level": "Apply",
+    "why": "A published requirement list checked against actual specifications, with shared system memory not counting as dedicated VRAM."
+  },
+  {
+    "id": "HhcOHiZ6avdFfSePJycI",
+    "stem": "Ivan takes a desktop that has become generally unstable: it freezes for a minute at a time several times a day, feels sluggish between the freezes, and has produced two different stop codes this week. The user recently installed a bundle of free PC optimizer and driver updater utilities. sfc and DISM report no corruption, the vendor's hardware diagnostics pass, and the only restore point on the machine was created two weeks ago, after the utilities were installed but before the last quality update. What should Ivan do next?",
+    "level": "Analyze",
+    "why": "The subtle fact is the restore point's timing -- created after the utilities were installed, which defeats the rollback option -- while passing diagnostics defeat the hardware option, leaving clean boot as the isolating next step."
+  },
+  {
+    "id": "hkdhCyZYPJw7eA2mJgQT",
+    "stem": "Rosa shares a folder on a Windows file server. The share permission for the Sales group is Full Control, while the NTFS permission for the same group on the folder is Read. A Sales user maps the share from her workstation. What is her effective access to the files over the network?",
+    "level": "Apply",
+    "why": "The known rule (the more restrictive of share and NTFS wins over the network) applied to specific values."
+  },
+  {
+    "id": "hkLppvB9dqwnLXA5rqyZ",
+    "stem": "Elias, an IT director, is preparing for a joint product integration in which his firm and a partner firm will each expose internal design documents to the other's engineers. Which agreement covers confidentiality running in both directions?",
+    "level": "Remember",
+    "why": "Agreement-type terminology recall."
+  },
+  {
+    "id": "hsaAk9zGbpqyJhR3MaUX",
+    "stem": "A newly hired analyst with low vision needs a Windows 11 laptop configured so that on-screen text is enlarged, a high-contrast theme is applied, and the built-in screen reader starts automatically both at the sign-in screen and after sign-in. Where should the technician, Rhea, configure all three?",
+    "level": "Apply",
+    "why": "Three stated accessibility requirements matched to the one settings section that holds all of them."
+  },
+  {
+    "id": "hY6nI6lnDN19UdMouqJs",
+    "stem": "Security asks Camila to preserve evidence from a workstation suspected of exfiltrating customer records. The machine is still powered on and connected to the network. Which sequence best follows incident response practice?",
+    "level": "Apply",
+    "why": "The evidence-handling procedure applied to a machine still powered on and networked; the distractors are procedurally wrong rather than merely mis-ordered."
+  },
+  {
+    "id": "I3BWzIXgmLjHE6xKobOD",
+    "stem": "Priya, a desktop support technician, is asked to stop unauthorized people from slipping in behind badged employees at the server room door. The door already has a badge reader, but staff routinely hold it open for one another. Which physical control most directly prevents this?",
+    "level": "Apply",
+    "why": "A described physical weakness (a badged door held open for others) matched to the known control."
+  },
+  {
+    "id": "IH8kp4RvFjX1R3hfcm03",
+    "stem": "While auditing a branch office WLAN, Imani finds the access point running WPA2 in mixed mode with both TKIP and AES enabled because an eight-year-old wireless printer cannot negotiate AES. What should she recommend?",
+    "level": "Apply",
+    "why": "The deprecation of TKIP is definite, so only one option survives; the reader applies it despite the legacy printer."
+  },
+  {
+    "id": "IiCEJeLvn2oaTlQTarBR",
+    "stem": "Following the SOHO malware removal procedure, Kwame has already investigated and verified the malware symptoms on a Windows Home workstation. What is his next step?",
+    "level": "Remember",
+    "why": "Recall of the next position in a memorized ordered procedure."
+  },
+  {
+    "id": "INcUE0yK73tOKZbbZ79d",
+    "stem": "Dmitri, a hospital technician, is shown flyers reading \"Parking permit renewal - scan to update\" that were taped to pillars in the staff garage. Scanning the code opened a page imitating the hospital's single sign-on portal and asking for credentials. Which attack does this describe?",
+    "level": "Understand",
+    "why": "A described lure -- physical QR flyers leading to a fake SSO page -- interpreted into the attack name."
+  },
+  {
+    "id": "ipwLP7e3uEnAa3iORdK6",
+    "stem": "Bianca links a Group Policy object that enforces screen lock settings to the Workstations organizational unit. One laptop never applies it. She confirms the policy is enabled, the laptop is domain joined, and its computer object is still sitting in the default Computers container. What should she do?",
+    "level": "Apply",
+    "why": "The cause is stated (the computer object still sits in the default container); the reader applies the known rule that GPO scope follows the OU."
+  },
+  {
+    "id": "ITaFpqLLydxj3GFNgfIt",
+    "stem": "Maya, a desktop support technician, is called to a workstation that has thrown three blue screens in one morning. Each stop screen reads DRIVER_IRQL_NOT_LESS_OR_EQUAL and names the same vendor .sys file for the machine's network adapter. The only change on the machine was a NIC driver package pushed the previous night. The system still boots into Safe Mode reliably. What should Maya do next?",
+    "level": "Apply",
+    "why": "The cause is stated (a stop code naming the NIC driver pushed the previous night); the reader selects the corresponding rollback."
+  },
+  {
+    "id": "JDSjpBw3BEAvLt7CeNz4",
+    "stem": "Yara finds that staff reuse one password across a dozen supplier portals because they cannot remember unique ones, and several have written the password on notes at their desks. Management wants unique credentials per site without adding a second factor. What should Yara recommend?",
+    "level": "Apply",
+    "why": "Stated constraints (unique credentials per site, no second factor) matched to a password manager."
+  },
+  {
+    "id": "jIiSriaoDKK8zWgKe0tg",
+    "stem": "Marisol, a tier-1 technician, spends 40 minutes discovering that a recurring \"driver unavailable\" error on the accounting department's laser printers is cleared by rolling back the print driver to the previous version. Forty other users have the same printer model. She has already closed the ticket with clear resolution notes. What should she do next so the next technician does not repeat those 40 minutes?",
+    "level": "Apply",
+    "why": "A known knowledge-management practice applied so the fix reaches the next technician."
+  },
+  {
+    "id": "Jnpo4xwt6gjKprbrdUbq",
+    "stem": "Mira is briefed that the company's public website became unreachable during a sales event. The edge firewall logged traffic from many thousands of distinct source addresses across dozens of countries, arriving at once and saturating the internet link. Which attack does this describe?",
+    "level": "Understand",
+    "why": "A described traffic pattern -- thousands of distinct sources saturating the link -- interpreted into the attack name, with the single-source variant present as the discriminator."
+  },
+  {
+    "id": "JySTNjwSZKNQkR5N8Mbv",
+    "stem": "Pilar must install an open-source utility whose vendor site directs downloads to a community mirror. The vendor publishes a SHA-256 value for the installer. What is the most reliable way to confirm the downloaded file has not been altered?",
+    "level": "Apply",
+    "why": "A published hash compared against the computed one; the alternatives verify transport or content, not integrity against the vendor's value."
+  },
+  {
+    "id": "K5iRqESTcYCI2qylQVkz",
+    "stem": "A new hire already has an on-premises Active Directory account created by the identity team. She now needs a cloud mailbox, cloud file storage with desktop folder sync, and videoconferencing, and she must reach all of them with the same corporate credentials she uses to sign in to her workstation. What does the technician, Grace, need in place?",
+    "level": "Apply",
+    "why": "Hybrid identity requirements matched to the known sequence: confirm directory sync replicated the account, then assign a license."
+  },
+  {
+    "id": "kENEBiPJ1svxj6geZpxW",
+    "stem": "Jordan brings in a personal Android phone enrolled in the company BYOD program. Since last week the phone shows a data-usage limit notification days early, responds sluggishly, and displays ads on the home screen. Jordan mentions installing a free video downloader as an APK from a link in a messaging group rather than from the official store. What should the technician do?",
+    "level": "Apply",
+    "why": "The cause is stated (a sideloaded APK from a messaging link); the correct action removes the app and closes the install path."
+  },
+  {
+    "id": "Km4r7vp4n155XvI5PeTe",
+    "stem": "Neema is signed in as a standard user on a Fedora-based Linux server and must install the nmap package from the distribution repositories. Which command accomplishes this?",
+    "level": "Apply",
+    "why": "Two constraints applied at once: the distribution's package manager and the privilege escalation a standard user needs."
+  },
+  {
+    "id": "KZ6JujZEBDkEJgvcexr5",
+    "stem": "An internal web application suddenly throws a certificate warning for one user only. Yolanda goes to the affected workstation and works inside that user's signed-in session. The renewed internal root certificate has already been deployed to the fleet, but an expired copy of the old internally issued root is still present in this user's Trusted Root Certification Authorities store and must be removed for that user account alone. Which tool should she launch from within that session?",
+    "level": "Apply",
+    "why": "Group Policy is a genuine alternative, defeated by the requirement to change one user's store from inside that session."
+  },
+  {
+    "id": "l7FgD5Bp84vHUyRtHA2T",
+    "stem": "Bianca finds a PowerShell script on a public community forum that claims to clear temporary files fleet-wide. Without reading its contents, she schedules it to run with domain administrator rights on 500 workstations. Which scripting risk does this decision most directly ignore?",
+    "level": "Evaluate",
+    "why": "All four options are real scripting risks; the reader must justify which one the decision most directly ignores, given unreviewed code plus domain administrator rights on 500 machines."
+  },
+  {
+    "id": "LATjgXcA5fAf39lBJFOo",
+    "stem": "Ana submits a change request to upgrade the ERP client on 300 workstations. The change board rejects it, noting that the request documents the purpose, the scope, the affected systems, the risk level, and the responsible staff members — but never states how the environment will be returned to its current state if the upgrade breaks order entry. What is missing?",
+    "level": "Understand",
+    "why": "The missing element is described in words -- how the environment is returned to its current state -- and the reader interprets it into the term."
+  },
+  {
+    "id": "lM8RIuyaCPfFe868l9NF",
+    "stem": "Omar supports a 12-person design firm that has just been acquired and joined the parent company's Active Directory domain. The firm's laptops run Windows 11 Home. They must now join the domain, be encrypted with BitLocker, and accept settings configured in the Local Group Policy Editor (gpedit.msc). Which is the correct path?",
+    "level": "Apply",
+    "why": "Stated requirements (domain join, BitLocker, gpedit) matched to the edition upgrade path."
+  },
+  {
+    "id": "LmjGhT6SuW9DOGNvk4Ba",
+    "stem": "Priya is scoping a patch for an accounting application. She needs to know which workstations have it installed, which version each one runs, and which file server each workstation depends on — including how those items relate to one another. Which asset management resource is designed to answer that question?",
+    "level": "Apply",
+    "why": "A flat inventory is a genuine alternative, defeated by the requirement to see how the items relate to one another."
+  },
+  {
+    "id": "lwIfeIBz6DBSymcnzoAO",
+    "stem": "Devon needs to move a 78 lb (35 kg) UPS from a pallet on the loading dock to a rack in a second-floor server room. The freight elevator is out of service, the stairwell has a landing halfway up, and he is the only technician on site this Sunday. How should he move it?",
+    "level": "Apply",
+    "why": "The known weight threshold and team-lift procedure applied despite the schedule pressure."
+  },
+  {
+    "id": "lwLvpiuwnh6xdAhY885b",
+    "stem": "Vikram is building a shared breakroom PC. Policy states the machine must not synchronize settings, files, or saved passwords to any consumer cloud identity, and no one person owns the device. How should he configure sign-in?",
+    "level": "Apply",
+    "why": "Stated policy constraints (no consumer cloud identity, no single owner) matched to a local account."
+  },
+  {
+    "id": "LYL712bFypoeGjAphC65",
+    "stem": "Tomas boots a new workstation from a USB installer to perform a clean install. Setup reaches the drive selection screen and lists no drives at all, even though the firmware setup utility clearly shows the NVMe SSD. Which action should Tomas take first?",
+    "level": "Apply",
+    "why": "The known remedy for storage the installer cannot see, selected as the first action."
+  },
+  {
+    "id": "M4EIRzgJaaq6fmaurU05",
+    "stem": "A tablet that was recently returned from a training lab connects to the office wireless network and shows full signal, but no app can reach the internet and the device cannot resolve any hostname. Other devices on the same access point work normally. Ravi checks the tablet's Wi-Fi details and sees a manually entered IP address, subnet mask, and DNS server from the lab's addressing scheme. What should Ravi do?",
+    "level": "Apply",
+    "why": "The cause is stated (a static address from the lab's addressing scheme); the reader selects the corresponding fix."
+  },
+  {
+    "id": "mBzIR2GtaEDy4ncM3iLu",
+    "stem": "While browsing on her company iPhone, Alia hits a full-screen page that vibrates the phone, claims '17 viruses detected,' and offers a one-tap link to install a cleaner app to fix it. She calls the help desk before tapping anything. What is the correct guidance?",
+    "level": "Apply",
+    "why": "Known guidance for a scareware page applied to a specific report."
+  },
+  {
+    "id": "MmkMWpzHyvLHM5OTZmvi",
+    "stem": "Miriam is handed a laptop where every HTTPS site, in two different browsers, raises a certificate warning that began last Tuesday. The laptop's clock and time zone are correct, other machines on the same network load the same sites without complaint, and each certificate the browsers present is issued by the same unfamiliar authority, which appears nowhere in the machine's trusted root store and was deployed by no corporate policy. What is the most likely cause?",
+    "level": "Analyze",
+    "why": "Cause unstated; a correct clock, two browsers, unaffected peers and an unfamiliar issuer absent from the trust store must be combined before TLS interception is the only explanation left."
+  },
+  {
+    "id": "MmR22Rl55VGsKnclm6PT",
+    "stem": "While remoting into a partner company's HR workstation to resolve a printing problem, Sergio sees an open spreadsheet of employee salaries and a desktop folder labeled \"Q3 terminations.\" Neither is related to the printer. How should he proceed?",
+    "level": "Apply",
+    "why": "The known rule for confidential material encountered incidentally, applied on a partner's workstation."
+  },
+  {
+    "id": "MOtkK9PWKOyci2tIVfOI",
+    "stem": "Noor is asked by a compliance officer for proof that a third-party vendor actually destroyed the drives it collected during a data center decommission. Which document satisfies the request?",
+    "level": "Remember",
+    "why": "Document-type recall."
+  },
+  {
+    "id": "mQaPqTQWumHV3Ecmcttf",
+    "stem": "Ellis reports that his company Android phone, which used to last a full shift, now drains from full to empty by mid-afternoon. The change began about a week ago, roughly when he installed a new weather and traffic app. The battery health readout is normal and the phone is not unusually warm. What should the technician check first?",
+    "level": "Apply",
+    "why": "The correlation is stated (the drain began when the app was installed); the reader selects the corresponding place to check."
+  },
+  {
+    "id": "MwgcASnXJOI2jU7N0aeX",
+    "stem": "Tomas is replacing the wireless configuration at a small law office after learning that an attacker can capture the WPA2-Personal four-way handshake and crack the passphrase offline. Which change addresses that specific weakness?",
+    "level": "Apply",
+    "why": "A named weakness (offline cracking of the WPA2 four-way handshake) matched to the known remedy."
+  },
+  {
+    "id": "n1r3aHglzvc7I6Tz6rdh",
+    "stem": "Lena reads a vendor advisory stating that attackers are actively exploiting a flaw in a widely deployed file-transfer application, that no fix currently exists, and that a patch is still being developed. How should she classify the exposure when briefing management?",
+    "level": "Understand",
+    "why": "A described exposure -- active exploitation with no fix in existence -- interpreted into the correct classification."
+  },
+  {
+    "id": "n9X20rMscgZ63NBCgeNj",
+    "stem": "Ingrid handles a report that a sales representative's corporate-owned smartphone was stolen from a car. The device is enrolled in MDM, holds customer PII, backs up nightly to the corporate cloud, and the locator application shows it offline. What should she do?",
+    "level": "Apply",
+    "why": "Stated facts (stolen, holds PII, backed up, offline) matched to the known MDM action."
+  },
+  {
+    "id": "NC11tDrJgdKbrRXbRBIZ",
+    "stem": "A workstation with a manually configured IPv4 address can ping the file server and public internet hosts by IP address and reaches its default gateway, but no name resolves at all, neither internal hostnames nor public websites. Which client setting should Lena check first?",
+    "level": "Apply",
+    "why": "A textbook symptom split -- IP works, names do not -- matched to the client setting that governs it."
+  },
+  {
+    "id": "nFsUuBDOdJyU5MSDuZl7",
+    "stem": "Andre applies a vendor UEFI firmware update to a Windows 11 laptop. On reboot the machine displays 'No operating system found.' In firmware setup the NVMe drive is detected and healthy, and Secure Boot, which was enabled before the flash, now reads as unavailable. Andre confirms from a technician USB that the drive still holds a GPT partition layout with an intact EFI system partition and Windows directory. What is the most likely cause?",
+    "level": "Analyze",
+    "why": "Cause unstated; a healthy GPT disk with an intact ESP defeats the bootloader and corruption options, and Secure Boot now reading as unavailable is the clue that ties the symptoms to a CSM boot-mode reset."
+  },
+  {
+    "id": "NQ7triD7G5LudxpjKdR0",
+    "stem": "Bianca runs the Windows 11 upgrade readiness check on a three-year-old business desktop with a supported CPU generation, 16 GB of RAM, and a 512 GB SSD. The check fails. In firmware she sees that the machine is booting in legacy/CSM mode and that the platform TPM is disabled. Which action set resolves the failure in a supported way?",
+    "level": "Apply",
+    "why": "Two stated firmware conditions matched to the supported remediation set."
+  },
+  {
+    "id": "Nw64tkIOcWtccPeQrLyR",
+    "stem": "A dental practice is retiring its imaging workstations. The old drives hold patient records that the practice's own retention schedule requires be kept for seven years, and three patients' files are additionally under a litigation hold. The practice's backup NAS runs a 90-day rotation. The office manager tells Priya, the MSP technician, to \"wipe everything and recycle the drives this week.\" What should she do?",
+    "level": "Evaluate",
+    "why": "Three of the four options are partially defensible compliance moves; the reader must justify holding the drives and getting written confirmation against a retention schedule and a litigation hold that outrank the manager's instruction."
+  },
+  {
+    "id": "o7xzk80lrI7qLotb8ION",
+    "stem": "Lucia is asked to speed up sign-in for an executive who dislikes typing a long password. His laptop has an infrared camera and a TPM, and the security team requires that the new method be tied to that specific device and be no weaker than the password it replaces. What should Lucia configure?",
+    "level": "Apply",
+    "why": "Stated constraints (IR camera, TPM, device-bound, no weaker than the password) matched to Windows Hello."
+  },
+  {
+    "id": "oNJ5OZjDK3MOxQdYZo3D",
+    "stem": "Kenji installed what he believed was his bank's mobile app after following a link in a text message. The app's icon and login screen match the real one, but on first launch it requested SMS, contacts, and accessibility service permissions, and he granted them. He now reports unfamiliar login alerts on his email account. What should the technician conclude and do?",
+    "level": "Analyze",
+    "why": "Cause unstated; the SMS-delivered link, the SMS and accessibility permission grant, and login alerts on a different account must be related before 'spoofed clone' is the conclusion."
+  },
+  {
+    "id": "OPntKIECoiFEPIrV8Lsw",
+    "stem": "A Windows 11 desktop reboots without warning two or three times a week. Nothing is on screen when it happens, and the user is never present. Which tool should the technician, Grant, open first to find what the operating system recorded at the moment of each reboot?",
+    "level": "Apply",
+    "why": "Live monitoring tools are genuine alternatives, defeated by the need to see what was recorded after the fact."
+  },
+  {
+    "id": "OWeeWLW5LAfo8tGIiDum",
+    "stem": "Simone is called about a workstation showing injected advertisements on internal pages and occasional redirects. The user installed a PDF converter browser extension that week from a link posted in a public forum rather than from the browser's official store. What should Simone do?",
+    "level": "Apply",
+    "why": "The cause is stated (a sideloaded extension from a public forum); the reader selects the corresponding fix."
+  },
+  {
+    "id": "OxuqkfYKtIFsLSk2LhNQ",
+    "stem": "Users on a shared Windows 11 workstation complain that signing in takes nearly four minutes because a dozen vendor utilities and updaters launch at logon. Which tool and location should the technician, Nia, use to stop those utilities from launching at sign-in?",
+    "level": "Apply",
+    "why": "Services and the msconfig Boot tab are genuine alternatives, defeated by the specific need to stop logon-time launches."
+  },
+  {
+    "id": "p2EkdHv6SNaQkATujMqC",
+    "stem": "Grace, a support technician, connects a 4K webcam to a docking station on a Windows workstation and receives a 'Not enough USB controller resources' message; the camera does not enumerate. The dock already carries a headset, two external drives, a card reader, and a keyboard-video-mouse switch. Moving the webcam to a second dock port produces the same message. What should Grace do?",
+    "level": "Apply",
+    "why": "The error names the cause and the second dock port rules out the port itself; the known remedy is a different host controller."
+  },
+  {
+    "id": "p5MFz4lb6evJV74EgfbC",
+    "stem": "Yusuf needs two automation scripts: one that runs on the company's Ubuntu file servers at boot to remount an NFS share, and one that runs from Windows Group Policy at user log-on to remap drive letters. Which pair of file types fits, using each operating system's own native shell scripting language?",
+    "level": "Remember",
+    "why": "File-extension recall for each platform's native shell."
+  },
+  {
+    "id": "P6aJoLjwUYhs2sh7zeFZ",
+    "stem": "Ibrahim takes a call at 4:50 p.m.: the warehouse scanning application is down for all 60 workers on the evening shift and shipping stops until it is restored. He has confirmed the outage and ruled out the workstations, but the application team owns the fix and he goes off shift in ten minutes. Which set of ticketing-system actions is correct?",
+    "level": "Apply",
+    "why": "The known ticketing practice -- severity by business impact, escalate to the owning tier, record what was verified -- applied to a shift-end handoff."
+  },
+  {
+    "id": "pBnGUO7CCAR1FnOYlwSh",
+    "stem": "Camila is retiring 60 solid-state drives that stored regulated client data. Policy requires that the data be unrecoverable and that the drives never be reused. Which disposal method is appropriate?",
+    "level": "Apply",
+    "why": "A stated policy requirement matched to the correct sanitization method for flash media."
+  },
+  {
+    "id": "pIqGUIG1dCqEPhD90Z2l",
+    "stem": "Farrah traced two infections to promotional USB flash drives that launched an installer the moment they were inserted, and she is now asked to harden the workstation fleet against that specific vector. What should she configure?",
+    "level": "Apply",
+    "why": "A stated infection vector matched to the known hardening setting."
+  },
+  {
+    "id": "pKAY98CUlrEIlplUQ8Np",
+    "stem": "Priyanka replaced a failing SSD in a partner firm's laptop two days ago, restored the user's files, watched the machine boot cleanly, and closed the ticket that afternoon. Which action best completes the engagement under proper communication and professionalism practice?",
+    "level": "Apply",
+    "why": "The named professionalism practice (follow up to verify satisfaction) applied to a closed ticket."
+  },
+  {
+    "id": "Q7D14E401ZJtJtNXW1ko",
+    "stem": "Jamal is deploying 802.1X on a corporate WLAN so wireless users authenticate with their existing directory accounts instead of a shared passphrase. Which authentication service belongs behind the access points?",
+    "level": "Remember",
+    "why": "Protocol recall for 802.1X."
+  },
+  {
+    "id": "qlswC71H4XjUeA5vEEDC",
+    "stem": "Leilani is handed a Bluetooth headset that a warehouse supervisor cannot pair with his company Android phone. The headset never appears in the phone's list of available devices, its indicator shows the steady pattern the manual calls connected rather than the flashing pattern it calls pairing, and the tablet the headset was originally issued with sits powered on two desks away. The supervisor's phone pairs with his car kit normally. What should Leilani do?",
+    "level": "Analyze",
+    "why": "Cause unstated; the indicator showing connected rather than pairing, the original tablet powered on nearby, and the phone pairing normally with a car kit must be combined before the still-bonded tablet is the answer."
+  },
+  {
+    "id": "rBtNwwbvblfiwUpWRZ8N",
+    "stem": "Tomas is investigating complaints that sign-in at one branch takes six to eight minutes to reach the desktop, while the same users reach the desktop in under a minute at headquarters. The users have roaming profiles, and Tomas finds that several of them store multi-gigabyte video files directly on their desktops. Branch WAN utilization spikes during the morning sign-in window. What is the best remediation?",
+    "level": "Apply",
+    "why": "The cause is transparent from the stem (multi-gigabyte files inside roaming profiles across a WAN); the reader selects the known remediation."
+  },
+  {
+    "id": "RdWCCeSOUPmQQTxyoRge",
+    "stem": "Priya, a technician for a school district, is speccing 400 student laptops. Students only use browser-based courseware, every device must be enrolled and policy-managed from a cloud admin console, verified boot must be built into the platform, and OS updates must arrive automatically from the vendor with no imaging work by district staff. Which workstation operating system best fits these requirements?",
+    "level": "Apply",
+    "why": "Four stated requirements matched to a platform."
+  },
+  {
+    "id": "rg9dqlLc8APlizgXZJPJ",
+    "stem": "A Windows 11 laptop on the office LAN cannot see the shared printer or any file server under Network, and other machines cannot reach its shares either. Its IP configuration is correct for the subnet and the user browses the internet without trouble. Windows shows the connection as a Public network. What should the technician, Ben, do?",
+    "level": "Apply",
+    "why": "The cause is stated (the connection is on the Public profile); the reader selects the corresponding change."
+  },
+  {
+    "id": "rGfH3loK81EZXJeNx9qx",
+    "stem": "Aiko told a customer his rebuilt workstation would be back on his desk by 2:00 p.m., and she is also due at his desk at 1:30 to collect a second machine. At 1:15 the vendor image she needs fails its checksum, and a fresh download pushes realistic completion to about 5:00 p.m. What should she do?",
+    "level": "Apply",
+    "why": "The known expectation-management rule applied: contact the customer as soon as the slip is known."
+  },
+  {
+    "id": "rIrNh1CPeQhXp8xtElPC",
+    "stem": "During a review of a small office's router, Reuben finds several inbound ports open on the WAN interface that no one configured; an application on an internal workstation requested the mappings automatically. Which router setting should he change?",
+    "level": "Apply",
+    "why": "The cause is stated (an internal application requested the mappings itself); the reader selects the setting that allows it."
+  },
+  {
+    "id": "Rr07ZprXOHNG7Mfhrsb7",
+    "stem": "Tomas, who supports a 200-store retail chain, submits a request to push new firmware to every store switch on the Friday after Thanksgiving. The request is complete: purpose, scope, affected systems, a documented risk analysis, a rollback plan, sandbox testing results, named responsible staff, peer review sign-off, and a 1:00 a.m. maintenance window. The change board denies it anyway. What is the most likely reason?",
+    "level": "Analyze",
+    "why": "Everything the change record needs is present, so the reason must come from outside the record; the reader has to connect a 200-store retail chain to the Friday after Thanksgiving and infer a change freeze."
+  },
+  {
+    "id": "RwUjLzO6QqKfqtjbnXVy",
+    "stem": "Marisol is briefed after every endpoint managed by a monitoring product began beaconing to an unknown host. The investigation shows the malicious code arrived inside a digitally signed update the company downloaded from the monitoring vendor's own portal and installed through normal change control. Which attack does this describe?",
+    "level": "Understand",
+    "why": "A described compromise -- malicious code inside a signed vendor update installed through normal change control -- interpreted into the attack name."
+  },
+  {
+    "id": "saUdtWsgVkHA7UoGTJIl",
+    "stem": "Ken administers a Linux KVM virtualization host and must reach the graphical consoles of its guest virtual machines — including guests whose own network configuration is broken and that therefore cannot be reached over the network at all. Which remote access method is designed for this?",
+    "level": "Apply",
+    "why": "A stated constraint (guests unreachable over the network) matched to the console protocol built for it."
+  },
+  {
+    "id": "sFgA4NyuCbvljXUowsJx",
+    "stem": "Alvaro must remove a graphics utility from a Mac. The utility was distributed as a .dmg that the user mounted and dragged into place; it did not include an installer package and was not obtained from the App Store. What is the correct uninstallation process?",
+    "level": "Apply",
+    "why": "The known removal procedure for a drag-installed .app bundle."
+  },
+  {
+    "id": "sGwXbNU7aBecjLaMR6WD",
+    "stem": "Gabriel reviews logs for a customer-facing web application after an unauthorized user reached an administrative page. The application's sign-in form accepted the string ' OR '1'='1 in the username field, and the web server log shows that string was passed straight into the database query. Which attack is this?",
+    "level": "Understand",
+    "why": "A described payload interpreted into the attack name."
+  },
+  {
+    "id": "sOEKvv5OUBzJMJas7fsi",
+    "stem": "An employee's last day is Friday. Renata, the desktop support lead, must make sure the account is disabled, the laptop and badge are collected, the mailbox is retained per policy, and the licensed software seats are reclaimed — with nothing missed and everything auditable. Which document should drive her work?",
+    "level": "Remember",
+    "why": "Document recall."
+  },
+  {
+    "id": "SqA3ZXcNjhtkiCrfhu3O",
+    "stem": "Sofia, a desktop technician, is briefed that an attack on several workstations left no files on disk: the payload ran entirely in memory through PowerShell and stored its persistence in registry keys and WMI subscriptions. Which control is best suited to detecting this class of attack?",
+    "level": "Apply",
+    "why": "A described attack class -- fileless, with registry and WMI persistence -- matched to the control designed to detect it; signature scanning is ruled out by the stem."
+  },
+  {
+    "id": "SuYVAuPp0YD5ZFgHJd4c",
+    "stem": "Marcus manages IT for a retail chain that has suffered two smash-and-grab break-ins where a vehicle was driven through the storefront glass. Which physical security measure addresses this specific threat?",
+    "level": "Apply",
+    "why": "A specific threat (a vehicle driven through storefront glass) matched to the known physical control."
+  },
+  {
+    "id": "sWF01umgpvJVdyFhArKX",
+    "stem": "Osman supports a hospital ward where four of twelve identical Android tablets have begun rebooting two or three times a shift, at random, while idle and while in use. All twelve carry the same OS build and the same managed app set, but the four affected tablets are older and also hold several apps that staff installed themselves. Battery health and internal temperature read normal on all four, and the reboots continue after a full charge cycle. What should Osman do next?",
+    "level": "Analyze",
+    "why": "Two variables are deliberately confounded -- older hardware and staff-installed apps on the same four tablets -- and the correct next action is the one that isolates them, while normal battery and temperature readings defeat the hardware options."
+  },
+  {
+    "id": "T8JKK0QpLcax8DrEIdgN",
+    "stem": "Elena, a systems administrator, is told that a contractor needs domain administrator rights for a two-hour maintenance window on three servers and will not need them afterward. Which approach best reflects least privilege and Zero Trust principles?",
+    "level": "Apply",
+    "why": "The least-privilege principle applied to a bounded maintenance window; the alternatives all violate it outright."
+  },
+  {
+    "id": "t9CTIgLdFRf1X57SJWwD",
+    "stem": "Helena is investigating a suspicious download on a Windows 11 laptop. She needs File Explorer to display items inside the hidden AppData folder and to show full file extensions so she can tell whether a file is really named invoice.pdf or invoice.pdf.exe. Where does she make both changes?",
+    "level": "Apply",
+    "why": "Two stated View-tab needs matched to one settings dialog, against three plausible wrong locations."
+  },
+  {
+    "id": "tA1kAjZZ3eOdEtTDE7ua",
+    "stem": "After the corporate cloud storage client is enabled on a Windows 11 laptop, a user reports that her Desktop and Documents folders now show cloud status icons and that a large archive folder under Documents is filling the local SSD. She wants Desktop and Documents to keep syncing, but the archive folder should stop consuming local disk while remaining retrievable. Which configuration should the technician, Sasha, apply?",
+    "level": "Apply",
+    "why": "Three stated constraints -- keep syncing, stop consuming disk, stay retrievable -- matched to the online-only setting."
+  },
+  {
+    "id": "TGommvRFmbRKegAA7l3j",
+    "stem": "Ravi's team has run nightly backups for two years and the job log reports no failures. During an audit he is asked to demonstrate that the backups are actually usable. Which action best provides that evidence?",
+    "level": "Apply",
+    "why": "The known practice for proving recoverability applied; job logs are the tempting alternative the stem has already supplied."
+  },
+  {
+    "id": "TqNyyJmM7cdEZObVoIP3",
+    "stem": "Rafael must install a 9 GB engineering application on 20 workstations in a secure lab that has no internet access and no optical drives. The vendor supplies the software as a single ISO file, which Rafael has already copied to the lab internal file server. Which distribution method should he use?",
+    "level": "Apply",
+    "why": "Stated constraints (no internet, no optical drives, ISO already on the file server) matched to a distribution method."
+  },
+  {
+    "id": "Tsv2TqRQm1gSbSWfnVzY",
+    "stem": "Devin, a systems technician, is told by an auditor that the help desk's current multifactor method - a one-time passcode texted to the user's mobile number - is no longer acceptable because passcodes can be intercepted through SIM swapping. Which change best satisfies the auditor while keeping a possession factor?",
+    "level": "Apply",
+    "why": "A named weakness (SIM swapping) matched to the remedy that keeps the possession factor."
+  },
+  {
+    "id": "u29TqHUFLQKbcjFu82Eb",
+    "stem": "While Owen is working in a wiring closet, the rack-mounted UPS begins smoking and small flames appear at its vents. Which response is correct?",
+    "level": "Apply",
+    "why": "The fire-response procedure applied to an energized electrical fire."
+  },
+  {
+    "id": "U2WsaT7ajlGw15Owaeuz",
+    "stem": "After an Android OS update rolls out to a fleet of warehouse handhelds, Marcus finds that one line-of-business scanning app now closes immediately at launch on every updated device. The app vendor confirms the current release is supported on the new OS version, and the app launches normally on a factory-fresh device. What should Marcus do?",
+    "level": "Apply",
+    "why": "The standard mobile-app remediation ladder applied, with the vendor statement and the factory-fresh device ruling out an OS incompatibility."
+  },
+  {
+    "id": "uHx4uYyoBcJG6zhfXuoz",
+    "stem": "Kofi maintains a loaner laptop that rotating contractors use for short engagements. Each contractor signs in to customer web portals, and no session may leave history, cookies, or cached page data behind for the next person. Which browser setting meets this?",
+    "level": "Apply",
+    "why": "A stated requirement (no history, cookies or cache left for the next user) matched to the browser mode."
+  },
+  {
+    "id": "UoPs5xvq67lrEI5HtaKO",
+    "stem": "Anton is provisioning a workstation for a temporary worker who needs to run applications that are already installed and print to the department printer, but who must not be able to install software or change system settings. Which account type should Anton assign?",
+    "level": "Remember",
+    "why": "Account-type recall; the option set is four account types and nothing beyond the definitions is interpreted."
+  },
+  {
+    "id": "uvAYLo4xrRTLi7Y1MAby",
+    "stem": "Callum must reinstall Windows 11 on a laptop at a small branch office. The machine still boots into Windows, but its recovery partition was deleted during an earlier repartition, every USB port on the chassis has failed, there is no optical drive, and the site has no deployment server. The office does have a fast, reliable internet connection. Which boot method should Callum use to start the reinstallation?",
+    "level": "Apply",
+    "why": "Four stated constraints eliminate the other boot methods, leaving the one the environment can still support."
+  },
+  {
+    "id": "UXdPVDd4n7yslKPlBuk3",
+    "stem": "During a software audit, Jonas finds a graphics editor installed on a company marketing workstation. The activation key belongs to the designer's own personal-use subscription, purchased with her own money. The application is only ever used on that one machine. How should Jonas treat this?",
+    "level": "Understand",
+    "why": "The reader interprets a personal-use license installed on company equipment against the EULA's terms rather than performing a procedure."
+  },
+  {
+    "id": "UYGR5jDPDxwZkEwwXBXd",
+    "stem": "A user forwards a screenshot of a desktop pop-up warning that her subscription to a brand-name antivirus product has expired and that her PC is unprotected, with a Renew Now button. The technician's asset record shows the workstation has never had a third-party antivirus product installed. What should the technician do?",
+    "level": "Apply",
+    "why": "The asset record contradicts the popup outright and the three distractors are non-starters; the work is applying the known handling for a fake-alert PUP."
+  },
+  {
+    "id": "V3iDQeSZZjbJUZ9wlD1k",
+    "stem": "Hana supports a workstation where one CAD application closes without warning about ten minutes into every session. The behavior started the morning after the monthly patch cycle, no other application on the machine is affected, no low-memory warnings appear, and the workstation itself never reboots or blue screens. What should Hana do first?",
+    "level": "Apply",
+    "why": "Troubleshooting methodology applied: read the recorded crash detail before replacing memory or reinstalling."
+  },
+  {
+    "id": "VJcNBw7Yb7WIEYREy4Eg",
+    "stem": "Auditing a Linux server, Marcelo runs grep jvargas /etc/passwd and sees an x in the second field of the returned line. He has been asked to confirm where account password hashes are actually stored. What does the x indicate, and which file should he examine?",
+    "level": "Understand",
+    "why": "Interpreting what a placeholder character in a passwd entry means and what follows from it."
+  },
+  {
+    "id": "VpYKQoD0SXv3OifZ8ZQ9",
+    "stem": "Zara is setting permissions on a project folder that about 40 people need identical access to, and roughly five of them change every month as staff rotate on and off the project. Which approach should she use?",
+    "level": "Apply",
+    "why": "Stated conditions (identical access for 40 people, monthly membership churn) matched to group-based permissioning."
+  },
+  {
+    "id": "w4fCpmO4Q5bSzezrkHaV",
+    "stem": "Trina supports delivery drivers whose company phones run turn-by-turn navigation all day in a windshield mount. Several drivers report that by mid-afternoon the phone responds sluggishly to taps, the screen dims on its own, and the map stutters, and that the phone behaves normally again the next morning. The phones charge in the mount, sit in direct sun, and wear thick protective cases. Battery health and free storage read normal. What is the most likely cause?",
+    "level": "Analyze",
+    "why": "Cause unstated; the daily recovery, the sun, the thick case, the charging and the normal battery reading must be combined before thermal throttling separates from three plausible software and battery explanations."
+  },
+  {
+    "id": "w9ANbuFveXCw0aVCUH40",
+    "stem": "A legacy inspection application is supplied only as a 32-bit build, and its bundled scanner driver is likewise available only in a 32-bit version. Devika must run it on a new 64-bit Windows 11 Pro workstation. What should she expect?",
+    "level": "Understand",
+    "why": "Interpreting how 64-bit Windows treats 32-bit user-mode code versus 32-bit drivers, against three misconceptions."
+  },
+  {
+    "id": "wd0IM8bSKT7NBDo4zqyr",
+    "stem": "Aisha runs IT alone for a 40-person architecture firm with no coverage outside business hours, and its insurer now requires continuous monitoring and response for endpoint threats. The firm cannot hire analysts. Which option meets the requirement?",
+    "level": "Apply",
+    "why": "Stated constraints (no after-hours coverage, cannot hire analysts) matched to a managed service."
+  },
+  {
+    "id": "wOuPf8dF8XsaXU7887aZ",
+    "stem": "A small engineering firm moved its two rack servers into a converted supply closet with no dedicated cooling. Within a month the servers throttle every afternoon, and Farida finds the intake grilles matted with dust and lint and the racks pushed flat against the back wall. What should she recommend?",
+    "level": "Apply",
+    "why": "The causes are stated -- no cooling, matted intakes, racks against the wall -- and the reader selects the remediation that addresses all three."
+  },
+  {
+    "id": "wzXZgUgtZzWloTsQ4MU0",
+    "stem": "Ravi is building the standard image for new workstations. Each ships with a single 4 TB NVMe system drive, and firmware is set to UEFI mode with Secure Boot enabled. The entire 4 TB must be usable on the boot drive. Which partitioning scheme should the image use?",
+    "level": "Apply",
+    "why": "Stated conditions (4 TB usable, UEFI, Secure Boot) matched to the partitioning scheme."
+  },
+  {
+    "id": "XhHZOyKIE5GumWISxj6V",
+    "stem": "Before blowing accumulated dust and toner out of a stack of returned desktops with compressed air, Nia sets up in the shop's open work bay. Which personal protective equipment does the safety procedure call for?",
+    "level": "Remember",
+    "why": "PPE recall for a named task."
+  },
+  {
+    "id": "xlNAI3QHPwEA2CmBeNaw",
+    "stem": "Halima is told that a comment posted to a company forum contains a script tag that was saved with the comment. Every visitor who opens that thread has the script run in their browser, and their session cookies are sent to an external host. Which attack is this?",
+    "level": "Understand",
+    "why": "A described payload -- a script saved with a comment and executed for every visitor -- interpreted into the attack name."
+  },
+  {
+    "id": "XN0UtwoD6M6SDAOk3PUt",
+    "stem": "Devon, a help desk technician, takes a ticket from a user whose Windows 11 laptop shows repeated 'Your computer is low on memory' balloons every afternoon, with applications becoming sluggish until the user signs out. The laptop has 16 GB of RAM and 400 GB of free disk space. What is Devon's best first step?",
+    "level": "Apply",
+    "why": "Troubleshooting methodology applied: identify the growing process before changing disk or power settings."
+  },
+  {
+    "id": "xTc9j7OOAxWqpSZmIsUa",
+    "stem": "Colin administers the corporate MacBook fleet at a law firm. Security requires three things: employees must not be able to sign in to a personal Apple ID or iCloud on those Macs, the startup volume must be encrypted, and IT must hold a recovery key it can use if an employee leaves abruptly. Which approach meets all three requirements?",
+    "level": "Apply",
+    "why": "Three stated security requirements matched to the management approach that satisfies all three."
+  },
+  {
+    "id": "y4td0kPkwy2QlB6irqX4",
+    "stem": "A designer's MacBook needs automatic, scheduled local backups of the entire system to an attached external SSD, so that individual files can be restored from an earlier point in time. Which built-in macOS feature should the technician, Rosa, configure?",
+    "level": "Remember",
+    "why": "Single feature recall."
+  },
+  {
+    "id": "yh2J7k5EWi4H6AtiJPDy",
+    "stem": "Colin reports that his browser's homepage changed on its own, searches are redirected through an unfamiliar site before reaching results, and pages load noticeably slower than on his coworkers' machines. Windows Security reports no threats. What should the technician examine first?",
+    "level": "Apply",
+    "why": "A textbook browser-hijack symptom set matched to the settings a technician checks first."
+  },
+  {
+    "id": "yMpxUiQi0Na1XzfaNQ06",
+    "stem": "Nia calls the help desk because a business app on her iPhone will not update; the App Store shows the update queued and then reverts to 'Update' without completing. The technician confirms the device is on Wi-Fi, the App Store account is signed in, and iPhone Storage shows 190 MB free of 128 GB. What should the technician have Nia do?",
+    "level": "Apply",
+    "why": "The discriminating fact is stated (190 MB free of 128 GB); the reader selects the corresponding action."
+  },
+  {
+    "id": "Z23wobJrN8qFGOzMnbLn",
+    "stem": "Miguel must copy a 400 GB departmental share to a new file server across a slow, unreliable WAN link. The copy must preserve NTFS permissions, auditing information, and ownership; mirror deletions on subsequent runs; and resume where it left off if the link drops mid-transfer. Which approach fits?",
+    "level": "Apply",
+    "why": "Three stated constraints matched to a command and the specific switches that satisfy them."
+  },
+  {
+    "id": "ZIBVThKz0zmuQBrMezPr",
+    "stem": "Ivo is onboarding a new hire and finds the cloud tenant reports zero available licenses, although headcount has not grown. Reviewing the tenant he sees eleven disabled accounts belonging to employees who left over the past year, each still holding an assigned license. What is the correct interpretation and next step?",
+    "level": "Understand",
+    "why": "Interpreting how license assignment actually works, against three competing misconceptions about it."
+  },
+  {
+    "id": "zTotsWxOPJnLlu4BFkWe",
+    "stem": "A customer calls Dmitri, angry that his \"server unreachable\" ticket has gone six hours without a response. Before Dmitri answers, he needs to know what response time his employer actually committed to for that customer at that priority. Which document defines it?",
+    "level": "Remember",
+    "why": "Document recall."
+  },
+  {
+    "id": "ZVFPVfRf7JdMCD0pAkTt",
+    "stem": "Nadia is replacing memory modules in a desktop at a user's cubicle in a dry, heavily carpeted office. Which approach best protects both the technician and the components?",
+    "level": "Apply",
+    "why": "The ESD and power-safety procedure applied, against the common 'leave it plugged in for ground' misconception."
+  }
+]

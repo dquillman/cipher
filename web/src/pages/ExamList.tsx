@@ -101,8 +101,11 @@ export default function ExamList() {
                                     </svg>
                                 </div>
                                 <div className="flex items-center gap-2">
+                                    {/* "Current" read as a claim about the exam version — a problem
+                                        on a page where three cards say they replaced an older exam
+                                        code. It only ever meant "this is the one you have selected". */}
                                     {isCurrent && (
-                                        <span className="text-xs font-bold text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded-full border border-brand-500/20">Current</span>
+                                        <span className="text-xs font-bold text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded-full border border-brand-500/20">Studying now</span>
                                     )}
                                     <span className="text-xs font-bold text-slate-500 bg-slate-950/50 px-2 py-1 rounded-lg border border-white/5">
                                         {exam.questionCount} Qs

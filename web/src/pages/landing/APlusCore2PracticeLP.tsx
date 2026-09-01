@@ -48,11 +48,12 @@ export default function APlusCore2PracticeLP() {
       <SectionBlock title="Three things compound for A+ Core 2">
         <ol className="space-y-4">
           <li>
-            <strong>Order-first troubleshooting practice.</strong> Questions are written so
-            the decision is which step comes FIRST, not which fix is valid — the thing the real
-            exam actually separates candidates on. Note that Bloom's cognitive-level tagging,
-            which our PMP and Security+ banks carry, is <em>not</em> yet applied to A+ Core 2,
-            so the per-level accuracy breakdown will be empty for this exam.
+            <strong>Order-first practice, classified by reasoning level.</strong> Questions are
+            written so the decision is which step comes FIRST, not which fix is valid — the thing
+            the real exam separates candidates on. All 161 carry a Bloom's cognitive level, and
+            this is our most mixed bank: 35 Remember, 86 Apply, 22 Analyze. That spread is the
+            point — A+ genuinely tests recall and judgment side by side, and your results say
+            which one is costing you.
           </li>
           <li>
             <strong>Exam Lens explanations.</strong> Every right and wrong answer is walked

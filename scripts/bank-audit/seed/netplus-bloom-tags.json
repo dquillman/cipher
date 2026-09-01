@@ -1,0 +1,638 @@
+[
+  {
+    "id": "0VJkaVeL7pHK7oVbHUEy",
+    "stem": "A user tells Camila that the ERP client will not connect. Camila confirms the po",
+    "level": "Analyze",
+    "why": "Four separate test results - link light, valid DHCP config, ping to gateway, ping to an internet host by IP - must be related to the OSI stack to conclude that Layers 1 through 3 are already eliminated and the fault sits above them."
+  },
+  {
+    "id": "0jdKWW86fs8QthyESvZi",
+    "stem": "A branch office suffers brief power blips several times a month, and each one re",
+    "level": "Apply",
+    "why": "A stated requirement (ride through short blips, shut down gracefully during long ones) is met by applying knowledge of what a UPS does versus a PDU or a power strip."
+  },
+  {
+    "id": "16chfYjNCQwuEzX3lBH1",
+    "stem": "Maria, a network technician, is dispatched to trace a suspected damaged copper r",
+    "level": "Understand",
+    "why": "The candidate interprets what each documentation artifact contains and recognizes that only a physical Layer 1 cable map records paths and termination points."
+  },
+  {
+    "id": "1RsY4iGDaO8w8WsJesQ9",
+    "stem": "A new privacy policy requires that DNS queries from Hannah's corporate laptops b",
+    "level": "Understand",
+    "why": "The task is to explain that DNSSEC supplies integrity and authenticity rather than confidentiality, and that a privacy requirement therefore needs an encrypted transport."
+  },
+  {
+    "id": "1s29HPjUHfNJKAc9GP9i",
+    "stem": "During an audit, Marcus is asked how his team detects unauthorized changes to ro",
+    "level": "Apply",
+    "why": "A known control - automated comparison of running configuration against an approved baseline - is selected for an environment that already has backups and change tickets."
+  },
+  {
+    "id": "2ICCd1uan5rNYZtQvfDb",
+    "stem": "Shortly after a contractor plugs a personal wireless router into a conference ro",
+    "level": "Understand",
+    "why": "The described behavior, an unauthorized device handing out addresses in an unfamiliar range and listing itself as the gateway, is the direct signature of a rogue DHCP server."
+  },
+  {
+    "id": "2nrGMN9URLulIXm5E8Vk",
+    "stem": "After a core router failure took the whole branch office offline for an hour, ne",
+    "level": "Apply",
+    "why": "The constraint that clients must not be reconfigured rules out alternate gateways and static routes, and the candidate applies FHRP knowledge to share one virtual IP."
+  },
+  {
+    "id": "34m6hlgX7poZp88h3V8S",
+    "stem": "Dana administers 200 routers and switches and wants centralized AAA where each n",
+    "level": "Apply",
+    "why": "Two independent requirements, per-command authorization and full payload encryption, are mapped onto protocol capabilities to select TACACS+ over the near neighbor RADIUS."
+  },
+  {
+    "id": "5kC1FABxZDW0bze7DeJs",
+    "stem": "Odette replaced a failed eight-port midspan PoE injector that fed a conference r",
+    "level": "Apply",
+    "why": "The troubleshooting methodology step of verifying full system functionality is applied to a specific repair that also carried three other PoE loads."
+  },
+  {
+    "id": "5lbWALeKxEQ77dygJHKY",
+    "stem": "Gustavo must link two campus buildings with fiber. The run is 25 kilometers, and",
+    "level": "Apply",
+    "why": "The rule that single-mode fiber carries long-haul laser light is applied to a concrete 25 kilometer, 10 Gbps run that rules out multimode, DAC, and copper."
+  },
+  {
+    "id": "73EWAYGLUTprYZ6cVDMW",
+    "stem": "Users on one office subnet report intermittent connectivity, and Rosa, the netwo",
+    "level": "Understand",
+    "why": "A gateway IP resolving to a workstation MAC while traffic transits that host is the textbook signature of ARP poisoning, so the work is recognizing the described condition."
+  },
+  {
+    "id": "7c1sEL6hlaMJ06peHiMT",
+    "stem": "Cole, a firewall administrator, must allow a partner to upload nightly data file",
+    "level": "Remember",
+    "why": "SFTP runs over TCP 22; the answer is a memorized port number and the firewall framing adds nothing to the reasoning."
+  },
+  {
+    "id": "7lgGCrg4U84GUuf6R2pg",
+    "stem": "Marcus deploys a new internal HR web portal. Employees complain that every brows",
+    "level": "Apply",
+    "why": "The situation calls for applying PKI knowledge - replace a self-signed certificate with one issued by a CA the clients already trust - rather than diagnosing anything."
+  },
+  {
+    "id": "7qsURbAtaMAkzswDm9Pz",
+    "stem": "Ingrid needs to determine which of 96 unlabeled ports on an IDF patch panel serv",
+    "level": "Apply",
+    "why": "The constraint that the run is dead rules out any tool needing a live link, and the candidate applies tone-and-probe knowledge to a copper tracing task."
+  },
+  {
+    "id": "7yEBoSynmSgOiUtj1SvL",
+    "stem": "Imani is connecting twelve servers to a top-of-rack switch at 10 Gbps. Every lin",
+    "level": "Understand",
+    "why": "The stem describes the properties of the medium - cheaper than optics, plugs into the same SFP+ ports, very short runs - and the candidate names it as direct attach copper."
+  },
+  {
+    "id": "890t9piHVEpjfKZ3liMu",
+    "stem": "A hotel wants visitors on its guest Wi-Fi to accept an acceptable-use policy and",
+    "level": "Apply",
+    "why": "The requirement of policy acceptance with nothing installed on guest devices is met by applying captive portal knowledge and rejecting certificate-based 802.1X."
+  },
+  {
+    "id": "8dRz1oK0WWYjOHUFtntt",
+    "stem": "Two office buildings 400 meters apart need a wireless link between their network",
+    "level": "Apply",
+    "why": "A known rule, that directional antennas concentrate gain into a beam, is applied to a 400 meter rooftop-to-rooftop link."
+  },
+  {
+    "id": "91s7ZGRXzjTtZcIEwgBL",
+    "stem": "Priya learns that the vendor of her organization's core switches has announced a",
+    "level": "Evaluate",
+    "why": "The stem deliberately states the switches are stable and performing well, so the candidate must weigh continued smooth operation against loss of patches and support and justify spending on lifecycle replacement now."
+  },
+  {
+    "id": "9Fe05t6dMCZYciTJjXrA",
+    "stem": "A storage team asks network engineer Malik to enable jumbo frames for the iSCSI ",
+    "level": "Analyze",
+    "why": "The partial configuration, a 9000-byte MTU on only the SAN switch ports, must be related to the observed fragmentation and drops to derive that MTU has to be consistent end to end."
+  },
+  {
+    "id": "9m6UjUHnDi2AfBE9Rt3R",
+    "stem": "After a breach investigation, consultants tell Dana's company to stop trusting d",
+    "level": "Understand",
+    "why": "A set of stated requirements - authenticate every request regardless of location, grant minimum necessary access - is interpreted and named as zero trust architecture."
+  },
+  {
+    "id": "A0s4VP0BTbaE7A7F8nY5",
+    "stem": "A 300-employee firm currently uses one WPA2 passphrase for its main Wi-Fi. When ",
+    "level": "Apply",
+    "why": "The requirement for individually revocable credentials is applied to select enterprise 802.1X authentication over any variant of a shared passphrase."
+  },
+  {
+    "id": "AR0F9MUxfFgGyBx1738F",
+    "stem": "A user reports she cannot reach any websites or internal servers. Quentin, the o",
+    "level": "Understand",
+    "why": "The candidate interprets what a single observation, a 169.254 address with a 255.255.0.0 mask, means about the workstation reaching a DHCP server."
+  },
+  {
+    "id": "BiI2a8DksE1mpYkI5LIy",
+    "stem": "At a coffee shop, consultant Jae notices two Wi-Fi networks with the identical S",
+    "level": "Understand",
+    "why": "Duplicate SSIDs plus certificate warnings where the shop runs only one AP is the direct signature of an evil twin, so the work is recognizing the described attack."
+  },
+  {
+    "id": "CBsNAiYj4LzxbhlNlQ3K",
+    "stem": "Devon, a network analyst, is examining a capture of a slow file transfer. He see",
+    "level": "Understand",
+    "why": "The observed behavior, a shrinking advertised window with sender pausing and lost segments retransmitted, is interpreted as flow control and reliable delivery at the Transport layer."
+  },
+  {
+    "id": "CKCHDBywqiTwpszleDoD",
+    "stem": "After several intrusion attempts against her company's perimeter, security analy",
+    "level": "Understand",
+    "why": "The stem describes a deliberately vulnerable decoy holding no production data whose purpose is to attract and observe attackers, and the candidate names that arrangement a honeypot."
+  },
+  {
+    "id": "CVei1dPPh3w6rmqkAYLr",
+    "stem": "Aiko has built a GRE tunnel between two branch routers to carry multicast routin",
+    "level": "Apply",
+    "why": "The requirement to keep GRE encapsulation while adding confidentiality is applied to select IPSec ESP, rejecting AH which authenticates without encrypting."
+  },
+  {
+    "id": "DClmcqG6bK5gVzzTyG80",
+    "stem": "Aisha wants to stop unauthorized laptops from gaining network access simply by p",
+    "level": "Apply",
+    "why": "Stated requirements are used to select 802.1X over sticky MAC port security, which also blocks unknown devices but without credentials validated centrally."
+  },
+  {
+    "id": "DJIyN5EuZH9okCnQGBY8",
+    "stem": "Jolene, a network director, is consolidating vendors. Her remote workforce curre",
+    "level": "Understand",
+    "why": "A described consolidation goal - networking and security delivered together as one cloud service enforced near the user - is interpreted and named as SASE."
+  },
+  {
+    "id": "DLAf1U58YTIIjgehkh5G",
+    "stem": "Lena, an infrastructure architect, is designing storage for a new virtualization",
+    "level": "Apply",
+    "why": "Two different storage requirements must each be matched to the correct technology, block-level over a dedicated fabric versus a simple file share."
+  },
+  {
+    "id": "DYMDk4P86qTSWhdngJyo",
+    "stem": "Nikolai theorizes that a flapping switch port is caused by a failing patch cable",
+    "level": "Apply",
+    "why": "The troubleshooting methodology rule for a disproved theory - establish a new theory or escalate - is applied to a specific failed cable swap."
+  },
+  {
+    "id": "DaoAb0pKMlvxmcPAjC7l",
+    "stem": "Devon administers addressing for a growing company using a shared spreadsheet. L",
+    "level": "Apply",
+    "why": "A known control, an authoritative IPAM system, is selected to prevent a recurrence of duplicate static assignments made from stale spreadsheet copies."
+  },
+  {
+    "id": "HBghroSK5TzmQ1vMqktE",
+    "stem": "Users report the print server is reachable one minute and gone the next. It is c",
+    "level": "Analyze",
+    "why": "Three facts must be related to each other - a static address of .60, a DHCP scope spanning .1 to .254 with no exclusions, and a laptop that recently took a lease - to derive that the scope is issuing the printer address."
+  },
+  {
+    "id": "HpixcFTQp47dsOmba8TP",
+    "stem": "While investigating an incident, Andre finds that timestamps in the firewall, sw",
+    "level": "Apply",
+    "why": "The observation that device clocks disagree is used to apply a known service, NTP against a common source, so timelines correlate."
+  },
+  {
+    "id": "IOcjMzQLG7fCwnGodJbb",
+    "stem": "Yolanda supports a training center whose visitor floor uses scope 192.168.50.0/2",
+    "level": "Analyze",
+    "why": "The eight-day lease, the hundred-address range, and the fact that most attendees stay a single day must be related to each other to see that departed guests still hold addresses."
+  },
+  {
+    "id": "JQYdTLUbWFGkpfT2C0Yn",
+    "stem": "Priya, a network engineer, notices her core router has learned two routes to 172",
+    "level": "Apply",
+    "why": "The route-selection procedure is executed on given inputs: administrative distance is compared before metrics, so EIGRP at 90 wins over OSPF at 110."
+  },
+  {
+    "id": "JkujCULyIb9Yi8b6M24J",
+    "stem": "Bree is designing the network for a 60-person office in a single building with t",
+    "level": "Apply",
+    "why": "A budget constraint and a desire to retain hierarchy are applied to select a collapsed core over a full three-tier build."
+  },
+  {
+    "id": "KTiZ84OrBKWP7R7eUm78",
+    "stem": "Victor is designing high availability for a customer-facing web platform across ",
+    "level": "Apply",
+    "why": "Two stated requirements, both sites serving live traffic and no failover event on site loss, are applied to select an active-active design."
+  },
+  {
+    "id": "KjvYXiAE5CrV77pLof17",
+    "stem": "Lena needs to capture all packets flowing to and from a database server connecte",
+    "level": "Apply",
+    "why": "Constraints forbidding downtime and an inline tap are applied to select port mirroring as the capture method."
+  },
+  {
+    "id": "KyfkqFkExjExBJmh0mQL",
+    "stem": "Otto terminates a new 60-meter multimode fiber pair between two switches using L",
+    "level": "Analyze",
+    "why": "Several observations must be combined - visible light emerging on both strands, identical correct transceivers, and down/down rather than admin-down - to eliminate breaks, distance, mode mismatch, and shutdown and land on transposed strands."
+  },
+  {
+    "id": "LR85UtPuGFchWMyRD6IH",
+    "stem": "Priya, a security engineer, has deployed a sensor that receives a mirrored copy ",
+    "level": "Apply",
+    "why": "The requirement to block attacks in real time rather than only alert is applied to select an inline IPS over the existing out-of-band sensor."
+  },
+  {
+    "id": "LhkbDmeGjBLD4yZ0mjFs",
+    "stem": "Zora is asked why file copies between a workstation and a file server never exce",
+    "level": "Analyze",
+    "why": "The measured 11.8 MB/s must be converted and related to a 100 Mbps interface reporting no errors, which simultaneously rules out disk, latency, and packet loss as the limiter."
+  },
+  {
+    "id": "LkyE4Kfuf9eB4YNbuLpI",
+    "stem": "A global DNS provider advertises the same resolver IP address from dozens of sit",
+    "level": "Understand",
+    "why": "The stem describes one address advertised from many sites with routing selecting the nearest, and the candidate interprets that description as anycast."
+  },
+  {
+    "id": "Lygiobccwxihd9vdLmhe",
+    "stem": "Marisol, a help desk technician, is investigating why two servers on the same VL",
+    "level": "Understand",
+    "why": "The candidate interprets an observation about MAC-based forwarding and flooding to identify which OSI layer the problem lives at."
+  },
+  {
+    "id": "N7rH4CgmNOInaliWNlis",
+    "stem": "Rachel manages 40 network devices that each store logs locally. During a recent ",
+    "level": "Apply",
+    "why": "Two stated problems, slow correlation and log rollover, are addressed by applying centralized syslog collection feeding a SIEM."
+  },
+  {
+    "id": "NFhNVljZ22NAVPOscorN",
+    "stem": "During disaster recovery planning, the finance director tells Sam that the order",
+    "level": "Understand",
+    "why": "A stated tolerance of fifteen minutes of lost committed transactions is interpreted as the definition of RPO and distinguished from RTO, MTTR, and MTBF."
+  },
+  {
+    "id": "O1RPglVaVuPZ7JHG1mQ4",
+    "stem": "Users on one switch port complain of terrible file-transfer performance, and the",
+    "level": "Analyze",
+    "why": "Runts, FCS errors, and late collisions must be related to the asymmetric configuration - one end hardcoded, one autonegotiating - to derive that the NIC fell back to half duplex."
+  },
+  {
+    "id": "OVaK2BXuW45N4hwtk21K",
+    "stem": "Delia investigates a shop-floor camera whose video stutters. The UTP run to it c",
+    "level": "Analyze",
+    "why": "A certified run, a new 480-volt feeder in the same tray, error counters stepping in bursts synchronized with motor cycles, and zero runts or giants must be related to isolate EMI and rule out distance, duplex, and termination."
+  },
+  {
+    "id": "P3hEpcoK3MY6x9e19Zh0",
+    "stem": "Tariq is building a virtual private cloud that hosts application servers in a pr",
+    "level": "Apply",
+    "why": "The requirement for outbound-only reachability is applied to select a NAT gateway rather than an internet gateway on the private subnet."
+  },
+  {
+    "id": "PaJUV3mN1UarM0ItiRiu",
+    "stem": "A data center uses hot aisle/cold aisle containment. After a switch refresh, sev",
+    "level": "Analyze",
+    "why": "The containment design and the new switches port-side intake must be related to each other to derive that the units are ingesting hot-aisle exhaust, with room temperature evidence ruling out an ambient cause."
+  },
+  {
+    "id": "PkwfpweLpD8cwML5dv1i",
+    "stem": "Networking equipment for a new four-story office is being planned. The building'",
+    "level": "Remember",
+    "why": "The answer is standard structured-cabling terminology: the main room is the MDF and each floor closet is an IDF."
+  },
+  {
+    "id": "QFRQ2oYc4K6pkOciHvWm",
+    "stem": "Yusuf must carve a subnet out of 10.40.8.0/22 for a new department of 50 devices",
+    "level": "Apply",
+    "why": "Subnetting arithmetic is executed on given inputs: fifty hosts require 62 usable addresses, so a /26 is the smallest prefix that fits without waste."
+  },
+  {
+    "id": "S4X20tmi3CsdDu4yDKz7",
+    "stem": "Elena's company is adopting several cloud SaaS applications. Leadership wants em",
+    "level": "Understand",
+    "why": "A described mechanism - one directory sign-in and an identity provider sending signed assertions to each app over an open standard - is interpreted and named as SAML SSO."
+  },
+  {
+    "id": "Si02dYgjZiLZzbgRKrGZ",
+    "stem": "Esme migrated the company web server to a new IP address and updated the zone. S",
+    "level": "Apply",
+    "why": "The candidate applies knowledge of what dig against an authoritative server shows to select the diagnostic that separates a zone problem from a caching problem."
+  },
+  {
+    "id": "Su4zm3CFyO0TB8wNBSaG",
+    "stem": "Padma administers a hospital wireless network where clinicians roll workstations",
+    "level": "Analyze",
+    "why": "Clients holding at -85 dBm while measuring nearby APs at -55 dBm, on one controller with a clean channel plan, must be related to eliminate coverage holes and configuration errors and identify sticky-client roaming behavior."
+  },
+  {
+    "id": "T6LuPuzpiGuMzvvMFalj",
+    "stem": "Ruben has tested and confirmed his theory: an access control list on a distribut",
+    "level": "Evaluate",
+    "why": "Both removing the ACL immediately on a confirmed theory and routing the fix through change management are defensible, and the candidate must justify the slower path against the risk of unknown collateral filtering during business hours."
+  },
+  {
+    "id": "TrwARUYhbpZiWRmqEolj",
+    "stem": "During an assessment of a small branch office, consultant Liam finds the managed",
+    "level": "Apply",
+    "why": "Known device hardening practice is applied to a specific finding of default credentials plus enabled cleartext and unused services."
+  },
+  {
+    "id": "UCoAwxLJ5DEfmMSHEaYl",
+    "stem": "Omar manages a retail website that now runs on six identical web servers. Custom",
+    "level": "Apply",
+    "why": "Three stated requirements - single public address, distributed requests, automatic removal of a failed server - are applied to select a load balancer."
+  },
+  {
+    "id": "UYEJUOeniGmVhsL60Cqb",
+    "stem": "The uplink between an access switch and the distribution switch is saturating at",
+    "level": "Apply",
+    "why": "Two requirements, more uplink capacity and survival of a single cable failure, are applied to select LACP over spanning tree, which gives redundancy but no added throughput."
+  },
+  {
+    "id": "Uu6wTEcl47Pwq0pdfl2Z",
+    "stem": "Priya, a network technician at a medical billing company, is reviewing the compa",
+    "level": "Apply",
+    "why": "The auditor concern is specifically about data at rest on stolen media, and the candidate applies that distinction to select volume encryption over transport or authentication controls."
+  },
+  {
+    "id": "VENzq6wDWcqAh0St0QKY",
+    "stem": "Sanjay configures a workstation statically as 172.16.5.40 with mask 255.255.0.0 ",
+    "level": "Analyze",
+    "why": "The overly broad mask, the actual /24 LAN, the reachable internet, and the captured ARP requests for an off-subnet host must be related to derive that the PC is misclassifying remote destinations as local."
+  },
+  {
+    "id": "Vp1JaIHE08Unq1p1lVrE",
+    "stem": "A small accounting firm has 45 workstations but its ISP provides only a single p",
+    "level": "Apply",
+    "why": "A single public address and 45 hosts are applied to select port address translation over one-to-one static NAT."
+  },
+  {
+    "id": "W3h3eODQhc024DmV6l2T",
+    "stem": "Colm is connected over SSH to a switch in an unlabeled IDF at a site 200 miles a",
+    "level": "Apply",
+    "why": "The constraint of no site dispatch and a need for neighbor device and port identity is applied to select the LLDP or CDP neighbor table."
+  },
+  {
+    "id": "W48Y1WpvQdWqmRxPrB1D",
+    "stem": "Port Gi1/0/14 on Kwame's access switch is configured with port security permitti",
+    "level": "Analyze",
+    "why": "The candidate must relate the single-MAC port security setting to the three downstream devices and rule out the competing err-disable cause, BPDU guard, which an unmanaged switch would not normally trigger."
+  },
+  {
+    "id": "W4I0HrzlkoAygo4dUTCW",
+    "stem": "In a new office, most laptops support both 2.4GHz and 5GHz, yet the controller d",
+    "level": "Apply",
+    "why": "The observation that dual-band clients cluster on 2.4 GHz is applied to select band steering rather than channel width changes or a portal."
+  },
+  {
+    "id": "WCEEeoNAQ0cKWMTzDov1",
+    "stem": "Ezra's company has exhausted its IPv4 allocation and is beginning an IPv6 rollou",
+    "level": "Apply",
+    "why": "The constraint that both protocol families must work natively without translating every connection is applied to select dual stack over CGNAT or tunneling."
+  },
+  {
+    "id": "WfPUlp5oT6bIQX04ZIC1",
+    "stem": "Renata's company is adding a second ISP for redundancy and wants to influence wh",
+    "level": "Apply",
+    "why": "The design goal of influencing inbound path selection across two providers is applied to select BGP and its path attributes over interior protocols."
+  },
+  {
+    "id": "Wl6SGiYwvn41aacrMQpg",
+    "stem": "During a penetration test, Sofia crafts frames carrying two 802.1Q tags. The acc",
+    "level": "Understand",
+    "why": "The stem describes the double-tagging mechanism step by step, and the candidate interprets that description to name VLAN hopping."
+  },
+  {
+    "id": "XaIax1bDjbdMbi2gBOjf",
+    "stem": "A misapplied ACL on a core switch cut off all in-band management access to Carlo",
+    "level": "Apply",
+    "why": "The requirement for CLI reach while the production path is down is applied to select out-of-band console access on a separate path."
+  },
+  {
+    "id": "XdUMbJXEd8Pez54EjALY",
+    "stem": "Auditors require that all administrative SSH sessions into Dana's secure server ",
+    "level": "Apply",
+    "why": "The audit requirement for a single hardened, logged, MFA-protected SSH origin is applied to select a jump box design."
+  },
+  {
+    "id": "ZYumvEYXHZpxoMwIpejX",
+    "stem": "A retailer is rolling out 60 access points across 12 stores and wants centralize",
+    "level": "Apply",
+    "why": "Requirements for central configuration, coordinated RF management, and seamless roaming across sixty APs are applied to select a controller-based lightweight AP architecture."
+  },
+  {
+    "id": "aX4L1fTgudmMH4YMM9MV",
+    "stem": "Farid is redesigning a data center network. The current three-tier design forces",
+    "level": "Apply",
+    "why": "The requirement for predictable, equal hop counts between any two servers is applied to select a spine-and-leaf fabric over the existing hierarchy."
+  },
+  {
+    "id": "cHl4PkDMY6rLnj2fBYay",
+    "stem": "DHCP server logs give Hector the MAC address of an unknown device that appeared ",
+    "level": "Apply",
+    "why": "The task of turning a known MAC into a physical port is applied to select the switch MAC address table over the router ARP table."
+  },
+  {
+    "id": "csEyKcj7ltiSH2pIBvRB",
+    "stem": "Hollis receives complaints that calls on the VoIP system sound choppy and roboti",
+    "level": "Analyze",
+    "why": "Zero packet loss combined with round-trip times swinging between 12 and 95 ms must be read together - the variance, not the magnitude - to rule out latency and loss and identify jitter."
+  },
+  {
+    "id": "dcA71zp5D6PCKbrSrc7d",
+    "stem": "During a building walkthrough, an inspector notices Cat 6 cable running through ",
+    "level": "Apply",
+    "why": "The candidate must recognize that a ceiling void used for HVAC return is a plenum space and apply the fire-code rule requiring plenum-rated cable."
+  },
+  {
+    "id": "fWHEOOZIv6Iw5B6lT1hw",
+    "stem": "Renata's company is moving a latency-sensitive trading application to a public c",
+    "level": "Apply",
+    "why": "Requirements for predictable latency and avoiding the public internet are applied to select a dedicated circuit over a VPN riding the existing internet link."
+  },
+  {
+    "id": "g9WKmVMtTyfFvQSQ2JNb",
+    "stem": "An IDS alert shows a host on the warehouse floor sending thousands of frames per",
+    "level": "Apply",
+    "why": "A stated need for a per-port MAC learning limit with a violation action is applied to select port security as the switch-level control."
+  },
+  {
+    "id": "gk6clslKFyxScbDvy8dq",
+    "stem": "After moving desks, a user reports she can browse the internet but cannot reach ",
+    "level": "Analyze",
+    "why": "The recent desk move, an address belonging to the building guest scope, and working internet with no internal reachability must be related to derive that the new jack carries the guest VLAN."
+  },
+  {
+    "id": "hIfPBcJlyFB3NOKeFpqI",
+    "stem": "During a design review, Hana explains that her ticketing platform sees a tenfold",
+    "level": "Understand",
+    "why": "A described pattern of automatically adding and removing capacity for a short surge and paying only for what is used is interpreted as elasticity rather than plain scalability."
+  },
+  {
+    "id": "hJDidalwu1z9gGtpEzTs",
+    "stem": "A junior accountant at Tomas's firm was found to have standing access to firewal",
+    "level": "Understand",
+    "why": "The described authorization principle, granting each account only the permissions its role requires, is interpreted and named as least privilege."
+  },
+  {
+    "id": "huSxpwPDpy7Oi1iDygDO",
+    "stem": "Nadia is deploying three access points on the 2.4GHz band in a small office and ",
+    "level": "Remember",
+    "why": "Channels 1, 6, and 11 as the non-overlapping 2.4 GHz set is a memorized constant; the deployment framing does not change the recall."
+  },
+  {
+    "id": "iZAu6Lv6abLp12Nwn2k7",
+    "stem": "After connecting a new trunk between two switches, Amara sees log messages warni",
+    "level": "Apply",
+    "why": "The stem states the native VLAN values differ, and the candidate applies trunking rules to make them match on both ends."
+  },
+  {
+    "id": "iscPdjHY8xmbkMUkHS3U",
+    "stem": "Mateo troubleshoots a workstation whose link comes up at only 100 Mbps and drops",
+    "level": "Analyze",
+    "why": "A 130 meter horizontal run, excessive insertion loss, and a link falling back to 100 Mbps with intermittent drops must be related to the 100 meter channel limit while shielding, plenum, and negotiation explanations are ruled out."
+  },
+  {
+    "id": "jgQkH5CpvxPo0eYqPPog",
+    "stem": "Freya is sent to a workstation that reaches every host on its own 10.14.6.0/24 s",
+    "level": "Analyze",
+    "why": "Local reachability, a resolved ARP entry for the configured gateway, a traceroute dying at hop one, and the discovery that .254 is a printer while the routed interface is .1 must all be related to identify a gateway pointed at the wrong device."
+  },
+  {
+    "id": "k51xKOvMM9pwoJVE1iQB",
+    "stem": "Rosa's company is opening 40 small branch offices. Each branch will get a precon",
+    "level": "Understand",
+    "why": "The stem describes zero-touch provisioning, transport-agnostic tunnels, and central policy, and the candidate interprets that combination as SD-WAN rather than SASE or a VXLAN overlay."
+  },
+  {
+    "id": "kyDquVr1yLa48Vdymjcu",
+    "stem": "Investigating reports that a SaaS application is slow, Ivan runs a traceroute an",
+    "level": "Analyze",
+    "why": "Forty percent loss at hop 4 must be reconciled with clean results at every later hop and a clean end-to-end ping, which only holds if the intermediate router is rate-limiting the ICMP replies it generates."
+  },
+  {
+    "id": "lcT6NwmdXSCJW34WIXVP",
+    "stem": "Employees at Kenji's company report that typing the correct URL for the corporat",
+    "level": "Understand",
+    "why": "A resolver returning a forged A record for a correctly typed hostname is the direct signature of cache poisoning, so the work is recognizing the described attack."
+  },
+  {
+    "id": "loxDkebWqO1erDOlcDSY",
+    "stem": "A security appliance managed by Rosa logs only IP addresses, and she needs the a",
+    "level": "Remember",
+    "why": "PTR as the reverse-lookup record type is a memorized fact; the stem even supplies the reverse zone context."
+  },
+  {
+    "id": "m4z7uXET5x5oX4PyxlRH",
+    "stem": "Elena manages a fleet of network printers that must always receive the same IP a",
+    "level": "Apply",
+    "why": "The requirement for fixed but centrally managed addresses is applied to select DHCP reservations over exclusions or shortened leases."
+  },
+  {
+    "id": "n3Gx6qb046YJcFxLifXO",
+    "stem": "Clients cannot reach a newly deployed application on TCP 8443 and receive connec",
+    "level": "Analyze",
+    "why": "An immediate connection refused, a responding host, a disabled host firewall, and nmap reporting closed rather than filtered must be related to conclude something answered with a reset, which points at a service bound to the wrong address rather than path filtering."
+  },
+  {
+    "id": "pDsttWWzhQN1on7TP09O",
+    "stem": "Aisha notices that when a switch's CPU utilization crosses 90 percent, the switc",
+    "level": "Understand",
+    "why": "The described behavior, an agent sending an unsolicited threshold alert without being polled, is interpreted as an SNMP trap and distinguished from polling mechanisms."
+  },
+  {
+    "id": "pVF0SqIRJCGRyEczSO5G",
+    "stem": "Fatima's company is deploying a public-facing web server. Security policy says i",
+    "level": "Apply",
+    "why": "The stated policy that a compromise must not yield a direct path inward is applied to place the server in a screened subnet rather than behind a port-forward."
+  },
+  {
+    "id": "phe5KIHlZ8Pwq6qKlKrc",
+    "stem": "Since moving all 300 remote employees to a full-tunnel VPN, Priya's headquarters",
+    "level": "Apply",
+    "why": "The fact that only corporate-bound traffic must be protected is applied to select split tunneling and relieve the saturated headquarters circuit."
+  },
+  {
+    "id": "pzuhVrX8ojU15weQXqaL",
+    "stem": "Wei operates two data centers connected by a routed Layer 3 WAN. A virtualizatio",
+    "level": "Apply",
+    "why": "The requirement to stretch one Layer 2 segment across a routed WAN that cannot be bridged is applied to select VXLAN encapsulation."
+  },
+  {
+    "id": "tYDL9NouT0fMwv230MMb",
+    "stem": "Simone installs six outdoor access points, each rated for 802.3bt Type 3 and dra",
+    "level": "Analyze",
+    "why": "The 92.4 watts consumed against a 370 watt budget must be related to the per-port 15.4 watt cap and the 45 watt AP draw, which rules out the tempting total-budget explanation and isolates the 802.3af standard as the limit."
+  },
+  {
+    "id": "taPOmeNyCHJpbm5iMaii",
+    "stem": "Handheld scanners used at the far rack aisles of a warehouse report -82 dBm, neg",
+    "level": "Analyze",
+    "why": "A -82 dBm reading at the aisles, all APs mounted over the front office, and an analyzer showing one audible AP on a clean channel must be related to rule out interference and authentication and identify a coverage gap."
+  },
+  {
+    "id": "uaRkGjtsVTBtgEgHMbp6",
+    "stem": "A company is deploying VoIP phones that each have a built-in switch port, so the",
+    "level": "Apply",
+    "why": "The requirement to separate phone and PC traffic over one port is applied to configure a voice VLAN with tagged voice and untagged data."
+  },
+  {
+    "id": "vrmlaCCtx5Xzi9HAcXEM",
+    "stem": "After Jamal creates a new VLAN for a call center, clients on it fail to obtain I",
+    "level": "Apply",
+    "why": "The known rule that DHCP discovery is broadcast and does not cross a router is applied to a new VLAN whose server sits on another subnet."
+  },
+  {
+    "id": "wdtISKOoFRJrGnvDa0pg",
+    "stem": "Marcus configures a static route to 10.20.30.0/24 pointing at a backup firewall,",
+    "level": "Apply",
+    "why": "The route-selection procedure is executed on given inputs: the longest prefix match is evaluated first, so the /24 static route wins on specificity rather than on administrative distance."
+  },
+  {
+    "id": "wvuSHTLuUXSbORJYfTse",
+    "stem": "Beatriz, a network technician, picks up a ticket that says only \"nobody at the C",
+    "level": "Apply",
+    "why": "The first step of the CompTIA troubleshooting methodology, gathering information by questioning users, is applied to a ticket with no detail."
+  },
+  {
+    "id": "wzQCgsW3X3ND3HYbE6k8",
+    "stem": "Omar's WAN link to a branch office saturates every afternoon. Management wants w",
+    "level": "Apply",
+    "why": "Constraints of weeks of history, application and top-talker detail, and no full packet capture are applied to select flow export over capture, SNMP counters, or syslog."
+  },
+  {
+    "id": "xLTT0AlBqT8sBjLbT107",
+    "stem": "During a maintenance window, engineer Sofia adds a second cable between two acce",
+    "level": "Understand",
+    "why": "Spiking CPUs, endlessly circulating broadcast frames, and flapping MAC tables are the described signature of a switching loop, which the candidate interprets and names."
+  },
+  {
+    "id": "xQ825Yhl5W4mUwIgHelP",
+    "stem": "A security review finds that Tomas's monitoring platform polls devices using SNM",
+    "level": "Apply",
+    "why": "A policy requirement for authenticated and encrypted monitoring traffic is applied to select SNMPv3 with auth and privacy over community-string hardening."
+  },
+  {
+    "id": "y7bHt8n9XRP0Jb6cSGjJ",
+    "stem": "Owen has one router with a single physical Ethernet interface and a switch carry",
+    "level": "Apply",
+    "why": "The constraint of one physical interface for three VLANs is applied to configure 802.1Q subinterfaces with a trunked switch link."
+  },
+  {
+    "id": "yUa1I3a2DQpXaz4BwFCe",
+    "stem": "Nadia's company wants a disaster recovery site with power, cooling, network conn",
+    "level": "Understand",
+    "why": "A described site with power, cooling, network, and hardware in place but data restored from backup afterward is interpreted as the definition of a warm site."
+  },
+  {
+    "id": "yzgiB1XbqLugWRxEHrh9",
+    "stem": "Noor's team manages 200 switches using hand-typed CLI sessions. An audit found d",
+    "level": "Apply",
+    "why": "Two audit findings, configuration drift and no change attribution, are applied to select version-controlled template deployment plus automated baseline compliance checks."
+  },
+  {
+    "id": "ziRNSPTLgexEpIJwwMnq",
+    "stem": "While auditing an addressing plan, Chandra finds four address blocks proposed fo",
+    "level": "Apply",
+    "why": "The RFC1918 ranges are applied to four near-miss blocks, only one of which falls inside 172.16.0.0/12."
+  }
+]

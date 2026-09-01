@@ -1,0 +1,646 @@
+[
+  {
+    "id": "0C6Fh0mnE3suB4sB6kgV",
+    "level": "Analyze"
+  },
+  {
+    "id": "0CRNOy5jm0D3xfcybphw",
+    "level": "Analyze"
+  },
+  {
+    "id": "0YyrCjqG46xV7p6wjCYa",
+    "level": "Apply"
+  },
+  {
+    "id": "10YWUGqPckeFVHsodWvT",
+    "level": "Analyze"
+  },
+  {
+    "id": "1gcBZaCgNFqTL3L3d01D",
+    "level": "Remember"
+  },
+  {
+    "id": "264iIgAUtf9uXeyPLcG8",
+    "level": "Analyze"
+  },
+  {
+    "id": "2UjNPMF3WYtwXfhmabN7",
+    "level": "Analyze"
+  },
+  {
+    "id": "3m055QBCMsnD9ugbMBYo",
+    "level": "Remember"
+  },
+  {
+    "id": "3my5PcHHEp56gI5SjD67",
+    "level": "Apply"
+  },
+  {
+    "id": "3SMCo0wkUtKgsJ35UAPT",
+    "level": "Apply"
+  },
+  {
+    "id": "4v4PDgNhFWMQt1c37nyh",
+    "level": "Remember"
+  },
+  {
+    "id": "5VMqGzdteSj18jMf3tXb",
+    "level": "Apply"
+  },
+  {
+    "id": "6aiS7tfUZ8Bb37QwMAEF",
+    "level": "Apply"
+  },
+  {
+    "id": "6K0KDKDryK9QMC1vLwZf",
+    "level": "Remember"
+  },
+  {
+    "id": "6LRk3yKYPvwy2PAJIKDX",
+    "level": "Apply"
+  },
+  {
+    "id": "79uCVEt9ndzlDbtM5kf3",
+    "level": "Understand"
+  },
+  {
+    "id": "7sFuJJlnJVJITZoegWKq",
+    "level": "Understand"
+  },
+  {
+    "id": "85SJRrDo5vY8tUbPzfdy",
+    "level": "Apply"
+  },
+  {
+    "id": "88HmphmbtNW8BY1W04BC",
+    "level": "Apply"
+  },
+  {
+    "id": "8FAQLwJGHFqnzsLjPn76",
+    "level": "Remember"
+  },
+  {
+    "id": "8hrAloHU4xDeNeAjHJm9",
+    "level": "Understand"
+  },
+  {
+    "id": "8yGTK2ZYqji4liPPTw5k",
+    "level": "Apply"
+  },
+  {
+    "id": "9fBoIReCr6VMvxVSl0yE",
+    "level": "Evaluate"
+  },
+  {
+    "id": "9fF4EswUJSO97yx01NOX",
+    "level": "Remember"
+  },
+  {
+    "id": "9nlbuycINHcf6UW0POwK",
+    "level": "Apply"
+  },
+  {
+    "id": "9Pd6rWanNoPQpJrAb4mE",
+    "level": "Analyze"
+  },
+  {
+    "id": "achd7D7LGCXx7iInHL8n",
+    "level": "Understand"
+  },
+  {
+    "id": "ad5ddHbz0PiiTFdpALKR",
+    "level": "Apply"
+  },
+  {
+    "id": "AX6UZq4zMDnvwj4htlMP",
+    "level": "Analyze"
+  },
+  {
+    "id": "bAMx3F4edpH2KCzKi04E",
+    "level": "Apply"
+  },
+  {
+    "id": "bd5qRNWzwE0UmuyUlvrH",
+    "level": "Apply"
+  },
+  {
+    "id": "bD9oNgbMm49IxP9qLgWf",
+    "level": "Apply"
+  },
+  {
+    "id": "bSBuxQaJYmHGCuFd1kB7",
+    "level": "Apply"
+  },
+  {
+    "id": "bsJXWY4P22rLuA9RR5zt",
+    "level": "Apply"
+  },
+  {
+    "id": "BUeb8dvAHCoYrVvJzdFf",
+    "level": "Apply"
+  },
+  {
+    "id": "cahwxWMc0EK7qDUTDkK0",
+    "level": "Apply"
+  },
+  {
+    "id": "cDKnsSf4C1As4sJpYdiI",
+    "level": "Apply"
+  },
+  {
+    "id": "cKK4N9nI1zxgAszRMWgF",
+    "level": "Understand"
+  },
+  {
+    "id": "Cue2h5JDg7KYgcPCsrB5",
+    "level": "Remember"
+  },
+  {
+    "id": "cUr1FDaqivOb5NmKbV8S",
+    "level": "Apply"
+  },
+  {
+    "id": "dAcVgf1YhlGaqDdT4msZ",
+    "level": "Apply"
+  },
+  {
+    "id": "dcqfCRN7yaNfQYEjIpxs",
+    "level": "Remember"
+  },
+  {
+    "id": "dvnDJkJGvo5VK67fOPnB",
+    "level": "Analyze"
+  },
+  {
+    "id": "EdLGgHyROqUG9J1YklkD",
+    "level": "Understand"
+  },
+  {
+    "id": "eh38RKyh1DN5Mn7lemcc",
+    "level": "Apply"
+  },
+  {
+    "id": "enoRKT16cxDzMF0upL78",
+    "level": "Remember"
+  },
+  {
+    "id": "EPgZwD9KN5zny84YQq9I",
+    "level": "Understand"
+  },
+  {
+    "id": "eQQ7jlorB6JRDQDXZLY4",
+    "level": "Remember"
+  },
+  {
+    "id": "EVk3hG45QpJUWjeBzbuF",
+    "level": "Evaluate"
+  },
+  {
+    "id": "EvLPqmVyJ0rb63We8rNN",
+    "level": "Apply"
+  },
+  {
+    "id": "F7zLIP2qyzlGs8XZNgqU",
+    "level": "Analyze"
+  },
+  {
+    "id": "fAglhpHoeKyf9lNBKgxt",
+    "level": "Apply"
+  },
+  {
+    "id": "Fef7xdrR4gArKYh8WMFk",
+    "level": "Apply"
+  },
+  {
+    "id": "FEwewpSFdujMs2U8DgJh",
+    "level": "Apply"
+  },
+  {
+    "id": "fl6tdaO3Gb2lyJvolPnZ",
+    "level": "Analyze"
+  },
+  {
+    "id": "FPtcwmQGV8JkvyvWbERv",
+    "level": "Remember"
+  },
+  {
+    "id": "fpyvfTYgVlJnhsao4EY2",
+    "level": "Apply"
+  },
+  {
+    "id": "fRk1ZvMULvluvzWiXUm1",
+    "level": "Apply"
+  },
+  {
+    "id": "G1oOwSgYt32Oazr6W71i",
+    "level": "Apply"
+  },
+  {
+    "id": "GiuwkB9Cv7et0V8En9oJ",
+    "level": "Remember"
+  },
+  {
+    "id": "glEUHf8PXWnCSbj7NDLE",
+    "level": "Analyze"
+  },
+  {
+    "id": "GtFicdNpqyPDQ5jBxzvt",
+    "level": "Apply"
+  },
+  {
+    "id": "hbKQtzXGGQbWaaxG2B88",
+    "level": "Apply"
+  },
+  {
+    "id": "HhcOHiZ6avdFfSePJycI",
+    "level": "Analyze"
+  },
+  {
+    "id": "hkdhCyZYPJw7eA2mJgQT",
+    "level": "Apply"
+  },
+  {
+    "id": "hkLppvB9dqwnLXA5rqyZ",
+    "level": "Remember"
+  },
+  {
+    "id": "hsaAk9zGbpqyJhR3MaUX",
+    "level": "Remember"
+  },
+  {
+    "id": "hY6nI6lnDN19UdMouqJs",
+    "level": "Apply"
+  },
+  {
+    "id": "I3BWzIXgmLjHE6xKobOD",
+    "level": "Apply"
+  },
+  {
+    "id": "IH8kp4RvFjX1R3hfcm03",
+    "level": "Apply"
+  },
+  {
+    "id": "IiCEJeLvn2oaTlQTarBR",
+    "level": "Remember"
+  },
+  {
+    "id": "INcUE0yK73tOKZbbZ79d",
+    "level": "Remember"
+  },
+  {
+    "id": "ipwLP7e3uEnAa3iORdK6",
+    "level": "Apply"
+  },
+  {
+    "id": "ITaFpqLLydxj3GFNgfIt",
+    "level": "Apply"
+  },
+  {
+    "id": "JDSjpBw3BEAvLt7CeNz4",
+    "level": "Apply"
+  },
+  {
+    "id": "jIiSriaoDKK8zWgKe0tg",
+    "level": "Apply"
+  },
+  {
+    "id": "Jnpo4xwt6gjKprbrdUbq",
+    "level": "Remember"
+  },
+  {
+    "id": "JySTNjwSZKNQkR5N8Mbv",
+    "level": "Apply"
+  },
+  {
+    "id": "K5iRqESTcYCI2qylQVkz",
+    "level": "Apply"
+  },
+  {
+    "id": "kENEBiPJ1svxj6geZpxW",
+    "level": "Apply"
+  },
+  {
+    "id": "Km4r7vp4n155XvI5PeTe",
+    "level": "Remember"
+  },
+  {
+    "id": "KZ6JujZEBDkEJgvcexr5",
+    "level": "Remember"
+  },
+  {
+    "id": "l7FgD5Bp84vHUyRtHA2T",
+    "level": "Evaluate"
+  },
+  {
+    "id": "LATjgXcA5fAf39lBJFOo",
+    "level": "Remember"
+  },
+  {
+    "id": "lM8RIuyaCPfFe868l9NF",
+    "level": "Apply"
+  },
+  {
+    "id": "LmjGhT6SuW9DOGNvk4Ba",
+    "level": "Remember"
+  },
+  {
+    "id": "lwIfeIBz6DBSymcnzoAO",
+    "level": "Apply"
+  },
+  {
+    "id": "lwLvpiuwnh6xdAhY885b",
+    "level": "Apply"
+  },
+  {
+    "id": "LYL712bFypoeGjAphC65",
+    "level": "Apply"
+  },
+  {
+    "id": "M4EIRzgJaaq6fmaurU05",
+    "level": "Apply"
+  },
+  {
+    "id": "mBzIR2GtaEDy4ncM3iLu",
+    "level": "Apply"
+  },
+  {
+    "id": "MmkMWpzHyvLHM5OTZmvi",
+    "level": "Analyze"
+  },
+  {
+    "id": "MmR22Rl55VGsKnclm6PT",
+    "level": "Evaluate"
+  },
+  {
+    "id": "MOtkK9PWKOyci2tIVfOI",
+    "level": "Remember"
+  },
+  {
+    "id": "mQaPqTQWumHV3Ecmcttf",
+    "level": "Apply"
+  },
+  {
+    "id": "MwgcASnXJOI2jU7N0aeX",
+    "level": "Apply"
+  },
+  {
+    "id": "n1r3aHglzvc7I6Tz6rdh",
+    "level": "Understand"
+  },
+  {
+    "id": "n9X20rMscgZ63NBCgeNj",
+    "level": "Apply"
+  },
+  {
+    "id": "NC11tDrJgdKbrRXbRBIZ",
+    "level": "Apply"
+  },
+  {
+    "id": "nFsUuBDOdJyU5MSDuZl7",
+    "level": "Analyze"
+  },
+  {
+    "id": "NQ7triD7G5LudxpjKdR0",
+    "level": "Apply"
+  },
+  {
+    "id": "Nw64tkIOcWtccPeQrLyR",
+    "level": "Evaluate"
+  },
+  {
+    "id": "o7xzk80lrI7qLotb8ION",
+    "level": "Apply"
+  },
+  {
+    "id": "oNJ5OZjDK3MOxQdYZo3D",
+    "level": "Analyze"
+  },
+  {
+    "id": "OPntKIECoiFEPIrV8Lsw",
+    "level": "Remember"
+  },
+  {
+    "id": "OWeeWLW5LAfo8tGIiDum",
+    "level": "Apply"
+  },
+  {
+    "id": "OxuqkfYKtIFsLSk2LhNQ",
+    "level": "Remember"
+  },
+  {
+    "id": "p2EkdHv6SNaQkATujMqC",
+    "level": "Analyze"
+  },
+  {
+    "id": "p5MFz4lb6evJV74EgfbC",
+    "level": "Remember"
+  },
+  {
+    "id": "P6aJoLjwUYhs2sh7zeFZ",
+    "level": "Apply"
+  },
+  {
+    "id": "pBnGUO7CCAR1FnOYlwSh",
+    "level": "Apply"
+  },
+  {
+    "id": "pIqGUIG1dCqEPhD90Z2l",
+    "level": "Apply"
+  },
+  {
+    "id": "pKAY98CUlrEIlplUQ8Np",
+    "level": "Apply"
+  },
+  {
+    "id": "Q7D14E401ZJtJtNXW1ko",
+    "level": "Remember"
+  },
+  {
+    "id": "qlswC71H4XjUeA5vEEDC",
+    "level": "Analyze"
+  },
+  {
+    "id": "rBtNwwbvblfiwUpWRZ8N",
+    "level": "Apply"
+  },
+  {
+    "id": "RdWCCeSOUPmQQTxyoRge",
+    "level": "Apply"
+  },
+  {
+    "id": "rg9dqlLc8APlizgXZJPJ",
+    "level": "Apply"
+  },
+  {
+    "id": "rGfH3loK81EZXJeNx9qx",
+    "level": "Evaluate"
+  },
+  {
+    "id": "rIrNh1CPeQhXp8xtElPC",
+    "level": "Apply"
+  },
+  {
+    "id": "Rr07ZprXOHNG7Mfhrsb7",
+    "level": "Analyze"
+  },
+  {
+    "id": "RwUjLzO6QqKfqtjbnXVy",
+    "level": "Remember"
+  },
+  {
+    "id": "saUdtWsgVkHA7UoGTJIl",
+    "level": "Apply"
+  },
+  {
+    "id": "sFgA4NyuCbvljXUowsJx",
+    "level": "Apply"
+  },
+  {
+    "id": "sGwXbNU7aBecjLaMR6WD",
+    "level": "Remember"
+  },
+  {
+    "id": "sOEKvv5OUBzJMJas7fsi",
+    "level": "Remember"
+  },
+  {
+    "id": "SqA3ZXcNjhtkiCrfhu3O",
+    "level": "Apply"
+  },
+  {
+    "id": "SuYVAuPp0YD5ZFgHJd4c",
+    "level": "Apply"
+  },
+  {
+    "id": "sWF01umgpvJVdyFhArKX",
+    "level": "Analyze"
+  },
+  {
+    "id": "T8JKK0QpLcax8DrEIdgN",
+    "level": "Apply"
+  },
+  {
+    "id": "t9CTIgLdFRf1X57SJWwD",
+    "level": "Remember"
+  },
+  {
+    "id": "tA1kAjZZ3eOdEtTDE7ua",
+    "level": "Apply"
+  },
+  {
+    "id": "TGommvRFmbRKegAA7l3j",
+    "level": "Apply"
+  },
+  {
+    "id": "TqNyyJmM7cdEZObVoIP3",
+    "level": "Apply"
+  },
+  {
+    "id": "Tsv2TqRQm1gSbSWfnVzY",
+    "level": "Apply"
+  },
+  {
+    "id": "u29TqHUFLQKbcjFu82Eb",
+    "level": "Apply"
+  },
+  {
+    "id": "U2WsaT7ajlGw15Owaeuz",
+    "level": "Analyze"
+  },
+  {
+    "id": "uHx4uYyoBcJG6zhfXuoz",
+    "level": "Apply"
+  },
+  {
+    "id": "UoPs5xvq67lrEI5HtaKO",
+    "level": "Remember"
+  },
+  {
+    "id": "uvAYLo4xrRTLi7Y1MAby",
+    "level": "Apply"
+  },
+  {
+    "id": "UXdPVDd4n7yslKPlBuk3",
+    "level": "Understand"
+  },
+  {
+    "id": "UYGR5jDPDxwZkEwwXBXd",
+    "level": "Analyze"
+  },
+  {
+    "id": "V3iDQeSZZjbJUZ9wlD1k",
+    "level": "Apply"
+  },
+  {
+    "id": "VJcNBw7Yb7WIEYREy4Eg",
+    "level": "Understand"
+  },
+  {
+    "id": "VpYKQoD0SXv3OifZ8ZQ9",
+    "level": "Apply"
+  },
+  {
+    "id": "w4fCpmO4Q5bSzezrkHaV",
+    "level": "Analyze"
+  },
+  {
+    "id": "w9ANbuFveXCw0aVCUH40",
+    "level": "Understand"
+  },
+  {
+    "id": "wd0IM8bSKT7NBDo4zqyr",
+    "level": "Apply"
+  },
+  {
+    "id": "wOuPf8dF8XsaXU7887aZ",
+    "level": "Apply"
+  },
+  {
+    "id": "wzXZgUgtZzWloTsQ4MU0",
+    "level": "Apply"
+  },
+  {
+    "id": "XhHZOyKIE5GumWISxj6V",
+    "level": "Remember"
+  },
+  {
+    "id": "xlNAI3QHPwEA2CmBeNaw",
+    "level": "Remember"
+  },
+  {
+    "id": "XN0UtwoD6M6SDAOk3PUt",
+    "level": "Apply"
+  },
+  {
+    "id": "xTc9j7OOAxWqpSZmIsUa",
+    "level": "Apply"
+  },
+  {
+    "id": "y4td0kPkwy2QlB6irqX4",
+    "level": "Remember"
+  },
+  {
+    "id": "yh2J7k5EWi4H6AtiJPDy",
+    "level": "Apply"
+  },
+  {
+    "id": "yMpxUiQi0Na1XzfaNQ06",
+    "level": "Apply"
+  },
+  {
+    "id": "Z23wobJrN8qFGOzMnbLn",
+    "level": "Apply"
+  },
+  {
+    "id": "ZIBVThKz0zmuQBrMezPr",
+    "level": "Understand"
+  },
+  {
+    "id": "zTotsWxOPJnLlu4BFkWe",
+    "level": "Remember"
+  },
+  {
+    "id": "ZVFPVfRf7JdMCD0pAkTt",
+    "level": "Apply"
+  }
+]

@@ -1,0 +1,968 @@
+[
+  {
+    "id": "0C6Fh0mnE3suB4sB6kgV",
+    "stem": "A managed service provider builds an internal AI assistant for its help desk. It",
+    "level": "Analyze",
+    "why": "Private hosting, unchanged data flow and an output matching no deployed model must be related to isolate grounding as the failure, not hallucination, bias or policy."
+  },
+  {
+    "id": "0CRNOy5jm0D3xfcybphw",
+    "stem": "Noor works a ticket where Windows Update has failed on the same machine for two ",
+    "level": "Analyze",
+    "why": "Four independent symptoms (update failure, Defender off, tamper protection off, service re-disabling itself) plus a fact that rules out disk space must be combined into an unstated malware cause."
+  },
+  {
+    "id": "0YyrCjqG46xV7p6wjCYa",
+    "stem": "Elena arrives at a user's desk to repair a laptop. The user is loudly complainin",
+    "level": "Apply",
+    "why": "A known customer-service procedure (listen without interrupting, restate, ask open-ended questions) is used on a specific difficult-customer situation."
+  },
+  {
+    "id": "10YWUGqPckeFVHsodWvT",
+    "stem": "Nadia investigates a workstation where a kernel-mode driver signed with a revoke",
+    "level": "Analyze",
+    "why": "Revoked-cert kernel driver, hidden processes, remediation reversed on reboot and a clean AV report must be related to an unstated rootkit before the reimage answer follows."
+  },
+  {
+    "id": "1gcBZaCgNFqTL3L3d01D",
+    "stem": "Renata is asked to classify an email that reached only the company's chief finan",
+    "level": "Remember",
+    "why": "Whaling is defined by a phishing attempt aimed at a senior executive, and the stem states the target and the email channel outright."
+  },
+  {
+    "id": "264iIgAUtf9uXeyPLcG8",
+    "stem": "Hannah supports a dual-boot laptop running Windows 11 and a Linux distribution. ",
+    "level": "Analyze",
+    "why": "The shutdown-fails-but-restart-works asymmetry is evidence that must be related to hybrid shutdown leaving the volume in a hibernated state."
+  },
+  {
+    "id": "2UjNPMF3WYtwXfhmabN7",
+    "stem": "A corporate Android phone comes back from a third-party screen-repair vendor, wh",
+    "level": "Analyze",
+    "why": "Several facts (repair vendor with the PIN, an app outside the managed store, developer options and USB debugging left on twelve phones, encryption already in place) must be sorted to find which one is the actual install vector."
+  },
+  {
+    "id": "3m055QBCMsnD9ugbMBYo",
+    "stem": "Hector is inventorying what is stored on a workstation before it is wiped and re",
+    "level": "Remember",
+    "why": "Regulated data is a definition, and cardholder numbers versus meeting notes or a datasheet is a straight category recall."
+  },
+  {
+    "id": "3my5PcHHEp56gI5SjD67",
+    "stem": "Registration workstations at a clinic reboot on hot afternoons whenever the buil",
+    "level": "Apply",
+    "why": "The stem hands over the diagnosis (supply sagging to 100 V), so the work is applying the known remedy for undervoltage rather than a surge."
+  },
+  {
+    "id": "3SMCo0wkUtKgsJ35UAPT",
+    "stem": "Theo supports a company that allows employees to access corporate email from per",
+    "level": "Apply",
+    "why": "A stated policy requirement (encryption plus auto-lock on BYOD devices) is met with the known enforcement tool."
+  },
+  {
+    "id": "4v4PDgNhFWMQt1c37nyh",
+    "stem": "Nils documents an incident in which an employee working at an airport gate repor",
+    "level": "Remember",
+    "why": "Shoulder surfing is defined by observing a screen or keyboard in person, and the stem states exactly that."
+  },
+  {
+    "id": "5VMqGzdteSj18jMf3tXb",
+    "stem": "Rosa is installing twelve new network drops between two suites in a leased offic",
+    "level": "Apply",
+    "why": "The plenum fire-code rule is applied to a specific cable run where the technician has the wrong listing on the van."
+  },
+  {
+    "id": "6aiS7tfUZ8Bb37QwMAEF",
+    "stem": "Gia reviews event logs on a shared workstation and finds thousands of failed log",
+    "level": "Apply",
+    "why": "The stem names the attack pattern (cycling common passwords), so the work is applying the known mapping from password guessing to a lockout threshold."
+  },
+  {
+    "id": "6K0KDKDryK9QMC1vLwZf",
+    "stem": "Kwame has just edited a Group Policy Object that maps a new department drive. A ",
+    "level": "Remember",
+    "why": "gpupdate /force is a command recall with no reasoning beyond knowing what each listed command does."
+  },
+  {
+    "id": "6LRk3yKYPvwy2PAJIKDX",
+    "stem": "Farid takes a ticket from a user whose iPhone will not install a newly published",
+    "level": "Apply",
+    "why": "The compatibility mismatch is stated in the stem, so the work is applying the standard mobile install-failure check rather than inferring a cause."
+  },
+  {
+    "id": "79uCVEt9ndzlDbtM5kf3",
+    "stem": "Dana is dispatched to a workstation where every document on the user's mapped dr",
+    "level": "Understand",
+    "why": "The ransom note names the condition; the interpretive work is recognizing that the failed updates are the same malware interfering, not a separate fault."
+  },
+  {
+    "id": "7sFuJJlnJVJITZoegWKq",
+    "stem": "Ben takes a call from a user whose desktop has become sluggish and whose fans ru",
+    "level": "Understand",
+    "why": "Sustained CPU and GPU load with files intact must be interpreted as the signature of a cryptominer rather than another malware class."
+  },
+  {
+    "id": "85SJRrDo5vY8tUbPzfdy",
+    "stem": "Delia takes a ticket from a user who says new windows keep opening on their own ",
+    "level": "Apply",
+    "why": "A known browser control is applied to a described symptom that the stem has already narrowed to site-driven pop-ups."
+  },
+  {
+    "id": "88HmphmbtNW8BY1W04BC",
+    "stem": "Talia works for a managed service provider supporting 900 endpoints across 40 sm",
+    "level": "Apply",
+    "why": "Three stated requirements (unattended access, patch status, fleet alerting from one console) are matched to the known technology category."
+  },
+  {
+    "id": "8FAQLwJGHFqnzsLjPn76",
+    "stem": "A hardware vendor's support desk asks Devon to send one exportable report that l",
+    "level": "Remember",
+    "why": "System Information (msinfo32.exe) is a tool recall; the four options are distinct utilities with distinct purposes."
+  },
+  {
+    "id": "8hrAloHU4xDeNeAjHJm9",
+    "stem": "Every Monday morning, Malik signs in to 14 branch servers one at a time, reads t",
+    "level": "Understand",
+    "why": "The described weekly chore must be interpreted and placed into the correct scripting use-case category."
+  },
+  {
+    "id": "8yGTK2ZYqji4liPPTw5k",
+    "stem": "Rafael supports field technicians who work from hotel and airport networks where",
+    "level": "Apply",
+    "why": "Stated constraints (untrusted resolver, browser-level protection, no VPN client) are met with a known browser feature."
+  },
+  {
+    "id": "9fBoIReCr6VMvxVSl0yE",
+    "stem": "Sofia's help desk wants to speed up ticket documentation by pasting raw ticket t",
+    "level": "Evaluate",
+    "why": "All four options name genuine AI risks; the word first forces a judgment about which obligation outranks the others when regulated data is involved."
+  },
+  {
+    "id": "9fF4EswUJSO97yx01NOX",
+    "stem": "On a Linux workstation, a second data disk mounts correctly whenever Nadia runs ",
+    "level": "Remember",
+    "why": "/etc/fstab is a file-location recall against three unrelated system files."
+  },
+  {
+    "id": "9nlbuycINHcf6UW0POwK",
+    "stem": "The MDM console flags a corporate-owned Android phone as non-compliant with the ",
+    "level": "Apply",
+    "why": "A known policy for a rooted corporate device is applied; the alternatives are all attempts to suppress the alert rather than defensible positions."
+  },
+  {
+    "id": "9Pd6rWanNoPQpJrAb4mE",
+    "stem": "Users of a Windows 11 file-preparation workstation report that searching from Fi",
+    "level": "Analyze",
+    "why": "Three symptoms (no content matches, minutes-long searches on D:, instant searches under the profile) plus ruled-out permissions must be related to an unstated indexing gap."
+  },
+  {
+    "id": "achd7D7LGCXx7iInHL8n",
+    "stem": "Dana audits a manufacturing floor and finds eight PCs still running an operating",
+    "level": "Understand",
+    "why": "The item asks for the meaning of end-of-life status rather than an action, and three options misstate what EOL actually ends."
+  },
+  {
+    "id": "ad5ddHbz0PiiTFdpALKR",
+    "stem": "Priya, a systems technician, finds that the backup agent service on a file serve",
+    "level": "Apply",
+    "why": "The log message and the password-rotation timing give the cause, so the work is applying the known fix on the service Log On tab."
+  },
+  {
+    "id": "AX6UZq4zMDnvwj4htlMP",
+    "stem": "Across a warehouse's forty managed Android handhelds, the current OS release nev",
+    "level": "Analyze",
+    "why": "The managed-versus-unmanaged contrast on identical hardware, plus storage and battery ruled out, must be related to an unstated MDM deferral."
+  },
+  {
+    "id": "bAMx3F4edpH2KCzKi04E",
+    "stem": "Hugo supports a lab where staff sign in to whichever shared workstation is free.",
+    "level": "Apply",
+    "why": "A stated symptom pattern (files landing in per-machine local profiles) is met with the known Active Directory feature."
+  },
+  {
+    "id": "bd5qRNWzwE0UmuyUlvrH",
+    "stem": "Sanjay is asked to publish a small office's internal web application to customer",
+    "level": "Apply",
+    "why": "The stated isolation requirement is met by applying the known screened-subnet design."
+  },
+  {
+    "id": "bD9oNgbMm49IxP9qLgWf",
+    "stem": "Otis is asked to give staff access to a cloud-hosted expense portal using the sa",
+    "level": "Apply",
+    "why": "Stated requirements (existing directory credentials, no second password) are matched to federated single sign-on."
+  },
+  {
+    "id": "bSBuxQaJYmHGCuFd1kB7",
+    "stem": "Wren finds that a third-party antivirus subscription lapsed 60 days ago and the ",
+    "level": "Apply",
+    "why": "A known remediation order is applied: confirm the built-in protection took over and update definitions before anything else."
+  },
+  {
+    "id": "bsJXWY4P22rLuA9RR5zt",
+    "stem": "Oksana is documenting impact considerations for deploying a 4 GB design suite to",
+    "level": "Apply",
+    "why": "The change-impact framework is applied to a rollout whose other impact categories the stem has already cleared, leaving bandwidth contention and its mitigation."
+  },
+  {
+    "id": "BUeb8dvAHCoYrVvJzdFf",
+    "stem": "Hector, a clinic technician, must ensure that USB flash drives carrying patient ",
+    "level": "Apply",
+    "why": "A stated requirement (removable media unreadable if lost) is matched to the correct built-in encryption scope."
+  },
+  {
+    "id": "cahwxWMc0EK7qDUTDkK0",
+    "stem": "A zero-day vulnerability in the company's VPN concentrator is being actively exp",
+    "level": "Apply",
+    "why": "Change-management categories are applied to an actively exploited zero-day that must be patched inside the normal cycle."
+  },
+  {
+    "id": "cDKnsSf4C1As4sJpYdiI",
+    "stem": "Aisha is speccing a single analysis workstation for a genomics lab that standard",
+    "level": "Apply",
+    "why": "Three stated hardware and access requirements are checked against known Windows edition limits to pick the only edition that satisfies all of them."
+  },
+  {
+    "id": "cKK4N9nI1zxgAszRMWgF",
+    "stem": "Yusuf is remediating malware on a Windows Home system when a junior technician a",
+    "level": "Understand",
+    "why": "The item asks for the reason behind a procedure step, which is explanation rather than execution."
+  },
+  {
+    "id": "Cue2h5JDg7KYgcPCsrB5",
+    "stem": "A Linux server alerts that its root filesystem is nearly full. Deshawn has alrea",
+    "level": "Remember",
+    "why": "du -sh is a command recall; the other three report different things entirely."
+  },
+  {
+    "id": "cUr1FDaqivOb5NmKbV8S",
+    "stem": "Tessa investigates a workstation where every search is redirected through an unf",
+    "level": "Apply",
+    "why": "The stem states the unauthorized proxy entry, so the work is applying the removal fix rather than diagnosing."
+  },
+  {
+    "id": "dAcVgf1YhlGaqDdT4msZ",
+    "stem": "Marcus is preparing a 128 GB USB flash drive that a video team will use to hand ",
+    "level": "Apply",
+    "why": "Stated constraints (12 GB files, read-write on both platforms, no third-party drivers) are matched to the filesystem that satisfies all of them."
+  },
+  {
+    "id": "dcqfCRN7yaNfQYEjIpxs",
+    "stem": "A Windows 11 jump box in the server room is suspected of running an unauthorized",
+    "level": "Remember",
+    "why": "netstat -ano is a command recall; the alternatives report addressing, name resolution and mapped drives."
+  },
+  {
+    "id": "dvnDJkJGvo5VK67fOPnB",
+    "stem": "Camila's Android phone has stopped completing contactless payments at every regi",
+    "level": "Analyze",
+    "why": "Two unrelated NFC uses failing, the case removed, the phone unlocked and a coworker device working must be related to a single disabled radio."
+  },
+  {
+    "id": "EdLGgHyROqUG9J1YklkD",
+    "stem": "Ingrid, a desktop support technician at a European subsidiary, images the site's",
+    "level": "Understand",
+    "why": "The item asks what N-edition media means for missing codecs and what remedy follows, which is interpretation of an edition property."
+  },
+  {
+    "id": "eh38RKyh1DN5Mn7lemcc",
+    "stem": "Malik supports kiosk laptops that sit unattended in a public lobby; their intern",
+    "level": "Apply",
+    "why": "A stated attack vector (booting an alternate OS from USB) is met with the known firmware hardening step."
+  },
+  {
+    "id": "enoRKT16cxDzMF0upL78",
+    "stem": "A pallet of leaking laser toner cartridges is discovered in a storeroom. Miguel ",
+    "level": "Remember",
+    "why": "The MSDS is the document that carries PPE, spill and disposal information; this is a document-type recall."
+  },
+  {
+    "id": "EPgZwD9KN5zny84YQq9I",
+    "stem": "Duncan analyzes a coffee shop incident where a laptop on the shop's Wi-Fi receiv",
+    "level": "Understand",
+    "why": "The stem describes ARP replies claiming the gateway and traffic being forwarded onward, and the interposed position must be interpreted rather than read off a stated attribute."
+  },
+  {
+    "id": "eQQ7jlorB6JRDQDXZLY4",
+    "stem": "After removing malware from a Windows 11 laptop, Ana finds that several Windows ",
+    "level": "Remember",
+    "why": "sfc /scannow is the command for verifying and repairing protected system files, a direct tool recall."
+  },
+  {
+    "id": "EVk3hG45QpJUWjeBzbuF",
+    "stem": "Marcus diagnoses a six-year-old office laptop for Dana: the display panel and th",
+    "level": "Evaluate",
+    "why": "Obeying the customer, overruling her on cost, escalating to her manager and presenting options are each defensible professional stances, and the right one must be justified against professionalism and documentation practice."
+  },
+  {
+    "id": "EvLPqmVyJ0rb63We8rNN",
+    "stem": "Hank keeps three copies of the engineering design files: the working copy on the",
+    "level": "Apply",
+    "why": "The 3-2-1 rule is applied to a described backup arrangement to find which of its requirements is unmet."
+  },
+  {
+    "id": "F7zLIP2qyzlGs8XZNgqU",
+    "stem": "Renee supports a domain-joined branch office where six workstations have begun f",
+    "level": "Analyze",
+    "why": "Twenty minutes gained per powered-on day, never powered off, and drift returning two hours after a manual correction must be related to rule out a CMOS battery and point at time-service sync."
+  },
+  {
+    "id": "fAglhpHoeKyf9lNBKgxt",
+    "stem": "Ines helps a user who reset her password on a customer portal. The portal still ",
+    "level": "Apply",
+    "why": "The stem states the stale cookie and cached page, so the work is applying the corresponding browser cleanup."
+  },
+  {
+    "id": "Fef7xdrR4gArKYh8WMFk",
+    "stem": "The nightly backup window at a law firm is too short to finish a weekly full bac",
+    "level": "Apply",
+    "why": "Three stated constraints are checked against known backup-type properties, and only one type satisfies all of them."
+  },
+  {
+    "id": "FEwewpSFdujMs2U8DgJh",
+    "stem": "Ines wrote a maintenance script at /opt/scripts/rotate.sh on a Linux server. The",
+    "level": "Apply",
+    "why": "Stated read, write and execute requirements per owner class are converted into the correct octal mode."
+  },
+  {
+    "id": "fl6tdaO3Gb2lyJvolPnZ",
+    "stem": "Desmond is sent to a workstation that cannot open any internal or internet site.",
+    "level": "Analyze",
+    "why": "Valid DHCP addressing, a reachable gateway, wrong name answers and a DNS server the scope never issued must be combined into an unstated host-side compromise."
+  },
+  {
+    "id": "FPtcwmQGV8JkvyvWbERv",
+    "stem": "Oscar interviews an employee who received a phone call from a man who said he wa",
+    "level": "Remember",
+    "why": "Vishing is defined by the voice channel, and the stem states that the contact was a phone call."
+  },
+  {
+    "id": "fpyvfTYgVlJnhsao4EY2",
+    "stem": "Elena's company hired 300 remote employees. Laptops will ship sealed from the ve",
+    "level": "Apply",
+    "why": "Stated constraints (sealed shipping, no technician touch, provisioning at first sign-in) are matched to the known deployment model."
+  },
+  {
+    "id": "fRk1ZvMULvluvzWiXUm1",
+    "stem": "Tobias is working from hotel Wi-Fi. He browses the internet normally, but his ma",
+    "level": "Apply",
+    "why": "Stated symptoms and a policy against publishing internal resources are met with the known remote-access method."
+  },
+  {
+    "id": "G1oOwSgYt32Oazr6W71i",
+    "stem": "Luis takes a ticket for a desktop that shuts down and restarts on its own two or",
+    "level": "Apply",
+    "why": "Troubleshooting methodology is applied: gather the operating system record before swapping the spare power supply sitting on the bench."
+  },
+  {
+    "id": "GiuwkB9Cv7et0V8En9oJ",
+    "stem": "Owen takes a report from a traveling consultant who says that in an airport loun",
+    "level": "Remember",
+    "why": "An evil twin is defined by a rogue access point advertising the same SSID, which the stem states outright."
+  },
+  {
+    "id": "glEUHf8PXWnCSbj7NDLE",
+    "stem": "Sofia escalates a tablet that no longer rotates its display. The technician veri",
+    "level": "Analyze",
+    "why": "Rotation lock off, failure in every app, restart and OS update ruled out, and a sensor test returning no data must be related to conclude the accelerometer itself has failed."
+  },
+  {
+    "id": "GtFicdNpqyPDQ5jBxzvt",
+    "stem": "Emeka needs to install an approved line-of-business application on a workstation",
+    "level": "Apply",
+    "why": "A known elevation method is applied under the stated constraint that the user must remain a standard user."
+  },
+  {
+    "id": "hbKQtzXGGQbWaaxG2B88",
+    "stem": "A CAD package lists these system requirements: a 64-bit operating system, 32 GB ",
+    "level": "Apply",
+    "why": "Four published requirements are checked against the candidate machine specification to report the single shortfall."
+  },
+  {
+    "id": "HhcOHiZ6avdFfSePJycI",
+    "stem": "Ivan takes a desktop that has become generally unstable: it freezes for a minute",
+    "level": "Analyze",
+    "why": "Optimizer bundle, clean sfc and DISM, passing hardware diagnostics and a restore point dated after the utilities were installed must be related to reach a clean boot rather than a rollback."
+  },
+  {
+    "id": "hkdhCyZYPJw7eA2mJgQT",
+    "stem": "Rosa shares a folder on a Windows file server. The share permission for the Sale",
+    "level": "Apply",
+    "why": "The rule that the more restrictive of share and NTFS permissions wins is applied to a specific pair of settings."
+  },
+  {
+    "id": "hkLppvB9dqwnLXA5rqyZ",
+    "stem": "Elias, an IT director, is preparing for a joint product integration in which his",
+    "level": "Remember",
+    "why": "A mutual NDA is the agreement covering confidentiality in both directions; this is an agreement-type recall."
+  },
+  {
+    "id": "hsaAk9zGbpqyJhR3MaUX",
+    "stem": "A newly hired analyst with low vision needs a Windows 11 laptop configured so th",
+    "level": "Remember",
+    "why": "The answer is knowing which Settings section holds vision accessibility options; the alternatives are simply other Settings sections."
+  },
+  {
+    "id": "hY6nI6lnDN19UdMouqJs",
+    "stem": "Security asks Camila to preserve evidence from a workstation suspected of exfilt",
+    "level": "Apply",
+    "why": "The evidence-handling procedure is applied to a live, networked machine, with distractors that each break it in a different way."
+  },
+  {
+    "id": "I3BWzIXgmLjHE6xKobOD",
+    "stem": "Priya, a desktop support technician, is asked to stop unauthorized people from s",
+    "level": "Apply",
+    "why": "A stated physical threat (people following badged staff through a door) is met with the known access control."
+  },
+  {
+    "id": "IH8kp4RvFjX1R3hfcm03",
+    "stem": "While auditing a branch office WLAN, Imani finds the access point running WPA2 i",
+    "level": "Apply",
+    "why": "The known rule that TKIP is deprecated in favor of AES is applied to a WLAN kept in mixed mode by one legacy device."
+  },
+  {
+    "id": "IiCEJeLvn2oaTlQTarBR",
+    "stem": "Following the SOHO malware removal procedure, Kwame has already investigated and",
+    "level": "Remember",
+    "why": "The malware-removal procedure is a memorized ordered list, and the item asks only for the step that follows verification."
+  },
+  {
+    "id": "INcUE0yK73tOKZbbZ79d",
+    "stem": "Dmitri, a hospital technician, is shown flyers reading \"Parking permit renewal -",
+    "level": "Remember",
+    "why": "QR code phishing is defined by the malicious QR code, which the stem states outright."
+  },
+  {
+    "id": "ipwLP7e3uEnAa3iORdK6",
+    "stem": "Bianca links a Group Policy object that enforces screen lock settings to the Wor",
+    "level": "Apply",
+    "why": "The stem states the computer object is in the default container, so the work is applying knowledge of GPO scope to move it."
+  },
+  {
+    "id": "ITaFpqLLydxj3GFNgfIt",
+    "stem": "Maya, a desktop support technician, is called to a workstation that has thrown t",
+    "level": "Apply",
+    "why": "The stop code, the named vendor .sys file and the previous night driver push give the cause; the work is applying the standard rollback procedure from Safe Mode."
+  },
+  {
+    "id": "JDSjpBw3BEAvLt7CeNz4",
+    "stem": "Yara finds that staff reuse one password across a dozen supplier portals because",
+    "level": "Apply",
+    "why": "A stated requirement (unique credentials per site with no second factor) is met with the known tool."
+  },
+  {
+    "id": "jIiSriaoDKK8zWgKe0tg",
+    "stem": "Marisol, a tier-1 technician, spends 40 minutes discovering that a recurring \"dr",
+    "level": "Apply",
+    "why": "A known documentation practice is applied to the goal of stopping the next technician repeating the same 40 minutes."
+  },
+  {
+    "id": "Jnpo4xwt6gjKprbrdUbq",
+    "stem": "Mira is briefed that the company's public website became unreachable during a sa",
+    "level": "Remember",
+    "why": "Distributed denial of service is defined by many distinct sources saturating a link, which the stem states outright."
+  },
+  {
+    "id": "JySTNjwSZKNQkR5N8Mbv",
+    "stem": "Pilar must install an open-source utility whose vendor site directs downloads to",
+    "level": "Apply",
+    "why": "The published hash is given, so the work is applying the standard integrity-verification technique against weaker alternatives."
+  },
+  {
+    "id": "K5iRqESTcYCI2qylQVkz",
+    "stem": "A new hire already has an on-premises Active Directory account created by the id",
+    "level": "Apply",
+    "why": "Hybrid identity knowledge is applied to a stated situation where an on-premises account must reach licensed cloud services with the same credentials."
+  },
+  {
+    "id": "kENEBiPJ1svxj6geZpxW",
+    "stem": "Jordan brings in a personal Android phone enrolled in the company BYOD program. ",
+    "level": "Apply",
+    "why": "The stem states the sideloaded APK, so the work is applying a fix that also closes the install-unknown-apps permission that allowed it."
+  },
+  {
+    "id": "Km4r7vp4n155XvI5PeTe",
+    "stem": "Neema is signed in as a standard user on a Fedora-based Linux server and must in",
+    "level": "Remember",
+    "why": "The package manager for a Fedora-based distribution plus the need for sudo is a command recall."
+  },
+  {
+    "id": "KZ6JujZEBDkEJgvcexr5",
+    "stem": "An internal web application suddenly throws a certificate warning for one user o",
+    "level": "Remember",
+    "why": "certmgr.msc is the per-user certificate tool; this is a tool recall against three unrelated consoles."
+  },
+  {
+    "id": "l7FgD5Bp84vHUyRtHA2T",
+    "stem": "Bianca finds a PowerShell script on a public community forum that claims to clea",
+    "level": "Evaluate",
+    "why": "All four options name real scripting risks, and the item requires judging which one the specific decision (unreviewed code, domain admin rights, 500 machines) most directly disregards."
+  },
+  {
+    "id": "LATjgXcA5fAf39lBJFOo",
+    "stem": "Ana submits a change request to upgrade the ERP client on 300 workstations. The ",
+    "level": "Remember",
+    "why": "The stem paraphrases the definition of a rollback plan, so naming the missing change-request element is recall."
+  },
+  {
+    "id": "lM8RIuyaCPfFe868l9NF",
+    "stem": "Omar supports a 12-person design firm that has just been acquired and joined the",
+    "level": "Apply",
+    "why": "Three stated capabilities absent from Windows Home are matched to the supported edition-upgrade path."
+  },
+  {
+    "id": "LmjGhT6SuW9DOGNvk4Ba",
+    "stem": "Priya is scoping a patch for an accounting application. She needs to know which ",
+    "level": "Remember",
+    "why": "A CMDB is defined by modeling relationships between configuration items, which is the attribute the stem states."
+  },
+  {
+    "id": "lwIfeIBz6DBSymcnzoAO",
+    "stem": "Devon needs to move a 78 lb (35 kg) UPS from a pallet on the loading dock to a r",
+    "level": "Apply",
+    "why": "Manual-handling safety practice is applied to a stated weight, a broken elevator and a lone technician."
+  },
+  {
+    "id": "lwLvpiuwnh6xdAhY885b",
+    "stem": "Vikram is building a shared breakroom PC. Policy states the machine must not syn",
+    "level": "Apply",
+    "why": "A stated policy (no consumer cloud identity, no single owner) is met with the correct sign-in configuration."
+  },
+  {
+    "id": "LYL712bFypoeGjAphC65",
+    "stem": "Tomas boots a new workstation from a USB installer to perform a clean install. S",
+    "level": "Apply",
+    "why": "Firmware seeing the NVMe drive while setup does not is the standard signal for a missing storage driver, and the known Load driver step is applied."
+  },
+  {
+    "id": "M4EIRzgJaaq6fmaurU05",
+    "stem": "A tablet that was recently returned from a training lab connects to the office w",
+    "level": "Apply",
+    "why": "The stem states the leftover static configuration from the lab, so the work is applying the corresponding fix."
+  },
+  {
+    "id": "mBzIR2GtaEDy4ncM3iLu",
+    "stem": "While browsing on her company iPhone, Alia hits a full-screen page that vibrates",
+    "level": "Apply",
+    "why": "A known response to a browser scareware page is applied, with distractors that each act on the false alert."
+  },
+  {
+    "id": "MmkMWpzHyvLHM5OTZmvi",
+    "stem": "Miriam is handed a laptop where every HTTPS site, in two different browsers, rai",
+    "level": "Analyze",
+    "why": "Every HTTPS site in two browsers, a correct clock, other machines unaffected, and an unfamiliar issuer absent from the trusted root store must be combined into an unstated local TLS interception."
+  },
+  {
+    "id": "MmR22Rl55VGsKnclm6PT",
+    "stem": "While remoting into a partner company's HR workstation to resolve a printing pro",
+    "level": "Evaluate",
+    "why": "Ignoring the files, reporting the exposure to a manager, screenshotting the desktop and asking the user about them are each defensible responses, and the right one must be justified against privacy and scope-of-work principles."
+  },
+  {
+    "id": "MOtkK9PWKOyci2tIVfOI",
+    "stem": "Noor is asked by a compliance officer for proof that a third-party vendor actual",
+    "level": "Remember",
+    "why": "A certificate of destruction is the document that evidences media destruction; this is a document-type recall."
+  },
+  {
+    "id": "mQaPqTQWumHV3Ecmcttf",
+    "stem": "Ellis reports that his company Android phone, which used to last a full shift, n",
+    "level": "Apply",
+    "why": "The stem points at a recently installed app and rules out battery health and heat, so the work is applying the standard per-app battery check."
+  },
+  {
+    "id": "MwgcASnXJOI2jU7N0aeX",
+    "stem": "Tomas is replacing the wireless configuration at a small law office after learni",
+    "level": "Apply",
+    "why": "A stated weakness (offline cracking of the WPA2 four-way handshake) is met with the known protocol change that replaces the key exchange."
+  },
+  {
+    "id": "n1r3aHglzvc7I6Tz6rdh",
+    "stem": "Lena reads a vendor advisory stating that attackers are actively exploiting a fl",
+    "level": "Remember",
+    "why": "Zero-day is defined by active exploitation with no fix available, which the stem states outright."
+  },
+  {
+    "id": "n9X20rMscgZ63NBCgeNj",
+    "stem": "Ingrid handles a report that a sales representative's corporate-owned smartphone",
+    "level": "Apply",
+    "why": "A known lost-device procedure is applied under stated conditions (PII on board, backups current, device offline)."
+  },
+  {
+    "id": "NC11tDrJgdKbrRXbRBIZ",
+    "stem": "A workstation with a manually configured IPv4 address can ping the file server a",
+    "level": "Apply",
+    "why": "The stem separates working IP connectivity from failing name resolution, so the work is applying the standard client-side check."
+  },
+  {
+    "id": "nFsUuBDOdJyU5MSDuZl7",
+    "stem": "Andre applies a vendor UEFI firmware update to a Windows 11 laptop. On reboot th",
+    "level": "Analyze",
+    "why": "No OS found, a healthy detected drive, Secure Boot suddenly unavailable and an intact GPT and EFI partition must be related to conclude the firmware reverted to legacy boot mode."
+  },
+  {
+    "id": "NQ7triD7G5LudxpjKdR0",
+    "stem": "Bianca runs the Windows 11 upgrade readiness check on a three-year-old business ",
+    "level": "Apply",
+    "why": "The stem states both firmware conditions, so the work is applying the supported remediation sequence rather than the unsupported registry bypass."
+  },
+  {
+    "id": "Nw64tkIOcWtccPeQrLyR",
+    "stem": "A dental practice is retiring its imaging workstations. The old drives hold pati",
+    "level": "Evaluate",
+    "why": "A certified wipe, imaging to the NAS first, carving out the held files, and holding the drives pending written confirmation are each arguable, and the retention schedule and litigation hold decide which is defensible."
+  },
+  {
+    "id": "o7xzk80lrI7qLotb8ION",
+    "stem": "Lucia is asked to speed up sign-in for an executive who dislikes typing a long p",
+    "level": "Apply",
+    "why": "Stated hardware and security constraints (infrared camera, TPM, device-bound, no weaker than the password) are matched to the correct sign-in method."
+  },
+  {
+    "id": "oNJ5OZjDK3MOxQdYZo3D",
+    "stem": "Kenji installed what he believed was his bank's mobile app after following a lin",
+    "level": "Analyze",
+    "why": "A link from a text message, a matching icon, excessive permissions including accessibility, and login alerts on an unrelated account must be related to conclude a clone app stole credentials beyond the banking app."
+  },
+  {
+    "id": "OPntKIECoiFEPIrV8Lsw",
+    "stem": "A Windows 11 desktop reboots without warning two or three times a week. Nothing ",
+    "level": "Remember",
+    "why": "Event Viewer is the tool that holds what the operating system recorded; the alternatives monitor live state or schedule tasks."
+  },
+  {
+    "id": "OWeeWLW5LAfo8tGIiDum",
+    "stem": "Simone is called about a workstation showing injected advertisements on internal",
+    "level": "Apply",
+    "why": "The stem states the sideloaded extension, so the work is applying the removal fix rather than a symptom cleanup."
+  },
+  {
+    "id": "OxuqkfYKtIFsLSk2LhNQ",
+    "stem": "Users on a shared Windows 11 workstation complain that signing in takes nearly f",
+    "level": "Remember",
+    "why": "The Startup apps tab in Task Manager is a tool-and-location recall against three other consoles."
+  },
+  {
+    "id": "p2EkdHv6SNaQkATujMqC",
+    "stem": "Grace, a support technician, connects a 4K webcam to a docking station on a Wind",
+    "level": "Analyze",
+    "why": "The resource error, a dock already carrying five devices and a second dock port failing identically must be related to conclude the dock ports share one saturated host controller."
+  },
+  {
+    "id": "p5MFz4lb6evJV74EgfbC",
+    "stem": "Yusuf needs two automation scripts: one that runs on the company's Ubuntu file s",
+    "level": "Remember",
+    "why": "Native shell script extensions per operating system are a file-type recall."
+  },
+  {
+    "id": "P6aJoLjwUYhs2sh7zeFZ",
+    "stem": "Ibrahim takes a call at 4:50 p.m.: the warehouse scanning application is down fo",
+    "level": "Evaluate",
+    "why": "Letting the owning tier set severity and holding the ticket in his own queue are each defensible ticketing choices, and the ten-minute shift end plus 60 blocked workers decide which is right."
+  },
+  {
+    "id": "pBnGUO7CCAR1FnOYlwSh",
+    "stem": "Camila is retiring 60 solid-state drives that stored regulated client data. Poli",
+    "level": "Apply",
+    "why": "Media-type knowledge (degaussing does not erase flash) plus a no-reuse policy is applied to pick the disposal method."
+  },
+  {
+    "id": "pIqGUIG1dCqEPhD90Z2l",
+    "stem": "Farrah traced two infections to promotional USB flash drives that launched an in",
+    "level": "Apply",
+    "why": "A stated infection vector (media launching an installer on insertion) is met with the known removable-media hardening setting."
+  },
+  {
+    "id": "pKAY98CUlrEIlplUQ8Np",
+    "stem": "Priyanka replaced a failing SSD in a partner firm's laptop two days ago, restore",
+    "level": "Apply",
+    "why": "The known closing step of the professionalism sequence is applied to an engagement the technician has already completed."
+  },
+  {
+    "id": "Q7D14E401ZJtJtNXW1ko",
+    "stem": "Jamal is deploying 802.1X on a corporate WLAN so wireless users authenticate wit",
+    "level": "Remember",
+    "why": "RADIUS is the authentication service behind 802.1X; this is a protocol recall against three other services."
+  },
+  {
+    "id": "qlswC71H4XjUeA5vEEDC",
+    "stem": "Leilani is handed a Bluetooth headset that a warehouse supervisor cannot pair wi",
+    "level": "Analyze",
+    "why": "A connected rather than pairing indicator, the original tablet powered on nearby, and the phone pairing normally with a car kit must be related to conclude the headset is still bonded elsewhere."
+  },
+  {
+    "id": "rBtNwwbvblfiwUpWRZ8N",
+    "stem": "Tomas is investigating complaints that sign-in at one branch takes six to eight ",
+    "level": "Analyze",
+    "why": "Six-to-eight-minute logons at one site only, roaming profiles, multi-gigabyte desktop files and WAN spikes during the sign-in window must be related before the structural fix follows."
+  },
+  {
+    "id": "RdWCCeSOUPmQQTxyoRge",
+    "stem": "Priya, a technician for a school district, is speccing 400 student laptops. Stud",
+    "level": "Apply",
+    "why": "Four stated requirements are matched to the operating system whose management model satisfies all of them."
+  },
+  {
+    "id": "rg9dqlLc8APlizgXZJPJ",
+    "stem": "A Windows 11 laptop on the office LAN cannot see the shared printer or any file ",
+    "level": "Apply",
+    "why": "The stem states the network profile is Public, so the work is applying the corresponding discovery and sharing fix."
+  },
+  {
+    "id": "rGfH3loK81EZXJeNx9qx",
+    "stem": "Aiko told a customer his rebuilt workstation would be back on his desk by 2:00 p",
+    "level": "Evaluate",
+    "why": "Calling immediately, waiting until the estimate is certain, staying quiet in case the download finishes early and handing the ticket off are each defensible, and the missed 1:30 commitment decides which is right."
+  },
+  {
+    "id": "rIrNh1CPeQhXp8xtElPC",
+    "stem": "During a review of a small office's router, Reuben finds several inbound ports o",
+    "level": "Apply",
+    "why": "The stem states that an internal application requested the mappings itself, so the work is applying the known router setting that permits that."
+  },
+  {
+    "id": "Rr07ZprXOHNG7Mfhrsb7",
+    "stem": "Tomas, who supports a 200-store retail chain, submits a request to push new firm",
+    "level": "Analyze",
+    "why": "A change request with every required element still denied, on the Friday after Thanksgiving, at a 200-store retail chain, must be related to an unstated peak-season change freeze."
+  },
+  {
+    "id": "RwUjLzO6QqKfqtjbnXVy",
+    "stem": "Marisol is briefed after every endpoint managed by a monitoring product began be",
+    "level": "Remember",
+    "why": "A supply chain attack is defined by malicious code arriving through a trusted vendor update, which the stem states outright."
+  },
+  {
+    "id": "saUdtWsgVkHA7UoGTJIl",
+    "stem": "Ken administers a Linux KVM virtualization host and must reach the graphical con",
+    "level": "Apply",
+    "why": "A stated constraint (guests whose own networking is broken) is matched to the console protocol designed for hypervisor-side access."
+  },
+  {
+    "id": "sFgA4NyuCbvljXUowsJx",
+    "stem": "Alvaro must remove a graphics utility from a Mac. The utility was distributed as",
+    "level": "Apply",
+    "why": "The stated distribution method (a dragged .dmg with no installer package) determines which of the known macOS removal procedures applies."
+  },
+  {
+    "id": "sGwXbNU7aBecjLaMR6WD",
+    "stem": "Gabriel reviews logs for a customer-facing web application after an unauthorized",
+    "level": "Remember",
+    "why": "The canonical injection string passed into a database query is the textbook definition of SQL injection."
+  },
+  {
+    "id": "sOEKvv5OUBzJMJas7fsi",
+    "stem": "An employee's last day is Friday. Renata, the desktop support lead, must make su",
+    "level": "Remember",
+    "why": "The off-boarding checklist is the document that drives departure tasks; this is a document-type recall."
+  },
+  {
+    "id": "SqA3ZXcNjhtkiCrfhu3O",
+    "stem": "Sofia, a desktop technician, is briefed that an attack on several workstations l",
+    "level": "Apply",
+    "why": "Knowledge of what each control can actually observe is applied to a payload that leaves nothing on disk."
+  },
+  {
+    "id": "SuYVAuPp0YD5ZFgHJd4c",
+    "stem": "Marcus manages IT for a retail chain that has suffered two smash-and-grab break-",
+    "level": "Apply",
+    "why": "A stated physical threat (a vehicle driven through storefront glass) is matched to the control designed to stop it."
+  },
+  {
+    "id": "sWF01umgpvJVdyFhArKX",
+    "stem": "Osman supports a hospital ward where four of twelve identical Android tablets ha",
+    "level": "Analyze",
+    "why": "Four of twelve identical tablets affected, older hardware, staff-installed apps, normal battery and temperature, and reboots surviving a charge cycle must be related to choose the isolation step that tests the added apps."
+  },
+  {
+    "id": "T8JKK0QpLcax8DrEIdgN",
+    "stem": "Elena, a systems administrator, is told that a contractor needs domain administr",
+    "level": "Apply",
+    "why": "Least privilege and Zero Trust principles are applied to a stated two-hour elevation need."
+  },
+  {
+    "id": "t9CTIgLdFRf1X57SJWwD",
+    "stem": "Helena is investigating a suspicious download on a Windows 11 laptop. She needs ",
+    "level": "Remember",
+    "why": "File Explorer Options on the View tab is where both settings live; this is a location recall."
+  },
+  {
+    "id": "tA1kAjZZ3eOdEtTDE7ua",
+    "stem": "After the corporate cloud storage client is enabled on a Windows 11 laptop, a us",
+    "level": "Apply",
+    "why": "Three stated requirements (keep two folders syncing, stop one folder consuming local disk, keep it retrievable) are matched to the cloud client configuration."
+  },
+  {
+    "id": "TGommvRFmbRKegAA7l3j",
+    "stem": "Ravi's team has run nightly backups for two years and the job log reports no fai",
+    "level": "Apply",
+    "why": "The principle that only a test restore evidences recoverability is applied to an audit request that job logs cannot satisfy."
+  },
+  {
+    "id": "TqNyyJmM7cdEZObVoIP3",
+    "stem": "Rafael must install a 9 GB engineering application on 20 workstations in a secur",
+    "level": "Apply",
+    "why": "Stated constraints (no internet, no optical drives, an ISO already on the file server) are matched to the distribution method."
+  },
+  {
+    "id": "Tsv2TqRQm1gSbSWfnVzY",
+    "stem": "Devin, a systems technician, is told by an auditor that the help desk's current ",
+    "level": "Apply",
+    "why": "A stated weakness (SIM swapping) plus a stated requirement (keep a possession factor) is met with the known alternative."
+  },
+  {
+    "id": "u29TqHUFLQKbcjFu82Eb",
+    "stem": "While Owen is working in a wiring closet, the rack-mounted UPS begins smoking an",
+    "level": "Apply",
+    "why": "Fire safety procedure is applied to an electrical fire in progress, with distractors that each violate a known rule about extinguisher class or opening an energized chassis."
+  },
+  {
+    "id": "U2WsaT7ajlGw15Owaeuz",
+    "stem": "After an Android OS update rolls out to a fleet of warehouse handhelds, Marcus f",
+    "level": "Analyze",
+    "why": "The app failing on every updated device, the vendor confirming support, and a factory-fresh device working must be related to conclude the problem is carried-over app data rather than the OS."
+  },
+  {
+    "id": "uHx4uYyoBcJG6zhfXuoz",
+    "stem": "Kofi maintains a loaner laptop that rotating contractors use for short engagemen",
+    "level": "Apply",
+    "why": "A stated requirement (no history, cookies or cache left for the next contractor) is matched to the browser mode that satisfies it."
+  },
+  {
+    "id": "UoPs5xvq67lrEI5HtaKO",
+    "stem": "Anton is provisioning a workstation for a temporary worker who needs to run appl",
+    "level": "Remember",
+    "why": "Standard account is the account type defined by running installed applications without installing software or changing settings."
+  },
+  {
+    "id": "uvAYLo4xrRTLi7Y1MAby",
+    "stem": "Callum must reinstall Windows 11 on a laptop at a small branch office. The machi",
+    "level": "Apply",
+    "why": "Four stated constraints each rule out one boot method, and the remaining supported one is applied."
+  },
+  {
+    "id": "UXdPVDd4n7yslKPlBuk3",
+    "stem": "During a software audit, Jonas finds a graphics editor installed on a company ma",
+    "level": "Understand",
+    "why": "The item requires interpreting what personal-use license terms permit, against a set of superficially reasonable readings of the same facts."
+  },
+  {
+    "id": "UYGR5jDPDxwZkEwwXBXd",
+    "stem": "A user forwards a screenshot of a desktop pop-up warning that her subscription t",
+    "level": "Analyze",
+    "why": "A branded expiration warning and an asset record showing the product was never installed must be related to conclude the alert is adware-generated rather than genuine."
+  },
+  {
+    "id": "V3iDQeSZZjbJUZ9wlD1k",
+    "stem": "Hana supports a workstation where one CAD application closes without warning abo",
+    "level": "Apply",
+    "why": "Troubleshooting methodology is applied: read the Application log before reinstalling the application or replacing memory."
+  },
+  {
+    "id": "VJcNBw7Yb7WIEYREy4Eg",
+    "stem": "Auditing a Linux server, Marcelo runs grep jvargas /etc/passwd and sees an x in ",
+    "level": "Understand",
+    "why": "The item asks what a specific field value means and what that implies about where hashes live, which is interpretation rather than action."
+  },
+  {
+    "id": "VpYKQoD0SXv3OifZ8ZQ9",
+    "stem": "Zara is setting permissions on a project folder that about 40 people need identi",
+    "level": "Apply",
+    "why": "A stated administrative burden (40 identical users, five changing monthly) is met with the known group-based permission approach."
+  },
+  {
+    "id": "w4fCpmO4Q5bSzezrkHaV",
+    "stem": "Trina supports delivery drivers whose company phones run turn-by-turn navigation",
+    "level": "Analyze",
+    "why": "Mid-afternoon sluggishness, self-dimming, stutter, overnight recovery, sun exposure, charging in the mount, thick cases, and normal battery and storage must be related to an unstated thermal cause."
+  },
+  {
+    "id": "w9ANbuFveXCw0aVCUH40",
+    "stem": "A legacy inspection application is supplied only as a 32-bit build, and its bund",
+    "level": "Understand",
+    "why": "The item asks what to expect from 32-bit code and a 32-bit driver on 64-bit Windows, which is interpretation of how the compatibility layer covers user mode but not kernel mode."
+  },
+  {
+    "id": "wd0IM8bSKT7NBDo4zqyr",
+    "stem": "Aisha runs IT alone for a 40-person architecture firm with no coverage outside b",
+    "level": "Evaluate",
+    "why": "In-house EDR triage, in-house XDR correlation and a managed provider are each real options, and the insurer requirement for continuous coverage plus the inability to hire decides between them."
+  },
+  {
+    "id": "wOuPf8dF8XsaXU7887aZ",
+    "stem": "A small engineering firm moved its two rack servers into a converted supply clos",
+    "level": "Apply",
+    "why": "Environmental best practice is applied to a stated set of conditions (no dedicated cooling, matted intakes, racks against the wall)."
+  },
+  {
+    "id": "wzXZgUgtZzWloTsQ4MU0",
+    "stem": "Ravi is building the standard image for new workstations. Each ships with a sing",
+    "level": "Apply",
+    "why": "Stated conditions (4 TB boot drive, UEFI, Secure Boot) are matched to the partitioning scheme that supports them."
+  },
+  {
+    "id": "XhHZOyKIE5GumWISxj6V",
+    "stem": "Before blowing accumulated dust and toner out of a stack of returned desktops wi",
+    "level": "Remember",
+    "why": "The PPE required for compressed-air dust and toner work is a straight safety-procedure recall."
+  },
+  {
+    "id": "xlNAI3QHPwEA2CmBeNaw",
+    "stem": "Halima is told that a comment posted to a company forum contains a script tag th",
+    "level": "Remember",
+    "why": "A script stored with a comment and executed in every visitor browser is the textbook definition of stored cross-site scripting."
+  },
+  {
+    "id": "XN0UtwoD6M6SDAOk3PUt",
+    "stem": "Devon, a help desk technician, takes a ticket from a user whose Windows 11 lapto",
+    "level": "Apply",
+    "why": "Troubleshooting methodology is applied: identify the process consuming memory before acting on disk space or startup settings."
+  },
+  {
+    "id": "xTc9j7OOAxWqpSZmIsUa",
+    "stem": "Colin administers the corporate MacBook fleet at a law firm. Security requires t",
+    "level": "Apply",
+    "why": "Three stated security requirements are matched to the management approach that can enforce all three centrally."
+  },
+  {
+    "id": "y4td0kPkwy2QlB6irqX4",
+    "stem": "A designer's MacBook needs automatic, scheduled local backups of the entire syst",
+    "level": "Remember",
+    "why": "Time Machine is the built-in scheduled backup feature; this is a feature recall against three unrelated utilities."
+  },
+  {
+    "id": "yh2J7k5EWi4H6AtiJPDy",
+    "stem": "Colin reports that his browser's homepage changed on its own, searches are redir",
+    "level": "Apply",
+    "why": "A described hijack pattern with a clean scan is met by applying the standard browser inspection and reset."
+  },
+  {
+    "id": "yMpxUiQi0Na1XzfaNQ06",
+    "stem": "Nia calls the help desk because a business app on her iPhone will not update; th",
+    "level": "Apply",
+    "why": "The stem states 190 MB free, so the work is applying the standard free-space remedy for a stalled update."
+  },
+  {
+    "id": "Z23wobJrN8qFGOzMnbLn",
+    "stem": "Miguel must copy a 400 GB departmental share to a new file server across a slow,",
+    "level": "Apply",
+    "why": "Stated requirements (preserve permissions and ownership, mirror deletions, resume after a drop) are matched to the tool and switches that provide them."
+  },
+  {
+    "id": "ZIBVThKz0zmuQBrMezPr",
+    "stem": "Ivo is onboarding a new hire and finds the cloud tenant reports zero available l",
+    "level": "Understand",
+    "why": "The item asks what a disabled-but-licensed account means for seat consumption, which is interpretation of licensing behavior rather than a procedure."
+  },
+  {
+    "id": "zTotsWxOPJnLlu4BFkWe",
+    "stem": "A customer calls Dmitri, angry that his \"server unreachable\" ticket has gone six",
+    "level": "Remember",
+    "why": "The SLA is the document that defines committed response times; this is a document-type recall."
+  },
+  {
+    "id": "ZVFPVfRf7JdMCD0pAkTt",
+    "stem": "Nadia is replacing memory modules in a desktop at a user's cubicle in a dry, hea",
+    "level": "Apply",
+    "why": "ESD and electrical safety practice is applied to a stated environment (dry, carpeted, at the user desk)."
+  }
+]

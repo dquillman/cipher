@@ -128,7 +128,7 @@ export default function HowExamsThink() {
 
             <ol className="space-y-4 pl-6 list-decimal marker:text-brand-400 my-4">
               <li>
-                <strong className="text-white">Questions are classified by Bloom's level.</strong> (PMP and Security+ today; Network+ and A+ Core 2 are not yet done.) When you practice, you can see whether you're answering an "evaluate"-level scenario question correctly, or just nailing the easy "remember" stuff. The <Link to="/blog/cognitive-heatmap" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">Cognitive Heatmap</Link> makes this visible.
+                <strong className="text-white">Every question is classified by Bloom's level.</strong> When you practice, you can see whether you're answering an "evaluate"-level scenario question correctly, or just nailing the easy "remember" stuff. The <Link to="/blog/cognitive-heatmap" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">Cognitive Heatmap</Link> makes this visible.
               </li>
               <li>
                 <strong className="text-white">Every explanation walks you through the exam's reasoning frame.</strong> For PMP, that's the Exam Lens &mdash; <em>what would PMI want you to do?</em> For Security+, it's the Security Triad &mdash; <em>which leg of the CIA triad is this question protecting?</em> For SHRM-CP, it's the Competency Lens &mdash; <em>which SHRM behavioral competency is being tested?</em> The framework is built into how the AI explains every answer. You don't just learn the answer; you learn the lens you're supposed to read the question through.

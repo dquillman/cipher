@@ -1,0 +1,242 @@
+[
+  {
+    "id": "1gcBZaCgNFqTL3L3d01D",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right and I was wrong. I argued the stem's exclusions (no payment request, no impersonation) force real interpretation, but I never checked them against the option set: Whaling / Vishing / Smishing / Shoulder surfing. Business email compromise is not on the ballot, so the exclusions defeat nothing. Against these four options a single stated feature -- an email aimed at the CFO -- picks the answer. That is vocabulary recall wrapped in scenery."
+  },
+  {
+    "id": "264iIgAUtf9uXeyPLcG8",
+    "tagA": "Analyze",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Analyze",
+    "reasoning": "Agent A is right. I wavered on this one during my own pass and landed wrong. The option set is four power settings -- High performance plan, Fast startup, lid action, USB selective suspend -- so 'it is a power problem, pick a power setting' gets the reader nowhere. The mechanism is nowhere in the stem: the reader has to reason that Restart performs a full shutdown while Shut down does not, therefore the volume is left hibernated, therefore Fast startup. Two observations related to an unstated cause is Analyze."
+  },
+  {
+    "id": "4v4PDgNhFWMQt1c37nyh",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. This is the thinnest item in the attack-naming group and I should have seen it: the stem restates the definition of shoulder surfing almost word for word ('stood close behind and watched the screen and keyboard'), and the distractors are in unrelated categories. The Security+ calibration allows a thin scenario wrapper at Remember -- the password-plus-push-notification item is tagged Remember and has exactly this shape."
+  },
+  {
+    "id": "79uCVEt9ndzlDbtM5kf3",
+    "tagA": "Understand",
+    "tagB": "Analyze",
+    "whoIsRight": "A",
+    "finalLevel": "Understand",
+    "reasoning": "Agent A is right and our two rationales are nearly the same sentence -- we agreed on what the work is and disagreed on what to call it. A ransom note sitting on the desktop hands the diagnosis over in plain text; there is no cause to determine. What is left is interpreting the secondary symptom, the failed updates, as the same malware rather than a separate fault. I let the 'which conclusion best fits' framing and the competing-explanation option set pull me a level higher than the stem earns."
+  },
+  {
+    "id": "9Pd6rWanNoPQpJrAb4mE",
+    "tagA": "Analyze",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Analyze",
+    "reasoning": "Agent A is right, though this one is close. I leaned on the correct option naming the mechanism, which is reading the answer key rather than the stem. In the stem the cause is absent: no content matches specifically, minutes-long searches on D:, instant searches under the profile, permissions ruled out. Those converge on an unindexed volume that is never mentioned. This is the same shape as the Security+ Analyze exemplar where a log pattern converges on an unstated IDOR."
+  },
+  {
+    "id": "EvLPqmVyJ0rb63We8rNN",
+    "tagA": "Apply",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Apply",
+    "reasoning": "Agent A is right. Our rationales are again the same content in different order, so the tiebreak is which verb fits: the reader takes a named rule with three requirements and tests a specific configuration against it. Exercising a rule on specifics is Apply. Contrast the rollback-plan item, where the reader only names a term from a paraphrase and no rule is exercised."
+  },
+  {
+    "id": "FPtcwmQGV8JkvyvWbERv",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. Options are Whaling / QR code phishing / Spear phishing / Vishing -- four channels, and the stem states the channel outright ('a phone call'). The one-time-code detail is texture that does not change which option wins. Single-feature vocabulary match."
+  },
+  {
+    "id": "GiuwkB9Cv7et0V8En9oJ",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. Options are supply chain / dictionary / zero-day / evil twin -- nothing else in the set is even wireless. 'Same SSID, stronger signal' is the definition of an evil twin and the stem states it. Recall."
+  },
+  {
+    "id": "hsaAk9zGbpqyJhR3MaUX",
+    "tagA": "Remember",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. I counted three requirements as three constraints to be checked, but only one of them does any work: no option other than Accessibility has a screen reader at all, so the other two requirements never come into play. Knowing which Settings section holds vision options is location recall."
+  },
+  {
+    "id": "INcUE0yK73tOKZbbZ79d",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. Options are smishing / QR code phishing / dumpster diving / tailgating. A QR code appears in the stem and in exactly one option. Recall."
+  },
+  {
+    "id": "Jnpo4xwt6gjKprbrdUbq",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. I made the best case I could here -- the single-source DoS option is a real discriminator -- but the stem says 'many thousands of distinct source addresses,' which is the definition of the word distributed. Nothing is interpreted; a stated fact is matched to a term."
+  },
+  {
+    "id": "Km4r7vp4n155XvI5PeTe",
+    "tagA": "Remember",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. I justified Apply by noting two constraints must both be satisfied (Fedora means dnf, standard user means sudo), but both are pure recall and combining two recalled facts does not make a new situation. Consistency decides it: we both tagged netstat -ano, sfc /scannow, du -sh and /etc/fstab as Remember, and this is the same kind of item."
+  },
+  {
+    "id": "KZ6JujZEBDkEJgvcexr5",
+    "tagA": "Remember",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. I claimed gpedit.msc was a genuine alternative defeated by the per-user requirement, but Group Policy Editor does not manage a user's Trusted Root store, so it never was a live option. Against lusrmgr, gpedit and regedit, 'certificate' maps to certmgr in one step. The elaborate stem about renewed roots is scenery."
+  },
+  {
+    "id": "LATjgXcA5fAf39lBJFOo",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. The stem does not describe a situation to be interpreted -- it paraphrases a definition ('how the environment will be returned to its current state') and asks for the term. The other three options are unrelated change-record elements. Recall."
+  },
+  {
+    "id": "LmjGhT6SuW9DOGNvk4Ba",
+    "tagA": "Remember",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. The clause 'including how those items relate to one another' is the defining attribute of a CMDB, stated in the stem. I called the barcode inventory a genuine alternative, but that same clause rules it out immediately. Definition matching."
+  },
+  {
+    "id": "MmR22Rl55VGsKnclm6PT",
+    "tagA": "Evaluate",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Evaluate",
+    "reasoning": "Agent A is right. I considered Evaluate on this item and talked myself out of it by leaning on the CompTIA rule for confidential material. But reporting an inadvertent exposure to a manager is a genuinely defensible position in many organizations, and documenting machine state before changes is a real technician habit. The answer requires justifying privacy and scope-of-work over disclosure and documentation -- a choice between defensible goods, not a rule lookup."
+  },
+  {
+    "id": "n1r3aHglzvc7I6Tz6rdh",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "B",
+    "finalLevel": "Understand",
+    "reasoning": "I am right here, and it is the one member of the attack-naming group that breaks the pattern. The option set contains the confusable neighbor: 'an unpatched system' is a live answer, because the system genuinely is unpatched. Separating zero-day (no patch exists anywhere) from unpatched (a patch exists and was not applied) requires weighing the stem's facts against two definitions rather than matching one stated feature. That is interpretation."
+  },
+  {
+    "id": "OPntKIECoiFEPIrV8Lsw",
+    "tagA": "Remember",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. 'What the operating system recorded' maps to Event Viewer in one step. I described perfmon and resmon as genuine alternatives, but an option set containing other real tools is not the same as reasoning work -- picking the one tool that does the named job is recall."
+  },
+  {
+    "id": "OxuqkfYKtIFsLSk2LhNQ",
+    "tagA": "Remember",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. msconfig would have been a real competitor if the option named its Startup tab, but it names the Boot tab, so it is not. 'Stop programs launching at sign-in' maps to Task Manager's Startup apps tab directly. Tool-and-location recall."
+  },
+  {
+    "id": "p2EkdHv6SNaQkATujMqC",
+    "tagA": "Analyze",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Analyze",
+    "reasoning": "Agent A is right. I said the error names the cause, but it names a resource, not which controller or why a second dock port behaves identically. The load-bearing inference -- both dock ports hang off one host controller, so the fix is a port served by a different one -- appears nowhere in the stem and is what makes a front-panel port the answer rather than a cable or a power setting."
+  },
+  {
+    "id": "P6aJoLjwUYhs2sh7zeFZ",
+    "tagA": "Evaluate",
+    "tagB": "Apply",
+    "whoIsRight": "B",
+    "finalLevel": "Apply",
+    "reasoning": "I am right here. Agent A calls the alternatives defensible, but each is defeated by a stated rule rather than by a judgment call: option 0 sets severity to low, which contradicts severity-by-business-impact; option 1 defers severity to the owning tier, which the same practice forbids; option 2 fails to escalate to the team that owns the fix ten minutes before the technician goes off shift. Nothing has to be weighed -- three ticketing rules are applied and only one option satisfies all three."
+  },
+  {
+    "id": "rBtNwwbvblfiwUpWRZ8N",
+    "tagA": "Analyze",
+    "tagB": "Apply",
+    "whoIsRight": "B",
+    "finalLevel": "Apply",
+    "reasoning": "I am right here. The stem spells out every link in the causal chain -- roaming profiles, multi-gigabyte files stored on desktops, WAN utilization spiking during the sign-in window, slow logons at that branch only. Nothing is left to determine, so there is no relationship for the reader to discover. Compare the dual-boot and USB-controller items in this same set, where the mechanism is genuinely absent from the stem; that is the line between Apply and Analyze, and this item falls on the Apply side."
+  },
+  {
+    "id": "rGfH3loK81EZXJeNx9qx",
+    "tagA": "Evaluate",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Evaluate",
+    "reasoning": "Agent A is right. I settled this with 'communicate status immediately,' but that rule does not say when, and the timing is the whole item. Waiting until the estimate is firm rather than calling with a guess is a real professional stance, and handing the ticket to someone who can still meet 2:00 is defensible customer service. Two live commitments and two surviving options means the reader must justify a choice, not apply a rule."
+  },
+  {
+    "id": "RwUjLzO6QqKfqtjbnXVy",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. Malicious code arriving inside a trusted vendor update is the definition of a supply chain attack and the stem states it. The other options -- business email compromise, non-compliant system, unpatched system -- are not close. Recall."
+  },
+  {
+    "id": "sGwXbNU7aBecjLaMR6WD",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. The stem shows the canonical injection string and says outright that it was passed into a database query. Recognizing ' OR '1'='1 is memorization, and the stem even names the database so the XSS distractor never engages."
+  },
+  {
+    "id": "t9CTIgLdFRf1X57SJWwD",
+    "tagA": "Remember",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. Both settings live on the same View tab and the reader either knows that location or does not. cleanmgr, a folder Properties dialog and Environment Variables are not plausible enough to constitute constraint checking. Location recall."
+  },
+  {
+    "id": "U2WsaT7ajlGw15Owaeuz",
+    "tagA": "Analyze",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Analyze",
+    "reasoning": "Agent A is right. My 'standard remediation ladder' reasoning was a shortcut -- the ladder alone recommends clearing cache for almost any misbehaving app. The actual work is combining two facts to eliminate the OS: the vendor confirms the release supports the new version, and a factory-fresh device running that same version launches the app fine. Those two together are what defeat the rollback and factory-reset options, and neither is stated as a conclusion."
+  },
+  {
+    "id": "UYGR5jDPDxwZkEwwXBXd",
+    "tagA": "Analyze",
+    "tagB": "Apply",
+    "whoIsRight": "A",
+    "finalLevel": "Analyze",
+    "reasoning": "Agent A is right. I downgraded this because the distractors are weak, but distractor quality is difficulty, not cognitive level. The reader must relate two facts -- a branded expiry warning and an asset record showing the product was never installed -- to reach an unstated conclusion: the alert is false and something else on the machine is generating it. Two facts is thin for Analyze, but the relationship between them is genuinely the work."
+  },
+  {
+    "id": "wd0IM8bSKT7NBDo4zqyr",
+    "tagA": "Evaluate",
+    "tagB": "Apply",
+    "whoIsRight": "B",
+    "finalLevel": "Apply",
+    "reasoning": "I am right here. Agent A calls in-house EDR triage and in-house XDR correlation real options, and they are real technologies -- but the stem eliminates both mechanically, not by judgment. Option 0 offers daytime help desk triage against an insurer requirement for continuous coverage; option 1 offers in-house correlation against 'the firm cannot hire analysts.' Two stated constraints knock out two options with nothing left to weigh."
+  },
+  {
+    "id": "xlNAI3QHPwEA2CmBeNaw",
+    "tagA": "Remember",
+    "tagB": "Understand",
+    "whoIsRight": "A",
+    "finalLevel": "Remember",
+    "reasoning": "Agent A is right. A script stored with a comment and executed in every visitor's browser is the textbook description of stored XSS, and the remaining options -- SQL injection, supply chain, evil twin -- are in unrelated categories. Recall."
+  }
+]

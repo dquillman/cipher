@@ -41,11 +41,11 @@ export default function NetworkPlusPracticeLP() {
       <SectionBlock title="Three things compound for Network+">
         <ol className="space-y-4">
           <li>
-            <strong>Layer-first troubleshooting practice.</strong> Questions are written so
-            you have to locate the fault on the OSI model before choosing a fix, which is the
-            skill the real troubleshooting items grade. Note that Bloom's cognitive-level
-            tagging, which our PMP and Security+ banks carry, is <em>not</em> yet applied to
-            Network+ — so the per-level accuracy breakdown will be empty for this exam.
+            <strong>Layer-first practice, classified by reasoning level.</strong> Questions are
+            written so you have to locate the fault on the OSI model before choosing a fix, and
+            all 106 carry a Bloom's cognitive level — 20 of them Analyze, which is where the
+            real troubleshooting items live. Your results separate "I forgot the port number"
+            from "I could not read the symptom".
           </li>
           <li>
             <strong>Exam Lens explanations.</strong> Every right and wrong answer is walked

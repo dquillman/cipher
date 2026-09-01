@@ -45,7 +45,7 @@ export default function PocketPrepAlternative() {
       <SectionBlock title="What CipherExam does differently">
         <ol className="space-y-4">
           <li>
-            <strong>Questions are classified by Bloom's taxonomy.</strong> This covers our PMP and Security+ banks today; Network+ and A+ Core 2 are not yet classified. Volume
+            <strong>Every question is classified by Bloom's taxonomy.</strong> All four banks, all 579 questions. Volume
             drilling treats all questions the same. We tag each one by cognitive
             level, so you can see whether you're acing "remember" questions but
             missing the "evaluate"-level scenarios that decide real exams.
