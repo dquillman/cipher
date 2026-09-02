@@ -13,7 +13,7 @@ export const SEO = {
   landing: {
     title: 'CipherExam — Learn How Certification Exams Think',
     description:
-      'AI-powered certification exam prep that explains the reasoning behind every question. Four certifications covered in depth: PMP, CompTIA Security+, Network+ and A+ Core 2. Free 7-day trial, no credit card.',
+      'AI-powered certification exam prep that explains the reasoning behind every question. Four certifications covered in depth: PMP, CompTIA Security+, Network+ and A+ Core 2. Free 14-day trial, no credit card.',
     canonical: '/',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -28,7 +28,7 @@ export const SEO = {
   pricing: {
     title: 'Pricing — $0 Free or $19/mo Pro · CipherExam',
     description:
-      'Free Starter forever, Pro at $19/month, or a one-time $59 Exam Pass for 90 days. 7-day free trial. No credit card required. Cancel anytime.',
+      'Free Starter forever, Pro at $19/month, or a one-time $59 Exam Pass for 90 days. 14-day free trial. No credit card required. Cancel anytime.',
     canonical: '/pricing',
     jsonLd: [
       {
@@ -68,7 +68,7 @@ export const SEO = {
             name: 'Is there a free trial?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Yes. CipherExam Pro includes a 7-day free trial. No credit card required to start.',
+              text: 'Yes. CipherExam Pro includes a 14-day free trial. No credit card required to start.',
             },
           },
           {
@@ -147,7 +147,7 @@ export const SEO = {
   lpPmp: {
     title: 'PMP Practice — AI-Explained Questions · CipherExam',
     description:
-      'Practice PMP exam questions with AI-explained reasoning. Bloom’s-classified, scenario-aware, with the PMI Decision Lens. Free 7-day trial.',
+      'Practice PMP exam questions with AI-explained reasoning. Bloom’s-classified, scenario-aware, with the PMI Decision Lens. Free 14-day trial.',
     canonical: '/lp/pmp',
     ogImage: 'https://cipherexam.com/og-pmp.png',
   },
@@ -155,7 +155,7 @@ export const SEO = {
   lpSecurityPlus: {
     title: 'CompTIA Security+ Practice — PBQ-Native · CipherExam',
     description:
-      'Practice Security+ (SY0-701) with full PBQ support and reasoning explanations through the Security Triad Lens. Free 7-day trial.',
+      'Practice Security+ (SY0-701) with full PBQ support and reasoning explanations through the Security Triad Lens. Free 14-day trial.',
     canonical: '/lp/security-plus',
     ogImage: 'https://cipherexam.com/og-security-plus.png',
   },
@@ -163,7 +163,7 @@ export const SEO = {
   lpShrmCp: {
     title: 'SHRM-CP Practice — Competency-Lens Questions · CipherExam',
     description:
-      'Practice SHRM-CP questions tied to the SHRM behavioral competencies, with AI-explained reasoning. Free 7-day trial.',
+      'Practice SHRM-CP questions tied to the SHRM behavioral competencies, with AI-explained reasoning. Free 14-day trial.',
     canonical: '/lp/shrm-cp',
     ogImage: 'https://cipherexam.com/og-shrm-cp.png',
   },
@@ -171,7 +171,7 @@ export const SEO = {
   lpItil: {
     title: 'ITIL 4 Practice — Value-Chain-Lens Questions · CipherExam',
     description:
-      'Practice ITIL 4 Foundation questions mapped to the service value chain and guiding principles, with AI-explained reasoning through the Exam Lens. Free 7-day trial.',
+      'Practice ITIL 4 Foundation questions mapped to the service value chain and guiding principles, with AI-explained reasoning through the Exam Lens. Free 14-day trial.',
     canonical: '/lp/itil',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -179,7 +179,7 @@ export const SEO = {
   lpNetworkPlus: {
     title: 'CompTIA Network+ Practice — OSI Troubleshooting · CipherExam',
     description:
-      'Practice Network+ (N10-009) with layer-by-layer reasoning through the Exam Lens — locate the fault on the OSI model before you pick a fix. Bloom’s-classified questions. Free 7-day trial.',
+      'Practice Network+ (N10-009) with layer-by-layer reasoning through the Exam Lens — locate the fault on the OSI model before you pick a fix. Bloom’s-classified questions. Free 14-day trial.',
     canonical: '/lp/network-plus',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -187,7 +187,7 @@ export const SEO = {
   lpSixSigma: {
     title: 'Six Sigma Green Belt Practice — Exam Lens Explanations · CipherExam',
     description:
-      "Practice Six Sigma Green Belt the way ASQ grades it. Every answer explained through the Exam Lens — which DMAIC phase — plus Bloom's-level reasoning. Free 7-day trial.",
+      "Practice Six Sigma Green Belt the way ASQ grades it. Every answer explained through the Exam Lens — which DMAIC phase — plus Bloom's-level reasoning. Free 14-day trial.",
     canonical: '/lp/six-sigma',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -195,7 +195,7 @@ export const SEO = {
   lpCia: {
     title: 'CIA Part 1 Practice — AI-Explained Questions · CipherExam',
     description:
-      "Practice CIA Part 1 (IIA) questions with AI-explained reasoning. Bloom's-classified, scenario-aware, graded against the IIA International Standards. Free 7-day trial.",
+      "Practice CIA Part 1 (IIA) questions with AI-explained reasoning. Bloom's-classified, scenario-aware, graded against the IIA International Standards. Free 14-day trial.",
     canonical: '/lp/cia',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -203,7 +203,7 @@ export const SEO = {
   lpCsm: {
     title: 'CSM Practice — AI-Explained Scrum Guide Questions · CipherExam',
     description:
-      "Practice Certified ScrumMaster (CSM) questions explained through the Exam Lens, grounded in the current Scrum Guide. Bloom's-classified, scenario-aware. Free 7-day trial.",
+      "Practice Certified ScrumMaster (CSM) questions explained through the Exam Lens, grounded in the current Scrum Guide. Bloom's-classified, scenario-aware. Free 14-day trial.",
     canonical: '/lp/csm',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -211,7 +211,7 @@ export const SEO = {
   lpAPlusCore2: {
     title: 'CompTIA A+ Core 2 Practice — Order-First Troubleshooting · CipherExam',
     description:
-      'Practice A+ Core 2 (220-1202) with reasoning explanations tied to the CompTIA six-step troubleshooting methodology — which step comes first, not just which fix is valid. Free 7-day trial.',
+      'Practice A+ Core 2 (220-1202) with reasoning explanations tied to the CompTIA six-step troubleshooting methodology — which step comes first, not just which fix is valid. Free 14-day trial.',
     canonical: '/lp/a-plus-core-2',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -219,7 +219,7 @@ export const SEO = {
   lpPgmp: {
     title: 'PgMP Practice — Program-Level Reasoning · CipherExam',
     description:
-      "Practice PgMP exam questions with AI-explained reasoning. Bloom's-classified, governance-aware, framed by program benefits realization. Free 7-day trial.",
+      "Practice PgMP exam questions with AI-explained reasoning. Bloom's-classified, governance-aware, framed by program benefits realization. Free 14-day trial.",
     canonical: '/lp/pgmp',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -227,7 +227,7 @@ export const SEO = {
   comparePocketPrep: {
     title: 'Pocket Prep Alternative — Reasoning-First Cert Prep · CipherExam',
     description:
-      'Looking for a Pocket Prep alternative? CipherExam explains the reasoning behind every question — Bloom’s-classified, four certifications covered in depth, 60-day money-back guarantee. Free 7-day trial, no credit card.',
+      'Looking for a Pocket Prep alternative? CipherExam explains the reasoning behind every question — Bloom’s-classified, four certifications covered in depth, 60-day money-back guarantee. Free 14-day trial, no credit card.',
     canonical: '/compare/pocketprep-alternative',
     ogImage: 'https://cipherexam.com/og-default.png',
     jsonLd: {
@@ -247,7 +247,7 @@ export const SEO = {
           name: 'What does CipherExam cost?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 7-day free trial — no credit card required — and both are covered by a 60-day, no-conditions money-back guarantee.',
+            text: '$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 14-day free trial — no credit card required — and both are covered by a 60-day, no-conditions money-back guarantee.',
           },
         },
       ],
@@ -268,7 +268,7 @@ export const SEO = {
   compareBestPmpSimulator2026: {
     title: 'Best PMP Exam Simulator for the 2026 Exam — Buyer’s Guide · CipherExam',
     description:
-      'The PMP exam moved to a new Exam Content Outline in July 2026. What to look for in a simulator — full-length 180-question mocks, 2026-ECO domain weighting (33/41/26), honest coverage of the exam’s question formats — and how CipherExam meets each criterion. Free 7-day trial.',
+      'The PMP exam moved to a new Exam Content Outline in July 2026. What to look for in a simulator — full-length 180-question mocks, 2026-ECO domain weighting (33/41/26), honest coverage of the exam’s question formats — and how CipherExam meets each criterion. Free 14-day trial.',
     canonical: '/compare/best-pmp-exam-simulator-2026',
     ogImage: 'https://cipherexam.com/og-pmp.png',
     jsonLd: {

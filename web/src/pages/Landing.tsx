@@ -342,7 +342,7 @@ export default function Landing() {
               </p>
 
               <p className="hero-enter hero-enter-4 font-mono text-xs tracking-wide text-slate-500 mb-10">
-                Free 7-day trial — no credit card required.
+                Free 14-day trial — no credit card required.
               </p>
 
               <div className="hero-enter hero-enter-5 flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-10">
@@ -1006,7 +1006,7 @@ export default function Landing() {
           >
             Start Your Free Trial
           </button>
-          <p className="mt-6 font-mono text-xs tracking-wide text-slate-500">7-day free trial — no credit card required.</p>
+          <p className="mt-6 font-mono text-xs tracking-wide text-slate-500">14-day free trial — no credit card required.</p>
           <p className="mt-2 inline-flex items-center gap-2 font-mono text-xs tracking-wide text-emerald-400">
             <ShieldCheck className="w-4 h-4" /> Plus a 60-day money-back guarantee — no conditions.
           </p>

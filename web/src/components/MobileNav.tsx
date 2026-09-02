@@ -13,6 +13,12 @@ const primaryItems = [
 const moreItems = [
     { label: 'Readiness', path: '/app/readiness' },
     { label: 'Verbal Mode', path: '/app/verbal' },
+    // Guide and Report a Problem existed only in the desktop sidebar, so on a
+    // phone there was no way to reach either — while the crash screen tells the
+    // user to use Report a Problem. Telling someone to press a button that is
+    // not on their screen is worse than saying nothing.
+    { label: 'Guide', path: '/app/help' },
+    { label: 'Report a Problem', path: '/app/help?report=1' },
     { label: 'FAQ', path: '/app/faq' },
     { label: 'Start Here', path: '/app/start-here' },
 ];

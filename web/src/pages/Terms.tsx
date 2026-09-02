@@ -63,7 +63,7 @@ export default function Terms() {
             <section>
               <h2 className="text-xl font-bold text-white mb-3">4. Free Trial and Subscription</h2>
               <p>
-                CipherExam offers a free 7-day trial for new users. No credit card is required to start a
+                CipherExam offers a free 14-day trial for new users. No credit card is required to start a
                 trial. After the trial period, continued access to premium features requires a paid
                 subscription.
               </p>

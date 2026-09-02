@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import {
     Layout,
     CheckCircle2,
@@ -18,7 +18,12 @@ import ReportIssueModal from '../components/ReportIssueModal';
 import BloomsPrimer from '../components/BloomsPrimer';
 
 export default function Help() {
-    const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+    const [searchParams] = useSearchParams();
+    // The phone nav has no room for a Report a Problem button of its own, and
+    // the crash screen tells people to use one — so it links here with ?report=1
+    // and the modal opens on arrival. Without this the link would be a promise
+    // the page does not keep.
+    const [isReportModalOpen, setIsReportModalOpen] = useState(searchParams.get('report') === '1');
 
     return (
         <div className="min-h-dvh bg-slate-900 text-slate-100 font-sans selection:bg-brand-500/30">

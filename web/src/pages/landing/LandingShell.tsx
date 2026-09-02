@@ -80,7 +80,7 @@ export default function LandingShell({ exam, examShortName, pageId, children }: 
             >
               Start Free Trial
             </Link>
-            <p className="text-sm text-slate-400">7-day free trial · No credit card · Cancel anytime</p>
+            <p className="text-sm text-slate-400">14-day free trial · No credit card · Cancel anytime</p>
           </div>
           <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 text-xs text-slate-500 sm:flex-row">
             <p>© {new Date().getFullYear()} CipherExam</p>
@@ -194,7 +194,7 @@ export function Hero({
         >
           Start Free Trial
         </Link>
-        <p className="text-sm text-slate-400">Start your free 7-day trial. No credit card required.</p>
+        <p className="text-sm text-slate-400">Start your free 14-day trial. No credit card required.</p>
       </div>
 
       {/* Hero trust badge. PMI-product LPs use "pmi-safe" variant —

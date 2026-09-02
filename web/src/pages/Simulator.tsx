@@ -66,7 +66,8 @@ export default function Simulator() {
     const currentQ = questions[currentIndex];
 
     return (
-        <div className="min-h-dvh bg-slate-900 text-slate-100 flex flex-col md:flex-row h-dvh overflow-hidden">
+        <div className="min-h-dvh bg-slate-900 text-slate-100 flex flex-col md:flex-row h-dvh overflow-hidden
+                        pb-[calc(4.25rem+env(safe-area-inset-bottom))] md:pb-0">
             {/* Left Sidebar - Navigator */}
             <div className="hidden md:block">
                 <QuestionNavigator onQuit={handleQuit}
@@ -102,20 +103,32 @@ export default function Simulator() {
             {/* The navigator owns the countdown, the exit control and Finish, and
                 was `hidden md:block` — so a phone tester sat a timed exam with no
                 clock and no way out. Show a compact bar on small screens. */}
+            {/* Four things were wrong with the first version of this bar, all
+                found by a critic reading it rather than by me writing it:
+                it sat on top of the question card's own scroller and footer with
+                nothing reserving the space, it double-confirmed because
+                submitExam() defaults autoSubmit to false and asks again, it had
+                no safe-area inset so on a handset with a home indicator the
+                buttons sat under it, and the clock had no low-time state while
+                the desktop navigator it replaces turns red under five minutes. */}
             <div className="md:hidden fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3
-                            border-t border-slate-700 bg-slate-900/95 px-4 py-3 backdrop-blur">
+                            border-t border-slate-700 bg-slate-900/95 px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]
+                            backdrop-blur">
                 <button
                     onClick={() => { if (window.confirm('Exit the exam? Your progress will be lost.')) handleQuit(); }}
-                    className="rounded-md border border-slate-600 px-3 py-2 text-sm font-medium text-slate-300"
+                    className="rounded-md border border-slate-600 px-4 py-2.5 text-sm font-medium text-slate-300"
                 >
                     Exit
                 </button>
-                <span className="font-mono text-base font-bold tabular-nums text-white" aria-live="polite">
+                <span
+                    className={`font-mono text-base font-bold tabular-nums ${timeLeft <= 300 ? 'text-red-400 animate-pulse' : 'text-white'}`}
+                    aria-live="polite"
+                >
                     {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
                 </span>
                 <button
-                    onClick={() => { if (window.confirm('Finish the exam and see your results?')) submitExam(); }}
-                    className="rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white"
+                    onClick={() => submitExam()}
+                    className="rounded-md bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white"
                 >
                     Finish
                 </button>

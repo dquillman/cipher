@@ -76,7 +76,7 @@ export default function NotFound() {
             to="/login?mode=signup"
             className="inline-block rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
           >
-            Start a Free 7-Day Trial
+            Start a Free 14-Day Trial
           </Link>
         </div>
       </main>

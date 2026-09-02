@@ -123,7 +123,7 @@ export default function ShrmCpPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Cancel anytime?</dt>
-            <dd className="mt-1">Yes. 7-day trial never charges a card.</dd>
+            <dd className="mt-1">Yes. 14-day trial never charges a card.</dd>
           </div>
         </dl>
       </SectionBlock>

@@ -177,7 +177,7 @@ export default function BestPmpSimulator2026() {
           and that stand behind the purchase afterward.
         </p>
         <p>
-          <strong>How CipherExam meets it:</strong> a 7-day free trial with no credit
+          <strong>How CipherExam meets it:</strong> a 14-day free trial with no credit
           card required, and a 60-day, no-conditions money-back guarantee on Pro. If
           it's not for you, email us within 60 days of your first payment and we
           refund every dollar — no proof of anything, no fine print.
@@ -233,7 +233,7 @@ export default function BestPmpSimulator2026() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does CipherExam cost?</dt>
-            <dd className="mt-1">$19/month for Pro — covering PMP plus 10 other certifications — or a one-time $59 Exam Pass for a single exam for 90 days. 7-day free trial, no credit card required, and a 60-day, no-conditions money-back guarantee.</dd>
+            <dd className="mt-1">$19/month for Pro — covering PMP plus 10 other certifications — or a one-time $59 Exam Pass for a single exam for 90 days. 14-day free trial, no credit card required, and a 60-day, no-conditions money-back guarantee.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Will using a simulator guarantee I pass?</dt>

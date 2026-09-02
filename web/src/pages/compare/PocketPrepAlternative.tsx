@@ -108,7 +108,7 @@ export default function PocketPrepAlternative() {
           <div>
             <h2 className="text-2xl font-bold text-slate-50">Switching is risk-free</h2>
             <p className="mt-2 text-slate-300">
-              Start with the 7-day free trial — no credit card required. If you go
+              Start with the 14-day free trial — no credit card required. If you go
               Pro, you're covered by a 60-day, no-conditions money-back guarantee.
               Email <span className="text-brand-300">{SUPPORT_EMAIL}</span> within
               60 days of your first payment and we refund everything you've paid.
@@ -143,7 +143,7 @@ export default function PocketPrepAlternative() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does it cost?</dt>
-            <dd className="mt-1">$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 7-day free trial — no credit card required — and both are covered by a 60-day, no-conditions money-back guarantee.</dd>
+            <dd className="mt-1">$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 14-day free trial — no credit card required — and both are covered by a 60-day, no-conditions money-back guarantee.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>

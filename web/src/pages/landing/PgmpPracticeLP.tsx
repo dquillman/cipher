@@ -120,7 +120,7 @@ export default function PgmpPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>
-            <dd className="mt-1">Yes. The 7-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.</dd>
+            <dd className="mt-1">Yes. The 14-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.</dd>
           </div>
         </dl>
       </SectionBlock>

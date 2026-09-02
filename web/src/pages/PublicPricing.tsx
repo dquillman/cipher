@@ -52,7 +52,7 @@ export default function PublicPricing() {
                             <span className="ml-1 text-xl text-slate-400">/ forever</span>
                         </div>
                         <ul className="mt-8 space-y-4 flex-1">
-                            {['Daily Quiz (5 Questions)', 'Basic Progress Tracking', 'Standard Explanations', 'Community Exam Coverage', 'Study Plan (Basic)', 'Dark & Daylight study modes'].map((feat) => (
+                            {['Daily Quiz (20 questions/day for your first week, then 5)', 'Basic Progress Tracking', 'Standard Explanations', 'Community Exam Coverage', 'Study Plan (Basic)', 'Dark & Daylight study modes'].map((feat) => (
                                 <li key={feat} className="flex items-center gap-3">
                                     <Check className="w-5 h-5 text-slate-500" />
                                     <span className="text-slate-300">{feat}</span>
@@ -131,7 +131,7 @@ export default function PublicPricing() {
                             <span className="text-4xl font-bold tracking-tight text-white">$19</span>
                             <span className="text-xl text-slate-400">/ month</span>
                         </div>
-                        <p className="mt-2 text-brand-200 text-sm">7-day free trial. Cancel anytime.</p>
+                        <p className="mt-2 text-brand-200 text-sm">14-day free trial. Cancel anytime.</p>
                         <p className="mt-1.5 text-xs text-slate-400">Best if you're studying long-term or across multiple certs.</p>
 
                         <ul className="mt-8 space-y-4 mb-8 flex-1">
@@ -205,7 +205,7 @@ export default function PublicPricing() {
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
                             <dt className="text-lg font-semibold text-white mb-2">Is there a free trial?</dt>
                             <dd className="text-slate-300 leading-relaxed">
-                                Yes. CipherExam Pro includes a 7-day free trial. No credit card required to start. You'll only be charged if you choose to continue after the trial.
+                                Yes. CipherExam Pro includes a 14-day free trial. No credit card required to start. You'll only be charged if you choose to continue after the trial.
                             </dd>
                         </div>
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
