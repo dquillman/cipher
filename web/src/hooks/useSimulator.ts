@@ -146,7 +146,15 @@ export const useSimulator = () => {
 
                 // Note: The SmartQuizService might need to handle fetching 180 unique questions.
                 // If the DB is small, this might return duplicates or fewer questions.
-                const ids = await SmartQuizService.generateSimulationExam(selectedExamId, questionCount);
+                // Over-fetch. generateSimulationExam returns exactly questionCount
+                // ids, and filterToSingleIndexGraded below then DROPS the pbq and
+                // matching items the simulator cannot grade — after the slice. So
+                // "50 Questions" on the intro card delivered 40, and "90
+                // Questions" for the full mock delivered fewer still, with the
+                // shortfall growing as we author more interactive items. Ask for
+                // headroom and trim back to the promised number.
+                const overFetch = Math.min(questionCount * 2, questionCount + 60);
+                const ids = await SmartQuizService.generateSimulationExam(selectedExamId, overFetch);
 
                 if (ids.length === 0) {
                     alert("No questions found for this exam.");
@@ -175,7 +183,16 @@ export const useSimulator = () => {
                         `[useSimulator] Excluded ${questionsData.length - gradable.length} question(s) whose format the simulator cannot grade.`
                     );
                 }
-                setQuestions(gradable);
+                // Trim to the number the intro card promised. If the bank cannot
+                // supply that many gradable items the sitting is honestly shorter
+                // rather than padded, and the warning above already says so.
+                const sized = gradable.slice(0, questionCount);
+                if (sized.length < questionCount) {
+                    console.warn(
+                        `[useSimulator] ${selectedExamId} could only supply ${sized.length} gradable questions of the ${questionCount} promised.`,
+                    );
+                }
+                setQuestions(sized);
 
                 // Persist the run so the attempt survives a refresh and shows
                 // up under Previous Attempts. mode 'simulation' is what
@@ -188,14 +205,14 @@ export const useSimulator = () => {
                         selectedExamId,
                         'simulation',
                         'simulation',
-                        gradable.map((q) => q.id),
+                        sized.map((q) => q.id),
                     );
                     setRunId(id);
                     // The deadline has to reach Firestore immediately: a refresh
                     // ten seconds in must still find a sitting it can restore.
                     await QuizRunService.saveSimulatorState(user.uid, id, {
                         currentQuestionIndex: 0,
-                        questionIds: gradable.map((q) => q.id),
+                        questionIds: sized.map((q) => q.id),
                         simAnswers: {},
                         simFlagged: {},
                         endsAt: endsAtRef.current ?? Date.now() + durationSeconds * 1000,

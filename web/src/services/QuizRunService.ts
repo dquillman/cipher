@@ -280,23 +280,38 @@ export const QuizRunService = {
     getActiveSimulationRun: async (userId: string, examId: string): Promise<QuizRun | null> => {
         try {
             const runsRef = collection(db, 'quizRuns', userId, 'runs');
-            // Deliberately the SAME query shape getLatestActiveRun already
-            // uses, with quizType filtered client-side. Adding quizType to the
-            // where clause needs a composite index that firestore.indexes.json
-            // does not define, and the failure mode is silent: the query throws,
-            // this returns null, and resume simply never works while looking
-            // fine. A handful of in-progress runs is nothing to filter locally.
+            // EQUALITY FILTERS ONLY, no orderBy. firestore.indexes.json defines
+            // exactly two composite indexes on `runs`, and both order by
+            // completedAt — nothing covers orderBy('createdAt'). Adding one
+            // throws, and the failure is silent: the catch below returns null,
+            // the simulator generates a fresh exam, and resume looks like it
+            // simply does not work. That is exactly what happened on the first
+            // attempt at this feature.
+            //
+            // Equality-only queries need no composite index, so this one always
+            // runs. Ordering and quizType are applied in memory over at most a
+            // handful of in-progress runs.
             const q = query(
                 runsRef,
                 where('examId', '==', examId),
                 where('status', '==', 'in_progress'),
-                orderBy('createdAt', 'desc'),
-                limit(10)
+                limit(20)
             );
             const snapshot = await getDocs(q);
-            const hit = snapshot.docs.find((d) => (d.data() as QuizRun).quizType === 'simulation');
-            if (!hit) return null;
-            return { ...(hit.data() as QuizRun), id: hit.id };
+            const sims = snapshot.docs
+                .map((d) => ({ ...(d.data() as QuizRun), id: d.id }))
+                .filter((r) => r.quizType === 'simulation');
+            if (sims.length === 0) return null;
+            // Newest first. createdAt is a serverTimestamp, so it can still be
+            // null on a document written moments ago and read back from cache —
+            // treat that as newest rather than dropping it, which is the other
+            // way this silently returned nothing.
+            const millis = (r: QuizRun) => {
+                const t = (r as unknown as { createdAt?: { toMillis?: () => number } }).createdAt;
+                return typeof t?.toMillis === 'function' ? t.toMillis() : Number.MAX_SAFE_INTEGER;
+            };
+            sims.sort((a, b) => millis(b) - millis(a));
+            return sims[0];
         } catch (error) {
             // A missing composite index surfaces here. Returning null means the
             // candidate starts a fresh sitting rather than seeing an error — the
