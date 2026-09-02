@@ -60,6 +60,30 @@ export const useSimulator = () => {
      * rather than being a free-running countdown, so closing the tab cannot buy
      * the candidate time. */
     const endsAtRef = useRef<number | null>(null);
+
+    /* The start intent, captured once and IMMEDIATELY consumed.
+     *
+     * The previous attempt keyed "did they deliberately start a new sitting?"
+     * off location.state being present, on the stated premise that a refresh
+     * loses it. That premise is false. React Router keeps location.state in
+     * window.history.state.usr (react-router 7.17, chunk-KFNXW4AL.js:136/217)
+     * and the browser preserves history.state across a reload — so after F5 the
+     * state is still there, the guard is still true, resume never runs, and the
+     * fresh createRun then abandons the interrupted run. The sitting is not
+     * merely skipped, it is destroyed.
+     *
+     * It looked verified because a scripted navigate() to the URL creates a new
+     * history entry with no state, which is not what pressing reload does.
+     *
+     * Consuming it is the fix: read it on first render, strip usr from
+     * history.state, and from then on a reload genuinely sees nothing. */
+    const startIntentRef = useRef<{ mode?: string; count?: number; durationMinutes?: number } | null | undefined>(undefined);
+    if (startIntentRef.current === undefined) {
+        startIntentRef.current = (location.state as { mode?: string; count?: number; durationMinutes?: number } | null) ?? null;
+        if (typeof window !== 'undefined' && window.history.state?.usr) {
+            window.history.replaceState({ ...window.history.state, usr: null }, '');
+        }
+    }
     /* The full allotted duration in seconds, so time-spent is measured against
      * what this sitting actually allowed rather than a per-question guess. */
     const totalDurationRef = useRef<number>(0);
@@ -89,8 +113,8 @@ export const useSimulator = () => {
                 // is for; arriving from the intro screen with a mode set means
                 // they deliberately asked for a new sitting and must get one,
                 // not silently rejoin an old exam.
-                const deliberateStart = Boolean((location.state as { mode?: string; count?: number } | null)?.mode)
-                    || Boolean((location.state as { mode?: string; count?: number } | null)?.count);
+                const intent = startIntentRef.current;
+                const deliberateStart = Boolean(intent?.mode) || Boolean(intent?.count);
                 const existing = deliberateStart
                     ? null
                     : await QuizRunService.getActiveSimulationRun(user.uid, selectedExamId);
@@ -123,7 +147,7 @@ export const useSimulator = () => {
                 }
 
                 // Check if directed from Planner with specific settings
-                const state = location.state as { mode?: string; count?: number; durationMinutes?: number } | null;
+                const state = startIntentRef.current;
 
                 // Default to 50 questions (Standard Drill)
                 let questionCount = 50;

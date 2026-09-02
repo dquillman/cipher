@@ -1427,7 +1427,14 @@ export default function Quiz() {
                 actionLatency: explanationRenderTime ? (Date.now() - explanationRenderTime) / 1000 : null
             }];
 
-            await saveQuizResults(finalDetails);
+            // withTimeout, like every other write in this file. saveQuizResults
+            // awaits three Firestore writes (mastery, XP, completeRun) with bare
+            // awaits inside; a Firestore write promise resolves only on server
+            // ack, so on a stalled connection it neither resolves nor rejects
+            // and the try/catch around it is useless. This is the ONLY path to a
+            // candidate's score, and it had no timeout while saveProgress and
+            // the diagnostic abort both did.
+            await withTimeout(saveQuizResults(finalDetails), 8000, 'saveQuizResults');
             triggerSmartQuizReview(false);
 
             // Re-enable Thinking Traps display after quiz completion

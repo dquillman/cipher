@@ -771,7 +771,7 @@ export default function Landing() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
             {[
-              { k: "No inflation", title: "A verdict, not a vibe", body: "A real pass/fail against the actual passing bar — so you find out here, not on exam day." },
+              { k: "No inflation", title: "A verdict, not a vibe", body: "A straight percentage against a fixed benchmark, and we tell you plainly it is ours — CompTIA and PMI score on scales they do not publish." },
               { k: "Domain x-ray", title: "See where the points leak", body: "Per-domain accuracy shows precisely which objectives are dragging your score down." },
               { k: "One click to fix", title: "Straight into the fix", body: "Smart Practice auto-targets your weakest domain. Your diagnosis becomes your next session." },
             ].map((p, i) => (

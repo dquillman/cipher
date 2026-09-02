@@ -10,6 +10,7 @@ import { EXAMS, isExam } from '../config/exams';
 import { applyReadinessConfidence } from '../utils/readinessConfidence';
 import { getMockEligibility } from '../utils/mockEligibility';
 import { getAnsweredCount } from '../utils/questionMetrics';
+import { bandFor, BAND_LABEL } from '../utils/passBar';
 
 
 interface SimulationAttempt {
@@ -320,7 +321,9 @@ export default function SimulatorIntro() {
                                 <tbody className="divide-y divide-slate-700/50">
                                     {attempts.map((attempt) => {
                                         const percentage = Math.round((attempt.score / attempt.totalQuestions) * 100);
-                                        const passed = percentage >= 70;
+                                        // Same benchmark the results screen uses, and named the same
+                                        // way. It is ours, not the certifying body's — see utils/passBar.ts.
+                                        const band = bandFor(percentage);
                                         return (
                                             <tr key={attempt.id} className="hover:bg-slate-800/30 transition-colors">
                                                 <td className="px-6 py-4 text-white font-medium">{formatDate(attempt.timestamp)}</td>
@@ -330,11 +333,11 @@ export default function SimulatorIntro() {
                                                 </td>
                                                 <td className="px-6 py-4">{formatTime(attempt.timeSpent)}</td>
                                                 <td className="px-6 py-4 text-right">
-                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${passed
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${band === 'on-track'
                                                         ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                                                         : 'bg-red-500/10 text-red-500 border-red-500/20'
                                                         }`}>
-                                                        {passed ? 'PASSED' : 'FAIL'}
+                                                        {BAND_LABEL[band]}
                                                     </span>
                                                 </td>
                                             </tr>

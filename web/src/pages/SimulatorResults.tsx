@@ -4,6 +4,7 @@ import { CheckCircle, XCircle, RotateCcw, LayoutDashboard, Clock, Info, Brain } 
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase';
 import { useExam } from '../contexts/ExamContext';
+import { bandFor, BAND_LABEL, BENCHMARK, realBarNote } from '../utils/passBar';
 import { QuizRunService } from '../services/QuizRunService';
 import { fetchQuestionDocsByIds } from '../services/questionFetch';
 import { PredictionEngine, type DomainReadiness } from '../services/PredictionEngine';
@@ -72,7 +73,7 @@ export default function SimulatorResults() {
 
     const { score, total, timeSpent, questions, answers_map, flagged = {} } = loaded || {}; // answers_map is index->optionIndex
 
-    const { selectedExamId, examDomains } = useExam();
+    const { selectedExamId, examDomains, examName } = useExam();
     const [domainStats, setDomainStats] = useState<any[]>([]);
     const [bloomStats, setBloomStats] = useState<BloomStat[]>([]);
     const [untaggedCount, setUntaggedCount] = useState(0);
@@ -173,7 +174,9 @@ export default function SimulatorResults() {
     if (!questions) return null;
 
     const percentage = Math.round((score / total) * 100);
-    const passed = percentage >= 70;
+    // One threshold, one label. See utils/passBar.ts for why this is no longer
+    // called a pass mark and why there is no per-exam percentage.
+    const band = bandFor(percentage);
 
     const formatTime = (seconds: number) => {
         const m = Math.floor(seconds / 60);
@@ -192,7 +195,7 @@ export default function SimulatorResults() {
                 </div>
 
                 {/* Readiness Banner */}
-                {percentage >= 65 ? (
+                {band !== 'not-yet' ? (
                     <div className="rounded-lg p-4 mb-8 bg-emerald-900/40 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div>
                             <p className="text-sm text-emerald-300 font-semibold">You're on track to pass the real exam.</p>
@@ -236,7 +239,7 @@ export default function SimulatorResults() {
                 {/* Score Card */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
                     <div className="col-span-1 md:col-span-1 bg-slate-800 border border-slate-700 rounded-2xl p-4 md:p-8 flex flex-col items-center justify-center relative overflow-hidden">
-                        <div className={`absolute top-0 w-full h-2 ${passed ? 'bg-emerald-500' : 'bg-red-500'}`}></div>
+                        <div className={`absolute top-0 w-full h-2 ${band === 'on-track' ? 'bg-emerald-500' : band === 'close' ? 'bg-amber-500' : 'bg-red-500'}`}></div>
 
                         <div className="w-32 h-32 md:w-40 md:h-40 mb-4 md:mb-6">
                             {/* Two-segment results ring (correct = emerald over incorrect = red).
@@ -252,10 +255,13 @@ export default function SimulatorResults() {
                         </div>
 
                         <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2"><CountUp value={`${percentage}%`} /></div>
-                        <div className={`text-lg font-bold px-4 py-1 rounded-full ${passed ? 'bg-emerald-500/10 text-emerald-400' : 'bg-red-500/10 text-red-500'
+                        <div className={`text-lg font-bold px-4 py-1 rounded-full ${band === 'on-track' ? 'bg-emerald-500/10 text-emerald-400' : band === 'close' ? 'bg-amber-500/10 text-amber-400' : 'bg-red-500/10 text-red-500'
                             }`}>
-                            {passed ? 'PASSED' : 'FAILED'}
+                            {BAND_LABEL[band]}
                         </div>
+                        <p className="mt-3 max-w-xs text-center text-xs leading-relaxed text-slate-500">
+                            Against our own {BENCHMARK}% benchmark, not a real pass mark. {realBarNote(examName)}
+                        </p>
                     </div>
 
                     <div className="col-span-1 md:col-span-2 space-y-6">
