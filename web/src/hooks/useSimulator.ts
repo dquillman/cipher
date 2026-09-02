@@ -56,6 +56,14 @@ export const useSimulator = () => {
     // anyone. Created on load, completed on submit.
     const [runId, setRunId] = useState<string | null>(null);
 
+    /* Absolute epoch-ms deadline for this sitting. The clock is derived from it
+     * rather than being a free-running countdown, so closing the tab cannot buy
+     * the candidate time. */
+    const endsAtRef = useRef<number | null>(null);
+    /* Set while restoring, to stop the checkpoint effect writing back the
+     * initial empty state over the sitting it just loaded. */
+    const restoringRef = useRef(false);
+
     useEffect(() => {
         const loadExam = async () => {
             const user = auth.currentUser;
@@ -67,6 +75,49 @@ export const useSimulator = () => {
             }
 
             try {
+                // RESUME FIRST. Without this the mock had no memory at all: a
+                // refresh — or a phone browser reloading a backgrounded tab —
+                // two hours into a 180-question sitting generated a completely
+                // different question set and put the full clock back. The
+                // candidate lost every answer and had no way to tell that the
+                // exam in front of them was not the one they started.
+                // Only resume when the navigation carried no start intent. A
+                // refresh loses location.state, which is precisely the case this
+                // is for; arriving from the intro screen with a mode set means
+                // they deliberately asked for a new sitting and must get one,
+                // not silently rejoin an old exam.
+                const deliberateStart = Boolean((location.state as { mode?: string; count?: number } | null)?.mode)
+                    || Boolean((location.state as { mode?: string; count?: number } | null)?.count);
+                const existing = deliberateStart
+                    ? null
+                    : await QuizRunService.getActiveSimulationRun(user.uid, selectedExamId);
+                const snap = existing?.snapshot;
+                if (existing && snap?.questionIds?.length && snap.endsAt) {
+                    const remaining = Math.max(0, Math.round((snap.endsAt - Date.now()) / 1000));
+                    const restored = filterToSingleIndexGraded(
+                        await fetchQuestionDocsByIds<Question>(snap.questionIds),
+                    );
+                    // If the bank has moved under them — a question withdrawn
+                    // mid-sitting — the saved indices no longer line up with the
+                    // list, so the honest thing is a fresh exam rather than a
+                    // silently reshuffled one.
+                    if (restored.length === snap.questionIds.length) {
+                        restoringRef.current = true;
+                        endsAtRef.current = snap.endsAt;
+                        setQuestions(restored);
+                        setAnswers(snap.simAnswers ?? {});
+                        setFlagged(snap.simFlagged ?? {});
+                        setCurrentIndex(Math.min(snap.currentQuestionIndex ?? 0, restored.length - 1));
+                        setTimeLeft(remaining);
+                        setRunId(existing.id);
+                        setLoading(false);
+                        // Let the restore commit before checkpoints resume.
+                        setTimeout(() => { restoringRef.current = false; }, 0);
+                        return;
+                    }
+                    console.warn('[useSimulator] saved sitting no longer matches the bank; starting fresh');
+                }
+
                 // Check if directed from Planner with specific settings
                 const state = location.state as { mode?: string; count?: number; durationMinutes?: number } | null;
 
@@ -91,6 +142,7 @@ export const useSimulator = () => {
                 }
 
                 setTimeLeft(durationSeconds);
+                endsAtRef.current = Date.now() + durationSeconds * 1000;
 
                 // Note: The SmartQuizService might need to handle fetching 180 unique questions.
                 // If the DB is small, this might return duplicates or fewer questions.
@@ -139,6 +191,15 @@ export const useSimulator = () => {
                         gradable.map((q) => q.id),
                     );
                     setRunId(id);
+                    // The deadline has to reach Firestore immediately: a refresh
+                    // ten seconds in must still find a sitting it can restore.
+                    await QuizRunService.saveSimulatorState(user.uid, id, {
+                        currentQuestionIndex: 0,
+                        questionIds: gradable.map((q) => q.id),
+                        simAnswers: {},
+                        simFlagged: {},
+                        endsAt: endsAtRef.current ?? Date.now() + durationSeconds * 1000,
+                    });
                 } catch (runErr) {
                     console.error('[useSimulator] could not create run — attempt will not be saved:', runErr);
                 }
@@ -165,7 +226,16 @@ export const useSimulator = () => {
     useEffect(() => {
         if (loading || isSubmitting) return;
         const timer = setInterval(() => {
-            setTimeLeft((prev) => (prev <= 0 ? 0 : prev - 1));
+            const endsAt = endsAtRef.current;
+            if (endsAt == null) {
+                setTimeLeft((prev) => (prev <= 0 ? 0 : prev - 1));
+                return;
+            }
+            // Recomputed from the deadline every tick rather than decremented.
+            // Phone browsers throttle timers in a backgrounded tab, so a
+            // decrementing counter silently hands back minutes the candidate
+            // did not have.
+            setTimeLeft(Math.max(0, Math.round((endsAt - Date.now()) / 1000)));
         }, 1000);
         return () => clearInterval(timer);
     }, [loading, isSubmitting]);
@@ -182,6 +252,37 @@ export const useSimulator = () => {
         if (loading || isSubmitting || timeLeft > 0) return;
         submitExamRef.current(true);
     }, [timeLeft, loading, isSubmitting]);
+
+    /* Checkpoint the sitting. Debounced because it fires on every answer, flag
+     * and navigation, and none of them is worth a round trip on its own — but
+     * the gap between the last write and a refresh is exactly what a candidate
+     * loses, so it is short. */
+    useEffect(() => {
+        if (loading || isSubmitting || !runId || restoringRef.current) return;
+        const uid = auth.currentUser?.uid;
+        const endsAt = endsAtRef.current;
+        if (!uid || !endsAt || questions.length === 0) return;
+
+        const write = () => withTimeout(
+            QuizRunService.saveSimulatorState(uid, runId, {
+                currentQuestionIndex: currentIndex,
+                questionIds: questions.map((q) => q.id),
+                simAnswers: answers,
+                simFlagged: flagged,
+                endsAt,
+            }),
+            5000, 'simulator checkpoint');
+
+        const t = setTimeout(write, 1200);
+        // A refresh or a closed tab is the case this whole feature exists for,
+        // so flush rather than waiting out the debounce.
+        const flush = () => { clearTimeout(t); void write(); };
+        window.addEventListener('pagehide', flush);
+        return () => {
+            clearTimeout(t);
+            window.removeEventListener('pagehide', flush);
+        };
+    }, [loading, isSubmitting, runId, currentIndex, answers, flagged, questions]);
 
     const handleAnswer = useCallback((optionIndex: number) => {
         setAnswers(prev => ({ ...prev, [currentIndex]: optionIndex }));

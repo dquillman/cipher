@@ -4,6 +4,19 @@ import { collection, doc, setDoc, getDoc, updateDoc, serverTimestamp, query, whe
 export interface QuizRunSnapshot {
     currentQuestionIndex: number;
     questionIds: string[]; // Store order of question IDs
+
+    /** Simulator sittings only. The mock had no resume at all: a refresh two
+     *  hours into a 180-question exam generated a DIFFERENT question set and
+     *  reset the clock to full. These three fields are what it takes to put
+     *  someone back exactly where they were.
+     *
+     *  endsAt is an absolute epoch-ms deadline, deliberately not a remaining-
+     *  seconds count. A countdown that is only decremented while the tab is
+     *  open means closing the laptop pauses a timed exam, which is worth more
+     *  to a candidate than any answer on it. */
+    simAnswers?: Record<number, number>;
+    simFlagged?: Record<number, boolean>;
+    endsAt?: number;
 }
 
 export interface QuizRun {
@@ -257,6 +270,71 @@ export const QuizRunService = {
     /**
      * Gets the latest IN_PROGRESS run for the user, scoped to a specific exam.
      */
+    /**
+     * The in-progress simulator sitting for this exam, if there is one.
+     *
+     * Scoped to quizType 'simulation' on purpose: getLatestActiveRun returns the
+     * most recent in-progress run of ANY type, so an abandoned practice quiz
+     * would be handed back as a mock to resume.
+     */
+    getActiveSimulationRun: async (userId: string, examId: string): Promise<QuizRun | null> => {
+        try {
+            const runsRef = collection(db, 'quizRuns', userId, 'runs');
+            // Deliberately the SAME query shape getLatestActiveRun already
+            // uses, with quizType filtered client-side. Adding quizType to the
+            // where clause needs a composite index that firestore.indexes.json
+            // does not define, and the failure mode is silent: the query throws,
+            // this returns null, and resume simply never works while looking
+            // fine. A handful of in-progress runs is nothing to filter locally.
+            const q = query(
+                runsRef,
+                where('examId', '==', examId),
+                where('status', '==', 'in_progress'),
+                orderBy('createdAt', 'desc'),
+                limit(10)
+            );
+            const snapshot = await getDocs(q);
+            const hit = snapshot.docs.find((d) => (d.data() as QuizRun).quizType === 'simulation');
+            if (!hit) return null;
+            return { ...(hit.data() as QuizRun), id: hit.id };
+        } catch (error) {
+            // A missing composite index surfaces here. Returning null means the
+            // candidate starts a fresh sitting rather than seeing an error — the
+            // old behaviour, which is the right thing to degrade to.
+            console.error('[QuizRunService] getActiveSimulationRun failed:', error);
+            return null;
+        }
+    },
+
+    /**
+     * Checkpoint a simulator sitting. Called on every answer, flag and move, so
+     * it writes the whole picture rather than appending — the exam is not a
+     * sequence of committed answers, it is one editable sheet until submitted.
+     */
+    saveSimulatorState: async (
+        userId: string,
+        runId: string,
+        state: {
+            currentQuestionIndex: number;
+            questionIds: string[];
+            simAnswers: Record<number, number>;
+            simFlagged: Record<number, boolean>;
+            endsAt: number;
+        },
+    ) => {
+        const runRef = doc(db, 'quizRuns', userId, 'runs', runId);
+        await updateDoc(runRef, {
+            snapshot: {
+                currentQuestionIndex: state.currentQuestionIndex,
+                questionIds: state.questionIds,
+                simAnswers: state.simAnswers,
+                simFlagged: state.simFlagged,
+                endsAt: state.endsAt,
+            },
+            updatedAt: serverTimestamp(),
+        });
+    },
+
     getLatestActiveRun: async (userId: string, examId: string): Promise<QuizRun | null> => {
         try {
             const runsRef = collection(db, 'quizRuns', userId, 'runs');
