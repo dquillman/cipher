@@ -17,6 +17,9 @@ export interface QuizRunSnapshot {
     simAnswers?: Record<number, number>;
     simFlagged?: Record<number, boolean>;
     endsAt?: number;
+    /** Full allotted duration in seconds, so a resumed sitting can still report
+     *  time spent against what it actually allowed. */
+    totalDuration?: number;
 }
 
 export interface QuizRun {
@@ -335,6 +338,7 @@ export const QuizRunService = {
             simAnswers: Record<number, number>;
             simFlagged: Record<number, boolean>;
             endsAt: number;
+            totalDuration?: number;
         },
     ) => {
         const runRef = doc(db, 'quizRuns', userId, 'runs', runId);
@@ -345,6 +349,7 @@ export const QuizRunService = {
                 simAnswers: state.simAnswers,
                 simFlagged: state.simFlagged,
                 endsAt: state.endsAt,
+                ...(state.totalDuration != null ? { totalDuration: state.totalDuration } : {}),
             },
             updatedAt: serverTimestamp(),
         });

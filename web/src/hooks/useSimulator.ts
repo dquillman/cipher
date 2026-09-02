@@ -60,6 +60,9 @@ export const useSimulator = () => {
      * rather than being a free-running countdown, so closing the tab cannot buy
      * the candidate time. */
     const endsAtRef = useRef<number | null>(null);
+    /* The full allotted duration in seconds, so time-spent is measured against
+     * what this sitting actually allowed rather than a per-question guess. */
+    const totalDurationRef = useRef<number>(0);
     /* Set while restoring, to stop the checkpoint effect writing back the
      * initial empty state over the sitting it just loaded. */
     const restoringRef = useRef(false);
@@ -104,6 +107,7 @@ export const useSimulator = () => {
                     if (restored.length === snap.questionIds.length) {
                         restoringRef.current = true;
                         endsAtRef.current = snap.endsAt;
+                        totalDurationRef.current = snap.totalDuration ?? remaining;
                         setQuestions(restored);
                         setAnswers(snap.simAnswers ?? {});
                         setFlagged(snap.simFlagged ?? {});
@@ -143,6 +147,7 @@ export const useSimulator = () => {
 
                 setTimeLeft(durationSeconds);
                 endsAtRef.current = Date.now() + durationSeconds * 1000;
+                totalDurationRef.current = durationSeconds;
 
                 // Note: The SmartQuizService might need to handle fetching 180 unique questions.
                 // If the DB is small, this might return duplicates or fewer questions.
@@ -216,6 +221,7 @@ export const useSimulator = () => {
                         simAnswers: {},
                         simFlagged: {},
                         endsAt: endsAtRef.current ?? Date.now() + durationSeconds * 1000,
+                        totalDuration: durationSeconds,
                     });
                 } catch (runErr) {
                     console.error('[useSimulator] could not create run — attempt will not be saved:', runErr);
@@ -287,6 +293,7 @@ export const useSimulator = () => {
                 simAnswers: answers,
                 simFlagged: flagged,
                 endsAt,
+                totalDuration: totalDurationRef.current || undefined,
             }),
             5000, 'simulator checkpoint');
 
@@ -335,7 +342,16 @@ export const useSimulator = () => {
             });
         });
 
-        const timeSpent = (questions.length * 72) - timeLeft; // Crude calc based on initial time
+        // Was (questions.length * 72) - timeLeft, which assumes every sitting
+        // allots 72 seconds per question. That is true of the practice
+        // simulator by coincidence and false of every full mock: Security+ is
+        // 90 questions in 90 minutes, so this over-reported time spent by
+        // 18 minutes, and PMP's 180-in-240 by 36. The deadline is the only
+        // thing that knows the real duration.
+        const endsAt = endsAtRef.current;
+        const timeSpent = endsAt != null
+            ? Math.max(0, Math.round((totalDurationRef.current - timeLeft)))
+            : (questions.length * 72) - timeLeft;
 
         const resultState = {
             score,

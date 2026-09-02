@@ -21,6 +21,21 @@ interface SimulationAttempt {
     mode: string;
 }
 
+/* The denominator on a mock attempt is how many questions the EXAM had, not how
+ * many the candidate got round to answering. getAnsweredCount(r) gave the
+ * latter, so skipping 48 of 50 and getting the other two right reported
+ * "100% (2/2)" on a full mock — and SimulatorIntro's gating reads this same
+ * score to decide whether someone is ready to sit one. A readiness signal that
+ * rewards answering fewer questions is worse than no signal.
+ *
+ * results.total is written by completeRun as questions.length. The snapshot and
+ * the answer count are fallbacks for older runs that predate it. */
+function mockTotal(r: any): number {
+    return r?.results?.total
+        ?? r?.snapshot?.questionIds?.length
+        ?? getAnsweredCount(r);
+}
+
 export default function SimulatorIntro() {
     const { isPro, hasPassFor } = useSubscription();
     const navigate = useNavigate();
@@ -86,7 +101,7 @@ export default function SimulatorIntro() {
                     setAttempts(filtered.map((r: any) => ({
                         id: r.id,
                         score: r.results?.score ?? 0,
-                        totalQuestions: getAnsweredCount(r),
+                        totalQuestions: mockTotal(r),
                         timestamp: r.completedAt,
                         timeSpent: r.results?.timeSpent,
                         mode: r.mode,
@@ -99,7 +114,7 @@ export default function SimulatorIntro() {
                     return {
                         id: doc.id,
                         score: r.results?.score ?? 0,
-                        totalQuestions: getAnsweredCount(r),
+                        totalQuestions: mockTotal(r),
                         timestamp: r.completedAt,
                         timeSpent: r.results?.timeSpent,
                         mode: r.mode,
