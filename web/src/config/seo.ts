@@ -92,7 +92,7 @@ export const SEO = {
             name: 'Which certifications are included?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Four: PMP (built to PMI’s July 2026 Exam Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202). All four are included at every paid tier.',
+              text: 'Four: PMP (built to PMI’s July 2026 Exam Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202). All four are included with Pro. The one-time $59 Exam Pass covers a single exam for 90 days.',
             },
           },
           {
@@ -247,7 +247,7 @@ export const SEO = {
           name: 'What does CipherExam cost?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: '$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 14-day free trial — no credit card required — and both are covered by a 60-day, no-conditions money-back guarantee.',
+            text: '$19/month for Pro, or a one-time $59 Exam Pass that covers one exam for 90 days and never renews. Every plan starts with a 14-day free trial — no credit card required — and Pro is covered by a 60-day, no-conditions money-back guarantee.',
           },
         },
       ],

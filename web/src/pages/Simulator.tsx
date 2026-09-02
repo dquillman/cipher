@@ -20,6 +20,7 @@ export default function Simulator() {
         timeLeft,
         handleAnswer,
         handleFlag,
+        quitExam,
         submitExam
     } = useSimulator();
 
@@ -58,10 +59,9 @@ export default function Simulator() {
         );
     }
 
-    /* "Exit Exam (Progress Lost)" was wired to () => {}: the confirm dialog
-     * appeared, the tester pressed OK, and nothing happened. It is the only way
-     * out of a timed 180-question exam. */
-    const handleQuit = () => navigate('/app');
+    /* Quitting now abandons the run (see useSimulator.quitExam) rather than
+     * just navigating away and leaving a timed exam running behind you. */
+    const handleQuit = () => { void quitExam(); };
 
     const currentQ = questions[currentIndex];
 

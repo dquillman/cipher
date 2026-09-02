@@ -119,7 +119,7 @@ export default function PublicPricing() {
                                 Get the Exam Pass
                             </button>
                             <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-emerald-300">
-                                <ShieldCheck className="w-4 h-4" /> 60-day money-back guarantee — full refund, no conditions
+                                <ShieldCheck className="w-4 h-4" /> Covers one exam for 90 days
                             </p>
                         </div>
                     </div>
@@ -223,7 +223,7 @@ export default function PublicPricing() {
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">
                             <dt className="text-lg font-semibold text-white mb-2">Which certifications are included?</dt>
                             <dd className="text-slate-300 leading-relaxed">
-                                Four: PMP (built to PMI's July 2026 Exam Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202). All four are included at every paid tier at no extra cost. We used to list eleven and have deliberately cut back — a bank that cannot fill more than one full-length mock is not worth selling, and we would rather go deep on four.
+                                Four: PMP (built to PMI's July 2026 Exam Content Outline), CompTIA Security+ (SY0-701), CompTIA Network+ (N10-009), and CompTIA A+ Core 2 (220-1202). All four are included with Pro. The $59 Exam Pass covers one exam of your choosing for 90 days, not all four. We used to list eleven and have deliberately cut back — a bank that cannot fill more than one full-length mock is not worth selling, and we would rather go deep on four.
                             </dd>
                         </div>
                         <div className="rounded-2xl border border-slate-800 bg-slate-800/30 p-6">

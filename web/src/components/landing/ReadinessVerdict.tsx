@@ -8,8 +8,14 @@ import { Clock, CheckCircle2 } from 'lucide-react';
 // is exactly the "domain X-ray" story this section sells.
 const SCORE = 34;
 const TOTAL = 50;
-const PCT = 68;          // 34/50, FAILED (pass line 70%)
-const PASS_LINE = 70;
+// This section is a mock of the real results screen, so it has to show what
+// that screen shows. It rendered a red FAILED badge and "2 PTS BELOW THE 70%
+// PASS LINE" — a verdict the app no longer gives and never could, because
+// CompTIA scores on a scaled range it does not publish and PMI publishes no
+// percentage at all. Selling a pass/fail we cannot compute is the claim, not
+// just the styling.
+const PCT = 68;          // 34/50
+const BENCH = 75;        // our benchmark, mirrors utils/passBar.ts
 const DOMAINS = [
     { name: 'Process', pct: 76 },
     { name: 'People', pct: 71 },
@@ -70,11 +76,11 @@ export default function ReadinessVerdict() {
                             <CountUp value={`${PCT}%`} className="text-5xl font-extrabold text-white font-display tabular-nums" />
                         </div>
                     </div>
-                    <div className="mt-4 font-mono text-sm font-bold tracking-widest text-red-400 bg-red-500/10 border border-red-500/30 rounded-full px-5 py-1.5">
-                        FAILED
+                    <div className="mt-4 font-mono text-sm font-bold tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-full px-5 py-1.5">
+                        CLOSE
                     </div>
                     <p className="mt-3 text-[11px] text-slate-500 font-mono tracking-wide text-center">
-                        {PASS_LINE - PCT} PTS BELOW THE {PASS_LINE}% PASS LINE
+                        {BENCH - PCT} PTS BELOW OUR {BENCH}% BENCHMARK
                     </p>
                 </div>
 
@@ -107,7 +113,7 @@ export default function ReadinessVerdict() {
                     <div className="rounded-xl border border-slate-800 bg-slate-950 px-5 py-5">
                         <h4 className="font-bold text-white font-display mb-4">This Exam Performance</h4>
                         {DOMAINS.map((d) => {
-                            const weak = d.pct < PASS_LINE;
+                            const weak = d.pct < BENCH;
                             return (
                                 <div key={d.name} className="mb-4 last:mb-0">
                                     <div className="flex justify-between text-sm mb-1.5">

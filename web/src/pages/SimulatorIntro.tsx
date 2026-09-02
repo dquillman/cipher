@@ -333,7 +333,7 @@ export default function SimulatorIntro() {
                                                 </td>
                                                 <td className="px-6 py-4">{formatTime(attempt.timeSpent)}</td>
                                                 <td className="px-6 py-4 text-right">
-                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${band === 'on-track'
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold border ${band === 'close' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : band === 'on-track'
                                                         ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                                                         : 'bg-red-500/10 text-red-500 border-red-500/20'
                                                         }`}>

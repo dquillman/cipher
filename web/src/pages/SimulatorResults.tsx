@@ -194,25 +194,37 @@ export default function SimulatorResults() {
                     <p className="text-slate-400">Here is how you performed on this simulation.</p>
                 </div>
 
-                {/* Readiness Banner */}
-                {band !== 'not-yet' ? (
+                {/* One band, one message. The previous version keyed the green
+                    branch on `band !== 'not-yet'`, which catches 'close' as well
+                    as 'on-track' — so 68% got "You're on track to pass the real
+                    exam" above a badge reading CLOSE above a caption saying the
+                    benchmark is 75%. Three verdicts for one score.
+
+                    I had already claimed to fix this once; that change replaced
+                    `percentage >= 65` with `band !== 'not-yet'`, which is the
+                    same predicate spelled differently, and left the copy alone.
+
+                    The copy also no longer says "pass the real exam" anywhere.
+                    We cannot judge that: CompTIA scores on a scaled range it
+                    does not publish, and PMI publishes no percentage at all. */}
+                {band === 'on-track' ? (
                     <div className="rounded-lg p-4 mb-8 bg-emerald-900/40 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div>
-                            <p className="text-sm text-emerald-300 font-semibold">You're on track to pass the real exam.</p>
-                            <p className="text-xs text-emerald-400/70 mt-1">Focus on your weaker domains and take another simulator to confirm.</p>
+                            <p className="text-sm text-emerald-300 font-semibold">Above our {BENCHMARK}% benchmark.</p>
+                            <p className="text-xs text-emerald-400/70 mt-1">A good sign, though it is our bar and not the certifying body's. Keep the weaker domains warm.</p>
                         </div>
                         <button
-                            onClick={() => navigate('/app/simulator')}
+                            onClick={() => navigate('/app/quiz')}
                             className="shrink-0 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
                         >
-                            Take Another Simulator
+                            Practice Weak Domains
                         </button>
                     </div>
-                ) : percentage >= 55 ? (
+                ) : band === 'close' ? (
                     <div className="rounded-lg p-4 mb-8 bg-amber-900/40 border border-amber-500/30 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div>
-                            <p className="text-sm text-amber-300 font-semibold">You're close.</p>
-                            <p className="text-xs text-amber-400/70 mt-1">With a little more practice you should be ready soon. Focus on weak domains first.</p>
+                            <p className="text-sm text-amber-300 font-semibold">Close to our {BENCHMARK}% benchmark.</p>
+                            <p className="text-xs text-amber-400/70 mt-1">Work the domains below, then sit this again. Note that a repeat mock reuses most of the same questions.</p>
                         </div>
                         <button
                             onClick={() => navigate('/app/quiz')}
@@ -224,8 +236,8 @@ export default function SimulatorResults() {
                 ) : (
                     <div className="rounded-lg p-4 mb-8 bg-slate-800 border border-slate-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                         <div>
-                            <p className="text-sm text-slate-300 font-semibold">Keep going.</p>
-                            <p className="text-xs text-slate-400 mt-1">You're building the knowledge foundation needed to pass. Keep practicing.</p>
+                            <p className="text-sm text-slate-300 font-semibold">Below our {BENCHMARK}% benchmark.</p>
+                            <p className="text-xs text-slate-400 mt-1">The domain breakdown below shows where the points went. Start there.</p>
                         </div>
                         <button
                             onClick={() => navigate('/app/quiz')}
@@ -236,7 +248,6 @@ export default function SimulatorResults() {
                     </div>
                 )}
 
-                {/* Score Card */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
                     <div className="col-span-1 md:col-span-1 bg-slate-800 border border-slate-700 rounded-2xl p-4 md:p-8 flex flex-col items-center justify-center relative overflow-hidden">
                         <div className={`absolute top-0 w-full h-2 ${band === 'on-track' ? 'bg-emerald-500' : band === 'close' ? 'bg-amber-500' : 'bg-red-500'}`}></div>

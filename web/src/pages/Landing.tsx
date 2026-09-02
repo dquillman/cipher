@@ -997,7 +997,7 @@ export default function Landing() {
                 <p className="mt-1 font-mono text-[11px] tracking-wide text-slate-500">free tier · cancel anytime</p>
               </div>
             </div>
-            <p className="font-mono text-[11px] tracking-wide text-slate-500">Both backed by the 60-day money-back guarantee.</p>
+            <p className="font-mono text-[11px] tracking-wide text-slate-500">Pro is backed by the 60-day money-back guarantee.</p>
           </div>
           <button
             onClick={handleCta}

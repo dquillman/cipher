@@ -31,6 +31,10 @@ export interface Question {
     pbqConfig?: import('../components/PBQQuestion').PBQConfig;
 }
 
+/** Mirrors Quiz.tsx: -1 means "no single chosen option", used here for a
+ *  question the candidate never reached. */
+const NO_SINGLE_INDEX = -1;
+
 export const useSimulator = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -332,6 +336,23 @@ export const useSimulator = () => {
         };
     }, [loading, isSubmitting, runId, currentIndex, answers, flagged, questions]);
 
+    /* "Exit Exam (Progress Lost)" was a bare navigate in Simulator.tsx. The run
+     * stayed in_progress with its deadline still running and its checkpointed
+     * answers intact — so browser Back walked straight into the exam the
+     * candidate had been told was discarded, and if the deadline passed
+     * meanwhile the expiry effect auto-submitted it and filed a scored attempt
+     * in their history. Say what we do, then do it. */
+    const quitExam = useCallback(async () => {
+        const user = auth.currentUser;
+        if (user && runId) {
+            await withTimeout(
+                QuizRunService.completeRun(user.uid, runId, { abort: true, score: 0, total: questions.length }),
+                4000, 'simulator quit');
+        }
+        // replace, so Back cannot return to the exam route.
+        navigate('/app', { replace: true });
+    }, [runId, questions.length, navigate]);
+
     const handleAnswer = useCallback((optionIndex: number) => {
         setAnswers(prev => ({ ...prev, [currentIndex]: optionIndex }));
     }, [currentIndex]);
@@ -394,12 +415,25 @@ export const useSimulator = () => {
         // if the details below drift. answers is Record<index, optionIndex>;
         // build the answer records completeRun expects from it.
         if (runId) {
+            /* Unanswered questions are PERSISTED, as wrong.
+             *
+             * This used to drop them before the write, and deriveMetrics divides
+             * by the number of records it finds — so a skipped question counted
+             * as neither right nor wrong, and leaving questions blank strictly
+             * RAISED the Smart Readiness Score. Answer 20 of 180 PMP questions,
+             * get 15 right, and readiness read high while the results screen
+             * read 8%. Guessing the rest could only make it worse, which is
+             * backwards for the meter that gates the mock.
+             *
+             * On a timed mock an unanswered question is wrong. That is what the
+             * results screen already scores, and now the two agree. */
             const answerRecords = questions.map((q, index) => ({
                 questionId: q.id,
-                selectedOption: answers[index],
+                selectedOption: answers[index] ?? NO_SINGLE_INDEX,
                 isCorrect: answers[index] === q.correctAnswer,
                 domain: q.domain,
-            })).filter((a) => a.selectedOption !== undefined);
+                unanswered: answers[index] === undefined,
+            }));
 
             // Timed out rather than plainly awaited: a hanging write used to
             // leave the tester on the last question of a finished exam with no
@@ -435,6 +469,7 @@ export const useSimulator = () => {
         timeLeft,
         handleAnswer,
         handleFlag,
+        quitExam,
         submitExam
     };
 };

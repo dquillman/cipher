@@ -196,7 +196,7 @@ export default function BestPmpSimulator2026() {
               explanation — plus a straight answer above about the formats we
               don't simulate. If we still don't fit how you study, the 60-day
               guarantee means you're out nothing.
-              $19/month, with 10 more certifications included in the same
+              $19/month, with three more certifications included in the same
               subscription.
             </p>
           </div>
