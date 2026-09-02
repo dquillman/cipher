@@ -117,6 +117,19 @@ export default function Quiz() {
     // ...
     const { examId: paramExamId } = useParams();
     const location = useLocation();
+
+    /* Captured once and immediately consumed. react-router keeps location.state
+     * in window.history.state.usr and the browser preserves that across a
+     * reload, so "state is present" cannot mean "the user just chose to start".
+     * The simulator learned this the hard way; without the same guard here a
+     * refresh looks like a fresh start and abandons the open run. */
+    const startIntentRef = useRef<Record<string, unknown> | null | undefined>(undefined);
+    if (startIntentRef.current === undefined) {
+        startIntentRef.current = (location.state as Record<string, unknown> | null) ?? null;
+        if (typeof window !== 'undefined' && window.history.state?.usr) {
+            window.history.replaceState({ ...window.history.state, usr: null }, '');
+        }
+    }
     const navigate = useNavigate();
 
     // Unified Quiz Run State
@@ -339,11 +352,31 @@ export default function Quiz() {
                     return;
                 }
 
+                /* RELOAD SAFETY.
+                 *
+                 * The practice quiz had no resume. The only way in was
+                 * location.state.runId, which only the Dashboard's Resume button
+                 * sets — so pressing F5 on question 7 of 10 fell through to the
+                 * smart-selection branch, and createRun's first act is to mark
+                 * every in_progress run for this exam and type 'abandoned'.
+                 * Nothing reads 'abandoned', so those answers were gone and the
+                 * dashboard never offered them back. The mock was fixed for this
+                 * exact defect; the fix was never carried across. */
+                let resumeRunId: string | undefined = location.state?.runId;
+                if (!resumeRunId && !startIntentRef.current) {
+                    const open = await QuizRunService.getLatestActiveRun(user.uid, activeExamId);
+                    if (open?.id && (open.snapshot?.questionIds?.length ?? 0) > 0) {
+                        console.log('[quiz] adopting in-progress run after reload:', open.id);
+                        resumeRunId = open.id;
+                        setActiveRunId(open.id);
+                    }
+                }
+
                 // DIAGNOSTIC CHECK (Legacy/Specific Logic) OR UNIFIED RESUME
                 // If we have a runId, we resume regardless of mode
-                if (location.state?.runId) {
-                    console.log("Resuming Quiz Run:", location.state.runId);
-                    const run = await QuizRunService.getRunById(user.uid, location.state.runId);
+                if (resumeRunId) {
+                    console.log("Resuming Quiz Run:", resumeRunId);
+                    const run = await QuizRunService.getRunById(user.uid, resumeRunId);
 
                     if (run) {
                         // Re-fetch questions from snapshot IDs

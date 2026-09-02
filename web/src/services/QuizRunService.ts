@@ -234,8 +234,22 @@ export const QuizRunService = {
 
             // Read persisted answers — authoritative source
             const snap = await getDoc(runRef);
+            /* results.abort had TWO writers and ZERO readers. Every deliberate
+             * bail-out — the diagnostic's Exit, and now the simulator's quit —
+             * was filed as a finished attempt with status 'completed', because
+             * this line hardcoded it before looking at anything.
+             *
+             * For the simulator that is worse than the bug it replaced: quitting
+             * warns "Progress Lost", then files a permanent 0% sitting into Past
+             * Attempts with a red NOT YET badge and no way to remove it. My own
+             * commit claimed "Quitting now aborts the run"; it did not, because
+             * the flag it passed was inert.
+             *
+             * An aborted run is 'abandoned'. Nothing that reads history queries
+             * that status, which is exactly the point. */
+            const aborted = results?.abort === true;
             const updatePayload: any = {
-                status: 'completed',
+                status: aborted ? 'abandoned' : 'completed',
                 completedAt: serverTimestamp(),
                 results,
                 updatedAt: serverTimestamp()

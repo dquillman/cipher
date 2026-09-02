@@ -20,6 +20,7 @@ import { Flame } from 'lucide-react';
 import GuidedPath from '../components/onboarding/GuidedPath';
 import { StudyPlanService } from '../services/StudyPlanService';
 import { isServable } from '../utils/questionStatus';
+import { useSubscription } from '../contexts/SubscriptionContext';
 
 const ACTIVITY_MODE_LABELS: Record<string, string> = {
     diagnostic: "Diagnostic Quiz",
@@ -64,6 +65,13 @@ export default function Dashboard() {
     const [showReportModal, setShowReportModal] = useState(false);
 
     const { trial } = useTrial();
+    const { isPro: subIsPro, passEntitlement } = useSubscription();
+    /* An expired trial only blocks someone who has bought nothing. Pro and an
+       active Exam Pass both keep the dashboard open — the pass is checked
+       against its own expiry rather than the trial clock, because
+       getUserEntitlement does not read users/{uid}.entitlement at all. */
+    const hasActivePass = !!passEntitlement && new Date(passEntitlement.expiresAt).getTime() > Date.now();
+    const trialBlocked = trial.status === 'expired' && !subIsPro && !hasActivePass;
 
     // Sync real-time activity detection back to global context
     useEffect(() => {
@@ -374,8 +382,14 @@ export default function Dashboard() {
                         </div>
                     )}
 
-                    {/* Expired Trial Blocker */}
-                    {trial.status === 'expired' && (
+                    {/* Expired Trial Blocker.
+                        Gated on entitlement, not just the trial clock: a $59
+                        Exam Pass holder keeps plan:'trial' with a trialEndsAt
+                        fourteen days after signup, so once that date passed the
+                        dashboard told a paying customer their trial had ended
+                        and blurred everything behind it. Every other gate in the
+                        app consults the pass; this one did not. */}
+                    {trialBlocked && (
                         <div className="bg-slate-800 rounded-2xl p-4 sm:p-8 text-center border border-slate-700 shadow-2xl relative overflow-hidden mb-8">
                             <div className="relative z-10">
                                 <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display">Your 14-day Pro trial has ended</h3>
@@ -395,7 +409,7 @@ export default function Dashboard() {
                     )}
 
                     {/* Main Content - Blurred if Expired */}
-                    <div className={trial.status === 'expired' ? "opacity-10 pointer-events-none filter blur-sm select-none" : ""}>
+                    <div className={trialBlocked ? "opacity-10 pointer-events-none filter blur-sm select-none" : ""}>
                         {/* Onboarding / Welcome Section */}
                         {contextDiagnostic === false && recentActivity.length === 0 && !loading ? (
                             <>
