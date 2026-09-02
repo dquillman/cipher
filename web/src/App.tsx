@@ -433,7 +433,7 @@ class AppErrorBoundary extends React.Component<{ children: ReactNode }, { error:
             <h1 className="text-2xl font-bold text-white mb-3 font-display">Something broke on this page</h1>
             <p className="text-slate-400 mb-6">
               This is our bug, not something you did, and your progress is saved. Going back to the
-              dashboard usually clears it. If it keeps happening, Report a Problem in the sidebar
+              dashboard usually clears it. If it keeps happening, Report a Problem — in the sidebar on desktop, or under More on a phone
               tells us where it broke.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">

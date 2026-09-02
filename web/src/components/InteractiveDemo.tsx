@@ -344,8 +344,12 @@ export default function InteractiveDemo() {
                 <MasteryRing label="People" pct={85} color="#10b981" delay={200} active={step === 4} />
                 <MasteryRing label="Process" pct={68} color="#6366f1" delay={400} active={step === 4} />
                 <MasteryRing label="Business" pct={74} color="#f59e0b" delay={600} active={step === 4} />
-                <MasteryRing label="Agile" pct={62} color="#818cf8" delay={800} active={step === 4} />
-                <MasteryRing label="Predictive" pct={78} color="#06b6d4" delay={1000} active={step === 4} />
+                {/* "Agile" and "Predictive" used to sit here. Neither is a domain
+                    in any bank we ship — the PMP v2026 outline has exactly three
+                    (People, Process, Business Environment) and the CompTIA banks
+                    have their own. Showing a candidate a mastery ring for a
+                    domain that does not exist is inventing the product's own
+                    data on the homepage. */}
               </div>
             </div>
           </div>

@@ -105,7 +105,10 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
                     const isExpired = diffMs <= 0;
 
                     if (!isExpired) {
-                        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                        // ceil, not floor: on day zero of a 14-day trial there are 13.99 days left,
+                        // and floor rendered "13 days remaining" directly under a
+                        // headline reading "14-day Pro Trial".
+                        const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
                         const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                         return {
                             isFree: false,
@@ -166,7 +169,10 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
                 };
             } else if (trialEndsAt) {
                 const diffMs = trialEndsAt.getTime() - now.getTime();
-                const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                // ceil, not floor: on day zero of a 14-day trial there are 13.99 days left,
+                        // and floor rendered "13 days remaining" directly under a
+                        // headline reading "14-day Pro Trial".
+                        const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 return {
                     isFree: false,

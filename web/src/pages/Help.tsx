@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {
     Layout,
@@ -24,6 +24,13 @@ export default function Help() {
     // and the modal opens on arrival. Without this the link would be a promise
     // the page does not keep.
     const [isReportModalOpen, setIsReportModalOpen] = useState(searchParams.get('report') === '1');
+    // The initializer alone is not enough: arriving from /app/help to
+    // /app/help?report=1 changes the query without remounting, so the modal
+    // would never open — and Help sits directly above Report a Problem in the
+    // mobile menu, which makes that the likely path, not the edge case.
+    useEffect(() => {
+        if (searchParams.get('report') === '1') setIsReportModalOpen(true);
+    }, [searchParams]);
 
     return (
         <div className="min-h-dvh bg-slate-900 text-slate-100 font-sans selection:bg-brand-500/30">
@@ -286,7 +293,7 @@ export default function Help() {
                     <h3 className="text-2xl font-bold text-white mb-6 font-display text-center">How Practice Data Improves Your Readiness Score</h3>
                     <div className="space-y-6 text-sm text-slate-400 leading-relaxed">
                         <p>
-                            Every question you answer contributes to a growing dataset specific to the exam you are studying. This data drives your Exam Readiness prediction, which estimates how likely you are to pass based on observed accuracy, domain coverage, and consistency.
+                            Every question you answer contributes to a growing dataset specific to the exam you are studying. This data drives your Exam Readiness score, a weighted blend of your accuracy, domain coverage and consistency with a penalty for small samples. It is a measure of how you are doing here — not a probability of passing the real exam, which is scored on a scale the certifying bodies do not publish.
                         </p>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-3">

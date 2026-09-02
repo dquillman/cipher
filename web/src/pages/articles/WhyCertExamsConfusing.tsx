@@ -373,7 +373,7 @@ export default function WhyCertExamsConfusing() {
               onClick={handleCta}
               className="rounded-full bg-brand-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-600/25 hover:bg-brand-500 transition-colors"
             >
-              Start Your Free 7-Day Trial
+              Start Your Free 14-Day Trial
             </button>
             <p className="text-sm text-slate-500 mt-3">No credit card required.</p>
           </div>

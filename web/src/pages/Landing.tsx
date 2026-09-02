@@ -760,7 +760,7 @@ export default function Landing() {
               Most apps say you’re ready. We tell you the truth.
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Every full mock exam returns a real score, an honest pass/fail verdict, and a
+              Every full mock exam returns a real score, a straight percentage against a fixed benchmark, and the real cut score beside it, and a
               domain-by-domain breakdown of exactly where you’re losing points — then drops you
               straight into targeted practice on your weakest area. No inflated readiness meters.
               No false confidence walking into the real thing.

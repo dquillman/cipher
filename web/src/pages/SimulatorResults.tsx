@@ -153,11 +153,13 @@ export default function SimulatorResults() {
         }).catch(() => {});
     }, [selectedExamId]);
 
-    // Milestone moment: a brief, restrained confetti salute when a mock is passed.
-    // Side cannons for ~0.8s in brand hues — celebratory, not childish. Fires once.
+    // Milestone moment: a brief, restrained confetti salute. Keyed to the same
+    // benchmark as the badge and the banner — it used to fire at the retired
+    // hardcoded 70%, so a score this very screen labels CLOSE and states is
+    // below the benchmark got a celebration anyway.
     useEffect(() => {
         if (!questions || total === 0) return;
-        if (Math.round((score / total) * 100) < 70) return;
+        if (Math.round((score / total) * 100) < BENCHMARK) return;
         const colors = ['#6366f1', '#3b82f6', '#a78bfa', '#10b981'];
         const end = Date.now() + 800;
         let raf = 0;
