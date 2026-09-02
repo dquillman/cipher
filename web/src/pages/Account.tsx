@@ -141,6 +141,15 @@ export default function Account() {
                 ? `Renews ${periodEnd} at $${details.amount}/${details.interval}.`
                 : `$${details.amount}/${details.interval}.`;
         }
+    } else if (entitlement.plan === 'trial' && entitlement.isTrialExpired) {
+        // The expired branch of getUserEntitlement keeps plan: 'trial' and only
+        // drops accessLevel to 'free', so reading the plan alone told someone
+        // whose trial ended last week that they were on a "Pro trial" and
+        // printed an end date in the past.
+        planLabel = 'Free';
+        planNote = entitlement.trialEndsAt
+            ? `Your Pro trial ended ${entitlement.trialEndsAt.toLocaleDateString()}. Upgrade any time to get Pro back.`
+            : 'Your Pro trial has ended. Upgrade any time to get Pro back.';
     } else if (entitlement.plan === 'trial') {
         planLabel = 'Pro trial';
         planNote = entitlement.trialEndsAt

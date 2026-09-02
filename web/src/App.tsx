@@ -97,13 +97,17 @@ function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const logout = async () => {
+    // Signing out must never wait on analytics. closeSession awaits an
+    // updateDoc, and a Firestore write resolves only on server ack — so on a
+    // stalled connection it neither resolved nor rejected, and because
+    // closeSession swallows its own errors the catch below could never fire.
+    // Pressing Log out simply did nothing. Bounded, and the sign-out happens
+    // either way.
+    await withTimeout(closeSession(), 2500, 'closeSession');
     try {
-      await closeSession();
       await signOut(auth);
     } catch (error) {
-      console.error("Logout failed:", error);
-      // Still sign out if session close fails
-      await signOut(auth);
+      console.error("Sign-out failed:", error);
     }
   };
 
@@ -350,6 +354,7 @@ import SmartQuizReviewModal from "./components/SmartQuizReviewModal";
 // --- Analytics Hook ---
 import { httpsCallable } from 'firebase/functions';
 import { functions } from './firebase';
+import { withTimeout } from './utils/withTimeout';
 
 function useAnalytics() {
   useEffect(() => {

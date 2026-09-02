@@ -961,7 +961,15 @@ export default function Quiz() {
         // `?? -1` only ever fires for formats that carry no single selected
         // index (matching / pbq / multi-response), and those return early
         // inside fetchTutorBreakdownWithMode before the value is read.
-        fetchTutorBreakdown(currentQuestion, selectedOption ?? -1);
+        // Pro-gated on the server (functions/src/tutor.ts requirePro). Calling
+        // it as a free user returns permission-denied, which the catch below
+        // used to render as "Coach is seemingly offline" — telling every free
+        // user the product was broken, on every single question, when in fact
+        // they had simply never bought the feature. Do not call what we know
+        // will be refused.
+        if (hasContentAccess) {
+            fetchTutorBreakdown(currentQuestion, selectedOption ?? -1);
+        }
 
         // Save Granular Question Progress (SRS)
         updateQuestionProgress(currentQuestion.id, isCorrect);
@@ -1120,9 +1128,15 @@ export default function Quiz() {
         } catch (err) {
             coachOutcome = 'error';
             console.error("Failed to generate tutor breakdown:", err);
-            // Fallback: Create a simple breakdown from the existing explanation
+            // A refused call and a broken call are different things and must not
+            // read the same. permission-denied means this is a Pro feature they
+            // do not have, which is a sales message, not an incident.
+            const denied = (err as { code?: string })?.code === 'functions/permission-denied'
+                || (err as { code?: string })?.code === 'permission-denied';
             setTutorBreakdown({
-                verdict: "Coach is seemingly offline. Here is the standard explanation:",
+                verdict: denied
+                    ? "The AI Coach is a Pro feature. Here is the standard explanation:"
+                    : "The Coach could not be reached just now. Here is the standard explanation:",
                 comparison: [{
                     optionIndex: question.correctAnswer ?? 0,
                     text: question.options?.[question.correctAnswer ?? 0] ?? '',
