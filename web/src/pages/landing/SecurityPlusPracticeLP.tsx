@@ -4,6 +4,7 @@ import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "./LandingShel
 import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
+import { LpFaqSection, faqJsonLd, type LpFaq } from "./LpFaq";
 import { SEO } from "../../config/seo";
 import TestimonialsSection from "../../components/TestimonialsSection";
 import LeadMagnetCapture from "../../components/LeadMagnetCapture";
@@ -15,10 +16,41 @@ import LeadMagnetCapture from "../../components/LeadMagnetCapture";
 const PAGE_ID = "lp-security-plus-practice";
 const SIGNUP_HREF = `/login?exam=security-plus&utm_lp=${PAGE_ID}`;
 
+/**
+ * FAQ — single source for the visible block AND the FAQPage schema (see LpFaq.tsx).
+ * Edit here only. Inline marks: **bold**, _italic_, [text](/internal-path).
+ */
+const FAQS: LpFaq[] = [
+  {
+    q: "Is this current for SY0-701?",
+    a: "Yes — the question library is built against CompTIA's published SY0-701 exam objectives.",
+  },
+  {
+    q: "Do you simulate Performance-Based Questions?",
+    a: "Yes, and here are the exact numbers rather than a claim. The bank is 110 questions: 93 scenario-driven multiple choice, 4 matching items, and 13 performance-based questions across four formats — drag-and-drop into zones (5), ordered procedures (4), configuration tables (4) and a simulated command line (3). What we do _not_ reproduce is CompTIA's own interface chrome or its network-topology diagram items. Thirteen is a starting set, not parity with the real exam, and we would rather say so. One more thing worth knowing before you pay: the PBQs and matching items appear in practice mode, not inside the 90-question timed mock, which is multiple choice only. Take the free trial and judge them before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.",
+  },
+  {
+    q: "How many questions is the Full Mock?",
+    a: "90 questions in 90 minutes — the same as CompTIA's exam.",
+  },
+  {
+    q: "Will this help me pass Network+ or other CompTIA certs next?",
+    a: "Network+ (N10-009) is live with 106 questions and the same Exam Lens explanations, but the performance-based questions are Security+ only for now — Network+ and A+ are scenario-driven multiple choice today. CISSP is on the roadmap and not yet built.",
+  },
+  {
+    q: "How is this different from Pocket Prep?",
+    a: "Pocket Prep has a far larger bank and a native mobile app. We go deeper on fewer questions — every answer, right or wrong, is walked through the Exam Lens — and we simulate PBQs. The honest write-up, including where they are the better choice: [CipherExam as a Pocket Prep alternative](/compare/pocketprep-alternative).",
+  },
+  {
+    q: "Cancel anytime?",
+    a: "Yes. 14-day trial never charges a card.",
+  },
+];
+
 export default function SecurityPlusPracticeLP() {
   return (
     <LandingShell exam="security-plus" examShortName="Security+" pageId={PAGE_ID}>
-      <SeoHead {...SEO.lpSecurityPlus} />
+      <SeoHead {...SEO.lpSecurityPlus} jsonLd={faqJsonLd(FAQS)} />
       <Hero
         eyebrow="Security+ (SY0-701) · CipherExam"
         h1="Security+ punishes the wrong decision, not the missing fact."
@@ -104,30 +136,7 @@ export default function SecurityPlusPracticeLP() {
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 
-      <SectionBlock title="Frequently asked">
-        <dl className="space-y-6">
-          <div>
-            <dt className="font-semibold text-slate-100">Is this current for SY0-701?</dt>
-            <dd className="mt-1">Yes — the question library is built against CompTIA's published SY0-701 exam objectives.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Do you simulate Performance-Based Questions?</dt>
-            <dd className="mt-1">Yes, and here are the exact numbers rather than a claim. The bank is 110 questions: 93 scenario-driven multiple choice, 4 matching items, and 13 performance-based questions across four formats — drag-and-drop into zones (5), ordered procedures (4), configuration tables (4) and a simulated command line (3). What we do <em>not</em> reproduce is CompTIA's own interface chrome or its network-topology diagram items. Thirteen is a starting set, not parity with the real exam, and we would rather say so. One more thing worth knowing before you pay: the PBQs and matching items appear in practice mode, not inside the 90-question timed mock, which is multiple choice only. Take the free trial and judge them before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
-            <dd className="mt-1">90 questions in 90 minutes — the same as CompTIA's exam.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Will this help me pass Network+ or other CompTIA certs next?</dt>
-            <dd className="mt-1">Network+ (N10-009) is live with 106 questions and the same Exam Lens explanations, but the performance-based questions are Security+ only for now — Network+ and A+ are scenario-driven multiple choice today. CISSP is on the roadmap and not yet built.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Cancel anytime?</dt>
-            <dd className="mt-1">Yes. 14-day trial never charges a card.</dd>
-          </div>
-        </dl>
-      </SectionBlock>
+      <LpFaqSection faqs={FAQS} />
     </LandingShell>
   );
 }

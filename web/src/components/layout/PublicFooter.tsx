@@ -32,6 +32,11 @@ export default function PublicFooter() {
               <li><a href="/#features" className={footerLinkClass}>Features</a></li>
               <li><Link to="/pricing" className={footerLinkClass}>Pricing</Link></li>
               <li><a href="/#exams" className={footerLinkClass}>Exams</a></li>
+              {/* Compare pages are the highest-intent SEO pages on the site and had
+                  zero internal links until 2026-09-03. The footer is sitewide, so
+                  these two lines alone lift them from orphaned to ~20 inbound. */}
+              <li><Link to="/compare/best-pmp-exam-simulator-2026" className={footerLinkClass}>Compare PMP simulators</Link></li>
+              <li><Link to="/compare/pocketprep-alternative" className={footerLinkClass}>Pocket Prep alternative</Link></li>
             </ul>
           </div>
 
@@ -39,6 +44,7 @@ export default function PublicFooter() {
           <div>
             <h4 className={columnHeaderClass}>Company</h4>
             <ul className="space-y-1 sm:space-y-3">
+              <li><Link to="/about" className={footerLinkClass}>About</Link></li>
               <li><Link to="/story" className={footerLinkClass}>Our Story</Link></li>
               <li><Link to="/blog" className={footerLinkClass}>Blog</Link></li>
             </ul>

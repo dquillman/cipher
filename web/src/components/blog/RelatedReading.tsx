@@ -19,9 +19,11 @@ export type RelatedReadingProps = {
   posts: Array<keyof typeof BLOG_POSTS>;
   /** Optional LP plug. Use when the article's audience maps to a single exam. */
   lp?: { href: string; label: string };
+  /** Optional /compare/* plug. Use when the reader is plausibly choosing a tool. */
+  compare?: { href: string; label: string };
 };
 
-export default function RelatedReading({ posts, lp }: RelatedReadingProps) {
+export default function RelatedReading({ posts, lp, compare }: RelatedReadingProps) {
   return (
     <aside
       className="mt-16 border-t border-slate-800 pt-8"
@@ -55,6 +57,18 @@ export default function RelatedReading({ posts, lp }: RelatedReadingProps) {
             className="text-brand-400 hover:text-brand-300 underline underline-offset-2"
           >
             {lp.label}
+          </Link>
+          .
+        </p>
+      ) : null}
+      {compare ? (
+        <p className="mt-3 text-slate-400">
+          Choosing a tool?{' '}
+          <Link
+            to={compare.href}
+            className="text-brand-400 hover:text-brand-300 underline underline-offset-2"
+          >
+            {compare.label}
           </Link>
           .
         </p>

@@ -4,6 +4,7 @@ import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "./LandingShel
 import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
+import { LpFaqSection, faqJsonLd, type LpFaq } from "./LpFaq";
 import { SEO } from "../../config/seo";
 
 /**
@@ -15,10 +16,37 @@ import { SEO } from "../../config/seo";
 const PAGE_ID = "lp-network-plus-practice";
 const SIGNUP_HREF = `/login?exam=network-plus&utm_lp=${PAGE_ID}`;
 
+/**
+ * FAQ — single source for the visible block AND the FAQPage schema (see LpFaq.tsx).
+ * Edit here only. Inline marks: **bold**, _italic_, [text](/internal-path).
+ */
+const FAQS: LpFaq[] = [
+  {
+    q: "Is this current for N10-009?",
+    a: "Yes — the question library is built against CompTIA's published N10-009 exam objectives.",
+  },
+  {
+    q: "Do you simulate Performance-Based Questions?",
+    a: "No, and we would rather you knew before paying than after. The N10-009 bank is 106 scenario-driven multiple-choice questions. We do not simulate drag-and-drop, topology or CLI items. The engine for those formats exists; the content is not written. What we drill is the layer-first troubleshooting judgment those items grade. Use the free trial to judge that for yourself, and spend an hour in CompTIA's own exam demo before test day.",
+  },
+  {
+    q: "What makes Network+ hard?",
+    a: "The troubleshooting items. They mix multiple plausible fixes, and you have to locate the fault on the OSI model before acting. The Exam Lens names the layer first, then ranks the systematic fix.",
+  },
+  {
+    q: "How many questions is the Full Mock?",
+    a: "90 questions in 90 minutes — the same length and pacing as CompTIA's exam. Scenario-driven multiple choice throughout; see the PBQ answer above.",
+  },
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes. The 14-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.",
+  },
+];
+
 export default function NetworkPlusPracticeLP() {
   return (
     <LandingShell exam="network-plus" examShortName="Network+" pageId={PAGE_ID}>
-      <SeoHead {...SEO.lpNetworkPlus} />
+      <SeoHead {...SEO.lpNetworkPlus} jsonLd={faqJsonLd(FAQS)} />
       <Hero
         eyebrow="Network+ · CipherExam"
         h1="Troubleshoot Network+ one layer at a time."
@@ -95,30 +123,7 @@ export default function NetworkPlusPracticeLP() {
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 
-      <SectionBlock title="Frequently asked">
-        <dl className="space-y-6">
-          <div>
-            <dt className="font-semibold text-slate-100">Is this current for N10-009?</dt>
-            <dd className="mt-1">Yes — the question library is built against CompTIA's published N10-009 exam objectives.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Do you simulate Performance-Based Questions?</dt>
-            <dd className="mt-1">No, and we would rather you knew before paying than after. The N10-009 bank is 106 scenario-driven multiple-choice questions. We do not simulate drag-and-drop, topology or CLI items. The engine for those formats exists; the content is not written. What we drill is the layer-first troubleshooting judgment those items grade. Use the free trial to judge that for yourself, and spend an hour in CompTIA's own exam demo before test day.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">What makes Network+ hard?</dt>
-            <dd className="mt-1">The troubleshooting items. They mix multiple plausible fixes, and you have to locate the fault on the OSI model before acting. The Exam Lens names the layer first, then ranks the systematic fix.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
-            <dd className="mt-1">90 questions in 90 minutes — the same length and pacing as CompTIA's exam. Scenario-driven multiple choice throughout; see the PBQ answer above.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>
-            <dd className="mt-1">Yes. The 14-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.</dd>
-          </div>
-        </dl>
-      </SectionBlock>
+      <LpFaqSection faqs={FAQS} />
     </LandingShell>
   );
 }

@@ -1,7 +1,7 @@
-// ðŸ”’ SINGLE SOURCE OF TRUTH FOR APP VERSION
+// Ã°Å¸â€â€™ SINGLE SOURCE OF TRUTH FOR APP VERSION
 // Update this file for every release before build + deploy
 
-export const APP_VERSION = '1.26.1';
+export const APP_VERSION = '1.26.2';
 
 const isStaging = typeof window !== 'undefined' && window.location.hostname.includes('staging');
 

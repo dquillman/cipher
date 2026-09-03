@@ -4,6 +4,7 @@ import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "./LandingShel
 import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
+import { LpFaqSection, faqJsonLd, type LpFaq } from "./LpFaq";
 import { SEO } from "../../config/seo";
 
 /**
@@ -20,10 +21,37 @@ import { SEO } from "../../config/seo";
 const PAGE_ID = "lp-a-plus-core-2-practice";
 const SIGNUP_HREF = `/login?exam=a-plus-core-2&utm_lp=${PAGE_ID}`;
 
+/**
+ * FAQ — single source for the visible block AND the FAQPage schema (see LpFaq.tsx).
+ * Edit here only. Inline marks: **bold**, _italic_, [text](/internal-path).
+ */
+const FAQS: LpFaq[] = [
+  {
+    q: "How long is the A+ Core 2 exam, and what's the format?",
+    a: "The real 220-1202 exam is up to 90 questions in 90 minutes and mixes multiple choice with performance-based questions. Our Full Mock matches the length and pacing — 90 questions in 90 minutes — but is scenario-driven multiple choice throughout. See the PBQ answer below.",
+  },
+  {
+    q: "Is this aligned to the current A+ Core 2 objectives?",
+    a: "Yes — the question library is built against CompTIA's published A+ 220-1202 exam objectives, including the six-step troubleshooting methodology that the scenario questions lean on.",
+  },
+  {
+    q: "Do you support performance-based questions (PBQs)?",
+    a: "Not yet, and you should hear it here rather than after paying. The 220-1202 bank is 161 scenario-driven multiple-choice questions. We do not simulate drag-and-drop, configuration tables or CLI items — the engine for those formats is built, the content is not written. What we drill is the six-step ordering judgment those items grade. Take the free trial and judge that before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.",
+  },
+  {
+    q: "What makes A+ Core 2 hard?",
+    a: "The troubleshooting scenarios. Several answers will all look technically correct — the exam is testing whether you follow CompTIA's six-step methodology in order and pick the right FIRST step, not just any valid fix. That's exactly what the Exam Lens explanation surfaces on every question.",
+  },
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes. The 14-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.",
+  },
+];
+
 export default function APlusCore2PracticeLP() {
   return (
     <LandingShell exam="a-plus-core-2" examShortName="A+ Core 2" pageId={PAGE_ID}>
-      <SeoHead {...SEO.lpAPlusCore2} />
+      <SeoHead {...SEO.lpAPlusCore2} jsonLd={faqJsonLd(FAQS)} />
       <Hero
         eyebrow="A+ Core 2 · CipherExam"
         h1="Practice A+ Core 2 the way CompTIA grades it."
@@ -103,30 +131,7 @@ export default function APlusCore2PracticeLP() {
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 
-      <SectionBlock title="Frequently asked">
-        <dl className="space-y-6">
-          <div>
-            <dt className="font-semibold text-slate-100">How long is the A+ Core 2 exam, and what's the format?</dt>
-            <dd className="mt-1">The real 220-1202 exam is up to 90 questions in 90 minutes and mixes multiple choice with performance-based questions. Our Full Mock matches the length and pacing — 90 questions in 90 minutes — but is scenario-driven multiple choice throughout. See the PBQ answer below.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Is this aligned to the current A+ Core 2 objectives?</dt>
-            <dd className="mt-1">Yes — the question library is built against CompTIA's published A+ 220-1202 exam objectives, including the six-step troubleshooting methodology that the scenario questions lean on.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Do you support performance-based questions (PBQs)?</dt>
-            <dd className="mt-1">Not yet, and you should hear it here rather than after paying. The 220-1202 bank is 161 scenario-driven multiple-choice questions. We do not simulate drag-and-drop, configuration tables or CLI items — the engine for those formats is built, the content is not written. What we drill is the six-step ordering judgment those items grade. Take the free trial and judge that before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">What makes A+ Core 2 hard?</dt>
-            <dd className="mt-1">The troubleshooting scenarios. Several answers will all look technically correct — the exam is testing whether you follow CompTIA's six-step methodology in order and pick the right FIRST step, not just any valid fix. That's exactly what the Exam Lens explanation surfaces on every question.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>
-            <dd className="mt-1">Yes. The 14-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.</dd>
-          </div>
-        </dl>
-      </SectionBlock>
+      <LpFaqSection faqs={FAQS} />
     </LandingShell>
   );
 }

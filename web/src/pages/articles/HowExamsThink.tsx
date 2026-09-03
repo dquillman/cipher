@@ -151,6 +151,10 @@ export default function HowExamsThink() {
             </p>
 
             <p>
+              If you're weighing prep tools right now, I put the comparison in writing rather than in a pitch: <Link to="/compare/best-pmp-exam-simulator-2026" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">choosing a PMP exam simulator for the 2026 exam</Link>.
+            </p>
+
+            <p>
               &mdash; Dave
             </p>
           </div>

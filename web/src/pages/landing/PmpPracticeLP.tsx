@@ -4,6 +4,7 @@ import LandingShell, { Hero, SectionBlock, ExamLensCallout } from "./LandingShel
 import PricingCard from "./PricingCard";
 import TryAQuestion from "./TryAQuestion";
 import SeoHead from "../../components/SeoHead";
+import { LpFaqSection, faqJsonLd, type LpFaq } from "./LpFaq";
 import { SEO } from "../../config/seo";
 import TestimonialsSection from "../../components/TestimonialsSection";
 import LeadMagnetCapture from "../../components/LeadMagnetCapture";
@@ -16,10 +17,41 @@ import LeadMagnetCapture from "../../components/LeadMagnetCapture";
 const PAGE_ID = "lp-pmp-practice";
 const SIGNUP_HREF = `/login?exam=pmp&utm_lp=${PAGE_ID}`;
 
+/**
+ * FAQ — single source for the visible block AND the FAQPage schema (see LpFaq.tsx).
+ * Edit here only. Inline marks: **bold**, _italic_, [text](/internal-path).
+ */
+const FAQS: LpFaq[] = [
+  {
+    q: "Is this aligned to the 2026 PMP Exam Content Outline?",
+    a: "Yes. PMI's 2026 ECO took effect on 9 July 2026 and is the exam everyone sits now — the 2021 outline is retired. The domains keep their names (People / Process / Business Environment), but the weightings moved to **33% People, 41% Process, 26% Business Environment**, and PMI consolidated 35 tasks down to 26. CipherExam ships a dedicated **PMP Exam v2026** bank written against that outline, and it's what you land on automatically when you start a trial from this page — nothing to pick. The retired 2021 bank stays available only if you deliberately switch to it.",
+  },
+  {
+    q: "Do you cover EMV / earned-value math?",
+    a: "Not in the current bank, and we would rather say so plainly. The interactive earned-value item type is built, and the ten questions using it sit in our retired 2021-outline bank. **PMP Exam v2026** — the bank you get today — is scenario-driven multiple choice throughout and does not yet include them. If earned-value calculation practice is your priority right now, use the free trial to check before you pay us anything.",
+  },
+  {
+    q: "How many questions is the Full Mock?",
+    a: "180 questions in 240 minutes (4 hours) — the same question count and the same clock PMI allots for the live PMP. You run it timed, in one sitting. What we don't reproduce is the rest of the sitting's structure: PMI's two 10-minute breaks and the one-way case-study boundary aren't simulated.",
+  },
+  {
+    q: "How does CipherExam compare to other PMP exam simulators?",
+    a: "We put the comparison in writing rather than in a sales pitch — where each tool is stronger, and where we are: [choosing a PMP exam simulator for the 2026 exam](/compare/best-pmp-exam-simulator-2026). Read it before you pay anyone, including us.",
+  },
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes. The 14-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.",
+  },
+  {
+    q: "Do you have CAPM coverage?",
+    a: "Not yet. PMP is fully live. We're adding adjacent PMI certifications based on user demand.",
+  },
+];
+
 export default function PmpPracticeLP() {
   return (
     <LandingShell exam="pmp" examShortName="PMP" pageId={PAGE_ID}>
-      <SeoHead {...SEO.lpPmp} />
+      <SeoHead {...SEO.lpPmp} jsonLd={faqJsonLd(FAQS)} />
       <Hero
         eyebrow="PMP · CipherExam"
         h1="Practice PMP the way PMI thinks."
@@ -105,38 +137,7 @@ export default function PmpPracticeLP() {
 
       <PricingCard signupHref={SIGNUP_HREF} onCtaClick={() => trackCtaClick(`${PAGE_ID}-pricing`)} />
 
-      <SectionBlock title="Frequently asked">
-        <dl className="space-y-6">
-          <div>
-            <dt className="font-semibold text-slate-100">Is this aligned to the 2026 PMP Exam Content Outline?</dt>
-            <dd className="mt-1">
-              Yes. PMI's 2026 ECO took effect on 9 July 2026 and is the exam everyone sits now — the
-              2021 outline is retired. The domains keep their names (People / Process / Business
-              Environment), but the weightings moved to <strong>33% People, 41% Process, 26% Business
-              Environment</strong>, and PMI consolidated 35 tasks down to 26. CipherExam ships a
-              dedicated <strong>PMP Exam v2026</strong> bank written against that outline, and it's
-              what you land on automatically when you start a trial from this page — nothing to
-              pick. The retired 2021 bank stays available only if you deliberately switch to it.
-            </dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Do you cover EMV / earned-value math?</dt>
-            <dd className="mt-1">Not in the current bank, and we would rather say so plainly. The interactive earned-value item type is built, and the ten questions using it sit in our retired 2021-outline bank. <strong>PMP Exam v2026</strong> — the bank you get today — is scenario-driven multiple choice throughout and does not yet include them. If earned-value calculation practice is your priority right now, use the free trial to check before you pay us anything.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>
-            <dd className="mt-1">180 questions in 240 minutes (4 hours) — the same question count and the same clock PMI allots for the live PMP. You run it timed, in one sitting. What we don't reproduce is the rest of the sitting's structure: PMI's two 10-minute breaks and the one-way case-study boundary aren't simulated.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Can I cancel anytime?</dt>
-            <dd className="mt-1">Yes. The 14-day trial never charges a card. Pro is month-to-month; cancel from your dashboard.</dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-slate-100">Do you have CAPM coverage?</dt>
-            <dd className="mt-1">Not yet. PMP is fully live. We're adding adjacent PMI certifications based on user demand.</dd>
-          </div>
-        </dl>
-      </SectionBlock>
+      <LpFaqSection faqs={FAQS} />
     </LandingShell>
   );
 }

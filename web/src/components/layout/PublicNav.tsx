@@ -122,6 +122,7 @@ export default function PublicNav({ children }: PublicNavProps) {
           <Link to="/pricing" onClick={closeMobile} className={mobileLinkClass}>Pricing</Link>
           <Link to="/blog" onClick={closeMobile} className={mobileLinkClass}>Blog</Link>
           <Link to="/exam-lens" onClick={closeMobile} className={mobileLinkClass}>Exam Lens</Link>
+          <Link to="/compare/best-pmp-exam-simulator-2026" onClick={closeMobile} className={mobileLinkClass}>Compare</Link>
           <Link
             to="/#testimonial"
             onClick={closeMobile}

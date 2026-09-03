@@ -256,6 +256,11 @@ export default function ExamLensGlossary() {
             ))}
           </div>
 
+          <p className="mt-12 text-slate-400">
+            The Lens is the difference between a question bank and a reasoning tool. If that distinction is what you're shopping on, the honest comparison is here:{' '}
+            <Link to="/compare/pocketprep-alternative" className="text-brand-400 hover:text-brand-300 underline underline-offset-2">CipherExam as a Pocket Prep alternative</Link>.
+          </p>
+
           <div className="mt-16 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center">
             <h3 className="text-2xl font-bold text-white font-display mb-3">
               See an Exam Lens explanation on every question.

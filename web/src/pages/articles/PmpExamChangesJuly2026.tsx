@@ -351,6 +351,7 @@ export default function PmpExamChangesJuly2026() {
           <RelatedReading
             posts={['howExamsThink', 'firstThirtyDays', 'studyByBloomsLevel']}
             lp={{ href: '/lp/pmp', label: 'Try CipherExam on PMP' }}
+            compare={{ href: '/compare/best-pmp-exam-simulator-2026', label: 'How the PMP simulators compare for the 2026 exam' }}
           />
 
           {/* CTA */}

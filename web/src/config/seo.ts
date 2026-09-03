@@ -100,7 +100,7 @@ export const SEO = {
             name: 'How is CipherExam different from other prep tools?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Every question in all four banks is classified by Bloom’s Taxonomy, and every answer is explained through an exam-specific reasoning framework (Exam Lens). You learn how the exam thinks, not just the answer.',
+              text: 'Every question in all four banks is classified by Bloom’s Taxonomy, and every answer is explained through an exam-specific reasoning framework (Exam Lens). You learn how the exam thinks, not just the answer. If you are weighing us against a question bank, read how we compare to Pocket Prep first.',
             },
           },
         ],
