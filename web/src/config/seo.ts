@@ -8,6 +8,12 @@
 
 const SITE = 'https://cipherexam.com';
 const ORG_REF = { '@id': `${SITE}/#org` };
+// The founder Person node lives in index.html's sitewide @graph (with sameAs to
+// LinkedIn/GitHub). Reference it by @id so every Article and the story page
+// resolve to the same entity instead of a fresh anonymous Person each time.
+// name is repeated inline so the Article rich-result check passes even if a
+// validator does not merge @id references across separate script blocks.
+const PERSON_REF = { '@type': 'Person', '@id': `${SITE}/#dave`, name: 'Dave Quillman' };
 
 export const SEO = {
   landing: {
@@ -119,7 +125,7 @@ export const SEO = {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
       url: SITE + '/story',
-      mainEntity: { '@type': 'Person', name: 'Dave Quillman', jobTitle: 'Founder, CipherExam' },
+      mainEntity: PERSON_REF,
       publisher: ORG_REF,
     },
   },
@@ -334,7 +340,7 @@ export function articleSchema(opts: {
     headline: opts.headline,
     description: opts.description,
     mainEntityOfPage: SITE + opts.canonical,
-    author: { '@type': 'Person', name: 'Dave Quillman' },
+    author: PERSON_REF,
     publisher: ORG_REF,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
