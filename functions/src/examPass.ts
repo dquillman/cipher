@@ -86,6 +86,27 @@ export const createPassCheckoutSession = functions.https.onCall(async (data, con
         throw new functions.https.HttpsError('not-found', 'Exam not found.');
     }
 
+    // Refuse a second pass while one is still live.
+    //
+    // users/{uid}.entitlement is a single object, so fulfilling a second
+    // purchase overwrites the first -- including its examId, silently ending
+    // paid access to the exam the buyer already owned. The pricing page hides
+    // the button while a pass is active, but that is a client check on data
+    // that arrives asynchronously, so it is not a guarantee. This is.
+    const existingEntitlement = (await admin.firestore()
+        .collection('users').doc(context.auth.uid).get())
+        .data()?.entitlement;
+    if (existingEntitlement?.type === 'exam-pass') {
+        const expires = existingEntitlement.expiresAt;
+        const expiresMs = expires?.toMillis ? expires.toMillis() : 0;
+        if (expiresMs > Date.now()) {
+            throw new functions.https.HttpsError(
+                'failed-precondition',
+                'You already have an active Exam Pass. Buying another would replace it — write to us and we will sort it out.',
+            );
+        }
+    }
+
     const metadata = {
         type: 'exam-pass',
         uid: context.auth.uid,
@@ -171,8 +192,17 @@ export async function fulfillExamPassCheckout(session: Stripe.Checkout.Session):
     const userRef = db.collection('users').doc(uid);
     const userSnap = await userRef.get();
     if (!userSnap.exists) {
-        console.error(`[exam-pass] Refusing grant: no user document for ${uid} (session ${session.id})`);
-        return;
+        // THROW, do not return.
+        //
+        // The subscription handler throws here (stripe.ts), which makes
+        // stripeWebhook return 500, release its idempotency claim and let Stripe
+        // retry for days until the profile trigger has caught up. Returning
+        // instead let the webhook fall through to marking the event 'done': the
+        // $59 was captured, no entitlement was ever written, Stripe never
+        // retried, and nothing anywhere recorded that a purchase happened -- the
+        // buyer landing on /app/success?product=exam-pass read "Exam Pass Active"
+        // with no pass. Same failure, opposite handling, in two files.
+        throw new Error(`Refusing Exam Pass grant: no user document for ${uid} (session ${session.id})`);
     }
 
     // Idempotency: already fulfilled from this exact session.

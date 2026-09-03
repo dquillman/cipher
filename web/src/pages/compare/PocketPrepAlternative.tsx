@@ -45,7 +45,7 @@ export default function PocketPrepAlternative() {
       <SectionBlock title="What CipherExam does differently">
         <ol className="space-y-4">
           <li>
-            <strong>Every question is classified by Bloom's taxonomy.</strong> All four banks, all 579 questions. Volume
+            <strong>Every question is classified by Bloom's taxonomy.</strong> All four banks, all 567 questions. Volume
             drilling treats all questions the same. We tag each one by cognitive
             level, so you can see where your accuracy drops as the reasoning gets harder.
             Each bank is weighted the way its own exam is, so the spread of levels differs

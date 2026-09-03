@@ -1,0 +1,68 @@
+[
+  {
+    "id": "DHYEO5Bi2mYKeFmK7qnO",
+    "examId": "6kECziMtR1BS3MpABLW5",
+    "alreadyQuarantined": false,
+    "reason": "key says Day 25; 10+15+8 = Day 33. Explanation contains the author scratch-work \"Wait - re-reading\" and concludes Day 33, i.e. option B. Stem also claims foundation and rough-in run in parallel, which its own dependency chain forbids."
+  },
+  {
+    "id": "GFUcgh2ukrCkq0JzMmKg",
+    "examId": "6kECziMtR1BS3MpABLW5",
+    "alreadyQuarantined": false,
+    "reason": "the PMBOK EAC for both trends continuing is 330000 + 200000/(0.909*0.95) = $561,579, which is not among the options. Key $578,947 is BAC/(CPI*SPI), not a PMBOK formula, and the explanation mislabels 0.864 as CPI."
+  },
+  {
+    "id": "IWdVsn2uiClUGfkX4AzS",
+    "examId": "6kECziMtR1BS3MpABLW5",
+    "alreadyQuarantined": false,
+    "reason": "key A says do not change the cost baseline; PMBOK 6th 7.3.3.1 requires an approved change adding the management reserve draw to the baseline, which is option C. The item explanation itself says the baseline may be updated through a change request."
+  },
+  {
+    "id": "FhKpmDgVOAlrS4ccibNL",
+    "examId": "6kECziMtR1BS3MpABLW5",
+    "alreadyQuarantined": false,
+    "reason": "two defensible answers with no tiebreaker in the stem: crash at a certain $25,000 vs fast-track at EMV $12,000. The explanation concedes fast-tracking has the lower expected cost, then keys crash on a risk tolerance the stem never states."
+  },
+  {
+    "id": "H9hYk13EtAgmHmFZ0KQh",
+    "examId": "79cuGMNydTwDMhyiDjry",
+    "alreadyQuarantined": false,
+    "reason": "keyed Segregation of Duties for architectural tier segregation. SoD is a process control over people; the explanation gives that definition and so disproves the key. Defense in depth is offered and is the defensible answer."
+  },
+  {
+    "id": "7ncl0U3b2lwy3HnORakH",
+    "examId": "79cuGMNydTwDMhyiDjry",
+    "alreadyQuarantined": false,
+    "reason": "keys \"remove redundant security layers\", which teaches the opposite of defense in depth and contradicts two other active items in the same bank and domain that key layering and integration."
+  },
+  {
+    "id": "INFAEjaIWyZcJG50OzJs",
+    "examId": "79cuGMNydTwDMhyiDjry",
+    "alreadyQuarantined": false,
+    "reason": "the explanation argues approval must follow testing, while the scored order places change-advisory-board approval before testing. Following the explanation is marked wrong."
+  },
+  {
+    "id": "NJttvsHX2ZKtpIasG4vU",
+    "examId": "79cuGMNydTwDMhyiDjry",
+    "alreadyQuarantined": false,
+    "reason": "forced binary with two defensible answers: the row keys Integrity for password storage while the explanation defends it on confidentiality grounds, and the same table uses Confidentiality for protecting stored data."
+  },
+  {
+    "id": "SqZmn5ZEfYQHVB0IKFQX",
+    "examId": "79cuGMNydTwDMhyiDjry",
+    "alreadyQuarantined": false,
+    "reason": "non-unique pairing: security awareness training and daily log review are both people-executed, so Administrative and Operational can be legitimately swapped. Also uses the SY0-601 term Administrative where SY0-701 uses Managerial."
+  },
+  {
+    "id": "BfVp6Wa3JCPlMt5ZwJdv",
+    "examId": "79cuGMNydTwDMhyiDjry",
+    "alreadyQuarantined": false,
+    "reason": "keys a security guard Preventive and bollards Deterrent, the reverse of the common teaching, so a consistently-reasoning candidate gets exactly one row wrong."
+  },
+  {
+    "id": "u3XSKs1D9NCQh3S1C0Hf",
+    "examId": "79cuGMNydTwDMhyiDjry",
+    "alreadyQuarantined": false,
+    "reason": "stem says a vulnerability is detected; key isolates the host and the explanation presumes exploitation the stem never states. The same bank keys assess-first on equivalent items."
+  }
+]

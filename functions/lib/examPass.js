@@ -65,7 +65,7 @@ async function getActivePlanExamDate(uid, examId) {
  * in test mode today and unchanged when live keys land.
  */
 exports.createPassCheckoutSession = functions.https.onCall(async (data, context) => {
-    var _a;
+    var _a, _b;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     }
@@ -76,6 +76,23 @@ exports.createPassCheckoutSession = functions.https.onCall(async (data, context)
     const examSnap = await admin.firestore().collection('exams').doc(examId).get();
     if (!examSnap.exists) {
         throw new functions.https.HttpsError('not-found', 'Exam not found.');
+    }
+    // Refuse a second pass while one is still live.
+    //
+    // users/{uid}.entitlement is a single object, so fulfilling a second
+    // purchase overwrites the first -- including its examId, silently ending
+    // paid access to the exam the buyer already owned. The pricing page hides
+    // the button while a pass is active, but that is a client check on data
+    // that arrives asynchronously, so it is not a guarantee. This is.
+    const existingEntitlement = (_a = (await admin.firestore()
+        .collection('users').doc(context.auth.uid).get())
+        .data()) === null || _a === void 0 ? void 0 : _a.entitlement;
+    if ((existingEntitlement === null || existingEntitlement === void 0 ? void 0 : existingEntitlement.type) === 'exam-pass') {
+        const expires = existingEntitlement.expiresAt;
+        const expiresMs = (expires === null || expires === void 0 ? void 0 : expires.toMillis) ? expires.toMillis() : 0;
+        if (expiresMs > Date.now()) {
+            throw new functions.https.HttpsError('failed-precondition', 'You already have an active Exam Pass. Buying another would replace it — write to us and we will sort it out.');
+        }
     }
     const metadata = {
         type: 'exam-pass',
@@ -95,9 +112,9 @@ exports.createPassCheckoutSession = functions.https.onCall(async (data, context)
         // stored id, so the link is never made. handleChargeRefunded looks users
         // up by that single field, so refunding that pass matched nobody, logged
         // a warning, and returned: money back, 90 days of access retained.
-        const existingCustomerId = (_a = (await admin.firestore()
+        const existingCustomerId = (_b = (await admin.firestore()
             .collection('users').doc(context.auth.uid).get())
-            .data()) === null || _a === void 0 ? void 0 : _a.stripeCustomerId;
+            .data()) === null || _b === void 0 ? void 0 : _b.stripeCustomerId;
         const session = await stripe.checkout.sessions.create(Object.assign(Object.assign(Object.assign({ mode: 'payment', payment_method_types: ['card'] }, (existingCustomerId ? {} : { customer_creation: 'always' })), { line_items: [{
                     price_data: {
                         currency: 'usd',
@@ -141,8 +158,17 @@ async function fulfillExamPassCheckout(session) {
     const userRef = db.collection('users').doc(uid);
     const userSnap = await userRef.get();
     if (!userSnap.exists) {
-        console.error(`[exam-pass] Refusing grant: no user document for ${uid} (session ${session.id})`);
-        return;
+        // THROW, do not return.
+        //
+        // The subscription handler throws here (stripe.ts), which makes
+        // stripeWebhook return 500, release its idempotency claim and let Stripe
+        // retry for days until the profile trigger has caught up. Returning
+        // instead let the webhook fall through to marking the event 'done': the
+        // $59 was captured, no entitlement was ever written, Stripe never
+        // retried, and nothing anywhere recorded that a purchase happened -- the
+        // buyer landing on /app/success?product=exam-pass read "Exam Pass Active"
+        // with no pass. Same failure, opposite handling, in two files.
+        throw new Error(`Refusing Exam Pass grant: no user document for ${uid} (session ${session.id})`);
     }
     // Idempotency: already fulfilled from this exact session.
     const existing = (_c = userSnap.data()) === null || _c === void 0 ? void 0 : _c.entitlement;

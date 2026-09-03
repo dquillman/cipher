@@ -19,8 +19,20 @@ import { trackPricingView } from '../lib/ga4';
 
 export default function Pricing() {
     const [loading, setLoading] = useState(false);
-    const { entitlement, passEntitlement } = useSubscription();  // Use Context
+    const { entitlement, passEntitlement, loading: subLoading } = useSubscription();  // Use Context
     const isPro = entitlement.plan === 'pro';
+    // Wait for the entitlement before drawing any purchase control.
+    //
+    // This was the one entitlement-dependent surface with no loading guard, and
+    // the only one where the wrong answer costs real money. The context seeds
+    // entitlement=free and passEntitlement=null, so on first paint a Pro
+    // subscriber saw "Upgrade to Pro" and a pass holder saw the $59 checkout.
+    // A click in that window starts a live-mode purchase: a second subscription
+    // (invisible and uncancellable in-app, because getSubscriptionDetails lists
+    // with limit:1) or a second pass, which overwrites the single
+    // users/{uid}.entitlement object and destroys the first pass's remaining
+    // days. Every other gate already waited -- App.tsx, MockExamGuard,
+    // checkPermission. This is that guard's missing twin.
     const subscriptionEnding = entitlement.subscriptionStatus === 'canceling'
         || entitlement.subscriptionStatus === 'canceled'
         || entitlement.subscriptionStatus === 'refunded';   // Only true if actually PAID Pro. Trial is not 'pro' plan.
@@ -121,6 +133,14 @@ export default function Pricing() {
     const handleManageSubscription = () => {
         navigate('/app/account');
     };
+
+    if (subLoading) {
+        return (
+            <div className="min-h-dvh flex items-center justify-center text-slate-400">
+                <p className="text-sm">Loading your plan…</p>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-dvh bg-slate-900 text-white flex flex-col items-center py-20 px-4">

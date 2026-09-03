@@ -49,6 +49,24 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
             .collection('users').doc(context.auth.uid).get())
             .data()?.stripeCustomerId as string | undefined;
 
+        // Refuse a second subscription while one is live.
+        //
+        // Nothing asked Stripe whether the customer already had one, so a click
+        // on a stale "Upgrade to Pro" button billed them $19/mo twice --
+        // and getSubscriptionDetails lists with limit:1, so Account.tsx could
+        // only ever cancel one of them. The second was invisible and
+        // uncancellable from inside the app.
+        if (existingCustomerId) {
+            const live = await stripe.subscriptions.list({ customer: existingCustomerId, status: 'active', limit: 3 });
+            const trialing = await stripe.subscriptions.list({ customer: existingCustomerId, status: 'trialing', limit: 3 });
+            if (live.data.length > 0 || trialing.data.length > 0) {
+                throw new functions.https.HttpsError(
+                    'failed-precondition',
+                    'You already have an active subscription. Manage it from your Account page rather than buying a second one.',
+                );
+            }
+        }
+
         const session = await stripe.checkout.sessions.create({
             mode: 'subscription',
             payment_method_types: ['card'],
@@ -296,6 +314,19 @@ export const stripeWebhook = functions.https.onRequest(async (req, res) => {
             case 'charge.refunded':
                 await handleChargeRefunded(event.data.object as Stripe.Charge);
                 break;
+            case 'invoice.payment_failed':
+            case 'customer.subscription.updated':
+                // Without these the app never learned that a card had failed or
+                // that the customer changed anything in Stripe's billing portal.
+                // Account.tsx counts 'past_due' as live, so during dunning it
+                // showed a green ACTIVE badge and "Renews <date> at $19/month" --
+                // a positive statement about billing, false, at the one moment
+                // the customer needed to be told to update their card. And a
+                // cancellation made in the portal left subscriptionStatus at
+                // 'active', so /app/pricing (the portal's own return_url) said
+                // "Your plan renews automatically."
+                await syncSubscriptionState(event.data.object as Stripe.Subscription | Stripe.Invoice);
+                break;
             default:
                 console.log(`Unhandled event type ${event.type}`);
         }
@@ -483,6 +514,48 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
         subscriptionStatus: 'refunded',
         lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
+}
+
+/**
+ * Mirror Stripe's own view of the subscription onto users/{uid}.
+ *
+ * Grant and revoke were asymmetric: the app wrote isPro only at first checkout
+ * and cleared it only on deletion or refund, so every state in between --
+ * past_due, unpaid, incomplete, a portal-side cancel_at_period_end -- was
+ * invisible to every surface that reads the user document.
+ */
+async function syncSubscriptionState(object: Stripe.Subscription | Stripe.Invoice) {
+    const db = admin.firestore();
+    const customerId = typeof object.customer === 'string' ? object.customer : object.customer?.id;
+    if (!customerId) return;
+
+    const usersSnap = await db.collection('users')
+        .where('stripeCustomerId', '==', customerId)
+        .limit(1)
+        .get();
+    if (usersSnap.empty) {
+        console.warn(`[stripe] No user found for customer ${customerId} while syncing subscription state.`);
+        return;
+    }
+
+    const stripe = getStripe();
+    const subs = await stripe.subscriptions.list({ customer: customerId, status: 'all', limit: 5 });
+    const healthy = subs.data.find(s => s.status === 'active' || s.status === 'trialing');
+    const troubled = subs.data.find(s => s.status === 'past_due' || s.status === 'unpaid' || s.status === 'incomplete');
+
+    const status = healthy ? (healthy.cancel_at_period_end ? 'canceling' : 'active')
+        : troubled ? troubled.status
+        : 'canceled';
+
+    // Access is kept during dunning -- Stripe is still trying the card, and
+    // cutting a paying customer off mid-retry is the wrong side to err on. The
+    // status is what the UI needs so it can stop claiming the plan is healthy.
+    await usersSnap.docs[0].ref.set({
+        subscriptionStatus: status,
+        ...(status === 'canceled' ? { isPro: false, plan: 'starter', access: 'free', accessLevel: 'free' } : {}),
+        lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    console.log(`[stripe] Synced customer ${customerId} -> subscriptionStatus ${status}.`);
 }
 
 async function handleSubscriptionDeleted(sub: Stripe.Subscription) {

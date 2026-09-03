@@ -101,6 +101,46 @@ export function commandSequences(config: CommandConfig): string[][] {
     );
 }
 
+/**
+ * Compare two shell commands by what they DO, not by how they were typed.
+ *
+ * Grading was exact string equality against a hand-enumerated list of flag
+ * permutations, so a candidate who typed a correct command was told they were
+ * wrong. The SPF item accepted "dig txt example.com" and "dig +short txt
+ * example.com" but not "dig -t txt example.com" -- standard, correct syntax --
+ * and the socket item accepted "ss -lntp", "-tlnp", "-ltnp" and "-tulnp" but
+ * not "ss -ltpn", which produces identical output. Enumerating permutations by
+ * hand cannot be completed; normalizing can.
+ *
+ * Collapses whitespace, lowercases, drops the "-t"/"-q"/"--type" selector
+ * spellings that only introduce the next token, splits bundled short flags
+ * ("-lntp" -> l,n,t,p) and sorts them, and sorts trailing arguments so option
+ * order stops mattering. Long options keep their values.
+ */
+export function normalizeCommand(raw: string): string {
+    const parts = String(raw || '').toLowerCase().trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return '';
+    const program = parts[0];
+    const flags: string[] = [];
+    const words: string[] = [];
+    for (let i = 1; i < parts.length; i++) {
+        const p = parts[i];
+        // "dig -t txt name" and "nslookup -type=txt name" mean the same as
+        // "dig txt name": the selector only announces the token after it.
+        if (p === '-t' || p === '-q' || p === '--type') continue;
+        const kv = p.match(/^--?(?:type|q|querytype)=(.+)$/);
+        if (kv) { words.push(kv[1]); continue; }
+        if (p.startsWith('--')) { flags.push(p); continue; }
+        if (p.startsWith('+')) { flags.push(p); continue; }
+        if (p.startsWith('-') && p.length > 1) {
+            for (const ch of p.slice(1)) flags.push('-' + ch);
+            continue;
+        }
+        words.push(p);
+    }
+    return [program, ...flags.sort(), ...words.sort()].join(' ');
+}
+
 export function scorePBQ(config: PBQConfig, state: PBQState): { correct: number; total: number } {
     switch (config.pbqType) {
         case 'drag-drop': {
@@ -133,11 +173,11 @@ export function scorePBQ(config: PBQConfig, state: PBQState): { correct: number;
             return { correct, total: order.length };
         }
         case 'command': {
-            const history = (state.commandHistory || []).map(c => c.toLowerCase().trim());
+            const history = (state.commandHistory || []).map(normalizeCommand);
             const accepted = commandSequences(config.command!);
             const matched = accepted.some(seq => {
                 if (seq.length !== history.length) return false;
-                return seq.every((cmd, i) => history[i] === cmd.toLowerCase().trim());
+                return seq.every((cmd, i) => history[i] === normalizeCommand(cmd));
             });
             return { correct: matched ? 1 : 0, total: 1 };
         }

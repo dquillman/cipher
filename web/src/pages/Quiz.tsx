@@ -1479,7 +1479,17 @@ export default function Quiz() {
         const isMultiResponse = currentQuestion.type === 'multi-response';
         const isCorrect = gradeCurrentQuestion(currentQuestion);
 
-        setQuizDetails(prev => [...prev, {
+        // Record this question once per run.
+        //
+        // handleSubmit refuses to re-grade an already-answered question; this
+        // path had no such guard, so it appended a SECOND detail entry for the
+        // same questionId. saveProgress replaces the stored answer by
+        // questionId, so on a resumed run that could overwrite a previously
+        // correct answer as incorrect, and incrementDailyCount(details.length)
+        // then charged 11 questions for a 10-question quiz. Now that the
+        // dashboard offers fully-answered runs for resume, this is reachable
+        // rather than theoretical.
+        setQuizDetails(prev => prev.some(d => d.questionId === currentQuestion.id) ? prev : [...prev, {
             questionId: currentQuestion.id,
             selectedOption,
             // A multiple-response item has no single correct index. `null` is

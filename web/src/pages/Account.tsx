@@ -130,6 +130,13 @@ export default function Account() {
     let planLabel = 'Starter (free)';
     let planNote = 'Upgrade any time — or buy a single Exam Pass.';
     const subIsLive = !!details && ['active', 'trialing', 'past_due'].includes(details.status);
+    // past_due is live for ACCESS -- Stripe is still retrying the card and
+    // cutting a paying customer off mid-retry is the wrong side to err on --
+    // but it must not be described as healthy. The page previously showed a
+    // green ACTIVE badge and "Renews <date> at $19/month" throughout dunning,
+    // which is a positive statement about billing, false, at exactly the moment
+    // the customer needs to be told to update their card.
+    const paymentFailing = !!details && (details.status === 'past_due' || details.status === 'unpaid');
     if (details && !subIsLive) {
         // getSubscriptionDetails lists with status:'all', so a canceled or
         // incomplete subscription comes back too. Reading only cancelAtPeriodEnd
@@ -145,7 +152,9 @@ export default function Account() {
     } else if (details) {
         const periodEnd = formatDate(details.currentPeriodEnd);
         planLabel = details.planName;
-        if (details.cancelAtPeriodEnd) {
+        if (paymentFailing) {
+            planNote = 'We could not take your last payment. Update your card from "Invoices & payment method" below to keep your access.';
+        } else if (details.cancelAtPeriodEnd) {
             planNote = periodEnd
                 ? `Access ends ${periodEnd}. You will not be charged again.`
                 : 'Canceled — you will not be charged again.';
@@ -213,10 +222,14 @@ export default function Account() {
                                 <p className="text-sm text-slate-400 mt-1">{planNote}</p>
                             </div>
                             {details && (
-                                <span className={`px-2 py-1 rounded-md text-xs font-bold whitespace-nowrap ${details.cancelAtPeriodEnd
-                                    ? 'bg-yellow-500/10 text-yellow-500'
-                                    : 'bg-green-500/10 text-green-500'}`}>
-                                    {!subIsLive ? 'ENDED' : details.cancelAtPeriodEnd ? 'CANCELING' : 'ACTIVE'}
+                                <span className={`px-2 py-1 rounded-md text-xs font-bold whitespace-nowrap ${!subIsLive
+                                    ? 'bg-slate-500/10 text-slate-400'
+                                    : paymentFailing
+                                        ? 'bg-red-500/10 text-red-400'
+                                        : details.cancelAtPeriodEnd
+                                            ? 'bg-yellow-500/10 text-yellow-500'
+                                            : 'bg-green-500/10 text-green-500'}`}>
+                                    {!subIsLive ? 'ENDED' : paymentFailing ? 'PAYMENT FAILED' : details.cancelAtPeriodEnd ? 'CANCELING' : 'ACTIVE'}
                                 </span>
                             )}
                         </div>

@@ -41,7 +41,7 @@ export default function SecurityPlusPracticeLP() {
       <SectionBlock title="Three things compound for Security+">
         <ol className="space-y-4">
           <li>
-            <strong>16 performance-based questions that you actually operate, in practice mode.</strong>
+            <strong>13 performance-based questions that you actually operate, in practice mode.</strong>
             Drag systems into the right network zone, order the incident response phases,
             complete a firewall ruleset, or type the command that lists listening sockets
             with their owning process. Five matching items on top of that. The remaining
@@ -112,7 +112,7 @@ export default function SecurityPlusPracticeLP() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Do you simulate Performance-Based Questions?</dt>
-            <dd className="mt-1">Yes, and here are the exact numbers rather than a claim. The bank is 117 questions: 96 scenario-driven multiple choice, 5 matching items, and 16 performance-based questions across four formats — drag-and-drop into zones (5), ordered procedures (4), configuration tables (4) and a simulated command line (3). What we do <em>not</em> reproduce is CompTIA's own interface chrome or its network-topology diagram items. Sixteen is a starting set, not parity with the real exam, and we would rather say so. One more thing worth knowing before you pay: the PBQs and matching items appear in practice mode, not inside the 90-question timed mock, which is multiple choice only. Take the free trial and judge them before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
+            <dd className="mt-1">Yes, and here are the exact numbers rather than a claim. The bank is 110 questions: 93 scenario-driven multiple choice, 4 matching items, and 13 performance-based questions across four formats — drag-and-drop into zones (5), ordered procedures (4), configuration tables (4) and a simulated command line (3). What we do <em>not</em> reproduce is CompTIA's own interface chrome or its network-topology diagram items. Thirteen is a starting set, not parity with the real exam, and we would rather say so. One more thing worth knowing before you pay: the PBQs and matching items appear in practice mode, not inside the 90-question timed mock, which is multiple choice only. Take the free trial and judge them before you pay us anything, and spend an hour in CompTIA's own exam demo before test day.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">How many questions is the Full Mock?</dt>

@@ -332,8 +332,15 @@ export const useSimulator = () => {
         const flush = () => { clearTimeout(t); void write(); };
         window.addEventListener('pagehide', flush);
         return () => {
+            // Flush on unmount too, not just on pagehide.
+            //
+            // pagehide fires on a real page unload; it does NOT fire when
+            // react-router navigates away. So leaving the exam through the
+            // sidebar within 1.2s of answering discarded that answer -- the
+            // cleanup cleared the pending debounce and nothing wrote it.
             clearTimeout(t);
             window.removeEventListener('pagehide', flush);
+            void write();
         };
     }, [loading, isSubmitting, runId, currentIndex, answers, flagged, questions]);
 

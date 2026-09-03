@@ -316,10 +316,23 @@ export default function Dashboard() {
         // completed 'simulation' attempt. The simulator has its own resume path.
         if (r.quizType === 'simulation') return false;
         if (r.examId !== selectedExamId) return false;
-        // Only show banner if the run has unanswered questions and no completedAt
-        const answered = (r.answers || []).filter((a: any) => a?.selectedOption !== undefined).length;
+        // Offer any run that was never completed -- including one where every
+        // question has an answer.
+        //
+        // handleSubmit persists each answer at submit, so after submitting the
+        // last question a run has answers === total while still in_progress.
+        // The old `answered < total` test hid exactly that run, so closing the
+        // tab or clicking a sidebar link at that moment left it on no screen at
+        // all, and the next createRun for that exam marked it 'abandoned' --
+        // which nothing reads. Ten answered questions, no score, no XP, no
+        // mastery, no history. Quit & Save was patched for this state; every
+        // other way of leaving the page was not.
+        //
+        // Quiz.tsx already handles the fully-answered case on resume: it lands
+        // on the first unanswered question, or flags allAnsweredOnResume so the
+        // run can be finished and scored.
         const total = r.snapshot?.questionIds?.length || 0;
-        return total > 0 && answered < total && !r.completedAt;
+        return total > 0 && !r.completedAt;
     });
     const hasActiveRun = resumableRuns.length > 0;
 
