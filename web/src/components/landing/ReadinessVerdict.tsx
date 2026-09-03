@@ -49,7 +49,7 @@ export default function ReadinessVerdict() {
             {/* keep-going banner */}
             <div className="mx-5 mt-5 flex items-center gap-4 rounded-xl border border-slate-800 bg-slate-800/40 px-5 py-4">
                 <div className="flex-1">
-                    <span className="block text-sm font-bold text-white">So close — 2 points from passing.</span>
+                    <span className="block text-sm font-bold text-white">Close — {BENCH - PCT} points below our benchmark.</span>
                     <span className="text-xs text-slate-400">Your gap is almost entirely one domain. Here's the fix.</span>
                 </div>
                 <span className="hidden sm:inline-flex font-mono text-xs font-bold tracking-wide bg-brand-500 text-slate-950 rounded-lg px-4 py-2.5 whitespace-nowrap">

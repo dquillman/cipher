@@ -236,7 +236,7 @@ export default function StudyByBloomsLevel() {
             </p>
 
             <p className="text-white font-medium">
-              It's the framework the exam writers use, applied to how you study. Across PMP, Security+, CSM, SHRM-CP, ITIL 4, Network+, A+ Core 2, and Six Sigma Green Belt.
+              It's the framework the exam writers use, applied to how you study. Across PMP, CompTIA Security+, Network+ and A+ Core 2.
             </p>
           </div>
 
@@ -257,7 +257,7 @@ export default function StudyByBloomsLevel() {
               See where you're actually weak.
             </h3>
             <p className="text-slate-400 mb-6 max-w-lg mx-auto">
-              CIPHER runs a cognitive-level diagnostic across every exam it supports. In 20 minutes you'll know what's really blocking your score.
+              CIPHER runs a cognitive-level diagnostic across every exam it supports. In about ten minutes you'll know what's really blocking your score.
             </p>
             <button
               onClick={handleCta}

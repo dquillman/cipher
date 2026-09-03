@@ -45,7 +45,7 @@ function Section({ items }: { items: readonly TestimonialDisplayItem[] }) {
         id="testimonials-heading"
         className="text-center text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl"
       >
-        What credentialed practitioners are saying
+        What a credentialed practitioner said
       </h2>
 
       <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

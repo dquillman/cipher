@@ -412,11 +412,30 @@ export default function Quiz() {
                             return;
                         }
                         setQuestions(fetchedQs);
-                        if (run.snapshot.currentQuestionIndex !== undefined) {
-                            setCurrentQuestionIndex(
-                                Math.min(run.snapshot.currentQuestionIndex, fetchedQs.length - 1),
-                            );
-                        }
+                        // Land on the first question that has NO persisted answer,
+                        // not on the saved index.
+                        //
+                        // saveProgress clamps the stored index to the current one on
+                        // the LAST question (there is no next), so a reload while
+                        // reading the final explanation put the tester back onto a
+                        // question they had already answered -- with the prior score
+                        // already restored below. Answering it again incremented that
+                        // score past the denominator, and a 5-question quiz reported
+                        // "6 / 5". The run document was right, because completeRun
+                        // re-derives from the deduped answers; the number on screen was
+                        // the wrong one, and nothing flagged the difference.
+                        const answeredIds = new Set(
+                            (run.answers || [])
+                                .filter((a: any) => a.selectedOption !== undefined)
+                                .map((a: any) => a.questionId),
+                        );
+                        const firstUnanswered = fetchedQs.findIndex((q) => !answeredIds.has(q.id));
+                        setAllAnsweredOnResume(firstUnanswered === -1);
+                        setCurrentQuestionIndex(
+                            firstUnanswered === -1
+                                ? fetchedQs.length - 1
+                                : firstUnanswered,
+                        );
 
                         // Restore the progress already earned in this run.
                         //
@@ -958,6 +977,19 @@ export default function Quiz() {
         // already guards this way.
         if (showExplanation) return;
 
+        // Never grade the same question twice on one run. The resume path is
+        // supposed to skip answered questions now, but score is incremented here
+        // unconditionally, so this is the backstop that keeps a score from
+        // exceeding its denominator whatever else goes wrong upstream.
+        const alreadyAnswered = quizDetails.some(
+            (d: any) => d.questionId === questions[currentQuestionIndex]?.id,
+        );
+        if (alreadyAnswered) {
+            console.warn('[quiz] question already answered on this run; not grading it again.');
+            setShowExplanation(true);
+            return;
+        }
+
         const currentQuestion = questions[currentQuestionIndex];
 
         // EC-119: Matching questions use matchingState instead of selectedOption
@@ -1259,6 +1291,9 @@ export default function Quiz() {
         }
     };
 
+    /** True when a resumed run already has an answer for every question. */
+    const [allAnsweredOnResume, setAllAnsweredOnResume] = useState(false);
+
     const saveGuardRef = useRef(false);
 
     const saveQuizResults = async (explicitDetails?: any[]) => {
@@ -1427,7 +1462,18 @@ export default function Quiz() {
         }
     };
 
+    const [advancing, setAdvancing] = useState(false);
+
     const handleNext = async () => {
+        // handleNext awaits a 6-second timed write before the screen changes, and
+        // this button had no disabled state -- so a double-tap re-entered it with
+        // the same currentQuestionIndex and appended a SECOND quizDetails entry
+        // for the same question. That inflated array is what is charged against
+        // the free-tier daily cap. The Submit button one branch above was already
+        // guarded; this one was missed.
+        if (advancing) return;
+        setAdvancing(true);
+        try {
         // Save details for the JUST FINISHED question
         const currentQuestion = questions[currentQuestionIndex];
         const isMultiResponse = currentQuestion.type === 'multi-response';
@@ -1546,6 +1592,9 @@ export default function Quiz() {
             }
 
             setQuizCompleted(true);
+        }
+        } finally {
+            setAdvancing(false);
         }
     };
 
@@ -1697,9 +1746,12 @@ export default function Quiz() {
             </button>
             <button
                 onClick={handleNext}
-                className="w-full sm:w-auto bg-brand-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-brand-500/30 hover:bg-brand-500 hover:shadow-brand-500/40 transition-all transform hover:-translate-y-0.5"
+                disabled={advancing}
+                className="w-full sm:w-auto bg-brand-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg shadow-brand-500/30 hover:bg-brand-500 hover:shadow-brand-500/40 transition-all transform hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-wait disabled:transform-none"
             >
-                {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
+                {advancing
+                    ? 'Saving…'
+                    : currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
             </button>
         </div>
     );
@@ -1760,8 +1812,25 @@ export default function Quiz() {
                                         //
                                         // There is nothing left to resume at that point, so
                                         // finish and score it instead of pausing.
+                                        // Base this on what is ANSWERED, not on what is
+                                        // on screen.
+                                        //
+                                        // The first version tested `showExplanation`,
+                                        // which a resume never restores -- so after a
+                                        // reload on the last question this was false, the
+                                        // pause branch ran, and the run was left
+                                        // in_progress with answers === total. The
+                                        // dashboard banner only offers runs where
+                                        // answered < total, so it appeared on no screen
+                                        // at all and the next createRun marked it
+                                        // 'abandoned'. The button says "Quit & Save".
+                                        const answeredCount = new Set(
+                                            quizDetails.map((d: any) => d.questionId),
+                                        ).size;
                                         const nothingLeftToAnswer =
-                                            showExplanation && currentQuestionIndex === questions.length - 1;
+                                            allAnsweredOnResume ||
+                                            answeredCount >= questions.length ||
+                                            (showExplanation && currentQuestionIndex === questions.length - 1);
 
                                         if (activeRunId && !nothingLeftToAnswer) {
                                             // Unified Mode: Pause — navigate (modal survives in App.tsx)

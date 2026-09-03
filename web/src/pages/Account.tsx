@@ -129,7 +129,20 @@ export default function Account() {
     // What the user actually has, in plain words.
     let planLabel = 'Starter (free)';
     let planNote = 'Upgrade any time — or buy a single Exam Pass.';
-    if (details) {
+    const subIsLive = !!details && ['active', 'trialing', 'past_due'].includes(details.status);
+    if (details && !subIsLive) {
+        // getSubscriptionDetails lists with status:'all', so a canceled or
+        // incomplete subscription comes back too. Reading only cancelAtPeriodEnd
+        // rendered it as a live plan -- a green ACTIVE badge, "Renews <date> at
+        // $19/month", and a Cancel button that could only throw. A customer
+        // refunded under the 60-day guarantee (which cancels immediately, so
+        // cancel_at_period_end was never set) was told they were still on a
+        // renewing plan, while the dashboard told them the opposite.
+        planLabel = 'Starter (free)';
+        planNote = details.status === 'canceled'
+            ? 'Your subscription has ended. You are on the free plan.'
+            : 'Your subscription is not active. You are on the free plan.';
+    } else if (details) {
         const periodEnd = formatDate(details.currentPeriodEnd);
         planLabel = details.planName;
         if (details.cancelAtPeriodEnd) {
@@ -203,7 +216,7 @@ export default function Account() {
                                 <span className={`px-2 py-1 rounded-md text-xs font-bold whitespace-nowrap ${details.cancelAtPeriodEnd
                                     ? 'bg-yellow-500/10 text-yellow-500'
                                     : 'bg-green-500/10 text-green-500'}`}>
-                                    {details.cancelAtPeriodEnd ? 'CANCELING' : 'ACTIVE'}
+                                    {!subIsLive ? 'ENDED' : details.cancelAtPeriodEnd ? 'CANCELING' : 'ACTIVE'}
                                 </span>
                             )}
                         </div>
@@ -263,7 +276,7 @@ export default function Account() {
                 )}
 
                 {/* Cancel — only meaningful with a live subscription. */}
-                {details && !details.cancelAtPeriodEnd && (
+                {details && subIsLive && !details.cancelAtPeriodEnd && (
                     <div className="mt-4 pt-4 border-t border-slate-700/60">
                         {showCancelConfirm ? (
                             <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 space-y-3">

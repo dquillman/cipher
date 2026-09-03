@@ -17,6 +17,12 @@ export interface UserEntitlement {
     accessLevel: AccessLevel;
     trialConsumed: boolean;
     trialEndsAt: Date | null;
+    /** Raw Stripe-derived status from the user doc. cancelSubscription writes
+     *  'canceling' and the refund handler writes 'refunded', but nothing on any
+     *  client surface read it -- so /app/pricing, the page Stripe's billing
+     *  portal returns you to, told a customer who had just cancelled that "Your
+     *  plan renews automatically." */
+    subscriptionStatus: string | null;
 }
 
 /**
@@ -44,7 +50,8 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
         plan: 'free',
         accessLevel: 'free',
         trialConsumed: false,
-        trialEndsAt: null
+        trialEndsAt: null,
+        subscriptionStatus: (userData?.subscriptionStatus as string | undefined) ?? null
     };
 
     const now = new Date();
@@ -120,7 +127,8 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
                             plan: 'trial',
                             accessLevel: 'pro',
                             trialConsumed: true,
-                            trialEndsAt
+                            trialEndsAt,
+                            subscriptionStatus: (userData?.subscriptionStatus as string | undefined) ?? null
                         };
                     } else {
                         // EXPLICITLY EXPIRED
@@ -133,7 +141,8 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
                             plan: 'free',
                             accessLevel: 'free',
                             trialConsumed: true,
-                            trialEndsAt
+                            trialEndsAt,
+                            subscriptionStatus: (userData?.subscriptionStatus as string | undefined) ?? null
                         };
                     }
                 }
@@ -165,7 +174,8 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
                     plan: 'trial',
                     accessLevel: 'free',
                     trialConsumed: true,
-                    trialEndsAt
+                    trialEndsAt,
+                    subscriptionStatus: (userData?.subscriptionStatus as string | undefined) ?? null
                 };
             } else if (trialEndsAt) {
                 const diffMs = trialEndsAt.getTime() - now.getTime();
@@ -184,7 +194,8 @@ export function getUserEntitlement(userData: DocumentData | undefined, authUser?
                     plan: 'trial',
                     accessLevel: 'pro',
                     trialConsumed: true,
-                    trialEndsAt
+                    trialEndsAt,
+                    subscriptionStatus: (userData?.subscriptionStatus as string | undefined) ?? null
                 };
             }
         }

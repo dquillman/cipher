@@ -44,7 +44,7 @@ export default function RecallOnlyPrepFails() {
               Why Recall-Only Prep Fails High-Stakes Certification Exams
             </h1>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Flashcards and question banks stop working at around 70%. The cognitive science explains why — and what to do instead on the PMP, Security+, CSM, and SHRM-CP. The answer isn't more repetitions.
+              Flashcards and question banks stop working at around 70%. The cognitive science explains why — and what to do instead on the PMP, Security+, Network+ and A+ Core 2. The answer isn't more repetitions.
             </p>
             <div className="flex items-center gap-3 mt-6 text-sm text-slate-500">
               <span>By Dave, founder of CipherExam</span>
@@ -214,7 +214,7 @@ export default function RecallOnlyPrepFails() {
             </p>
 
             <p className="text-white font-medium">
-              You don't have to design this loop. CIPHER runs it. Across all eight currently live credentials.
+              You don't have to design this loop. CIPHER runs it. Across all four live credentials.
             </p>
           </div>
 

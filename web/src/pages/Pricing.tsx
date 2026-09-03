@@ -20,7 +20,10 @@ import { trackPricingView } from '../lib/ga4';
 export default function Pricing() {
     const [loading, setLoading] = useState(false);
     const { entitlement, passEntitlement } = useSubscription();  // Use Context
-    const isPro = entitlement.plan === 'pro';   // Only true if actually PAID Pro. Trial is not 'pro' plan.
+    const isPro = entitlement.plan === 'pro';
+    const subscriptionEnding = entitlement.subscriptionStatus === 'canceling'
+        || entitlement.subscriptionStatus === 'canceled'
+        || entitlement.subscriptionStatus === 'refunded';   // Only true if actually PAID Pro. Trial is not 'pro' plan.
 
     // --- 90-Day Exam Pass ---
     const { selectedExamId } = useExam();
@@ -204,7 +207,7 @@ export default function Pricing() {
                             <span className="text-4xl font-bold tracking-tight text-white">$19</span>
                             <span className="ml-1 text-xl text-slate-400">/ month</span>
                         </div>
-                        <p className="mt-2 text-blue-200 text-sm">{isPro ? 'Your plan renews automatically.' : 'Cancel anytime.'}</p>
+                        <p className="mt-2 text-blue-200 text-sm">{isPro ? (subscriptionEnding ? 'Your plan is set to end — you will not be charged again.' : 'Your plan renews automatically.') : 'Cancel anytime.'}</p>
 
                         <ul className="mt-8 space-y-4 mb-8">
                             {[

@@ -1,0 +1,778 @@
+[
+  {
+    "id": "02uRNOyTfLHLhaxSwVMX",
+    "explanation": "Adding UX consistency to the definition of done and establishing a design system addresses the root cause going forward. This ensures future work aligns with a cohesive vision while incrementally improving the existing interface. Option A defers the problem and creates rework. Option C ignores a valid stakeholder concern. Option D is a disproportionate response that halts value delivery."
+  },
+  {
+    "id": "0b2k9AeZvVFsRFSUFTx9",
+    "explanation": "Bringing together the relevant stakeholders to clarify requirements and assess impact collaboratively is the best approach. This addresses the root cause (ambiguous requirements) while involving the right people to make an informed decision. Option A puts the decision on someone who may not have the technical context. Option C ignores the conflict and could lead to system inconsistencies. Option D is premature before understanding which interpretation is correct and what the actual rework scope is."
+  },
+  {
+    "id": "0cXR1mfaupxLH6YmBtls",
+    "explanation": "The project manager should first negotiate for the needed resource, then explore alternatives with a clear understanding of impacts. This includes contract resources, schedule changes, or scope adjustments, all documented in an impact analysis. Option A may not be feasible and could introduce excessive risk. Option C is passive and delays problem-solving. Option D assigns specialized work to unqualified staff, creating quality and schedule risk."
+  },
+  {
+    "id": "0fsGiyUagb5uaLCjbiG0",
+    "explanation": "Co-designing a solution that respects existing team practices while meeting executive needs demonstrates servant leadership and stakeholder management. Building on what works minimizes resistance and overhead. Option A creates an adversarial relationship with the team. Option B places an unsustainable burden on the project manager and creates a single point of failure. Option D doesn't meet executive stakeholder expectations for formal reporting."
+  },
+  {
+    "id": "0sc8WaygvG5Vqu7Flhzv",
+    "explanation": "Identifying overlap windows for synchronous work and establishing asynchronous protocols for other work respects all team members while enabling collaboration. Option A forces two-thirds of the team into inconvenient hours. Option C limits the team's ability to collaborate across boundaries. Option D disrupts consistency and makes scheduling unpredictable for everyone."
+  },
+  {
+    "id": "25Lhsqy3AkUt4YS03JNf",
+    "explanation": "The best approach combines AI-generated estimates with expert judgment. AI provides a strong data-driven baseline from historical projects, but unique conditions require human expertise to adjust. Option A discards valuable data analysis. Option B ignores legitimate domain knowledge about site-specific factors. Option D manipulates the tool to confirm a predetermined answer, which defeats the purpose of data-driven estimation."
+  },
+  {
+    "id": "2KcBFMCUcOYOZgqwkoZ0",
+    "explanation": "Developing a common vision is a core People domain responsibility. The project manager should facilitate alignment among stakeholders before escalating or proceeding unilaterally. Option A abdicates leadership. Option C delays resolution. Option D ignores the misalignment and risks rework."
+  },
+  {
+    "id": "2T7zz8YKFLQnrWdu8CHV",
+    "explanation": "This situation indicates a breakdown in shared understanding during refinement. Facilitating dialogue helps identify root causes and improve collaboration. Option A ignores the product owner's valid concern. Option B places all blame on one party. Option D adds bureaucracy that contradicts agile principles without addressing the communication gap."
+  },
+  {
+    "id": "2eMF8z8nR5knUrJBdkj0",
+    "explanation": "A critical security vulnerability represents immediate risk to the organization that transcends standard business value calculations. Leaving it unaddressed exposes the organization to compliance penalties, data breaches, and reputational damage. Option A prioritizes business value but ignores urgent risk. Option B optimizes for predictability over organizational protection. Option D defers a critical security fix, which is irresponsible regardless of business value comparisons."
+  },
+  {
+    "id": "3D6y8Pscri8YFLKfDvui",
+    "explanation": "CV = EV - AC = $540,000 - $580,000 = -$40,000 (over budget). SV = EV - PV = $540,000 - $600,000 = -$60,000 (behind schedule). Option A has the wrong cost variance. Option C has the wrong schedule variance. Option D reverses both variances."
+  },
+  {
+    "id": "3f34d8Jrmp9PwzmQA5hB",
+    "explanation": "The project manager should present the data transparently and collaboratively agree on a target with contingency plans. This gives the sponsor the information needed to make a risk-informed decision. Option A ignores valuable risk data. Option B is overly conservative without discussion. Option D manipulates the analysis, which defeats the purpose of data-driven planning."
+  },
+  {
+    "id": "3qlW1EE34iTj1LXw5hjg",
+    "explanation": "Integrating sustainability metrics directly into quality acceptance criteria ensures they are treated with the same rigor as functional requirements and verified during quality control. Option A creates silos that lead to misalignment. Option C lacks enforcement mechanisms. Option D pushes sustainability outside the project team's accountability."
+  },
+  {
+    "id": "4VcRwpCBrSXz8Pip4DDx",
+    "explanation": "Addressing the personal behavior privately and then facilitating an objective discussion separates the interpersonal conflict from the technical decision. This protects the junior team member while ensuring the technical decision is merit-based. Option A reinforces hierarchy over merit and enables dismissive behavior. Option C may result in a popularity contest rather than a sound technical decision. Option D favors one perspective without objective evaluation."
+  },
+  {
+    "id": "4mvv6RW8EQSFqrtTxyw8",
+    "explanation": "AI governance requires stakeholder engagement, especially for technologies with significant privacy implications. Option A ignores legitimate community concerns. Option C removes functionality without authorization. Option D is passive and indefinite. Comprehensive engagement with governance framework development addresses concerns while supporting informed decision-making."
+  },
+  {
+    "id": "4vuPK2MMm9ZveLPpP6oy",
+    "explanation": "Allocating a consistent percentage of capacity to technical debt each sprint ensures sustainable delivery. This prevents debt from compounding while maintaining steady feature delivery. Option A stops feature delivery entirely, which may not be acceptable to stakeholders. Option C allows debt to compound, eventually slowing delivery significantly. Option D lacks the discipline of a consistent approach and may result in debt being perpetually deprioritized."
+  },
+  {
+    "id": "5Js6zjfpfpqap3jj7umG",
+    "explanation": "External changes affecting critical path items require proper assessment and governance. Option A bypasses change control. Option C is unlikely to succeed and wastes time. Option D ignores the 90-day deadline. Impact assessment with options presented to the change control board ensures an informed, governed response."
+  },
+  {
+    "id": "677L5K0D7H4lgzOYapU5",
+    "explanation": "Recognizing initiative and exploring formalization demonstrates servant leadership by removing barriers, supporting team growth, and making valuable contributions visible. This encourages a learning culture. Option A discourages proactive behavior and team development. Option C treats positive initiative as a problem. Option D punishes high performance with more work rather than recognizing the value being created."
+  },
+  {
+    "id": "6yK6uPK7umSOfWfCW2RT",
+    "explanation": "Facilitating a joint workshop brings competing stakeholders together to find common ground through collaboration. This approach respects both stakeholder groups, promotes transparency, and seeks a solution that maximizes environmental benefit within financial constraints. Option A dismisses community concerns without exploring alternatives. Option C advocates for one stakeholder over another without exploring middle ground. Option D is a potential solution but should emerge from stakeholder engagement, not be imposed unilaterally."
+  },
+  {
+    "id": "7GZplhEeZmHvGWybHyoA",
+    "explanation": "Contextualizing the lessons and focusing on transferable patterns makes the knowledge relevant to the team's situation. Facilitated discussion respects their expertise while ensuring valuable lessons aren't dismissed. Option A creates compliance without understanding, which is ineffective. Option B allows the team to dismiss potentially critical lessons based on a surface-level objection. Option D escalates a coaching opportunity into a governance issue."
+  },
+  {
+    "id": "7emFAgOwqMuhcBq5mnuI",
+    "explanation": "The change control process must be followed before implementation. Option A implements before approval. Option C starts work without authorization. Option D may not succeed and delays compliance. Submitting a change request with full analysis before implementation follows proper governance."
+  },
+  {
+    "id": "7hEuFhyI3Hu7RQGVrk55",
+    "explanation": "IT infrastructure projects have significant ESG implications including energy consumption, carbon footprint, and electronic waste. Option A has a narrow view of ESG. Option C delays compliance without justification. Option D fragments accountability. The PMO is correct that ESG applies broadly, including to IT projects."
+  },
+  {
+    "id": "7scVXbBLNV8xBCircW9Q",
+    "explanation": "Organizational change requires understanding both success factors and barriers. Option A creates resistance. Option B abandons the transformation goal. Option D is punitive. Analyzing success factors and barriers to create tailored support addresses each team's specific challenges while maintaining the transformation objective."
+  },
+  {
+    "id": "7tEAdympY8yeDCQEDexw",
+    "explanation": "PI planning is specifically designed for cross-team dependency negotiation. Facilitating a direct conversation between teams to explore solutions — splitting deliverables, resequencing, or creating early interfaces — is the most effective approach. Option A escalates prematurely before attempting direct resolution. Option B creates throwaway work. Option D accepts the constraint without attempting to optimize."
+  },
+  {
+    "id": "8E7nCzuYb4mODTgNXFiI",
+    "explanation": "AI governance requires that bias issues be escalated to the appropriate governance body, especially when discriminatory outcomes are possible. Option A ignores ethical obligations. Option C is insufficient for addressing systemic bias. Option D delays action on a potentially harmful issue. Escalation to the AI governance board ensures proper oversight and risk management."
+  },
+  {
+    "id": "8EMsUuhdOPTvPrKI10bO",
+    "explanation": "Compliance with new regulations is mandatory. The change control process is the appropriate mechanism to document and manage the impact. Option B violates the law. Option C is unlikely to succeed and delays compliance. Option D is overly disruptive since only excavation is affected."
+  },
+  {
+    "id": "8lSVgltcYZgvDULm1Dc1",
+    "explanation": "Mob programming and task rotation build shared knowledge organically through doing, which is more effective than studying. This agile approach respects the team's self-organization while addressing the bus factor risk. Option A imposes a rigid structure that reduces sprint capacity and may not result in practical skill transfer. Option C is expensive and doesn't build existing team capability. Option D assumes documentation alone can transfer the tacit knowledge needed to work effectively on complex components."
+  },
+  {
+    "id": "9ssFxYH3lly3GeuUcOkF",
+    "explanation": "Providing a range based on recent data communicates both the forecast and its uncertainty, which is more honest and useful than a single-point estimate. The upward velocity trend suggests using recent data is appropriate. Option A weights early, lower-performing sprints equally. Option B provides a single point estimate that hides uncertainty. Option C is overly conservative and ignores the clear upward trend."
+  },
+  {
+    "id": "9wxhAy9b8VZmRLTTyNar",
+    "explanation": "AI governance requires proper review by the designated body. Option A ignores the ethical concern. Option B may be overly disruptive if the risk can be mitigated. Option D bypasses the governance structure. Referring to the ethics committee while implementing interim safeguards balances risk management with operational continuity."
+  },
+  {
+    "id": "AHBiiNzS5dRAs3kAQMsN",
+    "explanation": "Modern project management recognizes that meeting scope, time, and cost targets does not guarantee project success. Low customer satisfaction indicates gaps in value delivery, stakeholder engagement, or expectation management that should be analyzed. Option A captures only the positive aspects. Option C ignores a critical success dimension. Option D assumes the cause without investigation."
+  },
+  {
+    "id": "ASaDLiWat8WeZo3APKUb",
+    "explanation": "The data suggests the team will complete about 70% of committed work (40% done + 30% typical final push). The Scrum Master should facilitate transparency and adaptation: negotiate scope for this sprint and address the overcommitment pattern in the retrospective. Option A violates the time-boxed sprint principle. Option B is too drastic when significant value can still be delivered. Option D disrupts other teams and doesn't address the root cause."
+  },
+  {
+    "id": "AaqXVgUyBmKeAkUvj7SL",
+    "explanation": "Knowledge transfer when taking over a project requires reviewing existing artifacts and validating with the team. Individual meetings surface accurate information without group dynamics interference. Option B is inefficient and may produce unreliable information. Option C relies on a potentially outdated snapshot. Option D wastes effort and ignores work already completed."
+  },
+  {
+    "id": "An8GHnu2G6ZZ66Juiq2A",
+    "explanation": "Effective communication planning requires tailoring messages to stakeholder needs, not one-size-fits-all approaches. Segmentation ensures relevance and appropriate detail levels. Option A amplifies the existing problem. Option C requires stakeholders to seek information rather than receiving it proactively. Option D may result in inconsistent messaging and gaps."
+  },
+  {
+    "id": "BE5QVoKvChS8D1RDuSzM",
+    "explanation": "Continuous improvement means finding ways to balance compliance with productivity. Option A ignores organizational needs. Option C undermines the certification effort. Option D accepts the problem without attempting to improve. Working with the team to streamline processes supports both compliance and continuous improvement."
+  },
+  {
+    "id": "BGeGzVbuS0nlzNAwhvMn",
+    "explanation": "Adding human oversight to AI outputs while maintaining the efficiency gains is the balanced approach. A feedback loop also improves the tool over time. Option A abandons a useful tool entirely rather than addressing the specific issue. Option C shifts responsibility to stakeholders without fixing the root problem. Option D burdens a single person and may be seen as punishing them for raising the concern."
+  },
+  {
+    "id": "C3eo0s4AwKO9Hofg6xp3",
+    "explanation": "AI governance requires addressing known risks before deployment. Option A ignores known misleading outputs. Option B sets an unrealistic standard. Option D shifts risk to customers inappropriately. Implementing guardrails with additional testing and governance approval addresses the specific risk while moving toward launch."
+  },
+  {
+    "id": "CH9aY5Fo3LDpLzAX4ObG",
+    "explanation": "Bringing in a neutral technical expert is the best approach for an escalated technical conflict. This uses the collaborating/problem-solving conflict resolution technique by introducing objectivity. Option A (escalation and reassignment) is premature and disrupts the team. Option C (forcing) may resolve the immediate issue but damages team morale and engagement. Option D (withdrawing/avoiding) has already proven ineffective as velocity continues to decline."
+  },
+  {
+    "id": "CYdtj8BALcWilECAibOS",
+    "explanation": "Before accepting a schedule delay, the project manager should explore all available options: resource substitution, fast-tracking, schedule compression, or partial work arrangements. Option A accepts the impact without exploring alternatives. Option B is inappropriate and disrespects the team member. Option D is typically not feasible since critical path is determined by dependencies, not arbitrary sequencing."
+  },
+  {
+    "id": "CeVpdBK6SYpNNYllIlWP",
+    "explanation": "WIP limits exist to expose bottlenecks and encourage collaboration. When a downstream column is full, team members should help clear the bottleneck rather than circumventing the limit. Option A undermines the purpose of WIP limits. Option B is acceptable but doesn't address the bottleneck. Option D adds resources rather than addressing the systemic issue. Swarming on the bottleneck (Option C) is the Kanban best practice."
+  },
+  {
+    "id": "CmOGDDlZgsWnJJewd2Hc",
+    "explanation": "Strategic alignment with organizational goals requires proactive communication. Option A ignores strategic objectives. Option C uses reserves without authorization. Option D defers the issue. Presenting the misalignment with cost-benefit analysis enables informed governance decision-making."
+  },
+  {
+    "id": "DHYEO5Bi2mYKeFmK7qnO",
+    "explanation": "The electrical rough-in has a mandatory finish-to-start dependency on framing. Foundation takes 10 days, framing starts after foundation and takes 15 days (completing on day 25), and electrical rough-in starts on day 25 and completes on day 33. However, the question asks when electrical can START, and the earliest completion is day 25 + 8 = day 33. Wait — re-reading: earliest the rough-in can be COMPLETED. Foundation ends day 10, framing ends day 25, electrical ends day 33. Option C says day 25 which is when it starts. Actually, Option C says 'electrical rough-in starts immediately after framing' — the completion would be day 33, which matches Option B. But Option B says all sequential including foundation-framing-electrical = 33. The difference is whether foundation and framing are parallel. Since framing is AFTER foundation (10+15=25), and electrical is after framing (25+8=33). Option B is correct at day 33. Option C states day 25, which is only when framing completes. The earliest electrical rough-in can be completed is day 33."
+  },
+  {
+    "id": "DQCor2JIP0FEewmEBJG2",
+    "explanation": "A structured asynchronous protocol optimizes the team's existing communication patterns while using the limited overlap window strategically. This respects work-life balance while improving decision velocity. Option A negatively impacts team members' work-life balance and may reduce morale. Option C is impractical and disproportionate to the problem. Option D creates communication bottlenecks and single points of failure."
+  },
+  {
+    "id": "E1LtFgPw8Zxmt1N1tUaM",
+    "explanation": "AI estimation tools are valuable but limited by their training data. When the current project differs significantly from historical data (new technology), the AI estimates should be used as a starting point and refined with expert judgment. Option A ignores a significant variable not in the training data. Option B wastes valuable historical data. Option D is confirmation bias — manipulating inputs to get desired outputs defeats the purpose of estimation."
+  },
+  {
+    "id": "EDGYpsMjoaF9gchQ22qq",
+    "explanation": "Explicitly allocating capacity for known unplanned work improves forecast accuracy and sets realistic expectations. If 40% of time goes to support, planning features against only 60% capacity gives honest forecasts. Option A may not be feasible organizationally. Option C ignores production issues that may be critical. Option D inflates velocity with support work, making feature forecasts unreliable."
+  },
+  {
+    "id": "EO8yq0ZN7DRH49bD1ccc",
+    "explanation": "Even mandatory regulatory changes must go through integrated change control to properly assess and document impacts to scope, cost, and schedule baselines. This ensures all stakeholders are informed and baselines are updated. Option A uses management reserve without proper authorization. Option C bypasses the change control process. Option D is not viable because regulatory requirements cannot be rejected regardless of baseline considerations."
+  },
+  {
+    "id": "EYQgbJ9iUFBPkMQgBItl",
+    "explanation": "Analogous estimating is appropriate for early rough estimates when historical data from similar projects is available and time is limited. It can be completed within 48 hours using the three reference projects. Option A requires detailed WBS decomposition that cannot be completed in 48 hours. Option C may not account for organization-specific factors. Option D requires work package-level detail not yet available."
+  },
+  {
+    "id": "EZ10HltLgQy11F75PAV8",
+    "explanation": "Continuous improvement requires moving beyond surface-level retrospective discussions to systemic solutions. Option A and D accept the problem without solving it. Option B shifts the problem without understanding it. A focused workshop with root cause analysis and measurable outcomes drives real improvement."
+  },
+  {
+    "id": "EvM9aKAZO7KNM2bH2ETE",
+    "explanation": "Resolving entrenched conflict requires understanding individual perspectives first, then facilitating collaboration with a focus on shared goals. Option B reinforces blame culture. Option C abdicates the project manager's leadership role. Option D addresses the symptom with tools but does not resolve the interpersonal dynamic."
+  },
+  {
+    "id": "F4Y8szM6Sxr3IUImjxu7",
+    "explanation": "Compliance requirements must be integrated into the project regardless of when they are adopted. Option B violates compliance obligations. Option C creates unnecessary complexity. Option D is passive and may cause delays. Using the change control process ensures proper integration into the existing plan."
+  },
+  {
+    "id": "F8h2b8J8LmgQX6wtSpmk",
+    "explanation": "In agile, the product backlog is a living artifact. If a delivered feature no longer provides value, the product owner should add a backlog item to address it, prioritized based on value against other work. Option A mislabels this as technical debt when it is a value alignment issue. Option C treats past acceptance as final, which contradicts agile responsiveness. Option D introduces unnecessary bureaucracy for a product decision within the product owner's authority."
+  },
+  {
+    "id": "FEKYU9tFSDsopbQFeJ8C",
+    "explanation": "The project manager should use data-driven analysis to influence the contingency reserve decision. Presenting the quantitative risk analysis (expected monetary value) provides evidence-based justification. Option A blindly accepts a potentially inadequate reserve. Option C is unethical (gold plating/hidden padding). Option D bypasses the sponsor relationship inappropriately when communication hasn't been attempted."
+  },
+  {
+    "id": "FRrYAm2nqDUCfDhLj1gb",
+    "explanation": "A risk-based triage approach uses the senior developer's expertise to categorize and prioritize the AI findings. High-severity confirmed issues are addressed immediately while others are scheduled for review. Option A could waste capacity on false positives. Option C removes a valuable quality tool entirely. Option D dismisses all findings without verification, potentially missing real defects."
+  },
+  {
+    "id": "FTPBy6KCTzSJR7zd6YIy",
+    "explanation": "AI-related risks involving intellectual property require proper governance assessment. Option A ignores legal risk. Option B is an overreaction that may not be necessary. Option D makes a change without proper assessment. Engaging the governance board and legal team ensures the risk is properly evaluated and the response is proportionate."
+  },
+  {
+    "id": "Fh8JEmydUhVamN7LtZ6b",
+    "explanation": "Continuous improvement means updating organizational processes based on lessons learned. Option A is too narrow in scope. Option C is counterproductive and blame-oriented. Option D is a blanket approach that doesn't address the root cause. Updating the organizational framework creates systemic improvement."
+  },
+  {
+    "id": "FhKpmDgVOAlrS4ccibNL",
+    "explanation": "Crashing costs $25,000 with certainty and recovers exactly the 5 days needed. Fast-tracking has an expected rework cost of $12,000 (30% × $40,000), making the expected cost lower, but the PM must also consider that 30% probability of $40,000 rework could exceed the crash cost AND cause additional schedule delays. The certain, right-sized option is preferable. Option A recovers more days than needed with added risk. Option C over-invests. Option D compares the wrong numbers (expected value is $12,000, not $40,000)."
+  },
+  {
+    "id": "FubJuNPuaUsroS6dE4qs",
+    "explanation": "Listening first builds trust with a cynical team, quick wins rebuild confidence, and transparent communication addresses the likely trust deficit from leadership turnover. Option A focuses on planning without first understanding the human dynamics causing failure. Option C assumes people are the problem without evidence and will further demoralize the team. Option D adds bureaucracy that may worsen the problems if the root cause was stakeholder or team dynamics."
+  },
+  {
+    "id": "G7Lyi67LHSqJmQb0JxRn",
+    "explanation": "The project manager should first review the facts objectively. A specification change three days before delivery may have legitimately impacted the vendor's ability to deliver on time, depending on the contract's change management provisions. Option A ignores potentially legitimate mitigating circumstances. Option B abandons the project's financial interests without investigation. Option D escalates prematurely before the PM has reviewed the relevant contract terms."
+  },
+  {
+    "id": "GCY1Yd6q51vCxXZy9iCD",
+    "explanation": "EAC = BAC / CPI. CPI = EV/AC = 750,000/900,000 = 0.833. EAC = 2,000,000 / 0.833 = approximately $2,400,000. This assumes the current cost performance will continue. Option A ignores the current negative cost variance. Option C does not account for the cost performance trend. Option D is not a standard EVM formula."
+  },
+  {
+    "id": "GFUcgh2ukrCkq0JzMmKg",
+    "explanation": "Using the EAC formula that accounts for both cost and schedule performance: EAC = AC + (BAC - EV) / (CPI × SPI). CPI = EV/AC = 300,000/330,000 = 0.909. SPI = 0.95. CPI × SPI = 0.909 × 0.95 = 0.864. EAC = 330,000 + (500,000 - 300,000) / 0.864 = 330,000 + 231,481 = ~$561,481... Using EAC = BAC/CPI: 500,000/0.864 ≈ $578,703, closest to $578,947 (BAC/CPI alone = 500,000/0.909 = $550,000 uses only CPI). Since management asked about both cost AND schedule trends continuing, the composite formula applies, but the answer $578,947 represents BAC/(CPI×SPI) = 500,000/0.864. Option A only considers CPI. Option C assumes original budget holds. Option D uses an incorrect formula."
+  },
+  {
+    "id": "GZxI9t0RrIPfMa1r26jm",
+    "explanation": "A multi-faceted approach addresses the three identified problems: standups replace coordination conversations, social time rebuilds cohesion, and channel agreements reduce misunderstandings. Option A adds excessive meeting time and doesn't address the social dimension. Option C creates surveillance-like conditions that erode trust. Option D is overly rigid and cannot capture the nuanced coordination that informal communication provided."
+  },
+  {
+    "id": "HHJide67SUsNc48jo3jT",
+    "explanation": "Compliance changes require proper assessment and governance. Option A risks losing certification. Option C may not be possible and delays action. Option D makes a partial decision without full analysis. Stopping installation, assessing impact, and using the change control process ensures a thorough and governed response."
+  },
+  {
+    "id": "HRrVXwWFIbsqIkIitXTg",
+    "explanation": "Aligning stakeholder expectations includes educating clients on processes that protect project integrity. A collaborative conversation reinforces the process without damaging the relationship. Option A is abrupt and may damage client relations. Option C addresses symptoms after the fact. Option D undermines scope management and sets a dangerous precedent."
+  },
+  {
+    "id": "HcvAxXW2yrbaECXjecXI",
+    "explanation": "This approach acknowledges the concern, protects the retrospective's purpose, and creates an appropriate forum for the vendor discussion. It avoids public confrontation while ensuring follow-up. Option A delays acknowledgment of the team member's contribution and may seem dismissive. Option B creates a hostile environment that will shut down future transparency. Option D overreacts and disrupts the team's retrospective process."
+  },
+  {
+    "id": "HgusjzRPInR8TI86EgtU",
+    "explanation": "Data sovereignty is a critical compliance issue requiring proper assessment. Option A violates compliance. Option C is premature without exploring alternatives. Option D may not be technically feasible or legally sufficient. A compliance review with alternative evaluation ensures the response is thorough and proportionate."
+  },
+  {
+    "id": "HmUwQKsXFLiGtQLVHMK5",
+    "explanation": "Organizational change (merger) requires adapted governance. Option A may cause indefinite delay. Option B ignores the new organizational reality. Option D creates duplication and integration challenges. A joint governance body ensures scope decisions reflect the merged organization's needs."
+  },
+  {
+    "id": "HrEbU94Bh7wnMxkJkQ8m",
+    "explanation": "Changes in external business environment (vendor terms) require proper assessment. Option A is reactive without analysis. Option B ignores the impending risk. Option D may not have the authority to negotiate. Engaging data governance and legal ensures a proper assessment before determining the appropriate response."
+  },
+  {
+    "id": "IWdVsn2uiClUGfkX4AzS",
+    "explanation": "Management reserve is for unknown unknowns (unidentified risks) and sits outside the cost baseline. When used, the cost baseline may be updated through a change request, but the management reserve itself is outside the baseline. Contingency reserve (Option A) is for identified risks within the cost baseline. Option B incorrectly states the cost baseline is updated. Option D ignores the purpose of management reserve."
+  },
+  {
+    "id": "J3RAOv738kR8foDA7jBE",
+    "explanation": "The project manager should create an internal WBS that maps to the CWBS, enabling both contractual compliance and effective project execution. The internal WBS can decompose work packages further than the CWBS while maintaining traceability. Option A may not provide sufficient detail for execution. Option C ignores contractual requirements. Option D is unlikely to succeed and delays planning."
+  },
+  {
+    "id": "K0bNG6wACdizmozfKlAh",
+    "explanation": "Facilitating a collaborative session to find common ground respects both perspectives and addresses the real constraint (regulatory compliance). A shared definition of done creates alignment. Option A creates silos and prevents cross-functional learning. Option B dismisses valid compliance concerns and alienates experienced team members. Option D assumes the waterfall practitioners are the problem when the issue is finding the right balance."
+  },
+  {
+    "id": "KCNOUoIN8EJecbtbMd95",
+    "explanation": "The buy option is superior on cost ($300K vs $400K), schedule (4 months vs 8), and resource availability (team is at 90% utilization). Option A prioritizes theoretical benefits over concrete advantages. Option C delays the project unnecessarily. Option D splits responsibility, potentially creating integration challenges and still straining an overutilized team."
+  },
+  {
+    "id": "KpDcfwhBOIPlp7NSp7Rd",
+    "explanation": "AI-related risks require governance involvement and thorough assessment. Option A launches with known bias issues. Option B may be unnecessary if mitigations exist. Option D is reactive without proper evaluation. A risk assessment with governance involvement ensures the response is proportionate and properly authorized."
+  },
+  {
+    "id": "LDnYWNpNOjs7EOdquqZw",
+    "explanation": "A time and materials contract with a not-to-exceed ceiling is appropriate when scope is uncertain and the market is immature. It provides flexibility for evolving requirements while the ceiling protects against unlimited cost exposure. Option A transfers all risk to the vendor, who will either inflate the price or resist changes. Option C provides no cost protection for the buyer. Option D requires a well-defined scope to establish meaningful incentive targets, which contradicts the uncertain nature of the work."
+  },
+  {
+    "id": "LaFPonXPIJjoHGFr3Yg6",
+    "explanation": "Regulatory compliance is non-negotiable and time-sensitive. Adding it as a high-priority epic ensures it gets addressed within the agile framework. Option B risks missing the deadline. Option C is disruptive and unnecessary. Option D fragments accountability and may create integration issues."
+  },
+  {
+    "id": "M82JUbkC8R8uZXOLkRYd",
+    "explanation": "Adapting the process to accommodate the stakeholder's stated need for reflection time addresses their concern while adding a confirmation step that prevents contradictions. A private conversation addresses the pattern directly. Option A removes the stakeholder from collaborative discussions. Option B publicly confronts them, which will likely cause defensiveness. Option D escalates without first trying to accommodate the stakeholder's needs."
+  },
+  {
+    "id": "MzE4urtRoq35WKqYunCn",
+    "explanation": "Resolving the product owner's attendance issue addresses the root cause, while adding customer participation improves feedback quality. The PO role requires active engagement, not delegation. Option A bypasses the product owner's accountability for backlog management. Option C violates Scrum role boundaries and doesn't fix the underlying scheduling issue. Option D removes the interactive feedback that makes sprint reviews valuable."
+  },
+  {
+    "id": "NA9UfP1V1tO4NetRjyJO",
+    "explanation": "The project manager should empower the scrum master to protect the team's process. Coaching builds the scrum master's capability while respecting the stakeholder relationship. Option A is hostile and damages the stakeholder relationship. Option C undermines agile principles and team autonomy. Option D changes the process to avoid a people problem, which does not resolve it."
+  },
+  {
+    "id": "NMN3BCLAO0cSguAOl2qQ",
+    "explanation": "Lessons learned are a critical output of project closure. While phase-specific sessions were missed, a comprehensive end-of-project session can still capture significant organizational learning. Option A neglects knowledge management responsibilities. Option C unnecessarily delays closure for diminishing returns. Option D only documents the problem without taking corrective action to capture the knowledge while team members are still available."
+  },
+  {
+    "id": "NUQ3YomAiYhIsRjmTCi8",
+    "explanation": "Aligning stakeholder expectations requires finding common ground rather than choosing sides. Both metrics may be valid at different levels and can coexist. Option A and B each dismiss a legitimate stakeholder perspective. Option D avoids the project manager's responsibility to facilitate alignment."
+  },
+  {
+    "id": "OBflpqB8EOaAr4PJXiJr",
+    "explanation": "Compliance is non-negotiable but requires proper communication of impact. Option A violates regulations. Option C may not meet project objectives. Option D has no guaranteed timeline. Presenting a thorough analysis with a recommendation enables the sponsor to make an informed decision about compliance."
+  },
+  {
+    "id": "OTF9rDeL9usFAIA1Pacy",
+    "explanation": "A servant leader should help the team understand the real causes of overcommitment. Root-cause analysis separates symptoms from causes and coaching builds long-term capability. Option A is arbitrary and does not address the underlying issue. Option C may help with dependencies but ignores internal estimation problems. Option D artificially limits choice without addressing the planning dysfunction."
+  },
+  {
+    "id": "OTi6byvYIOcVWurbod2j",
+    "explanation": "Assigning dedicated ownership and integrating reviews into existing ceremonies ensures the traceability matrix is actively maintained. This addresses the root cause — lack of ownership and process integration. Option B abandons a useful tool for a hybrid project that still needs formal traceability. Option C looks backward without fixing the forward-going process. Option D documents the need but lacks the accountability and process integration to ensure compliance."
+  },
+  {
+    "id": "OdTVxysvenJaQtZR8xhL",
+    "explanation": "Effective stakeholder engagement addresses concerns with evidence and offers manageable first steps. A pilot reduces perceived risk while maintaining progress. Option B undermines the relationship and creates forced compliance. Option C removes a key stakeholder whose buy-in is essential for success. Option D sets a precedent for opting out and may undermine the entire initiative."
+  },
+  {
+    "id": "P8BEO2cWUFIQsdJZCtyT",
+    "explanation": "The project manager should present the data transparently and help the sponsor make an informed decision based on business context and risk tolerance. Different situations warrant different confidence levels. Option A is overly optimistic with a coin-flip probability. Options B and C each pick an arbitrary confidence level without considering business context. The sponsor needs the full picture to decide."
+  },
+  {
+    "id": "P8QmconA8XAtaMtBVoEv",
+    "explanation": "A CPI of 0.88 means the project is getting only $0.88 of value for every $1 spent, and the declining trend indicates the problem is worsening. Immediate cost corrective action is warranted. Option A incorrectly assumes schedule and cost performance are interchangeable. Option C would likely increase costs through added resources. Option D rebaselines prematurely without attempting corrective action first."
+  },
+  {
+    "id": "PCfANcrL54tKEUEhJy1P",
+    "explanation": "Governance must be adapted to support the delivery approach without being bypassed. Option A undermines governance. Option C is impractical for senior executives. Option D removes necessary oversight. A tiered model balances agile responsiveness with appropriate governance oversight."
+  },
+  {
+    "id": "PHeDgtWNkum7jSs0y2Bn",
+    "explanation": "A new regulatory mandate requires a formal change request through integrated change control. The PM should present the requirement, its cost impact, and a comprehensive analysis. Option A violates a mandate, creating compliance risk. Option B reduces value without stakeholder agreement. Option D delays communication and may not be achievable."
+  },
+  {
+    "id": "PMHo8QqVeKA5j84vaqkV",
+    "explanation": "Release retrospectives serve a different purpose than sprint retrospectives. They capture higher-level patterns, cross-sprint themes, and stakeholder-level learnings. Option A misses the opportunity for broader reflection. Option B excludes key participants. Option D misses the point of explaining why both are valuable at different granularities."
+  },
+  {
+    "id": "PN7SGuOmsDDhBQ95fFvr",
+    "explanation": "Acknowledging concerns and involving the team in defining integration demonstrates servant leadership and change management best practices. Reframing AI as augmentation addresses the root fear. Option A uses forcing and ignores emotional concerns. Option C avoids the change management challenge and creates an uneven team dynamic. Option D focuses on mechanics without addressing the underlying resistance and motivation."
+  },
+  {
+    "id": "Q8pHEUbF2FijNEo7mLWH",
+    "explanation": "The project manager should investigate the data behind the AI flag, understand the team lead's explanation, and make an informed decision. Documenting the resolution ensures transparency. Option A blindly trusts AI without validating context. Option B dismisses a valid signal without investigation. Option D abdicates the project manager's responsibility to analyze and resolve issues before escalating."
+  },
+  {
+    "id": "QQjFMJqWMbfxHOaeZcFF",
+    "explanation": "Compliance gaps must be addressed regardless of notification failures. Option A focuses on blame rather than resolution. Option C does not resolve the compliance gap. Option D bypasses proper change control. Reviewing and updating through formal change control addresses the gap properly while maintaining document integrity."
+  },
+  {
+    "id": "QR6QNy8Nekxec8jO7Ezu",
+    "explanation": "Before taking corrective action, the scrum master should facilitate a retrospective to understand why velocity is declining. The root cause could be technical debt, unclear stories, external dependencies, or team issues. Option A treats the symptom without understanding the cause. Option C assumes the problem is capacity without investigation. Option D changes the sprint cadence, which masks the underlying issue and disrupts team rhythm."
+  },
+  {
+    "id": "RFpVmfEk7KH1mcQXcKH1",
+    "explanation": "Addressing the issue directly with both individuals and fixing the process is proportionate and professional. It maintains the team's composition while eliminating the bias mechanism. Option A is disproportionate for strong performers and disrupts the team unnecessarily. Option B ignores an ethical issue that undermines review integrity. Option D may be necessary eventually but should follow an initial conversation with the individuals, as the project manager should attempt resolution first."
+  },
+  {
+    "id": "RSLpW2ENlqaINSqIb9Vi",
+    "explanation": "Managing stakeholder expectations requires transparency about tradeoffs and collaborative reprioritization. Option A ignores sustainable pace and will likely lead to quality issues. Option C abdicates the project manager's communication responsibility. Option D fragments a team that may be too small to split effectively and reduces overall efficiency."
+  },
+  {
+    "id": "RecdFubliqzDTqwYKDwy",
+    "explanation": "This response acknowledges the stakeholder's input respectfully, provides a brief rationale, and redirects the detailed discussion to an appropriate forum. It manages the conflict without escalation while maintaining the project's regulatory obligations. Option A creates an adversarial dynamic in a public setting. Option B compromises project compliance to avoid conflict. Option D abdicates the project manager's responsibility for methodology decisions and regulatory compliance."
+  },
+  {
+    "id": "RpdO38whDWWTHB84Ojcw",
+    "explanation": "A private conversation addresses the root cause — likely fear about team impact from AI automation. Understanding and addressing the stakeholder's underlying concerns is the most effective way to convert passive resistance to support. Option A escalates without attempting direct resolution and may entrench the resistance. Option C undermines the manager's authority and worsens the relationship. Option D publicly shames the stakeholder without understanding their motivations."
+  },
+  {
+    "id": "RqdLHXU8oy2X6OAiUhh8",
+    "explanation": "Stakeholder engagement requires persistent, varied communication approaches before escalating. Clearly stating the impact creates urgency. Escalation is appropriate only after direct engagement fails. Option A exceeds the project manager's authority. Option B escalates without exhausting direct communication options. Option D treats the symptom without resolving the stakeholder engagement issue."
+  },
+  {
+    "id": "SG4q7qVqx8x1raLjU6qg",
+    "explanation": "AI excels at aggregating quantitative data but struggles with qualitative context. The optimal approach combines AI efficiency for data aggregation with human insight for narrative context. Option A abandons the efficiency gains of automation. Option B overestimates current AI capabilities for contextual reasoning. Option D shifts the burden to the stakeholder rather than improving the communication artifact."
+  },
+  {
+    "id": "SNcm5xDoyfqB0azcQVzs",
+    "explanation": "Developing a common vision requires addressing all stakeholder perspectives. Updating the vision to include workforce transition demonstrates responsiveness and builds trust. Option A ignores a critical adoption risk. Option C unnecessarily delays the project. Option D makes promises the project manager cannot keep, which will destroy trust when the truth emerges."
+  },
+  {
+    "id": "UZT4azKQjOBINTndCV6r",
+    "explanation": "Separate contracts with explicit integration requirements, interface specifications, and joint testing obligations ensure each vendor is accountable for interoperability while the project team provides integration oversight. Option A may limit competition and vendor specialization. Option C defers integration risk to the end when changes are most expensive. Option D ignores integration capability in vendor selection."
+  },
+  {
+    "id": "UdG21sMDCQc6fHOP1hdt",
+    "explanation": "Using the formal change control process maintains project discipline while respecting the stakeholder's input. Involving the VP in prioritization gives them agency while making the trade-offs visible. Option A enables scope creep and makes the schedule problem worse. Option C is confrontational and may damage a relationship with an influential stakeholder. Option D makes promises about future phases without authority and doesn't address the stakeholder's current expectations."
+  },
+  {
+    "id": "UenfxTZxSRwdAF09mUos",
+    "explanation": "Effective communication planning must ensure equitable information access for all team members. An inclusive protocol addresses the structural gap. Option A is often impractical and costly. Option C still excludes the remote team from decision-making. Option D is overly rigid and may slow down collaboration unnecessarily."
+  },
+  {
+    "id": "V4z2v4ZZ43JiX3SBR08D",
+    "explanation": "Setting ground rules with the sponsor and using a structured, blame-free format creates psychological safety while maintaining transparency. This balances knowledge transfer needs with team protection. Option A ignores the power dynamic that will suppress honest feedback. Option B eliminates the valuable group discussion that surfaces deeper insights. Option D undermines transparency and could damage trust with the sponsor if discovered."
+  },
+  {
+    "id": "VCbr6CSbu9HENDyYFtny",
+    "explanation": "Leading a distributed team requires understanding cultural and logistical barriers. Rotating meeting times demonstrates fairness, and one-on-ones help surface root causes. Option B is impersonal and may miss underlying issues. Option C bypasses the project manager's leadership responsibility. Option D accepts lower performance without understanding the cause."
+  },
+  {
+    "id": "VkTu4Gcv2Os3IdObQewi",
+    "explanation": "The WBS should contain deliverables, not activities. The project manager should reframe the entry as a deliverable (test results report) and capture the testing activities in the activity list. Option A ignores the valid concern about WBS structure. Option C removes testing from scope decomposition entirely. Option D creates unnecessary complexity with parallel WBS structures."
+  },
+  {
+    "id": "W1B1ZiUxVWxHLbEjb7Bs",
+    "explanation": "When governance frameworks are outdated relative to regulations, both must be addressed. Option A may lead to regulatory non-compliance. Option B ignores organizational governance. Option D causes project delays. Identifying gaps and recommending updates while ensuring compliance addresses both governance and regulatory needs."
+  },
+  {
+    "id": "W1k1wCa0fs9ReRIxeD53",
+    "explanation": "Managing stakeholder expectations around AI requires transparency and involvement. Workshops that show augmentation rather than replacement address the root fear, and participation in design builds ownership. Option B creates compliance without commitment. Option C avoids the problem indefinitely. Option D silences opposition rather than addressing it."
+  },
+  {
+    "id": "W2EuwnBkJ3Tsx0suuRjY",
+    "explanation": "Leading change requires empathy, transparency about rationale, and practical support. Incremental adoption reduces resistance and builds confidence. Option A forces compliance without buy-in. Option C creates inconsistency and fragmentation. Option D may miss the market conditions that drove the decision."
+  },
+  {
+    "id": "WchI8cRBgIyagASRGtCU",
+    "explanation": "Global projects require governance that balances consistency with local compliance. Option A ignores regulatory differences. Option C creates inconsistency. Option D causes unnecessary delay. A framework with common core plus regional adaptations ensures both consistency and compliance."
+  },
+  {
+    "id": "WnMGMMrclBrolS0yIsAC",
+    "explanation": "Knowledge transfer is a critical closure activity. Undocumented specialized knowledge creates organizational risk. A brief delay for proper knowledge transfer is a worthwhile investment. Option A loses institutional knowledge permanently. Option C is unreliable since new project demands will take priority. Option D only documents the problem for the future without solving the current knowledge loss."
+  },
+  {
+    "id": "WvfeuLftBrlnDAdsaGVT",
+    "explanation": "Proper procurement closure requires verifying all charges against the contract and approved change orders. The PM should investigate before paying or disputing. Option A pays potentially unjustified charges. Option B rejects the entire invoice without investigation, which may be unfair. Option D makes unilateral deductions without proper review or communication, which could breach contract terms."
+  },
+  {
+    "id": "X04yUFXuXqa4d3bDwFRi",
+    "explanation": "Time-boxed iterations with evaluation checkpoints allow the team to demonstrate progress empirically while giving stakeholders transparency into performance trends. This supports informed decision-making under uncertainty. Option A makes an unrealistic commitment. Option B refuses to engage with planning. Option D adds arbitrary buffer without providing the transparency stakeholders need."
+  },
+  {
+    "id": "X902RYcHbnqn2YKbLCnY",
+    "explanation": "Facilitating a data-informed discussion respects team autonomy while encouraging evidence-based decisions. The team may have valid reasons (reduced technical debt, simpler stories) or may be overcommitting due to pressure. Option A ignores the Scrum Master's coaching responsibility. Option B is directive and undermines self-organization. Option D is disruptive and unnecessary."
+  },
+  {
+    "id": "XAM2XHLkgpyVGNAAEf3S",
+    "explanation": "Effective communication planning for multilingual teams requires multiple complementary strategies. Visual documentation, collaboration tools, and bilingual liaisons address the issue holistically. Option A ignores practical language barriers and may reduce contribution quality. Option B creates a bottleneck. Option D avoids the issue and may create integration problems."
+  },
+  {
+    "id": "ZRDX05uF9TsigmFaAweg",
+    "explanation": "Sustainability metrics from the ESG policy should be integrated into the quality management plan as additional quality criteria. This ensures they are measured, monitored, and reported alongside other quality metrics. Option A creates a disconnected document that may be overlooked. Option C ignores an organizational requirement. Option D defers responsibility without ensuring project-level compliance."
+  },
+  {
+    "id": "ZRovtY4PjlchATlKMjun",
+    "explanation": "PERT expected duration = (O + 4M + P) / 6 = (10 + 60 + 32) / 6 = 102/6 = 17 days. The wide range (10 to 32 days) indicates high uncertainty, which should be accounted for in schedule contingency reserves. Option B calculates incorrectly and makes an unsupported conclusion about training. Option C ignores the purpose of three-point estimation. Option D has the right calculation but suggests breaking down the activity, which may not reduce the inherent uncertainty."
+  },
+  {
+    "id": "ZS4qgXtBKMInABHivgRL",
+    "explanation": "Conflict resolution between functional managers requires direct facilitation to align on roles and priorities. Option A escalates prematurely and may damage relationships. Option B gives the team a tool but does not resolve the management-level conflict. Option D may not be feasible and does not address the underlying communication breakdown."
+  },
+  {
+    "id": "ZevBzIeYxHhoh64WsCr6",
+    "explanation": "TCPI of 1.25 means the team needs to achieve a CPI of 1.25 for all remaining work to finish within the BAC. Research shows that projects rarely improve CPI significantly once 40% complete. Requesting an EAC revision is prudent. Option A underestimates the difficulty of a 25% efficiency improvement. Option C misinterprets TCPI (it's a goal, not current performance). Option D sacrifices quality, which is inappropriate."
+  },
+  {
+    "id": "ZgJldxn0gNxOFqGhHNOz",
+    "explanation": "Security compliance gaps require immediate action and transparency. Option A delays addressing a serious risk. Option C may be overly disruptive and impractical. Option D addresses automation but doesn't notify security or protect current deployments. Immediate notification with an interim manual gate ensures proper risk management."
+  },
+  {
+    "id": "ZmVKjgaHLFO1oZ48m0kZ",
+    "explanation": "External business environment changes (economic downturn) require scenario-based planning. Option A ignores the strategic signal. Option B applies an arbitrary reduction. Option D may increase short-term costs. Scenario planning with steering committee alignment ensures the project adapts strategically to the changing environment."
+  },
+  {
+    "id": "aAtyCvRm764BR6Nd1S1R",
+    "explanation": "Emerging external risks require proactive monitoring, not just reactive identification. Option A does more of the same without improving the approach. Option C is expensive and removes internal capability. Option D is a passive checklist that won't capture emerging risks. Environmental scanning provides ongoing awareness of the changing regulatory landscape."
+  },
+  {
+    "id": "aMDW0R0bIUAC60HPGaDw",
+    "explanation": "A hybrid project should be reported holistically with context. The additional sprints and extra features represent a trade-off that stakeholders need to understand in full. Option A focuses only on schedule without considering value. Option B fragments the project story unnecessarily. Option D ignores the schedule variance entirely."
+  },
+  {
+    "id": "ad3qyeRuJqWMKQji8p8h",
+    "explanation": "Related changes should be evaluated cumulatively. The combined cost ($63,000) and schedule impact (16 days) exceed the governance thresholds. Option A ignores the cumulative effect. Option C treats them inconsistently. Option D may unnecessarily delay the first change if it were truly independent. Cumulative assessment ensures proper governance oversight."
+  },
+  {
+    "id": "asKxKcXLRYKiRQuLQc8O",
+    "explanation": "Supporting organizational change requires addressing resistance through education and engagement. Option A forces change without buy-in. Option B creates inconsistency and avoids the change initiative. Option D is punitive and loses institutional knowledge. Facilitated workshops address concerns while building understanding and support."
+  },
+  {
+    "id": "b4rl1rhOvMaC5Y3jyGOb",
+    "explanation": "A widening gap between In Progress and Done on a cumulative flow diagram indicates that WIP is accumulating — work enters faster than it exits. This leads to longer cycle times, potential bottlenecks, and delivery delays. Option A misreads the chart. Option C is the opposite of what the pattern shows. Option D incorrectly diagnoses the problem as insufficient backlog."
+  },
+  {
+    "id": "bAMtWV4w39E2N5FoUaAG",
+    "explanation": "Transparent communication is essential. The PM should clearly state: (1) current cost performance gap ($30,000/month), (2) projected total overrun ($240,000), (3) available reserve ($180,000), and (4) the $60,000 shortfall if performance doesn't improve, along with recommended corrective actions. Option A is passive and doesn't address the root cause. Option C overreacts without exploring corrective actions. Option D masks the problem through rebaselining."
+  },
+  {
+    "id": "bmXfXQH1NDqHN330mNpQ",
+    "explanation": "Engaging a new stakeholder requires understanding their perspective before advocating for any position. A collaborative discussion builds the relationship and allows informed decision-making. Option A is defensive and may alienate the new sponsor. Option B abandons validated decisions without analysis. Option D escalates prematurely before attempting direct engagement."
+  },
+  {
+    "id": "bwuz9LnYIhppFMLE3zeD",
+    "explanation": "In hybrid and agile approaches, scope adaptation based on stakeholder feedback is a feature, not a failure. The closure report should present the full picture: value delivered, evidence-based scope decisions, and financial performance. Option A implies the 15% is still needed when it was intentionally deprioritized. Option C is cherry-picking data. Option D is dishonest rebaselining."
+  },
+  {
+    "id": "cRX2fnDblIgRG8RozuXe",
+    "explanation": "SPI = EV/PV = 420,000/500,000 = 0.84 (behind schedule). CPI = EV/AC = 420,000/480,000 = 0.875 (over budget, since CPI < 1 means spending more than earned). Option A is incorrect on both dimensions. Option B has the wrong CPI. Option D has the wrong SPI."
+  },
+  {
+    "id": "coEBan3quvpcHqMhndCl",
+    "explanation": "Story points measure relative effort and complexity, not time. The project manager should educate the stakeholder and provide cost information through appropriate means — velocity-based forecasts with team cost per sprint. Option A creates a false equivalence between points and hours. Option C disrupts the team's estimation approach. Option D doubles the estimation effort and creates confusion with dual estimation systems."
+  },
+  {
+    "id": "e4IMihRr5UOrTtKpRazS",
+    "explanation": "Facilitating a collaborative session with shared metrics grounded in customer data and ethical guidelines transforms a values conflict into an evidence-based discussion. This aligns both teams around outcomes rather than approaches. Option A abdicates the project manager's facilitation role and may leave one team feeling overruled. Option B is impractical and creates an inconsistent product. Option D removes the decision from the people with the deepest understanding and may result in a compromise that satisfies neither team."
+  },
+  {
+    "id": "eifmRSsisnjIRucYCyTc",
+    "explanation": "Evaluating external business environment changes requires reassessment before action. Option A ignores the strategic shift. Option C acts without analysis. Option D is premature without understanding whether the project can still deliver value. Reassessing the business case provides the foundation for an informed decision."
+  },
+  {
+    "id": "elk8SLNQO5IWf1Bq2sVg",
+    "explanation": "Environmental compliance issues cannot wait but require appropriate expertise. Option A and C cause unnecessary delays. Option D lacks the appropriate expertise. Continuing unaffected work while escalating to the supervisor ensures compliance is addressed by qualified personnel without unnecessary project stoppage."
+  },
+  {
+    "id": "eoWLft3QVGr2uQ3eFPAD",
+    "explanation": "Continuous improvement is data-driven and addresses root causes. Option A adds resources without understanding the problem. Option C and D add process without analysis. Analyzing defect patterns and updating the definition of done targets the specific quality gap with evidence-based improvements."
+  },
+  {
+    "id": "epLrwV0OJZeWnT8zCfTA",
+    "explanation": "The project can deliver on time since the API works, but the PM must ensure transparency. Documenting the known issue and ensuring transition ownership prevents the problem from falling through the cracks. Option A delivers without disclosing a critical upcoming issue. Option B delays delivery unnecessarily. Option D extends scope when the issue can be handled as a post-project transition item with proper documentation."
+  },
+  {
+    "id": "eq5e5ovWzzdT1jNh1vFD",
+    "explanation": "Compliance with data sovereignty laws requires a thorough assessment and a proportionate response. Option A may violate business requirements. Option C is an overreaction affecting all countries. Option D is passive and may cause delays. Assessing and presenting options to the governance board ensures an informed, governed response."
+  },
+  {
+    "id": "ew0GCuMFZWbjlzFW8j43",
+    "explanation": "Governance frameworks should evolve based on assessment and evidence. Option B may not fit the organization. Option C adds bureaucracy without analysis. Option D does not address framework gaps. A maturity assessment with evidence-based updates ensures the governance framework is fit for purpose."
+  },
+  {
+    "id": "eyJxKy8kFkJQGQZ6BqxE",
+    "explanation": "The project manager should actively manage conflicts that impact the project, even between third parties. Facilitating a working arrangement maintains progress while respecting the formal dispute process. Option A allows the project to stall. Option B exceeds authority and creates potential legal issues. Option D is overly conservative and wastes resources."
+  },
+  {
+    "id": "fbSx3wKKvv5IHuBHKQql",
+    "explanation": "Hybrid projects require deliberate synchronization mechanisms. Regular checkpoints, shared visibility, and a coordination role bridge the methodological gap. Option A abandons the benefits of agile for user-facing work. Option C defers integration risk to the end when fixes are most expensive. Option D compromises agile cadence without addressing the underlying coordination need."
+  },
+  {
+    "id": "fcKQmXf5twQQH4ZzUrEb",
+    "explanation": "Knowledge transfer requires a multi-faceted, structured approach when critical expertise is at risk. Combining documentation, pair programming, and recorded sessions maximizes knowledge capture. Option A is outside the project manager's authority and may not succeed. Option C relies solely on written documentation which may miss tacit knowledge. Option D depends on finding a qualified contractor quickly, which is uncertain."
+  },
+  {
+    "id": "g5ljfir0U6uY0MHu21cL",
+    "explanation": "Active knowledge transfer through demonstrations, a reusable playbook, and pilot identification creates multiple pathways for adoption. This is far more effective than passive documentation. Option A puts knowledge in a system people don't use. Option C is passive and unlikely to generate meaningful follow-up. Option D mandates adoption without building capability, which typically leads to poor implementation."
+  },
+  {
+    "id": "hHynFMVzPXZZpx5pV8Gu",
+    "explanation": "Rolling wave planning is the correct approach when some requirements are still ambiguous. It allows the team to plan near-term work in detail while keeping future work at a summary level, progressively elaborating as more information becomes available. Option A ignores the known ambiguity and creates a false sense of precision. Option B delays value delivery unnecessarily. Option D removes potentially valuable scope rather than managing uncertainty."
+  },
+  {
+    "id": "hNrE6VntCGH5gz4dDGTb",
+    "explanation": "Establishing governance is critical, especially after a failed audit. Option A ignores the organizational need. Option C delegates a critical responsibility inappropriately. Option D documents but does not address the root issue. The correct approach is to establish governance while communicating the business rationale to the sponsor."
+  },
+  {
+    "id": "hzl2piVjHUJVjQVDtG2m",
+    "explanation": "Using cost of quality data demonstrates that cutting reviews creates more expensive rework (failure costs exceed appraisal costs). This evidence-based approach helps the product owner understand the real trade-off. Option A delays feedback and creates a hardening sprint anti-pattern. Option C treats symptoms without addressing root cause. Option D abdicates the PM's quality management responsibility."
+  },
+  {
+    "id": "iFimJpwsBoG2GYcWOTvb",
+    "explanation": "WSJF is calculated as cost of delay divided by job duration. Feature D = 6/1 = 6, Feature A = 8/2 = 4, Feature C = 10/4 = 2.5, Feature B = 12/6 = 2. The correct order is D (6), A (4), C (2.5), B (2). Option A ignores job duration. Option C ignores cost of delay. Option D is not the WSJF calculation."
+  },
+  {
+    "id": "iGi8WJ1XZ0mn2cJu5U8P",
+    "explanation": "Sustainability metrics should be integrated directly into the quality management plan as quality criteria. This ensures they are inspected, measured, and corrected throughout the project, not treated as an afterthought. Option A creates silos that lead to gaps. Option C defers sustainability review too late to correct issues. Option D transfers responsibility without project-level oversight, risking non-compliance."
+  },
+  {
+    "id": "ir0U6pZWIVFm4vFeqMdy",
+    "explanation": "Pair programming combines knowledge transfer with continued productivity, creating both tacit knowledge sharing and lightweight documentation. This aligns with agile principles of working software and face-to-face communication. Option A delays delivery and documentation alone cannot capture tacit knowledge. Option C doesn't transfer existing contextual knowledge about project-specific implementations. Option D captures information but doesn't build team capability or allow for interactive learning."
+  },
+  {
+    "id": "ivmQkjioZyBzFmhIPqLn",
+    "explanation": "AI forecasting tools extrapolate from historical and current data but cannot anticipate strategic decisions, scope changes, or external factors not yet reflected in data. Human judgment is needed to supplement AI forecasts. Option A is a technical assumption that isn't universally true. Option C is factually incorrect. Option D identifies speed as a risk, which is not a primary concern."
+  },
+  {
+    "id": "jPUSiMVButbE3bG3d9E7",
+    "explanation": "Structured facilitation ensures equitable participation and captures diverse perspectives. Silent brainstorming followed by round-robin sharing reduces dominance effects. Option A abandons the value of group dialogue. Option B is confrontational and may embarrass the participant. Option D fragments the knowledge-sharing process and loses the benefit of collective discussion."
+  },
+  {
+    "id": "kdUGYox9HZAC0X4Thhr3",
+    "explanation": "Governance should be proportionate to risk and complexity. Option A removes governance entirely for some projects. Option C ignores valid efficiency concerns. Option D eliminates oversight. Analyzing and streamlining the process with risk-based tiers balances governance rigor with operational efficiency."
+  },
+  {
+    "id": "kyuSlRi0TKtcasvr3t54",
+    "explanation": "The project manager should investigate the root cause of the defect increase, implement targeted quality measures for AI-generated code, and monitor results. This data-driven approach preserves the benefits while addressing the quality issue. Option A ignores a quality problem. Option B discards a productivity gain without investigation. Option D escalates without first attempting to resolve the issue at the team level."
+  },
+  {
+    "id": "lkJrjfmXxiZAjDWeZWxf",
+    "explanation": "A 35% cost increase per story point could have multiple legitimate causes: increased story complexity, team changes, technical debt, or environmental factors. Investigating these root causes is the correct first step. Option A assumes a tool error without basis. Option C assumes bad intent. Option D is one possible cause but jumps to a specific conclusion before investigating broadly."
+  },
+  {
+    "id": "lkNnilOLBZC36BQwWL2F",
+    "explanation": "AI dashboards capture quantitative metrics but may miss qualitative signals like team morale, hidden technical debt, or emerging risks. A good project manager triangulates data sources. Option A dismisses valuable human insight. Option C overreacts by abandoning a useful tool. Option D treats symptoms rather than investigating root causes and assumes the AI can process subjective input meaningfully."
+  },
+  {
+    "id": "lyXlioUBvpBLpvrt3huC",
+    "explanation": "Regulatory compliance must be addressed before launch. Option A risks non-compliance at launch. Option C is premature without first exploring integration options. Option D may create integration challenges without proper coordination. Reprioritizing the backlog ensures the requirement is addressed within the agile framework with proper architectural consideration."
+  },
+  {
+    "id": "m1HCCcTDgeHD3yVusJkw",
+    "explanation": "A stakeholder communication needs assessment addresses the root cause by matching information type, frequency, and channel to each group's actual needs. Option A may reduce overload but will worsen the relevance problem by giving everyone the same generic update. Option C provides access to data but doesn't solve the push communication problem or ensure stakeholders engage with relevant information. Option D adds cost and creates potential filtering bias without a systematic needs analysis."
+  },
+  {
+    "id": "mPgqNxTIehjTliKpWFFH",
+    "explanation": "Organizational change requires addressing the specific concerns of resistant groups. Option A creates resentment. Option B defeats the purpose of the new system. Option D does not address the underlying concern. Engaging middle managers as champions addresses their concerns about authority while building ownership."
+  },
+  {
+    "id": "mj9r58I2ybyeY0QTctEM",
+    "explanation": "Transparent communication based on data: velocity = 156/6 = 26 points/sprint. Remaining = 144 points. Sprints needed = 144/26 ≈ 5.5 sprints = $550,000. Remaining budget = $200,000. There is a $350,000 shortfall. Option A ignores the math. Option C proposes an unrealistic velocity increase (nearly 3x). Option D jumps to a solution without first presenting the problem and options to the product owner."
+  },
+  {
+    "id": "mrJadrHrpZLoTBw2TLIU",
+    "explanation": "Acknowledging emotions, reframing progress positively, and involving the team in planning demonstrates emotional intelligence and servant leadership. Option A ignores a real regulatory change that will impact the project. Option B reacts without team input and doesn't address morale. Option D assumes more resources are the answer without first assessing what changes are actually needed."
+  },
+  {
+    "id": "mvBMCmnOrgyJxsyzmAtR",
+    "explanation": "Understanding why unofficial channels are preferred addresses root causes (likely usability or speed). Establishing channel agreements balances team preferences with project documentation needs. Option A creates a restrictive environment without addressing why people avoid official channels. Option C is unlikely to be consistently followed and doesn't address the documentation risk. Option D is a costly overreaction that may not solve the underlying behavioral issue."
+  },
+  {
+    "id": "mxgzSwGLo7ZRxx8F5WX8",
+    "explanation": "Stakeholder engagement on AI projects requires addressing legitimate concerns about transparency and usability. Understanding specific needs enables targeted solutions. Option A ignores a critical adoption barrier. Option B is an overreaction without understanding the scope of the issue. Option D is a workaround that does not resolve the underlying concern and adds significant workload."
+  },
+  {
+    "id": "n0NJt3P94W19SKSt2OTv",
+    "explanation": "Structured virtual retrospectives organized by phase capture diverse perspectives efficiently from a distributed team. Recording and synthesizing ensures knowledge is preserved in a usable format. Option A is likely to receive low-quality or no responses given competing priorities. Option C captures only one perspective and misses valuable insights from other roles. Option D risks losing details as memories fade and team members become absorbed in new work."
+  },
+  {
+    "id": "n23LRbkRnqTzy5Wz72nT",
+    "explanation": "Understanding Tuckman's model, the storming phase is natural. The project manager should normalize it and facilitate agreement-building. Option A imposes rules without team ownership. Option B avoids natural team development. Option D abandons the team during a critical development stage when facilitation is most needed."
+  },
+  {
+    "id": "nXhaTVkyskD7Noo6ASMr",
+    "explanation": "Conflict management in agile environments should leverage the team's collective expertise. Facilitating a collaborative discussion allows the team to evaluate options objectively. Option A removes team autonomy. Option B avoids the conflict rather than resolving it. Option D assigns a technical decision to someone without the appropriate expertise."
+  },
+  {
+    "id": "oE9XJ4DVdW3fO4D8uZ9z",
+    "explanation": "Cost of quality analysis shows prevention (8:1 ROI) is more cost-effective than appraisal (3:1 ROI). With a limited budget, the majority should go to the higher-ROI activity. Option A ignores the ROI data. Option C eliminates testing entirely, which is risky since no prevention method catches all defects. Option D invests more in the lower-ROI activity."
+  },
+  {
+    "id": "oGq7b6T87UTQMnjDKc4e",
+    "explanation": "The product owner should use empirical data to reprioritize — moving the high-demand feature up and investigating low adoption to inform future decisions. This embodies agile's inspect-and-adapt principle. Option A may be premature without understanding why adoption is low. Option C ignores valuable customer data. Option D throws resources at the problem without addressing prioritization."
+  },
+  {
+    "id": "qDmyaQDMmQ68vCXfyklY",
+    "explanation": "Evaluating external business environment changes requires analysis before action. Option A is reactive without analysis. Option C skips the analysis step. Option D ignores a potentially significant competitive and regulatory shift. Conducting an impact analysis first provides the data needed for informed decision-making."
+  },
+  {
+    "id": "qRhgo0XdsoHlEu9WAgZg",
+    "explanation": "Structured facilitation techniques address the systemic issue of unequal participation without singling anyone out. This creates psychological safety and surfaces diverse ideas. Option A addresses the symptom with one person but doesn't create an inclusive process. Option C ignores a dysfunction that the Scrum Master should address as a servant leader. Option D excludes a team member and loses their valuable input."
+  },
+  {
+    "id": "qiq9598iIanBDwIXpeRK",
+    "explanation": "Addressing the issue directly and privately with the team lead is the appropriate first step. This respects the individual while addressing the behavior and its impact on team morale. It gives the team lead an opportunity to correct the behavior. Option B is passive-aggressive and doesn't address the root cause. Option C avoids direct conversation and may not be effective since the behavior occurs in external presentations. Option D escalates prematurely without first attempting to resolve the issue directly."
+  },
+  {
+    "id": "qmlbTTAHdeajqCdsYhGO",
+    "explanation": "A hybrid project should have one integrated plan that accommodates both lifecycle approaches. The plan should clearly define which components follow predictive methods with fixed milestones and which follow adaptive methods with iterative cadences. Option A violates the PMO requirement for a single plan. Option C hides the actual methodology from governance. Option D forces regulatory work into an inappropriate framework that may not satisfy compliance requirements."
+  },
+  {
+    "id": "qoQuMnUVqg5dfDKPHLGP",
+    "explanation": "Cost of quality analysis requires comparing the total cost of conformance (prevention + appraisal) against the cost of nonconformance (internal + external failure). A 15% budget increase that eliminates 95% of defects is likely a net positive, but the PM should verify by analyzing total cost of quality. Option A focuses only on budget without considering savings from reduced defects. Option C assumes without data that the prevention level is excessive. Option D abandons a demonstrably effective approach."
+  },
+  {
+    "id": "qxPdJj5qZM2hzz65Gq6D",
+    "explanation": "Providing a range-based probabilistic forecast using historical velocity data gives the most honest and useful prediction. It acknowledges uncertainty and helps the product owner plan for different scenarios. Option A is unrealistically optimistic. Option B provides false precision with a single number. Option D ignores the team's empirical velocity data in favor of speculative individual estimates."
+  },
+  {
+    "id": "rJEoUqYmhLF5uj4nACx8",
+    "explanation": "When a project delivers on scope, time, and budget but benefits are not realized, the gap is typically in organizational adoption. Option A is contradicted by the project meeting objectives. Option C is contradicted by on-time, in-budget delivery. Option D is possible but less likely given the project met its objectives. Insufficient change management is the most common cause of the delivery-benefit gap."
+  },
+  {
+    "id": "rcsSUuumnCZnJbBZ3Bzh",
+    "explanation": "Private discussion preserves the relationship while addressing the issue with evidence. Establishing a formal process prevents recurrence without being confrontational. Option A publicly embarrasses the stakeholder and damages the relationship. Option C escalates prematurely without attempting direct resolution. Option D creates a communication bottleneck and doesn't address the underlying issue with the stakeholder."
+  },
+  {
+    "id": "s7vzFmZUfsqwol4qSGbq",
+    "explanation": "When a policy applies to active projects, compliance must be achieved. Option A attempts to avoid compliance. Option C is an overreaction. Option D delays compliance. Conducting retroactive assessments addresses the governance requirement while maintaining the project's AI capabilities."
+  },
+  {
+    "id": "sRWqnqUfIeWjAGLwOvvd",
+    "explanation": "Two critical considerations: (1) approval authority — the PM needs to know if they can authorize $20,000, and (2) whether shortening F by 5 days might cause a near-critical path to become the new critical path, negating the benefit. Option B focuses on logistics prematurely. Option C is incorrect because F is on the critical path and therefore has zero float. Option D addresses process but not the technical and financial analysis needed."
+  },
+  {
+    "id": "sogvRKQEAwG27hCYcMFd",
+    "explanation": "Governance processes exist for good reasons but should include mechanisms for urgency. Option A bypasses governance. Option B is rigid without exploring alternatives. Option D implements without authorization. Explaining the process while exploring expedited review balances governance integrity with responsiveness."
+  },
+  {
+    "id": "tirYqZ6oOMgGC0NXsuKv",
+    "explanation": "The team should only commit to stories that meet the definition of ready — clear acceptance criteria and manageable dependencies. Unclear stories should be refined further. Option B commits to uncertain work, risking sprint failure. Option C delays delivery unnecessarily when ready stories exist. Option D forces all unclear items into spikes, which may be premature — some stories may simply need refinement, not research."
+  },
+  {
+    "id": "u9KG2HEsqh9TzhQyM0Yt",
+    "explanation": "External business environment changes (competitor patent) require proper evaluation. Option A ignores a real risk. Option B overreacts without legal analysis. Option D attempts a solution without understanding the legal implications. Engaging legal while continuing other work balances risk management with productivity."
+  },
+  {
+    "id": "uTaZ3yo6IO5DBEC4nUaW",
+    "explanation": "Regulatory compliance is urgent but still requires governance. Option A risks non-compliance. Option B bypasses governance entirely. Option D creates informal work without authorization. The emergency change process provides the mechanism for urgent changes while maintaining governance integrity."
+  },
+  {
+    "id": "umfcJiqjIDTZrk2G8qso",
+    "explanation": "Continuous improvement policies should be implemented in ways that align with the team's working methods. Option A undermines organizational policy. Option B ignores valid concerns about overhead. Option D escalates instead of problem-solving. Finding lightweight, integrated metrics satisfies the policy while respecting agile principles."
+  },
+  {
+    "id": "us8pn5I4KtZn4BpZLRQK",
+    "explanation": "Continuous improvement means addressing root causes, not just symptoms. Option A masks the problem by increasing WIP. Option B deprioritizes compliance. Option D adds resources without understanding why compliance issues are recurring. Root cause analysis combined with a structured expedite lane addresses both the immediate capacity issue and the underlying problem."
+  },
+  {
+    "id": "uxwlUw2gdQEdsk5HttTi",
+    "explanation": "Fixed-price agile work carries uncertainty from scope discovery, estimation variance, and team productivity fluctuations. A contingency buffer (typically 15-30%) is appropriate for risk coverage. Option A provides no margin for uncertainty. Option C is dogmatic — agile can work with fixed-price constraints with proper planning. Option D effectively makes it a time-and-materials contract disguised as fixed-price."
+  },
+  {
+    "id": "vbDJRLT6L5fxQfCR01Mn",
+    "explanation": "A data-driven approach examines which quality gates add value and which create unnecessary friction. Some checks may be redundant or poorly configured. Optimizing rather than removing or rigidly maintaining gates balances quality with productivity. Option A creates inconsistent quality standards. Option C ignores legitimate process improvement. Option D abdicates the PM's responsibility for process management."
+  },
+  {
+    "id": "vjf7iasvMEiUb8R0Ilyc",
+    "explanation": "In agile, scope changes are expected and welcomed if they deliver value. The project manager should facilitate an informed prioritization decision, weighing the new feature against existing backlog items. Option A applies a predictive mindset to an agile project. Option B disrupts the current sprint without proper analysis. Option D assumes no existing work can be deprioritized to accommodate the new feature."
+  },
+  {
+    "id": "w6fT1Bb9XFhwRB9CxWyh",
+    "explanation": "A facilitated workshop with transparent, strategy-linked criteria enables stakeholders to participate in the decision, increasing buy-in and alignment. This is the strongest stakeholder engagement approach. Option A presents a ranking but doesn't involve stakeholders in the process, reducing buy-in. Option B excludes stakeholders from the decision, which may create resistance. Option D avoids the conflict but likely increases cost, complexity, and risk."
+  },
+  {
+    "id": "w7PjXoKYq5OZ8JtUij5S",
+    "explanation": "The project manager must be transparent about the schedule gap and present options with trade-offs so the sponsor can make an informed decision. Option A accepts unrealistic constraints that will harm the team and likely still miss the deadline. Option C makes scope decisions without authorization and hides information from the sponsor. Option D is an overreaction when viable alternatives exist."
+  },
+  {
+    "id": "wI1yTjf6mARvkVJhRSIS",
+    "explanation": "AI bias concerns require investigation and governance involvement. Option A is a workaround without addressing the root cause. Option C incorrectly assumes algorithms are inherently unbiased. Option D is an overreaction. Investigating, escalating, and implementing interim oversight addresses the concern systematically."
+  },
+  {
+    "id": "wpD2450N5fogPxZZPPv3",
+    "explanation": "Effective knowledge transfer requires multiple methods and interactive overlap. Working together allows tacit knowledge transfer that documentation alone cannot capture. Option A relies solely on written artifacts. Option C compresses transfer into a single event, risking information loss. Option D provides only one-way communication without the ability to ask questions."
+  },
+  {
+    "id": "ww6I1GsWkjDmB5aqF45H",
+    "explanation": "An RFP is appropriate when the buyer knows what they need (business requirements) but wants vendors to propose how to achieve it (technical approach). This allows evaluation of different approaches. Option A is for commodity purchases with clear specifications. Option B requires detailed technical specs the buyer does not yet have. Option D gathers information but does not solicit actual proposals."
+  },
+  {
+    "id": "xmFqyszMccHpaMsGOdIM",
+    "explanation": "The project manager should review contractual protections, assess the actual risk, and develop contingency plans — a measured, proactive response. Option A is an overreaction that could disrupt the project and incur termination costs. Option C is too passive given the material change in vendor ownership. Option D halts work unnecessarily before understanding the actual contractual and practical implications."
+  },
+  {
+    "id": "xxCESoyUDw2bnpNSccSW",
+    "explanation": "Leading remote teams requires intentionally creating spaces for informal interaction and collaboration. Virtual social activities and dedicated brainstorming time can partially replicate the benefits of co-location. Option A may not be feasible or desirable. Option B increases meeting fatigue without addressing the informal interaction gap. Option D is defeatist and inaccurate."
+  },
+  {
+    "id": "ycwQSwJ7qkpNRy4ugd9k",
+    "explanation": "The project manager should facilitate collaboration between stakeholders to find an integrated approach. Sustainability requirements tied to regulations are constraints, not optional features, but they must be balanced with business value delivery. Option A risks regulatory non-compliance. Option B ignores business value considerations. Option D fragments team capacity and likely reduces overall throughput for a small team."
+  },
+  {
+    "id": "ytZrS1kCL2enjTGRyEqI",
+    "explanation": "Engaging stakeholders requires proactive, personal outreach, especially when a key stakeholder is disengaged. A one-on-one meeting helps surface concerns and build commitment. Option A risks resistance during execution. Option C undermines the relationship. Option D is passive and unlikely to secure genuine engagement."
+  },
+  {
+    "id": "zKtYJqqwAMaUimO5eZ9S",
+    "explanation": "When a bottleneck is identified in Kanban, the team should swarm to address it while investigating root causes. Developers helping with testing improves immediate flow. Option A raises the WIP limit, which masks the bottleneck rather than resolving it. Option C bypasses quality assurance. Option D is a long-term staffing decision that does not address the immediate flow problem."
+  },
+  {
+    "id": "zNITteTZWl4pGouFKzY4",
+    "explanation": "New environmental findings require proper investigation and governance. Option A ignores potentially serious environmental harm. Option C may be overly disruptive without understanding the full scope. Option D bypasses change control. An independent review with regulatory engagement and change control ensures a thorough, governed response."
+  },
+  {
+    "id": "zWfRIHZvDlZn40Y4pWwt",
+    "explanation": "Good risk management uses all available data sources. The AI prediction and vendor input are both valuable but neither is definitive. Adding it to the risk register, planning contingencies, and increasing monitoring is a balanced response. Option A ignores data-driven insight. Option B overreacts without verification. Option D is a disproportionate response to a risk that hasn't materialized."
+  }
+]

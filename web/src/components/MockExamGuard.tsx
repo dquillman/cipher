@@ -48,7 +48,7 @@ export default function MockExamGuard() {
     reason === 'no-diagnostic'
       ? {
           title: 'Take the diagnostic first',
-          body: `The full mock is built around what the diagnostic learns about you — which domains to weight, and which reasoning level you are weakest at. It takes about ten minutes for ${examName || 'this exam'}.`,
+          body: `Sit the diagnostic first so your results have something to be measured against — it sets your readiness baseline and points your study plan at your weakest domain. It takes about ten minutes for ${examName || 'this exam'}.`,
           cta: 'Start the diagnostic',
           go: () => navigate('/app/quiz', { state: { mode: 'diagnostic' } }),
         }

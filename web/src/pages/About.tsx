@@ -103,8 +103,8 @@ export default function About() {
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-sm">4</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Aim for 100% Readiness</h4>
-                                    <p className="text-slate-400 text-sm">Your goal is to fill all the mastery rings and achieve a "High" readiness score before your exam date.</p>
+                                    <h4 className="text-white font-medium mb-1">Close your weakest domains</h4>
+                                    <p className="text-slate-400 text-sm">Work the mastery rings up domain by domain, and keep testing yourself against the benchmark rather than against a feeling of being ready.</p>
                                 </div>
                             </li>
                         </ul>

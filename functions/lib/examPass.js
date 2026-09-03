@@ -65,6 +65,7 @@ async function getActivePlanExamDate(uid, examId) {
  * in test mode today and unchanged when live keys land.
  */
 exports.createPassCheckoutSession = functions.https.onCall(async (data, context) => {
+    var _a;
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'User must be logged in.');
     }
@@ -84,29 +85,29 @@ exports.createPassCheckoutSession = functions.https.onCall(async (data, context)
     try {
         const stripe = getStripe();
         const urls = (0, billingConfig_1.getCheckoutUrls)();
-        const session = await stripe.checkout.sessions.create({
-            mode: 'payment',
-            payment_method_types: ['card'],
-            // Payment-mode checkout defaults to customer_creation 'if_required',
-            // which for a card payment creates NO customer. Pass buyers were
-            // therefore left with no stripeCustomerId and no billing portal —
-            // they had paid $59 and could not pull their own receipt. Always
-            // create one so the portal works for them too.
-            customer_creation: 'always',
-            line_items: [{
+        // Reuse the customer this user already has, if any.
+        //
+        // The same fault as the subscription side, mirrored: passing only
+        // customer_email makes Stripe mint a NEW Customer every time. A user who
+        // already had a stripeCustomerId (a lapsed Pro subscriber, or someone
+        // buying a second pass) therefore paid $59 against a customer no user
+        // document references -- and fulfilment below refuses to overwrite the
+        // stored id, so the link is never made. handleChargeRefunded looks users
+        // up by that single field, so refunding that pass matched nobody, logged
+        // a warning, and returned: money back, 90 days of access retained.
+        const existingCustomerId = (_a = (await admin.firestore()
+            .collection('users').doc(context.auth.uid).get())
+            .data()) === null || _a === void 0 ? void 0 : _a.stripeCustomerId;
+        const session = await stripe.checkout.sessions.create(Object.assign(Object.assign(Object.assign({ mode: 'payment', payment_method_types: ['card'] }, (existingCustomerId ? {} : { customer_creation: 'always' })), { line_items: [{
                     price_data: {
                         currency: 'usd',
                         unit_amount: 5900,
                         product_data: { name: 'CipherExam Exam Pass — 90 days' },
                     },
                     quantity: 1,
-                }],
-            success_url: urls.passSuccessUrl,
-            cancel_url: urls.passCancelUrl,
-            metadata,
-            payment_intent_data: { metadata },
-            customer_email: context.auth.token.email,
-        });
+                }], success_url: urls.passSuccessUrl, cancel_url: urls.passCancelUrl, metadata, payment_intent_data: { metadata } }), (existingCustomerId
+            ? { customer: existingCustomerId }
+            : { customer_email: context.auth.token.email })));
         return { sessionId: session.id, url: session.url };
     }
     catch (error) {

@@ -150,6 +150,22 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
     const hasPassFor = (examId: string) => isPassActiveFor(passEntitlement, examId);
 
     const checkPermission = (_feature: 'analytics' | 'simulator' | 'visual_mnemonics', examId?: string) => {
+        // Optimistic while the entitlement is still loading.
+        //
+        // The context seeds entitlement as free, so every consumer that called
+        // this during load showed a paying subscriber "Pro Feature - Upgrade
+        // Now" over their own blurred analytics until Firestore answered. That
+        // was live on /app/stats, /app/readiness, the trend card and the
+        // thinking-traps card -- four surfaces, all reachable by a hard refresh.
+        //
+        // Fixed here rather than in each consumer on purpose: guarding them one
+        // by one is how two of six got fixed last time and four were missed.
+        // The cost is that a free user may glimpse an analytics panel for the
+        // few hundred milliseconds before the snapshot lands. That is the right
+        // way round: telling a paying customer they have not paid is a defect,
+        // and every gate that actually serves content is enforced server-side
+        // (validateQuizStart, requirePro) regardless of what this returns.
+        if (loading) return true;
         if (entitlement.isPro) return true;
         if (examId && isPassActiveFor(passEntitlement, examId)) return true;
         return false;

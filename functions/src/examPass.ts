@@ -95,6 +95,21 @@ export const createPassCheckoutSession = functions.https.onCall(async (data, con
     try {
         const stripe = getStripe();
         const urls = getCheckoutUrls();
+
+        // Reuse the customer this user already has, if any.
+        //
+        // The same fault as the subscription side, mirrored: passing only
+        // customer_email makes Stripe mint a NEW Customer every time. A user who
+        // already had a stripeCustomerId (a lapsed Pro subscriber, or someone
+        // buying a second pass) therefore paid $59 against a customer no user
+        // document references -- and fulfilment below refuses to overwrite the
+        // stored id, so the link is never made. handleChargeRefunded looks users
+        // up by that single field, so refunding that pass matched nobody, logged
+        // a warning, and returned: money back, 90 days of access retained.
+        const existingCustomerId = (await admin.firestore()
+            .collection('users').doc(context.auth.uid).get())
+            .data()?.stripeCustomerId as string | undefined;
+
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             payment_method_types: ['card'],
@@ -103,7 +118,8 @@ export const createPassCheckoutSession = functions.https.onCall(async (data, con
             // therefore left with no stripeCustomerId and no billing portal —
             // they had paid $59 and could not pull their own receipt. Always
             // create one so the portal works for them too.
-            customer_creation: 'always',
+            // customer_creation is only honoured when no customer is supplied.
+            ...(existingCustomerId ? {} : { customer_creation: 'always' as const }),
             line_items: [{
                 price_data: {
                     currency: 'usd',
@@ -116,7 +132,9 @@ export const createPassCheckoutSession = functions.https.onCall(async (data, con
             cancel_url: urls.passCancelUrl,
             metadata,
             payment_intent_data: { metadata },
-            customer_email: context.auth.token.email,
+            ...(existingCustomerId
+                ? { customer: existingCustomerId }
+                : { customer_email: context.auth.token.email }),
         });
 
         return { sessionId: session.id, url: session.url };

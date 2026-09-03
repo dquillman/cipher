@@ -220,7 +220,7 @@ export default function CognitiveHeatmap() {
               </li>
               <li className="flex gap-3">
                 <span className="text-brand-400 font-bold shrink-0">&rarr;</span>
-                <span><strong className="text-white">Columns:</strong> The official domains of your exam. PMP has three. Security+ has five. CSM has four. SHRM-CP has four. Each CompTIA track has its own.</span>
+                <span><strong className="text-white">Columns:</strong> The official domains of your exam. PMP has three. Security+ has five. Each CompTIA track has its own.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-brand-400 font-bold shrink-0">&rarr;</span>
