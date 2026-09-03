@@ -169,8 +169,7 @@ export default function Terms() {
               <p>
                 If you have questions about these Terms of Service, please contact us at{' '}
                 <a href={`mailto:${SUPPORT_EMAIL}`} className="text-brand-400 hover:text-brand-300 transition-colors">
-
-
+                  {SUPPORT_EMAIL}
                 </a>.
               </p>
             </section>

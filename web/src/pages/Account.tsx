@@ -317,8 +317,9 @@ export default function Account() {
                     <div className="text-sm text-slate-300 leading-relaxed">
                         <p className="font-semibold text-white">60-day money-back guarantee</p>
                         <p className="text-slate-400 mt-1">
-                            Within 60 days of your first payment we'll refund every dollar — no conditions,
-                            no proof of anything, no fine print.
+                            Pro purchases are covered: within 60 days of your first payment we'll refund
+                            every dollar — no conditions, no proof of anything, no fine print. Bought an
+                            Exam Pass instead? Write to us anyway and we'll look at it.
                         </p>
                         <a
                             href={REFUND_MAILTO}

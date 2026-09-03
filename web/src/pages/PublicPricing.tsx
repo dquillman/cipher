@@ -77,17 +77,9 @@ export default function PublicPricing() {
                         </div>
                         {/* MOST POPULAR tag — centered on the top border so the seal owns the corner */}
                         <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-500 to-purple-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">MOST POPULAR</span>
-                        {/* Gold guarantee sticker — inside the card, clear of all copy */}
-                        <GuaranteeSeal
-                            size={116}
-                            tilt={-12}
-                            animate
-                            className="hidden lg:block absolute top-6 right-6 z-10 pointer-events-none"
-                        />
-
                         <div className="relative">
-                            <h3 className="text-2xl font-bold text-white lg:pr-32">Exam Pass</h3>
-                            <div className="mt-4 flex items-baseline flex-wrap gap-x-2 lg:pr-32">
+                            <h3 className="text-2xl font-bold text-white">Exam Pass</h3>
+                            <div className="mt-4 flex items-baseline flex-wrap gap-x-2">
                                 <span className="text-4xl font-bold tracking-tight text-white">$59</span>
                                 <span className="text-xl text-slate-400">one-time</span>
                             </div>

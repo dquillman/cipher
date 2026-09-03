@@ -233,7 +233,7 @@ export default function BestPmpSimulator2026() {
           </div>
           <div>
             <dt className="font-semibold text-slate-100">What does CipherExam cost?</dt>
-            <dd className="mt-1">$19/month for Pro — covering PMP plus 10 other certifications — or a one-time $59 Exam Pass for a single exam for 90 days. 14-day free trial, no credit card required, and a 60-day, no-conditions money-back guarantee.</dd>
+            <dd className="mt-1">$19/month for Pro — covering PMP, CompTIA Security+, Network+ and A+ Core 2 — or a one-time $59 Exam Pass for a single exam for 90 days. Pro includes a 14-day free trial, no credit card required, and a 60-day, no-conditions money-back guarantee.</dd>
           </div>
           <div>
             <dt className="font-semibold text-slate-100">Will using a simulator guarantee I pass?</dt>

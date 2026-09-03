@@ -21,8 +21,7 @@ export default function PublicFooter() {
               AI-powered certification exam prep. Understand how exams think.
             </p>
             <a href={`mailto:${SUPPORT_EMAIL}`} className={footerLinkClass}>
-
-
+              {SUPPORT_EMAIL}
             </a>
           </div>
 
