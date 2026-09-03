@@ -9,6 +9,7 @@ import { useExam } from '../contexts/ExamContext';
 import { EXAMS, isExam } from '../config/exams';
 import { applyReadinessConfidence } from '../utils/readinessConfidence';
 import { getMockEligibility } from '../utils/mockEligibility';
+import { QuizRunService } from '../services/QuizRunService';
 import { getAnsweredCount } from '../utils/questionMetrics';
 import { bandFor, BAND_LABEL } from '../utils/passBar';
 
@@ -41,6 +42,37 @@ export default function SimulatorIntro() {
     const { isPro, hasPassFor } = useSubscription();
     const navigate = useNavigate();
     const { examName, selectedExamId: activeExamId, examDomains, hasCompletedDiagnostic } = useExam();
+
+    /**
+     * An interrupted mock was reachable from no screen in the app.
+     *
+     * useSimulator resumes only when you arrive at /app/simulator/exam carrying
+     * no router state -- everything else is read as a deliberate fresh start.
+     * But the only two links into that route both set state, the Dashboard's
+     * resume banner explicitly skips simulation runs, and nothing linked to a
+     * run by id. So a candidate who closed the tab 80 questions into a
+     * 180-question PMP mock had a sitting whose absolute deadline kept running
+     * with no way back in, and pressing Start later marked it 'abandoned'.
+     *
+     * This is the missing door: navigate with NO state, which is exactly the
+     * shape useSimulator treats as a resume.
+     */
+    const [openRun, setOpenRun] = useState<{ answered: number; total: number } | null>(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        const user = auth.currentUser;
+        if (!user || !activeExamId) { setOpenRun(null); return; }
+        (async () => {
+            const run = await QuizRunService.getActiveSimulationRun(user.uid, activeExamId);
+            if (cancelled) return;
+            const total = run?.snapshot?.questionIds?.length ?? 0;
+            if (!run || total === 0) { setOpenRun(null); return; }
+            const answered = Object.keys((run.snapshot as { simAnswers?: Record<number, number> })?.simAnswers ?? {}).length;
+            setOpenRun({ answered, total });
+        })().catch(() => { if (!cancelled) setOpenRun(null); });
+        return () => { cancelled = true; };
+    }, [activeExamId]);
     const examConfig = Object.values(EXAMS).find(e => isExam(activeExamId, e.id));
     const mockConfig = examConfig?.fullMock ?? { questionCount: 50, durationMinutes: 60 };
     const hasFullMock = examConfig?.fullMock != null;
@@ -227,6 +259,22 @@ export default function SimulatorIntro() {
                     </div>
                 ) : (
                     <div className={`grid grid-cols-1 ${hasFullMock ? 'md:grid-cols-2' : ''} gap-4 mb-8 lg:mb-12`}>
+                        {openRun && (
+                            <button
+                                onClick={() => navigate('/app/simulator/exam')}
+                                className="md:col-span-2 group bg-gradient-to-br from-amber-900/40 to-slate-900 border border-amber-500/40 rounded-2xl p-5 md:p-6 text-left shadow-xl hover:border-amber-400/60 transition-all"
+                            >
+                                <div className="flex items-center gap-3 mb-2">
+                                    <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                                        <Play className="w-5 h-5 text-amber-400 fill-current" />
+                                    </div>
+                                    <h2 className="text-xl font-bold text-white">Resume your exam in progress</h2>
+                                </div>
+                                <p className="text-sm text-slate-300">
+                                    You have an unfinished sitting &mdash; {openRun.answered} of {openRun.total} answered. The clock has kept running, so pick it up now.
+                                </p>
+                            </button>
+                        )}
                         {/* Practice Simulator */}
                         <button
                             onClick={() => {

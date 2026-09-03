@@ -57,11 +57,11 @@ function fromAddress(): string {
 
 const CTA = "https://cipherexam.com/app";
 
-function shell(inner: string, footer: string): string {
+function shell(inner: string, footer: string, cta: { href: string; label: string } = { href: CTA, label: "Open CipherExam" }): string {
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;max-width:560px">
 ${inner}
-<p style="margin-top:28px"><a href="${CTA}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">Start Free Trial</a></p>
-<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 14-day free trial. No credit card required. Cancel anytime.</p>
+<p style="margin-top:28px"><a href="${cta.href}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">${cta.label}</a></p>
+<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam</p>
 ${footer}
 </div>`;
 }
@@ -115,8 +115,12 @@ export const DRIP_SEQUENCE: DripEmail[] = [
       shell(
         `<p>Hi ${firstName},</p>
 <p>Your free trial wraps tomorrow. If the adaptive routing has been sending you back to your weakest domain — that's the whole point; it's where the score actually moves.</p>
-<p>I read every reply to these emails personally. If anything's been confusing or missing, just hit reply and tell me.</p>`,
+<p>After tomorrow you keep a daily quiz and everything you have already done. Pro is $19/month for unlimited practice, the full timed mocks and the domain breakdown.</p>`,
         footer,
+        // The generic "Start Free Trial" button was wrong on every drip email --
+        // they all go to people whose trial is already running -- and worst here,
+        // where the action being asked for is to subscribe.
+        { href: "https://cipherexam.com/app/pricing", label: "See Pro pricing" },
       ),
   },
 ];
@@ -211,7 +215,7 @@ export const scheduleOnboardingDrip = functions.firestore
       return;
     }
 
-    const footer = complianceFooter(email);
+    const footer = complianceFooter(email, 'signup');
     if (!footer) {
       await recordComplianceBlock("scheduleOnboardingDrip", ["footer could not be built"]);
       return;

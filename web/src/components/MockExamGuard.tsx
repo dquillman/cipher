@@ -20,11 +20,18 @@ import { getMockEligibility } from '../utils/mockEligibility';
 export default function MockExamGuard() {
   const navigate = useNavigate();
   const { hasCompletedDiagnostic, selectedExamId, examName } = useExam();
-  const { isPro, hasPassFor } = useSubscription();
+  const { isPro, hasPassFor, loading: subLoading } = useSubscription();
 
   // While diagnostic status is loading, render nothing (parent RequireAuth
   // already handles auth; ExamContext sets null during initial load)
   if (hasCompletedDiagnostic === null) return null;
+
+  // And while the subscription is loading. SubscriptionContext seeds entitlement
+  // as free and passEntitlement as null before the Firestore snapshot lands, so
+  // if ExamContext resolved first a paying subscriber was shown "The full mock
+  // is a Pro feature" until the doc arrived. FreePlanBanner was fixed for this
+  // exact flash; the guard was missed.
+  if (subLoading) return null;
 
   // Pass readiness=100 to skip soft-gate — guard only enforces hard gates.
   // Readiness warnings are handled inside SimulatorIntro.

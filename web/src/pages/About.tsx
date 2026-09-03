@@ -71,7 +71,7 @@ export default function About() {
                             </div>
                             <h3 className="text-lg font-bold text-white mb-2 font-display">Exam Simulator</h3>
                             <p className="text-slate-400 text-sm leading-relaxed">
-                                Ready for the real thing? Take full 50-question mock exams under timed conditions with no hints. Test your nerves before test day.
+                                Ready for the real thing? Take full-length mock exams under timed conditions with no hints — 180 questions in 240 minutes for PMP, 90 in 90 for each CompTIA exam. Test your nerves before test day.
                             </p>
                         </div>
                     </div>

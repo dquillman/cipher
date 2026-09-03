@@ -1,6 +1,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import axios from "axios";
+import { complianceFooter, isOptedOut } from "./emailCompliance";
 
 /**
  * Exam Countdown sequence.
@@ -44,11 +45,12 @@ function fromAddress(): string {
 
 const CTA = "https://cipherexam.com/app";
 
-function shell(inner: string, ctaLabel: string): string {
+function shell(inner: string, ctaLabel: string, footer = ""): string {
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;max-width:560px">
 ${inner}
 <p style="margin-top:28px"><a href="${CTA}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">${ctaLabel}</a></p>
 <p style="color:#64748b;font-size:13px;margin-top:24px">— Dave at CipherExam</p>
+${footer}
 </div>`;
 }
 
@@ -59,7 +61,7 @@ type CountdownEmail = {
   stampKey: "d14" | "d7" | "d3" | "d1";
   subject: string;
   ctaLabel: string;
-  html: (ctx: { firstName: string }) => string;
+  html: (ctx: { firstName: string; footer: string }) => string;
 };
 
 export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
@@ -68,7 +70,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
     stampKey: "d14",
     subject: "Two weeks out — your final-review plan",
     ctaLabel: "Run a readiness check",
-    html: ({ firstName }) =>
+    html: ({ firstName, footer }) =>
       shell(
         `<p>Hi ${firstName},</p>
 <p>Your exam is two weeks away. This is the point where a plan matters more than more hours.</p>
@@ -80,6 +82,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
 </ul>
 <p>Your dashboard already knows your weak domains. Start there.</p>`,
         "Run a readiness check",
+        footer,
       ),
   },
   {
@@ -87,7 +90,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
     stampKey: "d7",
     subject: "One week out — make this simulator week",
     ctaLabel: "Start a full-length mock",
-    html: ({ firstName }) =>
+    html: ({ firstName, footer }) =>
       shell(
         `<p>Hi ${firstName},</p>
 <p>One week to go. This week is about exam conditions, not new material.</p>
@@ -100,6 +103,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
 </ul>
 <p>One honest mock plus a careful review is worth more than three rushed ones.</p>`,
         "Start a full-length mock",
+        footer,
       ),
   },
   {
@@ -107,7 +111,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
     stampKey: "d3",
     subject: "Three days out — time to taper",
     ctaLabel: "Do a light review set",
-    html: ({ firstName }) =>
+    html: ({ firstName, footer }) =>
       shell(
         `<p>Hi ${firstName},</p>
 <p>Three days left. Counterintuitive advice: study less.</p>
@@ -119,6 +123,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
 </ul>
 <p>Tired and over-prepared loses to rested and prepared. Taper.</p>`,
         "Do a light review set",
+        footer,
       ),
   },
   {
@@ -126,7 +131,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
     stampKey: "d1",
     subject: "Tomorrow's the day — you've done the work",
     ctaLabel: "Skim your exam-day checklist",
-    html: ({ firstName }) =>
+    html: ({ firstName, footer }) =>
       shell(
         `<p>Hi ${firstName},</p>
 <p>Your exam is tomorrow. No new material today — nothing you learn in the next 24 hours will change the outcome, but showing up rested and calm will.</p>
@@ -139,6 +144,7 @@ export const COUNTDOWN_SEQUENCE: CountdownEmail[] = [
 </ul>
 <p>You've put in the reps. Trust the preparation — it's in there.</p>`,
         "Skim your exam-day checklist",
+        footer,
       ),
   },
 ];
@@ -232,6 +238,26 @@ export const sendExamCountdownEmails = functions.pubsub
           continue;
         }
 
+        // The check above reads users/{uid}.emailOptOut, which NOTHING in this
+        // codebase ever writes -- the one-click unsubscribe records into the
+        // `emailOptOuts` collection instead. So pressing Unsubscribe did not
+        // stop these four emails. isOptedOut() reads the collection that the
+        // unsubscribe endpoint actually writes.
+        if (await isOptedOut(email)) {
+          console.log(`[countdown] ${userId} has unsubscribed, skipping D-${mail.daysOut}`);
+          continue;
+        }
+
+        // No unsubscribe link and no postal address went out on these at all.
+        // complianceFooter returns null when either is unconfigured, and the
+        // rule everywhere else in this codebase is "do not send", never "send
+        // without a footer".
+        const footer = complianceFooter(email, 'signup');
+        if (!footer) {
+          console.warn(`[countdown] compliance footer unavailable; not sending D-${mail.daysOut} to ${userId}.`);
+          continue;
+        }
+
         try {
           await axios.post(
             RESEND_ENDPOINT,
@@ -239,7 +265,7 @@ export const sendExamCountdownEmails = functions.pubsub
               from: fromAddress(),
               to: [email],
               subject: mail.subject,
-              html: mail.html({ firstName }),
+              html: mail.html({ firstName, footer }),
               tags: [
                 { name: "campaign", value: "exam-countdown" },
                 { name: "milestone", value: mail.stampKey },

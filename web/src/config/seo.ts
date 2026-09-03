@@ -393,7 +393,7 @@ export const BLOG_POSTS: Record<
   studyByBloomsLevel: {
     title: 'Study by Bloom’s Level — The Cognitive Framework · CipherExam',
     description:
-      'The Bloom’s taxonomy framework that separates exam winners from flashcard losers. Worked examples for PMP, Security+, SHRM-CP.',
+      'The Bloom’s taxonomy framework that separates exam winners from flashcard losers. Worked examples for PMP, Security+ and Network+.',
     canonical: '/blog/study-by-blooms-level',
     datePublished: '2026-05-12',
   },

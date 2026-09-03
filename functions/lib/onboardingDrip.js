@@ -38,11 +38,11 @@ function fromAddress() {
     return process.env.RESEND_FROM || "Dave at CipherExam <dave@cipherexam.com>";
 }
 const CTA = "https://cipherexam.com/app";
-function shell(inner, footer) {
+function shell(inner, footer, cta = { href: CTA, label: "Open CipherExam" }) {
     return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;max-width:560px">
 ${inner}
-<p style="margin-top:28px"><a href="${CTA}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">Start Free Trial</a></p>
-<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 14-day free trial. No credit card required. Cancel anytime.</p>
+<p style="margin-top:28px"><a href="${cta.href}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">${cta.label}</a></p>
+<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam</p>
 ${footer}
 </div>`;
 }
@@ -81,7 +81,11 @@ exports.DRIP_SEQUENCE = [
         subject: "Your trial ends tomorrow",
         html: ({ firstName, footer }) => shell(`<p>Hi ${firstName},</p>
 <p>Your free trial wraps tomorrow. If the adaptive routing has been sending you back to your weakest domain — that's the whole point; it's where the score actually moves.</p>
-<p>I read every reply to these emails personally. If anything's been confusing or missing, just hit reply and tell me.</p>`, footer),
+<p>After tomorrow you keep a daily quiz and everything you have already done. Pro is $19/month for unlimited practice, the full timed mocks and the domain breakdown.</p>`, footer, 
+        // The generic "Start Free Trial" button was wrong on every drip email --
+        // they all go to people whose trial is already running -- and worst here,
+        // where the action being asked for is to subscribe.
+        { href: "https://cipherexam.com/app/pricing", label: "See Pro pricing" }),
     },
 ];
 function scheduledAtIso(base, dayOffset) {
@@ -157,7 +161,7 @@ exports.scheduleOnboardingDrip = functions.firestore
             .catch(() => undefined);
         return;
     }
-    const footer = (0, emailCompliance_1.complianceFooter)(email);
+    const footer = (0, emailCompliance_1.complianceFooter)(email, 'signup');
     if (!footer) {
         await (0, emailCompliance_1.recordComplianceBlock)("scheduleOnboardingDrip", ["footer could not be built"]);
         return;

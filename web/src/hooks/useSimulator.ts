@@ -46,6 +46,7 @@ export const useSimulator = () => {
     const [flagged, setFlagged] = useState<Record<number, boolean>>({});
     const [timeLeft, setTimeLeft] = useState(3600); // Default 60 mins
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const submitGuardRef = useRef(false);
     const [currentExamId, setCurrentExamId] = useState<string>(selectedExamId);
 
     // Always points at the current render's submitExam, so the expiry effect
@@ -362,13 +363,29 @@ export const useSimulator = () => {
     }, [currentIndex]);
 
     const submitExam = async (autoSubmit = false) => {
+        // Re-entrancy guard. submitExam awaits three timed writes (6s + 6s + 4s)
+        // before it navigates, and the hook never surfaced isSubmitting, so the
+        // page could not disable the three Finish controls. On a weak signal the
+        // screen sat unchanged for up to sixteen seconds and pressing Finish
+        // again re-ran the whole submit -- awarding the exam XP a second time,
+        // via an increment(), into the readiness score that gates the mock.
+        //
+        // A ref rather than the state flag: two clicks in the same tick would
+        // both read the stale state value.
+        if (submitGuardRef.current) return;
+
         if (!autoSubmit && !window.confirm("Are you sure you want to finish the exam?")) {
             return;
         }
 
+        submitGuardRef.current = true;
         setIsSubmitting(true);
         const user = auth.currentUser;
-        if (!user) return;
+        if (!user) {
+            submitGuardRef.current = false;
+            setIsSubmitting(false);
+            return;
+        }
 
         let score = 0;
         const details: { questionId: string; selectedOption: number; correctOption: number; isCorrect: boolean; domain: string; }[] = [];
@@ -470,6 +487,7 @@ export const useSimulator = () => {
         handleAnswer,
         handleFlag,
         quitExam,
-        submitExam
+        submitExam,
+        isSubmitting
     };
 };

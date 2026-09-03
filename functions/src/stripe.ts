@@ -35,6 +35,20 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
         const stripe = getStripe();
         const priceId = getSubscriptionPrices()[billingInterval];
         const urls = getCheckoutUrls();
+
+        // Reuse the customer this user already has, if any.
+        //
+        // Passing customer_email alone makes Stripe create a NEW customer every
+        // time. A user who bought the $59 Exam Pass first already had one (the
+        // pass flow writes it), and subscribing then produced a second -- after
+        // which handleCheckoutSessionCompleted overwrote stripeCustomerId with
+        // it. Since both handleChargeRefunded and handleSubscriptionDeleted look
+        // the user up by that single field, a later refund of the pass charge
+        // matched nobody at all: money returned, 90-day access retained.
+        const existingCustomerId = (await admin.firestore()
+            .collection('users').doc(context.auth.uid).get())
+            .data()?.stripeCustomerId as string | undefined;
+
         const session = await stripe.checkout.sessions.create({
             mode: 'subscription',
             payment_method_types: ['card'],
@@ -46,7 +60,9 @@ export const createCheckoutSession = functions.https.onCall(async (data, context
                 billingInterval,
                 expectedPriceId: priceId,
             },
-            customer_email: context.auth.token.email,
+            ...(existingCustomerId
+                ? { customer: existingCustomerId }
+                : { customer_email: context.auth.token.email }),
         });
 
         return { sessionId: session.id, url: session.url };
@@ -361,18 +377,24 @@ function isValidUid(uid: string): boolean {
 }
 
 /**
- * A refund has to take the access back with it.
+ * A refund has to take back exactly what was paid for -- and stop the billing.
  *
- * The site advertises a 60-day, no-conditions money-back guarantee, so this is
- * an expected path rather than an edge case -- and nothing handled it. Only two
- * event types were wired, and a refund is neither of them. Refunding a $59 Exam
- * Pass in Stripe left users/{uid}.entitlement untouched, and resolveProAccess
- * keys purely off entitlement.expiresAt, so the customer kept full server-side
- * access for the remainder of the 90 days with their money already returned.
+ * The first version of this handler revoked everything on any full refund, and
+ * that was two separate faults:
  *
- * Subscriptions were only slightly better: cancelling in Stripe fires
- * subscription.deleted, but a refund on its own does not, so isPro stayed true
- * until someone remembered to cancel separately.
+ *   1. It set isPro:false without cancelling the Stripe subscription. Nothing
+ *      in this codebase ever re-grants Pro on a renewal -- the only writer of
+ *      isPro:true is handleCheckoutSessionCompleted, and Stripe does not send
+ *      checkout.session.completed for renewals. So a subscriber who used the
+ *      advertised 60-day guarantee was locked to the free tier AND charged $19
+ *      again the following month, with no code path able to restore them.
+ *   2. It deleted users/{uid}.entitlement unconditionally, so refunding a $19
+ *      subscription charge destroyed a separate, still-valid $59 / 90-day Exam
+ *      Pass.
+ *
+ * charge.invoice is the signal that separates them: subscription charges carry
+ * an invoice, one-time Exam Pass payments do not. Each branch now revokes only
+ * its own product.
  *
  * Partial refunds are deliberately ignored -- Stripe sends charge.refunded for
  * those too, and a partial refund is not someone exercising the guarantee.
@@ -401,7 +423,57 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
     }
 
     const userDoc = usersSnap.docs[0];
-    console.log(`[refund] Full refund on charge ${charge.id}; revoking access for user ${userDoc.id}.`);
+    const stripe = getStripe();
+
+    // What was refunded?
+    //
+    // charge.invoice does not exist on the Charge type under API version
+    // 2025-11-17.clover, so the discriminator is our own metadata: the Exam Pass
+    // checkout stamps { type: 'exam-pass', uid, examId } onto the PaymentIntent
+    // (examPass.ts payment_intent_data). Anything else that reaches a customer
+    // with a live subscription is a subscription charge.
+    let isExamPassCharge = false;
+    try {
+        const piId = typeof charge.payment_intent === 'string'
+            ? charge.payment_intent
+            : charge.payment_intent?.id;
+        if (piId) {
+            const pi = await stripe.paymentIntents.retrieve(piId);
+            isExamPassCharge = pi.metadata?.type === 'exam-pass';
+        }
+    } catch (err) {
+        console.error(`[refund] Could not read the payment intent behind charge ${charge.id}:`, err);
+        return;   // Revoking the wrong product is worse than revoking nothing.
+    }
+
+    if (isExamPassCharge) {
+        // Touch the entitlement and nothing else, so a Pro subscription bought
+        // alongside the pass keeps working.
+        console.log(`[refund] Exam Pass refund on charge ${charge.id}; clearing entitlement for user ${userDoc.id}.`);
+        await userDoc.ref.set({
+            entitlement: admin.firestore.FieldValue.delete(),
+            lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+        return;
+    }
+
+    // Subscription charge. Stop the billing BEFORE revoking the access, so a
+    // failure here leaves the customer paying and served rather than paying and
+    // locked out -- the second is unrecoverable, because nothing in this
+    // codebase re-grants Pro on a renewal.
+    try {
+        const subs = await stripe.subscriptions.list({ customer: customerId, status: 'all', limit: 10 });
+        const live = subs.data.filter(sub => sub.status === 'active' || sub.status === 'trialing' || sub.status === 'past_due');
+        for (const sub of live) {
+            await stripe.subscriptions.cancel(sub.id);
+            console.log(`[refund] Cancelled subscription ${sub.id} for user ${userDoc.id}.`);
+        }
+    } catch (err) {
+        console.error(`[refund] Could not cancel the subscription for customer ${customerId}:`, err);
+        return;
+    }
+
+    console.log(`[refund] Subscription refund on charge ${charge.id}; revoking Pro for user ${userDoc.id}.`);
     await userDoc.ref.set({
         isPro: false,
         plan: 'starter',
@@ -409,7 +481,6 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
         access: 'free',
         accessLevel: 'free',
         subscriptionStatus: 'refunded',
-        entitlement: admin.firestore.FieldValue.delete(),
         lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
     }, { merge: true });
 }

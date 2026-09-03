@@ -271,11 +271,30 @@ export const QuizRunService = {
                 const finalDomainResults = Object.keys(derivedFromAnswers).length > 0
                     ? derivedFromAnswers
                     : (results.domainResults || {});
+
+                // Only let the stored answers override the caller's score when
+                // there ARE stored answers.
+                //
+                // The simulator writes its answers with overwriteAnswers and then
+                // calls completeRun, and both are wrapped in withTimeout -- which
+                // never rejects, it resolves undefined and lets execution
+                // continue. So if the answers write timed out (the exact
+                // one-bar-signal case withTimeout exists for, at the end of a
+                // three-hour sitting), this read found the empty array createRun
+                // initialised, computed correctCount = 0, and filed a real
+                // sitting as 0 out of 180. The results screen in front of the
+                // candidate showed their true score from local state, so nothing
+                // ever signalled the discrepancy -- but Past Attempts and the
+                // readiness engine saw a zero.
+                const haveStoredAnswers = cleanAnswers.length > 0;
                 updatePayload.results = {
                     ...results,
-                    score: correctCount,
+                    score: haveStoredAnswers ? correctCount : (results.score ?? 0),
                     domainResults: finalDomainResults,
                 };
+                if (!haveStoredAnswers) {
+                    console.warn('[completeRun] No persisted answers on this run; keeping the caller-supplied score rather than filing a zero.');
+                }
             }
 
             await updateDoc(runRef, updatePayload);

@@ -47,8 +47,9 @@ export default function PocketPrepAlternative() {
           <li>
             <strong>Every question is classified by Bloom's taxonomy.</strong> All four banks, all 579 questions. Volume
             drilling treats all questions the same. We tag each one by cognitive
-            level, so you can see whether you're acing "remember" questions but
-            missing the "evaluate"-level scenarios that decide real exams.
+            level, so you can see where your accuracy drops as the reasoning gets harder.
+            Each bank is weighted the way its own exam is, so the spread of levels differs
+            between them.
           </li>
           <li>
             <strong>Exam Lens explanations teach the reasoning.</strong> Every right

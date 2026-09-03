@@ -298,14 +298,17 @@ import TrialModal from "./components/TrialModal";
 import AppHeader from "./components/layout/AppHeader";
 
 function FreePlanBanner() {
-  const { isPro, hasPassFor, questionsAnsweredToday, dailyLimit, loading } = useSubscription();
+  const { isPro, hasPassFor, questionsAnsweredToday, dailyLimit, loading, profileReady } = useSubscription();
   const { selectedExamId } = useExam();
   // Nothing used to gate on `loading`, so the very first screen after signing up
   // for a 14-day trial carried "Free plan: 0 / 20 questions used today —
   // Upgrade for unlimited practice" until the user doc arrived. Showing a
   // paywall to someone who just started a trial reads as a bait and switch.
   // Render nothing until entitlement is actually known.
-  if (loading) return null;
+  // profileReady covers the seconds after signup when users/{uid} does not
+  // exist yet: `loading` is already false there, and the defaults look exactly
+  // like a free user who never took a trial.
+  if (loading || !profileReady) return null;
   // Exam Pass holders bypass the free-tier quota for their covered exam.
   if (isPro || hasPassFor(selectedExamId)) return null;
   const countColor = questionsAnsweredToday >= dailyLimit
@@ -548,8 +551,12 @@ function App() {
                   <Route element={<MockExamGuard />}>
                     <Route path="simulator" element={<SimulatorIntro />} />
                     <Route path="simulator/exam" element={<Simulator />} />
-                    <Route path="simulator/results" element={<SimulatorResults />} />
                   </Route>
+                  {/* Outside the guard on purpose: results are a record of a
+                      sitting the user already completed, and paid for at the
+                      time. Gating them meant a lapsed pass turned their own
+                      exam history into a "this is a Pro feature" wall. */}
+                  <Route path="simulator/results" element={<SimulatorResults />} />
                   <Route path="stats" element={<Stats />} />
                   <Route path="planner" element={<StudySchedule />} />
                   <Route path="planner/setup" element={<SetupPlanner />} />

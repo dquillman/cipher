@@ -14,6 +14,8 @@ interface SubscriptionContextType {
     /** True if an active (unexpired) exam pass covers this examId. Access rule: isPro || hasPassFor(examId). */
     hasPassFor: (examId: string) => boolean;
     loading: boolean;
+    /** False until users/{uid} actually exists. See the note in the snapshot handler. */
+    profileReady: boolean;
     questionsAnsweredToday: number;
     dailyLimit: number;
     canTakeQuiz: boolean; // Computed: (isPro || questionsAnsweredToday < dailyLimit)
@@ -38,6 +40,7 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
     const [entitlement, setEntitlement] = useState<UserEntitlement>(getUserEntitlement(undefined, user));
     const [passEntitlement, setPassEntitlement] = useState<PassEntitlement | null>(null);
     const [loading, setLoading] = useState(true);
+    const [profileReady, setProfileReady] = useState(false);
     const [questionsAnsweredToday, setQuestionsAnsweredToday] = useState(0);
 
     // Free-tier daily cap — 20/day during the 7-day taste window
@@ -79,15 +82,32 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
 
                 setEntitlement(newEntitlement);
                 setPassEntitlement(parsePassEntitlement(data.entitlement));
+                setProfileReady(true);
             } else {
+                // users/{uid} is written by the createUserProfile auth trigger,
+                // which is async -- and Login.tsx navigates the instant the
+                // account is created. So for the first seconds of every signup
+                // this branch runs, and it looks identical to a long-standing
+                // free user who has never taken a trial. That is what put a
+                // "Free plan: 0 / 20 questions used today. Upgrade for
+                // unlimited practice" banner and a "Start your 14-day Pro
+                // trial" modal on the first screen after signup -- offering a
+                // trial the account had just been auto-granted, whose button
+                // could only ever return 'User profile is not ready' or
+                // 'Trial already used'.
+                //
+                // profileReady stays false so those surfaces can wait. loading
+                // still flips, because the rest of the app must render.
                 setEntitlement(getUserEntitlement(undefined));
                 setPassEntitlement(null);
+                setProfileReady(false);
             }
             setLoading(false);
         }, (error) => {
             console.warn("SubscriptionProvider: Failed to subscribe to user profile (likely permission error or missing doc). Defaulting to free/stateless.", error);
             setEntitlement(getUserEntitlement(undefined));
             setPassEntitlement(null);
+            setProfileReady(false);
             setLoading(false);
         });
 
@@ -146,6 +166,7 @@ export function SubscriptionProvider({ children }: { children: ReactNode }) {
             passEntitlement,
             hasPassFor,
             loading,
+            profileReady,
             questionsAnsweredToday,
             dailyLimit: DAILY_LIMIT,
             canTakeQuiz,

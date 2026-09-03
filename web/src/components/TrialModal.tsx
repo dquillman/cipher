@@ -7,7 +7,7 @@ import { Rocket } from 'lucide-react';
 
 export default function TrialModal() {
     const { user } = useAuth();
-    const { entitlement } = useSubscription();
+    const { entitlement, profileReady } = useSubscription();
     const { startTrial, loading } = useTrial();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -19,7 +19,14 @@ export default function TrialModal() {
         // 2. Must NEVER have consumed a trial
         // 3. Not hidden by local session "Not Now" (optional UX polish, keeping for session niceness)
 
+        // profileReady is false for the first seconds after signup, while the
+        // createUserProfile trigger writes users/{uid}. Without it this modal
+        // fired at exactly the moment its own button could not work: startTrial
+        // returns 'User profile is not ready', and once the doc lands it returns
+        // 'Trial already used', because signup auto-grants the 14-day trial.
+        // Every brand-new account met a trial offer it could not accept.
         const shouldShow =
+            profileReady &&
             entitlement.plan === 'free' &&
             !entitlement.trialConsumed &&
             !entitlement.isPro;
@@ -35,7 +42,7 @@ export default function TrialModal() {
         } else {
             setIsOpen(false);
         }
-    }, [user, entitlement]);
+    }, [user, entitlement, profileReady]);
 
     const [trialError, setTrialError] = useState(false);
 

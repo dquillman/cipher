@@ -53,7 +53,9 @@ export default function SimulatorResults() {
             const answersMap: Record<number, number> = {};
             qs.forEach((q, i) => {
                 const a = byId[q.id];
-                if (a && a.selectedOption !== undefined) answersMap[i] = a.selectedOption;
+                if (a && a.selectedOption !== undefined && a.selectedOption !== null && a.selectedOption !== -1) {
+                    answersMap[i] = a.selectedOption;
+                }
             });
             const r = run.results || {};
             if (!cancelled) {
@@ -173,7 +175,13 @@ export default function SimulatorResults() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (!questions) return null;
+    if (!questions) {
+        return (
+            <div className="min-h-dvh flex items-center justify-center bg-slate-950 text-slate-400">
+                <p className="text-sm">Loading your results…</p>
+            </div>
+        );
+    }
 
     const percentage = Math.round((score / total) * 100);
     // One threshold, one label. See utils/passBar.ts for why this is no longer
@@ -216,7 +224,7 @@ export default function SimulatorResults() {
                             <p className="text-xs text-emerald-400/70 mt-1">A good sign, though it is our bar and not the certifying body's. Keep the weaker domains warm.</p>
                         </div>
                         <button
-                            onClick={() => navigate('/app/quiz')}
+                            onClick={() => navigate('/app/quiz', { state: { mode: 'smart' } })}
                             className="shrink-0 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-colors"
                         >
                             Practice Weak Domains
@@ -229,7 +237,7 @@ export default function SimulatorResults() {
                             <p className="text-xs text-amber-400/70 mt-1">Work the domains below, then sit this again. Note that a repeat mock reuses most of the same questions.</p>
                         </div>
                         <button
-                            onClick={() => navigate('/app/quiz')}
+                            onClick={() => navigate('/app/quiz', { state: { mode: 'smart' } })}
                             className="shrink-0 px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white text-sm font-semibold transition-colors"
                         >
                             Practice Weak Domains
@@ -242,7 +250,7 @@ export default function SimulatorResults() {
                             <p className="text-xs text-slate-400 mt-1">The domain breakdown below shows where the points went. Start there.</p>
                         </div>
                         <button
-                            onClick={() => navigate('/app/quiz')}
+                            onClick={() => navigate('/app/quiz', { state: { mode: 'smart' } })}
                             className="shrink-0 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors"
                         >
                             Start Smart Practice

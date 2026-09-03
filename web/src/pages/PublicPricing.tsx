@@ -132,7 +132,7 @@ export default function PublicPricing() {
                                 'Detailed Domain Analytics',
                                 'Priority Support',
                                 'Full Exam Simulators',
-                                'AI-Powered Study Plans'
+                                'Study plan anchored to your weakest domain'
                             ].map((feat) => (
                                 <li key={feat} className="flex items-center gap-3">
                                     <div className="bg-brand-500/20 p-1 rounded-full">

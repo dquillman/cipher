@@ -2,13 +2,16 @@ import type { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import ExamSelector from '../ExamSelector';
 import { useSubscription } from '../../contexts/SubscriptionContext';
+import { useExam } from '../../contexts/ExamContext';
 
 interface AppHeaderProps {
     children?: ReactNode;
 }
 
 export default function AppHeader({ children }: AppHeaderProps) {
-    const { isPro } = useSubscription();
+    const { isPro, hasPassFor } = useSubscription();
+    const { selectedExamId } = useExam();
+    const hasPaidAccess = isPro || hasPassFor(selectedExamId);
 
     return (
         <nav className="bg-slate-800/50 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
@@ -21,7 +24,7 @@ export default function AppHeader({ children }: AppHeaderProps) {
                     <div className="flex items-center gap-2 md:gap-4">
                         <ExamSelector />
                         {children}
-                        {!isPro && (
+                        {!hasPaidAccess && (
                             <Link
                                 to="/app/pricing"
                                 className="text-xs md:text-sm font-bold text-brand-400 hover:text-brand-300 transition-colors border border-brand-500/30 px-3 py-1.5 rounded-full bg-brand-500/10"

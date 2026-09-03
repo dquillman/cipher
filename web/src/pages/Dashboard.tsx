@@ -5,7 +5,6 @@ import { DashboardSkeleton } from '../components/ui/Skeleton';
 import { useState, useEffect } from 'react';
 import { doc, onSnapshot, collection, query, where, orderBy, limit, setDoc, getDocs, updateDoc, serverTimestamp, type QuerySnapshot, type DocumentData } from 'firebase/firestore';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { XPService } from '../services/xpService';
 import { useExam } from '../contexts/ExamContext';
 
 
@@ -244,7 +243,13 @@ export default function Dashboard() {
                     }
                 });
 
-                XPService.checkStreak();
+                // checkStreak() used to run here, on mount. It writes
+                // streak:1 / lastActivityDate:today unconditionally -- no check
+                // for an answer, a run, or any activity at all -- so merely
+                // opening the dashboard awarded a brand-new account a "1 Day
+                // Streak" chip and a modal reading "You're on fire!", on the
+                // same screen that said "No recent activity". It now runs where
+                // a question is actually answered (Quiz.tsx handleSubmit).
 
                 // --- Active Runs (resumable, no examId filter) ---
                 const activeRunsQuery = query(

@@ -9,6 +9,7 @@ interface QuestionNavigatorProps {
     examName?: string;
     onNavigate: (index: number) => void;
     onSubmit: () => void;
+    isSubmitting?: boolean;
     onQuit: () => void;
 }
 
@@ -21,6 +22,7 @@ export function QuestionNavigator({
     examName,
     onNavigate,
     onSubmit,
+    isSubmitting = false,
     onQuit
 }: QuestionNavigatorProps) {
 
@@ -86,9 +88,10 @@ export function QuestionNavigator({
                 </div>
                 <button
                     onClick={onSubmit}
-                    className="w-full bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-bold transition-colors border border-slate-600"
+                    disabled={isSubmitting}
+                    className="w-full bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-bold transition-colors border border-slate-600 disabled:opacity-60 disabled:cursor-wait"
                 >
-                    Finish Exam
+                    {isSubmitting ? 'Submitting…' : 'Finish Exam'}
                 </button>
                 <button
                     onClick={() => {

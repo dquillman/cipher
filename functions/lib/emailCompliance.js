@@ -127,14 +127,21 @@ exports.recordOptOut = recordOptOut;
  * Returns null when compliance is unconfigured — callers must treat that as
  * "do not send", never as "send without a footer".
  */
-function complianceFooter(email) {
+function complianceFooter(email, reason = 'lead-magnet') {
     const address = postalAddress();
     const url = unsubscribeUrl(email);
     if (!address || !url)
         return null;
+    // The reason has to match the list. This footer is shared by the lead-magnet
+    // sequence and the onboarding drip, and the drip fires on users/{uid} onCreate
+    // -- trial signups, who never downloaded anything. Telling them they did is
+    // both false and the wrong consent basis to cite.
+    const why = reason === 'signup'
+        ? 'You are receiving this because you created a CipherExam account.'
+        : 'You are receiving this because you downloaded a free resource from CipherExam.';
     return `<hr style="border:none;border-top:1px solid #e2e8f0;margin:28px 0 14px">
 <p style="color:#94a3b8;font-size:12px;line-height:1.6;margin:0">
-You are receiving this because you downloaded a free resource from CipherExam.<br>
+${why}<br>
 <a href="${url}" style="color:#64748b">Unsubscribe</a> — one click, no login. Stops future emails within a few days.<br>
 ${escapeHtml(address)}
 </p>`;

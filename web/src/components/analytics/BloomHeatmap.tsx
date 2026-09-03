@@ -389,7 +389,8 @@ interface BloomCellDetailModalProps {
 function BloomCellDetailModal({ cell, examId, onClose }: BloomCellDetailModalProps) {
     const navigate = useNavigate();
     const { isPro, hasPassFor } = useSubscription();
-    const drillSize = (isPro || (examId ? hasPassFor(examId) : false)) ? 10 : 5;
+    const hasPaidAccess = isPro || (examId ? hasPassFor(examId) : false);
+    const drillSize = hasPaidAccess ? 10 : 5;
 
     // Close on Escape
     useEffect(() => {
@@ -494,11 +495,11 @@ function BloomCellDetailModal({ cell, examId, onClose }: BloomCellDetailModalPro
                             <p className="text-sm text-slate-300 leading-relaxed">
                                 Run a focused drill on <span className="text-white font-medium">{domain}</span> questions
                                 at the <span className="text-white font-medium">{level}</span> level.
-                                {isPro
+                                {hasPaidAccess
                                     ? ' Ten focused reps on the exact cell you\'re weak in beats a hundred generic questions.'
                                     : ' Five focused reps on the exact cell you\'re weak in beats a hundred generic questions.'}
                             </p>
-                            {!isPro && (
+                            {!hasPaidAccess && (
                                 <div className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-bold text-amber-300">
                                     <Sparkles className="w-3 h-3" />
                                     Upgrade to Pro for 10-question drills

@@ -85,7 +85,7 @@ export default function PricingCard({
             <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Detailed Domain Analytics</li>
             <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Priority Support</li>
             <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Full Exam Simulators</li>
-            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> AI-Powered Study Plans</li>
+            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Study plan anchored to your weakest domain</li>
           </ul>
           <Link
             to={signupHref}

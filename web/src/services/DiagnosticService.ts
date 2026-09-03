@@ -143,7 +143,7 @@ export const DiagnosticService = {
                 runsRef,
                 where('quizType', '==', 'diagnostic'),
                 where('status', '==', 'completed'),
-                limit(5)
+                limit(50)
             );
             const snap = await getDocs(q);
             console.log('[hasCompletedRun] docs returned:', snap.size);

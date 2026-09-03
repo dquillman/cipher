@@ -21,7 +21,8 @@ export default function Simulator() {
         handleAnswer,
         handleFlag,
         quitExam,
-        submitExam
+        submitExam,
+        isSubmitting
     } = useSimulator();
 
     if (loading) {
@@ -79,6 +80,7 @@ export default function Simulator() {
                     examName={examName}
                     onNavigate={setCurrentIndex}
                     onSubmit={() => submitExam()}
+                    isSubmitting={isSubmitting}
                 />
             </div>
 
@@ -98,6 +100,7 @@ export default function Simulator() {
                 isFirst={currentIndex === 0}
                 isLast={currentIndex === questions.length - 1}
                 onSubmit={() => submitExam()}
+                isSubmitting={isSubmitting}
             />
 
             {/* The navigator owns the countdown, the exit control and Finish, and
@@ -128,9 +131,10 @@ export default function Simulator() {
                 </span>
                 <button
                     onClick={() => submitExam()}
-                    className="rounded-md bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white"
+                    disabled={isSubmitting}
+                    className="rounded-md bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-wait"
                 >
-                    Finish
+                    {isSubmitting ? 'Submitting…' : 'Finish'}
                 </button>
             </div>
         </div>

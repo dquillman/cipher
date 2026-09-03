@@ -43,8 +43,9 @@ export default function PmpPracticeLP() {
         <ol className="space-y-4">
           <li>
             <strong>Bloom's-classified practice.</strong> Every PMP question is tagged by
-            cognitive level. You see whether you're nailing easy "remember" questions but
-            missing the "evaluate"-level scenarios that dominate the real exam.
+            cognitive level, so you can see where your accuracy drops as the reasoning gets
+            harder. The PMP bank is weighted the way the exam is — almost every item asks you
+            to apply judgement rather than recall a definition.
           </li>
           <li>
             <strong>Exam Lens explanations.</strong> Every right and wrong answer is walked

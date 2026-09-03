@@ -394,6 +394,23 @@ export default function Quiz() {
                             setLoading(false);
                             return;
                         }
+                        // A SHORTER list is also unsafe, not just an empty one.
+                        // If one question was quarantined mid-run, the restored
+                        // index now points at a different question, an
+                        // already-answered item is re-served, and `score` --
+                        // restored from the prior answers and then incremented --
+                        // can exceed questions.length, which is the denominator
+                        // on the completion summary. That renders as "11 / 10".
+                        // The simulator's equivalent path checks this; the
+                        // practice path did not.
+                        if (fetchedQs.length !== run.snapshot.questionIds.length) {
+                            console.warn(
+                                `[quiz] resumed run lost ${run.snapshot.questionIds.length - fetchedQs.length} question(s) since it started; starting fresh rather than mis-scoring it`,
+                            );
+                            setResumeUnavailable(true);
+                            setLoading(false);
+                            return;
+                        }
                         setQuestions(fetchedQs);
                         if (run.snapshot.currentQuestionIndex !== undefined) {
                             setCurrentQuestionIndex(
@@ -935,6 +952,12 @@ export default function Quiz() {
     });
 
     const handleSubmit = () => {
+        // Submit and Next occupy the same slot in the action row, so a
+        // double-click on Submit lands the second click on Next and skips
+        // straight past the explanation the tester just earned. handleOptionSelect
+        // already guards this way.
+        if (showExplanation) return;
+
         const currentQuestion = questions[currentQuestionIndex];
 
         // EC-119: Matching questions use matchingState instead of selectedOption
@@ -1020,6 +1043,10 @@ export default function Quiz() {
     const updateQuestionProgress = async (questionId: string, isCorrect: boolean) => {
         const user = auth.currentUser;
         if (!user) return;
+
+        // A streak counts a day on which the user answered something. This is
+        // that moment; checkStreak is a no-op once it has run today.
+        XPService.checkStreak();
 
         // PERSISTENCE: Save diagnostic progress if applicable
         // Unified Persistence: Save progress
@@ -1232,10 +1259,27 @@ export default function Quiz() {
         }
     };
 
+    const saveGuardRef = useRef(false);
+
     const saveQuizResults = async (explicitDetails?: any[]) => {
+        // One save per quiz, guarded at the source so both callers are covered.
+        //
+        // The body is a read-add-write against userMastery: it reads the current
+        // mastery doc, adds this quiz's domain totals to it, and writes it back.
+        // Run it twice and the quiz is counted into lifetime mastery twice, and
+        // incrementDailyCount is charged twice against the free-tier cap. A ref,
+        // not state, because two presses in the same tick would both read a
+        // stale state value.
+        if (saveGuardRef.current) {
+            console.warn('[saveQuizResults] Already saving or saved this quiz; ignoring the repeat call.');
+            return;
+        }
+        saveGuardRef.current = true;
+
         const user = auth.currentUser;
         if (!user) {
             console.error("No user logged in, cannot save results");
+            saveGuardRef.current = false;
             return;
         }
 
@@ -1747,7 +1791,14 @@ export default function Quiz() {
                                                 }];
                                             }
 
-                                            await saveQuizResults(finalDetails);
+                                            // Timed, like the identical call at the end of
+                                            // handleNext. saveQuizResults makes six sequential
+                                            // Firestore round trips; an untimed await on any of
+                                            // them leaves the button live and the screen
+                                            // unchanged, and a second press re-enters a
+                                            // read-add-write against userMastery -- counting the
+                                            // whole quiz into mastery twice.
+                                            await withTimeout(saveQuizResults(finalDetails), 8000, 'saveQuizResults (quit)');
                                             // Re-enable Thinking Traps display after quiz completion
                                             localStorage.removeItem('exam_coach_traps_suppressed');
                                             setQuizCompleted(true);

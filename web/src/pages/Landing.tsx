@@ -548,7 +548,7 @@ export default function Landing() {
               You're failing because you studied to <em className="text-slate-300">remember</em> — and
               the exam tested whether you could <em className="text-slate-300">apply</em>, <em className="text-slate-300">analyze</em>,
               and <em className="text-slate-300">evaluate</em>. Those are different cognitive skills.
-              CIPHER is the only exam-prep platform that tags every question with the level
+              CIPHER tags every question with the level
               of thinking it demands, so you can finally see <strong className="text-white">where your real gap is</strong>.
             </p>
           </div>
@@ -571,7 +571,7 @@ export default function Landing() {
                   </div>
                   <div>
                     <strong className="text-white">Lifetime Bloom's Heatmap.</strong>{" "}
-                    See your accuracy at every cognitive level in one glance. Strong on Remember, weak on Apply? You'll know exactly.
+                    See how your accuracy changes as questions get harder — recall versus applying it versus judging between two defensible options. Coverage varies by exam: banks are weighted the way their exam is.
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -810,7 +810,7 @@ export default function Landing() {
                   ["Explanations", "Generic or none", "AI-powered breakdowns"],
                   ["Question banks", "Static, one-size-fits-all", "Adaptive to your weak spots"],
                   ["Analytics", "Basic score only", "Domain-level performance tracking"],
-                  ["Study plan", "Self-managed", "AI-personalized schedule"],
+                  ["Study plan", "Self-managed", "Built around your weakest domain"],
                 ].map(([label, trad, ec], i) => (
                   <tr key={i}>
                     <td className="p-4 text-slate-300 font-medium">{label}</td>
@@ -841,7 +841,7 @@ export default function Landing() {
               ["Explanations", "Generic or none", "AI-powered breakdowns"],
               ["Question banks", "Static, one-size-fits-all", "Adaptive to your weak spots"],
               ["Analytics", "Basic score only", "Domain-level performance tracking"],
-              ["Study plan", "Self-managed", "AI-personalized schedule"],
+              ["Study plan", "Self-managed", "Built around your weakest domain"],
             ].map(([label, trad, ec], i) => (
               <div key={i} className="rounded-xl border border-slate-800 bg-slate-950 p-4">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">{label}</div>

@@ -80,16 +80,20 @@ export default function ThinkingTrapsCard() {
                         <Brain className="h-5 w-5 text-brand-400" strokeWidth={1.75} /> Your Thinking Traps
                     </h3>
                     <p className="text-slate-400 text-sm">
-                        These are the exam patterns that keep catching you off guard.
+                        {patterns.length > 0
+                            ? 'These are the exam patterns that keep catching you off guard.'
+                            : 'The exam patterns that catch you out will show up here.'}
                     </p>
                 </div>
 
                 {/* Body */}
                 <div className="flex-1">
                     {/* ... */}
-                    <p className="text-slate-300 text-sm mb-4 font-medium">
-                        You’ve missed questions tied to these patterns more than once:
-                    </p>
+                    {patterns.length > 0 && (
+                        <p className="text-slate-300 text-sm mb-4 font-medium">
+                            You’ve missed questions tied to these patterns more than once:
+                        </p>
+                    )}
 
                     {patterns.length > 0 ? (
                         <div className="space-y-3 mb-6">

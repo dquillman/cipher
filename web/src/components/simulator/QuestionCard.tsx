@@ -16,6 +16,7 @@ interface QuestionCardProps {
     isFirst: boolean;
     isLast: boolean;
     onSubmit: () => void;
+    isSubmitting?: boolean;
     studyTheme?: StudyTheme;
     onToggleStudyTheme?: () => void;
 }
@@ -33,6 +34,7 @@ export function QuestionCard({
     isFirst,
     isLast,
     onSubmit,
+    isSubmitting = false,
     studyTheme,
     onToggleStudyTheme
 }: QuestionCardProps) {
@@ -80,7 +82,7 @@ export function QuestionCard({
                 )}
 
                 <div className="space-y-4">
-                    {question.options.map((option, idx) => {
+                    {(question.options || []).map((option, idx) => {
                         const isSelected = selectedOption === idx;
                         const label = String.fromCharCode(65 + idx); // A, B, C, D...
 
@@ -123,9 +125,10 @@ export function QuestionCard({
                     {isLast ? (
                         <button
                             onClick={onSubmit}
-                            className="flex items-center gap-2 px-8 py-3 rounded-xl font-bold bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all translate-y-0 hover:-translate-y-0.5"
+                            disabled={isSubmitting}
+                            className="flex items-center gap-2 px-8 py-3 rounded-xl font-bold bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30 transition-all translate-y-0 hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-wait"
                         >
-                            <span>Finish Exam</span>
+                            <span>{isSubmitting ? 'Submitting…' : 'Finish Exam'}</span>
                             <ChevronRight className="w-5 h-5" />
                         </button>
                     ) : (

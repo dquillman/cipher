@@ -138,7 +138,7 @@ export const LEAD_SEQUENCE: LeadEmail[] = [
         `<p>Thanks for grabbing this.</p>
 <p><a href="${downloadUrl}">${c.magnetTitle}</a> — that link is permanent, so save it rather than re-requesting it.</p>
 <p>One suggestion on how to use it: don't read it front to back. Work a practice question first, get it wrong, <em>then</em> come back and find the section that explains why. It sticks better that way.</p>
-<p>I'll send you one more thing in a couple of days. If you'd rather I didn't, just reply and say so — I read every reply.</p>`,
+<p>I'll send you a couple more notes over the next week. If you'd rather I didn't, just reply and say so — I read every reply.</p>`,
         downloadUrl,
         null,
         footer,
