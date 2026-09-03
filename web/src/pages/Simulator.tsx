@@ -124,7 +124,7 @@ export default function Simulator() {
                     className={`font-mono text-base font-bold tabular-nums ${timeLeft <= 300 ? 'text-red-400 animate-pulse' : 'text-white'}`}
                     aria-live="polite"
                 >
-                    {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
+                    {timeLeft >= 3600 ? `${Math.floor(timeLeft / 3600)}:${String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0')}` : Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}
                 </span>
                 <button
                     onClick={() => submitExam()}

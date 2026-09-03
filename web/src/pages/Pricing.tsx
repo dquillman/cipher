@@ -153,7 +153,7 @@ export default function Pricing() {
                         <span className="ml-1 text-xl text-slate-400">/ forever</span>
                     </div>
                     <ul className="mt-8 space-y-4 flex-1">
-                        {['Daily Quiz (5 Questions)', 'Basic Progress Tracking', 'Standard Explanations'].map((feat) => (
+                        {['Daily Quiz (20 questions/day for your first week, then 5)', 'Basic Progress Tracking', 'Standard Explanations'].map((feat) => (
                             <li key={feat} className="flex items-center gap-3">
                                 <Check className="w-5 h-5 text-slate-500" />
                                 <span className="text-slate-300">{feat}</span>
@@ -211,8 +211,7 @@ export default function Pricing() {
                                 'Unlimited AI Quizzes',
                                 'Detailed Domain Analytics',
                                 'Priority Support',
-                                'PMP Exam Simulators',
-                                'Visual Mnemonics (DALL-E 2)'
+                                'Full Exam Simulators'
                             ].map((feat) => (
                                 <li key={feat} className="flex items-center gap-3">
                                     <div className="bg-blue-500/20 p-1 rounded-full">
@@ -305,7 +304,7 @@ export default function Pricing() {
                                 >
                                     Request a refund
                                 </a>{' '}
-                                — 60-day guarantee, no conditions.
+                                — the 60-day guarantee covers Pro; ask us anyway and we'll look at it.
                             </p>
                         </div>
                     ) : isPro ? (
@@ -363,7 +362,7 @@ export default function Pricing() {
                                 </button>
                             )}
                             <p className="text-xs text-slate-500 text-left">
-                                Standard 60-day money-back guarantee — full refund, no conditions.
+                                One-time purchase, no subscription. The 60-day money-back guarantee covers Pro.
                             </p>
                         </div>
                     )}

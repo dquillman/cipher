@@ -392,9 +392,9 @@ export default function Dashboard() {
                     {trialBlocked && (
                         <div className="bg-slate-800 rounded-2xl p-4 sm:p-8 text-center border border-slate-700 shadow-2xl relative overflow-hidden mb-8">
                             <div className="relative z-10">
-                                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display">Your 14-day Pro trial has ended</h3>
+                                <h3 className="text-xl md:text-2xl font-bold text-white mb-2 font-display">You're on the free plan</h3>
                                 <p className="text-slate-400 mb-6 max-w-lg mx-auto">
-                                    We hope you enjoyed your practice sessions! To continue studying and access your detailed analytics, please upgrade your plan.
+                                    Your paid access has ended. You keep the daily quiz and everything you've already done. Pro adds unlimited practice, the full timed mock exams, and the domain-by-domain analytics.
                                 </p>
                                 <div className="flex flex-col items-center gap-4">
                                     <Link
@@ -408,8 +408,17 @@ export default function Dashboard() {
                         </div>
                     )}
 
-                    {/* Main Content - Blurred if Expired */}
-                    <div className={trialBlocked ? "opacity-10 pointer-events-none filter blur-sm select-none" : ""}>
+                    {/* The dashboard used to render at opacity-10 with
+                        pointer-events-none behind that card, which made the whole
+                        page unusable. But Starter is sold as "$0 / forever" with a
+                        daily quiz and basic progress tracking, and the server
+                        agrees -- validateQuizStart still allows the free-tier cap
+                        after a trial ends. Blurring it took away something we
+                        advertise and the backend still grants. Every account
+                        reaches this state, because signup auto-grants a 14-day
+                        trial. The upsell card above says the same thing without
+                        holding the product hostage. */}
+                    <div>
                         {/* Onboarding / Welcome Section */}
                         {contextDiagnostic === false && recentActivity.length === 0 && !loading ? (
                             <>
@@ -711,9 +720,9 @@ export default function Dashboard() {
                                 <div className="w-20 h-20 bg-brand-500/10 rounded-full flex items-center justify-center text-amber-400 mx-auto mb-6 border border-brand-500/20">
                                     <Flame className="h-10 w-10" strokeWidth={1.5} />
                                 </div>
-                                <h3 className="text-2xl font-bold text-white font-display mb-2">{userStreak} Day Streak!</h3>
+                                <h3 className="text-2xl font-bold text-white font-display mb-2">{userStreak > 0 ? `${userStreak} Day Streak!` : 'Start your streak'}</h3>
                                 <p className="text-slate-400 mb-6">
-                                    You're on fire! Consistency is the #1 predictor of exam success. Keep showing up every day.
+                                    {userStreak > 0 ? "You're on fire! Consistency is the #1 predictor of exam success. Keep showing up every day." : 'Answer a question today to start your streak. Consistency is the #1 predictor of exam success.'}
                                 </p>
                                 <PrimaryButton
                                     onClick={() => setShowStreakModal(false)}

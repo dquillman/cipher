@@ -63,7 +63,7 @@ export default function SimulatorResults() {
                     timeSpent: r.timeSpent ?? 0,
                     questions: qs,
                     answers_map: answersMap,
-                    flagged: {},
+                    flagged: (run.snapshot as { simFlagged?: Record<number, boolean> })?.simFlagged ?? {},
                     examId: run.examId,
                 });
             }

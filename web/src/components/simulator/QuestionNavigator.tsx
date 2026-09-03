@@ -25,9 +25,14 @@ export function QuestionNavigator({
 }: QuestionNavigatorProps) {
 
     const formatTime = (seconds: number) => {
-        const m = Math.floor(seconds / 60);
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
         const s = seconds % 60;
-        return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        // A PMP mock allows 240 minutes. Without the hours field the clock read
+        // "240:00", which is not a time.
+        return h > 0
+            ? `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+            : `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     };
 
     return (

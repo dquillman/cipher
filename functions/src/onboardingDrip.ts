@@ -61,7 +61,7 @@ function shell(inner: string, footer: string): string {
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;max-width:560px">
 ${inner}
 <p style="margin-top:28px"><a href="${CTA}" style="background:#4f46e5;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block">Start Free Trial</a></p>
-<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 7-day free trial. No credit card required. Cancel anytime.</p>
+<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 14-day free trial. No credit card required. Cancel anytime.</p>
 ${footer}
 </div>`;
 }
@@ -102,13 +102,13 @@ export const DRIP_SEQUENCE: DripEmail[] = [
     html: ({ firstName, footer }) =>
       shell(
         `<p>Hi ${firstName},</p>
-<p>Pricing is simple: $19/month, or $189/year (save 17%). The 7-day trial never charges a card.</p>
+<p>Pricing is simple: $19/month. The 14-day trial never charges a card.</p>
 <p>Worth the comparison: a single exam retake usually runs several hundred dollars and weeks of re-study. CipherExam is built to get you through on the first sit by fixing the reasoning gaps, not just the knowledge gaps.</p>`,
         footer,
       ),
   },
   {
-    dayOffset: 7,
+    dayOffset: 13,
     theme: "credibility",
     subject: "Your trial ends tomorrow",
     html: ({ firstName, footer }) =>

@@ -164,7 +164,7 @@ export default function HowExamsThink() {
 
           <div className="mt-16 rounded-2xl border border-brand-500/20 bg-brand-500/5 p-8 text-center">
             <h3 className="text-2xl font-bold text-white font-display mb-3">
-              Try CipherExam for 7 days, free.
+              Try CipherExam for 14 days, free.
             </h3>
             <p className="text-slate-400 mb-6 max-w-lg mx-auto">
               No credit card. Pick your exam, answer ten questions, and you'll see what I mean.

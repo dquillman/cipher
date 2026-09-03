@@ -43,7 +43,7 @@ export interface QuizRun {
          *  only tests `!== undefined` to mean "the candidate answered this",
          *  which -1 correctly satisfies; nothing dereferences it as an index.
          *  `isCorrect` is the authoritative grade for every format. */
-        selectedOption: number;
+        selectedOption: number | null;
         /** `multi-response` only: the indices actually ticked. Present because
          *  selectedOption cannot represent a set. */
         selectedOptions?: number[];
@@ -156,7 +156,7 @@ export const QuizRunService = {
     saveProgress: async (
         userId: string,
         runId: string,
-        answer: { questionId: string, selectedOption: number, selectedOptions?: number[], isCorrect: boolean, domain?: string },
+        answer: { questionId: string, selectedOption: number | null, selectedOptions?: number[], isCorrect: boolean, domain?: string },
         nextIndex: number
     ) => {
         try {
@@ -369,6 +369,29 @@ export const QuizRunService = {
         });
     },
 
+    /**
+     * The in-progress PRACTICE run for this exam, if there is one.
+     *
+     * This had all three of the faults getActiveSimulationRun above was written
+     * to avoid, and it was the resume path for the practice quiz, so reloading
+     * mid-quiz lost the session every time:
+     *
+     *   1. Two equality filters plus orderBy('createdAt') needs a composite
+     *      index on runs(examId, status, createdAt). firestore.indexes.json has
+     *      never declared one and the deployed set does not contain one either.
+     *      The query threw FAILED_PRECONDITION, the catch returned null, and
+     *      Quiz.tsx fell through to createRun -- whose first act is to mark
+     *      every in_progress run of that type 'abandoned'. Nothing reads
+     *      'abandoned', so the answers became unreachable.
+     *   2. It returned `data()` with no id, so even with the index the caller's
+     *      `open?.id` was undefined and resume still could not fire.
+     *   3. It was not scoped by quizType, so a practice reload could adopt an
+     *      in-progress full mock and drop 90 timed questions into the untimed,
+     *      hint-showing practice UI.
+     *
+     * Equality-only, id attached, simulations excluded -- same shape as
+     * getActiveSimulationRun, for the same reasons.
+     */
     getLatestActiveRun: async (userId: string, examId: string): Promise<QuizRun | null> => {
         try {
             const runsRef = collection(db, 'quizRuns', userId, 'runs');
@@ -376,14 +399,19 @@ export const QuizRunService = {
                 runsRef,
                 where('examId', '==', examId),
                 where('status', '==', 'in_progress'),
-                orderBy('createdAt', 'desc'),
-                limit(1)
+                limit(20)
             );
             const snapshot = await getDocs(q);
-            if (!snapshot.empty) {
-                return snapshot.docs[0].data() as QuizRun;
-            }
-            return null;
+            const practice = snapshot.docs
+                .map((d) => ({ ...(d.data() as QuizRun), id: d.id }))
+                .filter((r) => r.quizType !== 'simulation');
+            if (practice.length === 0) return null;
+            const millis = (r: QuizRun) => {
+                const t = (r as unknown as { createdAt?: { toMillis?: () => number } }).createdAt;
+                return typeof t?.toMillis === 'function' ? t.toMillis() : Number.MAX_SAFE_INTEGER;
+            };
+            practice.sort((a, b) => millis(b) - millis(a));
+            return practice[0];
         } catch (error) {
             console.error("Error fetching latest run:", error);
             return null;

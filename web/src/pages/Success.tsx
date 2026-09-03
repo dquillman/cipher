@@ -1,10 +1,22 @@
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Success() {
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    /**
+     * Stripe returns Exam Pass buyers to /app/success?product=exam-pass
+     * (functions/src/billingConfig.ts). This page never read the param, so
+     * every $59 buyer was told "Welcome to Pro! You now have unlimited access
+     * to all features." The pass covers ONE exam for 90 days, and every gate in
+     * the app scopes it to that examId -- so the first time they switched exams
+     * they met the free-tier daily-limit modal, having just been told they had
+     * unlimited access to everything.
+     */
+    const isExamPass = searchParams.get('product') === 'exam-pass';
 
     useEffect(() => {
         // Fire confetti
@@ -44,9 +56,13 @@ export default function Success() {
                     <Check className="w-10 h-10 text-green-400" />
                 </div>
 
-                <h1 className="text-3xl font-bold text-white">Upgrade Successful!</h1>
+                <h1 className="text-3xl font-bold text-white">
+                    {isExamPass ? 'Exam Pass Active' : 'Upgrade Successful!'}
+                </h1>
                 <p className="text-slate-400">
-                    Welcome to Pro! You now have unlimited access to all features.
+                    {isExamPass
+                        ? 'Full access to your chosen exam for the next 90 days. One-time payment — there is nothing to cancel.'
+                        : 'Welcome to Pro! You now have unlimited access to all features.'}
                 </p>
 
                 <div className="pt-4">

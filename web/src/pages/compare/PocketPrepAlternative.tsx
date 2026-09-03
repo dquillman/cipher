@@ -96,7 +96,7 @@ export default function PocketPrepAlternative() {
         </p>
         <p>
           If flashcard-style volume is working for you, keep going — momentum
-          matters. If you've plateaued, try the reasoning-first approach. The 7-day
+          matters. If you've plateaued, try the reasoning-first approach. The 14-day
           free trial doesn't ask for a credit card, so testing us costs nothing but
           an evening.
         </p>

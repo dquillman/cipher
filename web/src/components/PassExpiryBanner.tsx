@@ -40,6 +40,7 @@ type ExtendState =
     | { status: 'loading' }
     | { status: 'success'; newExpiresAt: Date | null }
     | { status: 'paid_required' }
+    | { status: 'ineligible'; reason: 'beyond_free_window' | 'pass_already_covers_exam' | 'no_exam_date' }
     | { status: 'error' };
 
 export default function PassExpiryBanner() {
@@ -93,7 +94,18 @@ export default function PassExpiryBanner() {
             if (data?.eligible === true) {
                 setExtend({ status: 'success', newExpiresAt: parseCallableDate(data.newExpiresAt) });
             } else if (data?.reason === 'paid_extension_required') {
+                // Genuinely spent: freeExtensionUsed is true on the entitlement.
                 setExtend({ status: 'paid_required' });
+            } else if (
+                data?.reason === 'beyond_free_window' ||
+                data?.reason === 'pass_already_covers_exam' ||
+                data?.reason === 'no_exam_date'
+            ) {
+                // Refusals that are NOT "you used it". These used to arrive as
+                // 'paid_extension_required' too, so a buyer with
+                // freeExtensionUsed:false was told "Extensions used" and
+                // upsold a subscription instead of being told what was wrong.
+                setExtend({ status: 'ineligible', reason: data.reason });
             } else {
                 setExtend({ status: 'error' });
             }
@@ -128,6 +140,15 @@ export default function PassExpiryBanner() {
                     {offerExtension && planExamDate && extendedThrough && (
                         <> — but your exam is <span className="font-semibold">{formatDate(planExamDate)}</span>. Extend free through <span className="font-semibold">{formatDate(extendedThrough)}</span>?</>
                     )}
+                    {extend.status === 'ineligible' && (
+                        <span className="text-amber-100">
+                            {extend.reason === 'beyond_free_window'
+                                ? " — your exam is more than 30 days after the pass ends, which is past what the free extension covers. Write to us and we'll sort it."
+                                : extend.reason === 'pass_already_covers_exam'
+                                ? ' — your pass already runs past your exam date, so there is nothing to extend.'
+                                : " — set your exam date in your study plan first, then we can move the pass to match it."}
+                        </span>
+                    )}
                     {extend.status === 'paid_required' && (
                         <>
                             {' '}Extensions used —{' '}
@@ -141,7 +162,7 @@ export default function PassExpiryBanner() {
                     )}
                 </p>
             </div>
-            {offerExtension && extend.status !== 'paid_required' && (
+            {offerExtension && extend.status !== 'paid_required' && extend.status !== 'ineligible' && (
                 <button
                     onClick={handleExtend}
                     disabled={extend.status === 'loading'}

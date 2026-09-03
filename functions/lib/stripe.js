@@ -252,6 +252,9 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
                 const sub = event.data.object;
                 await handleSubscriptionDeleted(sub);
                 break;
+            case 'charge.refunded':
+                await handleChargeRefunded(event.data.object);
+                break;
             default:
                 console.log(`Unhandled event type ${event.type}`);
         }
@@ -325,6 +328,55 @@ function isValidUid(uid) {
         && uid.length > 0
         && uid.length <= 128
         && !uid.includes('/');
+}
+/**
+ * A refund has to take the access back with it.
+ *
+ * The site advertises a 60-day, no-conditions money-back guarantee, so this is
+ * an expected path rather than an edge case -- and nothing handled it. Only two
+ * event types were wired, and a refund is neither of them. Refunding a $59 Exam
+ * Pass in Stripe left users/{uid}.entitlement untouched, and resolveProAccess
+ * keys purely off entitlement.expiresAt, so the customer kept full server-side
+ * access for the remainder of the 90 days with their money already returned.
+ *
+ * Subscriptions were only slightly better: cancelling in Stripe fires
+ * subscription.deleted, but a refund on its own does not, so isPro stayed true
+ * until someone remembered to cancel separately.
+ *
+ * Partial refunds are deliberately ignored -- Stripe sends charge.refunded for
+ * those too, and a partial refund is not someone exercising the guarantee.
+ */
+async function handleChargeRefunded(charge) {
+    const db = admin.firestore();
+    const customerId = charge.customer;
+    if (charge.amount_refunded < charge.amount) {
+        console.log(`[refund] Partial refund on charge ${charge.id} - access left in place.`);
+        return;
+    }
+    if (!customerId) {
+        console.warn(`[refund] Charge ${charge.id} has no customer; cannot revoke access.`);
+        return;
+    }
+    const usersSnap = await db.collection('users')
+        .where('stripeCustomerId', '==', customerId)
+        .limit(1)
+        .get();
+    if (usersSnap.empty) {
+        console.warn(`[refund] No user found for customer ${customerId} on charge ${charge.id}.`);
+        return;
+    }
+    const userDoc = usersSnap.docs[0];
+    console.log(`[refund] Full refund on charge ${charge.id}; revoking access for user ${userDoc.id}.`);
+    await userDoc.ref.set({
+        isPro: false,
+        plan: 'starter',
+        trial: false,
+        access: 'free',
+        accessLevel: 'free',
+        subscriptionStatus: 'refunded',
+        entitlement: admin.firestore.FieldValue.delete(),
+        lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
 }
 async function handleSubscriptionDeleted(sub) {
     // Ideally we find the user by stripeCustomerId

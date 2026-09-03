@@ -42,7 +42,7 @@ import {
  *
  * COPY PROVENANCE: written against brand-voice.md — founder voice, plain, no
  * combat metaphors, no guaranteed-pass language, no invented scarcity, real
- * pricing only ($19/mo, $189/yr, 7-day trial, no card). Exam fees are cost
+ * pricing only ($19/mo, 14-day trial, no card). Exam fees are cost
  * anchors verified 2026-07-31 and are always phrased "exam fee", never
  * "$425 to sit" (readers misread the latter as CipherExam's own price).
  */
@@ -70,7 +70,7 @@ function shell(inner: string, ctaUrl: string, ctaLabel: string | null, footer: s
   return `<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#0f172a;max-width:560px">
 ${inner}
 ${cta}
-<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 7-day free trial. No credit card required. Cancel anytime.</p>
+<p style="color:#64748b;font-size:13px;margin-top:24px">— Dave, CipherExam · 14-day free trial. No credit card required. Cancel anytime.</p>
 ${footer}
 </div>`;
 }
@@ -164,7 +164,7 @@ export const LEAD_SEQUENCE: LeadEmail[] = [
       shell(
         `<p>The ${c.examName} exam fee is ${c.fee}. A retake means paying it again, plus several more weeks of study you'd already planned to be done with.</p>
 <p>That's the real argument for preparing differently rather than just preparing more. Most candidates who fail didn't skip the material — they studied to recall it, and the exam asked them to apply it.</p>
-<p>CipherExam is $19/month, or $189/year. The 7-day trial doesn't take a card, so you can see whether the explanations actually change how you read a question before deciding anything.</p>
+<p>CipherExam is $19/month. The 14-day trial doesn't take a card, so you can see whether the explanations actually change how you read a question before deciding anything.</p>
 <p>Either way, the cheat sheet is yours. Good luck with the sit.</p>`,
         lpUrl,
         "Start Free Trial",

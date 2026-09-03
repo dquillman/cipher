@@ -1025,14 +1025,19 @@ export default function Quiz() {
         // Unified Persistence: Save progress
         if (activeRunId) {
             try {
-                if (selectedOption !== null) {
-                    await QuizRunService.saveProgress(user.uid, activeRunId, {
-                        questionId,
-                        selectedOption: selectedOption,
-                        isCorrect,
-                        domain: currentQuestion?.domain
-                    }, questions.length > currentQuestionIndex + 1 ? currentQuestionIndex + 1 : currentQuestionIndex);
-                }
+                // PBQ, matching and multi-response questions leave selectedOption
+                // null by design -- their answer lives in multiSelected / the PBQ
+                // state. Gating on `selectedOption !== null` meant those answers
+                // were never persisted at submit, only later in handleNext, so a
+                // reload right after submitting a PBQ lost it. That gate mattered
+                // little while resume was broken; it matters now that resume works.
+                await QuizRunService.saveProgress(user.uid, activeRunId, {
+                    questionId,
+                    selectedOption: selectedOption,
+                    ...(multiSelected.length > 0 ? { selectedOptions: multiSelected } : {}),
+                    isCorrect,
+                    domain: currentQuestion?.domain
+                }, questions.length > currentQuestionIndex + 1 ? currentQuestionIndex + 1 : currentQuestionIndex);
             } catch (e) {
                 console.error("Failed to save quiz progress", e);
             }
@@ -1700,7 +1705,21 @@ export default function Quiz() {
                                     if (window.confirm("Quit and save your progress so far?")) {
                                         if (auth.currentUser) FrictionEventService.emit(auth.currentUser.uid, 'quiz_abandon', { quizType: quizType || 'standard', examId: activeExamId, questionIndex: currentQuestionIndex, totalQuestions: questions.length });
                                         triggerSmartQuizReview(true);
-                                        if (activeRunId) {
+                                        // A run whose LAST question has been submitted is
+                                        // fully answered, because handleSubmit persists the
+                                        // answer at submit time rather than at Next. The
+                                        // dashboard's resume banner only offers runs with
+                                        // `answered < total`, so pausing here hid the run
+                                        // forever: never scored, never in history, worth no
+                                        // XP or mastery, and silently marked 'abandoned' by
+                                        // the next createRun. The button promised to save it.
+                                        //
+                                        // There is nothing left to resume at that point, so
+                                        // finish and score it instead of pausing.
+                                        const nothingLeftToAnswer =
+                                            showExplanation && currentQuestionIndex === questions.length - 1;
+
+                                        if (activeRunId && !nothingLeftToAnswer) {
                                             // Unified Mode: Pause — navigate (modal survives in App.tsx)
                                             navigate('/app');
                                         } else {

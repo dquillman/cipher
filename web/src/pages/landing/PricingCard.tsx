@@ -107,7 +107,7 @@ export default function PricingCard({
             <span className="ml-1 text-sm font-semibold text-slate-500">/ forever</span>
           </p>
           <ul className="mt-6 space-y-3 text-sm text-slate-300">
-            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Daily Quiz (5 Questions)</li>
+            <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Daily Quiz (20/day your first week, then 5)</li>
             <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Basic Progress Tracking</li>
             <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Standard Explanations</li>
             <li className="flex gap-2"><Check className="h-5 w-5 flex-shrink-0 text-emerald-400" /> Community Exam Coverage</li>

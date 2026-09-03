@@ -201,9 +201,10 @@ export async function fulfillExamPassCheckout(session: Stripe.Checkout.Session):
  * and examDateSnapshot falls within 30 days AFTER the current expiresAt.
  * New expiresAt = min(examDateSnapshot + 7 days, old expiresAt + 30 days).
  *
- * If examDateSnapshot is null but an active study plan with an examDate now
- * exists, it is snapshotted at this moment (first-entry snapshot) before
- * evaluating — editing the date later never moves the goalposts.
+ * Eligibility reads the CURRENT study-plan exam date, falling back to the
+ * purchase-time snapshot when no plan exists. Moving your exam date is the
+ * whole point of the feature; the caps (one per pass, +30 days maximum) are
+ * what bound it.
  *
  * Not eligible → { eligible: false, reason }. The paid $19/30d extension is
  * not built yet; 'paid_extension_required' signals that path.
@@ -234,37 +235,52 @@ export const extendExamPass = functions.https.onCall(async (_data, context) => {
         return { eligible: false, reason: 'paid_extension_required' };
     }
 
-    // First-entry snapshot: no examDate existed at purchase, but the user has
-    // since created an active study plan — snapshot it now (anti-gaming: this
-    // is the one and only time the snapshot can be set post-purchase).
-    let examDateSnapshot: admin.firestore.Timestamp | null =
+    // The exam date to honour is the CURRENT one, not the one snapshotted at
+    // purchase.
+    //
+    // This is what the pass is sold on: "Free reschedule if your exam date
+    // moves" (PublicPricing) and "Rescheduled? Your pass moves with your exam"
+    // (PricingCard). Reading the purchase-time snapshot inverted that promise.
+    // A buyer whose exam sat inside the 90 days at purchase -- the normal case,
+    // since the study plan is set during onboarding -- has snapshot <= expiry,
+    // which the window test below rejects outright. The only people who could
+    // ever extend were those whose exam was ALREADY past expiry when they paid,
+    // or who had no study plan at all. The advertised scenario was the one
+    // scenario that could not qualify.
+    //
+    // The snapshot is still recorded for audit, and abuse stays bounded by the
+    // two limits that were always here: one free extension per pass, and a hard
+    // cap of expiry + 30 days no matter how far out the new date is.
+    const liveExamDate = await getActivePlanExamDate(uid, entitlement.examId);
+    const storedSnapshot: admin.firestore.Timestamp | null =
         entitlement.examDateSnapshot instanceof admin.firestore.Timestamp
             ? entitlement.examDateSnapshot
             : null;
+    const examDate = liveExamDate ?? storedSnapshot;
 
-    if (examDateSnapshot === null) {
-        const planExamDate = await getActivePlanExamDate(uid, entitlement.examId);
-        if (planExamDate !== null) {
-            examDateSnapshot = planExamDate;
-            await userRef.set({
-                entitlement: { examDateSnapshot: examDateSnapshot },
-            }, { merge: true });
-        }
+    if (examDate === null) {
+        // No study plan and no snapshot: there is no exam date to move the pass
+        // to. Distinct from having spent the free extension.
+        return { eligible: false, reason: 'no_exam_date' };
     }
 
-    if (examDateSnapshot === null) {
-        // A pass exists but there is no exam date to honor — free extension
-        // cannot apply; the paid path is the alternative.
-        return { eligible: false, reason: 'paid_extension_required' };
+    if (storedSnapshot === null && liveExamDate !== null) {
+        await userRef.set({
+            entitlement: { examDateSnapshot: liveExamDate },
+        }, { merge: true });
     }
 
-    // Free extension window: examDateSnapshot within 30 days AFTER expiresAt.
+    // Free extension window: the exam date falls within 30 days AFTER expiresAt.
     const expiresMs = expiresAt.toMillis();
-    const snapshotMs = examDateSnapshot.toMillis();
+    const snapshotMs = examDate.toMillis();
     const windowEndMs = expiresMs + FREE_EXTENSION_WINDOW_DAYS * DAY_MS;
 
-    if (snapshotMs <= expiresMs || snapshotMs > windowEndMs) {
-        return { eligible: false, reason: 'paid_extension_required' };
+    if (snapshotMs <= expiresMs) {
+        // The pass already covers the exam. Not a refusal worth dressing up.
+        return { eligible: false, reason: 'pass_already_covers_exam' };
+    }
+    if (snapshotMs > windowEndMs) {
+        return { eligible: false, reason: 'beyond_free_window' };
     }
 
     // New expiry = min(examDate + 7 days, old expiry + 30 days).
@@ -286,6 +302,7 @@ export const extendExamPass = functions.https.onCall(async (_data, context) => {
 
     return {
         eligible: true,
+        newExpiresAt: newExpiresAt.toMillis(),
         expiresAt: newExpiresAt.toMillis(),
     };
 });

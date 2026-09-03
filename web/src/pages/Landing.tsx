@@ -18,7 +18,7 @@ import { SEO } from "../config/seo";
 import {
   Scale, MessageSquareOff, Repeat,
   Lightbulb, BarChart3, ClipboardList, Crosshair,
-  Search, Wrench, TrendingUp, ShieldCheck,
+  Search, Wrench, TrendingUp,
 } from "lucide-react";
 
 /* ─── Shared icons & paths ────────────────────────────────────────────────── */
@@ -760,7 +760,7 @@ export default function Landing() {
               Most apps say you’re ready. We tell you the truth.
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed">
-              Every full mock exam returns a real score, a straight percentage against a fixed benchmark, and the real cut score beside it, and a
+              Every full mock exam returns a straight percentage against a fixed benchmark, and a
               domain-by-domain breakdown of exactly where you’re losing points — then drops you
               straight into targeted practice on your weakest area. No inflated readiness meters.
               No false confidence walking into the real thing.
@@ -878,7 +878,7 @@ export default function Landing() {
             {[
               { value: "4", label: "Certification exams" },
               { value: "AI", label: "Reasoning behind every answer" },
-              { value: "7 days", label: "Free trial, no credit card" },
+              { value: "14 days", label: "Free trial, no credit card" },
             ].map((s, i) => (
               <div key={i} className="px-8 py-10 text-center">
                 <div className="text-5xl sm:text-6xl font-extrabold text-white font-display tracking-tight">
@@ -994,7 +994,7 @@ export default function Landing() {
                   <span className="text-2xl font-bold text-white">$19</span>
                   <span className="text-sm text-slate-400">/mo</span>
                 </div>
-                <p className="mt-1 font-mono text-[11px] tracking-wide text-slate-500">free tier · cancel anytime</p>
+                <p className="mt-1 font-mono text-[11px] tracking-wide text-slate-500">14-day free trial · cancel anytime</p>
               </div>
             </div>
             <p className="font-mono text-[11px] tracking-wide text-slate-500">Pro is backed by the 60-day money-back guarantee.</p>
@@ -1007,9 +1007,6 @@ export default function Landing() {
             Start Your Free Trial
           </button>
           <p className="mt-6 font-mono text-xs tracking-wide text-slate-500">14-day free trial — no credit card required.</p>
-          <p className="mt-2 inline-flex items-center gap-2 font-mono text-xs tracking-wide text-emerald-400">
-            <ShieldCheck className="w-4 h-4" /> Plus a 60-day money-back guarantee — no conditions.
-          </p>
         </div>
       </section>
 
