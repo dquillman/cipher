@@ -1011,22 +1011,65 @@ export default function Landing() {
       </section>
 
       {/* ─── FOOTER ───────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-slate-800 bg-slate-950 py-12">
-        <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <img src="/favicon.png" alt="CipherExam" className="h-6 w-6 rounded object-contain" />
-            <span className="text-slate-400 font-semibold">CipherExam</span>
+      {/* This is the site's main internal-link hub, not decoration.
+          The homepage is the only page with meaningful crawl priority, so every
+          page we want indexed has to be reachable from it in one hop. Before this
+          footer was grouped, /about and both /compare/* pages were reachable only
+          via /blog — Google's Links report counted 5 internal links for the entire
+          site, and the two highest commercial-intent pages sat three hops deep and
+          "Discovered - currently not indexed". Anchor text is descriptive on
+          purpose: it is the only relevance signal we control for those URLs.
+          If you add an indexable route, add it here too. */}
+      <footer className="border-t border-slate-800 bg-slate-950 py-14">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
+            <div className="col-span-2 md:col-span-1">
+              <div className="flex items-center gap-2">
+                <img src="/favicon.png" alt="CipherExam" className="h-6 w-6 rounded object-contain" />
+                <span className="text-slate-300 font-semibold">CipherExam</span>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-slate-500">
+                Practice questions that teach you how certification exams reason — not just what to memorize.
+              </p>
+            </div>
+
+            <nav aria-label="Practice exams">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-600">Practice</h2>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+                <li><Link to="/lp/pmp" className="hover:text-white transition-colors">PMP Practice Questions</Link></li>
+                <li><Link to="/lp/security-plus" className="hover:text-white transition-colors">CompTIA Security+ Practice</Link></li>
+                <li><Link to="/lp/network-plus" className="hover:text-white transition-colors">CompTIA Network+ Practice</Link></li>
+                <li><Link to="/lp/a-plus-core-2" className="hover:text-white transition-colors">CompTIA A+ Core 2 Practice</Link></li>
+                <li><Link to="/exam-lens" className="hover:text-white transition-colors">The Exam Lens</Link></li>
+              </ul>
+            </nav>
+
+            <nav aria-label="Compare and learn">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-600">Compare</h2>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+                <li><Link to="/compare/best-pmp-exam-simulator-2026" className="hover:text-white transition-colors">Best PMP Exam Simulator 2026</Link></li>
+                <li><Link to="/compare/pocketprep-alternative" className="hover:text-white transition-colors">PocketPrep Alternative</Link></li>
+                <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
+                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+                <li><Link to="/blog/study-by-blooms-level" className="hover:text-white transition-colors">Study by Bloom&rsquo;s Level</Link></li>
+              </ul>
+            </nav>
+
+            <nav aria-label="Company">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-600">Company</h2>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+                <li><Link to="/about" className="hover:text-white transition-colors">About CipherExam</Link></li>
+                <li><Link to="/story" className="hover:text-white transition-colors">Our Story</Link></li>
+                <li><a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-white transition-colors">Contact</a></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">Terms</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+              </ul>
+            </nav>
           </div>
-          <p className="text-slate-600 text-sm">
+
+          <p className="mt-12 border-t border-slate-900 pt-6 text-sm text-slate-600">
             © {new Date().getFullYear()} CipherExam. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
-            <Link to="/story" className="hover:text-white transition-colors">Our Story</Link>
-            <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
-            <Link to="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <Link to="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-white transition-colors">Contact</a>
-          </div>
         </div>
       </footer>
 

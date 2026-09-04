@@ -1,58 +1,85 @@
 #!/usr/bin/env node
 /**
- * Regenerates web/public/sitemap.xml from a static route manifest.
- * Run before each deploy if routes change: `node web/scripts/generate-sitemap.mjs`
+ * Regenerates web/public/sitemap.xml from scripts/seo-routes.mjs.
+ * Wired into `npm run build`; also runnable standalone:
+ *   node web/scripts/generate-sitemap.mjs
  *
- * If you add a public route in web/src/App.tsx, add it below.
- * Auth'd routes under /app/* are intentionally excluded (also disallowed in robots.txt).
+ * Routes come from ONE manifest (scripts/seo-routes.mjs) shared with
+ * prerender.mjs and check-routes.mjs. Do not add a route list here.
+ *
+ * <lastmod> is the date of the LAST COMMIT that touched the page's source file,
+ * not today's date. Previously every build stamped every URL with today, which
+ * told Google all 23 pages change daily. Google discounts (and eventually
+ * ignores) lastmod it can see is untrue, which costs the sitemap the one signal
+ * it has. If git isn't available, lastmod is omitted rather than faked.
+ *
+ * CI NOTE: a shallow clone (actions/checkout defaults to depth 1) collapses every
+ * file's history to the tip commit, so every route would get the same date and we
+ * would be back to faking it. This script detects that and omits lastmod instead.
+ * To get real dates in CI, use `actions/checkout` with `fetch-depth: 0`.
  */
 import { writeFile } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { SEO_ROUTES } from './seo-routes.mjs';
+import { parseAppRoutes } from './app-routes.mjs';
 
+const exec = promisify(execFile);
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = join(__dirname, '..', '..');
 const BASE = 'https://cipherexam.com';
 
-const routes = [
-  { path: '/', changefreq: 'weekly', priority: 1.0 },
-  { path: '/pricing', changefreq: 'monthly', priority: 0.9 },
-  { path: '/story', changefreq: 'monthly', priority: 0.7 },
-  { path: '/about', changefreq: 'monthly', priority: 0.5 },
-  { path: '/lp/pmp', changefreq: 'weekly', priority: 0.9 },
-  { path: '/lp/security-plus', changefreq: 'weekly', priority: 0.9 },
-  // Restored: these LPs now market the re-authored N10-009 and 220-1202 banks,
-  // the codes CompTIA currently tests.
-  { path: '/lp/network-plus', changefreq: 'weekly', priority: 0.8 },
-  { path: '/lp/a-plus-core-2', changefreq: 'weekly', priority: 0.8 },
-  { path: '/compare/pocketprep-alternative', changefreq: 'monthly', priority: 0.8 },
-  { path: '/compare/best-pmp-exam-simulator-2026', changefreq: 'monthly', priority: 0.85 },
-  { path: '/blog', changefreq: 'weekly', priority: 0.8 },
-  { path: '/exam-lens', changefreq: 'monthly', priority: 0.85 },
-  { path: '/blog/study-by-blooms-level', changefreq: 'monthly', priority: 0.8 },
-  { path: '/blog/recall-only-prep-fails', changefreq: 'monthly', priority: 0.8 },
-  { path: '/blog/cognitive-heatmap', changefreq: 'monthly', priority: 0.8 },
-  { path: '/blog/how-certification-exams-think', changefreq: 'monthly', priority: 0.8 },
-  { path: '/blog/why-certification-exam-questions-are-so-confusing', changefreq: 'monthly', priority: 0.7 },
-  { path: '/blog/5-study-mistakes-that-cost-your-certification-exam', changefreq: 'monthly', priority: 0.7 },
-  { path: '/blog/how-ai-explanations-change-the-way-you-study', changefreq: 'monthly', priority: 0.7 },
-  { path: '/blog/first-30-days-certification-study-plan', changefreq: 'monthly', priority: 0.7 },
-  { path: '/blog/pmp-exam-changes-july-2026', changefreq: 'monthly', priority: 0.8 },
-  { path: '/terms', changefreq: 'yearly', priority: 0.2 },
-  { path: '/privacy', changefreq: 'yearly', priority: 0.2 },
-];
+/** True when git history is truncated, making per-file dates meaningless. */
+async function isShallowClone() {
+  try {
+    const { stdout } = await exec('git', ['rev-parse', '--is-shallow-repository'], { cwd: REPO_ROOT });
+    return stdout.trim() === 'true';
+  } catch {
+    return false;
+  }
+}
 
-const today = new Date().toISOString().slice(0, 10);
+/** Last commit date (YYYY-MM-DD) for a repo file, or null. */
+async function lastCommitDate(file) {
+  if (!file) return null;
+  try {
+    const { stdout } = await exec('git', ['log', '-1', '--format=%cs', '--', file], { cwd: REPO_ROOT });
+    return stdout.trim() || null;
+  } catch {
+    return null;
+  }
+}
+
+const shallow = await isShallowClone();
+if (shallow) {
+  console.warn('⚠ sitemap: shallow git clone — omitting <lastmod> rather than stamping a fake date.');
+  console.warn('  Use `fetch-depth: 0` in CI checkout to restore real per-page dates.');
+}
+
+const appRoutes = await parseAppRoutes();
+const fileFor = new Map(appRoutes.map((r) => [r.path, r.file]));
+
+const entries = [];
+for (const r of SEO_ROUTES) {
+  entries.push({ ...r, lastmod: shallow ? null : await lastCommitDate(fileFor.get(r.path)) });
+}
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes
-  .map(
-    (r) => `  <url>
-    <loc>${BASE}${r.path}</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>${r.changefreq}</changefreq>
-    <priority>${r.priority}</priority>
-  </url>`,
+${entries
+  .map((r) =>
+    [
+      '  <url>',
+      `    <loc>${BASE}${r.path}</loc>`,
+      r.lastmod ? `    <lastmod>${r.lastmod}</lastmod>` : null,
+      `    <changefreq>${r.changefreq}</changefreq>`,
+      `    <priority>${r.priority}</priority>`,
+      '  </url>',
+    ]
+      .filter(Boolean)
+      .join('\n'),
   )
   .join('\n')}
 </urlset>
@@ -60,4 +87,6 @@ ${routes
 
 const out = join(__dirname, '..', 'public', 'sitemap.xml');
 await writeFile(out, xml, 'utf8');
-console.log(`Wrote ${routes.length} URLs to ${out}`);
+
+const dated = entries.filter((e) => e.lastmod).length;
+console.log(`✓ sitemap: ${entries.length} URLs (${dated} with real lastmod) → ${out}`);

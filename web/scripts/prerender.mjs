@@ -30,6 +30,8 @@ import { fileURLToPath } from 'node:url';
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { chromium } from 'playwright';
+import { SEO_ROUTE_PATHS } from './seo-routes.mjs';
+import { cleanHead } from './clean-head.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '..', 'dist');
@@ -44,34 +46,11 @@ const MIN_CONTENT_CHARS = 500;
 // Retry once — a single timeout is usually machine load, not a broken route.
 const MAX_ATTEMPTS = 2;
 
-// Public routes to prerender. Keep in sync with App.tsx + sitemap.xml + generate-sitemap.mjs.
-const ROUTES = [
-  '/',
-  '/pricing',
-  '/story',
-  '/about',
-  '/exam-lens',
-  '/lp/pmp',
-  '/lp/security-plus',
-  // Restored: these LPs now market the re-authored N10-009 and 220-1202 banks,
-  // the codes CompTIA currently tests.
-  '/lp/network-plus',
-  '/lp/a-plus-core-2',
-  '/compare/pocketprep-alternative',
-  '/compare/best-pmp-exam-simulator-2026',
-  '/blog',
-  '/blog/study-by-blooms-level',
-  '/blog/recall-only-prep-fails',
-  '/blog/cognitive-heatmap',
-  '/blog/how-certification-exams-think',
-  '/blog/why-certification-exam-questions-are-so-confusing',
-  '/blog/5-study-mistakes-that-cost-your-certification-exam',
-  '/blog/how-ai-explanations-change-the-way-you-study',
-  '/blog/first-30-days-certification-study-plan',
-  '/blog/pmp-exam-changes-july-2026',
-  '/terms',
-  '/privacy',
-];
+// Public routes to prerender. Single source of truth lives in scripts/seo-routes.mjs,
+// shared with generate-sitemap.mjs so the sitemap and the prerendered pages can
+// never disagree again. scripts/check-routes.mjs fails the build if App.tsx drifts
+// from that manifest.
+const ROUTES = SEO_ROUTE_PATHS;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -141,7 +120,12 @@ async function main() {
   const server = await startStaticServer();
 
   console.log('▶ Launching Chromium');
-  const browser = await chromium.launch();
+  // PRERENDER_CHROMIUM lets a build pin an already-present Chromium instead of
+  // requiring `npx playwright install` — useful in CI images and sandboxes that
+  // ship a browser at a different revision than the pinned playwright package.
+  const browser = await chromium.launch(
+    process.env.PRERENDER_CHROMIUM ? { executablePath: process.env.PRERENDER_CHROMIUM } : {},
+  );
   const context = await browser.newContext({
     viewport: { width: 1280, height: 720 },
     userAgent: 'Mozilla/5.0 (compatible; CipherExamPrerender/1.0)',
@@ -151,6 +135,7 @@ async function main() {
 
   let success = 0;
   let failed = 0;
+  let headTagsRemoved = 0;
   const failedRoutes = [];
 
   // One route render attempt. Returns the serialized HTML, or throws.
@@ -199,36 +184,35 @@ async function main() {
       // Extra settle: React 19 head hoisting + final layout paint
       await page.waitForTimeout(750);
 
-      // Dedupe meta/link tags. React 19 hoists meta tags from components, but when
-      // route transitions happen (e.g., BrowserRouter briefly evaluates Landing
-      // before resolving to /lp/pmp), the unmounted component's hoisted tags can
-      // remain. Crawlers read the FIRST occurrence per name/property, so the stale
-      // Landing tags would win over the route-specific ones. Strip duplicates here,
-      // keeping the LAST occurrence (= the correct per-route SeoHead emission).
-      await page.evaluate(() => {
-        // Dedupe meta[name=...] and meta[property=...] — keep last occurrence
-        const metaKeep = new Map();
-        document.querySelectorAll('meta[name], meta[property]').forEach((m) => {
-          const key = m.getAttribute('property') || m.getAttribute('name');
-          if (key) metaKeep.set(key, m);
-        });
-        document.querySelectorAll('meta[name], meta[property]').forEach((m) => {
-          const key = m.getAttribute('property') || m.getAttribute('name');
-          if (key && metaKeep.get(key) !== m) m.remove();
-        });
-        // Dedupe link[rel=canonical] specifically — only one should ever exist
-        const canons = document.querySelectorAll('link[rel="canonical"]');
-        if (canons.length > 1) {
-          for (let i = 0; i < canons.length - 1; i++) canons[i].remove();
-        }
+      // Read what the page ACTUALLY resolved to. document.title is the first
+      // <title> element — the same one browsers and Google use — and the
+      // canonical is SeoHead's populated tag. These are the authority for the
+      // head cleanup below; they are read, never mutated.
+      //
+      // We do NOT delete duplicate tags here. React 19 owns the tags it hoists
+      // into <head>, so removing them in the live DOM only makes React put them
+      // back on its next commit, and the serialized output shipped with the
+      // duplicates anyway. Clean the serialized STRING instead — nothing can
+      // re-inject into that.
+      const expected = await page.evaluate(() => {
+        const canon = [...document.querySelectorAll('link[rel="canonical"]')]
+          .map((l) => l.getAttribute('href'))
+          .filter((h) => h && h.trim() !== '');
+        return {
+          title: document.title,
+          canonical: canon.length ? canon[canon.length - 1] : null,
+        };
+      });
 
-        // Strip runtime-injected modulepreload hints for heavy DECORATIVE lazy
-        // chunks. Vite injects these <link> tags when a dynamic chunk loads
-        // during the prerender session; baking them into the static HTML makes
-        // every real visitor eagerly download ~570KB of below-the-fold WebGL/
-        // animation code (three-vendor + HeroCanvas + gsap-vendor) on first
-        // paint, defeating the lazy-loading. Route/content chunks keep their
-        // preloads — those genuinely speed up LCP.
+      // Strip runtime-injected modulepreload hints for heavy DECORATIVE lazy
+      // chunks. Vite injects these <link> tags when a dynamic chunk loads
+      // during the prerender session; baking them into the static HTML makes
+      // every real visitor eagerly download ~570KB of below-the-fold WebGL/
+      // animation code (three-vendor + HeroCanvas + gsap-vendor) on first
+      // paint, defeating the lazy-loading. Route/content chunks keep their
+      // preloads — those genuinely speed up LCP. Vite is not React, so these
+      // stay removed.
+      await page.evaluate(() => {
         const HEAVY_DECOR = ['three-vendor', 'HeroCanvas', 'gsap-vendor'];
         document.querySelectorAll('link[rel="modulepreload"]').forEach((l) => {
           const href = l.getAttribute('href') || '';
@@ -236,7 +220,10 @@ async function main() {
         });
       });
 
-      return await page.content();
+      const raw = await page.content();
+      const { html, removed } = cleanHead(raw, expected, route);
+      if (removed > 0) headTagsRemoved += removed;
+      return html;
     } finally {
       await page.close();
     }
@@ -287,6 +274,7 @@ async function main() {
   server.close();
 
   console.log(`\n✓ Prerender complete: ${success} success, ${failed} failed`);
+  console.log(`  head cleanup: removed ${headTagsRemoved} duplicate/empty <title>/<meta>/<link> tags`);
   if (failed > 0) {
     console.error(`\n✗ Not deployable — these routes have NO prerendered HTML and will`);
     console.error(`  fall through to the noindex SPA shell:\n    ${failedRoutes.join('\n    ')}`);
