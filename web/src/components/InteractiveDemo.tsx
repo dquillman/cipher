@@ -135,7 +135,7 @@ export default function InteractiveDemo() {
               <div className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
             </div>
-            <span className="text-[11px] text-slate-500 font-mono ml-3 hidden sm:inline">cipherexam.com</span>
+            <span className="text-[11px] text-slate-400 font-mono ml-3 hidden sm:inline">cipherexam.com</span>
           </div>
           <div className="flex items-center gap-3">
             {/* Step indicators */}
@@ -147,7 +147,7 @@ export default function InteractiveDemo() {
                   className={`text-[10px] px-2 py-0.5 rounded-full transition-all duration-300 ${
                     step === i || (step === 5 && i === 4)
                       ? 'bg-brand-500/20 text-brand-300'
-                      : i < step ? 'text-slate-500' : 'text-slate-600'
+                      : i < step ? 'text-slate-400' : 'text-slate-400/80'
                   }`}
                 >
                   {label}
@@ -165,12 +165,12 @@ export default function InteractiveDemo() {
 
           {/* ── STEP 0: Exam Selection ──────────────────────────────────── */}
           <div className={`absolute inset-0 p-4 sm:p-6 flex flex-col items-center justify-center transition-all duration-500 ${fadeIn(0)}`}>
-            <p className="text-xs text-slate-500 uppercase tracking-wider mb-4 font-medium">Step 1 — Choose Your Exam</p>
+            <p className="text-xs text-slate-400 uppercase tracking-wider mb-4 font-medium">Step 1 — Choose Your Exam</p>
             <div className="w-full max-w-sm">
               <div className="rounded-xl border border-slate-700 bg-slate-900 overflow-hidden">
                 <div className="px-4 py-3 flex items-center justify-between border-b border-slate-800">
                   <span className="text-sm text-slate-400">Select certification exam</span>
-                  <ChevronDown className="w-4 h-4 text-slate-500" />
+                  <ChevronDown className="w-4 h-4 text-slate-400" />
                 </div>
                 <div className="divide-y divide-slate-800/50">
                   {[
@@ -203,7 +203,7 @@ export default function InteractiveDemo() {
             <div className="max-w-lg mx-auto">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">PMP</span>
-                <span className="text-[10px] text-slate-500">Question 7 of 10</span>
+                <span className="text-[10px] text-slate-400">Question 7 of 10</span>
               </div>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed mb-5 font-medium">
                 A project manager discovers a key stakeholder has been excluded from status meetings. What should the PM do first?
@@ -234,7 +234,7 @@ export default function InteractiveDemo() {
             <div className="max-w-lg mx-auto">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">PMP</span>
-                <span className="text-[10px] text-slate-500">Question 7 of 10</span>
+                <span className="text-[10px] text-slate-400">Question 7 of 10</span>
               </div>
               <p className="text-sm sm:text-base text-slate-200 leading-relaxed mb-5 font-medium">
                 A project manager discovers a key stakeholder has been excluded from status meetings. What should the PM do first?
@@ -253,7 +253,7 @@ export default function InteractiveDemo() {
                         ? 'border-red-500/50 bg-red-500/10 text-red-200'
                         : opt.correct
                         ? 'border-emerald-500/50 bg-emerald-500/10 text-emerald-200'
-                        : 'border-slate-800/50 bg-slate-900/30 text-slate-500'
+                        : 'border-slate-800/50 bg-slate-900/30 text-slate-400'
                     }`}
                   >
                     <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs shrink-0 ${
@@ -261,7 +261,7 @@ export default function InteractiveDemo() {
                     }`}>
                       {opt.wrong ? <XCircle className="w-4 h-4 text-red-400" /> :
                        opt.correct ? <CheckCircle className="w-4 h-4 text-emerald-400" /> :
-                       <span className="font-bold text-slate-500">{opt.letter}</span>}
+                       <span className="font-bold text-slate-400">{opt.letter}</span>}
                     </span>
                     <span>{opt.text}</span>
                   </div>
@@ -357,7 +357,7 @@ export default function InteractiveDemo() {
           {/* ── STEP 5: Pause (reuses step 4 visual, just a gap) ────────── */}
           <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-700 ${step === 5 ? 'opacity-40 scale-[0.97]' : 'opacity-0 pointer-events-none'}`}>
             <div className="flex items-center justify-center h-full">
-              <span className="text-xs text-slate-600 animate-pulse">Restarting demo...</span>
+              <span className="text-xs text-slate-400">Restarting demo…</span>
             </div>
           </div>
         </div>

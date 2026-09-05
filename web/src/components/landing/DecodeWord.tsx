@@ -46,7 +46,13 @@ export default function DecodeWord({ text }: { text: string }) {
     }, [text]);
 
     return (
-        <span className="decode-word" aria-label={text}>
+        // aria-label on a bare <span> is a prohibited attribute: a generic element
+        // with no role has no accessible name to label, so axe flags it and screen
+        // readers may announce nothing at all — the headline word would just be
+        // missing. Expose the real word as visually-hidden text instead, and hide
+        // the scrambling glyphs from assistive tech entirely.
+        <span className="decode-word">
+            <span className="sr-only">{text}</span>
             <span aria-hidden="true">{display}</span>
             <span className="decode-caret" aria-hidden="true" />
         </span>

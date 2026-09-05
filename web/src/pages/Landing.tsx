@@ -42,7 +42,7 @@ const Eyebrow = ({ n, label, center = false }: { n: string; label: string; cente
     <div ref={ref} className={`flex items-center gap-3 mb-5 ${center ? "justify-center" : ""}`}>
       <span className="font-mono text-[11px] tracking-[0.3em] text-brand-400">{n}</span>
       <span className={`h-px w-10 bg-brand-500/40 origin-left transition-transform duration-700 ease-out ${inView ? "scale-x-100" : "scale-x-0"}`} />
-      <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-slate-500">{label}</span>
+      <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-slate-400">{label}</span>
     </div>
   );
 };
@@ -293,6 +293,10 @@ export default function Landing() {
         </div>
       </nav>
 
+      {/* The page's primary content, as one <main> landmark. Screen-reader users
+          use it to skip the nav; axe flags a document that has none. */}
+      <main id="main">
+
       {/* ━━━ SECTION 1 — HERO (asymmetric split: copy left, live demo right) ━ */}
       {/* `isolate` scopes the negative-z ambient layers to this section —
           without it they paint UNDER the page wrapper's bg and are invisible */}
@@ -341,7 +345,7 @@ export default function Landing() {
                 CipherExam analyzes your answers and explains the reasoning behind every question.
               </p>
 
-              <p className="hero-enter hero-enter-4 font-mono text-xs tracking-wide text-slate-500 mb-10">
+              <p className="hero-enter hero-enter-4 font-mono text-xs tracking-wide text-slate-400 mb-10">
                 Free 14-day trial — no credit card required.
               </p>
 
@@ -391,10 +395,10 @@ export default function Landing() {
                   <span className="h-2.5 w-2.5 rounded-full bg-brand-400 shadow-[0_0_8px] shadow-brand-400/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
                   <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
-                  <span className="ml-2 font-mono text-[10px] tracking-widest text-slate-500 uppercase">cipher · live decode</span>
+                  <span className="ml-2 font-mono text-[10px] tracking-widest text-slate-400 uppercase">cipher · live decode</span>
                 </div>
                 <InteractiveDemo />
-                <p className="text-xs text-slate-600 mt-2 pb-2 text-center">
+                <p className="text-xs text-slate-400 mt-2 pb-2 text-center">
                   {isTouchDevice ? "Tap to pause. Tap steps to skip ahead." : "Hover to pause. Click steps to skip ahead."}
                 </p>
               </div>
@@ -413,7 +417,7 @@ export default function Landing() {
           ]).concat([
             "PMP · ECO JULY 2026", "SECURITY+ · SY0-701", "NETWORK+ · N10-009", "A+ CORE 2 · 220-1202",
           ]).map((t, i) => (
-            <span key={i} className="font-mono text-[11px] tracking-[0.22em] text-slate-500 px-7 py-3 border-r border-slate-800/80">
+            <span key={i} className="font-mono text-[11px] tracking-[0.22em] text-slate-400 px-7 py-3 border-r border-slate-800/80">
               {t}
             </span>
           ))}
@@ -444,7 +448,7 @@ export default function Landing() {
                 { icon: Repeat, title: "Same Mistakes on Repeat", body: "Without understanding the logic, you keep falling for the same traps question after question." },
               ].map(({ icon: Icon, title, body }, i) => (
                 <div key={i} className="group flex items-start gap-5 border-t border-slate-800 py-7 first:border-t-0 first:pt-0">
-                  <span className="font-mono text-sm text-red-400/70 pt-1 w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-sm text-red-400 pt-1 w-8 shrink-0">{String(i + 1).padStart(2, "0")}</span>
                   <div className="hidden sm:flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-red-500/20 bg-red-500/10 text-red-400">
                     <Icon className="h-5 w-5" strokeWidth={1.75} />
                   </div>
@@ -477,7 +481,7 @@ export default function Landing() {
             {/* Explanation mockup */}
             <div className="rounded-2xl border border-slate-800 bg-slate-950 p-6 sm:p-8">
               <div className="mb-6">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Question</div>
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Question</div>
                 <p className="text-slate-300 text-sm leading-relaxed">
                   A project manager discovers a team member is struggling with deliverables. What should the PM do first?
                 </p>
@@ -742,7 +746,7 @@ export default function Landing() {
                     <span className="inline-block mt-2 text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 rounded-full px-2 py-0.5">
                       Coming Soon
                     </span>
-                    <div className="text-[9px] text-slate-500 mt-1.5 hover:text-brand-400 transition-colors cursor-pointer">Notify me</div>
+                    <div className="text-[9px] text-slate-400 mt-1.5 hover:text-brand-400 transition-colors cursor-pointer">Notify me</div>
                   </div>
                 </div>
               );
@@ -799,9 +803,9 @@ export default function Landing() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-slate-800">
-                  <th className="text-left p-4 text-slate-500 font-medium" />
-                  <th className="p-4 text-slate-400 font-semibold text-center">Traditional Prep</th>
-                  <th className="p-4 text-brand-400 font-bold text-center bg-emerald-500/5">CipherExam</th>
+                  <th scope="col" className="text-left p-4 text-slate-400 font-medium"><span className="sr-only">Feature</span></th>
+                  <th scope="col" className="p-4 text-slate-400 font-semibold text-center">Traditional Prep</th>
+                  <th scope="col" className="p-4 text-brand-400 font-bold text-center bg-emerald-500/5">CipherExam</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/50">
@@ -813,11 +817,11 @@ export default function Landing() {
                   ["Study plan", "Self-managed", "Built around your weakest domain"],
                 ].map(([label, trad, ec], i) => (
                   <tr key={i}>
-                    <td className="p-4 text-slate-300 font-medium">{label}</td>
+                    <th scope="row" className="p-4 text-left text-slate-300 font-medium">{label}</th>
                     <td className="p-4 text-center">
-                      <span className="inline-flex items-center gap-1.5 text-red-400/70">
+                      <span className="inline-flex items-center gap-1.5 text-red-400">
                         <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-500/10"><XMark /></span>
-                        <span className="text-slate-500">{trad}</span>
+                        <span className="text-slate-400">{trad}</span>
                       </span>
                     </td>
                     <td className="p-4 text-white text-center font-medium bg-emerald-500/5">
@@ -844,8 +848,8 @@ export default function Landing() {
               ["Study plan", "Self-managed", "Built around your weakest domain"],
             ].map(([label, trad, ec], i) => (
               <div key={i} className="rounded-xl border border-slate-800 bg-slate-950 p-4">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">{label}</div>
-                <div className="flex items-start gap-2 mb-2 text-slate-500 text-sm">
+                <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">{label}</div>
+                <div className="flex items-start gap-2 mb-2 text-slate-400 text-sm">
                   <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-500/10 text-red-400 mt-0.5">
                     <XMark />
                   </span>
@@ -884,7 +888,7 @@ export default function Landing() {
                 <div className="text-5xl sm:text-6xl font-extrabold text-white font-display tracking-tight">
                   <CountUp value={s.value} />
                 </div>
-                <div className="font-mono text-[11px] tracking-[0.25em] uppercase text-slate-500 mt-4">{s.label}</div>
+                <div className="font-mono text-[11px] tracking-[0.25em] uppercase text-slate-400 mt-4">{s.label}</div>
               </div>
             ))}
           </div>
@@ -988,16 +992,16 @@ export default function Landing() {
                 </div>
                 <p className="mt-1 font-mono text-[11px] tracking-wide text-brand-200">Most popular · one-time · nothing to cancel</p>
               </div>
-              <span className="font-mono text-sm text-slate-600">or</span>
+              <span className="font-mono text-sm text-slate-400">or</span>
               <div>
                 <div className="flex items-baseline justify-center gap-1.5">
                   <span className="text-2xl font-bold text-white">$19</span>
                   <span className="text-sm text-slate-400">/mo</span>
                 </div>
-                <p className="mt-1 font-mono text-[11px] tracking-wide text-slate-500">14-day free trial · cancel anytime</p>
+                <p className="mt-1 font-mono text-[11px] tracking-wide text-slate-400">14-day free trial · cancel anytime</p>
               </div>
             </div>
-            <p className="font-mono text-[11px] tracking-wide text-slate-500">Pro is backed by the 60-day money-back guarantee.</p>
+            <p className="font-mono text-[11px] tracking-wide text-slate-400">Pro is backed by the 60-day money-back guarantee.</p>
           </div>
           <button
             onClick={handleCta}
@@ -1006,7 +1010,7 @@ export default function Landing() {
           >
             Start Your Free Trial
           </button>
-          <p className="mt-6 font-mono text-xs tracking-wide text-slate-500">14-day free trial — no credit card required.</p>
+          <p className="mt-6 font-mono text-xs tracking-wide text-slate-400">14-day free trial — no credit card required.</p>
         </div>
       </section>
 
@@ -1028,14 +1032,14 @@ export default function Landing() {
                 <img src="/favicon.png" alt="CipherExam" className="h-6 w-6 rounded object-contain" />
                 <span className="text-slate-300 font-semibold">CipherExam</span>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-slate-500">
+              <p className="mt-3 text-sm leading-relaxed text-slate-400">
                 Practice questions that teach you how certification exams reason — not just what to memorize.
               </p>
             </div>
 
             <nav aria-label="Practice exams">
-              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-600">Practice</h2>
-              <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-400">Practice</h2>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
                 <li><Link to="/lp/pmp" className="hover:text-white transition-colors">PMP Practice Questions</Link></li>
                 <li><Link to="/lp/security-plus" className="hover:text-white transition-colors">CompTIA Security+ Practice</Link></li>
                 <li><Link to="/lp/network-plus" className="hover:text-white transition-colors">CompTIA Network+ Practice</Link></li>
@@ -1045,8 +1049,8 @@ export default function Landing() {
             </nav>
 
             <nav aria-label="Compare and learn">
-              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-600">Compare</h2>
-              <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-400">Compare</h2>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
                 <li><Link to="/compare/best-pmp-exam-simulator-2026" className="hover:text-white transition-colors">Best PMP Exam Simulator 2026</Link></li>
                 <li><Link to="/compare/pocketprep-alternative" className="hover:text-white transition-colors">PocketPrep Alternative</Link></li>
                 <li><Link to="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
@@ -1056,8 +1060,8 @@ export default function Landing() {
             </nav>
 
             <nav aria-label="Company">
-              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-600">Company</h2>
-              <ul className="mt-4 space-y-2.5 text-sm text-slate-500">
+              <h2 className="font-mono text-[11px] uppercase tracking-widest text-slate-400">Company</h2>
+              <ul className="mt-4 space-y-2.5 text-sm text-slate-400">
                 <li><Link to="/about" className="hover:text-white transition-colors">About CipherExam</Link></li>
                 <li><Link to="/story" className="hover:text-white transition-colors">Our Story</Link></li>
                 <li><a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-white transition-colors">Contact</a></li>
@@ -1067,11 +1071,12 @@ export default function Landing() {
             </nav>
           </div>
 
-          <p className="mt-12 border-t border-slate-900 pt-6 text-sm text-slate-600">
+          <p className="mt-12 border-t border-slate-900 pt-6 text-sm text-slate-400">
             © {new Date().getFullYear()} CipherExam. All rights reserved.
           </p>
         </div>
       </footer>
+      </main>
 
       {/* ─── SCROLL TO TOP ─────────────────────────────────────────────────── */}
       <button

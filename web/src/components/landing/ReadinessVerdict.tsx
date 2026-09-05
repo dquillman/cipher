@@ -43,7 +43,7 @@ export default function ReadinessVerdict() {
             {/* board header */}
             <div className="border-b border-slate-800 px-6 py-5 text-center">
                 <h3 className="text-2xl font-bold text-white font-display">Exam Results</h3>
-                <p className="text-slate-500 text-sm mt-0.5">Here is how you performed on this simulation.</p>
+                <p className="text-slate-400 text-sm mt-0.5">Here is how you performed on this simulation.</p>
             </div>
 
             {/* keep-going banner */}
@@ -79,7 +79,7 @@ export default function ReadinessVerdict() {
                     <div className="mt-4 font-mono text-sm font-bold tracking-widest text-amber-400 bg-amber-500/10 border border-amber-500/30 rounded-full px-5 py-1.5">
                         CLOSE
                     </div>
-                    <p className="mt-3 text-[11px] text-slate-500 font-mono tracking-wide text-center">
+                    <p className="mt-3 text-[11px] text-slate-400 font-mono tracking-wide text-center">
                         {BENCH - PCT} PTS BELOW OUR {BENCH}% BENCHMARK
                     </p>
                 </div>
@@ -92,9 +92,9 @@ export default function ReadinessVerdict() {
                                 <CheckCircle2 className="w-5 h-5" />
                             </div>
                             <div>
-                                <div className="text-xs text-slate-500">Score</div>
+                                <div className="text-xs text-slate-400">Score</div>
                                 <div className="text-2xl font-extrabold text-white font-display tabular-nums">
-                                    <CountUp value={`${SCORE}`} /> <span className="text-sm text-slate-500 font-semibold">/ {TOTAL}</span>
+                                    <CountUp value={`${SCORE}`} /> <span className="text-sm text-slate-400 font-semibold">/ {TOTAL}</span>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@ export default function ReadinessVerdict() {
                                 <Clock className="w-5 h-5" />
                             </div>
                             <div>
-                                <div className="text-xs text-slate-500">Time Taken</div>
+                                <div className="text-xs text-slate-400">Time Taken</div>
                                 <div className="text-2xl font-extrabold text-white font-display">41m 12s</div>
                             </div>
                         </div>
