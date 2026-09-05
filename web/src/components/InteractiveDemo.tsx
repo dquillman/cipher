@@ -355,7 +355,12 @@ export default function InteractiveDemo() {
           </div>
 
           {/* ── STEP 5: Pause (reuses step 4 visual, just a gap) ────────── */}
-          <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-700 ${step === 5 ? 'opacity-40 scale-[0.97]' : 'opacity-0 pointer-events-none'}`}>
+          {/* The dim used to come from opacity-40 on this wrapper, which drags the
+              label's computed colour down to ~2:1 — a contrast failure that only
+              appears while step === 5, so it passes or fails an audit depending on
+              when the sampler happens to land. The recede now comes from scale
+              alone and the text keeps its own colour. */}
+          <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-700 ${step === 5 ? 'scale-[0.97]' : 'opacity-0 pointer-events-none'}`}>
             <div className="flex items-center justify-center h-full">
               <span className="text-xs text-slate-400">Restarting demo…</span>
             </div>
