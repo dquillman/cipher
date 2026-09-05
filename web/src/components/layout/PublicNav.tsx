@@ -48,7 +48,7 @@ export default function PublicNav({ children }: PublicNavProps) {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <img src="/favicon.png" alt="CipherExam" className="h-8 w-8 rounded-lg object-contain" />
+          <img src="/logo-64.png" alt="CipherExam" className="h-8 w-8 rounded-lg object-contain" />
           <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟨</span>
           <span className="text-lg font-bold tracking-tight text-white font-display">CipherExam</span>
           <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟩</span>

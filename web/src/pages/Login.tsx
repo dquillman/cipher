@@ -201,7 +201,7 @@ export default function Login() {
                 </div>
 
                 <div className="text-center">
-                    <img src="/favicon.png" alt="CipherExam" className="mx-auto w-12 h-12 rounded-xl object-contain mb-4" />
+                    <img src="/logo-128.png" alt="CipherExam" className="mx-auto w-12 h-12 rounded-xl object-contain mb-4" />
                     <h2 className="text-3xl font-bold tracking-tight text-white font-display">
                         {isLogin ? 'Welcome back' : 'Create an account'}
                     </h2>

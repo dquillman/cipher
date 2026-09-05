@@ -208,7 +208,7 @@ export default function Landing() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <img src="/favicon.png" alt="CipherExam" className="h-8 w-8 rounded-lg object-contain" />
+            <img src="/logo-64.png" alt="CipherExam" className="h-8 w-8 rounded-lg object-contain" />
             <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟨</span>
             <span className="text-lg font-bold tracking-tight text-white font-display">CipherExam</span>
             <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟩</span>
@@ -1029,7 +1029,7 @@ export default function Landing() {
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2">
-                <img src="/favicon.png" alt="CipherExam" className="h-6 w-6 rounded object-contain" />
+                <img src="/logo-64.png" alt="CipherExam" className="h-6 w-6 rounded object-contain" />
                 <span className="text-slate-300 font-semibold">CipherExam</span>
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-400">

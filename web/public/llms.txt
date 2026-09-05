@@ -1,0 +1,61 @@
+# CipherExam
+
+> Certification exam practice that teaches how the exam reasons. Every question is
+> classified by Bloom's taxonomy level, and each explanation works through why the
+> distractors fail rather than restating the correct answer.
+
+CipherExam covers PMP and the CompTIA certifications — Security+ (SY0-701),
+Network+ (N10-009) and A+ Core 2 (220-1202) — including native CompTIA
+performance-based questions (PBQs), full-length exam simulators, per-domain
+readiness scoring and a study plan anchored to the weakest domain.
+
+The premise is that most candidates who fail these exams do not fail on facts.
+They fail on reasoning: a question can test recall, application or analysis of the
+same knowledge, and flashcard-style prep only ever trains the first. Results are
+broken out by Bloom's level so a candidate can tell a knowledge gap from a
+judgment gap, which need different remedies. Each certification also has its own
+"Exam Lens" — the reasoning frame that exam grades against.
+
+Pricing: a permanently free Starter tier (daily quiz, progress tracking,
+explanations); Pro at $19/month; or a one-time $59 Exam Pass covering one exam for
+90 days with no auto-renew.
+
+## Core pages
+
+- [Home](https://cipherexam.com/): what CipherExam is and how the method works
+- [Pricing](https://cipherexam.com/pricing): Starter, Pro and the one-time Exam Pass
+- [Exam Lens](https://cipherexam.com/exam-lens): the per-certification reasoning frameworks
+- [About](https://cipherexam.com/about): what the product does and who it is for
+- [Our Story](https://cipherexam.com/story): why the founder built it
+
+## Exam practice
+
+- [PMP Practice](https://cipherexam.com/lp/pmp): 2026 Exam Content Outline, situational judgment
+- [CompTIA Security+ Practice](https://cipherexam.com/lp/security-plus): SY0-701, PBQ-native
+- [CompTIA Network+ Practice](https://cipherexam.com/lp/network-plus): N10-009, OSI-layer troubleshooting
+- [CompTIA A+ Core 2 Practice](https://cipherexam.com/lp/a-plus-core-2): 220-1202, order-first troubleshooting
+
+## Comparisons
+
+- [Best PMP Exam Simulator 2026](https://cipherexam.com/compare/best-pmp-exam-simulator-2026): what to look for in a simulator
+- [Pocket Prep Alternative](https://cipherexam.com/compare/pocketprep-alternative): reasoning-first versus recall-first prep
+
+## Writing
+
+- [Blog](https://cipherexam.com/blog): index of all articles
+- [Study by Bloom's Level](https://cipherexam.com/blog/study-by-blooms-level): the cognitive framework, with worked examples
+- [How Certification Exams Think](https://cipherexam.com/blog/how-certification-exams-think): how exam writers construct questions
+- [Why Recall-Only Prep Fails](https://cipherexam.com/blog/recall-only-prep-fails): the case against flashcard-style study
+- [Cognitive Heatmap](https://cipherexam.com/blog/cognitive-heatmap): reading per-domain, per-level performance
+- [The PMP Exam Changed in July 2026](https://cipherexam.com/blog/pmp-exam-changes-july-2026): what moved in the new outline
+- [Why Exam Questions Are So Confusing](https://cipherexam.com/blog/why-certification-exam-questions-are-so-confusing): distractor design
+- [First 30 Days of a Study Plan](https://cipherexam.com/blog/first-30-days-certification-study-plan): a starting schedule
+- [5 Study Mistakes](https://cipherexam.com/blog/5-study-mistakes-that-cost-your-certification-exam): common failure patterns
+- [How AI Explanations Change Study](https://cipherexam.com/blog/how-ai-explanations-change-the-way-you-study): what per-answer reasoning changes
+
+## Optional
+
+- [Terms of Service](https://cipherexam.com/terms)
+- [Privacy Policy](https://cipherexam.com/privacy)
+
+Application pages under /app/ require sign-in and are not part of the public site.
