@@ -1,6 +1,11 @@
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { useAuth } from '../App';
-import TestimonialPrompt from './TestimonialPrompt';
+// Lazy on purpose: TestimonialPrompt -> TestimonialService -> Firestore. This
+// host mounts on every page including the landing page, so a static import
+// here pulled the 344KB fb-firestore chunk down for logged-out visitors who
+// can never see the prompt. It only renders when `pending` is set, which
+// requires a signed-in user who just finished a session.
+const TestimonialPrompt = lazy(() => import('./TestimonialPrompt'));
 
 /**
  * Top-level host that survives any page navigation.
@@ -77,10 +82,12 @@ export default function TestimonialPromptHost() {
   if (!pending) return null;
 
   return (
-    <TestimonialPrompt
-      examId={pending.examId}
-      examName={pending.examName}
-      onClose={() => setPending(null)}
-    />
+    <Suspense fallback={null}>
+      <TestimonialPrompt
+        examId={pending.examId}
+        examName={pending.examName}
+        onClose={() => setPending(null)}
+      />
+    </Suspense>
   );
 }

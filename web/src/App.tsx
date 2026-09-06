@@ -1,9 +1,11 @@
-﻿import { Routes, Route, Navigate, Outlet, useLocation, Link } from "react-router-dom";
-import React, { useEffect, useState, createContext, useContext, Suspense, type ReactNode } from "react";
+﻿import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
+import React, { useEffect, useRef, useState, createContext, useContext, Suspense, type ReactNode } from "react";
 import { lazyWithReload as lazy, isDeployChunkError } from "./utils/lazyWithReload";
 import { onAuthStateChanged, type User, signOut } from "firebase/auth";
-import { auth, db } from "./firebase";
-import { doc, getDoc } from "firebase/firestore";
+// ./firebase-app has no Firestore import. Importing `auth` from "./firebase"
+// instead pulled the 307KB fb-firestore chunk into the entry bundle of every
+// page, landing page included. VersionGate below loads Firestore on demand.
+import { auth } from "./firebase-app";
 import { APP_VERSION } from "./version";
 import { isValidVersion, evaluateVersion } from "./utils/versionCheck";
 // Not lazy: this must mount before the gates below it, so it cannot wait on a chunk.
@@ -59,7 +61,9 @@ const ReadinessReportPage = lazy(() => import("./pages/ReadinessReport"));
 const DiagnosticsPage = lazy(() => import("./pages/DiagnosticsPage"));
 const Faq = lazy(() => import("./pages/Faq"));
 const StartHere = lazy(() => import("./pages/StartHere"));
-import TestimonialPromptHost from "./components/TestimonialPromptHost";
+// Lazy: reaches Firestore via TestimonialService, and nothing about it needs
+// to be in the first byte of the entry chunk.
+const TestimonialPromptHost = lazy(() => import("./components/TestimonialPromptHost"));
 
 // --- Auth Context ---
 interface AuthContextType {
@@ -74,12 +78,19 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-import { useSessionTracker } from "./hooks/useSessionTracker";
+// Firestore-heavy and meaningless without a signed-in user, so it is mounted
+// as a lazy child of AuthProvider rather than called as a hook here.
+// React.lazy, not lazyWithReload: this one takes props and lazyWithReload is
+// typed for prop-less page chunks.
+const SessionTracker = React.lazy(() => import("./components/SessionTracker"));
+// Provider scope for /app/* (Exam + Subscription + SmartQuizReview).
+const AppScope = lazy(() => import("./AppScope"));
 
 function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const { closeSession } = useSessionTracker(user);
+  // Filled in by <SessionTracker> once it has loaded and a user exists.
+  const closeSessionRef = useRef<() => Promise<void>>(async () => {});
 
   useEffect(() => {
     // Safety check for auth initialization failure
@@ -96,6 +107,12 @@ function AuthProvider({ children }: { children: ReactNode }) {
     return unsubscribe;
   }, []);
 
+  // useSessionTracker used to clear this whenever it saw a null user. It is no
+  // longer mounted for signed-out visitors, so the cleanup lives here instead.
+  useEffect(() => {
+    if (!user) sessionStorage.removeItem('ecp_session_id');
+  }, [user]);
+
   const logout = async () => {
     // Signing out must never wait on analytics. closeSession awaits an
     // updateDoc, and a Firestore write resolves only on server ack — so on a
@@ -103,7 +120,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
     // closeSession swallows its own errors the catch below could never fire.
     // Pressing Log out simply did nothing. Bounded, and the sign-out happens
     // either way.
-    await withTimeout(closeSession(), 2500, 'closeSession');
+    await withTimeout(closeSessionRef.current(), 2500, 'closeSession');
     try {
       await signOut(auth);
     } catch (error) {
@@ -132,6 +149,11 @@ function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider value={{ user, loading, logout }}>
+      {user && (
+        <Suspense fallback={null}>
+          <SessionTracker user={user} closeRef={closeSessionRef} />
+        </Suspense>
+      )}
       {children}
     </AuthContext.Provider>
   );
@@ -145,6 +167,13 @@ function AuthProvider({ children }: { children: ReactNode }) {
 // 'block'   — below minimum; full-screen block, children not rendered
 type VersionStatus = 'loading' | 'ok' | 'warn' | 'block';
 
+// firestore.googleapis.com REST endpoint for app_config/version. The project id
+// and web API key are the same public values already shipped in firebase-app.ts.
+const VERSION_DOC_URL =
+  'https://firestore.googleapis.com/v1/projects/exam-coach-ai-platform' +
+  '/databases/(default)/documents/app_config/version' +
+  '?key=AIzaSyBBlyZqdAJw_yNNfUQfVW59eYgkrBJLUCQ';
+
 function VersionGate({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<VersionStatus>('loading');
   const [dismissed, setDismissed] = useState(false);
@@ -154,18 +183,34 @@ function VersionGate({ children }: { children: ReactNode }) {
 
     const check = async () => {
       try {
-        const snap = await getDoc(doc(db, 'app_config', 'version'));
+        // Read over the Firestore REST API rather than the SDK.
+        //
+        // This is one public document, read once, before anyone is signed in.
+        // Reaching it through the SDK meant `import('firebase/firestore')` —
+        // 344KB of client — downloaded on EVERY page load, landing page and
+        // blog included, to fetch two version strings. REST gets the same
+        // document from the same database with a single fetch and no bundle.
+        //
+        // Requires app_config/version to stay world-readable in the security
+        // rules. If that ever changes the fetch 401s, the catch below fires,
+        // and the gate fails open exactly as it does when the user is offline.
+        const res = await fetch(VERSION_DOC_URL, { cache: 'no-store' });
 
         if (cancelled) return;
 
-        if (!snap.exists()) {
+        if (res.status === 404) {
+          // Document does not exist — same as the old !snap.exists() branch.
           setStatus('ok');
           return;
         }
+        if (!res.ok) throw new Error(`version check HTTP ${res.status}`);
 
-        const data = snap.data();
-        const remoteLatest: string | undefined = data?.latest;
-        const remoteMinimum: string | undefined = data?.minimum;
+        const fields = (await res.json())?.fields ?? {};
+
+        if (cancelled) return;
+
+        const remoteLatest: string | undefined = fields.latest?.stringValue;
+        const remoteMinimum: string | undefined = fields.minimum?.stringValue;
 
         if (!remoteLatest || !isValidVersion(remoteLatest)) {
           console.warn(`VersionGate: invalid or missing latest version "${remoteLatest}" — failing open`);
@@ -191,9 +236,21 @@ function VersionGate({ children }: { children: ReactNode }) {
       }
     };
 
-    check();
+    // Deferred to idle. The check gates nothing — children render while it is
+    // in flight — but firing it during page load meant the Firestore chunk and
+    // its network round-trip competed with LCP on every visit, including the
+    // landing page.
+    // Safari only shipped requestIdleCallback in 18.4, so keep the timer path.
+    const idle = typeof window.requestIdleCallback === 'function';
+    const handle = idle
+      ? window.requestIdleCallback(check, { timeout: 5000 })
+      : window.setTimeout(check, 2000);
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      if (idle) window.cancelIdleCallback(handle);
+      else window.clearTimeout(handle);
+    };
   }, []);
 
   switch (status) {
@@ -285,78 +342,15 @@ function PublicOnly() {
   return <Outlet />;
 }
 
-import Sidebar from "./components/Sidebar";
-import MobileNav from "./components/MobileNav";
-import MockExamGuard from "./components/MockExamGuard";
-
-import { SidebarProvider, useSidebar } from "./contexts/SidebarContext";
-import { SubscriptionProvider, useSubscription } from "./contexts/SubscriptionContext";
-
-import TrialModal from "./components/TrialModal";
-
-// --- Layouts ---
-import AppHeader from "./components/layout/AppHeader";
-
-function FreePlanBanner() {
-  const { isPro, hasPassFor, questionsAnsweredToday, dailyLimit, loading, profileReady } = useSubscription();
-  const { selectedExamId } = useExam();
-  // Nothing used to gate on `loading`, so the very first screen after signing up
-  // for a 14-day trial carried "Free plan: 0 / 20 questions used today —
-  // Upgrade for unlimited practice" until the user doc arrived. Showing a
-  // paywall to someone who just started a trial reads as a bait and switch.
-  // Render nothing until entitlement is actually known.
-  // profileReady covers the seconds after signup when users/{uid} does not
-  // exist yet: `loading` is already false there, and the defaults look exactly
-  // like a free user who never took a trial.
-  if (loading || !profileReady) return null;
-  // Exam Pass holders bypass the free-tier quota for their covered exam.
-  if (isPro || hasPassFor(selectedExamId)) return null;
-  const countColor = questionsAnsweredToday >= dailyLimit
-    ? 'text-red-400'
-    : questionsAnsweredToday >= dailyLimit - 2
-      ? 'text-amber-400'
-      : 'text-white';
-  return (
-    <div className="bg-slate-800 border-b border-slate-700 px-4 py-2 flex items-center justify-between text-xs text-slate-300">
-      <span>Free plan: <span className={`font-semibold ${countColor}`}>{questionsAnsweredToday} / {dailyLimit}</span> questions used today</span>
-      <Link to="/app/pricing" className="font-semibold text-brand-400 hover:text-brand-300 transition-colors">
-        Upgrade for unlimited practice
-      </Link>
-    </div>
-  );
-}
-
-function AppLayout() {
-  const { isCollapsed } = useSidebar();
-  return (
-    <div className="decoder min-h-dvh bg-slate-900 text-slate-100 flex relative overflow-x-hidden">
-      <TrialModal />
-      <Sidebar />
-      <MobileNav />
-      {/* min-w-0: a flex child defaults to min-width:auto, so it refuses to
-          shrink below its content's min-content width. One non-wrapping row
-          inside the quiz explanation was enough to push this column to 507px
-          inside a 393px phone viewport — and because .decoder clips overflow-x,
-          the header (exam name, Q/N counter, theme toggle) was simply gone,
-          with no scroll to reach it. */}
-      <div className={`flex-1 min-w-0 ml-0 ${isCollapsed ? 'md:ml-20' : 'md:ml-64'} flex flex-col pb-20 md:pb-0 transition-all duration-300`}>
-        <AppHeader />
-        <FreePlanBanner />
-        <div className="p-4 md:p-8">
-          <Outlet />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-import { ExamProvider, useExam } from "./contexts/ExamContext";
-import { SmartQuizReviewProvider, useSmartQuizReview } from "./contexts/SmartQuizReviewContext";
-import SmartQuizReviewModal from "./components/SmartQuizReviewModal";
+// App-only chunks. Kept out of the entry graph on purpose: each of these
+// reaches Firestore through a service or context, and none of them renders on
+// a public route.
+const AppLayout = lazy(() => import("./AppLayout"));
+const MockExamGuard = lazy(() => import("./components/MockExamGuard"));
 
 // --- Analytics Hook ---
 import { httpsCallable } from 'firebase/functions';
-import { functions } from './firebase';
+import { functions } from './firebase-app';
 import { withTimeout } from './utils/withTimeout';
 
 function useAnalytics() {
@@ -383,20 +377,6 @@ function useAnalytics() {
 
     trackVisit();
   }, []);
-}
-
-function GlobalSmartQuizReviewModal() {
-  const { state, closeReview } = useSmartQuizReview();
-  return (
-    <SmartQuizReviewModal
-      open={state.open}
-      onClose={closeReview}
-      reviewText={state.reviewText}
-      loading={state.loading}
-      isPartial={state.isPartial}
-      isPro={state.isPro}
-    />
-  );
 }
 
 class AppErrorBoundary extends React.Component<{ children: ReactNode }, { error: Error | null }> {
@@ -491,10 +471,6 @@ function App() {
     <RouteAnalytics />
     <VersionGate>
     <AuthProvider>
-      <SidebarProvider>
-        <ExamProvider>
-          <SubscriptionProvider>
-            <SmartQuizReviewProvider>
             <Suspense fallback={
               <div className="flex h-dvh items-center justify-center bg-slate-900 text-white">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
@@ -538,7 +514,11 @@ function App() {
               </Route>
 
               {/* Protected Routes (Accessible only when logged in) */}
-              <Route path="/app/*" element={<RequireAuth />}>
+              {/* AppScope carries ExamProvider/SubscriptionProvider/SmartQuizReview.
+                  They used to wrap every route, which made the landing page and
+                  the blog load fb-firestore to render static text. */}
+              <Route path="/app/*" element={<AppScope />}>
+                <Route element={<RequireAuth />}>
                 <Route element={<AppLayout />}>
                   <Route index element={<Dashboard />} />
                   <Route path="exams" element={<ExamList />} />
@@ -573,6 +553,7 @@ function App() {
                       and it is a URL people guess and bookmark. */}
                   <Route path="*" element={<NotFound />} />
                 </Route>
+                </Route>
               </Route>
 
               {/* Fallback — render NotFound (noindex) instead of redirecting to /.
@@ -581,13 +562,8 @@ function App() {
                   so unknown URLs stop accumulating in the index. */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <GlobalSmartQuizReviewModal />
             <TestimonialPromptHost />
             </Suspense>
-            </SmartQuizReviewProvider>
-          </SubscriptionProvider>
-        </ExamProvider>
-      </SidebarProvider>
     </AuthProvider>
     </VersionGate>
     </AppErrorBoundary>

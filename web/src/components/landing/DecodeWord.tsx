@@ -45,15 +45,27 @@ export default function DecodeWord({ text }: { text: string }) {
         return () => { timers.current.forEach(t => window.clearInterval(t)); timers.current = []; };
     }, [text]);
 
+    // Only ONE copy of the word may exist in the text content at rest.
+    //
+    // The first version of this fix rendered an sr-only <span>{text}</span>
+    // alongside the aria-hidden glyph span. Both are text nodes, so the h1's
+    // text content became "Learn How Certification Exams ThinkThink" — which is
+    // exactly what Google reads, and what the prerendered HTML shipped.
+    //
+    // So swap, never stack. While the scramble is running the real word lives in
+    // the sr-only span and the glyphs are hidden from assistive tech. At rest —
+    // which is the initial render, the prerendered output, and every moment
+    // between runs — there is no sr-only span at all and the single visible span
+    // is not hidden, so the word appears exactly once to both readers and
+    // crawlers. (aria-label on a bare span, the original bug, names nothing: a
+    // generic element has no accessible name to label, so axe flags it and the
+    // word could be announced as nothing at all.)
+    const scrambling = display !== text;
+
     return (
-        // aria-label on a bare <span> is a prohibited attribute: a generic element
-        // with no role has no accessible name to label, so axe flags it and screen
-        // readers may announce nothing at all — the headline word would just be
-        // missing. Expose the real word as visually-hidden text instead, and hide
-        // the scrambling glyphs from assistive tech entirely.
         <span className="decode-word">
-            <span className="sr-only">{text}</span>
-            <span aria-hidden="true">{display}</span>
+            {scrambling && <span className="sr-only">{text}</span>}
+            <span aria-hidden={scrambling || undefined}>{display}</span>
             <span className="decode-caret" aria-hidden="true" />
         </span>
     );
