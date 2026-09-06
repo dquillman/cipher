@@ -10,6 +10,7 @@ import DecodeWord from "../components/landing/DecodeWord";
 import ReadinessVerdict from "../components/landing/ReadinessVerdict";
 import { useHeroMotion } from "../components/landing/useHeroMotion";
 import { useInView } from "../hooks/useInView";
+import { afterPaint } from "../utils/afterPaint";
 import CountUp from "../components/CountUp";
 import ScrollProgress from "../components/ScrollProgress";
 import GuaranteeSeal from "../components/GuaranteeSeal";
@@ -112,6 +113,10 @@ export default function Landing() {
     if (!window.matchMedia("(pointer: fine)").matches) return; // skip on touch
     const disposers: Array<() => void> = [];
     let cancelled = false;
+    // Deferred to after load + idle — see utils/afterPaint. This is a hover
+    // effect; fetching gsap before the page has painted helped nobody.
+    const dispose = afterPaint(() => { if (!cancelled) attach(); });
+    function attach() {
     import("gsap").then(({ gsap }) => {
       if (cancelled) return;
       document.querySelectorAll<HTMLElement>("[data-magnetic-cta]").forEach((btn) => {
@@ -131,7 +136,8 @@ export default function Landing() {
         });
       });
     });
-    return () => { cancelled = true; disposers.forEach((d) => d()); };
+    }
+    return () => { cancelled = true; dispose(); disposers.forEach((d) => d()); };
   }, []);
 
   // GA4: landing_page_view and captureUtmParams now fire from <RouteAnalytics/>

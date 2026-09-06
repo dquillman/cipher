@@ -1,10 +1,12 @@
 import { useEffect, type RefObject } from "react";
+import { afterPaint } from "../../utils/afterPaint";
 
 /**
  * useHeroMotion — light GSAP polish, scoped to the hero.
  *
  * Two effects, both dynamically imported so `gsap` + ScrollTrigger land in their
- * own async chunk (never the entry bundle):
+ * own async chunk (never the entry bundle) and both deferred until after load +
+ * idle (see utils/afterPaint) so they stay out of the LCP window:
  *
  *   1. Scroll parallax + fade on the WebGL field. As the hero scrolls away the
  *      canvas drifts up slower than the page and dissolves — cheap depth.
@@ -26,7 +28,7 @@ export function useHeroMotion(scopeRef: RefObject<HTMLElement | null>) {
     let cleanup: (() => void) | undefined;
     let cancelled = false;
 
-    (async () => {
+    const start = async () => {
       const [{ gsap }, { ScrollTrigger }] = await Promise.all([
         import("gsap"),
         import("gsap/ScrollTrigger"),
@@ -73,10 +75,16 @@ export function useHeroMotion(scopeRef: RefObject<HTMLElement | null>) {
       }, scope);
 
       cleanup = () => ctx.revert();
-    })();
+    };
+
+    // Deferred to after load + idle: this is scroll and pointer polish, and at
+    // t=0 nobody has scrolled or moved a pointer. Fetching gsap during the LCP
+    // window bought nothing and cost 114KB of contention.
+    const dispose = afterPaint(() => { void start(); });
 
     return () => {
       cancelled = true;
+      dispose();
       cleanup?.();
     };
   }, [scopeRef]);

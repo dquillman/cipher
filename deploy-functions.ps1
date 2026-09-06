@@ -42,5 +42,5 @@ if ($env -eq "prod") {
     }
 
     firebase deploy --only functions
-    firebase deploy --only hosting:prod
+    firebase deploy --only hosting:production
 }
