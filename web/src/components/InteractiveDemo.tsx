@@ -114,9 +114,9 @@ export default function InteractiveDemo() {
 
   const stepLabels = ['Select Exam', 'Read Question', 'Answer', 'AI Explanation', 'Your Progress'];
 
-  // Fade helper
+  // Keep visible text at full contrast; inactive panels leave the accessibility tree.
   const fadeIn = (targetStep: number) =>
-    step === targetStep ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 pointer-events-none';
+    step === targetStep ? 'visible translate-y-0' : 'invisible translate-y-3 pointer-events-none';
 
   return (
     <div
@@ -164,7 +164,7 @@ export default function InteractiveDemo() {
         <div className="relative min-h-[340px] sm:min-h-[380px] p-4 sm:p-6 overflow-hidden">
 
           {/* ── STEP 0: Exam Selection ──────────────────────────────────── */}
-          <div className={`absolute inset-0 p-4 sm:p-6 flex flex-col items-center justify-center transition-all duration-500 ${fadeIn(0)}`}>
+          <div className={`absolute inset-0 p-4 sm:p-6 flex flex-col items-center justify-center transition-transform duration-500 motion-reduce:transition-none ${fadeIn(0)}`}>
             <p className="text-xs text-slate-400 uppercase tracking-wider mb-4 font-medium">Step 1 — Choose Your Exam</p>
             <div className="w-full max-w-sm">
               <div className="rounded-xl border border-slate-700 bg-slate-900 overflow-hidden">
@@ -199,7 +199,7 @@ export default function InteractiveDemo() {
           </div>
 
           {/* ── STEP 1: Question Display ───────────────────────────────── */}
-          <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-500 ${fadeIn(1)}`}>
+          <div className={`absolute inset-0 p-4 sm:p-6 transition-transform duration-500 motion-reduce:transition-none ${fadeIn(1)}`}>
             <div className="max-w-lg mx-auto">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">PMP</span>
@@ -230,7 +230,7 @@ export default function InteractiveDemo() {
           </div>
 
           {/* ── STEP 2: Answer Selected (Wrong) ────────────────────────── */}
-          <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-500 ${fadeIn(2)}`}>
+          <div className={`absolute inset-0 p-4 sm:p-6 transition-transform duration-500 motion-reduce:transition-none ${fadeIn(2)}`}>
             <div className="max-w-lg mx-auto">
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded">PMP</span>
@@ -271,7 +271,7 @@ export default function InteractiveDemo() {
           </div>
 
           {/* ── STEP 3: AI Explanation ──────────────────────────────────── */}
-          <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-500 ${fadeIn(3)}`}>
+          <div className={`absolute inset-0 p-4 sm:p-6 transition-transform duration-500 motion-reduce:transition-none ${fadeIn(3)}`}>
             <div className="max-w-lg mx-auto">
               <div className="flex items-center gap-2 mb-3">
                 <Brain className="w-4 h-4 text-brand-400" />
@@ -306,7 +306,7 @@ export default function InteractiveDemo() {
           </div>
 
           {/* ── STEP 4: Analytics Dashboard ─────────────────────────────── */}
-          <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-500 ${fadeIn(4)}`}>
+          <div className={`absolute inset-0 p-4 sm:p-6 transition-transform duration-500 motion-reduce:transition-none ${fadeIn(4)}`}>
             <div className="max-w-md mx-auto">
               <div className="flex items-center gap-2 mb-5">
                 <BarChart3 className="w-4 h-4 text-brand-400" />
@@ -360,7 +360,7 @@ export default function InteractiveDemo() {
               appears while step === 5, so it passes or fails an audit depending on
               when the sampler happens to land. The recede now comes from scale
               alone and the text keeps its own colour. */}
-          <div className={`absolute inset-0 p-4 sm:p-6 transition-all duration-700 ${step === 5 ? 'scale-[0.97]' : 'opacity-0 pointer-events-none'}`}>
+          <div className={`absolute inset-0 p-4 sm:p-6 transition-transform duration-700 motion-reduce:transition-none ${step === 5 ? 'visible scale-[0.97]' : 'invisible pointer-events-none'}`}>
             <div className="flex items-center justify-center h-full">
               <span className="text-xs text-slate-400">Restarting demo…</span>
             </div>

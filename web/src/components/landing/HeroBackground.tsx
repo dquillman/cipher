@@ -11,7 +11,6 @@ import { afterPaint } from "../../utils/afterPaint";
  *
  * The gate stays closed (render nothing, let the static /media/hero-ambient.jpg
  * fallback show through) when:
- *   - the user prefers reduced motion,
  *   - WebGL is unavailable,
  *   - we haven't mounted on the client yet (so prerender/SSR HTML is unaffected).
  *
@@ -27,7 +26,11 @@ function canRunWebGL(): boolean {
   // the WebGL hero runs whenever WebGL is available.
   try {
     const c = document.createElement("canvas");
-    return !!(c.getContext("webgl2") || c.getContext("webgl"));
+    const context = c.getContext("webgl2") || c.getContext("webgl");
+    // The probe is never rendered. Release its GPU allocation before the real
+    // hero creates a context, especially on memory-constrained phones.
+    context?.getExtension("WEBGL_lose_context")?.loseContext();
+    return !!context;
   } catch {
     return false;
   }

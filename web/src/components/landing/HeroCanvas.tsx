@@ -25,8 +25,8 @@ import {
  * This component is the HEAVY one: it pulls in `three`. It is only ever reached
  * through React.lazy() in HeroBackground, so `three` lands in its own async
  * chunk and never touches the entry bundle or non-hero routes. HeroBackground
- * also owns the prefers-reduced-motion / WebGL-support gate, so by the time we
- * mount we know motion is wanted and a context is (probably) obtainable.
+ * also owns the WebGL-support gate, so by the time we mount a context is
+ * (probably) obtainable.
  *
  * Everything is torn down on unmount (RAF, listeners, observer, GL context).
  */
@@ -251,17 +251,28 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
 
     // Run only while the hero is on-screen and the tab is visible.
     let running = false;
+    let onScreen = false;
     let rafId = 0;
     let last = performance.now();
+    let lastRender = last;
     let elapsed = 0;
+    // This slow decorative field does not need 60/120 GPU draws per second on
+    // phones. Keep animation time continuous while limiting its render work.
+    const frameInterval = isSmall ? 1000 / 30 : 0;
 
     const frame = (now: number) => {
+      if (!running) return;
+      rafId = requestAnimationFrame(frame);
+      const sinceRender = now - lastRender;
+      if (sinceRender < frameInterval) return;
+      lastRender = frameInterval ? now - (sinceRender % frameInterval) : now;
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
       elapsed += dt;
 
-      pointer.x = MathUtils.lerp(pointer.x, target.x, 0.04);
-      pointer.y = MathUtils.lerp(pointer.y, target.y, 0.04);
+      const damping = 1 - Math.pow(1 - 0.04, dt * 60);
+      pointer.x = MathUtils.lerp(pointer.x, target.x, damping);
+      pointer.y = MathUtils.lerp(pointer.y, target.y, damping);
 
       material.uniforms.uTime.value = elapsed;
       material.uniforms.uParallax.value.set(pointer.x * 0.6, pointer.y * 0.4);
@@ -271,13 +282,13 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
       points.rotation.x = pointer.y * 0.05;
 
       renderer.render(scene, camera);
-      rafId = requestAnimationFrame(frame);
     };
 
     const start = () => {
       if (running) return;
       running = true;
       last = performance.now();
+      lastRender = last;
       rafId = requestAnimationFrame(frame);
     };
     const stop = () => {
@@ -287,7 +298,8 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
 
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && document.visibilityState === "visible") start();
+        onScreen = entry.isIntersecting;
+        if (onScreen && document.visibilityState === "visible") start();
         else stop();
       },
       { threshold: 0.01 }
@@ -295,7 +307,7 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
     io.observe(container);
 
     const onVisibility = () => {
-      if (document.visibilityState === "visible") start();
+      if (onScreen && document.visibilityState === "visible") start();
       else stop();
     };
     document.addEventListener("visibilitychange", onVisibility);
@@ -304,14 +316,15 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
     window.addEventListener("resize", onResize, { passive: true });
 
     // Fade in after the first painted frame so the still image never flashes.
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
+    let fadeFrame = requestAnimationFrame(() => {
+      fadeFrame = requestAnimationFrame(() => {
         canvas.style.opacity = "1";
       });
     });
 
     return () => {
       stop();
+      cancelAnimationFrame(fadeFrame);
       io.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pointermove", onPointerMove);
