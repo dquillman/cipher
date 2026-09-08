@@ -19,7 +19,7 @@ export const SEO = {
   landing: {
     title: 'CipherExam — Learn How Certification Exams Think',
     description:
-      'AI-powered certification exam prep that explains the reasoning behind every question. Four certifications covered in depth: PMP, CompTIA Security+, Network+ and A+ Core 2. Free 14-day trial, no credit card.',
+      'Free 14-day trial, no credit card. AI-powered cert prep for PMP, CompTIA Security+, Network+ and A+ Core 2 that explains the reasoning behind every question.',
     canonical: '/',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -177,7 +177,7 @@ export const SEO = {
   lpItil: {
     title: 'ITIL 4 Practice — Value-Chain-Lens Questions · CipherExam',
     description:
-      'Practice ITIL 4 Foundation questions mapped to the service value chain and guiding principles, with AI-explained reasoning through the Exam Lens. Free 14-day trial.',
+      'ITIL 4 Foundation practice, free 14-day trial. Questions mapped to the service value chain and guiding principles, with AI-explained Exam Lens reasoning.',
     canonical: '/lp/itil',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -185,15 +185,15 @@ export const SEO = {
   lpNetworkPlus: {
     title: 'CompTIA Network+ Practice — OSI Troubleshooting · CipherExam',
     description:
-      'Practice Network+ (N10-009) with layer-by-layer reasoning through the Exam Lens — locate the fault on the OSI model before you pick a fix. Bloom’s-classified questions. Free 14-day trial.',
+      'Network+ (N10-009) practice, free 14-day trial. Bloom’s-classified questions with layer-by-layer Exam Lens reasoning — find the fault on the OSI model first.',
     canonical: '/lp/network-plus',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
 
   lpSixSigma: {
-    title: 'Six Sigma Green Belt Practice — Exam Lens Explanations · CipherExam',
+    title: 'Six Sigma Green Belt Practice — DMAIC Lens · CipherExam',
     description:
-      "Practice Six Sigma Green Belt the way ASQ grades it. Every answer explained through the Exam Lens — which DMAIC phase — plus Bloom's-level reasoning. Free 14-day trial.",
+      'Six Sigma Green Belt practice, free 14-day trial. Every answer explained the way ASQ grades it — which DMAIC phase — plus Bloom’s-level reasoning.',
     canonical: '/lp/six-sigma',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -201,23 +201,23 @@ export const SEO = {
   lpCia: {
     title: 'CIA Part 1 Practice — AI-Explained Questions · CipherExam',
     description:
-      "Practice CIA Part 1 (IIA) questions with AI-explained reasoning. Bloom's-classified, scenario-aware, graded against the IIA International Standards. Free 14-day trial.",
+      'CIA Part 1 (IIA) practice, free 14-day trial. AI-explained reasoning, Bloom’s-classified and scenario-aware, graded against the IIA International Standards.',
     canonical: '/lp/cia',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
 
   lpCsm: {
-    title: 'CSM Practice — AI-Explained Scrum Guide Questions · CipherExam',
+    title: 'CSM Practice — Scrum Guide Reasoning · CipherExam',
     description:
-      "Practice Certified ScrumMaster (CSM) questions explained through the Exam Lens, grounded in the current Scrum Guide. Bloom's-classified, scenario-aware. Free 14-day trial.",
+      'Certified ScrumMaster (CSM) practice, free 14-day trial. Questions explained through the Exam Lens and grounded in the current Scrum Guide. Scenario-aware.',
     canonical: '/lp/csm',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
 
   lpAPlusCore2: {
-    title: 'CompTIA A+ Core 2 Practice — Order-First Troubleshooting · CipherExam',
+    title: 'CompTIA A+ Core 2 Practice — Order-First · CipherExam',
     description:
-      'Practice A+ Core 2 (220-1202) with reasoning explanations tied to the CompTIA six-step troubleshooting methodology — which step comes first, not just which fix is valid. Free 14-day trial.',
+      'A+ Core 2 (220-1202) practice, free 14-day trial. Answers tied to CompTIA’s six-step troubleshooting method — which step comes first, not just which fix.',
     canonical: '/lp/a-plus-core-2',
     ogImage: 'https://cipherexam.com/og-default.png',
   },
@@ -231,9 +231,9 @@ export const SEO = {
   },
 
   comparePocketPrep: {
-    title: 'Pocket Prep Alternative — Reasoning-First Cert Prep · CipherExam',
+    title: 'Pocket Prep Alternative — Reasoning-First Prep · CipherExam',
     description:
-      'Looking for a Pocket Prep alternative? CipherExam explains the reasoning behind every question — Bloom’s-classified, four certifications covered in depth, 60-day money-back guarantee. Free 14-day trial, no credit card.',
+      'Pocket Prep alternative that explains the reasoning behind every question — PMP, Security+, Network+ and A+ Core 2. Free 14-day trial, no credit card.',
     canonical: '/compare/pocketprep-alternative',
     ogImage: 'https://cipherexam.com/og-default.png',
     jsonLd: {
@@ -272,9 +272,9 @@ export const SEO = {
    *     (components/simulator/QuestionCard.tsx). Do not claim otherwise here.
    */
   compareBestPmpSimulator2026: {
-    title: 'Best PMP Exam Simulator for the 2026 Exam — Buyer’s Guide · CipherExam',
+    title: 'Best PMP Exam Simulator 2026 — Buyer’s Guide · CipherExam',
     description:
-      'The PMP exam moved to a new Exam Content Outline in July 2026. What to look for in a simulator — full-length 180-question mocks, 2026-ECO domain weighting (33/41/26), honest coverage of the exam’s question formats — and how CipherExam meets each criterion. Free 14-day trial.',
+      'PMP simulator buyer’s guide for the July 2026 ECO: full-length 180-question mocks, 33/41/26 domain weighting, honest format coverage. Free 14-day trial.',
     canonical: '/compare/best-pmp-exam-simulator-2026',
     ogImage: 'https://cipherexam.com/og-pmp.png',
     jsonLd: {
@@ -307,6 +307,13 @@ export const SEO = {
         },
       ],
     },
+  },
+
+  examLens: {
+    title: 'Exam Lens — Reasoning Frameworks per Cert · CipherExam',
+    description:
+      'Exam Lens explains why one answer is BEST — one reasoning framework per certification. Live banks for PMP, Security+, Network+, A+ Core 2. Free 14-day trial.',
+    canonical: '/exam-lens',
   },
 
   terms: {
@@ -397,21 +404,21 @@ export const BLOG_POSTS: Record<
   }
 > = {
   studyByBloomsLevel: {
-    title: 'Study by Bloom’s Level — The Cognitive Framework · CipherExam',
+    title: 'Study by Bloom’s Level — Cognitive Framework · CipherExam',
     description:
       'The Bloom’s taxonomy framework that separates exam winners from flashcard losers. Worked examples for PMP, Security+ and Network+.',
     canonical: '/blog/study-by-blooms-level',
     datePublished: '2026-05-12',
   },
   recallOnlyPrepFails: {
-    title: 'Why Recall-Only Prep Fails High-Stakes Cert Exams · CipherExam',
+    title: 'Why Recall-Only Prep Fails Cert Exams · CipherExam',
     description:
       'Memorizing flashcards isn’t enough for exams that test judgment. A cognitive-science look at why recall-only prep fails — and what works instead.',
     canonical: '/blog/recall-only-prep-fails',
     datePublished: '2026-05-14',
   },
   cognitiveHeatmap: {
-    title: 'Cognitive Heatmap — See Exactly Where You’re Weak · CipherExam',
+    title: 'Cognitive Heatmap — See Where You Are Weak · CipherExam',
     description:
       'How a per-domain, per-Bloom’s-level heatmap turns vague “I need to study more” into a specific weekly study plan.',
     canonical: '/blog/cognitive-heatmap',
@@ -425,7 +432,7 @@ export const BLOG_POSTS: Record<
     datePublished: '2026-05-18',
   },
   whyConfusing: {
-    title: 'Why Certification Exam Questions Are So Confusing · CipherExam',
+    title: 'Why Cert Exam Questions Are So Confusing · CipherExam',
     description:
       'Cert questions are written to test judgment, not recall. Here’s why "all four answers look right" is the design, not a bug.',
     canonical: '/blog/why-certification-exam-questions-are-so-confusing',
@@ -446,9 +453,9 @@ export const BLOG_POSTS: Record<
     datePublished: '2026-05-04',
   },
   pmpExamChanges2026: {
-    title: 'The PMP Exam Changed in July 2026 — Is Your Prep Current? · CipherExam',
+    title: 'The PMP Exam Changed in July 2026 — Is Your Prep Current?',
     description:
-      'PMI’s new Examination Content Outline went live in July 2026: still 180 questions, but now 240 minutes instead of 230, and reweighted to People 33% / Process 41% / Business Environment 26%. How to check whether your prep is current — and a bridge plan if you’re mid-prep.',
+      'PMP July 2026 ECO: still 180 questions, now 240 minutes, reweighted 33/41/26. Check whether your prep is current — plus a bridge plan if you are mid-prep.',
     canonical: '/blog/pmp-exam-changes-july-2026',
     datePublished: '2026-07-16',
     dateModified: '2026-08-08',

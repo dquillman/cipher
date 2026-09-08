@@ -4,7 +4,7 @@ import { trackCtaClick } from '../lib/ga4';
 import PublicNav from '../components/layout/PublicNav';
 import PublicFooter from '../components/layout/PublicFooter';
 import SeoHead from '../components/SeoHead';
-import { breadcrumbSchema } from '../config/seo';
+import { SEO, breadcrumbSchema } from '../config/seo';
 
 type LensEntry = {
   exam: string;
@@ -191,12 +191,7 @@ export default function ExamLensGlossary() {
 
   return (
     <div className="decoder bg-slate-900 min-h-dvh font-sans selection:bg-brand-500/30 text-slate-200">
-      <SeoHead
-        title="Exam Lens — Per-Certification Reasoning Frameworks · CipherExam"
-        description="Exam Lens is CipherExam's name for the per-certification reasoning frameworks that explain why one answer is BEST. Practice banks are live for PMP, Security+, Network+ and A+ Core 2; the other Lenses are published as reference."
-        canonical="/exam-lens"
-        jsonLd={jsonLd}
-      />
+      <SeoHead {...SEO.examLens} jsonLd={jsonLd} />
       <PublicNav />
 
       <main className="pt-28 pb-20">
