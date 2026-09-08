@@ -236,10 +236,22 @@ function VersionGate({ children }: { children: ReactNode }) {
       }
     };
 
+    // Marketing pages do not run the version check at all.
+    //
+    // The gate exists to stop a STALE CACHED APP from talking to a newer
+    // backend. A visitor reading the landing page or a blog post has no app
+    // state to be stale, so the request bought them nothing — and PageSpeed
+    // measured it at 1,877ms of critical-path latency on mobile, on every
+    // marketing pageview, for a document that currently returns 404. Entering
+    // /app/* is the moment staleness starts to matter, so check there.
+    if (!window.location.pathname.startsWith('/app')) {
+      setStatus('ok');
+      return;
+    }
+
     // Deferred to idle. The check gates nothing — children render while it is
-    // in flight — but firing it during page load meant the Firestore chunk and
-    // its network round-trip competed with LCP on every visit, including the
-    // landing page.
+    // in flight — but firing it during page load meant the round-trip
+    // competed with LCP.
     // Safari only shipped requestIdleCallback in 18.4, so keep the timer path.
     const idle = typeof window.requestIdleCallback === 'function';
     const handle = idle
