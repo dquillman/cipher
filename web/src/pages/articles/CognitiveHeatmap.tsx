@@ -91,7 +91,7 @@ export default function CognitiveHeatmap() {
             </p>
 
             <figure className="my-8">
-              <img src="/blog-images/cognitive-heatmap.svg" alt="Example cognitive heatmap showing a PMP candidate with strong Remember/Understand rows and weak Apply/Analyze/Evaluate rows" className="w-full rounded-xl border border-slate-700" />
+              <img width={800} height={500} src="/blog-images/cognitive-heatmap.svg" alt="Example cognitive heatmap showing a PMP candidate with strong Remember/Understand rows and weak Apply/Analyze/Evaluate rows" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>
@@ -168,7 +168,7 @@ export default function CognitiveHeatmap() {
             </h2>
 
             <figure className="my-8">
-              <img src="/blog-images/three-patterns.svg" alt="Three diagnostic patterns: the Flashcard Ceiling, the Bootcamp Blindspot, and the Domain Gap — all with same 73 percent overall score" className="w-full rounded-xl border border-slate-700" />
+              <img width={900} height={520} src="/blog-images/three-patterns.svg" alt="Three diagnostic patterns: the Flashcard Ceiling, the Bootcamp Blindspot, and the Domain Gap — all with same 73 percent overall score" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-5 my-4 space-y-5">

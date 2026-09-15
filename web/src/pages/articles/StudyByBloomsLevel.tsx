@@ -141,7 +141,7 @@ export default function StudyByBloomsLevel() {
             </p>
 
             <figure className="my-8">
-              <img src="/blog-images/cognitive-mismatch.svg" alt="Diagram showing candidates studied levels Remember and Understand while the exam tested Apply, Analyze, and Evaluate" className="w-full rounded-xl border border-slate-700" />
+              <img width={800} height={440} src="/blog-images/cognitive-mismatch.svg" alt="Diagram showing candidates studied levels Remember and Understand while the exam tested Apply, Analyze, and Evaluate" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>
@@ -193,7 +193,7 @@ export default function StudyByBloomsLevel() {
             </h2>
 
             <figure className="my-8">
-              <img src="/blog-images/study-time-allocation.svg" alt="Comparison chart showing what most candidates allocate versus what the allocation should be across Bloom's levels" className="w-full rounded-xl border border-slate-700" />
+              <img width={800} height={520} src="/blog-images/study-time-allocation.svg" alt="Comparison chart showing what most candidates allocate versus what the allocation should be across Bloom's levels" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p className="text-white font-medium">

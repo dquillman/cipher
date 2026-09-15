@@ -57,7 +57,7 @@ export default function FiveStudyMistakes() {
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
 
             <figure className="my-8">
-              <img src="/blog-images/five-mistakes.svg" alt="Five numbered study mistakes that cost certification candidates the exam: re-reading what you already know, memorizing without classifying by Bloom's level, ignoring explanations on questions you got right, skipping the simulator until you're ready, and studying domains evenly instead of weighted to weaknesses" className="w-full rounded-xl border border-slate-700" />
+              <img width={800} height={560} src="/blog-images/five-mistakes.svg" alt="Five numbered study mistakes that cost certification candidates the exam: re-reading what you already know, memorizing without classifying by Bloom's level, ignoring explanations on questions you got right, skipping the simulator until you're ready, and studying domains evenly instead of weighted to weaknesses" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>
