@@ -98,19 +98,29 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){ dataLayer.push(arguments); }
         window.gtag = gtag;
-        gtag('js', new Date());
-        // send_page_view is deliberately left ON. This fires from <head> before
-        // the bundle parses; a React-fired equivalent would sit behind
-        // VersionGate's Firestore round-trip and AuthProvider, which is exactly
-        // what made landing_page_view under-count page_view ~3x. RouteAnalytics
-        // adds page_views for SPA navigations only — see src/lib/RouteAnalytics.tsx.
-        gtag('config', 'G-HY0QBN84Y6');
-        gtag('config', 'AW-926344271');
+        var loaded = false;
+        function loadGoogleAnalytics() {
+          if (loaded) return;
+          loaded = true;
+          gtag('js', new Date());
+          gtag('config', 'G-HY0QBN84Y6');
+          gtag('config', 'AW-926344271');
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HY0QBN84Y6';
+          document.head.appendChild(s);
+        }
 
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HY0QBN84Y6';
-        document.head.appendChild(s);
+        // Keep analytics out of the mobile LCP window. The queue above still
+        // captures conversion calls made before the library arrives. A real
+        // interaction loads it immediately; an idle visitor loads it after the
+        // page has had enough time to finish its first meaningful render.
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (eventName) {
+          window.addEventListener(eventName, loadGoogleAnalytics, { once: true, passive: true });
+        });
+        window.addEventListener('load', function () {
+          setTimeout(loadGoogleAnalytics, 10000);
+        }, { once: true });
       })();
     </script>
   </head>
@@ -200,14 +210,13 @@
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "wn43n5eysh");
         }
-        // Fire after first paint, no later than 3s
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadPixels, { timeout: 3000 });
-        } else {
-          setTimeout(loadPixels, 1500);
-        }
+        ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (eventName) {
+          window.addEventListener(eventName, loadPixels, { once: true, passive: true });
+        });
+        window.addEventListener('load', function () {
+          setTimeout(loadPixels, 12000);
+        }, { once: true });
       })();
     </script>
   </body>
 </html>
-

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { Check, X, Terminal, GripVertical, ArrowDown, ArrowUp } from 'lucide-react';
 
 /* ───────────────────────────────────────────────────────────────
@@ -207,21 +207,30 @@ export function isPBQCorrect(config: PBQConfig, state: PBQState): boolean {
  * The shuffle is held in a ref keyed by content, so it survives re-renders
  * (a re-shuffle on every keystroke would make the pool unusable) and is
  * recomputed when a different question arrives. */
-function shuffleCopy<T>(input: T[]): T[] {
+function shuffleCopy<T>(input: T[], seed = 0): T[] {
     const a = input.slice();
+    let state = seed || 0x6d2b79f5;
     for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        state = Math.imul(state ^ (state >>> 15), state | 1);
+        state ^= state + Math.imul(state ^ (state >>> 7), state | 61);
+        const random = ((state ^ (state >>> 14)) >>> 0) / 4294967296;
+        const j = Math.floor(random * (i + 1));
         [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
 }
 
-function useShuffledOnce<T>(input: T[], key: string): T[] {
-    const ref = useRef<{ key: string; value: T[] } | null>(null);
-    if (!ref.current || ref.current.key !== key) {
-        ref.current = { key, value: shuffleCopy(input) };
+function hashKey(key: string): number {
+    let hash = 2166136261;
+    for (let i = 0; i < key.length; i++) {
+        hash ^= key.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
     }
-    return ref.current.value;
+    return hash >>> 0;
+}
+
+function useShuffledOnce<T>(input: T[], key: string): T[] {
+    return useMemo(() => shuffleCopy(input, hashKey(key)), [input, key]);
 }
 
 /** fill-table needs a shuffle per dropdown, and hooks cannot be called inside
