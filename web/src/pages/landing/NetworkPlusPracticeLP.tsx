@@ -35,7 +35,7 @@ const FAQS: LpFaq[] = [
   },
   {
     q: "How many questions is the Full Mock?",
-    a: "90 questions in 90 minutes — the same length and pacing as CompTIA's exam. Scenario-driven multiple choice throughout; see the PBQ answer above.",
+    a: "Our Full Mock has 90 questions with a 90-minute time limit. Scenario-driven multiple choice throughout; see the PBQ answer above.",
   },
   {
     q: "Can I cancel anytime?",
@@ -59,10 +59,10 @@ export default function NetworkPlusPracticeLP() {
       <SectionBlock>
         <p>
           Most Network+ candidates memorize ports, protocols, and topologies and still freeze
-          on the troubleshooting items. The reason isn't a knowledge gap — it's a frame gap.
-          N10-009 grades whether you can locate a fault on the OSI model and pick the
-          systematic next step, not whether you can recite a definition. Question banks that
-          just drill facts can't close that gap.
+          on the troubleshooting items. Knowing the definitions is only part of the work.
+          Practice connecting each symptom to a test, interpreting its result, and choosing
+          the next step. OSI layers can help organize that investigation, but a useful diagnosis
+          also accounts for scope, recent changes, and the evidence available.
         </p>
       </SectionBlock>
 
@@ -83,7 +83,7 @@ export default function NetworkPlusPracticeLP() {
           </li>
           <li>
             <strong>90-question Full Mock at exam pacing.</strong> 90 questions in 90 minutes —
-            the same length CompTIA uses, drawn across the N10-009 domains as
+            drawn across the N10-009 domains as
             scenario-driven multiple choice.
           </li>
         </ol>
@@ -91,13 +91,13 @@ export default function NetworkPlusPracticeLP() {
 
       <ExamLensCallout
         prompt="What OSI layer is this, and what is the systematic fix?"
-        followUp="Every Network+ troubleshooting question is testing this. We make the layer explicit on every explanation."
+        followUp="Use the layer as a starting hypothesis, then test it against the evidence before changing a configuration."
       />
 
       <TryAQuestion
         examName="Network+"
         domainLabel="Network Troubleshooting · OSI Model"
-        prompt="Users on one access switch cannot reach the default gateway, but pings to that switch's management IP succeed from the same hosts. Where do you start troubleshooting?"
+        prompt="After a trunk configuration change, hosts in VLAN 20 cannot reach their gateway. Their IP addresses and subnet masks are correct, the uplink is up, and VLAN 10 still crosses the same uplink successfully. Which check most directly tests the recent change?"
         options={[
           { letter: "A", text: "Layer 1 (physical) — reseat the uplink cable and check the SFP" },
           { letter: "B", text: "Layer 2 (data link) — verify VLAN assignment and trunk/tagging on the uplink" },
@@ -105,9 +105,56 @@ export default function NetworkPlusPracticeLP() {
           { letter: "D", text: "Layer 7 (application) — restart DHCP and DNS services" },
         ]}
         correctLetter="B"
-        reasoning="Apply the Exam Lens: name the layer first. Hosts can ping the switch's management IP, so connectivity up to the switch — physical link and basic data-link — is already working. That rules out a Layer 1 cable fault (A) and a host-to-switch problem. The break is reaching the gateway through this switch, which on the OSI model points to Layer 2: a wrong VLAN assignment or a misconfigured trunk/tag isolates the access ports from the path to the gateway. Per CompTIA N10-009's systematic, layer-by-layer troubleshooting, you verify VLAN and trunking before jumping to Layer 3 (C) or Layer 7 (D) — the symptom hasn't reached those layers yet."
+        reasoning="B tests the change most directly: check whether VLAN 20 is allowed on the trunk and whether tagging agrees at both ends. VLAN 10 crossing the uplink makes a total physical-link failure less likely; it does not prove every physical component is fault-free. The symptoms do not justify readdressing the gateway or restarting DNS. If the trunk settings are correct, continue testing the VLAN path and gateway interface instead of treating the first hypothesis as a confirmed cause."
         bloomsLevel="Analyze"
       />
+
+      <SectionBlock title="Worked example: an IP address works, but a hostname fails">
+        <p>
+          A workstation can reach an internal web server by IP address, but its hostname
+          does not resolve. Other users can resolve that same name. Start with a hypothesis
+          about name resolution, rather than replacing a working cable or rebooting the server.
+        </p>
+        <ol className="mt-4 list-decimal space-y-3 pl-6">
+          <li><strong>Confirm the scope.</strong> Compare the exact hostname on the affected
+            workstation and a working one. A misspelled name and a shared DNS outage call for
+            different responses.</li>
+          <li><strong>Inspect configuration.</strong> On Windows, use <code>ipconfig /all</code>
+            to inspect the configured DNS servers and DNS suffix. Compare them with the expected
+            settings before making changes.</li>
+          <li><strong>Test name resolution.</strong> Use <code>nslookup</code> with the failing
+            hostname. Compare the returned address, a nonexistent-name response, or a timeout.
+            Each result supports a different next investigation; a timeout alone does not prove
+            the DNS server is down.</li>
+          <li><strong>Verify the outcome.</strong> After an authorized correction, retest both
+            name resolution and the original application. Record the cause, change, and result.</li>
+        </ol>
+        <p className="mt-4">
+          Reaching one server by IP establishes a working path for that test. It does not prove
+          every route, firewall rule, or application is healthy. Keep conclusions as narrow as
+          the evidence. This is an original study example, not an actual exam item.
+        </p>
+      </SectionBlock>
+
+      <SectionBlock title="Turn a missed practice question into a useful lab">
+        <ul className="list-disc space-y-3 pl-6">
+          <li><strong>VLANs:</strong> draw the host-to-gateway path and identify which ports must
+            carry the VLAN. Explain what an incorrect access VLAN or missing trunk allowance
+            would break.</li>
+          <li><strong>Addressing:</strong> calculate whether a host and its gateway are in the
+            same subnet. Check the mask as well as the address before blaming routing.</li>
+          <li><strong>Services:</strong> distinguish obtaining an address through DHCP from
+            resolving a name through DNS. Choose a test that isolates the service in question.</li>
+          <li><strong>Review:</strong> write down the observation that supports your answer and
+            the additional evidence that would make another option plausible.</li>
+        </ul>
+        <p className="mt-4">
+          Multiple-choice practice helps you explain those decisions. Pair it with hands-on
+          configuration practice; this question bank does not simulate PBQ interactions.
+          For the reasoning framework, see our <Link to="/exam-lens" className="underline">
+          Exam Lens glossary</Link>.
+        </p>
+      </SectionBlock>
 
       <SectionBlock>
         <p className="text-center">
