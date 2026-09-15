@@ -24,7 +24,7 @@ export default function About() {
                             <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-4 border border-purple-500/20">
                                 <Mic className="h-6 w-6" strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 font-display">Verbal Mode</h3>
+                            <h2 className="text-lg font-bold text-white mb-2 font-display">Verbal Mode</h2>
                             <p className="text-slate-400 text-sm leading-relaxed">
                                 Study hands-free with our AI Voice Tutor. Simulates a real oral exam or interview, challenging you to explain concepts out loud for deeper retention.
                             </p>
@@ -33,7 +33,7 @@ export default function About() {
                             <div className="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center text-pink-400 mb-4 border border-pink-500/20">
                                 <Brain className="h-6 w-6" strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 font-display">Smart Readiness</h3>
+                            <h2 className="text-lg font-bold text-white mb-2 font-display">Smart Readiness</h2>
                             <p className="text-slate-400 text-sm leading-relaxed">
                                 Your diagnostic sets a baseline. Smart Practice drives improvement. Our algorithm weighs your accuracy, trends, and volume to show true readiness.
                             </p>
@@ -42,7 +42,7 @@ export default function About() {
                             <div className="w-12 h-12 bg-brand-500/10 rounded-xl flex items-center justify-center text-brand-400 mb-4 border border-brand-500/20">
                                 <Crosshair className="h-6 w-6" strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 font-display">Adaptive Learning</h3>
+                            <h2 className="text-lg font-bold text-white mb-2 font-display">Adaptive Learning</h2>
                             <p className="text-slate-400 text-sm leading-relaxed">
                                 The app learns from your answers. It identifies your weak spots and serves questions specifically targeting those areas to maximize your study time.
                             </p>
@@ -51,7 +51,7 @@ export default function About() {
                             <div className="w-12 h-12 bg-accent-500/10 rounded-xl flex items-center justify-center text-accent-400 mb-4 border border-accent-500/20">
                                 <BarChart3 className="h-6 w-6" strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 font-display">Visual Progress</h3>
+                            <h2 className="text-lg font-bold text-white mb-2 font-display">Visual Progress</h2>
                             <p className="text-slate-400 text-sm leading-relaxed">
                                 Track your mastery across all domains with our intuitive mastery rings. Watch them close as you gain confidence and competence.
                             </p>
@@ -60,7 +60,7 @@ export default function About() {
                             <div className="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-4 border border-emerald-500/20">
                                 <Flame className="h-6 w-6" strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 font-display">Consistency is Key</h3>
+                            <h2 className="text-lg font-bold text-white mb-2 font-display">Consistency is Key</h2>
                             <p className="text-slate-400 text-sm leading-relaxed">
                                 Build a daily habit. Even 10 questions a day can make a massive difference. Keep your streak alive to stay motivated.
                             </p>
@@ -69,7 +69,7 @@ export default function About() {
                             <div className="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center text-indigo-400 mb-4 border border-indigo-500/20">
                                 <Timer className="h-6 w-6" strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 font-display">Exam Simulator</h3>
+                            <h2 className="text-lg font-bold text-white mb-2 font-display">Exam Simulator</h2>
                             <p className="text-slate-400 text-sm leading-relaxed">
                                 Ready for the real thing? Take full-length mock exams under timed conditions with no hints — 180 questions in 240 minutes for PMP, 90 in 90 for each CompTIA exam. Test your nerves before test day.
                             </p>
@@ -77,33 +77,33 @@ export default function About() {
                     </div>
 
                     <div className="bg-slate-800/30 rounded-3xl p-8 border border-slate-700/50">
-                        <h3 className="text-2xl font-bold text-white mb-6 font-display">How to Get the Most Value</h3>
+                        <h2 className="text-2xl font-bold text-white mb-6 font-display">How to Get the Most Value</h2>
                         <ul className="space-y-4">
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-sm">1</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Practice with Smart Start</h4>
+                                    <h3 className="text-white font-medium mb-1">Practice with Smart Start</h3>
                                     <p className="text-slate-400 text-sm">Jump into Smart Practice from your dashboard. The AI picks questions targeting your weak spots and tracks your improvement.</p>
                                 </div>
                             </li>
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-sm">2</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Review Explanations</h4>
+                                    <h3 className="text-white font-medium mb-1">Review Explanations</h3>
                                     <p className="text-slate-400 text-sm">Don't just check if you were right or wrong. Read the detailed explanations to understand the <i>why</i> behind the answer.</p>
                                 </div>
                             </li>
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-sm">3</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Explain Out Loud</h4>
+                                    <h3 className="text-white font-medium mb-1">Explain Out Loud</h3>
                                     <p className="text-slate-400 text-sm">Use Verbal Mode to practice explaining concepts. Speaking active recall strengthens neural pathways more than just reading.</p>
                                 </div>
                             </li>
                             <li className="flex gap-4">
                                 <span className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-sm">4</span>
                                 <div>
-                                    <h4 className="text-white font-medium mb-1">Close your weakest domains</h4>
+                                    <h3 className="text-white font-medium mb-1">Close your weakest domains</h3>
                                     <p className="text-slate-400 text-sm">Work the mastery rings up domain by domain, and keep testing yourself against the benchmark rather than against a feeling of being ready.</p>
                                 </div>
                             </li>

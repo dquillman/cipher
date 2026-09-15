@@ -27,7 +27,7 @@ export default function PublicFooter() {
 
           {/* Product */}
           <div>
-            <h4 className={columnHeaderClass}>Product</h4>
+            <h2 className={columnHeaderClass}>Product</h2>
             <ul className="space-y-1 sm:space-y-3">
               <li><a href="/#features" className={footerLinkClass}>Features</a></li>
               <li><Link to="/pricing" className={footerLinkClass}>Pricing</Link></li>
@@ -42,7 +42,7 @@ export default function PublicFooter() {
 
           {/* Company */}
           <div>
-            <h4 className={columnHeaderClass}>Company</h4>
+            <h2 className={columnHeaderClass}>Company</h2>
             <ul className="space-y-1 sm:space-y-3">
               <li><Link to="/about" className={footerLinkClass}>About</Link></li>
               <li><Link to="/story" className={footerLinkClass}>Our Story</Link></li>
@@ -52,7 +52,7 @@ export default function PublicFooter() {
 
           {/* Legal */}
           <div>
-            <h4 className={columnHeaderClass}>Legal</h4>
+            <h2 className={columnHeaderClass}>Legal</h2>
             <ul className="space-y-1 sm:space-y-3">
               <li><Link to="/terms" className={footerLinkClass}>Terms</Link></li>
               <li><Link to="/privacy" className={footerLinkClass}>Privacy</Link></li>

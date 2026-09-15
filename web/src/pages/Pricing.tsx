@@ -170,7 +170,7 @@ export default function Pricing() {
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl w-full">
                 {/* Free Tier — the free floor, sorts last */}
                 <div className="order-3 bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
-                    <h3 className="text-2xl font-bold text-white">Starter</h3>
+                    <h2 className="text-2xl font-bold text-white">Starter</h2>
                     <div className="mt-4 flex items-baseline">
                         <span className="text-4xl font-bold tracking-tight text-white">$0</span>
                         <span className="ml-1 text-xl text-slate-400">/ forever</span>
@@ -216,7 +216,7 @@ export default function Pricing() {
 
                     <div className="relative">
                         <div className="flex justify-between items-center">
-                            <h3 className="text-2xl font-bold text-white">Pro Membership</h3>
+                            <h2 className="text-2xl font-bold text-white">Pro Membership</h2>
                             {isPro && (
                                 <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                                     <Check className="w-3 h-3" /> ACTIVE
@@ -276,10 +276,10 @@ export default function Pricing() {
                     className={`order-1 rounded-3xl p-8 border-2 flex flex-col relative overflow-hidden ${hasActivePass ? 'bg-slate-800/50 border-green-500/50 ring-2 ring-green-500/20' : 'bg-gradient-to-br from-amber-900/20 to-slate-900 border-amber-500/60 shadow-2xl shadow-amber-900/20'}`}
                 >
                     <div className="flex justify-between items-center">
-                        <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+                        <h2 className="text-2xl font-bold text-white flex items-center gap-2">
                             <Ticket className="w-6 h-6 text-amber-400" />
                             Exam Pass
-                        </h3>
+                        </h2>
                         {hasActivePass ? (
                             <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
                                 <Check className="w-3 h-3" /> ACTIVE
