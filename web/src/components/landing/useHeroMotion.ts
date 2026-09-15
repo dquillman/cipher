@@ -23,6 +23,10 @@ export function useHeroMotion(scopeRef: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const scope = scopeRef.current;
     if (!scope) return;
+    // The effects below are decorative desktop polish. Avoid loading and
+    // evaluating GSAP on phones, where the measured trace showed it competing
+    // with the hero headline for the main thread.
+    if (window.matchMedia("(max-width: 767px), (pointer: coarse)").matches) return;
     // OS reduce-motion intentionally not honoured (owner decision 2026-06-13).
 
     let cleanup: (() => void) | undefined;

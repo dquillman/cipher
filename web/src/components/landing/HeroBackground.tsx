@@ -22,6 +22,10 @@ const HeroCanvas = lazy(() => import("./HeroCanvas"));
 
 function canRunWebGL(): boolean {
   if (typeof window === "undefined") return false;
+  // Phones get the optimized still image. Shader compilation and three.js
+  // evaluation cost close to a second of CPU in the measured mobile trace,
+  // while the canvas is decorative and visually redundant with that still.
+  if (window.matchMedia("(max-width: 767px), (pointer: coarse)").matches) return false;
   // OS reduce-motion intentionally not honoured (owner decision 2026-06-13) —
   // the WebGL hero runs whenever WebGL is available.
   try {

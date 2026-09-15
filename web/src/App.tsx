@@ -1,11 +1,7 @@
 ﻿import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 import React, { useEffect, useRef, useState, createContext, useContext, Suspense, type ReactNode } from "react";
 import { lazyWithReload as lazy, isDeployChunkError } from "./utils/lazyWithReload";
-import { onAuthStateChanged, type User, signOut } from "firebase/auth";
-// ./firebase-app has no Firestore import. Importing `auth` from "./firebase"
-// instead pulled the 307KB fb-firestore chunk into the entry bundle of every
-// page, landing page included. VersionGate below loads Firestore on demand.
-import { auth } from "./firebase-app";
+import type { Auth, User } from "firebase/auth";
 import { APP_VERSION } from "./version";
 import { isValidVersion, evaluateVersion } from "./utils/versionCheck";
 // Not lazy: this must mount before the gates below it, so it cannot wait on a chunk.
@@ -89,22 +85,46 @@ const AppScope = lazy(() => import("./AppScope"));
 function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const authRef = useRef<Auth | null>(null);
   // Filled in by <SessionTracker> once it has loaded and a user exists.
   const closeSessionRef = useRef<() => Promise<void>>(async () => {});
 
   useEffect(() => {
-    // Safety check for auth initialization failure
-    if (!auth) {
-      console.error("Firebase Auth not initialized correctly.");
-      setLoading(false);
-      return;
-    }
+    let cancelled = false;
+    let unsubscribe = () => {};
 
-    const unsubscribe = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      setLoading(false);
-    });
-    return unsubscribe;
+    // Auth is irrelevant to the public page's first paint. Loading it here
+    // keeps Firebase out of the critical entry graph while preserving the same
+    // provider contract for login and /app routes.
+    const initialize = () => void Promise.all([import("firebase/auth"), import("./firebase-app")])
+      .then(([{ onAuthStateChanged }, { auth }]) => {
+        if (cancelled || !auth) return;
+        authRef.current = auth;
+        unsubscribe = onAuthStateChanged(auth, (u) => {
+          setUser(u);
+          setLoading(false);
+        });
+      })
+      .catch((error) => {
+        console.error("Firebase Auth initialization failed:", error);
+        if (!cancelled) setLoading(false);
+      });
+
+    // Public pages can render without identity. On those routes, wait until
+    // after load and a generous idle window so Firebase's auth iframe and API
+    // bootstrap cannot contend with the hero's LCP. Login and app routes still
+    // initialize immediately.
+    const publicRoute = !window.location.pathname.startsWith('/app') &&
+      window.location.pathname !== '/login';
+    const disposeInitialization = publicRoute
+      ? afterPaint(initialize, 8000)
+      : (() => { initialize(); return () => {}; })();
+
+    return () => {
+      cancelled = true;
+      disposeInitialization();
+      unsubscribe();
+    };
   }, []);
 
   // useSessionTracker used to clear this whenever it saw a null user. It is no
@@ -122,30 +142,14 @@ function AuthProvider({ children }: { children: ReactNode }) {
     // either way.
     await withTimeout(closeSessionRef.current(), 2500, 'closeSession');
     try {
-      await signOut(auth);
+      const activeAuth = authRef.current;
+      if (!activeAuth) return;
+      const { signOut } = await import("firebase/auth");
+      await signOut(activeAuth);
     } catch (error) {
       console.error("Sign-out failed:", error);
     }
   };
-
-  if (!auth && !loading) {
-    return (
-      <div className="flex min-h-dvh items-center justify-center bg-slate-900 text-white">
-        <div className="text-center p-8 bg-slate-800 rounded-xl border border-red-500/30">
-          <h1 className="text-2xl font-bold text-red-500 mb-2">Configuration Error</h1>
-          <p className="text-slate-300">Firebase failed to initialize. Please check your network connection or configuration.</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (loading) {
-    return (
-      <div className="flex h-dvh items-center justify-center bg-slate-900 text-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
-      </div>
-    );
-  }
 
   return (
     <AuthContext.Provider value={{ user, loading, logout }}>
@@ -333,8 +337,16 @@ function VersionGate({ children }: { children: ReactNode }) {
 
 // --- Route Guards ---
 function RequireAuth() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const location = useLocation();
+
+  if (loading) {
+    return (
+      <div className="flex h-dvh items-center justify-center bg-slate-900 text-white">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-500"></div>
+      </div>
+    );
+  }
 
   if (!user) {
     // Redirect them to the /login page, but save the current location they were
@@ -347,7 +359,8 @@ function RequireAuth() {
 }
 
 function PublicOnly() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  if (loading) return <Outlet />;
   if (user) {
     return <Navigate to="/app" replace />;
   }
@@ -361,17 +374,22 @@ const AppLayout = lazy(() => import("./AppLayout"));
 const MockExamGuard = lazy(() => import("./components/MockExamGuard"));
 
 // --- Analytics Hook ---
-import { httpsCallable } from 'firebase/functions';
-import { functions } from './firebase-app';
 import { withTimeout } from './utils/withTimeout';
+import { afterPaint } from './utils/afterPaint';
 
 function useAnalytics() {
   useEffect(() => {
+    let cancelled = false;
     const trackVisit = async () => {
       // Basic unique session tracking
       if (sessionStorage.getItem('visited_session')) return;
 
       try {
+        const [{ httpsCallable }, { functions }] = await Promise.all([
+          import('firebase/functions'),
+          import('./firebase-app'),
+        ]);
+        if (cancelled) return;
         const searchParams = new URLSearchParams(window.location.search);
         const source = searchParams.get('utm_source') || 'direct'; // Default to direct
 
@@ -387,7 +405,20 @@ function useAnalytics() {
       }
     };
 
-    trackVisit();
+    const schedule = () => {
+      if (typeof window.requestIdleCallback === 'function') {
+        return window.requestIdleCallback(() => void trackVisit(), { timeout: 8000 });
+      }
+      return window.setTimeout(() => void trackVisit(), 4000);
+    };
+    const start = () => { if (!cancelled) schedule(); };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+
+    return () => {
+      cancelled = true;
+      window.removeEventListener('load', start);
+    };
   }, []);
 }
 
@@ -583,4 +614,3 @@ function App() {
 }
 
 export default App;
-
