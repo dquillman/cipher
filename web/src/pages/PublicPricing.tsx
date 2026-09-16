@@ -46,7 +46,7 @@ export default function PublicPricing() {
                 <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl w-full items-start">
                     {/* Free Tier */}
                     <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
-                        <h3 className="text-2xl font-bold text-white">Starter</h3>
+                        <h2 className="text-2xl font-bold text-white">Starter</h2>
                         <div className="mt-4 flex items-baseline">
                             <span className="text-4xl font-bold tracking-tight text-white">$0</span>
                             <span className="ml-1 text-xl text-slate-400">/ forever</span>

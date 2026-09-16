@@ -27,7 +27,7 @@ export default function PublicFooter() {
 
           {/* Product */}
           <div>
-            <h4 className={columnHeaderClass}>Product</h4>
+            <h2 className={columnHeaderClass}>Product</h2>
             <ul className="space-y-1 sm:space-y-3">
               <li><a href="/#features" className={footerLinkClass}>Features</a></li>
               <li><Link to="/pricing" className={footerLinkClass}>Pricing</Link></li>

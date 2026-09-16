@@ -24,7 +24,7 @@ export default function About() {
                             <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 mb-4 border border-purple-500/20">
                                 <Mic className="h-6 w-6" strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-lg font-bold text-white mb-2 font-display">Verbal Mode</h3>
+                            <h2 className="text-lg font-bold text-white mb-2 font-display">Verbal Mode</h2>
                             <p className="text-slate-400 text-sm leading-relaxed">
                                 Study hands-free with our AI Voice Tutor. Simulates a real oral exam or interview, challenging you to explain concepts out loud for deeper retention.
                             </p>
