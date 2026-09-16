@@ -46,7 +46,7 @@ export default function PublicPricing() {
                 <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl w-full items-start">
                     {/* Free Tier */}
                     <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
-                        <h3 className="text-2xl font-bold text-white">Starter</h3>
+                        <h2 className="text-2xl font-bold text-white">Starter</h2>
                         <div className="mt-4 flex items-baseline">
                             <span className="text-4xl font-bold tracking-tight text-white">$0</span>
                             <span className="ml-1 text-xl text-slate-400">/ forever</span>
@@ -78,7 +78,7 @@ export default function PublicPricing() {
                         {/* MOST POPULAR tag — centered on the top border so the seal owns the corner */}
                         <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-500 to-purple-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg whitespace-nowrap">MOST POPULAR</span>
                         <div className="relative">
-                            <h3 className="text-2xl font-bold text-white">Exam Pass</h3>
+                            <h2 className="text-2xl font-bold text-white">Exam Pass</h2>
                             <div className="mt-4 flex items-baseline flex-wrap gap-x-2">
                                 <span className="text-4xl font-bold tracking-tight text-white">$59</span>
                                 <span className="text-xl text-slate-400">one-time</span>
@@ -118,7 +118,7 @@ export default function PublicPricing() {
 
                     {/* Pro Tier — the subscription option, demoted below the Exam Pass hero. */}
                     <div className="bg-slate-800/50 rounded-3xl p-8 border border-slate-700 flex flex-col">
-                        <h3 className="text-2xl font-bold text-white">Pro Membership</h3>
+                        <h2 className="text-2xl font-bold text-white">Pro Membership</h2>
                         <div className="mt-4 flex items-baseline flex-wrap gap-x-2">
                             <span className="text-4xl font-bold tracking-tight text-white">$19</span>
                             <span className="text-xl text-slate-400">/ month</span>
