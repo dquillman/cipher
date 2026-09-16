@@ -57,7 +57,7 @@ export default function HowAIExplanationsWork() {
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
 
             <figure className="my-8">
-              <img src="/blog-images/reasoning-chain.svg" alt="Comparison of a flashcard-style answer that just says 'assess impact' versus a four-step reasoning chain — frame the PMI Decision Lens, name the rule, expose the trap answer, and transfer the pattern to similar questions" className="w-full rounded-xl border border-slate-700" />
+              <img height={"560"} width={"800"} src="/blog-images/reasoning-chain.svg" alt="Comparison of a flashcard-style answer that just says 'assess impact' versus a four-step reasoning chain — frame the PMI Decision Lens, name the rule, expose the trap answer, and transfer the pattern to similar questions" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>

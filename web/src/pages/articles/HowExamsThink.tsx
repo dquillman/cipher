@@ -55,7 +55,7 @@ export default function HowExamsThink() {
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
 
             <figure className="my-8">
-              <img src="/blog-images/exam-lenses-grid.svg" alt="Six certifications paired with the reasoning framework each one tests: PMP with PMI Decision Lens, Security+ with CIA Triad Lens, SHRM-CP with Competency Lens, ITIL 4 with Service Value Lens, CSM with Scrum Guide Lens, Six Sigma with DMAIC Lens" className="w-full rounded-xl border border-slate-700" />
+              <img height={"560"} width={"800"} src="/blog-images/exam-lenses-grid.svg" alt="Six certifications paired with the reasoning framework each one tests: PMP with PMI Decision Lens, Security+ with CIA Triad Lens, SHRM-CP with Competency Lens, ITIL 4 with Service Value Lens, CSM with Scrum Guide Lens, Six Sigma with DMAIC Lens" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>

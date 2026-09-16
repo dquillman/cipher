@@ -14,7 +14,7 @@ export default function PublicFooter() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <img src="/logo-64.png" alt="CipherExam" className="h-7 w-7 rounded object-contain" />
+              <img height={"64"} width={"64"} src="/logo-64.png" alt="CipherExam" className="h-7 w-7 rounded object-contain" />
               <span className="text-white font-bold">CipherExam</span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed mb-4">

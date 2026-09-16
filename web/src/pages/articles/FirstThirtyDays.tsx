@@ -57,7 +57,7 @@ export default function FirstThirtyDays() {
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
 
             <figure className="my-8">
-              <img src="/blog-images/thirty-day-plan.svg" alt="Four-week certification study plan timeline: Week 1 diagnose with a 20-minute cognitive baseline and heatmap, Week 2 build coverage weighted to weak domains, Week 3 simulate a full mock at exam length, Week 4 close gaps with drill on trap patterns and a second mock" className="w-full rounded-xl border border-slate-700" />
+              <img height={"560"} width={"800"} src="/blog-images/thirty-day-plan.svg" alt="Four-week certification study plan timeline: Week 1 diagnose with a 20-minute cognitive baseline and heatmap, Week 2 build coverage weighted to weak domains, Week 3 simulate a full mock at exam length, Week 4 close gaps with drill on trap patterns and a second mock" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>

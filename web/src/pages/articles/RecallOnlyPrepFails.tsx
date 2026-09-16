@@ -76,7 +76,7 @@ export default function RecallOnlyPrepFails() {
             </p>
 
             <figure className="my-8">
-              <img src="/blog-images/ceiling-math.svg" alt="Chart showing exam composition: 20% Remember/Understand, 60% Apply/Analyze, 20% Evaluate" className="w-full rounded-xl border border-slate-700" />
+              <img height={"440"} width={"800"} src="/blog-images/ceiling-math.svg" alt="Chart showing exam composition: 20% Remember/Understand, 60% Apply/Analyze, 20% Evaluate" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>
@@ -88,7 +88,7 @@ export default function RecallOnlyPrepFails() {
             </p>
 
             <figure className="my-8">
-              <img src="/blog-images/plateau-chart.svg" alt="Line chart showing recall-only prep plateau at 72% versus Bloom's-trained continuing to 93%" className="w-full rounded-xl border border-slate-700" />
+              <img height={"460"} width={"800"} src="/blog-images/plateau-chart.svg" alt="Line chart showing recall-only prep plateau at 72% versus Bloom's-trained continuing to 93%" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p className="text-white font-medium">
@@ -130,7 +130,7 @@ export default function RecallOnlyPrepFails() {
             </p>
 
             <figure className="my-8">
-              <img src="/blog-images/recognition-vs-production.svg" alt="Side-by-side comparison of recognition (plateaus at 70-75 percent) versus production (scales past 90 percent)" className="w-full rounded-xl border border-slate-700" />
+              <img height={"380"} width={"800"} src="/blog-images/recognition-vs-production.svg" alt="Side-by-side comparison of recognition (plateaus at 70-75 percent) versus production (scales past 90 percent)" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>

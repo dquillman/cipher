@@ -60,7 +60,7 @@ export default function WhyCertExamsConfusing() {
           <div className="space-y-6 text-base sm:text-lg text-slate-300 leading-relaxed">
 
             <figure className="my-8">
-              <img src="/blog-images/four-plausible-answers.svg" alt="Sample PMP-style scenario showing four answer choices A through D where three are defensible and the BEST answer is C — the one that follows PMI Decision Lens by assessing impact before communicating" className="w-full rounded-xl border border-slate-700" />
+              <img height={"560"} width={"800"} src="/blog-images/four-plausible-answers.svg" alt="Sample PMP-style scenario showing four answer choices A through D where three are defensible and the BEST answer is C — the one that follows PMI Decision Lens by assessing impact before communicating" className="w-full rounded-xl border border-slate-700" />
             </figure>
 
             <p>
