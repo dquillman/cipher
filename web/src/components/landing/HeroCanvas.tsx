@@ -251,11 +251,14 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
 
     // Run only while the hero is on-screen and the tab is visible.
     let running = false;
+    let disposed = false;
+    let compiled = false;
     let onScreen = false;
     let rafId = 0;
     let last = performance.now();
     let lastRender = last;
     let elapsed = 0;
+    let revealed = false;
     // This slow decorative field does not need 60/120 GPU draws per second on
     // phones. Keep animation time continuous while limiting its render work.
     const frameInterval = isSmall ? 1000 / 30 : 0;
@@ -282,10 +285,14 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
       points.rotation.x = pointer.y * 0.05;
 
       renderer.render(scene, camera);
+      if (!revealed) {
+        revealed = true;
+        canvas.style.opacity = "1";
+      }
     };
 
     const start = () => {
-      if (running) return;
+      if (running || disposed || !compiled) return;
       running = true;
       last = performance.now();
       lastRender = last;
@@ -295,6 +302,16 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
       running = false;
       cancelAnimationFrame(rafId);
     };
+
+    // Compile before the first draw so supported GPUs can prepare shaders
+    // asynchronously instead of stalling the initial animation frame.
+    const compilation = renderer.compileAsync(scene, camera).then(() => {
+      if (disposed) return;
+      compiled = true;
+      if (onScreen && document.visibilityState === "visible") start();
+    }).catch((error: unknown) => {
+      if (!disposed) console.warn("Hero shader preparation failed; keeping static background.", error);
+    });
 
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -315,24 +332,21 @@ export default function HeroCanvas({ className = "" }: { className?: string }) {
     const onResize = () => resize();
     window.addEventListener("resize", onResize, { passive: true });
 
-    // Fade in after the first painted frame so the still image never flashes.
-    let fadeFrame = requestAnimationFrame(() => {
-      fadeFrame = requestAnimationFrame(() => {
-        canvas.style.opacity = "1";
-      });
-    });
-
     return () => {
+      disposed = true;
       stop();
-      cancelAnimationFrame(fadeFrame);
       io.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("resize", onResize);
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-      renderer.forceContextLoss();
+      // The installed Three.js version polls material programs while compiling.
+      // Keep those resources alive until polling ends, even after navigation.
+      void compilation.finally(() => {
+        geometry.dispose();
+        material.dispose();
+        renderer.dispose();
+        renderer.forceContextLoss();
+      });
       if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
     };
   }, []);

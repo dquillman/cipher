@@ -10,6 +10,11 @@
 
     <!-- Font declarations are bundled into app CSS; connect to their binary origin early. -->
     <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <!-- Firebase Auth boots an iframe from this origin at module scope. PageSpeed
+         measured it as the longest critical chain on the page (2,369ms) and named
+         this preconnect as 350ms of LCP savings. The real fix is to stop loading
+         auth eagerly on marketing pages; this is the cheap half. -->
+    <link rel="preconnect" href="https://exam-coach-ai-platform.firebaseapp.com" crossorigin />
 
     <!-- Default fallback title — React 19 correctly overrides this per route via SeoHead.
          Per-page <meta>, <link rel="canonical">, OG, and twitter tags are emitted by

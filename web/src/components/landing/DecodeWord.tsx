@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { afterPaint } from '../../utils/afterPaint';
 
 const GLYPHS = '△◇#%&λΞΦ$◈≠∅01';
 const FRAME_MS = 32;
-const FRAMES = 46;          // ~1.5s to fully resolve
+const FRAMES = 12;          // Resolve in ~0.4s so the headline becomes readable promptly
 const REPLAY_MS = 12000;    // re-run the decode so the page keeps its signature moment
 
 /**
@@ -14,6 +15,7 @@ const REPLAY_MS = 12000;    // re-run the decode so the page keeps its signature
 export default function DecodeWord({ text }: { text: string }) {
     const [display, setDisplay] = useState(text);
     const timers = useRef<number[]>([]);
+    const wordRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
         // Prerender/E2E guard: the sitemap prerenderer (Playwright) snapshots the
@@ -21,7 +23,11 @@ export default function DecodeWord({ text }: { text: string }) {
         // and wreck its SEO text. Automated browsers keep the plain word.
         if (navigator.webdriver) return;
 
+        let onScreen = true;
+        const observer = new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; });
+        if (wordRef.current) observer.observe(wordRef.current);
         const run = () => {
+            if (!onScreen || document.hidden) return;
             let frame = 0;
             const iv = window.setInterval(() => {
                 frame++;
@@ -39,10 +45,33 @@ export default function DecodeWord({ text }: { text: string }) {
             timers.current.push(iv);
         };
 
-        run();
-        const replay = window.setInterval(run, REPLAY_MS);
-        timers.current.push(replay);
-        return () => { timers.current.forEach(t => window.clearInterval(t)); timers.current = []; };
+        // Do not scramble until the page has painted and settled.
+        //
+        // This <h1> is the page's LCP element. Largest Contentful Paint is
+        // re-evaluated every time that element repaints with new content, and
+        // the scramble rewrites its text ~46 times over 1.5s. PageSpeed
+        // captured the LCP snapshot mid-run — the recorded LCP text was
+        // "Learn How Certification Exams Think TΦ%△$" — so the animation was
+        // still moving the metric it is measured by.
+        //
+        // navigator.webdriver is why this went unnoticed: Playwright sets it,
+        // so the guard above suppresses the scramble in the prerenderer and in
+        // any Playwright-based test. Lighthouse drives Chrome over the DevTools
+        // protocol and does NOT set it, so the animation runs there and only
+        // there. An earlier attempt to measure this with Playwright therefore
+        // measured an animation that never ran.
+        const dispose = afterPaint(() => {
+            run();
+            const replay = window.setInterval(run, REPLAY_MS);
+            timers.current.push(replay);
+        });
+
+        return () => {
+            dispose();
+            observer.disconnect();
+            timers.current.forEach(t => window.clearInterval(t));
+            timers.current = [];
+        };
     }, [text]);
 
     // Only ONE copy of the word may exist in the text content at rest.
@@ -63,7 +92,7 @@ export default function DecodeWord({ text }: { text: string }) {
     const scrambling = display !== text;
 
     return (
-        <span className="decode-word">
+        <span ref={wordRef} className="decode-word">
             {scrambling && <span className="sr-only">{text}</span>}
             <span aria-hidden={scrambling || undefined}>{display}</span>
             <span className="decode-caret" aria-hidden="true" />

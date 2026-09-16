@@ -214,7 +214,7 @@ export default function Landing() {
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <img src="/logo-64.png" alt="CipherExam" className="h-8 w-8 rounded-lg object-contain" />
+            <img height={"64"} width={"64"} src="/logo-64.png" alt="CipherExam" className="h-8 w-8 rounded-lg object-contain" />
             <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟨</span>
             <span className="text-lg font-bold tracking-tight text-white font-display">CipherExam</span>
             <span className="font-mono text-lg font-semibold text-brand-400" aria-hidden="true">⟩</span>
@@ -309,7 +309,7 @@ export default function Landing() {
       <section ref={heroRef} className="relative isolate pt-32 pb-20 overflow-hidden">
         {/* Ambient light-stream image (Higgsfield) — the still base + SSR/reduced-motion fallback */}
         <div className="absolute inset-0 -z-[8] overflow-hidden" aria-hidden="true">
-          <img
+          <img fetchPriority={"high"} loading={"eager"} height={"900"} width={"1600"}
             src="/media/hero-ambient.jpg"
             alt=""
             className="hero-ambient h-full w-full object-cover opacity-25 [mask-image:linear-gradient(to_bottom,black_35%,transparent_96%)]"
@@ -1035,7 +1035,7 @@ export default function Landing() {
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2">
-                <img src="/logo-64.png" alt="CipherExam" className="h-6 w-6 rounded object-contain" />
+                <img height={"64"} width={"64"} src="/logo-64.png" alt="CipherExam" className="h-6 w-6 rounded object-contain" />
                 <span className="text-slate-300 font-semibold">CipherExam</span>
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-400">

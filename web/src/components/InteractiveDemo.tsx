@@ -30,6 +30,7 @@ function MasteryRing({ label, pct, color, delay, active }: { label: string; pct:
 
   useEffect(() => {
     if (!active) { setAnimPct(0); return; }
+    let frame = 0;
     const t = setTimeout(() => {
       let start: number | null = null;
       const dur = 1200;
@@ -39,11 +40,11 @@ function MasteryRing({ label, pct, color, delay, active }: { label: string; pct:
         // ease-out cubic
         const eased = 1 - Math.pow(1 - progress, 3);
         setAnimPct(eased * pct);
-        if (progress < 1) requestAnimationFrame(step);
+        if (progress < 1) frame = requestAnimationFrame(step);
       };
-      requestAnimationFrame(step);
+      frame = requestAnimationFrame(step);
     }, delay);
-    return () => clearTimeout(t);
+    return () => { clearTimeout(t); cancelAnimationFrame(frame); };
   }, [active, pct, delay]);
 
   return (
@@ -77,6 +78,16 @@ export default function InteractiveDemo() {
   const [elapsed, setElapsed] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [paused, setPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    let intersecting = false;
+    const update = () => setVisible(intersecting && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => { intersecting = entry.isIntersecting; update(); });
+    if (containerRef.current) observer.observe(containerRef.current);
+    document.addEventListener('visibilitychange', update);
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', update); };
+  }, []);
 
   const advance = useCallback(() => {
     setStep(prev => (prev + 1) % STEP_DURATIONS.length);
@@ -84,7 +95,7 @@ export default function InteractiveDemo() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
+    if (paused || !visible) return;
     timerRef.current = setInterval(() => {
       setElapsed(prev => {
         const next = prev + 50;
@@ -96,7 +107,7 @@ export default function InteractiveDemo() {
       });
     }, 50);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [step, paused, advance]);
+  }, [step, paused, visible, advance]);
 
   // Calculate overall progress for the progress bar
   const prevDurations = STEP_DURATIONS.slice(0, step).reduce((a, b) => a + b, 0);
@@ -108,9 +119,9 @@ export default function InteractiveDemo() {
     "But the PMI framework emphasizes following established processes first. Before taking action, the PM should review the communications management plan to understand why the stakeholder was excluded.",
     "The correct answer is B — Review the communications management plan."
   ];
-  const line1 = useTyping(explanationLines[0], step === 3, 22);
-  const line2 = useTyping(explanationLines[1], step === 3 && elapsed > 800, 16);
-  const line3 = useTyping(explanationLines[2], step === 3 && elapsed > 3200, 20);
+  const line1 = useTyping(explanationLines[0], visible && step === 3, 22);
+  const line2 = useTyping(explanationLines[1], visible && step === 3 && elapsed > 800, 16);
+  const line3 = useTyping(explanationLines[2], visible && step === 3 && elapsed > 3200, 20);
 
   const stepLabels = ['Select Exam', 'Read Question', 'Answer', 'AI Explanation', 'Your Progress'];
 
@@ -120,6 +131,7 @@ export default function InteractiveDemo() {
 
   return (
     <div
+      ref={containerRef}
       className="relative w-full"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -285,13 +297,13 @@ export default function InteractiveDemo() {
 
                 {elapsed > 800 && (
                   <p className="text-sm text-slate-300 leading-relaxed min-h-[40px]">
-                    {line2}<span className={step === 3 && elapsed > 800 && line2.length < explanationLines[1].length ? 'inline-block w-0.5 h-4 bg-brand-400 ml-0.5 animate-pulse' : 'hidden'} />
+                    {line2}<span className={visible && step === 3 && elapsed > 800 && line2.length < explanationLines[1].length ? 'inline-block w-0.5 h-4 bg-brand-400 ml-0.5 animate-pulse' : 'hidden'} />
                   </p>
                 )}
 
                 {elapsed > 3200 && (
                   <p className="text-sm text-emerald-300 font-semibold leading-relaxed min-h-[20px]">
-                    {line3}<span className={step === 3 && elapsed > 3200 && line3.length < explanationLines[2].length ? 'inline-block w-0.5 h-4 bg-emerald-400 ml-0.5 animate-pulse' : 'hidden'} />
+                    {line3}<span className={visible && step === 3 && elapsed > 3200 && line3.length < explanationLines[2].length ? 'inline-block w-0.5 h-4 bg-emerald-400 ml-0.5 animate-pulse' : 'hidden'} />
                   </p>
                 )}
 
@@ -341,9 +353,9 @@ export default function InteractiveDemo() {
 
               {/* Domain rings */}
               <div className="flex justify-between gap-2 sm:gap-3">
-                <MasteryRing label="People" pct={85} color="#10b981" delay={200} active={step === 4} />
-                <MasteryRing label="Process" pct={68} color="#6366f1" delay={400} active={step === 4} />
-                <MasteryRing label="Business" pct={74} color="#f59e0b" delay={600} active={step === 4} />
+                <MasteryRing label="People" pct={85} color="#10b981" delay={200} active={visible && step === 4} />
+                <MasteryRing label="Process" pct={68} color="#6366f1" delay={400} active={visible && step === 4} />
+                <MasteryRing label="Business" pct={74} color="#f59e0b" delay={600} active={visible && step === 4} />
                 {/* "Agile" and "Predictive" used to sit here. Neither is a domain
                     in any bank we ship — the PMP v2026 outline has exactly three
                     (People, Process, Business Environment) and the CompTIA banks
