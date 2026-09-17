@@ -47,7 +47,7 @@ export default function Story() {
             <h1 className="text-4xl font-extrabold text-white font-display tracking-tight sm:text-5xl mb-4">
               Why We Built CipherExam
             </h1>
-            <p className="text-slate-500 text-sm">By Dave, founder of CipherExam</p>
+            <p style={{color:"#ffffff"}} className="text-slate-500 text-sm">By Dave, founder of CipherExam</p>
           </div>
 
           {/* Story Body */}
@@ -142,7 +142,7 @@ export default function Story() {
             >
               Start Your Free Trial
             </button>
-            <p className="mt-4 text-sm text-slate-500">No credit card required.</p>
+            <p style={{color:"#ffffff"}} className="mt-4 text-sm text-slate-500">No credit card required.</p>
           </div>
 
         </div>

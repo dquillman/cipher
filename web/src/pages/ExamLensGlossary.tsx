@@ -270,7 +270,7 @@ export default function ExamLensGlossary() {
             >
               Start Your Free 14-Day Trial
             </button>
-            <p className="text-sm text-slate-500 mt-3">No credit card required.</p>
+            <p className="text-sm text-slate-400 mt-3">No credit card required.</p>
           </div>
         </div>
       </main>

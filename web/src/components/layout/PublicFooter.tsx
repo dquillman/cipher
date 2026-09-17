@@ -4,7 +4,7 @@ import { SUPPORT_EMAIL } from '../../config/support';
 const columnHeaderClass = 'text-sm font-bold text-slate-300 uppercase tracking-wider mb-4';
 // inline-flex + min-h-[44px] gives each link a real touch target; the 25px
 // line box these had was well under the 44px minimum on a phone.
-const footerLinkClass = 'text-sm text-slate-500 hover:text-white transition-colors inline-flex items-center min-h-[44px]';
+const footerLinkClass = 'text-sm text-slate-400 hover:text-white transition-colors inline-flex items-center min-h-[44px]';
 
 export default function PublicFooter() {
   return (
@@ -17,7 +17,7 @@ export default function PublicFooter() {
               <img height={"64"} width={"64"} src="/logo-64.png" alt="CipherExam" className="h-7 w-7 rounded object-contain" />
               <span className="text-white font-bold">CipherExam</span>
             </div>
-            <p className="text-sm text-slate-500 leading-relaxed mb-4">
+            <p style={{color:"#ffffff"}} className="text-sm text-slate-500 leading-relaxed mb-4">
               AI-powered certification exam prep. Understand how exams think.
             </p>
             <a href={`mailto:${SUPPORT_EMAIL}`} className={footerLinkClass}>
@@ -62,7 +62,7 @@ export default function PublicFooter() {
 
         {/* Bottom row */}
         <div className="mt-12 pt-8 border-t border-slate-800">
-          <p className="text-sm text-slate-600 text-center">
+          <p className="text-sm text-slate-400 text-center">
             &copy; {new Date().getFullYear()} CipherExam. All rights reserved.
           </p>
         </div>

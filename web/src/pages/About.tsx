@@ -121,17 +121,17 @@ export default function About() {
                 </div>
             </main>
 
-            <footer className="py-8 text-center text-xs text-slate-600 border-t border-slate-800">
+            <footer className="py-8 text-center text-xs text-slate-400 border-t border-slate-800">
                 <div className="max-w-4xl mx-auto px-4 mb-4 space-y-2">
-                    <p className="font-semibold text-slate-500">Legal Disclaimers</p>
-                    <p>
-                        <strong>No Guarantee:</strong> Use of this app does not guarantee exam success or licensure.
+                    <p style={{color:"#ffffff"}} className="font-semibold text-slate-500">Legal Disclaimers</p>
+                    <p style={{color:"#ffffff"}}>
+                        <strong style={{color:"#ffffff"}}>No Guarantee:</strong> Use of this app does not guarantee exam success or licensure.
                     </p>
                     <p>
-                        <strong>Not Professional Advice:</strong> This app is for educational purposes only and is not a substitute for professional, legal, medical, or financial advice.
+                        <strong style={{color:"#ffffff"}}>Not Professional Advice:</strong> This app is for educational purposes only and is not a substitute for professional, legal, medical, or financial advice.
                     </p>
                     <p>
-                        <strong>Affiliation:</strong> This app is not affiliated with, endorsed, or sponsored by PMI, CompTIA, CFA Institute, or any other exam owner/regulator. PMP®, CompTIA®, and other trademarks are the property of their respective owners.
+                        <strong style={{color:"#ffffff"}}>Affiliation:</strong> This app is not affiliated with, endorsed, or sponsored by PMI, CompTIA, CFA Institute, or any other exam owner/regulator. PMP®, CompTIA®, and other trademarks are the property of their respective owners.
                     </p>
                 </div>
                 <p>&copy; {new Date().getFullYear()} CipherExam. All rights reserved.</p>

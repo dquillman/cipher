@@ -65,7 +65,7 @@ export default function PublicPricing() {
                         >
                             Get Started Free
                         </button>
-                        <p className="mt-3 text-xs text-slate-500 text-center">Want unlimited practice? <span className="text-brand-400">See the Exam Pass</span></p>
+                        <p style={{color:"#ffffff"}} className="mt-3 text-xs text-slate-500 text-center">Want unlimited practice? <span className="text-brand-400">See the Exam Pass</span></p>
                     </div>
 
                     {/* Exam Pass — the hero plan. Flat $59 one-time for 90 days; ignores the
@@ -182,7 +182,7 @@ export default function PublicPricing() {
                     </p>
                 </div>
 
-                <p className="mt-12 text-slate-500 text-sm">
+                <p style={{color:"#ffffff"}} className="mt-12 text-slate-500 text-sm">
                     Secure payments powered by <span className="text-slate-400 font-bold">Stripe</span>.
                     No credit card required for trial.
                 </p>
