@@ -41,6 +41,8 @@ export const SEO = {
         '@context': 'https://schema.org',
         '@type': 'Product',
         name: 'CipherExam Pro',
+        // Publicly hosted 500px CipherExam product icon for Product rich results.
+        image: [SITE + '/favicon.png'],
         description:
           'AI-powered cert exam prep with unlimited AI quizzes, full exam simulators, detailed domain analytics, AI-powered study plans.',
         brand: { '@type': 'Brand', name: 'CipherExam' },
