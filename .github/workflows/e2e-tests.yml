@@ -48,7 +48,8 @@ jobs:
   test:
     name: Run E2E Tests
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    # Playwright in the lockfile does not support Ubuntu 26.04 yet.
+    runs-on: ubuntu-24.04
 
     defaults:
       run:
@@ -69,7 +70,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
       - name: Run Playwright Tests
         run: npm run test:e2e
